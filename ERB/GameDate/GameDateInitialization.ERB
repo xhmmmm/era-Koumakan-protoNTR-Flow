@@ -9,15 +9,15 @@ PRINTL
 PRINTL 日期设置初始化
 PRINTL
 PRINTFORM   %日期_月份名称(日期_月数)% 
-PRINTBUTTON "[0:変更]", 0
+PRINTBUTTON "[0:更改]", 0
 PRINTL
 PRINTFORM   {日期_天数}日 
-PRINTBUTTON "[1:変更]", 1
+PRINTBUTTON "[1:更改]", 1
 PRINTL
 PRINTL
 PRINTL
 SIF 日期_月数 >= 1 && 日期_月数 <= 6 && 日期_天数 >= 1 && 日期_天数 <= 30
-	PRINTBUTTON "[2:決定]", 2
+	PRINTBUTTON "[2:确认]", 2
 PRINTL 
 INPUT
 IF RESULT == 0
@@ -32,13 +32,13 @@ IF RESULT == 0
 	SIF RESULT >= 1 && RESULT <= 6
 		日期_月数 = RESULT
 ELSEIF RESULT == 1
-	PRINTL 日数设置（请输入1-30范围内的数字）
+	PRINTL 日数设置（请输入1-21范围内的数字）
 	INPUT
 
-	SIF RESULT >= 1 && RESULT <= 30
+	SIF RESULT >= 1 && RESULT <= 21
 		日期_天数 = RESULT
 
-ELSEIF RESULT == 2 && 日期_月数 >= 1 && 日期_月数 <= 6 && 日期_天数 >= 1 && 日期_天数 <= 30
+ELSEIF RESULT == 2 && 日期_月数 >= 1 && 日期_月数 <= 6 && 日期_天数 >= 1 && 日期_天数 <= 21
 	CALL 日間気温設定
 	CALL 現在気温設定
 	RETURN 

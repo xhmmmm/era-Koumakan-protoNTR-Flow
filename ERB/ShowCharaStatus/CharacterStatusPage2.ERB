@@ -116,34 +116,36 @@ SELECTCASE ABL:对象:Ａ感觉
 		PRINT 感度良好　
 ENDSELECT
 IF 对象
-	; SELECTCASE 挿入不可(对象)
-	; 	CASE 3
-	; 		PRINTFORML 无论如何也无法容纳%CALLNAME:MASTER%的阴茎的尺寸
-	; 		LOCAL:6 ++
-	; 	CASE 2
-	; 		IF EXP:对象:Ａ经验 < 50 && TALENT:MASTER:禁断的知识
-	; 			PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
-	; 			LOCAL:6 ++
-	; 		ELSEIF !TALENT:MASTER:禁断的知识
-	; 			PRINTFORML %CALLNAME:MASTER%的阴茎就这様插进去也太残酷了吧
-	; 			LOCAL:6 ++
-	; 		ENDIF
-	; 	CASE 1
-	; 		IF EXP:对象:Ａ经验 < 50 || !TALENT:MASTER:禁断的知识
-	; 			PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
-	; 			LOCAL:6 ++
-	; 		ENDIF
-	; 	CASE -1
-	; 		IF ABL:对象:Ａ感觉 < 2
-	; 			PRINTFORML 与%CALLNAME:MASTER%阴茎的尺寸有些不合
-	; 			LOCAL:6 ++
-	; 		ENDIF
-	; 	CASE -2
-	; 		IF ABL:对象:Ａ感觉 < 3
-	; 			PRINTFORML 太大了即使插进去也不会感到舒服的様子…
-	; 			LOCAL:6 ++
-	; 		ENDIF
-	; ENDSELECT
+[SKIPSTART]
+	SELECTCASE 挿入不可(对象)
+		CASE 3
+			PRINTFORML 无论如何也无法容纳%CALLNAME:MASTER%的阴茎的尺寸
+			LOCAL:6 ++
+		CASE 2
+			IF EXP:对象:Ａ经验 < 50 && TALENT:MASTER:禁断的知识
+				PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
+				LOCAL:6 ++
+			ELSEIF !TALENT:MASTER:禁断的知识
+				PRINTFORML %CALLNAME:MASTER%的阴茎就这様插进去也太残酷了吧
+				LOCAL:6 ++
+			ENDIF
+		CASE 1
+			IF EXP:对象:Ａ经验 < 50 || !TALENT:MASTER:禁断的知识
+				PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
+				LOCAL:6 ++
+			ENDIF
+		CASE -1
+			IF ABL:对象:Ａ感觉 < 2
+				PRINTFORML 与%CALLNAME:MASTER%阴茎的尺寸有些不合
+				LOCAL:6 ++
+			ENDIF
+		CASE -2
+			IF ABL:对象:Ａ感觉 < 3
+				PRINTFORML 太大了即使插进去也不会感到舒服的様子…
+				LOCAL:6 ++
+			ENDIF
+	ENDSELECT
+[SKIPEND]
 	SELECTCASE ABL:对象:Ａ感觉
 		CASE IS >= 5
 			PRINTL 极品名器
@@ -411,7 +413,7 @@ IF CFLAG:对象:处女丧失对象_V == 人物_訪問者
 	ELSEIF CFLAG:对象:处女丧失时态度_V == 6
 		文本内容 = %LostVirginDepict_KU_NTR_6(对象)%
 	ELSE
-		文本内容 = @"【错误】LostVirginDepict中[CFLAG:对象:处女丧失对象_V == 人物_訪問者]但[CFLAG:对象:处女丧失时态度_V == {CFLAG:对象:处女丧失时态度_V}]，不在[1,6]。"
+		文本内容 = @"【错误】LostVirginDepict中[CFLAG:对象:处女丧失对象_V == 人物_訪問者]但[CFLAG:对象:处女丧失时态度_V == {CFLAG:对象:处女丧失时态度_V}]，不在【1-6】。"
 	ENDIF
 ELSEIF CFLAG:对象:处女丧失对象_V == 人物_玩家
 	IF CFLAG:对象:处女丧失时态度_V == 1
@@ -421,10 +423,10 @@ ELSEIF CFLAG:对象:处女丧失对象_V == 人物_玩家
 	ELSEIF CFLAG:对象:处女丧失时态度_V == 4
 		文本内容 = %LostVirginDepict_KU_1(对象)%
 	ELSE
-		文本内容 = @"【错误】LostVirginDepict中[CFLAG:对象:处女丧失对象_V == 人物_玩家]但[CFLAG:对象:处女丧失时态度_V == {CFLAG:对象:处女丧失时态度_V}]，不在{1,3,4}。"
+		文本内容 = @"【错误】LostVirginDepict中[CFLAG:对象:处女丧失对象_V == 人物_玩家]但[CFLAG:对象:处女丧失时态度_V == {CFLAG:对象:处女丧失时态度_V}]，不在【1,3,4】。"
 	ENDIF
 ELSE
-	文本内容 = "【错误】LostVirginDepict中发现[CFLAG:对象:处女丧失对象_V]既不是玩家也不是访问者。"
+	文本内容 = @"【错误】LostVirginDepict中发现[CFLAG:对象:处女丧失对象_V == {CFLAG:对象:处女丧失对象_V}]既不是玩家也不是访问者。"
 ENDIF
 STRLENFORM %文本内容%
 文字长度 = RESULT:0
