@@ -49,8 +49,6 @@ IF TALENT:着用者:人妻
 	ELSE
 		WK_RATE = 10	; そうでなければ常に装着
 	ENDIF
-	SIF TALENT:着用者:浮気公認
-		WK_RATE --
 	SIF TALENT:着用者:亲爱
 		WK_RATE = 10	; 亲爱であれば常に装着
 	SIF WK_RATE >= RAND:10
@@ -60,12 +58,6 @@ ENDIF
 IF TALENT:着用者:NTR
 	;NTRであればチョーカー装着
 	WK_RATE = 10
-	;寝取り返し寸前、寝取り返し中だと外すことも
-	IF NTR_CHK_FAVORABLY(着用者, FAV_寝取り返し寸前)
-		WK_RATE = 7
-	ELSEIF NTR_CHK_FAVORABLY(着用者, FAV_寝取り返し寸前)
-		WK_RATE = 8
-	ENDIF
 	SIF WK_RATE >= RAND:10
 		EQUIP:着用者:配件     = 衣装_配件_チョーカー
 ENDIF

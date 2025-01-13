@@ -51,24 +51,7 @@ ENDIF
 訪問者用補正値 -= LIMIT( CFLAG:奴隷:屈服度, 0, 基本休暇時間 * 3 / 10 ) ; 屈服度により0～30%
 訪問者用補正値 -= LIMIT( CFLAG:奴隷:性欲,   0, 基本休暇時間 * 3 / 10 ) ; 性欲により0～30%
 
-IF TALENT:奴隷:浮気公認 > 3
-	;浮気公認時は「訪問者とセックスしてから」で判定
-	IF TALENT:奴隷:浮気公認 == 5
-		放置時間 = DATETIME() - CFLAG:奴隷:访问者之妻归来时间
-	ELSE
-		放置時間 = DATETIME() - CFLAG:奴隷:与访问者最后做爱的时间
-	ENDIF
-	IF 訪問者用補正値 < あなた用補正値
-		;好感度が高い時はあなたを喜ばせるために
-		休暇終了理由 = 出掛理由_外泊公認_あなたのため ; 12
-	ELSEIF あなた用補正値 < 訪問者用補正値
-		;屈服度が高い時は訪問者をを喜ばせるために
-		休暇終了理由 = 出掛理由_外泊公認_訪問者のため ; 13
-	ELSE
-		;同じぐらい高い時
-		休暇終了理由 = 出掛理由_外泊公認_時間経過 ; 11
-	ENDIF
-ELSEIF CFLAG:奴隷:屈服度/2 > CFLAG:奴隷:好感度
+IF CFLAG:奴隷:屈服度/2 > CFLAG:奴隷:好感度
 	放置時間 = DATETIME() - CFLAG:奴隷:与访问者最后做爱的时间
 
 	IF 訪問者用補正値 < あなた用補正値
@@ -136,15 +119,6 @@ SIF !IS_NTR_VISITOR_COME()
 	RETURN 0
 RETURN 1
 
-@会外泊(奴隷)
-#FUNCTION
-#DIM 奴隷
-IF TALENT:奴隷:浮気公認 < 4
-	;浮気公認４レベル以上
-	SIF CFLAG:奴隷:好感度 >= CFLAG:奴隷:屈服度 || TALENT:奴隷:恋慕 == 0
-		RETURNF 0
-ENDIF
-RETURNF 1
 
 
 ;-------------------------------------------------------------------------------
@@ -179,13 +153,7 @@ ELSE
 	CALL GoOut_SeeYou_900_9(奴隷,外出理由)
 ENDIF
 CALL NTR_SET_STAYOUT_MAXIMUM(LOCAL, LIMIT(CFLAG:LOCAL:屈服度 /(CFLAG:LOCAL:好感度+1),0,7))
-IF TALENT:奴隷:浮気公認 == 5
-	CALL NTR_SET_STAYOUT_MAXIMUM(LOCAL, LIMIT(RAND(14,31),14,30))
-	PRINTFORMW 因为是去作为妻子住到%NTR_NAME(0)%家，所以回来的日子不太确定，但是答应了会回来看%CALLNAME:MASTER%的……
-	TALENT:奴隷:访问者之妻 = 1
-	;回去的第一天要教育一遍
-	CFLAG:奴隷:再教育フラグ = 1
-ELSEIF CFLAG:奴隷:長期滞在最大日数 == 0
+IF CFLAG:奴隷:長期滞在最大日数 == 0
 	PRINTFORMW 说是最晚明天就会回来……
 ELSE
 	PRINTFORMW 说是最晚{NTR_GET_STAYOUT_MAXIMUM(奴隷)}天后回来的样子……

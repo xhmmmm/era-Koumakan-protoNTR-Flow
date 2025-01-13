@@ -201,16 +201,7 @@ SELECTCASE 自慰中に求めた名前
 		SOURCE:PLAYER:欲情 += 10
 	CASE -1
 		;訪問者の名前
-		SELECTCASE TALENT:自慰中のキャラ:浮気公認
-			CASE IS >= 浮気_性交公認
-				PRINTFORML %CALLNAME:MASTER + "は、" + MSG_RE_LOVER(自慰中のキャラ) + "であるはずの" + CALLNAME:自慰中のキャラ + "が" + NTR_NAME(0) + "を求めている事に激しい興奮を覚えた。"%
-				SOURCE:PLAYER:欲情 += 10
-			CASE IS >= 浮気_浮気公認
-				PRINTFORML %CALLNAME:MASTER + "は、" + MSG_RE_LOVER(自慰中のキャラ) + "であるはずの" + CALLNAME:自慰中のキャラ + "が" + NTR_NAME(0) + "を求めている事に興奮を覚えた。"%
-				SOURCE:PLAYER:欲情 += 5
-			CASEELSE
-				SOURCE:PLAYER:欲情 -= 5
-		ENDSELECT
+		SOURCE:PLAYER:欲情 -= 5
 	CASEELSE
 		SOURCE:PLAYER:欲情 += 5
 ENDSELECT
@@ -258,9 +249,7 @@ IF CNT_CHR == 1
 				PRINTFORML %訪問者との音声%
 			ELSE
 				PRINTFORML %訪問者との描写%
-					;覗きバレ時見せつけ(浮気公認Lvで頻度が変化)
-				IF ( 1 + TALENT:LOOP_CHR:浮気公認 ) > RAND(4)
-						;遗留真实修改标记IF ( 1 + TALENT:LOOP_CHR:浮気公認 * TALENT:LOOP_CHR:浮気公認) > RAND(10)
+				IF 2 > RAND(4)
 					CALL NTR_SHOW_PEEP(LOOP_CHR)
 				ENDIF
 			ENDIF
@@ -587,14 +576,14 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 	PRINTDATAL
 		DATAFORM %CALLNAME:ARG%坐在%NTR_NAME(0)%的腿上。
 		DATAFORM %CALLNAME:ARG%枕在%NTR_NAME(0)%的腿上。
-		DATAFORM %CALLNAME:ARG%与%NTR_NAME(0)%相依偎，将头托付在%NTR_NAME(4)%的肩膀上。
+		DATAFORM %CALLNAME:ARG%与%NTR_NAME(0)%相依偎，将头托付在他的肩膀上。
 	ENDDATA
 	PRINTFORML 那个样子远远地看上去像亲密的恋人。
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 	PRINTDATAL
 		DATAFORM %CALLNAME:ARG%靠在树上，被%NTR_NAME(0)%拥抱着，微笑着。
 		DATAFORM %CALLNAME:ARG%被%NTR_NAME(0)%抱著肩膀。
-		DATAFORM %CALLNAME:ARG%与%NTR_NAME(0)%相依偎，将头托付在%NTR_NAME(4)%的肩膀上。
+		DATAFORM %CALLNAME:ARG%与%NTR_NAME(0)%相依偎，将头托付在他的肩膀上。
 	ENDDATA
 	PRINTFORML 那个样子远远的看起来像是在约会。
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
@@ -739,10 +728,6 @@ IF TALENT:奴隷:恋慕
 		戻り値 = 1
 ELSEIF TALENT:奴隷:NTR
 	戻り値 = -1
-	SIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) && RAND:2 == 0
-		戻り値 = 1
-	SIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) && RAND:3 == 0
-		戻り値 = 1
 ENDIF
 IF 1 == 戻り値
 	名前 = %CALLNAME:MASTER%

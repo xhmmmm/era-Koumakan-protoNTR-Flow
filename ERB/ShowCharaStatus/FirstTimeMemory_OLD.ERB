@@ -156,8 +156,6 @@ IF 内容 == ""
 				内容 = %"交给了"%
 			ELSEIF NTR_CHK_FAVORABLY(キャラ番号, FAV_うふふする程度) 
 				内容 = %"半推半就地交给了"%
-			ELSEIF TALENT:キャラ番号:浮気公認
-				内容 = %"夺走了"%
 			ELSE
 				内容 = %"夺走了"%
 				能动 = 0
@@ -205,8 +203,6 @@ IF 内容 == ""
 						内容 = %"献给了"%
 					ELSEIF NTR_CHK_FAVORABLY(キャラ番号, FAV_寝取られ寸前)
 						内容 = %"献给了"%
-					ELSEIF TALENT:キャラ番号:浮気公認
-						内容 = %"奪ってもらった"%
 					ELSE
 						内容 = %"交给了"%
 					ENDIF

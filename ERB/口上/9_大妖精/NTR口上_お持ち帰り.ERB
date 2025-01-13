@@ -99,7 +99,7 @@ ELSE
 			PRINTFORML （・・%CALLNAME:MASTER%・・本当に・・これでいいの・・）
 		CASEELSE		; 非公認
 			PRINTFORML 「こ、ここどこですか！？ 帰して、帰してください！」
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手を振り切って逃げようとするも、非力な彼女が%NTR_NAME(3)%に勝てるはずもなく
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手を振り切って逃げようとするも、非力な彼女が男人に勝てるはずもなく
 			PRINTFORML 彼の家に連れ込まれてしまった。
 	ENDSELECT
 
@@ -202,7 +202,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「あ・・んっ・・んぅ・・」
 	PRINTFORML %NTR_NAME(0)%に抱き寄せられた%CALLNAME:奴隷%は逆らうことなく彼の唇を受け入れた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の唇は、それがもたらす快楽によって%CALLNAME:奴隷%を虜にしていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の唇は、それがもたらす快楽によって%CALLNAME:奴隷%を虜にしていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の唇は、それがもたらす快楽によって%CALLNAME:奴隷%を虜にしていた。
 	ENDIF
@@ -215,7 +215,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		PRINTFORML （%CALLNAME:MASTER%より・・じょうず・・）
 	ENDIF
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の唇は、恐怖と快楽によって%CALLNAME:奴隷%を捕らえていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の唇は、恐怖と快楽によって%CALLNAME:奴隷%を捕らえていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の唇は、恐怖と快楽によって%CALLNAME:奴隷%を捕らえていた。
 	ENDIF
@@ -227,7 +227,7 @@ ELSE
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に強引に唇を奪われたが、恐怖に震え抵抗できない。
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の唇は、恐怖によって%CALLNAME:奴隷%を捕らえ、次第に快楽を流し込みつつあった。
+			PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の唇は、恐怖によって%CALLNAME:奴隷%を捕らえ、次第に快楽を流し込みつつあった。
 		ELSE
 			PRINTFORML %NTR_NAME(2)%の唇は、恐怖によって%CALLNAME:奴隷%を捕らえ、次第に快楽を流し込みつつあった。
 		ENDIF

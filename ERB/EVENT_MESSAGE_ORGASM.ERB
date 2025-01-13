@@ -20,8 +20,8 @@ SIF TFLAG:15
 @PALAM_MESSAGE_B
 ;噴射乳絶頂は、Ｂ绝顶と同時じゃないとダメ
 LOCAL =  NOWEX:Ｃ绝顶 + NOWEX:Ｖ绝顶 + NOWEX:Ａ绝顶 + (NOWEX:Ｂ绝顶 && NOWEX:喷乳)*2 + NOWEX:射精
-IF !(LOCAL + NOWEX:12)
-	IF TALENT:TARGET:恋慕 && NOWEX:TARGET:绝顶演技
+IF !(LOCAL + NOWEX:放尿)
+	IF TALENT:TARGET:恋人 && NOWEX:TARGET:绝顶演技
 		;恋慕があるならイけなくてもイったふりをしてくれる。
 		TRYCALL NTR_MESSAGE_FAKE_ORGASM,TARGET
 	ENDIF
@@ -30,8 +30,8 @@ ENDIF
 
 ;絶頂
 LOCAL:1 = 0
-PRINTFORM %CALLNAME:TARGET%は
-IF NOWEX:10
+PRINTFORM %CALLNAME:TARGET%
+IF NOWEX:喷乳
 	PRINT 乳汁从胸部的凸起处流了出来
 	LOCAL:1 = 1
 ENDIF
@@ -102,7 +102,7 @@ ENDIF
 
 ;テキストを読むためのウエイト
 ;表示があるときのみ
-SIF LOCAL + NOWEX:12 > 0
+SIF LOCAL + NOWEX:放尿 > 0
 	WAIT
 
 ;-------------------------------------------

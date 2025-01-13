@@ -136,10 +136,6 @@ ELSE
 		;	CFLAG:奴隷:好感度 -= 減少値
 		;ENDIF
 	ENDIF
-	;恋慕かつ浮気公認してる場合好感度の下限値を設定
-	IF TALENT:奴隷:恋慕 && TALENT:奴隷:浮気公認 > 1
-		CFLAG:奴隷:好感度 = LIMIT(CFLAG:奴隷:好感度, 1599-TALENT:奴隷:浮気公認*200, 999999)
-	ENDIF
 	SIF CFLAG:奴隷:好感度 < 0
 		CFLAG:奴隷:好感度 = 0
 	IF (TCVAR:行為者 < CHARANUM)

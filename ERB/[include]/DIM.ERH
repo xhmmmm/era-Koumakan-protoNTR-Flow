@@ -201,8 +201,6 @@
 ;関数NTR_CHK_FAVORABLY()で使用する訪問者との好感度レベル
 #DIM CONST FAV_催眠完毕			   = 8
 #DIM CONST FAV_催眠寸前		           = 7
-#DIM CONST FAV_寝取り返し寸前	   = 11
-#DIM CONST FAV_寝取り返し中		   = 10
 #DIM CONST FAV_寝取られ			   = 9
 #DIM CONST FAV_寝取られ寸前		   = 8
 #DIM CONST FAV_寝取られそう		   = 7
@@ -211,7 +209,7 @@
 #DIM CONST FAV_うふふする程度	   = 4
 #DIM CONST FAV_侍奉する程度		   = 3
 #DIM CONST FAV_体を触らせる程度	   = 2
-#DIM CONST FAV_接吻程度		   = 1
+#DIM CONST FAV_接吻程度		      = 1
 
 ;STAINとビット判定する汚れ
 #DIM CONST 汚れ_なし				= 0 

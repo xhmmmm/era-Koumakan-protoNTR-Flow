@@ -47,15 +47,7 @@ RETURN RESULT
 奴隷 = 人物_帕秋莉
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM 「・・仕方ないわね・・少しだけよ？」
-		DATAFORM 「・・ええ、あの人には内緒で・・」
-		DATAFORM 「・・ふふ、二人だけの秘密・・」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM 「・・いけないわ」
@@ -139,8 +131,6 @@ ELSE
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML %CALLNAME:奴隷%とくちづけした%CALLNAME:MASTER%は彼女の唾液の味に違和感を覚え唇を離した。
 			PRINTFORML 「・・ふふ・・淫らな味のキス・・慣れるとこれがいいものなのよ」
-		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-			PRINTFORML 「・・あの人には内緒よ・・いいわね・・」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML 「・・だ、だめよ・・んっ・・」

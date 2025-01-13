@@ -50,15 +50,7 @@ RETURN RESULT
 奴隷 = 人物_咲夜
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM 「..这样的话、可以呢」
-		DATAFORM 「..对那个人保密哦」
-		DATAFORM 「..这是只属于我们两个人的秘密。对吧？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM 「请停手」
@@ -99,15 +91,7 @@ RETURN RESULT
 奴隷 = 人物_咲夜
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM 「真拿你没办法啊....」
-		DATAFORM 「....嗯、别让那个人知道哦..」
-		DATAFORM 「..哼哼、这是只属于我们两个人的秘密对吧？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM 「..不可以..」
@@ -121,7 +105,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 		PRINTDATAL
 			DATAFORM 「唔哼哼、即使是被别人睡了也无所谓、这算是什么奇怪的心理呢？」
 			DATAFORM 「怎么了？ 现在才感到后悔？」
-			DATAFORM 「..%NTR_NAME(4)%的嫉妒心..」
+			DATAFORM 「..他的嫉妒心..」
 		ENDDATA
 	ELSE
 		PRINTFORML 「..・」
@@ -181,8 +165,6 @@ ELSE
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML %CALLNAME:MASTER%察觉到%CALLNAME:奴隷%嘴里的意味之后将嘴唇分开了。
 			PRINTFORML 「..哼哼..味道很重吗？」
-		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-			PRINTFORML 「..要对主人保密..哦..」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML 「..不行..唔呃..」
@@ -195,12 +177,12 @@ ELSE
 		ENDDATA
 		IF TALENT:奴隷:浮気公認
 			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。%NTR_NAME(4)%好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟%NTR_NAME(4)%好像更好吧？」
+				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
+				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
 				DATAFORM 「唔哼哼、是心动的感觉呢。想知道你和他技术谁更好吗？(あの人とどちらが上手か聞きたい？)」
 			ENDDATA
 		ELSE
-			PRINTFORML （果然、还是%NTR_NAME(4)%的技术更胜一筹）
+			PRINTFORML （果然、还是他的技术更胜一筹）
 		ENDIF
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
@@ -211,21 +193,21 @@ ELSE
 		ENDDATA
 		IF TALENT:奴隷:浮気公認 >= 浮気_性交公認
 			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。%NTR_NAME(4)%好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟%NTR_NAME(4)%好像更好吧？」
+				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
+				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
 				DATAFORM 「唔哼哼、是心动的感觉呢。想知道你和他技术谁更好吗？(あの人とどちらが上手か聞きたい？)」
 			ENDDATA
 		ELSEIF TALENT:奴隷:浮気公認 > 浮気_非公認
 			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。%NTR_NAME(4)%好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟%NTR_NAME(4)%好像更好吧？」
-				DATAFORM （果然、还是%NTR_NAME(4)%的技术更胜一筹）
+				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
+				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
+				DATAFORM （果然、还是他的技术更胜一筹）
 			ENDDATA
 		ELSE
 			PRINTDATAL
-				DATAFORM （..比起跟%CALLNAME:MASTER%接吻、跟%NTR_NAME(4)%接吻更让人心跳加速呢..）
+				DATAFORM （..比起跟%CALLNAME:MASTER%接吻、跟他接吻更让人心跳加速呢..）
 				DATAFORM （..不行.还是不够满足..）
-				DATAFORM （果然、还是%NTR_NAME(4)%的技术更胜一筹）
+				DATAFORM （果然、还是他的技术更胜一筹）
 			ENDDATA
 		ENDIF
 
@@ -262,29 +244,29 @@ ELSE
 	IF CFLAG:奴隷:当前位置 == FLAG:访问者当前位置
 		; 訪問者が同じ場所にいる
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
-			PRINTFORML 「啊啦、%NTR_NAME(4)%来了。待会见。」
-			PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向%NTR_NAME(4)%那边走去。
+			PRINTFORML 「啊啦、他来了。待会见。」
+			PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向他那边走去。
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML 「啊啦」
-			PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向%NTR_NAME(4)%那边走去。
+			PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向他那边走去。
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			IF TALENT:奴隷:恋慕
 				IF TALENT:奴隷:浮気公認
-					PRINTFORML 「啊啦。好像%NTR_NAME(4)%在叫我呢？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向%NTR_NAME(4)%那边走去。
+					PRINTFORML 「啊啦。好像他在叫我呢？」
+					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并微微脸红地向他那边走去。
 				ELSE
 					PRINTFORML 「..」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%一脸若无其事地离开%CALLNAME:MASTER%并在%NTR_NAME(4)%旁边停下。
+					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%一脸若无其事地离开%CALLNAME:MASTER%并在他旁边停下。
 				ENDIF
 			ELSE
 				PRINTFORML 「啊啦」
-				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并向%NTR_NAME(4)%那边走去。
+				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并向他那边走去。
 			ENDIF
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い) 
 			IF TALENT:奴隷:恋慕
 				IF TALENT:奴隷:浮気公認
-					PRINTFORML 「啊啦。好像%NTR_NAME(4)%在叫我呢？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并向%NTR_NAME(4)%那边走去。
+					PRINTFORML 「啊啦。好像他在叫我呢？」
+					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%离开%CALLNAME:MASTER%并向他那边走去。
 				ELSE
 					PRINTFORML 「..」
 					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:奴隷%一脸若无其事地离开%CALLNAME:MASTER%并在%NTR_NAME(0)%的附近停下。

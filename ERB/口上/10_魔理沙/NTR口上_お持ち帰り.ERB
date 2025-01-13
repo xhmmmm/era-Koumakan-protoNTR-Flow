@@ -154,7 +154,7 @@ RETURN 0
 #DIM 奴隷
 
 PRINTDATAL
-	DATAFORM 「ああ、%NTR_NAME(4)%のところから。もちろん、いっぱい抱かれてきたぜ」
+	DATAFORM 「ああ、他のところから。もちろん、いっぱい抱かれてきたぜ」
 	DATAFORM 「抱かれてきたのかって？ もちろんセックスしてきたぜ」
 	DATAFORM 「何をしてきたかって？ セックス以外何をするんだ？」
 ENDDATA
@@ -216,7 +216,7 @@ IF TALENT:奴隷:亲爱
 		DATAFORM 「やっ、やめろっ！ 助けて、助けて%CALLNAME:MASTER%！！」
 		DATAFORM 「やっ、やめろっ！ 離せっ、離せよっ！」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%によって縛られたまま%NTR_NAME(4)%の家へと拉致された。
+	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%によって縛られたまま他の家へと拉致された。
 	PRINTFORML 地下室の壁に鎖で繋がれた%CALLNAME:奴隷%のメイド服を引き裂き、%NTR_NAME(0)%は下卑た笑いを浮かべた。
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
@@ -250,7 +250,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「ふふっ、今日はどんな風に可愛がってくれるんだ？」
 				DATAFORM 「ああ、何でも言いつけてくれ。ご主人の精液便所だからな」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%と親しげに腕を組んで歩きながら%NTR_NAME(4)%の家に同行した。
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%と親しげに腕を組んで歩きながら他の家に同行した。
 			PRINTDATA
 				DATAFORM 外泊してくることは%MSG_LOVER(奴隷)%も承知していることであり、
 				DATAFORM 外泊してくることは%MSG_LOVER(奴隷)%が望んだことであり、
@@ -270,7 +270,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「ふふっ、今日はどんな風に可愛がってくれるんだ？」
 				DATAFORM 「ああ、言う通りにする」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%と腕を組んで歩きながら%NTR_NAME(4)%の家に同行した。
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%と腕を組んで歩きながら他の家に同行した。
 			PRINTDATAL
 				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてあげないとな…）
 				DATAFORM （…%CALLNAME:MASTER%…楽しみにしてろよ…ふふっ…）
@@ -352,7 +352,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 	PRINTFORML %CALLNAME:奴隷%は微笑みながら首に着けられた项圈を指でなぞった
 	IF TALENT:奴隷:恋慕
 		; たぶん死に分岐
-		PRINTFORML それは%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に所有されることの証である项圈だった。
+		PRINTFORML それは%ANATA_LOVER(奴隷)%以外の男人に所有されることの証である项圈だった。
 		PRINTFORML 项圈から伸びた鎖はどこにも繋がれていない。
 		PRINTFORML 壁に繋いだりしなくても、もう%CALLNAME:奴隷%は勝手に逃げ出したりはしないのだから。
 	ELSE
@@ -367,7 +367,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%は微笑みながら首に着けられた项圈を指でなぞった
 	IF TALENT:奴隷:恋慕
-		PRINTFORML それは%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に所有されることの証である项圈だった。
+		PRINTFORML それは%ANATA_LOVER(奴隷)%以外の男人に所有されることの証である项圈だった。
 		PRINTFORML 项圈から伸びた鎖は壁に繋がれている。
 		IF TALENT:奴隷:浮気公認
 			PRINTFORML （ふふ…%CALLNAME:MASTER%に、見せてあげたいわね…）
@@ -464,7 +464,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	PRINTFORML 「んっ…ちゅっ…んぅ…」
-	PRINTFORML %NTR_NAME(0)%に唇を重ねられた%CALLNAME:奴隷%は、うっとりと目を閉じ%NTR_NAME(4)%の舌を受け入れた。
+	PRINTFORML %NTR_NAME(0)%に唇を重ねられた%CALLNAME:奴隷%は、うっとりと目を閉じ他の舌を受け入れた。
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML そればかりか、彼女は自ら%NTR_NAME(0)%の背中に腕を回し自ら唇を押し付けてゆく。
 	ENDIF
@@ -478,13 +478,13 @@ ELSE
 
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 「んっ！…ん…んっ…んっ…」
-		PRINTFORML %CALLNAME:奴隷%は唇を奪われたが、そのまま%NTR_NAME(4)%の舌を受け入れた。
+		PRINTFORML %CALLNAME:奴隷%は唇を奪われたが、そのまま他の舌を受け入れた。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML %MSG_LOVER(奴隷)%の望むことなのだからと、%NTR_NAME(0)%の巧みな舌技に%CALLNAME:奴隷%は身をゆだねた。
 		ENDIF
 	ELSE
 		PRINTFORML 「んっ！んむぅ…んっ、んっ…ん！」
-		PRINTFORML %CALLNAME:奴隷%は唇を奪われたが、そのまま%NTR_NAME(4)%の舌を受け入れた。
+		PRINTFORML %CALLNAME:奴隷%は唇を奪われたが、そのまま他の舌を受け入れた。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML %NTR_NAME(0)%の巧みな舌技が、%CALLNAME:MASTER%への想いを霞ませてゆく。
 		ELSE 
@@ -541,7 +541,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML %CALLNAME:MASTER%公認のことなのだから、せいぜい楽しもうと考えていた。
 	ELSE
-		PRINTFORML %MSG_LOVER(奴隷)%のいないところで他の%NTR_NAME(3)%の肉棒に唇を捧げることに、%CALLNAME:奴隷%は興奮を覚えていた。
+		PRINTFORML %MSG_LOVER(奴隷)%のいないところで他の男人の肉棒に唇を捧げることに、%CALLNAME:奴隷%は興奮を覚えていた。
 	ENDIF
 
 ELSE
@@ -611,7 +611,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
-			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%への想いも忘れ、彼以外の%NTR_NAME(3)%に处女を捧げてしまった。
+			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%への想いも忘れ、彼以外の男人に处女を捧げてしまった。
 		ELSE
 			PRINTFORML 「いいぜ…私の初めてを、あげる…」
 			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(2)%に处女を捧げてしまった。
@@ -627,7 +627,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
-			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に处女を捧げてしまった。
+			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の男人に处女を捧げてしまった。
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML %MSG_LOVER(奴隷)%の希望を受け入れてのこととはいえ、%MSG_LOVER(奴隷)%以外の相手に处女を捧げる…倒錯した悦びを%CALLNAME:奴隷%は感じていた。
 			ENDIF
@@ -647,7 +647,7 @@ ELSE
 		IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 			IF TALENT:奴隷:恋慕
 				PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
-				PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に处女を捧げてしまった。
+				PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の男人に处女を捧げてしまった。
 				IF TALENT:奴隷:浮気公認
 					PRINTFORML %MSG_LOVER(奴隷)%の希望を受け入れてのこととはいえ、%MSG_LOVER(奴隷)%以外の相手に处女を捧げる…倒錯した悦びを%CALLNAME:奴隷%は感じていた。
 				ENDIF
@@ -948,7 +948,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「今日はどんな風にしてくれるんだ？」
 				DATAFORM 「ああ、気持ち良くなれるなら何でもするぜ」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の家で目覚め、%NTR_NAME(4)%に抱きつきながら艶のある声で囁いた。
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の家で目覚め、他に抱きつきながら艶のある声で囁いた。
 			PRINTDATA
 				DATAFORM 外泊してくることは%MSG_LOVER(奴隷)%も承知していることであり、
 				DATAFORM 外泊してくることは%MSG_LOVER(奴隷)%が望んだことであり、
@@ -970,7 +970,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「今日はどんな風にしてくれるんだ？」
 				DATAFORM 「ああ、気持ち良くなれるなら従うぜ」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の家で目覚め、%NTR_NAME(4)%に抱きつきながら期待を込めた声で囁いた。
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の家で目覚め、他に抱きつきながら期待を込めた声で囁いた。
 			PRINTDATAL
 				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてやるからな…）
 				DATAFORM （…%CALLNAME:MASTER%…帰って話したらどんな顔するかな…）
@@ -1001,16 +1001,16 @@ ELSE
 	SELECTCASE TALENT:奴隷:浮気公認
 		CASE IS >= 浮気_外泊公認
 			PRINTFORML 「…ああ、始めめるか」
-			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく%NTR_NAME(4)%の腕に身をゆだねた。
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく他の腕に身をゆだねた。
 			PRINTFORML 外泊してくると%MSG_LOVER(奴隷)%相手に大見得を切ってしまったせいもあり、%CALLNAME:奴隷%は半ば居直っていた。
 			PRINTFORML （…%CALLNAME:MASTER%が…悪いんだからな…）
 		CASE IS >= 浮気_浮気公認
 			PRINTFORML 「…」
-			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく%NTR_NAME(4)%の腕に身をゆだねた。
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく他の腕に身をゆだねた。
 			PRINTFORML （…%CALLNAME:MASTER%…お前は本当にこれでいいのか…？）
 		CASEELSE		; 非公認
 			PRINTFORML 「…」
-			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は表面上大人しく%NTR_NAME(4)%の腕に身をゆだねた。
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は表面上大人しく他の腕に身をゆだねた。
 			PRINTFORML （…まだ…帰られないのか…）
 	ENDSELECT
 
@@ -1039,7 +1039,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		DATAFORM 「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の阴茎をしゃぶり続け、口内に放たれた白濁を一滴残さず飲み下した。
-	PRINTFORML %NTR_NAME(0)%の肉棒の味、%NTR_NAME(4)%の精液の臭いに恍惚としていた。
+	PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いに恍惚としていた。
 	PRINTDATAL
 		DATAFORM （ああ…精液の味…好き%MSG_HEART()%）
 		DATAFORM （ああ…濃い%MSG_HEART()%）
@@ -1055,9 +1055,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の阴茎をしゃぶり続け、口内に放たれた白濁を一滴残さず飲み下した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、%NTR_NAME(4)%の精液にももはや抵抗は感じていなかった。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒の味、%NTR_NAME(4)%の精液の臭いも甘美なものと感じていた。
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じていた。
 	ENDIF
 	PRINTDATAL
 		DATAFORM （ああ…精液の味…好き%MSG_HEART()%）
@@ -1074,9 +1074,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の阴茎をしゃぶり、口内に放たれた白濁を飲み下した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、%NTR_NAME(4)%の精液にももはや抵抗は感じていなかった。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒の味、%NTR_NAME(4)%の精液の臭いも甘美なものと感じていた。
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じていた。
 	ENDIF
 	PRINTDATAL
 		DATAFORM （ああ…精液の味…好き…）
@@ -1089,7 +1089,7 @@ ELSE
 	IF TALENT:奴隷:处女 
 		PRINTFORML 「んっ…んんんっ！」
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %NTR_NAME_1_2(奴隷)%に处女を奪われるくらいならと自ら%NTR_NAME(4)%の阴茎に唇を捧げ、口の中に精液を受け入れた。
+			PRINTFORML %NTR_NAME_1_2(奴隷)%に处女を奪われるくらいならと自ら他の阴茎に唇を捧げ、口の中に精液を受け入れた。
 			IF TALENT:奴隷:浮気公認
 				PRINTDATAL
 					DATAFORM （…%CALLNAME:MASTER%が…いけないんだからな…）
@@ -1140,7 +1140,7 @@ ELSE
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒の味、%NTR_NAME(4)%の精液の臭いも甘美なものと感じつつあった。
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じつつあった。
 	ENDIF
 
 ENDIF
@@ -1196,7 +1196,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			DATAFORM 「こっちがいいんだな…%MSG_HEART()%」
 			DATAFORM 「私は…いつ处女を奪われてもいいのに…%MSG_HEART()%」
 		ENDDATA
-		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に命じられるままアヌスを差し出し、%NTR_NAME(4)%の阴茎を受け入れた。
+		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に命じられるままアヌスを差し出し、他の阴茎を受け入れた。
 		PRINTFORML %NTR_NAME(0)%の堅い肉棒が%CALLNAME:奴隷%の腸を深く深く抉り、征服の証とばかりに精液を解き放った。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒に馴染みつつあり、注がれる精液の熱さに酔いしれていた。
@@ -1291,7 +1291,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		ENDDATA
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。
-	PRINTFORML %NTR_NAME(0)%の肉棒を、%NTR_NAME(4)%の精液を心から望んでいた。
+	PRINTFORML %NTR_NAME(0)%の肉棒を、他の精液を心から望んでいた。
 	PRINTDATAL
 		DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
 		DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
@@ -1315,7 +1315,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、%NTR_NAME(4)%の精液にももはや抵抗は感じていなかった。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
 		PRINTDATAL
 			DATAFORM 「ふうっ…%MSG_LOVER(奴隷)%のいるオンナに中出しするなんて…%MSG_HEART()%」
 			DATAFORM 「ああ…%MSG_LOVER(奴隷)%のいるオンナに中出しするなんて…%MSG_HEART()%」
@@ -1329,7 +1329,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			ENDDATA
 		ENDIF
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒にも、%NTR_NAME(4)%の精液にももはや抵抗は感じていなかった。
+		PRINTFORML %NTR_NAME(0)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
 		PRINTDATAL
 			DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
 			DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
@@ -1353,7 +1353,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に抱きつきながら腰を振り、膣内深くに精を飲み込んだ。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒に馴染みつつあり、%NTR_NAME(4)%の精液にも抵抗感は無くなりつつあった。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
 		PRINTDATAL
 			DATAFORM 「ふうっ…%MSG_LOVER(奴隷)%のいるオンナに中出しするなんて…」
 			DATAFORM 「ああ…%MSG_LOVER(奴隷)%のいるオンナに中出しするなんて…」
@@ -1367,7 +1367,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			ENDDATA
 		ENDIF
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、%NTR_NAME(4)%の精液にも抵抗感は無くなりつつあった。
+		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
 		PRINTDATAL
 			DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
 			DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
@@ -1399,9 +1399,9 @@ ELSE
 	ENDIF
 	PRINTFORML %NTR_NAME(0)%は組み敷いた%CALLNAME:奴隷%を容赦なく犯し、子宮口めがけて射精した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒に馴染みつつあり、%NTR_NAME(4)%の精液にも抵抗感は無くなりつつあった。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、%NTR_NAME(4)%の精液にも抵抗感は無くなりつつあった。
+		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
 	ENDIF
 	IF TALENT:奴隷:恋慕
 		IF TALENT:奴隷:浮気公認

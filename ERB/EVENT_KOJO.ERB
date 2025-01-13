@@ -198,26 +198,6 @@ IF !RESULT && FLAG:情景テキスト設定 > 0
 	RETURN 0
 ENDIF
 TRYCALLFORM KOJO_MESSAGE_PALAMCNG_D_K{NO:TARGET}
-;-------------------------------------------------
-;@KOJO_MESSAGE_PALAMCNG関係
-;パラメータ変動をトリガーにした口上
-;パラメータ変動後に口上を発動します
-;-------------------------------------------------
-@KOJO_MESSAGE_PALAMCNG_E
-IF FLAG:口上テキスト設定 <= 0
-	SIF FLAG:情景テキスト設定 > 0
-		CALL PALAM_MESSAGE_E
-	RETURN 0
-ENDIF
-RESULT = 0
-RESULTS =
-;口上の存在判定 and RESULTSに文字列代入
-TRYCALLFORM KOJO_K{NO:TARGET}
-IF !RESULT && FLAG:情景テキスト設定 > 0
-	CALL PALAM_MESSAGE_E
-	RETURN 0
-ENDIF
-TRYCALLFORM KOJO_MESSAGE_PALAMCNG_E_K{NO:TARGET}
 
 ;-------------------------------------------------
 ;@KOJO_MESSAGE_MARKCNG関係

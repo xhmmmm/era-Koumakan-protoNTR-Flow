@@ -47,20 +47,7 @@ RETURN RESULT
 奴隷 = 人物_魔理沙
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM “…如果只是这样的话，…可以啊”
-		;TranslatedMark 「…これくらいなら、…いいぜ」
-		DATAFORM “…要对那家伙保密哦」
-		;TranslatedMark 「…あいつには内緒だぞ」
-		DATAFORM “…这是我们小小的抵抗，是吧？”
-		;TranslatedMark 「…これは私達の細やかな抵抗。だよな？」
-		DATAFORM “…不能再继续了。如果没有钥匙的话，我会倒大霉的”
-		;TranslatedMark 「…これ以上は駄目だ。鍵がなきゃ私が酷い目に合う」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM “住手”
@@ -106,20 +93,7 @@ RETURN RESULT
 奴隷 = 人物_魔理沙
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM “…如果只是这样的话，…可以啊”
-		;TranslatedMark 「…これくらいなら、…いいぜ」
-		DATAFORM “…要对那家伙保密哦」
-		;TranslatedMark 「…あいつには内緒だぞ」
-		DATAFORM “…这是我们小小的抵抗，是吧？”
-		;TranslatedMark 「…これは私達の細やかな抵抗。だよな？」
-		DATAFORM “…不能再继续了。如果没有钥匙的话，我会倒大霉的”
-		;TranslatedMark 「…これ以上は駄目だ。鍵がなきゃ私が酷い目に合う」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM “别这样”
@@ -136,8 +110,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 			;TranslatedMark 「ははっ、他の男と寝て欲しいってお願いする変態野郎が、今更どうしたんだ？」
 			DATAFORM “怎么了？是变态家伙拿手的新游戏吗？”
 			;TranslatedMark 「どうした？ 変態野郎はお得意の新しいプレイか？」
-			DATAFORM “要是这种状态被%NTR_NAME(4)%看见的话，说不定会发生更糟糕的事情哦。”
-			;TranslatedMark 「こんなところ%NTR_NAME(4)%に見られたら、さらに酷いことされるかもしれないぞ」
+			DATAFORM “要是这种状态被他看见的话，说不定会发生更糟糕的事情哦。”
+			;TranslatedMark 「こんなところ他に見られたら、さらに酷いことされるかもしれないぞ」
 		ENDDATA
 	ELSE
 		PRINTFORML “……”
@@ -211,9 +185,6 @@ ELSE
 			;TranslatedMark 「…へへ…どうかしたか？」
 			PRINTFORML %CALLNAME:奴隷%浮现出妖艳的表情笑着说。
 			;TranslatedMark %CALLNAME:奴隷%は妖艶な表情を浮かべ笑っている
-		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-			PRINTFORML “…要对主人保密啊……”
-			;TranslatedMark 「…ご主人様には内緒だ…ぞ…」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML “…不行……嗯……”
@@ -230,16 +201,16 @@ ELSE
 		ENDDATA
 		IF TALENT:奴隷:浮気公認
 			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是%NTR_NAME(4)%的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、%NTR_NAME(4)%のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和%NTR_NAME(4)%的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も%NTR_NAME(4)%とのキスくらいドキドキさせてくれよな？」
+				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
+				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
+				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
+				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
 				DATAFORM “想听听和那个人相比哪个更好嘛？”
 				;TranslatedMark 「あの人とどちらが上手か聞きたい？」
 			ENDDATA
 		ELSE
-			PRINTFORML （果然，还是%NTR_NAME(4)%好啊）
-			;TranslatedMark （やっぱり、%NTR_NAME(4)%の方が上手ね）
+			PRINTFORML （果然，还是他好啊）
+			;TranslatedMark （やっぱり、他の方が上手ね）
 		ENDIF
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
@@ -253,30 +224,30 @@ ELSE
 		ENDDATA
 		IF TALENT:奴隷:浮気公認 >= 浮気_性交公認
 			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是%NTR_NAME(4)%的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、%NTR_NAME(4)%のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和%NTR_NAME(4)%的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も%NTR_NAME(4)%とのキスくらいドキドキさせてくれよな？」
+				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
+				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
+				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
+				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
 				DATAFORM “呵呵，心跳不已啊。想听听和那个人相比哪个更好嘛？”
 				;TranslatedMark 「ふふ、ドキドキするわ。あの人とどちらが上手か聞きたい？」
 			ENDDATA
 		ELSEIF TALENT:奴隷:浮気公認 > 浮気_非公認
 			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是%NTR_NAME(4)%的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、%NTR_NAME(4)%のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和%NTR_NAME(4)%的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も%NTR_NAME(4)%とのキスくらいドキドキさせてくれよな？」
-				DATAFORM （……果然……还是%NTR_NAME(4)%好啊……）
-				;TranslatedMark （…やっぱり…%NTR_NAME(4)%の方がうまいな…）
+				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
+				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
+				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
+				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
+				DATAFORM （……果然……还是他好啊……）
+				;TranslatedMark （…やっぱり…他の方がうまいな…）
 			ENDDATA
 		ELSE
 			PRINTDATAL
-				DATAFORM （……比起%CALLNAME:MASTER%，和%NTR_NAME(4)%的吻更让人心跳加速……）
-				;TranslatedMark （…%CALLNAME:MASTER%よりも、%NTR_NAME(4)%とのキスの方がドキドキする…）
+				DATAFORM （……比起%CALLNAME:MASTER%，和他的吻更让人心跳加速……）
+				;TranslatedMark （…%CALLNAME:MASTER%よりも、他とのキスの方がドキドキする…）
 				DATAFORM （……还不够……）
 				;TranslatedMark （…物足りない…）
-				DATAFORM （……果然……还是%NTR_NAME(4)%的吻比较好呢……）
-				;TranslatedMark （…やっぱり…%NTR_NAME(4)%のキスの方がうまいな…）
+				DATAFORM （……果然……还是他的吻比较好呢……）
+				;TranslatedMark （…やっぱり…他のキスの方がうまいな…）
 			ENDDATA
 		ENDIF
 
@@ -313,22 +284,22 @@ ELSE
 	IF CFLAG:奴隷:当前位置 == FLAG:访问者当前位置
 		; 訪問者が同じ場所にいる
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
-			PRINTFORML 「啊，%NTR_NAME(4)%在啊。我去一下”
-			;TranslatedMark 「あれ、%NTR_NAME(4)%がいるな。ちょっと行ってくる」
-			PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向%NTR_NAME(4)%方向走去。
-			;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら%NTR_NAME(4)%の方に歩いていった。
+			PRINTFORML 「啊，他在啊。我去一下”
+			;TranslatedMark 「あれ、他がいるな。ちょっと行ってくる」
+			PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向他方向走去。
+			;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら他の方に歩いていった。
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML “诶”
 			;TranslatedMark 「あれ」
-			PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向%NTR_NAME(4)%方向走去。
-			;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら%NTR_NAME(4)%の方に歩いていった。
+			PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向他方向走去。
+			;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら他の方に歩いていった。
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			IF TALENT:奴隷:恋慕
 				IF TALENT:奴隷:浮気公認
-					PRINTFORML “咦，%NTR_NAME(4)%在叫我吗？”
-					;TranslatedMark 「あれ、%NTR_NAME(4)%が呼んでる？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向%NTR_NAME(4)%方向走去。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら%NTR_NAME(4)%の方に歩いていった。
+					PRINTFORML “咦，他在叫我吗？”
+					;TranslatedMark 「あれ、他が呼んでる？」
+					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，脸颊微红，向他方向走去。
+					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ頬を染めながら他の方に歩いていった。
 				ELSE
 					PRINTFORML “……”
 					;TranslatedMark 「…」
@@ -338,16 +309,16 @@ ELSE
 			ELSE
 				PRINTFORML “诶”
 				;TranslatedMark 「あれ」
-				PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，向%NTR_NAME(4)%走去。
-				;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ%NTR_NAME(4)%の方に歩いていった。
+				PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，向他走去。
+				;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ他の方に歩いていった。
 			ENDIF
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い) 
 			IF TALENT:奴隷:恋慕
 				IF TALENT:奴隷:浮気公認
-					PRINTFORML “咦，%NTR_NAME(4)%在叫我吗？”
-					;TranslatedMark 「あれ、%NTR_NAME(4)%が呼んでる？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，向%NTR_NAME(4)%走去。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ%NTR_NAME(4)%の方に歩いていった。
+					PRINTFORML “咦，他在叫我吗？”
+					;TranslatedMark 「あれ、他が呼んでる？」
+					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:奴隷%离开了%CALLNAME:MASTER%，向他走去。
+					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ他の方に歩いていった。
 				ELSE
 					PRINTFORML “……”
 					;TranslatedMark 「…」

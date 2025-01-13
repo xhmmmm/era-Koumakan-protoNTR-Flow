@@ -275,11 +275,11 @@ SELECTCASE TALENT:奴隷:浮気公認
 		PRINTFORML 「我知道了」
 	CASE 2
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「啊哈哈，那就别客气了…%CALLNAME:調教者%的面前邀请%NTR_NAME(4)%哦」
+			PRINTFORML 「啊哈哈，那就别客气了…%CALLNAME:調教者%的面前邀请他哦」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「啊哈哈、那样的话・・%CALLNAME:調教者%的面前邀请%NTR_NAME(4)%哦」
+			PRINTFORML 「啊哈哈、那样的话・・%CALLNAME:調教者%的面前邀请他哦」
 		ELSE
-			PRINTFORML 「・・那样的话・・%CALLNAME:調教者%的面前试着邀请%NTR_NAME(4)%哦」
+			PRINTFORML 「・・那样的话・・%CALLNAME:調教者%的面前试着邀请他哦」
 		ENDIF
 	CASE 3
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -459,8 +459,6 @@ ELSE
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML 和%CALLNAME:TARGET%的吻%CALLNAME:MASTER%对她唾液的味道感到違和感。
 			PRINTFORML 「・・呼呼・・很刺激的味道呢・・・」
-		ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-			PRINTFORML 「・・对那个人保密哦・・・恩・・・」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML 「・・不行・・・恩・・・」
@@ -551,8 +549,8 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在%NTR_NAME(4)%的家裹」
-PRINTFORML 「嗯，当然，直到早上都要和%NTR_NAME(4)%做爱哟♪」
+PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在他的家裹」
+PRINTFORML 「嗯，当然，直到早上都要和他做爱哟♪」
 PRINTFORML 「要说为什么，那是因为一想到身体就熱到像燒起來一樣了♪」
 
 RETURN 0
@@ -565,8 +563,8 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在%NTR_NAME(4)%的家裹」
-PRINTFORML 「嗯，当然，直到早上都要和%NTR_NAME(4)%做爱哟♪」
+PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在他的家裹」
+PRINTFORML 「嗯，当然，直到早上都要和他做爱哟♪」
 PRINTFORML 「要说为什么，那是因为一想到身体就熱到像燒起來一樣了♪没办法了呢♪」
 
 RETURN 0
@@ -579,8 +577,8 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在%NTR_NAME(4)%的地方」
-PRINTFORML 「是啊，住下來、直到早上都要被%NTR_NAME(4)%抱」
+PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在他的地方」
+PRINTFORML 「是啊，住下來、直到早上都要被他抱」
 
 RETURN 0
 
@@ -592,7 +590,7 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在%NTR_NAME(4)%的地方」
+PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在他的地方」
 
 RETURN 0
 

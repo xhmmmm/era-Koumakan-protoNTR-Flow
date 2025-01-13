@@ -634,9 +634,6 @@ SIF CFLAG:住人:同行
 IF (CFLAG:住人:跳蛋挿入 == 0 && CFLAG:住人:跳蛋A挿入 == 0) || CFLAG:住人:跳蛋挿入者 != 人物_訪問者
 	RETURNF 0
 ENDIF
-;浮気公認だと発生しない
-;SIF TALENT:住人:浮気公認
-;	RETURNF 0
 ;恋慕か非恋慕かで確率変化
 IF TALENT:住人:恋慕
 	発生閾値 = 10

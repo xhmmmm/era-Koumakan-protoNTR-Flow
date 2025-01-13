@@ -57,9 +57,9 @@ IF CFLAG:奴隷:当前位置 == 位置_红魔馆_大浴场
 			DATAFORM 「是的・・啊、动了」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM %CALLNAME:奴隷%跪在%NTR_NAME(0)%的面前、清洗着%NTR_NAME(4)%的股间
-			DATAFORM %CALLNAME:奴隷%从%NTR_NAME(0)%的背后转手洗净%NTR_NAME(4)%的股間
-			DATAFORM %CALLNAME:奴隷%从%NTR_NAME(0)%的背后拥抱，用满是泡沫的身体清洗着%NTR_NAME(4)%
+			DATAFORM %CALLNAME:奴隷%跪在%NTR_NAME(0)%的面前、清洗着他的股间
+			DATAFORM %CALLNAME:奴隷%从%NTR_NAME(0)%的背后转手洗净他的股間
+			DATAFORM %CALLNAME:奴隷%从%NTR_NAME(0)%的背后拥抱，用满是泡沫的身体清洗着他
 		ENDDATA
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		PRINTDATAL
@@ -68,7 +68,7 @@ IF CFLAG:奴隷:当前位置 == 位置_红魔馆_大浴场
 			DATAFORM 「嗯・・没关系、可以更强硬一点哦」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM %CALLNAME:奴隷%让%NTR_NAME(0)%冲洗背部。别说是背了，就连胸和除此以外的部分都被%NTR_NAME(3)%的手抚摸着
+			DATAFORM %CALLNAME:奴隷%让%NTR_NAME(0)%冲洗背部。别说是背了，就连胸和除此以外的部分都被男人的手抚摸着
 			DATAFORM 在%CALLNAME:奴隷%背部冲洗的%NTR_NAME(0)%的手、像抚摸小腹一样触摸着乳房
 			DATAFORM %CALLNAME:奴隷%的背后回转的%NTR_NAME(0)%的手、礼貌地洗着脚跟的周围
 		ENDDATA
@@ -79,8 +79,8 @@ IF CFLAG:奴隷:当前位置 == 位置_红魔馆_大浴场
 			DATAFORM 「呼呼、看来你不会移开视线呢？」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 在%NTR_NAME(0)%的前面坐在浴池边缘的%CALLNAME:奴隷%的全身、都围绕着、%NTR_NAME(4)%的视线
-			DATAFORM 在%NTR_NAME(0)%前挑衅地搭起腿%NTR_NAME(4)%的视线缠绕在%CALLNAME:奴隷%的身体上。
+			DATAFORM 在%NTR_NAME(0)%的前面坐在浴池边缘的%CALLNAME:奴隷%的全身、都围绕着、他的视线
+			DATAFORM 在%NTR_NAME(0)%前挑衅地搭起腿他的视线缠绕在%CALLNAME:奴隷%的身体上。
 			DATAFORM 淋浴的%CALLNAME:奴隷%的肢体、被%NTR_NAME(0)%凝视着。
 		ENDDATA
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_侍奉する程度)
@@ -656,7 +656,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			DATAFORM 「・・身子下面的那玩意也很高兴把？」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 然后、对窥视的%MSG_RE_LOVER(奴隷)%和其它的%NTR_NAME(3)%情节的薄情者发出了锐利的视线。
+			PRINTFORML 然后、对窥视的%MSG_RE_LOVER(奴隷)%和其它的男人情节的薄情者发出了锐利的视线。
 		ELSE
 			PRINTFORML 然后，对窥视的%CALLNAME:MASTER%发出了锐利的视线。
 		ENDIF
@@ -677,9 +677,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		ENDDATA
 		IF TALENT:奴隷:恋慕
 			IF TALENT:奴隷:浮気公認
-				PRINTFORML 然后、对窥视的%MSG_RE_LOVER(奴隷)%和其它的%NTR_NAME(3)%情节的薄情者发出了锐利的视线。
+				PRINTFORML 然后、对窥视的%MSG_RE_LOVER(奴隷)%和其它的男人情节的薄情者发出了锐利的视线。
 			ELSE
-				PRINTFORML 然后，观察了%MSG_RE_LOVER(奴隷)%和其他%NTR_NAME(3)%的情节的薄情者。
+				PRINTFORML 然后，观察了%MSG_RE_LOVER(奴隷)%和其他男人的情节的薄情者。
 			ENDIF
 		ELSE
 			PRINTFORML 然后，盯着正在窥视的%CALLNAME:MASTER%
@@ -700,7 +700,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 			DATAFORM 「・・你身子下面那玩意是怎么想的呢？」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 然后、向正在窥视%MSG_RE_LOVER(奴隷)%和其他%NTR_NAME(3)%情节的薄情者露出了充满讽刺的笑容。
+			PRINTFORML 然后、向正在窥视%MSG_RE_LOVER(奴隷)%和其他男人情节的薄情者露出了充满讽刺的笑容。
 		ELSE
 			PRINTFORML 然后，盯着正在窥视的%CALLNAME:MASTER%
 		ENDIF
@@ -724,7 +724,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_侍奉する程度)
 			DATAFORM 「・・你身子下面那玩意是怎么想的呢？」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 然后，观察了%MSG_RE_LOVER(奴隷)%和其他%NTR_NAME(3)%的情节的薄情者。
+			PRINTFORML 然后，观察了%MSG_RE_LOVER(奴隷)%和其他男人的情节的薄情者。
 		ELSE
 			PRINTFORML 然后，盯着正在窥视的%CALLNAME:MASTER%の方を睨んできた。
 		ENDIF
@@ -748,7 +748,7 @@ ELSE
 			DATAFORM 「・・你也是！！」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 然后，注视着正在窥视%MSG_RE_LOVER(奴隷)%和其他的%NTR_NAME(3)%的情事、不打算帮助她的薄情者。
+			PRINTFORML 然后，注视着正在窥视%MSG_RE_LOVER(奴隷)%和其他的男人的情事、不打算帮助她的薄情者。
 		ELSE
 			PRINTFORML 然后，瞪着正在窥视着而不打算帮助自己的%CALLNAME:MASTER%
 		ENDIF
@@ -1098,7 +1098,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		ENDDATA
 		PRINTFORML %CALLNAME:奴隷%的脸上甚至看不到讨厌的神情，露出了诡异的笑容。
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 接受了%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手的爱抚
+			PRINTFORML 接受了%CALLNAME:MASTER%以外的男人的手的爱抚
 		ELSE
 			PRINTFORML 接受了%NTR_NAME(0)%的手的爱抚。
 		ENDIF
@@ -1132,7 +1132,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 		ENDDATA
 		PRINTFORML %CALLNAME:奴隷%虽然在嘴上表现出厌恶的口吻，却露出了诡异的笑容，接受了%NTR_NAME(0)%的爱抚。
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 在%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手中摸索秘部却不抵抗，而是委身于他。
+			PRINTFORML 在%CALLNAME:MASTER%以外的男人的手中摸索秘部却不抵抗，而是委身于他。
 		ELSE
 			PRINTFORML 在%NTR_NAME(0)%的手中摸索秘部、却不抵抗、将自己托付给他。
 		ENDIF
@@ -1166,7 +1166,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 		ENDDATA
 		PRINTFORML %CALLNAME:奴隷%虽然表现出厌恶的神情，但脸上却露出了诡异的笑容。
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 虽然是%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手在摸索秘处，但也没有用力推开。
+			PRINTFORML 虽然是%CALLNAME:MASTER%以外的男人的手在摸索秘处，但也没有用力推开。
 		ELSE
 			PRINTFORML 虽然被%NTR_NAME(0)%的手摸索秘处，但也没有用力推开。
 		ENDIF
@@ -1357,7 +1357,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%娇小的身体大幅度的向后仰去、同时绝顶了
 	ENDIF
-	PRINTFORML 将身体委托给%NTR_NAME(0)%的%CALLNAME:奴隷%浮现出淫荡的笑容、继续与%NTR_NAME(4)%纠缠在一起
+	PRINTFORML 将身体委托给%NTR_NAME(0)%的%CALLNAME:奴隷%浮现出淫荡的笑容、继续与他纠缠在一起
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
@@ -1372,10 +1372,10 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 		PRINTFORML %CALLNAME:奴隷%娇小的身体大幅度的向后仰去、同时绝顶了
 	ENDIF
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 接受了%ANATA_LOVER(奴隷)%以外的%NTR_NAME(3)%的手的爱抚的%CALLNAME:奴隷%、露出淫荡的笑容将身体寄托在%NTR_NAME(4)%身上
+		PRINTFORML 接受了%ANATA_LOVER(奴隷)%以外的男人的手的爱抚的%CALLNAME:奴隷%、露出淫荡的笑容将身体寄托在他身上
 		PRINTFORML 而且、已经没有将视线转向在窥视中没有停止的%CALLNAME:MASTER%了
 	ELSE
-		PRINTFORML 将身体委托给%NTR_NAME(0)%的%CALLNAME:奴隷%浮现出淫荡的笑容、继续与%NTR_NAME(4)%纠缠在一起
+		PRINTFORML 将身体委托给%NTR_NAME(0)%的%CALLNAME:奴隷%浮现出淫荡的笑容、继续与他纠缠在一起
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -1391,10 +1391,10 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		PRINTFORML %CALLNAME:奴隷%被%NTR_NAME(0)%的手指所玩弄、嘴里发出了甜美的声音
 	ENDIF
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 接受了%ANATA_LOVER(奴隷)%以外的%NTR_NAME(3)%的手的爱抚的%CALLNAME:奴隷%、露出淫荡的笑容将身体寄托在%NTR_NAME(4)%身上
+		PRINTFORML 接受了%ANATA_LOVER(奴隷)%以外的男人的手的爱抚的%CALLNAME:奴隷%、露出淫荡的笑容将身体寄托在他身上
 		PRINTFORML 然后，向看着正在一边偷窥，手上却没有停止的%CALLNAME:MASTER%投去了冷漠的视线
 	ELSE
-		PRINTFORML 接受了%NTR_NAME(0)%的亲手爱抚的%CALLNAME:奴隷%露出淫荡的笑容将身体寄托在%NTR_NAME(4)%的身上
+		PRINTFORML 接受了%NTR_NAME(0)%的亲手爱抚的%CALLNAME:奴隷%露出淫荡的笑容将身体寄托在他的身上
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
@@ -1426,9 +1426,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 			DATAFORM 「不行、不行啊、噫、啊、啊啊啊ーー」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 被%NTR_NAME_1_2(奴隷)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着%NTR_NAME(4)%
+			PRINTFORML 被%NTR_NAME_1_2(奴隷)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着他
 		ELSE
-			PRINTFORML 被%NTR_NAME(0)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着%NTR_NAME(4)%
+			PRINTFORML 被%NTR_NAME(0)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着他
 		ENDIF
 	ENDIF
 
@@ -1461,9 +1461,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 			DATAFORM 「不、不要、不要、不要碰我、噫、啊啊、啊啊啊ーーっ！！」
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 被%NTR_NAME_1_2(奴隷)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着%NTR_NAME(4)%
+			PRINTFORML 被%NTR_NAME_1_2(奴隷)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着他
 		ELSE
-			PRINTFORML 被%NTR_NAME(0)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着%NTR_NAME(4)%
+			PRINTFORML 被%NTR_NAME(0)%的手弄绝顶了的%CALLNAME:奴隷%脸红地看着他
 		ENDIF
 	ENDIF
 
@@ -1514,7 +1514,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%从背后被%NTR_NAME(0)%抱住，连挣脱的意思都没有、微笑着
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 想要被%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手抚摸自己的娇小乳房。
+		PRINTFORML 想要被%CALLNAME:MASTER%以外的男人的手抚摸自己的娇小乳房。
 	ELSE
 		PRINTFORML 任凭%NTR_NAME(0)%的手在娇小乳房上随心所欲。
 	ENDIF
@@ -1528,7 +1528,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%从背后被%NTR_NAME(0)%抱住，连挣脱的意思都没有、微笑着
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 想要被%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手抚摸自己的娇小乳房。
+		PRINTFORML 想要被%CALLNAME:MASTER%以外的男人的手抚摸自己的娇小乳房。
 	ELSE
 		PRINTFORML 并不拒绝%NTR_NAME(0)%的手抚摸娇小的乳房
 	ENDIF
@@ -1542,7 +1542,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%从背后被%NTR_NAME(0)%抱住，并没有挣脱、反而微笑着
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 想要被%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手抚摸自己的娇小乳房。
+		PRINTFORML 想要被%CALLNAME:MASTER%以外的男人的手抚摸自己的娇小乳房。
 	ELSE
 		PRINTFORML 迷人地注视着%NTR_NAME(0)%的手抚拧着乳头转动的样子。
 	ENDIF
@@ -1557,7 +1557,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%从背后被%NTR_NAME(0)%抱住，并没有挣脱、反而微笑着
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 被%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手抚摸着娇小乳房，露出了从容的笑容。
+		PRINTFORML 被%CALLNAME:MASTER%以外的男人的手抚摸着娇小乳房，露出了从容的笑容。
 	ELSE
 		PRINTFORML 看着%NTR_NAME(0)%的手抚摸娇小乳房的样子、浮现出从容的笑容。
 	ENDIF
@@ -1595,7 +1595,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%将自己的手重叠在%NTR_NAME(0)%的手上，露出苦恼的笑容。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 被%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手被爱抚所陶醉。
+		PRINTFORML 被%CALLNAME:MASTER%以外的男人的手被爱抚所陶醉。
 	ELSE
 		PRINTFORML 陶醉于%NTR_NAME(0)%的手爱抚。
 	ENDIF
@@ -1609,7 +1609,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%发出甜美的声音，露出苦恼的笑容。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 将%CALLNAME:MASTER%以外的%NTR_NAME(3)%手的爱抚作为舒服的东西接受
+		PRINTFORML 将%CALLNAME:MASTER%以外的男人手的爱抚作为舒服的东西接受
 	ELSE
 		PRINTFORML 把%NTR_NAME(0)%手的爱抚作为舒服的东西接受
 	ENDIF
@@ -1623,7 +1623,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%想要%NTR_NAME(0)%的手继续下去而委身。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 对于%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手的爱抚，一边陶醉一边接受。
+		PRINTFORML 对于%CALLNAME:MASTER%以外的男人的手的爱抚，一边陶醉一边接受。
 	ELSE
 		PRINTFORML 一边陶醉于%NTR_NAME(0)%的手进行爱抚，一边接受。
 	ENDIF
@@ -1637,7 +1637,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%没有阻止%NTR_NAME(0)%的手
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 以从容的态度接受%CALLNAME:MASTER%以外的%NTR_NAME(3)%的手的爱抚。
+		PRINTFORML 以从容的态度接受%CALLNAME:MASTER%以外的男人的手的爱抚。
 	ELSE
 		PRINTFORML 以从容的态度接受%NTR_NAME(0)%的手的爱抚。
 	ENDIF
@@ -2446,7 +2446,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的%NTR_NAME(3)%、我感到很光荣。・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的男人、我感到很光荣。・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 		PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己张开脚邀请%NTR_NAME(0)%
 		;非处女
 	ELSE
@@ -2476,14 +2476,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的%NTR_NAME(3)%、我感到很光荣・・库库っ、正好也有很棒的见证人啊・・嗯・・嗯嗯啊っ！！」
+			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的男人、我感到很光荣・・库库っ、正好也有很棒的见证人啊・・嗯・・嗯嗯啊っ！！」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%面前自己张开脚邀请%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%把视线转向%CALLNAME:MASTER%、用柔和的声音宣告了这个消息。
 				PRINTFORML 「%CALLNAME:MASTER%请在那里看。很高兴吧？因为这是你想要的结果啊」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的%NTR_NAME(3)%、我感到很光荣・・库库っ、正好也有很棒的见证人啊・・嗯・・嗯嗯啊っ！！」
+			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的男人、我感到很光荣・・库库っ、正好也有很棒的见证人啊・・嗯・・嗯嗯啊っ！！」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己张开脚邀请%NTR_NAME(0)%
 		ENDIF
 		;非处女
@@ -2527,14 +2527,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的%NTR_NAME(3)%、我感到很光荣・・库库っ・・」
+			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的男人、我感到很光荣・・库库っ・・」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%面前自己张开脚邀请%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%将视线转向%CALLNAME:MASTER%用柔和的声音这样告知。
 				PRINTFORML 「%CALLNAME:MASTER%请在那里看。因为这是你想要的结果」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的%NTR_NAME(3)%、我感到很光荣・・库库っ・・」
+			PRINTFORML 「好啊、来吧・・・能成为拿走我第一次的男人、我感到很光荣・・库库っ・・」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己张开脚邀请%NTR_NAME(0)%
 		ENDIF
 		PRINTFORML %NTR_NAME(0)%只是表面上恭恭敬敬地接受%CALLNAME:奴隷%的同时、调整好其娇小的身体、一口气撕裂了她的处女膜
@@ -3027,8 +3027,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ELSEIF TALENT:奴隷:恋慕
 		PRINTDATAL
 			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的人中出了、难道你不高兴吗・・？」
-			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的%NTR_NAME(3)%抱在怀里中出了・・你、真的是变态嘛？」
-			DATAFORM 「不要移开视线・・・你看、让我把你的%MSG_RE_LOVER(奴隷)%、被其他%NTR_NAME(3)%拥抱的证据拿给你看」
+			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的男人抱在怀里中出了・・你、真的是变态嘛？」
+			DATAFORM 「不要移开视线・・・你看、让我把你的%MSG_RE_LOVER(奴隷)%、被其他男人拥抱的证据拿给你看」
 		ENDDATA
 	ELSE
 		PRINTDATAL
@@ -3047,8 +3047,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	ELSEIF TALENT:奴隷:恋慕
 		PRINTDATAL
 			DATAFORM 「库库库・・被%MSG_RE_LOVER(奴隷)%逼到这一步・・亏你还满不在乎呢・・？」
-			DATAFORM 「库库库・・%MSG_RE_LOVER(奴隷)%被其他的%NTR_NAME(3)%侵犯、甚至被中出···真的，真是没出息呢？」
-			DATAFORM 「不要移开视线・・你的%MSG_RE_LOVER(奴隷)%、我给你看看被其他%NTR_NAME(3)%侵犯留下的证据」
+			DATAFORM 「库库库・・%MSG_RE_LOVER(奴隷)%被其他的男人侵犯、甚至被中出···真的，真是没出息呢？」
+			DATAFORM 「不要移开视线・・你的%MSG_RE_LOVER(奴隷)%、我给你看看被其他男人侵犯留下的证据」
 		ENDDATA
 	ELSE
 		PRINTDATAL
@@ -3098,7 +3098,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊，来吧···能成为我第一次的%NTR_NAME(3)%我感到很光荣哦···嗯！！」
+		PRINTFORML 「好啊，来吧···能成为我第一次的男人我感到很光荣哦···嗯！！」
 		;非处女
 	ELSE
 		PRINTFORML 「好啊，来吧・・嗯嗯嗯・・哈啊」
@@ -3107,7 +3107,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣啊・・・嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣啊・・・嗯！！」
 		;非处女
 	ELSE
 		PRINTFORML 「好啊，来吧・・嗯嗯嗯・・哈啊」
@@ -3116,7 +3116,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣啊・・・嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣啊・・・嗯！！」
 		;非处女
 	ELSE
 		PRINTFORML 「好啊，来吧・・嗯嗯嗯・・哈啊」
@@ -3125,7 +3125,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣啊・・・嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣啊・・・嗯！！」
 		PRINTFORML %NTR_NAME(0)%只是表面上恭恭敬敬地接受%CALLNAME:奴隷%的同时、调整好那娇小的身体、把那份纯洁一下子撕碎了
 		;非处女
 	ELSE
@@ -3531,7 +3531,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 		PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己仰面张开腿邀请%NTR_NAME(0)%插入
 		;非处女
 	ELSE
@@ -3561,14 +3561,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣啊・・库库、正好有很棒的见证者啊・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣啊・・库库、正好有很棒的见证者啊・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%面前自己仰面张开腿，诱惑着%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%将视线转向%CALLNAME:MASTER%、用柔和的声音这样告知。
 				PRINTFORML 「%CALLNAME:MASTER%请在那里看。很高兴吧？是你所希望的结果吗」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己仰面张开腿邀请%NTR_NAME(0)%插入
 		ENDIF
 		;非处女
@@ -3612,14 +3612,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%面前仰面张开脚诱惑着%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%将视线转向%CALLNAME:MASTER%、用柔和的声音这样告知。
 				PRINTFORML 「%CALLNAME:MASTER%就在那里看着吧。因为这是你想要的结果」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前仰面张开脚诱惑着%NTR_NAME(0)%
 		ENDIF
 		PRINTFORML %NTR_NAME(0)%只是装作恭恭敬敬的样子对%CALLNAME:奴隷%处理、调整好其娇小的身体、一下子撕裂了其纯洁
@@ -3716,8 +3716,8 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		ENDDATA
 		PRINTFORML 完全不顾%CALLNAME:MASTER%的视线
 		PRINTDATAL
-			DATAFORM 抱着%NTR_NAME(0)%、配合着%NTR_NAME(4)%的动作自己开始动起了腰。
-			DATAFORM 每次被%NTR_NAME(0)%撞击时、都会一边抱紧%NTR_NAME(4)%一边发出甜蜜的声音。
+			DATAFORM 抱着%NTR_NAME(0)%、配合着他的动作自己开始动起了腰。
+			DATAFORM 每次被%NTR_NAME(0)%撞击时、都会一边抱紧他一边发出甜蜜的声音。
 			DATAFORM 如同与%NTR_NAME(0)%配合呼吸一样开始扭动腰部。
 		ENDDATA
 		;非处女
@@ -3759,8 +3759,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML 完全不顾%CALLNAME:MASTER%的视线
 		ENDIF
 		PRINTDATAL
-			DATAFORM 抱着%NTR_NAME(0)%、配合着%NTR_NAME(4)%的动作自己开始动起了腰。
-			DATAFORM 每次被%NTR_NAME(0)%撞击时、都会一边抱紧%NTR_NAME(4)%一边发出甜蜜的声音。
+			DATAFORM 抱着%NTR_NAME(0)%、配合着他的动作自己开始动起了腰。
+			DATAFORM 每次被%NTR_NAME(0)%撞击时、都会一边抱紧他一边发出甜蜜的声音。
 			DATAFORM 如同与%NTR_NAME(0)%配合呼吸一样开始扭动腰部。
 		ENDDATA
 		;非处女
@@ -3802,7 +3802,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			PRINTFORML 完全不顾%CALLNAME:MASTER%的视线
 		ENDIF
 		PRINTDATAL
-			DATAFORM 抱紧了%NTR_NAME(0)%、配合着%NTR_NAME(4)%的动作，自己开始扭起了腰。
+			DATAFORM 抱紧了%NTR_NAME(0)%、配合着他的动作，自己开始扭起了腰。
 			DATAFORM 在被%NTR_NAME(0)%每次撞击时都会开始发出甜蜜的声音。
 			DATAFORM 如同与%NTR_NAME(0)%配合呼吸一样开始扭动腰部。
 		ENDDATA
@@ -3845,7 +3845,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 			PRINTFORML 在%CALLNAME:MASTER%的视线下
 		ENDIF
 		PRINTDATAL
-			DATAFORM 被%NTR_NAME(0)%紧紧抱住、以%NTR_NAME(4)%的形式被侵犯
+			DATAFORM 被%NTR_NAME(0)%紧紧抱住、以他的形式被侵犯
 			DATAFORM 配合着%NTR_NAME(0)%的动作开始发出甜蜜的声音。
 			DATAFORM 深深地接受了%NTR_NAME(0)%
 		ENDDATA
@@ -4450,7 +4450,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 		PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%の見る前で自ら四つん這いになり尻を高々と掲げて%NTR_NAME(0)%を誘った。
 		;非处女
 	ELSE
@@ -4480,14 +4480,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库、库库、正好有很棒的见面人呢・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库、库库、正好有很棒的见面人呢・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%的面前自己趴下诱惑着%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%将视线转向%CALLNAME:MASTER%、用柔和的声音这样告知。
 				PRINTFORML 「%CALLNAME:MASTER%请在那里看。很高兴吧？是你所希望的结果吗」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%的面前自己趴下诱惑着%NTR_NAME(0)%
 		ENDIF
 		;非处女
@@ -4531,14 +4531,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%的面前张开腿诱惑着%NTR_NAME(0)%
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 然后%CALLNAME:奴隷%将视线转向%CALLNAME:MASTER%、用柔和的声音这样告知。
 				PRINTFORML 「%CALLNAME:MASTER%就在那里看着吧。因为这是你想要的结果」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%的面前张开腿诱惑着%NTR_NAME(0)%
 		ENDIF
 		PRINTFORML %NTR_NAME(0)%只是表面上恭恭敬敬地接受%CALLNAME:奴隷%的同时、一边抓住趴在地上的她的小屁股，一下子撕裂了她的纯洁.
@@ -4939,8 +4939,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ELSEIF TALENT:奴隷:恋慕
 		PRINTDATAL
 			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的人中出了、难道你不高兴吗・・？」
-			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的%NTR_NAME(3)%抱在怀里中出了・・你、真的是变态嘛？」
-			DATAFORM 「不要移开视线・・・你看、让我把你的%MSG_RE_LOVER(奴隷)%、被其他%NTR_NAME(3)%拥抱的证据拿给你看」
+			DATAFORM 「库库库・・明明被%MSG_RE_LOVER(奴隷)%以外的男人抱在怀里中出了・・你、真的是变态嘛？」
+			DATAFORM 「不要移开视线・・・你看、让我把你的%MSG_RE_LOVER(奴隷)%、被其他男人拥抱的证据拿给你看」
 		ENDDATA
 	ELSE
 		PRINTDATAL
@@ -4959,8 +4959,8 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	ELSEIF TALENT:奴隷:恋慕
 		PRINTDATAL
 			DATAFORM 「库库库・・被%MSG_RE_LOVER(奴隷)%逼到这一步・・亏你还满不在乎呢・・？」
-			DATAFORM 「库库库・・%MSG_RE_LOVER(奴隷)%被其他的%NTR_NAME(3)%侵犯、甚至被中出···真的，真是没出息呢？」
-			DATAFORM 「不要移开视线・・你的%MSG_RE_LOVER(奴隷)%、我给你看看被其他%NTR_NAME(3)%侵犯留下的证据」
+			DATAFORM 「库库库・・%MSG_RE_LOVER(奴隷)%被其他的男人侵犯、甚至被中出···真的，真是没出息呢？」
+			DATAFORM 「不要移开视线・・你的%MSG_RE_LOVER(奴隷)%、我给你看看被其他男人侵犯留下的证据」
 		ENDDATA
 	ELSE
 		PRINTDATAL
@@ -5564,7 +5564,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
-		PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+		PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 		PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%的面前亲自坐在%NTR_NAME(0)%的身上。
 		PRINTFORML 手扶着已经勃起的阴茎引导至湿漉漉的秘所，慢慢坐下，献上了纯洁。
 		;非处女
@@ -5595,7 +5595,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库、正好有很棒的见面人呢・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库、正好有很棒的见面人呢・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%的面前亲自坐在了%NTR_NAME(0)%的身上
 			PRINTFORML 手扶着已经勃起的阴茎引导至湿漉漉的秘所，慢慢坐下，献上了纯洁。
 			IF TALENT:奴隷:浮気公認
@@ -5603,7 +5603,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 				PRINTFORML 「%CALLNAME:MASTER%请在那里看。很高兴吧？是你所希望的结果吗」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感觉很光荣哦・・库库、正好还有人在场・・嗯・・嗯嗯！！」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%的面前亲自坐在%NTR_NAME(0)%的身上。
 			PRINTFORML 手扶着已经勃起的阴茎引导至湿漉漉的秘所，慢慢坐下，献上了纯洁。
 		ENDIF
@@ -5648,7 +5648,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(�
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%ANATA_LOVER(奴隷)%面前自己坐在了%NTR_NAME(0)%的身上
 			PRINTFORML 手沿着已经勃起的阴茎引导至湿漉漉的秘所，坐下来献上了纯洁。
 			IF TALENT:奴隷:浮気公認
@@ -5656,7 +5656,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 				PRINTFORML 「%CALLNAME:MASTER%就在那里看着吧。因为这是你想要的结果」
 			ENDIF
 		ELSE
-			PRINTFORML 「好啊、来吧・・・能成为我第一次的%NTR_NAME(3)%我感到很光荣哦・・库库・・」
+			PRINTFORML 「好啊、来吧・・・能成为我第一次的男人我感到很光荣哦・・库库・・」
 			PRINTFORML %CALLNAME:奴隷%在%CALLNAME:MASTER%面前自己坐在了%NTR_NAME(0)%的身上
 			PRINTFORML 手沿着已经勃起的阴茎引导至湿漉漉的秘所，坐下来献上了纯洁。
 		ENDIF
@@ -5752,7 +5752,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		ENDDATA
 		PRINTFORML 完全不顾%CALLNAME:MASTER%的视线
 		PRINTDATAL
-			DATAFORM 配合着%NTR_NAME(0)%的动作，开始在%NTR_NAME(4)%身上扭动腰部。
+			DATAFORM 配合着%NTR_NAME(0)%的动作，开始在他身上扭动腰部。
 			DATAFORM 被%NTR_NAME(0)%每次撞击、都会一边发出甜蜜的声音一边弯曲身体
 			DATAFORM 如同与%NTR_NAME(0)%配合呼吸一样开始扭动腰部。
 		ENDDATA
@@ -5770,9 +5770,9 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 			DATAFORM 为了使其更加插入阴道深处而淫乱的扭着腰部
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 正在寻求着%NTR_NAME(4)%的阴茎
-			DATAFORM 接受了%NTR_NAME(4)%的巨根
-			DATAFORM 品味着%NTR_NAME(4)%的怒张
+			DATAFORM 正在寻求着他的阴茎
+			DATAFORM 接受了他的巨根
+			DATAFORM 品味着他的怒张
 		ENDDATA
 	ENDIF
 
@@ -5795,7 +5795,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML 完全不顾%CALLNAME:MASTER%的视线
 		ENDIF
 		PRINTDATAL
-			DATAFORM 配合着%NTR_NAME(0)%的动作，开始在%NTR_NAME(4)%身上扭动腰部。
+			DATAFORM 配合着%NTR_NAME(0)%的动作，开始在他身上扭动腰部。
 			DATAFORM 被%NTR_NAME(0)%每次撞击、都会一边发出甜蜜的声音一边弯曲身体
 			DATAFORM 如同与%NTR_NAME(0)%配合呼吸一样开始扭动腰部。
 		ENDDATA
@@ -5813,9 +5813,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			DATAFORM 为了接受到阴道深处而将腰部用淫乱的状态扭动着，
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 正在寻求着%NTR_NAME(4)%的阴茎
-			DATAFORM 接受了%NTR_NAME(4)%的巨根
-			DATAFORM 品味着%NTR_NAME(4)%的怒张
+			DATAFORM 正在寻求着他的阴茎
+			DATAFORM 接受了他的巨根
+			DATAFORM 品味着他的怒张
 		ENDDATA
 	ENDIF
 
@@ -5881,7 +5881,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 			PRINTFORML 在%CALLNAME:MASTER%的视线下
 		ENDIF
 		PRINTDATAL
-			DATAFORM %NTR_NAME(0)%的身上按照%NTR_NAME(4)%的要求被侵犯着
+			DATAFORM %NTR_NAME(0)%的身上按照他的要求被侵犯着
 			DATAFORM 配合着%NTR_NAME(0)%的动作开始发出甜蜜的声音。
 			DATAFORM 深深地接受了%NTR_NAME(0)%
 		ENDDATA
@@ -6527,7 +6527,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「啊啊啊啊！ 一、一库库库库库！！」
-		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%。同时、%NTR_NAME(4)%在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
+		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%。同时、他在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -6535,14 +6535,14 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 			DATAFORM 「啊啊啊！ 来、来了！！ 射到里面了啊啊啊啊！！」
 			DATAFORM 「啊啊啊！ 去了、去了！一起高潮吧啊啊啊啊！！」
 		ENDDATA
-		PRINTFORML %CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%。同時に、%NTR_NAME(4)%は%CALLNAME:奴隷%的最深处释放了炽热的白浊.
+		PRINTFORML %CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%。同時に、他は%CALLNAME:奴隷%的最深处释放了炽热的白浊.
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「啊啊啊啊！ 一、一库库库库库！！」
-		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%、同时、%NTR_NAME(4)%在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
+		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%、同时、他在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -6550,14 +6550,14 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			DATAFORM 「啊啊啊！ 来、来了！！ 射到里面了啊啊啊啊！！」
 			DATAFORM 「啊啊啊！ 去了、去了！一起高潮吧啊啊啊啊！！」
 		ENDDATA
-		PRINTFORML %CALLNAME:奴隷%绝顶的时候紧抓着%NTR_NAME(0)%。同时、%NTR_NAME(4)%在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
+		PRINTFORML %CALLNAME:奴隷%绝顶的时候紧抓着%NTR_NAME(0)%。同时、他在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「啊啊啊啊！ 一、一库库库库库！！」
-		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%、同时、%NTR_NAME(4)%在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
+		PRINTFORML 破瓜的疼痛治愈了的%CALLNAME:奴隷%一边绝顶一边紧紧抱住%NTR_NAME(0)%、同时、他在%CALLNAME:奴隷%的最深处释放了炽热的白浊.
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -6565,7 +6565,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			DATAFORM 「啊啊啊！ 来、来了！！ 射到里面了啊啊啊啊！！」
 			DATAFORM 「啊啊啊！ 去了、去了！一起高潮吧啊啊啊啊！！」
 		ENDDATA
-		PRINTFORML %CALLNAME:奴隷%绝顶的时候紧抓着%NTR_NAME(0)%。同时、%NTR_NAME(4)%向%CALLNAME:奴隷%的子宫深处释放了炽热的白浊.
+		PRINTFORML %CALLNAME:奴隷%绝顶的时候紧抓着%NTR_NAME(0)%。同时、他向%CALLNAME:奴隷%的子宫深处释放了炽热的白浊.
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
@@ -6607,7 +6607,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		;非处女
 	ELSE
 		PRINTDATAL
-			DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的%NTR_NAME(3)%呢・・」
+			DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的男人呢・・」
 			DATAFORM 「库库・・竟然会想让这样的小姑娘怀孕、真是个有趣的爱好啊・・」
 			DATAFORM 「库库・・居然射出了这么多・・你是认真的吗・・？」
 		ENDDATA
@@ -6631,7 +6631,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ELSE
 		IF TALENT:奴隷:恋慕
 			PRINTDATAL
-				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、超乎寻常的%NTR_NAME(3)%啊・・」
+				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、超乎寻常的男人啊・・」
 				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、不错的趣味啊・・」
 				DATAFORM 「库库・・居然射出了这么多・・你是认真的吗・・？」
 			ENDDATA
@@ -6639,7 +6639,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML %CALLNAME:奴隷%露出妖艳的微笑、紧紧抱住了%NTR_NAME_1_2(奴隷)%
 		ELSE
 			PRINTDATAL
-				DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的%NTR_NAME(3)%呢・・」
+				DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的男人呢・・」
 				DATAFORM 「库库・・竟然会想让这样的小姑娘怀孕、真是个有趣的爱好啊・・」
 				DATAFORM 「库库・・居然射出了这么多・・你是认真的吗・・？」
 			ENDDATA
@@ -6659,13 +6659,13 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ELSE
 		IF TALENT:奴隷:恋慕
 			PRINTDATAL
-				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、超乎寻常的%NTR_NAME(3)%啊・・」
+				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、超乎寻常的男人啊・・」
 				DATAFORM 「库库・・居然想让%MSG_LOVER(奴隷)%的女人怀孕、不错的趣味啊・・」
 				DATAFORM 「库库・・居然射出了这么多・・你是认真的吗・・？」
 			ENDDATA
 		ELSE
 			PRINTDATAL
-				DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的%NTR_NAME(3)%呢・・」
+				DATAFORM 「库库・・竟然想让红魔馆的主人怀孕、超乎寻常的男人呢・・」
 				DATAFORM 「库库・・竟然会想让这样的小姑娘怀孕、真是个有趣的爱好啊・・」
 				DATAFORM 「库库・・居然射出了这么多・・你是认真的吗・・？」
 			ENDDATA
@@ -6883,7 +6883,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		DATAFORM 「啊啊・・好棒、用菊穴的感觉好棒！！」
 		DATAFORM 「啊啊・・去・・去了・・去了呜呜呜呜呜！！」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%紧紧抱住%NTR_NAME(0)%、一边顶着一边用菊穴榨取着%NTR_NAME(4)%的精液
+	PRINTFORML %CALLNAME:奴隷%紧紧抱住%NTR_NAME(0)%、一边顶着一边用菊穴榨取着他的精液
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
@@ -6892,7 +6892,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		DATAFORM 「啊啊・・好棒、用菊穴的感觉好棒！！」
 		DATAFORM 「啊啊・・去・・去了・・去了呜呜呜呜呜！！」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%紧紧抱住%NTR_NAME(0)%、在%NTR_NAME(4)%射精的同时迎来了顶峰。
+	PRINTFORML %CALLNAME:奴隷%紧紧抱住%NTR_NAME(0)%、在他射精的同时迎来了顶峰。
 
 ELSE
 
@@ -6916,7 +6916,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		DATAFORM 「・・啊啊・・屁股里・・被射了这么多・・还没有软下来、是不够吗・・？」
 		DATAFORM 「啊・・库库・・你还是一如既往的不客气啊・・？」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%一边沉醉于%NTR_NAME(0)%的精液在肠道内晃荡的感觉，一边与%NTR_NAME(4)%亲吻着
+	PRINTFORML %CALLNAME:奴隷%一边沉醉于%NTR_NAME(0)%的精液在肠道内晃荡的感觉，一边与他亲吻着
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
@@ -6925,7 +6925,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 		DATAFORM 「・・啊啊・・屁股里・・被射了这么多・・还没有软下来、是不够吗・・？」
 		DATAFORM 「啊・・库库・・你还是一如既往的不客气啊・・？」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%一边沉醉于%NTR_NAME(0)%的精液在肠道内晃荡的感觉，一边与%NTR_NAME(4)%亲吻着
+	PRINTFORML %CALLNAME:奴隷%一边沉醉于%NTR_NAME(0)%的精液在肠道内晃荡的感觉，一边与他亲吻着
 	IF TALENT:奴隷:恋慕
 		PRINTFORML 沉醉于精液的热度的%CALLNAME:奴隷%的意识变得白色浑浊了起来、消除了仅剩的对%MSG_LOVER(奴隷)%的思念
 	ENDIF
@@ -6937,7 +6937,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		DATAFORM 「・・啊啊・・屁股里・・满满的・・呼呼・・」
 		DATAFORM 「啊・・库库・・还是老样子呢・・」
 	ENDDATA
-	PRINTFORML %CALLNAME:奴隷%脸颊通红、感觉到%NTR_NAME(0)%的精液在肠道内晃荡的感觉、将嘴唇与%NTR_NAME(4)%重合
+	PRINTFORML %CALLNAME:奴隷%脸颊通红、感觉到%NTR_NAME(0)%的精液在肠道内晃荡的感觉、将嘴唇与他重合
 	IF TALENT:奴隷:恋慕
 		PRINTFORML 沉醉于精液的热度的%CALLNAME:奴隷%的意识变得白色浑浊了起来、消除了对%MSG_LOVER(奴隷)%的思念
 	ENDIF
@@ -6989,7 +6989,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%向%NTR_GetPlaceName(FLAG:访问者当前位置)%引导至%NTR_NAME(0)%的地方
 		IF FLAG:访问者当前位置 == 位置_红魔馆_蕾米莉亚私室 && TALENT:奴隷:恋慕
-			PRINTFORML %MSG_LOVER(奴隷)%虽然在，但是邀请其他的%NTR_NAME(3)%到卧室・・空气中漂浮着背德感的香气、%CALLNAME:奴隷%洋溢着妖异的微笑。
+			PRINTFORML %MSG_LOVER(奴隷)%虽然在，但是邀请其他的男人到卧室・・空气中漂浮着背德感的香气、%CALLNAME:奴隷%洋溢着妖异的微笑。
 		ELSE
 		ENDIF
 	ENDIF
@@ -7002,7 +7002,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%向%NTR_GetPlaceName(FLAG:访问者当前位置)%引导至%NTR_NAME(0)%的地方
 		IF FLAG:访问者当前位置 == 位置_红魔馆_蕾米莉亚私室 && TALENT:奴隷:恋慕
-			PRINTFORML %MSG_LOVER(奴隷)%虽然在，但是邀请其他的%NTR_NAME(3)%到卧室・・空气中漂浮着背德感的香气、%CALLNAME:奴隷%洋溢着妖异的微笑。
+			PRINTFORML %MSG_LOVER(奴隷)%虽然在，但是邀请其他的男人到卧室・・空气中漂浮着背德感的香气、%CALLNAME:奴隷%洋溢着妖异的微笑。
 		ELSE
 		ENDIF
 	ENDIF
@@ -7395,9 +7395,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 被%NTR_NAME(0)%注视着的%CALLNAME:奴隷%向%CALLNAME:MASTER%打招呼。
 		PRINTDATAL
-			DATAFORM 「不好意思、我找的是%NTR_NAME(4)%」
+			DATAFORM 「不好意思、我找的是他」
 			DATAFORM 「對不起、看来你叫我了」
-			DATAFORM 「好像是%NTR_NAME(4)%在叫我，不好意思啊、」
+			DATAFORM 「好像是他在叫我，不好意思啊、」
 		ENDDATA
 		IF TALENT:奴隷:浮気公認 >= 浮気_性交公認 && RAND:2
 			PRINTDATAL
@@ -7418,9 +7418,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 被%NTR_NAME(0)%注视着的%CALLNAME:奴隷%向%CALLNAME:MASTER%打招呼。
 		PRINTDATAL
-			DATAFORM 「不好意思、我找的是%NTR_NAME(4)%」
+			DATAFORM 「不好意思、我找的是他」
 			DATAFORM 「抱歉，我想叫你一下」
-			DATAFORM 「好像是%NTR_NAME(4)%在叫我，不好意思啊、」
+			DATAFORM 「好像是他在叫我，不好意思啊、」
 		ENDDATA
 	ELSE
 		PRINTFORML 被%NTR_NAME(0)%注视着的%CALLNAME:奴隷%若无其事地离开了%CALLNAME:MASTER%

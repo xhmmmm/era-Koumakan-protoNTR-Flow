@@ -34,28 +34,14 @@ SELECTCASE ARG
 [SKIPEND]
 	;恋慕持ち前提の表現
 	CASE 1
-		IF RAND:3 == 0
-			RETURNF "恋人以外的男人"
-		ELSEIF RAND:2 == 0
-			RETURNF "并非恋人的男人"
-		ELSE
-			RETURNF "思念之人以外的男人"
-		ENDIF
+		RETURNF "恋人以外的男人"
 	;恋慕持ち前提ではない表現
 	CASE 2
 		IF RAND:3 == 0
-			RETURNF "并不喜欢的男人"
-		ELSEIF RAND:2 == 0
-			RETURNF "并非爱人的男人"
+			RETURNF "不喜欢的男人"
 		ELSE
 			RETURNF "并非恋人的男人"
 		ENDIF
-	;固定
-	CASE 3
-		RETURNF "男人"
-	;固定
-	CASE 4
-		RETURNF "他"
 	;failsafe
 	CASEELSE
 		IF 访问者名称 == ""
@@ -73,25 +59,15 @@ SELECTCASE ARG
 [SKIPEND]
 ENDSELECT
 
-;NTR_NAME()の簡易版：「男」限定
-@NTR_OTOKO()
-#FUNCTIONS
-RETURNF NTR_NAME(3)
-
-;NTR_NAME()の簡易版：「彼」限定
-@NTR_KARE()
-#FUNCTIONS
-RETURNF NTR_NAME(4)
-
 ;NTR_NAME()の簡易版：奴隷が恋慕か否かで1/2を選択
 @NTR_NAME_1_2(奴隷)
 #FUNCTIONS
 #DIM 奴隷
 IF TALENT:奴隷:恋慕
 	IF RAND:2 == 0
-		RETURNF MSG_LOVER(奴隷)+"以外的"+NTR_NAME(3)
+		RETURNF MSG_LOVER(奴隷)+"以外的男人"
 	ELSE
-		RETURNF "并非"+MSG_LOVER(奴隷)+"的"+NTR_NAME(3)
+		RETURNF "并非"+MSG_LOVER(奴隷)+"的男人"
 	ENDIF
 	;RETURNF NTR_NAME(1)
 ELSE
@@ -1562,53 +1538,27 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていたことを指摘した。
 	IF TALENT:奴隷:恋慕
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-		ELSE
-			PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮するのかと問いかけた。
-		ENDIF
+		PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮するのかと問いかけた。
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、見ていて興奮したかと問いかけた。
-	ENDIF
-	IF TALENT:奴隷:浮気公認 && CFLAG:奴隷:覗き発覚回数 > 5
-		PRINTFORML もし我慢できなかったら、次からはその場で自分で慰めなさいと嘲笑いながら囁いた。		
-	ELSE
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	;2回以上
 	IF CFLAG:奴隷:覗き発覚回数 > 1
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗き続けていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
+		IF TALENT:奴隷:恋慕
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮するのかと問い詰めてきた。
 		ELSE
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮するのかと問い詰めてきた。
-			ELSE
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、人が犯される様を見て興奮するのかと問い詰めてきた。
-			ENDIF
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、人が犯される様を見て興奮するのかと問い詰めてきた。
 		ENDIF
 		;1回
 	ELSE
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染め薄笑いを浮かべながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		IF TALENT:奴隷:恋慕
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責め、それでも%MSG_RE_LOVER(奴隷)%かと問い詰めてきた。
 		ELSE
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責め、それでも%MSG_RE_LOVER(奴隷)%かと問い詰めてきた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを問い詰めてきた。
-			ENDIF
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを問い詰めてきた。
 		ENDIF
 	ENDIF
 
@@ -1616,36 +1566,18 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
 	;2回以上
 	IF CFLAG:奴隷:覗き発覚回数 > 1
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗き続けていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染めながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染めながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
+		IF TALENT:恋慕
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
 		ELSE
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
-			IF TALENT:恋慕
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
-			ELSE
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのかと罵った。
-			ENDIF
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのかと罵った。
 		ENDIF
 		;1回
 	ELSE
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染めながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%はわずかに頬を染めながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		IF TALENT:恋慕
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責め、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
 		ELSE
-			IF TALENT:恋慕
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責め、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
-			ENDIF
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
 		ENDIF
 	ENDIF
 
@@ -1653,36 +1585,18 @@ ELSE
 
 	;2回以上
 	IF CFLAG:奴隷:覗き発覚回数 > 1
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗き続けていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%は顔を真っ赤に染めながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%は顔を真っ赤に染めながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
+		IF TALENT:恋慕
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
 		ELSE
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
-			IF TALENT:恋慕
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのか、それでも%MSG_RE_LOVER(奴隷)%なのかと罵った。
-			ELSE
-				PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのかと罵った。
-			ENDIF
+			PRINTFORML 助けるどころか覗き続けていたことを指摘し、自分は助ける価値もないのかと罵った。
 		ENDIF
 		;1回
 	ELSE
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていたことを指摘した。
-			IF TALENT:奴隷:恋慕
-				PRINTFORML %CALLNAME:奴隷%は顔を真っ赤に染めながら、%MSG_RE_LOVER(奴隷)%が犯される様を見て興奮したかと問いかけた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%は顔を真っ赤に染めながら、見ていて興奮したかと問いかけた。
-			ENDIF
+		IF TALENT:恋慕
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを、それでも%MSG_RE_LOVER(奴隷)%なのかと責めた。
 		ELSE
-			IF TALENT:恋慕
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを、それでも%MSG_RE_LOVER(奴隷)%なのかと責めた。
-			ELSE
-				PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
-			ENDIF
+			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%が%NTR_NAME(0)%との行為を覗いていながら助けなかったことを責めた。
 		ENDIF
 	ENDIF
 
@@ -1722,34 +1636,18 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と唇を重ねその舌を受け入れている。
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と唇を重ねその舌を受け入れている。
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線から逃れるかのように目を閉じつつ%NTR_NAME(0)%と唇を重ねている。
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線から逃れるかのように目を閉じつつ%NTR_NAME(0)%と唇を重ねている。
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線の先で目を閉じ%NTR_NAME(0)%と唇を重ねている。
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線の先で目を閉じ%NTR_NAME(0)%と唇を重ねている。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と唇を重ねている。
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と唇を重ねている。
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るような視線を向けつつ%NTR_NAME(0)%と唇を重ねている。
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るような視線を向けつつ%NTR_NAME(0)%と唇を重ねている。
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線の先で%NTR_NAME(0)%と唇を重ねている。
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線の先で%NTR_NAME(0)%と唇を重ねている。
 	ENDIF
 
 ELSE
@@ -1779,66 +1677,34 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚に身体をゆだね身体をくねらせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚に身体をゆだね身体をくねらせている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を浴びながらも%NTR_NAME(0)%の思うままに身体をゆだね身体をくねらせている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を浴びながらも%NTR_NAME(0)%の思うままに身体をゆだね身体をくねらせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の思うままに身体をゆだね身体をくねらせている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の思うままに身体をゆだね身体をくねらせている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚に身体をゆだねている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚に身体をゆだねている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を気にしつつも%NTR_NAME(0)%の思うままに身体をゆだねている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を気にしつつも%NTR_NAME(0)%の思うままに身体をゆだねている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を気にしつつも%NTR_NAME(0)%の思うままに身体をゆだねている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を気にしつつも%NTR_NAME(0)%の思うままに身体をゆだねている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるように%NTR_NAME(0)%の爱抚を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に縋るかのような視線を向けつつも%NTR_NAME(0)%の爱抚を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るかのような視線を向けつつも%NTR_NAME(0)%の爱抚を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -1860,66 +1726,34 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を浴びながらも乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を浴びながらも乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず乳房を%NTR_NAME(0)%のほしいままにさせ身体をくねらせている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように乳房を%NTR_NAME(0)%のほしいままにさせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように乳房を%NTR_NAME(0)%のほしいままにさせている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を気にしつつも乳房を%NTR_NAME(0)%のほしいままにさせている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線を気にしつつも乳房を%NTR_NAME(0)%のほしいままにさせている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を気にしつつも乳房を%NTR_NAME(0)%のほしいままにさせている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を気にしつつも乳房を%NTR_NAME(0)%のほしいままにさせている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように乳房への%NTR_NAME(0)%の爱抚を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように乳房への%NTR_NAME(0)%の爱抚を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお逃げられないようだ
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に縋るかのような視線を向けながらも乳房への%NTR_NAME(0)%の爱抚を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に縋るかのような視線を向けながらも乳房への%NTR_NAME(0)%の爱抚を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に縋るかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に縋るかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -1941,66 +1775,34 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %MSG_LOVER(奴隷)%である%CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎をしゃぶっている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎をしゃぶっている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %MSG_LOVER(奴隷)%である%CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の阴茎をしゃぶっている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %MSG_LOVER(奴隷)%である%CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の阴茎をしゃぶっている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の阴茎をしゃぶっている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線を意に介さず%NTR_NAME(0)%の阴茎をしゃぶっている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように濃厚な侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように濃厚な侍奉を続けている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に時折視線をよこしつつもなお侍奉を続けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に時折視線をよこしつつもなお侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に時折視線をよこしつつもなお侍奉を続けている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に時折視線をよこしつつもなお侍奉を続けている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように侍奉を続けている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けつつも侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けつつも侍奉を続けている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -2031,50 +1833,26 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎をしゃぶっている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎をしゃぶっている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%にちらちらと視線をよこしつつなお侍奉を続けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%にちらちらと視線をよこしつつなお侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%にちらちらと視線をよこしつつなお侍奉を続けている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%にちらちらと視線をよこしつつなお侍奉を続けている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に侍奉を続けている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお侍奉を続けている
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けてながらも侍奉を続けている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けてながらも侍奉を続けている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -2105,50 +1883,26 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に腰を擦りつけながら甘い声をあげている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に腰を擦りつけながら甘い声をあげている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見られていると知りながら%NTR_NAME(0)%の阴茎に腰を擦りつけている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見られていると知りながら%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見られていると知りながら%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見られていると知りながら%NTR_NAME(0)%の阴茎に腰を擦りつけている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見られながら腰を擦り付けることを強いられている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見られながら腰を擦り付けることを強いられている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見られながら腰を擦り付けることを強いられている
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見られながら腰を擦り付けることを強いられている
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも%NTR_NAME(0)%の阴茎に腰を擦りつけている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -2179,54 +1933,30 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%にわざと見せ付けるかのように腰を振り快楽を貪っている
+	IF TALENT:奴隷:恋慕 
+		IF TALENT:奴隷:施虐狂 || ABL:奴隷:抖Ｓ之气 > 4
+			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいた上で敢えて抵抗せず%NTR_NAME(0)%を受け入れている様を見せ付けている
 		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%にわざと見せ付けるかのように腰を振り快楽を貪っている
+			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず%NTR_NAME(0)%を受け入れている
 		ENDIF
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			IF TALENT:奴隷:施虐狂 || ABL:奴隷:抖Ｓ之气 > 4
-				PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいた上で敢えて抵抗せず%NTR_NAME(0)%を受け入れている様を見せ付けている
-			ELSE
-				PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず%NTR_NAME(0)%を受け入れている
-			ENDIF
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず%NTR_NAME(0)%を受け入れている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず%NTR_NAME(0)%を受け入れている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%にわざと見せ付けるかのように腰を振っている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%にわざと見せ付けるかのように腰を振っている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、次第に快楽に屈し弱々しいものになってゆく
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、次第に快楽に屈し弱々しいものになってゆく
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、次第に快楽に屈し弱々しいものになってゆく
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、次第に快楽に屈し弱々しいものになってゆく
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも%NTR_NAME(0)%の阴茎を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも%NTR_NAME(0)%の阴茎を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF
@@ -2257,54 +1987,30 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように腰を振り菊花の快感をむさぼっている
+	IF TALENT:奴隷:恋慕 
+		IF TALENT:奴隷:施虐狂 || ABL:奴隷:抖Ｓ之气 > 4
+			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいた上で敢えて抵抗せず菊花で%NTR_NAME(0)%を受け入れている様を見せ付けている
 		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように腰を振り菊花の快感をむさぼっている
+			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず菊花で%NTR_NAME(0)%を受け入れている様を見せ付けている
 		ENDIF
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			IF TALENT:奴隷:施虐狂 || ABL:奴隷:抖Ｓ之气 > 4
-				PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいた上で敢えて抵抗せず菊花で%NTR_NAME(0)%を受け入れている様を見せ付けている
-			ELSE
-				PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず菊花で%NTR_NAME(0)%を受け入れている様を見せ付けている
-			ENDIF
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず菊花で%NTR_NAME(0)%を受け入れている
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%の視線に気づいてもなお抵抗せず菊花で%NTR_NAME(0)%を受け入れている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に見せ付けるかのように腰を振り菊花の快感を受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に見せ付けるかのように腰を振り菊花の快感を受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、菊花への一突きごとに快楽に屈し弱々しいものになってゆく
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、菊花への一突きごとに快楽に屈し弱々しいものになってゆく
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、菊花への一突きごとに快楽に屈し弱々しいものになってゆく
-		ENDIF
+		PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けているが、菊花への一突きごとに快楽に屈し弱々しいものになってゆく
 	ENDIF
 
 ELSE
 
-	IF TALENT:奴隷:浮気公認
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも菊花セックスを受け入れている
-		ELSE
-			PRINTFORMW %CALLNAME:奴隷%は%CALLNAME:MASTER%に助けを求めるかのような視線を向けながらも菊花セックスを受け入れている
-		ENDIF
+	IF TALENT:奴隷:恋慕 
+		PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
 	ELSE
-		IF TALENT:奴隷:恋慕 
-			PRINTFORMW %CALLNAME:奴隷%は%MSG_LOVER(奴隷)%である%CALLNAME:MASTER%に助けを求めるかのような視線を向けている
-		ELSE
-			PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
-		ENDIF
+		PRINTFORMW %NTR_NAME(0)%は%CALLNAME:MASTER%に見せ付けようとしているようだ
 	ENDIF
 
 ENDIF

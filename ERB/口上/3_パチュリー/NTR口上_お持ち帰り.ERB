@@ -73,7 +73,7 @@ ELSE
 			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%の元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
 			CALL NTR_KOJO_K3_0_TalkBack0(奴隷)
 			PRINTFORML 「%CALLNAME:MASTER%は私の%MSG_LOVER(奴隷)%なのだから知る権利があるわね。いえ、義務かしら？」
-			PRINTFORML 「どこで泊まったかって？ もちろん、%NTR_NAME(4)%のところよ。・・これで、よかったのよね？」
+			PRINTFORML 「どこで泊まったかって？ もちろん、他のところよ。・・これで、よかったのよね？」
 			PRINTFORML %CALLNAME:MASTER%の視線に見送られ弱々しい足取りで部屋に戻っていった。
 		ELSEIF TALENT:奴隷:浮気公認 > 0
 			PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%の元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
@@ -108,7 +108,7 @@ RETURN 0
 
 PRINTFORML 「%CALLNAME:MASTER%は私の%MSG_LOVER(奴隷)%なのだから知る権利があるわね。いえ、義務かしら？」
 PRINTDATAL
-	DATAFORM 「どこで泊まったかって？ もちろん、%NTR_NAME(4)%のところよ。いっぱい抱かれてきたわ」
+	DATAFORM 「どこで泊まったかって？ もちろん、他のところよ。いっぱい抱かれてきたわ」
 	DATAFORM 「抱かれてきたのかって？ ええ、当然ね。そのために泊まったのだから」
 	DATAFORM 「何をしてきたかって？ セックス以外何をするのかしら？」
 ENDDATA
@@ -217,7 +217,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
-	PRINTFORML %CALLNAME:奴隷%は首に着けられた项圈から伸びる鎖を引かれ、%NTR_NAME(3)%にしなだれかかった。
+	PRINTFORML %CALLNAME:奴隷%は首に着けられた项圈から伸びる鎖を引かれ、男人にしなだれかかった。
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %CALLNAME:MASTER%にすら見せたことのないような媚びた笑顔を浮かべている。
 	ELSE
@@ -235,7 +235,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
-	PRINTFORML %CALLNAME:奴隷%は平気を装って%NTR_NAME(0)%と話しているが、%NTR_NAME(4)%の股間のモノにちらちらと視線を泳がせている。
+	PRINTFORML %CALLNAME:奴隷%は平気を装って%NTR_NAME(0)%と話しているが、他の股間のモノにちらちらと視線を泳がせている。
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎が気になって仕方ないようだ、と揶揄され慌てて視線を逸らした。
 	ELSE
@@ -622,10 +622,10 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML %悲鳴%
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げた上、%NTR_NAME(4)%の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
+			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げた上、他の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
 			PRINTFORML 夥しい量の精液に、僅かに残った%CALLNAME:MASTER%への想いさえも白く白く塗りつぶされてゆく。
 		ELSE
-			PRINTFORML %NTR_NAME(0)%に純潔を捧げた上、%NTR_NAME(4)%の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
+			PRINTFORML %NTR_NAME(0)%に純潔を捧げた上、他の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
 			PRINTFORML 夥しい量の精液に、僅かに残った%CALLNAME:奴隷%の理性も自尊心も白く白く塗りつぶされてゆく。
 		ENDIF
 		;非处女
@@ -645,10 +645,10 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML %悲鳴%
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を奪われた上、%NTR_NAME(4)%の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
+			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を奪われた上、他の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
 			PRINTFORML 夥しい量の精液に、%CALLNAME:MASTER%への想いさえも白く白く塗りつぶされてゆく。
 		ELSE
-			PRINTFORML %NTR_NAME(0)%に純潔を奪われた上、%NTR_NAME(4)%の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
+			PRINTFORML %NTR_NAME(0)%に純潔を奪われた上、他の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
 			PRINTFORML 夥しい量の精液に、%CALLNAME:奴隷%の理性も自尊心も白く白く塗りつぶされてゆく。
 		ENDIF
 		;非处女
@@ -668,7 +668,7 @@ ELSE
 	IF TALENT:奴隷:浮気公認
 		IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 			PRINTFORML %悲鳴%
-			PRINTFORML %NTR_NAME(0)%に純潔を捧げた上、%NTR_NAME(4)%の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
+			PRINTFORML %NTR_NAME(0)%に純潔を捧げた上、他の精液で子宮を満たされ、%CALLNAME:奴隷%は淫らな声を張り上げながら達した。
 			IF TALENT:奴隷:恋慕
 				PRINTFORML 夥しい量の精液に、%CALLNAME:MASTER%への想いさえも白く白く塗りつぶされてゆく。
 			ELSE
@@ -792,7 +792,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %NTR_NAME_1_2(奴隷)%の精液は、愛する者への裏切りという背徳の味わいで%CALLNAME:奴隷%を酔わせた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の精液は、%NTR_NAME(4)%への屈从という禁断の味わいで%CALLNAME:奴隷%を酔わせた。
+		PRINTFORML %NTR_NAME(2)%の精液は、他への屈从という禁断の味わいで%CALLNAME:奴隷%を酔わせた。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -802,7 +802,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %NTR_NAME_1_2(奴隷)%の精液は、愛する者への裏切りという背徳の味わいを秘めていた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の精液は、%NTR_NAME(4)%への屈从という禁断の味わいを秘めていた。
+		PRINTFORML %NTR_NAME(2)%の精液は、他への屈从という禁断の味わいを秘めていた。
 	ENDIF
 
 ELSE
@@ -812,7 +812,7 @@ ELSE
 	IF TALENT:奴隷:恋慕
 		PRINTFORML %NTR_NAME_1_2(奴隷)%の精液は、愛する者への裏切りという苦い毒の味がした。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の精液は、%NTR_NAME(4)%への屈从という苦い毒の味がした。
+		PRINTFORML %NTR_NAME(2)%の精液は、他への屈从という苦い毒の味がした。
 	ENDIF
 
 ENDIF
@@ -833,9 +833,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「ああっ・・おしり、おしり、いいいっ！！」
 	PRINTFORML %CALLNAME:奴隷%は深々とアヌスを貫かれ自ら尻を振りながら絶頂した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と%NTR_NAME(4)%の精液による汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と他の精液による汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と%NTR_NAME(4)%の精液による汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
+		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と他の精液による汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -843,9 +843,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ああっ・・おしり、おしり、いいいっ！！」
 	PRINTFORML %CALLNAME:奴隷%は深々とアヌスを貫かれながら絶頂した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と%NTR_NAME(4)%の精液による汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と他の精液による汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と%NTR_NAME(4)%の精液による汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
+		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と他の精液による汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
 	ENDIF
 
 ELSE
@@ -876,9 +876,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「ああっ・・だめ、中は駄目なのっ・・ああっ！」
 	PRINTFORML %CALLNAME:奴隷%は言葉とは裏腹に自ら腰を振り、膣内での射精を導き自らも絶頂した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と%NTR_NAME(4)%の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と他の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と%NTR_NAME(4)%の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
+		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と他の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって最高の快楽となっていた。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -886,9 +886,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ああっ・・だめ、中は駄目なのっ・・ああっ！」
 	PRINTFORML %CALLNAME:奴隷%は言葉とは裏腹に自ら腰を振り、膣内での射精を導いた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と%NTR_NAME(4)%の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
+		PRINTFORML %NTR_NAME_1_2(奴隷)%の阴茎による陵辱と他の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
 	ELSE
-		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と%NTR_NAME(4)%の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
+		PRINTFORML %NTR_NAME(2)%の阴茎による陵辱と他の精液による胎内の汚辱・・それらは%CALLNAME:奴隷%にとって快楽となっていた。
 	ENDIF
 
 ELSE

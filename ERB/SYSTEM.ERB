@@ -227,6 +227,16 @@ IF GETBIT(FLAG:ゲームモード, 4)
 ELSE
 	;//默认推荐的设置
 	FLAG:Flow版本 = 1
+	FLAG:AA表示 = 1
+	FLAG:画像表示設定 = 0
+	FLAG:画像表示 = 3
+	FLAG:画像表示位置 = 0
+	FLAG:图像_动画 = 2
+	FLAG:图像_图像框显示 = 0
+	FLAG:图像_射精图像类型 = 0
+	FLAG:图像_立绘类型 = 0
+	FLAG:图像_插图显示 = 0
+	SETBIT FLAG:禁止受精,1
 	SETBIT FLAG:ＮＴＲパッチ設定, 1
 	SETBIT FLAG:ＮＴＲパッチ設定, 3
 	SETBIT FLAG:ＮＴＲパッチ設定, 5

@@ -91,11 +91,11 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	;寝取られ寸前なら
 	IF TALENT:奴隷:人妻
-		PRINTFORML 「%CALLNAME:調教者%って変・・お嫁さんが他の%NTR_NAME(3)%とエッチして興奮するだなんて、もしかしてヘンタイさん？」
+		PRINTFORML 「%CALLNAME:調教者%って変・・お嫁さんが他の男人とエッチして興奮するだなんて、もしかしてヘンタイさん？」
 	ELSEIF TALENT:奴隷:恋慕
-		PRINTFORML 「%CALLNAME:調教者%って変・・コイビトが他の%NTR_NAME(3)%とエッチして興奮するだなんて、もしかしてヘンタイさん？」
+		PRINTFORML 「%CALLNAME:調教者%って変・・コイビトが他の男人とエッチして興奮するだなんて、もしかしてヘンタイさん？」
 	ELSE
-		PRINTFORML 「%CALLNAME:調教者%って変・・私が他の%NTR_NAME(3)%とエッチして興奮するだなんて、もしかしてヘンタイさん？」
+		PRINTFORML 「%CALLNAME:調教者%って変・・私が他の男人とエッチして興奮するだなんて、もしかしてヘンタイさん？」
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	;寝取られそうなら
@@ -584,13 +584,6 @@ RETURN 1
 ;			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 ;				PRINTFORML %CALLNAME:TARGET%とくちづけした%CALLNAME:MASTER%は彼女の唾液の味に違和感を覚え唇を離した。
 ;				PRINTFORML 「・・あ、苦かった？ ごめんね・・ふふっ」
-;			ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-;				PRINTDATAL
-;					DATAFORM 「・・うん・・あの人には内緒だよ・・ん・・」
-;					DATAFORM 「・・イケナイことしてるみたい・・ふふっ・・」
-;					DATAFORM 「・・うん、黙っててあげる」
-;				ENDDATA
-;				PRINTFORML %CALLNAME:TARGET%は诱惑するような視線で%CALLNAME:MASTER%を見つめた。
 ;			;好意度低いと冷たい
 ;			ELSE
 ;				PRINTDATAL

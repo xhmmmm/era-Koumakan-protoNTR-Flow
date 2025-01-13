@@ -244,3 +244,57 @@ NEXT
 SIF FLAG:訪問者同行フラグ
 	RETURN CFLAG:MASTER:当前位置
 RETURN RET_POS
+
+;-------------------------------------------------------------------------------
+;引数で指定した場所に住人がいるとその人数を返す。
+;寝取られ寸前、寝取られそうの場合倍カウントとする。
+;睡眠中の住人およびストライクゾーン未満の住人はカウントしない。
+;戻り値…指定した場所にいる住人の人数
+@CHK_TGT_IN_POS(場所)
+#FUNCTION
+#DIM 場所
+#DIM RET_CNT	; 戻り値カウンタ
+#DIM LOOP_CHR	; ループカウンタ（キャラ番号）
+RET_CNT = 0
+FOR LOOP_CHR,1,CHARANUM
+	; 訪問者「妊婦プレイは危険なの。」
+	SIF CFLAG:LOOP_CHR:にんっしんっ > 0
+		CONTINUE
+	; 訪問者「子供には興味はない。」
+	SIF !NTR_CHK_STRIKE_ZONE(LOOP_CHR)
+		CONTINUE
+	; 訪問者「カレシ持ちじゃないオンナには用はないッ！」
+	SIF IS_NTR_ATTACK_LOVER_ONLY() && ! (TALENT:LOOP_CHR:恋人 || TALENT:LOOP_CHR:NTR)
+		CONTINUE
+	IF CFLAG:(LOOP_CHR):当前位置 == 場所
+		;恋慕持ちは狙われやすい
+		RET_CNT += TALENT:LOOP_CHR:恋慕
+		RET_CNT += TALENT:LOOP_CHR:恋人
+		;人妻はさらに狙われやすい
+		RET_CNT += TALENT:LOOP_CHR:人妻
+		;お気に入り補正
+		IF FLAG:訪問者のお気に入り != 999 && LOOP_CHR == FLAG:訪問者のお気に入り
+			RET_CNT += 2
+		ENDIF
+		IF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_寝取られ)
+			RET_CNT += 2
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_寝取られ寸前)
+			RET_CNT += 2
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_寝取られそう)
+			RET_CNT += 2
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_主人より高い)
+			RET_CNT += 3
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_うふふする程度)
+			RET_CNT += 2
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_侍奉する程度)
+			RET_CNT += 1
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_体を触らせる程度)
+			RET_CNT += 1
+		ELSEIF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_接吻程度)
+			RET_CNT += 1
+		ELSE
+			RET_CNT += 1
+		ENDIF
+	ENDIF
+NEXT
+RETURNF RET_CNT

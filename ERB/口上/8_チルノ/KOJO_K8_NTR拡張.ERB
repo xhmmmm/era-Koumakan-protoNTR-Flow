@@ -46,15 +46,7 @@ RETURN RESULT
 
 奴隷 = 人物_琪露诺
 RET_VAL = 0
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM 「・・仕方ないなぁ・・うん、いいよ・・」
-		DATAFORM 「・・へへ、あの人には内緒だよ・・」
-		DATAFORM 「・・えへへ、二人だけの秘密だね？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM 「・・いけないよ・・」

@@ -47,15 +47,7 @@ RETURN RESULT
 奴隷 = 人物_蕾米莉亚
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中) 
-
-	PRINTDATAL
-		DATAFORM 「・・没办法」
-		DATAFORM 「・・你要瞒着他」
-		DATAFORM 「・・这是我们两个人的秘密。好吗？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ) 
 
 	PRINTDATAL
 		DATAFORM 「住手。我会生气的？」
@@ -125,13 +117,6 @@ ELSE
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML 与%CALLNAME:奴隷%亲吻的%CALLNAME:MASTER%对他的唾液的味道感到不协调，离开了唇部。
 			PRINTFORML 「・・库库库・・很刺激吧？」
-		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-			PRINTDATAL
-				DATAFORM 「・・库库・・你要瞒着他・・嗯・・」
-				DATAFORM 「・・这可是玩火的乐趣啊」
-				DATAFORM 「・・很惊险对吗？」
-			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%以诱惑的视线注视%CALLNAME:MASTER%
 			;好意度低いと冷たい
 		ELSE
 			PRINTDATAL
@@ -216,15 +201,7 @@ RETURN RESULT
 奴隷 = 人物_蕾米莉亚
 RET_VAL = 0
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTDATAL
-		DATAFORM 「・・你要瞒着他」
-		DATAFORM 「你想把我当做共犯吗。呼呼」
-		DATAFORM 「这样也不错啊」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTDATAL
 		DATAFORM 「不行。你明明是佣人」

@@ -301,8 +301,6 @@ IF CSTR:对象:M处女丧失记录 == ""
 						内容 = %"吸吮了"%
 					ELSEIF NTR_CHK_FAVORABLY(对象, FAV_うふふする程度) 
 						内容 = %"半推半就地吸吮了"%
-					ELSEIF TALENT:对象:浮気公認
-						内容 = %"取走的"%
 					ELSE
 						内容 = %"被强迫着吸吮了"%
 					ENDIF
@@ -348,8 +346,6 @@ IF CSTR:对象:M处女丧失记录 == ""
 								内容 = %"满怀爱意地吸吮了"%
 							ELSEIF NTR_CHK_FAVORABLY(对象, FAV_寝取られ寸前)
 								内容 = %"满怀爱意地吸吮了"%
-							ELSEIF TALENT:对象:浮気公認
-								内容 = %"取走的"%
 							ELSE
 								内容 = %"半推半就地吸吮了"%
 							ENDIF
@@ -1360,10 +1356,6 @@ SIF FLAG:好感度倍率 && ARG:1 >= 1
 CFLAG:ARG:好感度 += ARG:1
 ;好感度は0以下にも100万以上にもならない
 CFLAG:ARG:好感度 = LIMIT(CFLAG:ARG:好感度, 0, 999999)
-;恋慕かつ浮気公認してる場合好感度の下限値を設定
-IF TALENT:ARG:恋慕 && TALENT:ARG:浮気公認 > 0
-	CFLAG:ARG:好感度 = LIMIT(CFLAG:ARG:好感度, 1599-TALENT:ARG:浮気公認*200, 999999)
-ENDIF
 
 ;変動値を返す
 RETURN ARG:1

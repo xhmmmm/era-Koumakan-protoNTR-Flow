@@ -3,7 +3,7 @@
 ;-------------------------------------------------
 ;絶頂処理
 ;-------------------------------------------------
-@ORGASM_ADD(奴隷,調教者=0)
+@ORGASM_ADD(奴隷,調教者)
 #DIM 奴隷
 #DIM 調教者
 #DIM 絶頂要求係数
@@ -15,6 +15,18 @@
 #DIM Ｃ绝顶強度
 #DIM Ｖ绝顶強度
 #DIM 浮気快楽強度
+#DIM A绝顶基准
+#DIM B绝顶基准
+#DIM C绝顶基准
+#DIM V绝顶基准
+#DIM A快感溢出
+#DIM B快感溢出
+#DIM C快感溢出
+#DIM V快感溢出
+#DIM A假高潮
+#DIM B假高潮
+#DIM C假高潮
+#DIM V假高潮
 
 絶頂候補 = 0
 絶頂候補 += ((CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ) >= PALAMLV:4)
@@ -31,6 +43,10 @@ SELECTCASE 絶頂候補
 	CASE 1
 		総合快感値 = 2000
 ENDSELECT
+[IF_DEBUG]
+PRINTFORML 对象：%CALLNAME:奴隷%
+PRINTFORML 総合快感値{総合快感値}
+[ENDIF]
 ;視認性の問題で残しておく
 Ｃ绝顶強度 = 0
 Ｖ绝顶強度 = 0
@@ -38,23 +54,45 @@ ENDSELECT
 Ｂ绝顶強度 = 0
 
 ;訪問者以外の調教で、快乐刻印よりも浮気快乐刻印のレベルが高い場合、絶頂しづらくなる
-IF 調教者 != 998 && GET_MARK_LEVEL(奴隷,刻印番号_快乐刻印,調教者) < MARK:奴隷:浮気快乐刻印
-	絶頂要求係数 = MAX( 100 * MARK:奴隷:浮気快乐刻印 / MAX(1,GET_MARK_LEVEL(奴隷,刻印番号_快乐刻印,調教者)) , 100 )
+IF 調教者 == MASTER && GET_MARK_LEVEL(奴隷,刻印番号_快乐刻印,調教者) < MARK:奴隷:浮気快乐刻印
+	;絶頂要求係数 = MAX( 100 * MARK:奴隷:浮気快乐刻印 / MAX(1,GET_MARK_LEVEL(奴隷,刻印番号_快乐刻印,調教者)) , 100 )
+	絶頂要求係数 = MAX(50,(100-RelativeSizeOfVaginaAndPenis(奴隷,調教者,1)*25)) - GET_MARK_LEVEL(奴隷,刻印番号_快乐刻印,調教者)*10 + MARK:奴隷:浮気快乐刻印*50
+ELSEIF 調教者 == MASTER
+	絶頂要求係数 = MAX(50,(100-RelativeSizeOfVaginaAndPenis(奴隷,調教者,1)*25))
+ELSEIF 調教者 == 人物_訪問者
+	絶頂要求係数 = MAX(30,MIN(120,(100-RelativeSizeOfVaginaAndPenis(奴隷,調教者,1)*25)-MARK:奴隷:浮気快乐刻印*1))
 ELSE
 	絶頂要求係数 = 100
 ENDIF
-
+[IF_DEBUG]
+PRINTFORML 絶頂要求係数{絶頂要求係数}
+[ENDIF]
 ;-------------------------------------------------------------------
 ;絶頂Ｃ
 部位快感値 = (CUP:奴隷:快Ｃ > 0) * 総合快感値
+[IF_DEBUG]
+PRINTFORML C绝顶基准{絶頂要求係数}
+PRINTFORML C部位快感値：{部位快感値}  高潮阈值{PALAMLV:4 * 2 * 絶頂要求係数 / 100}/{PALAMLV:4 * 絶頂要求係数 / 100}
+PRINTFORML 实际判定值：{CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ + 部位快感値}
+[ENDIF]
 IF CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ + 部位快感値 >= PALAMLV:4 * 2 * 絶頂要求係数 / 100
 	Ｃ绝顶強度 = 2
+	C快感溢出 = (CUP:奴隷:快Ｃ+PALAM:奴隷:快Ｃ+部位快感値)/(PALAMLV:4*2*絶頂要求係数/100)
+	[IF_DEBUG]
+	PRINTFORML Ｃ绝顶強度 = 2
+	[ENDIF]
 	CDOWN:奴隷:快Ｃ = PALAMLV:4 * 2 - 部位快感値
 ELSEIF CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ + 部位快感値 >= PALAMLV:4 * 絶頂要求係数 / 100
 	Ｃ绝顶強度 = 1
+	[IF_DEBUG]
+	PRINTFORML Ｃ绝顶強度 = 1
+	[ENDIF]
 	CDOWN:奴隷:快Ｃ = PALAMLV:4 - 部位快感値
 ELSEIF CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ + 部位快感値 >= PALAMLV:4
 	;イけるはずなのにイけなかった場合
+	[IF_DEBUG]
+	PRINTFORML Ｃ绝顶強度 = 0 （假绝顶）
+	[ENDIF]
 	NOWEX:奴隷:绝顶演技++
 ENDIF
 ;CDOWN:奴隷:快Ｃで下げても絶頂以上なら
@@ -63,15 +101,38 @@ SIF CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ - CDOWN:奴隷:快Ｃ >= PALAMLV:4
 	CDOWN:奴隷:快Ｃ = CUP:奴隷:快Ｃ + PALAM:奴隷:快Ｃ - PALAMLV:4 + 1
 ;-------------------------------------------------------------------
 ;絶頂Ｖ
+IF 調教者 == MASTER && CFLAG:奴隷:和访问者已做爱 && EXP:奴隷:浮気Ｖ性交经验 > EXP:奴隷:浮気Ｖ性交经验 - EXP:奴隷:Ｖ性交经验
+	V绝顶基准 = 絶頂要求係数 + TALENT:奴隷:浮気的蜜壶*100
+ELSEIF 調教者 == MASTER && !CFLAG:奴隷:和访问者已做爱
+	;保底一下，防止访问者出手前都没让角色高潮导致一部分剧情不能触发。（额……没有参照物的情况下能高潮很正常吧.jpg）
+	V绝顶基准 = 100 - TALENT:調教者:阴茎尺寸 * 15
+ELSE
+	V绝顶基准 = 絶頂要求係数
+ENDIF
 部位快感値 = (CUP:奴隷:快Ｖ > 0) * 総合快感値
-IF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値 >= PALAMLV:4 * 2 * 絶頂要求係数 / 100
+[IF_DEBUG]
+PRINTFORML V绝顶基准{V绝顶基准}
+PRINTFORML V部位快感値：{部位快感値}  高潮阈值{PALAMLV:4 * 2 * V绝顶基准 / 100}/{PALAMLV:4 * V绝顶基准 / 100}
+PRINTFORML 实际判定值：{CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値}
+[ENDIF]
+IF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値 >= PALAMLV:4 * 2 * V绝顶基准 / 100
 	Ｖ绝顶強度 = 2
+	V快感溢出 = (CUP:奴隷:快Ｖ+PALAM:奴隷:快Ｖ+部位快感値)/(PALAMLV:4*2*V绝顶基准/100)
+	[IF_DEBUG]
+	PRINTFORML Ｖ绝顶強度 = 2
+	[ENDIF]
 	CDOWN:奴隷:快Ｖ = PALAMLV:4 * 2 - 部位快感値
-ELSEIF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値 >= PALAMLV:4 * 絶頂要求係数 / 100
+ELSEIF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値 >= PALAMLV:4 * V绝顶基准 / 100
 	Ｖ绝顶強度 = 1
+	[IF_DEBUG]
+	PRINTFORML Ｖ绝顶強度 = 1
+	[ENDIF]
 	CDOWN:奴隷:快Ｖ = PALAMLV:4 - 部位快感値
 ELSEIF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ + 部位快感値 >= PALAMLV:4
 	;イけるはずなのにイけなかった場合
+	[IF_DEBUG]
+	PRINTFORML Ｖ绝顶強度 = 0 （假绝顶）
+	[ENDIF]
 	NOWEX:奴隷:绝顶演技++
 ENDIF
 ;CDOWN:奴隷:快Ｖで下げても絶頂以上なら
@@ -80,15 +141,35 @@ SIF CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ - CDOWN:奴隷:快Ｖ >= PALAMLV:4
 	CDOWN:奴隷:快Ｖ = CUP:奴隷:快Ｖ + PALAM:奴隷:快Ｖ - PALAMLV:4 + 1
 ;-------------------------------------------------------------------
 ;絶頂Ａ
+IF 調教者 == MASTER && EXP:奴隷:浮気Ａ性交经验 > EXP:奴隷:浮気Ａ性交经验 - EXP:奴隷:Ａ性交经验
+	A绝顶基准 = 絶頂要求係数 + TALENT:奴隷:浮気的菊花*100
+ELSE
+	A绝顶基准 = 絶頂要求係数
+ENDIF
 部位快感値 = (CUP:奴隷:快Ａ > 0) * 総合快感値
-IF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値 >= PALAMLV:4 * 2 * 絶頂要求係数 / 100
+[IF_DEBUG]
+PRINTFORML A绝顶基准{A绝顶基准}
+PRINTFORML A部位快感値：{部位快感値}  高潮阈值{PALAMLV:4 * 2 * A绝顶基准 / 100}/{PALAMLV:4 * A绝顶基准 / 100}
+PRINTFORML 实际判定值：{CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値}
+[ENDIF]
+IF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値 >= PALAMLV:4 * 2 * A绝顶基准 / 100
 	Ａ绝顶強度 = 2
+	A快感溢出 = (CUP:奴隷:快Ａ+PALAM:奴隷:快Ａ+部位快感値)/(PALAMLV:4*2*A绝顶基准/100)
+	[IF_DEBUG]
+	PRINTFORML Ａ绝顶強度 = 2
+	[ENDIF]
 	CDOWN:奴隷:快Ａ = PALAMLV:4 * 2 - 部位快感値
-ELSEIF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値 >= PALAMLV:4 * 絶頂要求係数 / 100
+ELSEIF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値 >= PALAMLV:4 * A绝顶基准 / 100
 	Ａ绝顶強度 = 1
+	[IF_DEBUG]
+	PRINTFORML Ａ绝顶強度 = 1
+	[ENDIF]
 	CDOWN:奴隷:快Ａ = PALAMLV:4 - 部位快感値
 ELSEIF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ + 部位快感値 >= PALAMLV:4
 	;イけるはずなのにイけなかった場合
+	[IF_DEBUG]
+	PRINTFORML Ａ绝顶強度 = 0 （假绝顶）
+	[ENDIF]
 	NOWEX:奴隷:绝顶演技++
 ENDIF
 ;CDOWN:奴隷:快Ａで下げても絶頂以上なら
@@ -98,14 +179,29 @@ SIF CUP:奴隷:快Ａ + PALAM:奴隷:快Ａ - CDOWN:奴隷:快Ａ >= PALAMLV:4
 ;-------------------------------------------------------------------
 ;絶頂Ｂ
 部位快感値 = (CUP:奴隷:快Ｂ > 0) * 総合快感値
+[IF_DEBUG]
+PRINTFORML B绝顶基准{絶頂要求係数}
+PRINTFORML B部位快感値：{部位快感値}  高潮阈值{PALAMLV:4 * 2 * 絶頂要求係数 / 100}/{PALAMLV:4 * 絶頂要求係数 / 100}
+PRINTFORML 实际判定值：{CUP:奴隷:快Ｂ + PALAM:奴隷:快Ｂ + 部位快感値}
+[ENDIF]
 IF CUP:奴隷:快Ｂ + PALAM:奴隷:快Ｂ + 部位快感値 >= PALAMLV:4 * 2 * 絶頂要求係数 / 100
 	Ｂ绝顶強度 = 2
+	B快感溢出 = (CUP:奴隷:快Ｂ+PALAM:奴隷:快Ｂ+部位快感値)/(PALAMLV:4*2*絶頂要求係数/100)
+	[IF_DEBUG]
+	PRINTFORML Ｂ绝顶強度 = 2
+	[ENDIF]
 	CDOWN:奴隷:快Ｂ = (PALAMLV:4 * 2 - 1000) - 部位快感値
 ELSEIF CUP:奴隷:快Ｂ + PALAM:奴隷:快Ｂ + 部位快感値 >= PALAMLV:4 * 絶頂要求係数 / 100
 	Ｂ绝顶強度 = 1
+	[IF_DEBUG]
+	PRINTFORML Ｂ绝顶強度 = 1
+	[ENDIF]
 	CDOWN:奴隷:快Ｂ = (PALAMLV:4 - 1000) - 部位快感値
 ELSEIF CUP:奴隷:快Ｂ + PALAM:奴隷:快Ｂ + 部位快感値 >= PALAMLV:4
 	;イけるはずなのにイけなかった場合
+	[IF_DEBUG]
+	PRINTFORML Ｂ绝顶強度 = 0 （假绝顶）
+	[ENDIF]
 	NOWEX:奴隷:绝顶演技++
 ENDIF
 ;CDOWN:奴隷:快Ｂで下げても絶頂以上なら
@@ -130,7 +226,13 @@ ELSEIF LOCAL >= 1 && MARK:奴隷:快乐刻印 < 1
 ELSE
 	TCVAR:奴隷:快楽強度 = 0
 ENDIF
-IF Ｃ绝顶強度 && Ｖ绝顶強度 && Ａ绝顶強度 && Ｂ绝顶強度
+IF Ｃ绝顶強度 == 2 && Ｖ绝顶強度 == 2 && Ａ绝顶強度 == 2 && Ｂ绝顶強度 == 2
+	Ｃ绝顶強度 *= 16
+	Ｖ绝顶強度 *= 16
+	Ａ绝顶強度 *= 16
+	Ｂ绝顶強度 *= 16
+	NOWEX:奴隷:四重绝顶 = 1
+ELSEIF Ｃ绝顶強度 && Ｖ绝顶強度 && Ａ绝顶強度 && Ｂ绝顶強度
 	Ｃ绝顶強度 *= 8
 	Ｖ绝顶強度 *= 8
 	Ａ绝顶強度 *= 8
@@ -225,10 +327,10 @@ EX:奴隷:Ａ绝顶 += Ａ绝顶強度
 EX:奴隷:Ｂ绝顶 += Ｂ绝顶強度
 ;绝顶经验を増
 IF 調教者 == 人物_訪問者 || (調教者 != 0 && 調教者 >= CHARANUM && (TALENT:奴隷:恋慕 || TALENT:奴隷:亲爱 || TALENT:奴隷:人妻 || TALENT:奴隷:恋人))
-	CALL NTR_EXP_ADD_C_EX(奴隷,Ｃ绝顶強度)
-	CALL NTR_EXP_ADD_V_EX(奴隷,Ｖ绝顶強度)
-	CALL NTR_EXP_ADD_A_EX(奴隷,Ａ绝顶強度)
-	CALL NTR_EXP_ADD_B_EX(奴隷,Ｂ绝顶強度)
+	CALL NTR_EXP_ADD_C_EX(奴隷,Ｃ绝顶強度 * C快感溢出 / 3)
+	CALL NTR_EXP_ADD_V_EX(奴隷,Ｖ绝顶強度 * V快感溢出 / 5)
+	CALL NTR_EXP_ADD_A_EX(奴隷,Ａ绝顶強度 * A快感溢出 / 5)
+	CALL NTR_EXP_ADD_B_EX(奴隷,Ｂ绝顶強度 * B快感溢出 / 3)
 ELSE
 	EXP:奴隷:绝顶经验 += Ｃ绝顶強度 + Ｖ绝顶強度 + Ａ绝顶強度 + Ｂ绝顶強度
 	EXP:奴隷:Ｃ绝顶经验 += Ｃ绝顶強度
@@ -286,15 +388,51 @@ RETURN LOCAL
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @MESSAGE_PALAMCNG_B2
-IF NOWEX:6
+IF NOWEX:四重绝顶
 	IF !GETBIT(CFLAG:3,2)
 		EXP:异常经验 ++
 		SETBIT CFLAG:异常经验,2
 	ENDIF
-	PRINTFORML %"四 重 絶 頂"%
-	PRINTFORML %"(8倍的珠获得)"%
-ELSEIF NOWEX:5
-	SELECTCASE NOWEX:5
+	IF NOWEX:Ｃ绝顶 == 32 && NOWEX:Ｖ绝顶 == 32 && NOWEX:Ａ绝顶 == 32 && NOWEX:Ｂ绝顶 == 32
+		PRINTFORML %"完 美 四 重 絶 頂"%
+		PRINTFORML %"(16倍的珠获得)"%
+		PRINTFORML %"Ｃ Ｖ Ａ Ｂ 強 絶 頂"%
+	ELSE
+		PRINTFORML %"四 重 絶 頂"%
+		PRINTFORML %"(8倍的珠获得)"%
+		IF NOWEX:Ｃ绝顶 == 16 || NOWEX:Ｖ绝顶 == 16 || NOWEX:Ａ绝顶 == 16 || NOWEX:Ｂ绝顶 == 16
+			IF NOWEX:Ｃ绝顶 == 16
+				PRINTFORM %"Ｃ "%
+			ENDIF
+			IF NOWEX:Ｖ绝顶 == 16
+				PRINTFORM %"Ｖ "%
+			ENDIF
+			IF NOWEX:Ａ绝顶 == 16
+				PRINTFORM %"Ａ "%
+			ENDIF
+			IF NOWEX:Ｂ绝顶 == 16
+				PRINTFORM %"Ｂ "%
+			ENDIF
+			PRINTFORML %"強絶頂"%
+		ENDIF
+		IF NOWEX:Ｃ绝顶 == 8
+			PRINTFORM %"Ｃ "%
+		ENDIF
+		IF NOWEX:Ｖ绝顶 == 8
+			PRINTFORM %"Ｖ "%
+		ENDIF
+		IF NOWEX:Ａ绝顶 == 8
+			PRINTFORM %"Ａ "%
+		ENDIF
+		IF NOWEX:Ｂ绝顶 == 8
+			PRINTFORM %"Ｂ "%
+		ENDIF
+		PRINTFORML %"通常絶頂"%
+	ENDIF
+ELSEIF NOWEX:三重绝顶
+	; SIF NOWEX:绝顶演技
+	; 	PRINTFORML %"四重絶頂？"%
+	SELECTCASE NOWEX:三重绝顶
 		CASE 1
 			PRINTFORML %"Ｃ＆Ｖ＆Ａ绝顶"%
 			PRINTFORML %"(4倍的珠获得)"%
@@ -308,8 +446,42 @@ ELSEIF NOWEX:5
 			PRINTFORML %"Ｃ＆Ｖ＆Ｂ绝顶"%
 			PRINTFORML %"(4倍的珠获得)"%
 	ENDSELECT
-ELSEIF NOWEX:4
-	SELECTCASE NOWEX:4
+	IF NOWEX:Ｃ绝顶 == 8 || NOWEX:Ｖ绝顶 == 8 || NOWEX:Ａ绝顶 == 8 || NOWEX:Ｂ绝顶 == 8
+		IF NOWEX:Ｃ绝顶 == 8
+			PRINTFORM %"Ｃ "%
+		ENDIF
+		IF NOWEX:Ｖ绝顶 == 8
+			PRINTFORM %"Ｖ "%
+		ENDIF
+		IF NOWEX:Ａ绝顶 == 8
+			PRINTFORM %"Ａ "%
+		ENDIF
+		IF NOWEX:Ｂ绝顶 == 8
+			PRINTFORM %"Ｂ "%
+		ENDIF
+		PRINTFORML %"強絶頂"%
+	ENDIF
+	IF NOWEX:Ｃ绝顶 == 4 || NOWEX:Ｖ绝顶 == 4 || NOWEX:Ａ绝顶 == 4 || NOWEX:Ｂ绝顶 == 4
+		IF NOWEX:Ｃ绝顶 == 4
+			PRINTFORM %"Ｃ "%
+		ENDIF
+		IF NOWEX:Ｖ绝顶 == 4
+			PRINTFORM %"Ｖ "%
+		ENDIF
+		IF NOWEX:Ａ绝顶 == 4
+			PRINTFORM %"Ａ "%
+		ENDIF
+		IF NOWEX:Ｂ绝顶 == 4
+			PRINTFORM %"Ｂ "%
+		ENDIF
+		PRINTFORML %"通常絶頂"%
+	ENDIF
+ELSEIF NOWEX:二重绝顶
+	; SIF NOWEX:绝顶演技 == 2
+	; 	PRINTFORML %"四重絶頂……？"%
+	; SIF NOWEX:绝顶演技 == 3
+	; 	PRINTFORML %"三重絶頂？"%
+	SELECTCASE NOWEX:二重绝顶
 		CASE 1
 			PRINTFORML %"Ｃ＆Ｖ绝顶"%
 			PRINTFORML %"(2倍的珠获得)"%
@@ -329,42 +501,104 @@ ELSEIF NOWEX:4
 			PRINTFORML %"Ａ＆Ｂ绝顶"%
 			PRINTFORML %"(2倍的珠获得)"%
 	ENDSELECT
-ELSEIF NOWEX:3
-	IF NOWEX:3 == 2
+	IF NOWEX:Ｃ绝顶 == 4 || NOWEX:Ｖ绝顶 == 4 || NOWEX:Ａ绝顶 == 4 || NOWEX:Ｂ绝顶 == 4
+		IF NOWEX:Ｃ绝顶 == 4
+			PRINTFORM %"Ｃ "%
+		ENDIF
+		IF NOWEX:Ｖ绝顶 == 4
+			PRINTFORM %"Ｖ "%
+		ENDIF
+		IF NOWEX:Ａ绝顶 == 4
+			PRINTFORM %"Ａ "%
+		ENDIF
+		IF NOWEX:Ｂ绝顶 == 4
+			PRINTFORM %"Ｂ "%
+		ENDIF
+		PRINTFORML %"強絶頂"%
+	ENDIF
+	IF NOWEX:Ｃ绝顶 == 2 || NOWEX:Ｖ绝顶 == 2 || NOWEX:Ａ绝顶 == 2 || NOWEX:Ｂ绝顶 == 2
+		IF NOWEX:Ｃ绝顶 == 2
+			PRINTFORM %"Ｃ "%
+		ENDIF
+		IF NOWEX:Ｖ绝顶 == 2
+			PRINTFORM %"Ｖ "%
+		ENDIF
+		IF NOWEX:Ａ绝顶 == 2
+			PRINTFORM %"Ａ "%
+		ENDIF
+		IF NOWEX:Ｂ绝顶 == 2
+			PRINTFORM %"Ｂ "%
+		ENDIF
+		PRINTFORML %"通常絶頂"%
+	ENDIF
+ELSEIF NOWEX:Ｂ绝顶
+	; SIF NOWEX:绝顶演技 == 3
+	; 	PRINTFORML %"四重……絶頂？"%
+	; SIF NOWEX:绝顶演技 == 2
+	; 	PRINTFORML %"三重絶頂……？"%
+	; SIF NOWEX:绝顶演技 == 1
+	; 	PRINTFORML %"二重絶頂？"%
+	IF NOWEX:Ｂ绝顶 == 2
 		PRINTFORML %"強絶頂Ｂ"%
 	ELSE
 		PRINTFORML %"絶頂Ｂ"%
 	ENDIF
-ELSEIF NOWEX:2
-	IF NOWEX:2 == 2
+ELSEIF NOWEX:Ａ绝顶
+	; SIF NOWEX:绝顶演技 == 3
+	; 	PRINTFORML %"四重……絶頂？"%
+	; SIF NOWEX:绝顶演技 == 2
+	; 	PRINTFORML %"三重絶頂……？"%
+	; SIF NOWEX:绝顶演技 == 1
+	; 	PRINTFORML %"二重絶頂？"%
+	IF NOWEX:Ａ绝顶 == 2
 		PRINTFORML %"強絶頂Ａ"%
 	ELSE
 		PRINTFORML %"絶頂Ａ"%
 	ENDIF
-ELSEIF NOWEX:1
-	IF NOWEX:1 == 2
+ELSEIF NOWEX:Ｖ绝顶
+	; SIF NOWEX:绝顶演技 == 3
+	; 	PRINTFORML %"四重……絶頂？"%
+	; SIF NOWEX:绝顶演技 == 2
+	; 	PRINTFORML %"三重絶頂……？"%
+	; SIF NOWEX:绝顶演技 == 1
+	; 	PRINTFORML %"二重絶頂？"%
+	IF NOWEX:Ｖ绝顶 == 2
 		PRINTFORML %"強絶頂Ｖ"%
 	ELSE
 		PRINTFORML %"絶頂Ｖ"%
 	ENDIF
-ELSEIF NOWEX:0
-	IF NOWEX:0 == 2
+ELSEIF NOWEX:Ｃ绝顶
+	; SIF NOWEX:绝顶演技 == 3
+	; 	PRINTFORML %"四重……絶頂？"%
+	; SIF NOWEX:绝顶演技 == 2
+	; 	PRINTFORML %"三重絶頂……？"%
+	; SIF NOWEX:绝顶演技 == 1
+	; 	PRINTFORML %"二重絶頂？"%
+	IF NOWEX:Ｃ绝顶 == 2
 		PRINTFORML %"強絶頂Ｃ"%
 	ELSE
 		PRINTFORML %"絶頂Ｃ"%
 	ENDIF
+ELSEIF NOWEX:绝顶演技 == 4
+	PRINTFORML %"四重……絶頂……？"%
+ELSEIF NOWEX:绝顶演技 == 3
+	PRINTFORML %"三重……絶頂？"%
+ELSEIF NOWEX:绝顶演技 == 2
+	PRINTFORML %"二重絶頂……？"%
+ELSEIF NOWEX:绝顶演技 == 1
+	PRINTFORML %"絶頂？"%
 ENDIF
 ;絶頂による欲望ＬＶアップ
 LOCAL = 0
-SIF NOWEX:0 >= 2 || NOWEX:Ｂ绝顶 >= 2 || NOWEX:Ｖ绝顶 || NOWEX:Ａ绝顶
+SIF NOWEX:Ｃ绝顶 >= 2 || NOWEX:Ｂ绝顶 >= 2 || NOWEX:Ｖ绝顶 || NOWEX:Ａ绝顶
 	LOCAL = 1
-SIF NOWEX:1 >= 2 || NOWEX:Ａ绝顶 >= 2
+SIF NOWEX:Ｖ绝顶 >= 2 || NOWEX:Ａ绝顶 >= 2
 	LOCAL = 2
-SIF (NOWEX:0 >= 2 || NOWEX:Ｂ绝顶 >= 2) && NOWEX:4
+SIF (NOWEX:Ｃ绝顶 >= 2 || NOWEX:Ｂ绝顶 >= 2) && NOWEX:二重绝顶
 	LOCAL = 2
-SIF NOWEX:5
+SIF NOWEX:三重绝顶
 	LOCAL = 3
-SIF NOWEX:6
+SIF NOWEX:四重绝顶
 	LOCAL = 4
 ;自制心があると１下がる
 SIF TALENT:自制心

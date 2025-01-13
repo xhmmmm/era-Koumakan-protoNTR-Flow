@@ -89,12 +89,12 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	;寝取られ寸前なら
 	PRINTFORML 「うふふっ、さすが%CALLNAME:調教者%さん、どＭさんですねぇ♪」
-	PRINTFORML 「%MSG_RE_LOVER(奴隷)%が他の%NTR_NAME(3)%に抱かれているのに興奮しちゃうなんて」
+	PRINTFORML 「%MSG_RE_LOVER(奴隷)%が他の男人に抱かれているのに興奮しちゃうなんて」
 	PRINTFORML 「ええ、ご期待に沿えるよう、キスもベッドインもしちゃいますよ♪」
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	;寝取られそうなら
 	PRINTFORML 「うふふっ、さすが%CALLNAME:調教者%さん、悪趣味ですねぇ♪」
-	PRINTFORML 「それなら遠慮なく、%NTR_NAME(4)%と親交を深めることにするわ」
+	PRINTFORML 「それなら遠慮なく、他と親交を深めることにするわ」
 	PRINTFORML 「ええ、ご期待に沿えるよう、キスもハグもしちゃいますよ♪」
 ELSE
 	;それ以外なら
@@ -306,11 +306,11 @@ SELECTCASE TALENT:奴隷:浮気公認
 		PRINTFORML 「わかりました。うふふ、ご期待に沿えるよう努力しますね♪」
 	CASE 2
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「うふふっ、それなら遠慮なく・・%CALLNAME:調教者%の目の前で%NTR_NAME(4)%を诱惑しちゃいますね？」
+			PRINTFORML 「うふふっ、それなら遠慮なく・・%CALLNAME:調教者%の目の前で他を诱惑しちゃいますね？」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「うふふっ、それなら遠慮なく・・%CALLNAME:調教者%の目の前で%NTR_NAME(4)%を诱惑しちゃおうかな？」
+			PRINTFORML 「うふふっ、それなら遠慮なく・・%CALLNAME:調教者%の目の前で他を诱惑しちゃおうかな？」
 		ELSE
-			PRINTFORML 「はい・・それなら・・%CALLNAME:調教者%の前で%NTR_NAME(4)%を诱惑してみますね」
+			PRINTFORML 「はい・・それなら・・%CALLNAME:調教者%の前で他を诱惑してみますね」
 		ENDIF
 	CASE 3
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
@@ -451,11 +451,7 @@ RETURN 1
 @KOJO_MESSAGE_COM_K2_302
 #DIM 奴隷
 奴隷 = 人物_小恶魔
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTFORML 「仕方ないですね、ふふっ」
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTFORML 「やめてください・・叱られるのは、私なんですよ？」
 
@@ -478,15 +474,7 @@ RETURN 0
 #DIM 奴隷
 奴隷 = 人物_小恶魔
 
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTDATAL
-		DATAFORM 「ふふっ、こんなのもスリリングでいいですね♪」
-		DATAFORM 「ご主人様にはナイショですよぉ」
-		DATAFORM 「二人だけのヒミツですね♪」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTDATAL
 		DATAFORM 「やぁん、怒られちゃいますぅ」
@@ -533,15 +521,7 @@ RETURN 0
 @KOJO_MESSAGE_COM_K2_310
 #DIM 奴隷
 奴隷 = 人物_小恶魔
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTDATAL
-		DATAFORM 「あん・・・ご主人様にはナイショですよ？」
-		DATAFORM 「やんっ、エッチですね？」
-		DATAFORM 「ふふっ、ご主人様にはナイショですからね？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTDATAL
 		DATAFORM 「あん・・・ご主人様に叱られちゃいますぅ」
@@ -562,15 +542,7 @@ RETURN 0
 @KOJO_MESSAGE_COM_K2_311
 #DIM 奴隷
 奴隷 = 人物_小恶魔
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTDATAL
-		DATAFORM 「もう・・ご主人様にはナイショですよぉ？」
-		DATAFORM 「うふふっ、浮気しているみたいでスリリングですねっ」
-		DATAFORM 「うふふっ・・ご主人様にはナイショですからね？」
-	ENDDATA
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTDATAL
 		DATAFORM 「あん・・・ご主人様に叱られちゃいます」
@@ -622,9 +594,7 @@ ELSE
 		;唇が精液で汚れていたとき
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML %CALLNAME:TARGET%とくちづけした%CALLNAME:MASTER%は彼女の唾液の味に違和感を覚え唇を離した。
-			PRINTFORML 「・・うふふ・・エッチな味でしょう・？」
-		ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-			PRINTFORML 「・・ご主人様には内緒ですからね・・んっ・・」
+			PRINTFORML 「・・うふふ・・エッチな味でしょう・？」」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML 「・・だ、だめ・・んっ・・」
@@ -755,11 +725,7 @@ RETURN 1
 @KOJO_MESSAGE_COM_K2_80
 #DIM 奴隷
 奴隷 = 人物_小恶魔
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTFORML （やっぱりご主人様の方が大きいけど・・それだけじゃないですよね♪）
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTFORML （やっぱりご主人様の方が大きいなぁ・・）
 
@@ -782,11 +748,7 @@ RETURN 0
 @KOJO_MESSAGE_COM_K2_81
 #DIM 奴隷
 奴隷 = 人物_小恶魔
-IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取り返し中)
-
-	PRINTFORML （ご主人様よりぜんぜん小さいですよね・・でも、大きさがすべてじゃありませんし♪）
-
-ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTFORML （ご主人様よりぜんぜん小さいですよね・・）
 
@@ -866,14 +828,14 @@ RETURN 1
 下着名 = %下着名１_２(奴隷)%
 IF ノーパン
 	IF 1 == 積極度
-		PRINTFORML 「うふふっ、今日はこうしていろって、%NTR_NAME(4)%のいいつけなんです♪」
+		PRINTFORML 「うふふっ、今日はこうしていろって、他のいいつけなんです♪」
 		PRINTDATAL
 			DATAFORM 「ちょっと恥ずかしいけど、こういうのも刺激的でいいですよね♪」
 			DATAFORM 「ちょっと恥ずかしいけど、どう？ 興奮しますか？」
 			DATAFORM 「ちょっと恥ずかしいけど、こういうのも刺激的♪」
 		ENDDATA
 	ELSE
-		PRINTFORML 「今日はこうしていろって、%NTR_NAME(4)%のいいつけなんです」
+		PRINTFORML 「今日はこうしていろって、他のいいつけなんです」
 		PRINTDATAL
 			DATAFORM 「・・正直、恥ずかしいです」
 			DATAFORM 「あの、恥ずかしいから、あまり見ないでください」
@@ -883,9 +845,9 @@ IF ノーパン
 ELSE
 	IF 1 == 積極度
 		PRINTDATAL
-			DATAFORM 「うふふっ、今日はこれを穿いていろって、%NTR_NAME(4)%のいいつけなんです♪」
-			DATAFORM 「うふふっ、今日はこれを穿くようにって、%NTR_NAME(4)%のいいつけなんです♪」
-			DATAFORM 「うふふっ、今日はこれを身に着けるようにって、%NTR_NAME(4)%のいいつけなんです♪」
+			DATAFORM 「うふふっ、今日はこれを穿いていろって、他のいいつけなんです♪」
+			DATAFORM 「うふふっ、今日はこれを穿くようにって、他のいいつけなんです♪」
+			DATAFORM 「うふふっ、今日はこれを身に着けるようにって、他のいいつけなんです♪」
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 「ちょっと恥ずかしいけど、こういうのも刺激的でいいですよね♪」
@@ -894,9 +856,9 @@ ELSE
 		ENDDATA
 	ELSE
 		PRINTDATAL
-			DATAFORM 「今日はこれを穿いていろって、%NTR_NAME(4)%のいいつけなんです」
-			DATAFORM 「今日はこれを穿くようにって、%NTR_NAME(4)%に言われたんです」
-			DATAFORM 「今日はこれを身に着けるようにって、%NTR_NAME(4)%に押し付けられたんです」
+			DATAFORM 「今日はこれを穿いていろって、他のいいつけなんです」
+			DATAFORM 「今日はこれを穿くようにって、他に言われたんです」
+			DATAFORM 「今日はこれを身に着けるようにって、他に押し付けられたんです」
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 「・・正直、恥ずかしいです」
@@ -954,18 +916,18 @@ ENDIF
 SELECTCASE TALENT:TARGET:浮気公認
 	CASE 浮気_性交公認, 浮気_外泊公認
 		PRINTDATA
-			DATAFORM 「うふふっ、私が%NTR_NAME(4)%と遊んでいる間に、
-			DATAFORM 「うふふっ、私が%NTR_NAME(4)%とセックスしている間に、
-			DATAFORM 「うふふっ、私が%NTR_NAME(4)%に抱かれている間に、
+			DATAFORM 「うふふっ、私が他と遊んでいる間に、
+			DATAFORM 「うふふっ、私が他とセックスしている間に、
+			DATAFORM 「うふふっ、私が他に抱かれている間に、
 		ENDDATA
 		PRINTFORML %CALLNAME:PLAYER%が他の方とするのは禁止でーす♪」
 		PRINTFORML 「私がしてくるのは%CALLNAME:PLAYER%がもっと浮気して欲しい、って言うからですよお？ 自業自得ですよね？」
 	CASE 浮気_浮気公認, 浮気_诱惑公認
 		PRINTFORML 「うふふっ、ホムンクルスの研究のために活きのいい精液を搾りとってこいって、%CALLNAME:人物_帕秋莉%様のご命令なんです」
 		PRINTDATA
-			DATAFORM 「決して私が%NTR_NAME(4)%と遊んでいる間に、
-			DATAFORM 「決して私が%NTR_NAME(4)%とセックスしている間に、
-			DATAFORM 「決して私が%NTR_NAME(4)%に抱かれている間に、
+			DATAFORM 「決して私が他と遊んでいる間に、
+			DATAFORM 「決して私が他とセックスしている間に、
+			DATAFORM 「決して私が他に抱かれている間に、
 		ENDDATA
 		PRINTFORML %CALLNAME:PLAYER%が浮気するのを阻止だなんて考えていませんよ？」
 	CASEELSE
@@ -993,9 +955,9 @@ SELECTCASE BASE:PLAYER:精力
 		ENDDATA
 		SELECTCASE TALENT:TARGET:浮気公認
 			CASE 浮気_性交公認, 浮気_外泊公認
-				PRINTFORML 「それでは、ご希望通りに%NTR_NAME(4)%のところに行ってまいりますね」
+				PRINTFORML 「それでは、ご希望通りに他のところに行ってまいりますね」
 			CASE 浮気_浮気公認, 浮気_诱惑公認
-				PRINTFORML 「これで安心して%NTR_NAME(4)%のところに…いえ、なんでもないですよ？」
+				PRINTFORML 「これで安心して他のところに…いえ、なんでもないですよ？」
 			CASEELSE
 				; 非公認時
 		ENDSELECT
@@ -1041,15 +1003,15 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「うふふっ・・%CALLNAME:MASTER%・・私・・%NTR_NAME(4)%のところに泊まってきますね♪」
+PRINTFORML 「うふふっ・・%CALLNAME:MASTER%・・私・・他のところに泊まってきますね♪」
 PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
 PRINTFORML 「だって、身体が火照って仕方ないんですぅ♪」
 
 IF TALENT:奴隷:恋慕 && TALENT:奴隷:危险日
 	PRINTFORML 「そうそう、大切なお知らせです。実は私、今日は危ない日なんです」
 	PRINTDATAL
-		DATAFORM 「きっと、%NTR_NAME(4)%に種付けされちゃいますよぉ・・？」
-		DATAFORM 「%NTR_NAME(4)%にたっぷり中出しされて・・ふふっ、ゾクゾクしますね？」
+		DATAFORM 「きっと、他に種付けされちゃいますよぉ・・？」
+		DATAFORM 「他にたっぷり中出しされて・・ふふっ、ゾクゾクしますね？」
 		DATAFORM 「きっといっぱい注がれちゃいます・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうんです・・%MSG_HEART()%」
 	ENDDATA
 ELSE
@@ -1076,7 +1038,7 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「うふふっ・・%CALLNAME:MASTER%、私%NTR_NAME(4)%のところに泊まってきますね」
+PRINTFORML 「うふふっ・・%CALLNAME:MASTER%、私他のところに泊まってきますね」
 PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
 PRINTFORML 「だって、身体が火照って仕方ないんですぅ♪」
 
@@ -1100,7 +1062,7 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私%NTR_NAME(4)%のところに泊まってきます」
+PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私他のところに泊まってきます」
 PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
 
 IF 同伴
@@ -1119,7 +1081,7 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私%NTR_NAME(4)%のところに泊まってきます」
+PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私他のところに泊まってきます」
 
 IF 同伴
 	PRINTFORML 「それじゃ、行きましょう」

@@ -94,9 +94,8 @@ FOR LOOP_CHR,1, CHARANUM
 					ELSE
 
 					ENDIF
-					;浮気公認
 				CASE 3
-					PRINTFORM 浮気公認:{TALENT:LOOP_CHR:浮気公認}
+					PRINTFORM 缺省
 					;子宮内精液量
 				CASE 4
 					精子量 = 0
@@ -230,7 +229,7 @@ SELECTCASE LOCAL:999
 	CASE 8
 		PRINTLC  [   1]既成事実
 		PRINTLC  [   2]好感度
-		PRINTLC  [   3]浮気公認
+		PRINTLC  [   3]缺省
 		PRINTLC  [   4]子宮内精液量
 		PRINTLC  [  10]弱味
 		LOCAL:1 = 1

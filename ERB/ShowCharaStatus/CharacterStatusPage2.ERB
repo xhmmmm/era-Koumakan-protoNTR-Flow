@@ -200,10 +200,10 @@ IF HAS_VAGINA(对象)
 	PRINTFORM 处女丧失记录：
 	IF CSTR:对象:V处女丧失记录 != ""
 		IF CFLAG:对象:处女丧失对象_V == 人物_訪問者
-			; CALL COLORMESSAGE(@"%CSTR:对象:V处女丧失记录%",0xE178C8,1)
-			SETCOLOR 0xE178C8
-			CALL LostVirginDepict(对象)
-			RESETCOLOR
+			CALL COLORMESSAGE(@"%CSTR:对象:V处女丧失记录%",0xE178C8,1)
+			; SETCOLOR 0xE178C8
+			; CALL LostVirginDepict(对象)
+			; RESETCOLOR
 		ELSE
 			CALL COLORMESSAGE(@"%CSTR:对象:V处女丧失记录%",C_PINK,1)
 		ENDIF

@@ -110,12 +110,6 @@ IF CFLAG:奴隷:好感度 > 閾値 && EXP:奴隷:侍奉快乐经验 >= 30 && ABL
 			SIF CFLAG:奴隷:当前位置 == 位置_訪問者宅
 				CFLAG:奴隷:当前位置 = 位置_红魔馆_正门
 		ENDIF
-		;浮気公認は消えます
-		IF TALENT:奴隷:浮気公認 > 0
-			PRINTFORML 「不要再对我说你想要我出轨了」%CALLNAME:奴隷%哭着抱了上来。
-			PRINTFORMW %CALLNAME:奴隷%的[浮気公認]失去了。
-			TALENT:奴隷:浮気公認 = 0
-		ENDIF
 		TALENT:奴隷:NTR = 0
 	ENDIF
 	;主人の屈服度減算ボーナス
@@ -134,11 +128,11 @@ RETURN 0
 ;亲爱獲得判定
 ;好感度が閾値を越えている
 ;恋慕、爱情经验200以上
-;浮気公認、浮気癖を持っていない
+;浮気癖を持っていない
 ;寝取られなくなる
 @CHK_LOVING_KINDNESS_GET(奴隷)
 #DIM 奴隷
-IF CFLAG:奴隷:好感度 > 10000 && EXP:奴隷:爱情经验 >= 200 && TALENT:奴隷:恋慕 && !TALENT:奴隷:亲爱 && !TALENT:奴隷:浮気公認 && !TALENT:奴隷:浮気癖
+IF CFLAG:奴隷:好感度 > 10000 && EXP:奴隷:爱情经验 >= 200 && TALENT:奴隷:恋慕 && !TALENT:奴隷:亲爱 && !TALENT:奴隷:浮気癖
 	PRINTFORML %CALLNAME:奴隷%似乎对%CALLNAME:MASTER%有着发自真心的爱…
 	PRINTFORML %CALLNAME:奴隷%获得了［亲爱］
 	TALENT:奴隷:亲爱 = 1
@@ -175,18 +169,6 @@ IF !FLAG:Flow版本
 	ELSEIF TALENT:奴隷:NTR
 		;寝取られている場合はそれ以上寝取られない（今のところは）
 		GET_NTR = 0
-	ELSEIF TALENT:奴隷:浮気公認 > 0
-		;浮気を公認している場合、屈服度がよほど高くなければ寝取られない
-		;ここの式はNTR_CHK_FAVORABLY()と同一であること
-		GET_NTR = CFLAG:奴隷:屈服度 > (CFLAG:奴隷:好感度 * TALENT:奴隷:浮気公認 * 10 )
-	ELSEIF TALENT:奴隷:浮気癖
-		;浮気を公認している場合、好感度が下限で、屈服度がよほど高くなければ寝取られない
-		IF (CFLAG:奴隷:好感度 == 1599-TALENT:奴隷:浮気公認 * 200)
-			GET_NTR = 0
-		ELSE
-			;ここの式はNTR_CHK_FAVORABLY()と同一であること
-			GET_NTR = CFLAG:奴隷:屈服度 > (CFLAG:奴隷:好感度 * TALENT:奴隷:浮気公認 * 10 )
-		ENDIF
 	ELSE
 		;通常は、好感度が1000未満で屈服度が2000以上、さらに屈服度が好感度より高くなければダメ
 		GET_NTR = CFLAG:奴隷:好感度 < 500 && CFLAG:奴隷:屈服度 > CFLAG:奴隷:好感度 && CFLAG:奴隷:屈服度 > 5000
@@ -272,11 +254,6 @@ IF GET_NTR
 		ABL:奴隷:亲密 = 5
 	ELSEIF ABL:奴隷:亲密 > 5
 		ABL:奴隷:亲密 = 3
-	ENDIF
-	;浮気公認時ペナルティ
-	IF TALENT:奴隷:浮気公認 > 0
-		ABL:奴隷:顺从 /= 2
-		ABL:奴隷:亲密 /= 2
 	ENDIF
 ENDIF
 

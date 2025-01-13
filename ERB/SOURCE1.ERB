@@ -103,16 +103,6 @@ ELSEIF PALAM:奴隷:欲情 < PALAMLV:4
 ELSEIF PALAM:奴隷:欲情 >= PALAMLV:4
 	TIMES LOCAL , 1.50
 ENDIF
-;締り具合
-IF 締り具合名称(BASE:奴隷:Ｖ松弛度) == "松紧合适"
-	TIMES LOCAL, 0.85
-ELSEIF 締り具合名称(BASE:奴隷:Ｖ松弛度) == "きゅうきゅう"
-	TIMES LOCAL, 0.70
-ELSEIF 締り具合名称(BASE:奴隷:Ｖ松弛度) == "松松垮垮了"
-	TIMES LOCAL, 0.55
-ELSEIF 締り具合名称(BASE:奴隷:Ｖ松弛度) == "已经合不拢了"
-	TIMES LOCAL, 0.40
-ENDIF
 ;ABL:欲望をみる
 LOCAL:1 = LOCAL:1 * SOURCE_REVISION2(ABL:奴隷:欲望) / 100
 ;小人体型
@@ -174,16 +164,6 @@ ELSEIF PALAM:奴隷:欲情 < PALAMLV:4
 	TIMES LOCAL , 1.20
 ELSEIF PALAM:奴隷:欲情 >= PALAMLV:4
 	TIMES LOCAL , 1.30
-ENDIF
-;締り具合
-IF 締り具合名称(BASE:奴隷:Ａ松弛度) == "松紧合适"
-	TIMES LOCAL, 0.85
-ELSEIF 締り具合名称(BASE:奴隷:Ａ松弛度) == "きゅうきゅう"
-	TIMES LOCAL, 0.70
-ELSEIF 締り具合名称(BASE:奴隷:Ａ松弛度) == "松松垮垮了"
-	TIMES LOCAL, 0.55
-ELSEIF 締り具合名称(BASE:奴隷:Ａ松弛度) == "已经合不拢了"
-	TIMES LOCAL, 0.40
 ENDIF
 ;ABL:欲望をみる
 LOCAL:1 = LOCAL:1 * SOURCE_REVISION2(ABL:奴隷:欲望) / 100

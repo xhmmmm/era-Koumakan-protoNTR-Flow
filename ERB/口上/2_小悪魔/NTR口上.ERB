@@ -60,7 +60,7 @@ IF CFLAG:奴隷:当前位置 == 位置_红魔馆_大浴场
 		ENDDATA
 		IF IS_NTR_SOFT()
 			PRINTDATAL
-				DATAFORM %CALLNAME:奴隷%は%NTR_NAME(0)%の近くで、%NTR_NAME(4)%の視線を気にせず会话をしている。
+				DATAFORM %CALLNAME:奴隷%は%NTR_NAME(0)%の近くで、他の視線を気にせず会话をしている。
 				DATAFORM %CALLNAME:奴隷%は会话に夢中で、%NTR_NAME(0)%の視線を気にしてもいない。
 				DATAFORM %CALLNAME:奴隷%が気にしていないのをいいことに、%NTR_NAME(0)%は彼女の裸身を見つめている。
 			ENDDATA
@@ -289,9 +289,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	IF NTR_CHK_PEEP_CONT(奴隷)
 		PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%の視線の先で%NTR_NAME(0)%と唇を重ねた。
 		IF NTR_CHK_MISETUKE(奴隷)
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(4)%を抱き返し、口内に送り込まれた%NTR_NAME(4)%の舌を受け入れた。
+			PRINTFORML %CALLNAME:奴隷%は他を抱き返し、口内に送り込まれた他の舌を受け入れた。
 		ELSE
-			PRINTFORML %CALLNAME:奴隷%は驚きに目を見開いた、%NTR_NAME(0)%の舌が口内に侵入すると目を閉じて%NTR_NAME(4)%の舌を受け入れた。
+			PRINTFORML %CALLNAME:奴隷%は驚きに目を見開いた、%NTR_NAME(0)%の舌が口内に侵入すると目を閉じて他の舌を受け入れた。
 		ENDIF
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%は乱暴に唇を奪われたが、そのまま逆らうことなくキスを受け入れた。
@@ -307,9 +307,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_侍奉する程度)
 	IF NTR_CHK_PEEP_CONT(奴隷)
 		PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%の視線の先で唇を奪われた。
 		IF NTR_CHK_MISETUKE(奴隷)
-			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に抵抗をせず、口内に送り込まれた%NTR_NAME(4)%の舌を受け入れた。
+			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に抵抗をせず、口内に送り込まれた他の舌を受け入れた。
 		ELSE
-			PRINTFORML %CALLNAME:奴隷%は弱々しく抵抗していたが、%NTR_NAME(0)%の舌が口内に侵入すると大人しくなり%NTR_NAME(4)%の舌を受け入れた。
+			PRINTFORML %CALLNAME:奴隷%は弱々しく抵抗していたが、%NTR_NAME(0)%の舌が口内に侵入すると大人しくなり他の舌を受け入れた。
 		ENDIF
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%は乱暴に唇を奪われたが、そのまま逆らうことなくキスを受け入れた。
@@ -325,7 +325,7 @@ ELSE
 		PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%の視線の先で唇を奪われた。
 	ELSE
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に乱暴に唇を奪われた。	
+			PRINTFORML %CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%以外の男人に乱暴に唇を奪われた。	
 		ELSE
 			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に乱暴に唇を奪われた。	
 		ENDIF
@@ -758,7 +758,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ん・・あ・・・あっ・・はぁん」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に与えられる快楽に身をゆだねている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手だからこそ与えられる背徳の悦びに%CALLNAME:奴隷%は酔いしれている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手だからこそ与えられる背徳の悦びに%CALLNAME:奴隷%は酔いしれている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に身を任せる危険な遊戯に%CALLNAME:奴隷%は酔いしれている。
 	ENDIF
@@ -768,7 +768,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	PRINTFORML 「ああん・・や・・やあん・・あ・・」
 	PRINTFORML %CALLNAME:奴隷%は恥じらうしぐさを見せながらも%NTR_NAME(0)%の爱抚を受け入れた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に身を任せる背徳感を%CALLNAME:奴隷%は愉しんでいた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に身を任せる背徳感を%CALLNAME:奴隷%は愉しんでいた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に身を任せる危険な遊戯を%CALLNAME:奴隷%は愉しんでいた。
 	ENDIF
@@ -778,7 +778,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「ああん・・や・・やめてくださいっ・・あ・・」
 	PRINTFORML %CALLNAME:奴隷%は嫌がるそぶりを見せながらも%NTR_NAME(0)%の爱抚を受け入れた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に身を任せる背徳感を%CALLNAME:奴隷%は愉しんですらいた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に身を任せる背徳感を%CALLNAME:奴隷%は愉しんですらいた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に身を任せる危険な遊戯を%CALLNAME:奴隷%は愉しんですらいた。
 	ENDIF
@@ -860,7 +860,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「あっ・・あああああっ♪」
 	PRINTFORML %CALLNAME:奴隷%は身体を大きくのけ反らしながら盛大に絶頂した。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれに悦びを感じていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれに悦びを感じていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれに悦びを感じていた。
 	ENDIF
@@ -870,7 +870,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「あっ・・あああああっ♪」
 	PRINTFORML %CALLNAME:奴隷%は身体を大きくのけ反らしながら盛大に絶頂した。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれを受け入れてしまっていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれを受け入れてしまっていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で%CALLNAME:奴隷%は絶頂させられ、しかも彼女はそれを受け入れてしまっていた。
 	ENDIF
@@ -880,7 +880,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「あ、あ、ああっ！ いいですうっ！！」
 	PRINTFORML %NTR_NAME(0)%の指で絶頂させられた%CALLNAME:奴隷%は快楽に甘い悲鳴を上げ、うっとりとしている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で%CALLNAME:奴隷%は絶頂させられてしまった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で%CALLNAME:奴隷%は絶頂させられてしまった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で%CALLNAME:奴隷%は絶頂させられてしまった。
 	ENDIF
@@ -891,7 +891,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「あ、あ、ああっ！ いいですうっ！！」
 	PRINTFORML %NTR_NAME(0)%の指で絶頂させられた%CALLNAME:奴隷%は快楽に甘い悲鳴を上げた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で%CALLNAME:奴隷%は絶頂させられてしまった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で%CALLNAME:奴隷%は絶頂させられてしまった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で%CALLNAME:奴隷%は絶頂させられてしまった。
 	ENDIF
@@ -920,7 +920,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「ふふ・・、おっぱいですね・・ああん・・・」
 	PRINTFORML 背後から抱きついた%NTR_NAME(0)%の両手が、%CALLNAME:奴隷%の胸を服の上から揉みしだいている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
 	ENDIF
@@ -930,7 +930,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ああん・・・いけませんよぉ・・・」
 	PRINTFORML %NTR_NAME(0)%に背後から抱きつかれた%CALLNAME:奴隷%は、甘い声を上げつつ胸を触らせている。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に乳房を欲しいままにさせて%CALLNAME:奴隷%は微笑んでいる。
 	ENDIF
@@ -940,7 +940,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	PRINTFORML 「ああん・・・いけませんよぉ・・・」
 	PRINTFORML %NTR_NAME(0)%に背後から抱きつかれた%CALLNAME:奴隷%は、頬を赤く染め胸を触らせている。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
 	ENDIF
@@ -950,7 +950,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「ああん・・・いけませんよぉ・・・」
 	PRINTFORML %NTR_NAME(0)%に背後から抱きつかれた%CALLNAME:奴隷%は、振りほどこうとせずに胸を触らせている。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手が%CALLNAME:奴隷%の乳房を鷲掴みにしている。
 	ENDIF
@@ -960,7 +960,7 @@ ELSE
 	PRINTFORML 「やっ！どこさわっているんですかっ！！」
 	PRINTFORML 背後から急に抱きついた%NTR_NAME(0)%に胸を鷲掴みにされた。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に胸を触られて憤慨している。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に胸を触られて憤慨している。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に胸を触られて憤慨している。
 	ENDIF
@@ -981,7 +981,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「んっ・・んふっ・・・いいっ・・」
 	PRINTFORML %CALLNAME:奴隷%は己の手を%NTR_NAME(0)%の手に重ね、さらなる爱抚に身をゆだねた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽にとろけている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽にとろけている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に与えられる快楽にとろけている。
 	ENDIF
@@ -991,7 +991,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ああ・・いい、ああ・・」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手で胸を揉まれ、淫らに微笑んでいる。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽にとろけている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽にとろけている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に与えられる快楽にとろけている。
 	ENDIF
@@ -1001,7 +1001,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	PRINTFORML 「ああ・・いい、ああ・・」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手で胸を揉まれ、目を細めうっとりと微笑んでいる。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に乳房をほしいままにさせている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に乳房をほしいままにさせている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に乳房をほしいままにさせている。
 	ENDIF
@@ -1011,7 +1011,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「ああ・・いい、ああ・・」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手で胸を揉まれ、うっとりと微笑んでいる。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に乳房をほしいままにさせている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手に乳房をほしいままにさせている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に乳房をほしいままにさせている。
 	ENDIF
@@ -1021,7 +1021,7 @@ ELSE
 	PRINTFORML 「やっ、やめっ！！やめてくださいっ、ああっ！」
 	PRINTFORML %NTR_NAME(0)%はなおも抗う%CALLNAME:奴隷%の手に負けじとより力強く彼女の胸を揉みしだいた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手が乳房をほしいままにしている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手が乳房をほしいままにしている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手に乳房がほしいままにしている。
 	ENDIF
@@ -1042,7 +1042,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「ああん・・・」
 	PRINTFORML %NTR_NAME(0)%が手を離すと%CALLNAME:奴隷%は名残惜しそうな視線を向けた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML もはや彼女は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽の虜であった。
+		PRINTFORML もはや彼女は%ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽の虜であった。
 	ELSE
 		PRINTFORML もはや彼女は%NTR_NAME(2)%の手に与えられる快楽の虜であった。
 	ENDIF
@@ -1052,7 +1052,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「え・・・あんっ・・」
 	PRINTFORML 乳房から手を離された%CALLNAME:奴隷%は、名残惜しそうな声を漏らした。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽を欲していた。
+		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽を欲していた。
 	ELSE
 		PRINTFORML 彼女は%NTR_NAME(2)%の手に与えられる快楽を欲していた。
 	ENDIF
@@ -1062,7 +1062,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度2)
 	PRINTFORML 「え・・・あんっ・・」
 	PRINTFORML 乳房から手を離された%CALLNAME:奴隷%は、名残惜しそうな甘い声を漏らした。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽を受け入れていた。
+		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽を受け入れていた。
 	ELSE
 		PRINTFORML 彼女は%NTR_NAME(2)%の手に与えられる快楽を受け入れていた。
 	ENDIF
@@ -1072,7 +1072,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_うふふする程度)
 	PRINTFORML 「え・・・あんっ・・」
 	PRINTFORML 乳房から手を離された%CALLNAME:奴隷%は、名残惜しそうな声を漏らした。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手に与えられる快楽を受け入れていた。
+		PRINTFORML 彼女は%ANATA_LOVER(奴隷)%以外の男人の手に与えられる快楽を受け入れていた。
 	ELSE
 		PRINTFORML 彼女は%NTR_NAME(2)%の手に与えられる快楽を受け入れていた。
 	ENDIF
@@ -1102,7 +1102,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「んふ・・大きくて素敵です・・ちゅっ・・」
 	PRINTFORML %CALLNAME:奴隷%は舌なめずりすると%NTR_NAME(0)%のモノに愛しげに唇を寄せた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎を口に含むことにためらいを感じてさえいなかった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎を口に含むことにためらいを感じてさえいなかった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎を口に含むことにためらいを感じてさえいなかった。
 	ENDIF
@@ -1112,7 +1112,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「ん・・お・・大きい・・ちゅっ・・」
 	PRINTFORML %CALLNAME:奴隷%は目の前に突き出されたモノに自ら唇を捧げた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎を口に含むことにためらいを感じてさえいなかった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎を口に含むことにためらいを感じてさえいなかった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎を口に含むことにためらいを感じてさえいなかった。
 	ENDIF
@@ -1122,7 +1122,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「ん・・お・・大きい・・んむっ・・」
 	PRINTFORML %CALLNAME:奴隷%は目の前に突き出されたモノを口に含んだ。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎を受け入れ、目を閉じた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎を受け入れ、目を閉じた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎を受け入れ、目を閉じた。
 	ENDIF
@@ -1132,7 +1132,7 @@ ELSE
 	PRINTFORML 「やっ、やあああっ・・んんっ！！」
 	PRINTFORML %NTR_NAME(0)%に顔を抑えられ、むりやり阴茎を咥え込ませられた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎を受け入れることを強いられ、さらに深く飲み込むことを求められた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎を受け入れることを強いられ、さらに深く飲み込むことを求められた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎を受け入れることを強いられ、さらに深く飲み込むことを求められた。
 	ENDIF
@@ -1153,7 +1153,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「れろ、れろ、ちゅっ・・ちゅぱ・・んんっ」
 	PRINTFORML %NTR_NAME(0)%のモノを%CALLNAME:奴隷%は愛しげに舐め、啜り、しゃぶっている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎に対するものとも思えない濃厚な侍奉を続けている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎に対するものとも思えない濃厚な侍奉を続けている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎に対するものとも思えない濃厚な侍奉を続けている。
 	ENDIF
@@ -1163,7 +1163,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「れろ、れろ、ちゅっ・・れろ、れろ、ちゅ、ぢゅ・・」
 	PRINTFORML 阴茎を口にした%CALLNAME:奴隷%は一心不乱にそれをしゃぶっている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎に対するものとも思えない侍奉を続けている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎に対するものとも思えない侍奉を続けている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎に対するものとも思えない侍奉を続けている。
 	ENDIF
@@ -1173,7 +1173,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「れろ、れろ、ちゅっ・・れろ、れろ、ちゅ、ぢゅ・・」
 	PRINTFORML 阴茎を口にした%CALLNAME:奴隷%はうっとりと目を閉じてしゃぶっている。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎の味を求め、自ら舌を伸ばしている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎の味を求め、自ら舌を伸ばしている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎の味を求め、自ら舌を伸ばしている。
 	ENDIF
@@ -1199,7 +1199,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「んん！・・んっ・・んっ・・こくん・・おいしいです・・・」
 	PRINTFORML 口内に放たれた精液をじゅうぶんに味わってから飲み干した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎のみならず、彼の精液の味と臭いの虜になっている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎のみならず、彼の精液の味と臭いの虜になっている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎のみならず、彼の精液の味と臭いの虜になっている。
 	ENDIF
@@ -1209,7 +1209,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「んん！・・んっ・・んっ・・こくん・・」
 	PRINTFORML 口内に注がれた精液を飲み下した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎のみならず、彼の精液をも受け入れてしまっている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎のみならず、彼の精液をも受け入れてしまっている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎のみならず、彼の精液をも受け入れてしまっている。
 	ENDIF
@@ -1219,7 +1219,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「んん！・・んっ・・んっ・・こくん・・」
 	PRINTFORML 口内に注がれた精液を飲み下した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の阴茎のみならず、彼の精液にも抵抗はないようだ。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の阴茎のみならず、彼の精液にも抵抗はないようだ。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の阴茎のみならず、彼の精液にも抵抗はないようだ。
 	ENDIF
@@ -1229,7 +1229,7 @@ ELSE
 	PRINTFORML 「んんっ！？げほっ・ごほっ・・けほっ・・・」
 	PRINTFORML 口に注ぎ込まれた精液を飲み下すことはできず吐き出した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の精液で唇を汚されてしまい、%CALLNAME:奴隷%は涙ぐんだ。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の精液で唇を汚されてしまい、%CALLNAME:奴隷%は涙ぐんだ。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の精液で唇を汚されてしまい、%CALLNAME:奴隷%は涙ぐんだ。
 	ENDIF
@@ -1252,7 +1252,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「んっ・・ちゅっ・・んっんんっ」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の顔に股間を押し付けながら、阴茎を美味しそうに咥えている。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
 	ENDIF
@@ -1262,7 +1262,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「んっ・・ちゅっ・・んっんんっ」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の上に身体を重ね、自ら阴茎を咥えている。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に性器をしゃぶられる快感と、亀頭から滴る先走りの味に酔っている。
 	ENDIF
@@ -1272,7 +1272,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「んっ・・うむっ・・んうん・・」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に押し倒され、目の前に突き出された阴茎を自ら咥えた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に性器を弄られる快感に酔いながら、亀頭に舌を這わせている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に性器を弄られる快感に酔いながら、亀頭に舌を這わせている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に性器を弄られる快感に酔いながら、亀頭に舌を這わせている。
 	ENDIF
@@ -1282,7 +1282,7 @@ ELSE
 	PRINTFORML 「んっ・・うぐっ・・むぐ・うぅ・・・」
 	PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に押し倒され、阴茎を咥えさせられた。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に性器を弄られ、その上阴茎で口を犯されている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に性器を弄られ、その上阴茎で口を犯されている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に性器を弄られ、その上阴茎で口を犯されている。
 	ENDIF
@@ -1303,7 +1303,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML 「じゅっ、じゅっじゅっ・・・ん、はぁ・・ん・んんっ」
 	PRINTFORML %NTR_NAME(0)%に膣内を舌でかき回され、%CALLNAME:奴隷%は阴茎をより深々と咥えこんだ。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で与えられる快感に酔いしれている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で与えられる快感に酔いしれている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で与えられる快感に酔いしれている。
 	ENDIF
@@ -1313,7 +1313,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「じゅっ、じゅっじゅっ・・・ん、はぁ・・あ・あんっ」
 	PRINTFORML %NTR_NAME(0)%に膣内を舌でかき回され、%CALLNAME:奴隷%は阴茎に頬ずりしながら甘い声を漏らした。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の手で与えられる快感に酔いしれている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の手で与えられる快感に酔いしれている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の手で与えられる快感に酔いしれている。
 	ENDIF
@@ -1323,7 +1323,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「じゅっ・・ちゅっ・・ぷはぁ・・んん！！」
 	PRINTFORML %NTR_NAME(0)%に陰核を吸われ、%CALLNAME:奴隷%は阴茎を咥えたままくぐもった声をあげた。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に感じやすいところを攻められているのに、身体は敏感に反応してしまっている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に感じやすいところを攻められているのに、身体は敏感に反応してしまっている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に感じやすいところを攻められているのに、身体は敏感に反応してしまっている。
 	ENDIF
@@ -1333,7 +1333,7 @@ ELSE
 	PRINTFORML 「じゅっ・・ちゅっ・・ぷはぁ・・んん！！」
 	PRINTFORML %NTR_NAME(0)%に陰核を吸われ、%CALLNAME:奴隷%は阴茎を咥えたままくぐもった声をあげた。	
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に感じやすいところを攻められ、次第に感じ始めている。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に感じやすいところを攻められ、次第に感じ始めている。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に感じやすいところを攻められ、次第に感じ始めている。
 	ENDIF
@@ -1356,7 +1356,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	PRINTFORML %CALLNAME:奴隷%は口内に放たれた精液を美味しそうに飲み干した。
 	PRINTFORML その間も%NTR_NAME(0)%は膣内を指でかき回していた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の精液を口にすることに、背徳感の混じった快楽を感じていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の精液を口にすることに、背徳感の混じった快楽を感じていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の精液を口にすることに、背徳感の混じった快楽を感じていた。
 	ENDIF
@@ -1367,7 +1367,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML %CALLNAME:奴隷%は口内に放たれた精液を飲み下した。
 	PRINTFORML その間も%NTR_NAME(0)%は膣内を指でかき回していた。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の精液を口にすることに、もはやためらいはなかった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の精液を口にすることに、もはやためらいはなかった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の精液を口にすることに、もはやためらいはなかった。
 	ENDIF
@@ -1377,7 +1377,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 	PRINTFORML 「んぐぅぅ！！んっ・・こくっ・・こくん・・」
 	PRINTFORML %CALLNAME:奴隷%は口内に放たれた精液をわずかに躊躇した後飲み下した。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%の精液を口にすることに、ためらいを感じなくなりつつあった。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人の精液を口にすることに、ためらいを感じなくなりつつあった。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%の精液を口にすることに、ためらいを感じなくなりつつあった。
 	ENDIF
@@ -1389,7 +1389,7 @@ ELSE
 	PRINTFORML それを見た%NTR_NAME(0)%は、お仕置きとばかりに陰核を強く摘んだ。
 	PRINTFORML %CALLNAME:奴隷%は悲痛な声をあげながら弓なりに仰け反った。		
 	IF TALENT:奴隷:恋慕
-		PRINTFORML %ANATA_LOVER(奴隷)%以外の%NTR_NAME(3)%に与えられる刺激にも、彼女の身体は反応してしまっていた。
+		PRINTFORML %ANATA_LOVER(奴隷)%以外の男人に与えられる刺激にも、彼女の身体は反応してしまっていた。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%に与えられる刺激にも、彼女の身体は反応してしまっていた。
 	ENDIF
@@ -2923,9 +2923,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			DATAFORM 痛みより快楽が勝ってきたのか、%CALLNAME:奴隷%は自ら尻を振り%NTR_NAME(0)%の肉茎に侍奉を始めている。
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げただけでなく、%NTR_NAME(4)%の快楽のために自身の身体を使って侍奉をする悦びに目覚めていた。
+			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げただけでなく、他の快楽のために自身の身体を使って侍奉をする悦びに目覚めていた。
 		ELSE
-			PRINTFORML %NTR_NAME(2)%に純潔を捧げただけでなく、%NTR_NAME(4)%の快楽のために自身の身体を使って侍奉をする悦びに目覚めていた。
+			PRINTFORML %NTR_NAME(2)%に純潔を捧げただけでなく、他の快楽のために自身の身体を使って侍奉をする悦びに目覚めていた。
 		ENDIF
 		;非处女
 	ELSE
@@ -2960,9 +2960,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			DATAFORM 痛みより快楽が勝ってきたのか、%CALLNAME:奴隷%は自ら尻を振り%NTR_NAME(0)%の肉茎に侍奉を始めている。
 		ENDDATA
 		IF TALENT:奴隷:恋慕
-			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げただけでなく、%NTR_NAME(4)%の快楽のために侍奉をする悦びに目覚めつつあった。
+			PRINTFORML %NTR_NAME_1_2(奴隷)%に純潔を捧げただけでなく、他の快楽のために侍奉をする悦びに目覚めつつあった。
 		ELSE
-			PRINTFORML %NTR_NAME(2)%に純潔を捧げただけでなく、%NTR_NAME(4)%の快楽のために侍奉をする悦びに目覚めつつあった。
+			PRINTFORML %NTR_NAME(2)%に純潔を捧げただけでなく、他の快楽のために侍奉をする悦びに目覚めつつあった。
 		ENDIF
 		;非处女
 	ELSE
@@ -3015,7 +3015,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 自ら腰をくねらせている。
-			DATAFORM %NTR_NAME(4)%に抱きつき腰を振っている。
+			DATAFORM 他に抱きつき腰を振っている。
 			DATAFORM 自ら尻を振り阴茎を受け入れている。
 		ENDDATA
 		PRINTFORML 
@@ -3059,7 +3059,7 @@ ELSE
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 無意識のうちに腰を動かしている。
-			DATAFORM 無意識に%NTR_NAME(4)%に抱きつき腰を振っている。
+			DATAFORM 無意識に他に抱きつき腰を振っている。
 			DATAFORM その意思と無関係に尻を振り阴茎を受け入れている。
 		ENDDATA
 		PRINTFORML 
@@ -3080,7 +3080,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああっ！ 来て！ 来てくださいっ！ あああああっ！！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3089,7 +3089,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 			DATAFORM 「ああんっ！ 出して！ いっぱい、いっぱい出してえええ！」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 			DATAFORM 感極まった%CALLNAME:奴隷%が%NTR_NAME(0)%を抱きしめた瞬間、子宮口に押し付けられた亀頭から夥しい量の精液が噴出した。
 			DATAFORM %NTR_NAME(0)%を抱きしめ激しく腰を振る%CALLNAME:奴隷%は、絶頂の瞬間あらん限りの力で阴茎を締め上げ射精を促した。
 		ENDDATA
@@ -3099,7 +3099,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああっ！ 来て！ 来てくださいっ！ あああああっ！！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3108,7 +3108,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			DATAFORM 「ああんっ！ 出して！ いっぱい、いっぱい出してえええ！」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 			DATAFORM 感極まった%CALLNAME:奴隷%が%NTR_NAME(0)%を抱きしめた瞬間、子宮口に押し付けられた亀頭から夥しい量の精液が噴出した。
 			DATAFORM %NTR_NAME(0)%を抱きしめ激しく腰を振る%CALLNAME:奴隷%は、絶頂の瞬間あらん限りの力で阴茎を締め上げ射精を促した。
 		ENDDATA
@@ -3118,7 +3118,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああっ！ 来て！ 来てくださいっ！ あああああっ！！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+		PRINTFORML 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3127,7 +3127,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			DATAFORM 「ああんっ！ 出して！ いっぱい、いっぱい出してえええ！」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて%NTR_NAME(4)%の精を受け入れた。
+			DATAFORM 絶頂の瞬間、%CALLNAME:奴隷%は%NTR_NAME(0)%を両腕できつく抱きしめ、互いの身体を密着させて他の精を受け入れた。
 			DATAFORM 感極まった%CALLNAME:奴隷%が%NTR_NAME(0)%を抱きしめた瞬間、子宮口に押し付けられた亀頭から夥しい量の精液が噴出した。
 			DATAFORM %NTR_NAME(0)%を抱きしめ激しく腰を振る%CALLNAME:奴隷%は、絶頂の瞬間あらん限りの力で阴茎を締め上げ射精を促した。
 		ENDDATA
@@ -3187,7 +3187,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああン・・はあん・・うふふっ・・初めてだったのに、いっぱい出されちゃいました♪」
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 		;非处女
 	ELSE
 		IF TALENT:奴隷:危险日
@@ -3195,14 +3195,14 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		ELSE
 			PRINTFORML 「ああン・・はあん・・うふふっ・・いっぱい出されちゃいました♪」
 		ENDIF
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああン・・はあん・・うふふっ・・初めてだったのに、いっぱい出されちゃいました♪」
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 		;非处女
 	ELSE
 		IF TALENT:奴隷:危险日
@@ -3210,7 +3210,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 		ELSE
 			PRINTFORML 「ああン・・はあん・・うふふっ・・いっぱい出されちゃいました♪」
 		ENDIF
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 	ENDIF
 	IF TALENT:奴隷:危险日
 		PRINTFORML 「それに・・ふふっ・・%MSG_LOVER(奴隷)%じゃない人に中出しされちゃいました。あの人に怒られちゃいます♪」
@@ -3223,7 +3223,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		PRINTFORML 「ああン・・はあん・・うふふっ・・初めてだったのに、いっぱい出されちゃいました♪」
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 		;非处女
 	ELSE
 		IF TALENT:奴隷:危险日
@@ -3231,7 +3231,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		ELSE
 			PRINTFORML 「ああン・・はあん・・うふふっ・・いっぱい出されちゃいました♪」
 		ENDIF
-		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ%NTR_NAME(4)%の耳元で囁いた。
+		PRINTFORML 子宮深くへと染み込んでくる熱を感じながら、%CALLNAME:奴隷%は%NTR_NAME(0)%を抱きしめ他の耳元で囁いた。
 	ENDIF
 	IF TALENT:奴隷:危险日
 		PRINTFORML 「それに・・ふふっ・・%MSG_LOVER(奴隷)%じゃない人に中出しされちゃいました。あの人に怒られちゃいます♪」
@@ -3562,16 +3562,16 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 
 	PRINTFORML 「はい・・・なんでもお望みのままに・・」
 	IF 0 == 誘いフラグ
-		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(4)%にしなだれかかった。
+		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で他にしなだれかかった。
 	ELSE
-		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%を導いた%NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(4)%にしなだれかかった。
+		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%を導いた%NTR_GetPlaceName(FLAG:访问者当前位置)%で他にしなだれかかった。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 
 	PRINTFORML 「うふふっ、ここなら邪魔が入りませんよ♪」
 	IF 0 == 誘いフラグ
-		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(4)%にしなだれかかった。
+		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で他にしなだれかかった。
 	ELSE
 		IF IS_CAN_LOCK(FLAG:访问者当前位置)
 			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手を引いて%NTR_GetPlaceName(FLAG:访问者当前位置)%へと導き、扉を閉めると鍵をかけた。
@@ -3589,7 +3589,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	PRINTFORML 「うふふっ、ここなら邪魔が入りませんよ♪」
 	IF 0 == 誘いフラグ
-		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(4)%に微笑んだ。
+		PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%に導かれた%NTR_GetPlaceName(FLAG:访问者当前位置)%で他に微笑んだ。
 	ELSE
 		IF IS_CAN_LOCK(FLAG:访问者当前位置)
 			PRINTFORML %CALLNAME:奴隷%は%NTR_NAME(0)%の手を引いて%NTR_GetPlaceName(FLAG:访问者当前位置)%へと導き、扉を閉めると鍵をかけた。

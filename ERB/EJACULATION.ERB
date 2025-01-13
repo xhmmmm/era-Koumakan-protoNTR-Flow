@@ -94,12 +94,6 @@ TCVAR:对象:102 = 2
 TCVAR:对象:103 = 射精者
 ;相手により分岐のある処理
 SELECTCASE 射精者
-	CASE 人物_客, 人物_村人, 人物_催眠者
-		IF 对象 != MASTER && !TALENT:对象:亲爱
-			CALL NTR_EXP_ADD_SEMEN(对象,精液经验増量)
-		ENDIF
-		IF TALENT:对象:处女
-		ENDIF
 	CASE 人物_訪問者
 		IF 对象 != MASTER && !TALENT:对象:亲爱
 			CALL NTR_EXP_ADD_SEMEN(对象,精液经验増量)
@@ -153,12 +147,6 @@ ELSEIF 射精者 == MASTER
 ENDIF
 ;相手により分岐のある処理
 SELECTCASE 射精者
-	CASE 人物_客, 人物_村人, 人物_催眠者
-		IF 对象 != MASTER && !TALENT:对象:亲爱
-			CALL NTR_EXP_ADD_SEMEN(对象,精液经验増量)
-		ENDIF
-		IF TALENT:对象:处女
-		ENDIF
 	CASE 人物_訪問者
 		IF 对象 != MASTER && !TALENT:对象:亲爱
 			CALL NTR_EXP_ADD_SEMEN(对象,精液经验増量)

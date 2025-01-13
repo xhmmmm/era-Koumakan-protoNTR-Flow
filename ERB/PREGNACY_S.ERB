@@ -63,11 +63,7 @@ IF 父親 != MASTER
 		CASE IS < CHARANUM
 			他の男 = %"他の相手"%
 		CASE IS == 人物_訪問者
-			他の男 = %"他の"+NTR_NAME(3)%
-		CASE IS == 人物_客
-			他の男 = %"他の男"%
-		CASE IS == 人物_村人
-			他の男 = %"他の男"%
+			他の男 = %NTR_NAME(0)%
 		CASEELSE
 			他の男 = %"他の男"%
 	ENDSELECT
@@ -80,18 +76,10 @@ ENDIF
 IF TALENT:奴隷:恋慕 && 父親 > 900 && 父親 <= 1000
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 		PRINTFORML %CALLNAME:奴隷%は頬を染め%他の男%の子を宿したことを伝えてきた。
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-		ELSE
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、何を今更恋人ぶっているのか、と言われてしまった。
-		ENDIF
+		PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、何を今更恋人ぶっているのか、と言われてしまった。
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		PRINTFORML %CALLNAME:奴隷%は言い辛そうに%他の男%の子を宿したことを伝えてきた。
-		IF TALENT:奴隷:浮気公認
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-		ELSE
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるより先に%CALLNAME:奴隷%は頭を下げ、子供には罪がないから産みたい、許して欲しいと謝ってきた。
-		ENDIF
+		PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるより先に%CALLNAME:奴隷%は頭を下げ、子供には罪がないから産みたい、許して欲しいと謝ってきた。
 	ELSE
 		PRINTFORML %CALLNAME:奴隷%は青ざめた顔をして%CALLNAME:MASTER%に%他の男%の子を宿したことを伝えてきた。
 		PRINTFORML 泣き崩れる%CALLNAME:奴隷%を支えながら、%CALLNAME:MASTER%は子供に罪はないと諭すことしかできなかった。
@@ -103,32 +91,12 @@ IF TALENT:奴隷:恋慕 && 父親 > 1000
 	IF !HAS_PENIS(MASTER) || IS_DOUTEI(MASTER)
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			PRINTFORML %CALLNAME:奴隷%は頬を染め%他の男%の子を宿したことを伝えてきた。
-			IF TALENT:奴隷:浮気公認
-				PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-			ELSE
-				PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、何を今更恋人ぶっているのか、と言われてしまった。
-			ENDIF
+			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、何を今更恋人ぶっているのか、と言われてしまった。
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			PRINTFORML %CALLNAME:奴隷%は言い辛そうに%他の男%の子を宿したことを伝えてきた。
-			IF TALENT:奴隷:浮気公認
-				PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-			ELSE
-				PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるより先に%CALLNAME:奴隷%は頭を下げ、子供には罪がないから産みたい、許して欲しいと謝ってきた。
-			ENDIF
+			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるより先に%CALLNAME:奴隷%は頭を下げ、子供には罪がないから産みたい、許して欲しいと謝ってきた。
 		ELSE
 			PRINTFORML %CALLNAME:奴隷%は青ざめた顔をして%CALLNAME:MASTER%に%他の男%の子を宿したことを伝えてきた。
-			PRINTFORML 泣き崩れる%CALLNAME:奴隷%を支えながら、%CALLNAME:MASTER%は子供に罪はないと諭すことしかできなかった。
-		ENDIF
-		;浮気公認の場合は父親が不明の子を妊娠したことを告げる
-	ELSEIF TALENT:奴隷:浮気公認
-		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
-			PRINTFORML %CALLNAME:奴隷%は頬を染め父親の分からない子を宿したことを伝えてきた。
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML %CALLNAME:奴隷%は少し言い辛そうに父親のわからない子を宿したことを伝えてきた。
-			PRINTFORML 驚いた%CALLNAME:MASTER%が問い詰めるも、%CALLNAME:MASTER%が望んだ結果だろう、と言われてしまった。
-		ELSE
-			PRINTFORML %CALLNAME:奴隷%は青ざめた顔をして%CALLNAME:MASTER%に父親のわからない子を宿したことを伝えてきた。
 			PRINTFORML 泣き崩れる%CALLNAME:奴隷%を支えながら、%CALLNAME:MASTER%は子供に罪はないと諭すことしかできなかった。
 		ENDIF
 	ELSE

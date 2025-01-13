@@ -672,12 +672,7 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K7_310_1
 IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ)
 
-	IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-		PRINTFORML 「要对主人保密喔」
-		;好意度低いと冷たい
-	ELSE
-		PRINTFORML 「走开，这样会被主人责备的」
-	ENDIF
+	PRINTFORML 「走开，这样会被主人责备的」
 
 ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前)
 
@@ -715,12 +710,7 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K7_311_1
 IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ)
 
-	IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-		PRINTFORML 「・・真是没办法啊・・」
-		;好意度低いと冷たい
-	ELSE
-		PRINTFORML 「・・不可以啊」
-	ENDIF
+	PRINTFORML 「・・不可以啊」
 
 ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前)
 
@@ -775,8 +765,6 @@ ELSE
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
 			PRINTFORML 和%CALLNAME:TARGET%接吻的%CALLNAME:MASTER%，对她嘴里的味道感到违和，离开了嘴唇。
 			PRINTFORML 「・・呵呵・・味道很强烈吧？」
-		ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-			PRINTFORML 「・・要对主人保密・・哈・・」
 			;好意度低いと冷たい
 		ELSE
 			PRINTFORML 「・・不行・・嗯・・」
@@ -3023,12 +3011,7 @@ IF LOCAL
 		RETURN 0
 	ENDIF
 	IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ)
-		IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-			PRINTFORML （虽然比那个人小・・呼呼、但很可爱啊♪）
-			;好意度低いと冷たい
-		ELSE
-			PRINTFORML （比那个人小得多呢・・）
-		ENDIF
+		PRINTFORML （比那个人小得多呢・・）
 	ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前)
 		PRINTFORML （比那个人小・・）
 	ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られそう)
@@ -3078,12 +3061,7 @@ IF LOCAL
 		RETURN 0
 	ENDIF
 	IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ)
-		IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取り返し中)
-			PRINTFORML （比那个人小・・但是、大小不是全部♪）
-			;好意度低いと冷たい
-		ELSE
-			PRINTFORML （比那个人小得多・・）
-		ENDIF
+		PRINTFORML （比那个人小得多・・）
 	ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前)
 		PRINTFORML （比那个人小・・）
 	ELSEIF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られそう)
@@ -5784,13 +5762,13 @@ RETURN 0
 
 ;-------------------------------------------------
 ;奴隷の絶頂時の口上
-;NOWEX:0～3 CVAB絶頂
-;NOWEX:4 二重绝顶
-;NOWEX:5 三重绝顶
-;NOWEX:6 四重绝顶
-;NOWEX:10 喷乳
-;NOWEX:11 射精
-;NOWEX:12 放尿
+;NOWEX:Ｃ绝顶～3 CVAB絶頂
+;NOWEX:二重绝顶 二重绝顶
+;NOWEX:三重绝顶 三重绝顶
+;NOWEX:四重绝顶 四重绝顶
+;NOWEX:喷乳 喷乳
+;NOWEX:射精 射精
+;NOWEX:放尿 放尿
 ;適当に組み合わせて使ってください
 ;-------------------------------------------------
 @KOJO_MESSAGE_PALAMCNG_B_K7

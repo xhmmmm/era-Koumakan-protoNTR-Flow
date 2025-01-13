@@ -192,6 +192,8 @@ FOR LOCAL,0,CHARANUM
 		CALL NTR_MARK_5(LOCAL, 浮気快楽強度)
 	ENDIF
 NEXT
+;Flow版本不需要扶她和可攻略的男角色，但万一删了真出问题呢？留着先
+[SKIPSTART]
 ;-------------------------------------------------
 ;射精チェック（ふたなり・オトコ）
 ;-------------------------------------------------
@@ -315,6 +317,7 @@ FOR LOCAL,0,CHARANUM
 	;-------------------------------------------------
 	CALL SOURCE_EXTRA(LOCAL)
 NEXT
+[SKIPEND]
 ;-------------------------------------------------
 ;同じコマンドの連続実行による上下の処理
 ;-------------------------------------------------
@@ -408,10 +411,6 @@ FOR LOCAL,0,CHARANUM
 		CONTINUE
 	CALL SOURCE_ABLUP(LOCAL)
 NEXT
-;-------------------------------------------------
-;触手の射精時の口上
-;-------------------------------------------------
-CALL KOJO_MESSAGE_PALAMCNG_E
 ;-------------------------------------------------
 ;奴隷の絶頂時の口上
 ;-------------------------------------------------
@@ -756,7 +755,7 @@ RETURN
 @CHK_SEMEN_STAY_WITH_MASTER_AND_VISITOR(奴隷)
 #DIM 奴隷
 
-IF TALENT:奴隷:NTR || TALENT:奴隷:浮気公認
+IF TALENT:奴隷:NTR
 	PRINTFORML %CALLNAME:奴隷%的脸上泛起了红晕、用手捂住了%SHOW_BOTTOM(奴隷,1)%的下腹部。
 	PRINTFORMW %CALLNAME:奴隷%眼神微微恍惚地在嘴角勾起了淫靡的微笑。
 	IF CFLAG:奴隷:射精者V == 人物_訪問者
@@ -791,7 +790,7 @@ IF ノーパン != 0
 	PRINTFORML 某些液体滴落的声音吸引了%CALLNAME:MASTER%的注意力
 	PRINTFORMW %CALLNAME:奴隷%双颊通红，尽力做出些许声音、想掩盖过去。
 ELSE
-	IF TALENT:奴隷:NTR || TALENT:奴隷:浮気公認
+	IF TALENT:奴隷:NTR
 		PRINTFORML %CALLNAME:奴隷%的脸上泛起了红晕、用手捂住了%SHOW_BOTTOM(奴隷,1)%的下腹部。
 		IF CFLAG:奴隷:射精者V != 人物_玩家
 			PRINTFORMW 眼神有些恍惚地在嘴角勾起了淫靡的微笑。
@@ -817,9 +816,9 @@ RETURN
 #DIMS 相手_彼		; 相手を「彼」または「彼女」と表現する文字列
 #DIM 相手番号		; 相手名称に対応する人物番号
 
-相手名称 = NTR_NAME(0)
+相手名称 = %NTR_NAME(0)%
 相手番号 = 人物_訪問者
-相手_彼 = %NTR_NAME(4)%
+相手_彼 = "他"
 IF NTR_CHK_VISIBLE(CFLAG:奴隷:当前位置)
 	IF ノーパン != 0
 		PRINTFORML 『笨蛋…』满溢的精液从小穴滴落下来、%相手名称%有些生气地指出了那件事

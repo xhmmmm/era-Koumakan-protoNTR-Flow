@@ -85,7 +85,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	PRINTFORML 「・・不是那样的话、那你为什么没生气・・？ 难道你不信我了吗・・？」
 ELSE
 	;それ以外なら自分のしたことを悔いる
-	PRINTFORML 「不、不是这样的、才没有出轨。只、只是被%NTR_NAME(3)%威胁了而已・・」
+	PRINTFORML 「不、不是这样的、才没有出轨。只、只是被男人威胁了而已・・」
 	PRINTFORML 「・・真的・・真的、没有生气・・吗・・？」
 ENDIF
 RETURN 0
@@ -99,10 +99,10 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	;寝取られ寸前なら
 	PRINTFORML 「唔哼哼、%CALLNAME:調教者%以为我会这么认为吗？(%CALLNAME:調教者%ならそう言うと思ってたわ)」
-	PRINTFORML 「%MSG_RE_LOVER(奴隷)%难道是会被%NTR_NAME(3)%侵犯而感到兴奋的变态吗？」
+	PRINTFORML 「%MSG_RE_LOVER(奴隷)%难道是会被男人侵犯而感到兴奋的变态吗？」
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	;寝取られそうなら
-	PRINTFORML 「・・没开玩笑的吧？ 那挺好、既然%CALLNAME:調教者%都说了别客气、那我就决定和%NTR_NAME(4)%加深友谊好了」
+	PRINTFORML 「・・没开玩笑的吧？ 那挺好、既然%CALLNAME:調教者%都说了别客气、那我就决定和他加深友谊好了」
 ELSE
 	;それ以外なら
 	PRINTFORML 「・・你认真的？ 真不知道%CALLNAME:調教者%在想些什么・・」
@@ -140,28 +140,28 @@ ELSEIF (CFLAG:奴隷:与访问者最后做爱的时间/(24*60)) == (DATETIME()/(
 	SELECTCASE CFLAG:奴隷:与访问者最后做爱的时间
 		CASE IS > (DATETIME() - 1*01*60) ;１時間以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、刚才和%NTR_NAME(4)%抱了一下而已」
+				PRINTFORML 「唔哼哼、刚才和他抱了一下而已」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、刚才和%NTR_NAME(4)%抱了一下而已」
+				PRINTFORML 「唔哼哼、刚才和他抱了一下而已」
 			ELSE
-				PRINTFORML 「・・刚才和%NTR_NAME(4)%做了一次・・」
+				PRINTFORML 「・・刚才和他做了一次・・」
 			ENDIF
 		CASE IS > (DATETIME() - 1*04*60) ;４時間以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、刚才和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「唔哼哼、刚才和他抱了一会」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、刚才和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「唔哼哼、刚才和他抱了一会」
 			ELSE
-				PRINTFORML 「・・刚才和%NTR_NAME(4)%做了一次・・」
+				PRINTFORML 「・・刚才和他做了一次・・」
 			ENDIF
 		CASEELSE
 			PRINTFORML %"今日もセックスしたのだと答えた。"%
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、今天也和%NTR_NAME(4)%拥抱了」
+				PRINTFORML 「唔哼哼、今天也和他拥抱了」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、今天也和%NTR_NAME(4)%拥抱了」
+				PRINTFORML 「唔哼哼、今天也和他拥抱了」
 			ELSE
-				PRINTFORML 「・・今天也和%NTR_NAME(4)%做了・・」
+				PRINTFORML 「・・今天也和他做了・・」
 			ENDIF
 	ENDSELECT
 	CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
@@ -170,51 +170,51 @@ ELSE
 	SELECTCASE CFLAG:奴隷:与访问者最后做爱的时间
 		CASE IS > (DATETIME() - 1*01*60) ;１時間以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、刚刚和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「唔哼哼、刚刚和他抱了一会」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、刚刚被%NTR_NAME(4)%抱了一下」
+				PRINTFORML 「唔哼哼、刚刚被他抱了一下」
 			ELSE
-				PRINTFORML 「・・刚刚%NTR_NAME(4)%做了一次・・」
+				PRINTFORML 「・・刚刚他做了一次・・」
 			ENDIF
 			CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
 			RSLT_LV = RESULT
 		CASE IS > (DATETIME() - 1*08*60) ;８時間以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、刚刚和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「唔哼哼、刚刚和他抱了一会」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、刚刚被%NTR_NAME(4)%抱了一下」
+				PRINTFORML 「唔哼哼、刚刚被他抱了一下」
 			ELSE
-				PRINTFORML 「...刚刚%NTR_NAME(4)%做了一次・・」
+				PRINTFORML 「...刚刚他做了一次・・」
 			ENDIF
 			CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
 			RSLT_LV = RESULT
 		CASE IS > (DATETIME() - 1*24*60) ;１日以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「唔哼哼、昨天和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「唔哼哼、昨天和他抱了一会」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「唔哼哼、昨天被%NTR_NAME(4)%抱了一下」
+				PRINTFORML 「唔哼哼、昨天被他抱了一下」
 			ELSE
-				PRINTFORML 「・・昨天和%NTR_NAME(4)%做了・・」
+				PRINTFORML 「・・昨天和他做了・・」
 			ENDIF
 			CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
 			RSLT_LV = RESULT
 		CASE IS > (DATETIME() - 3*24*60) ;２日以内
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「昨天和%NTR_NAME(4)%抱了一会」
+				PRINTFORML 「昨天和他抱了一会」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「昨天被%NTR_NAME(4)%抱了一下」
+				PRINTFORML 「昨天被他抱了一下」
 			ELSE
-				PRINTFORML 「・・昨天才跟%NTR_NAME(4)%做了・・」
+				PRINTFORML 「・・昨天才跟他做了・・」
 			ENDIF
 			CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
 			RSLT_LV = RESULT
 		CASEELSE
 			IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-				PRINTFORML 「刚才没跟%NTR_NAME(4)%抱过(ずいぶん%NTR_NAME(4)%に抱いてもらえなかったのよ)」
+				PRINTFORML 「刚才没跟他抱过(ずいぶん他に抱いてもらえなかったのよ)」
 			ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-				PRINTFORML 「刚才没被%NTR_NAME(4)%抱过(ずいぶん%NTR_NAME(4)%に抱かれなかったのよ)」
+				PRINTFORML 「刚才没被他抱过(ずいぶん他に抱かれなかったのよ)」
 			ELSE
-				PRINTFORML 「・・刚才没跟%NTR_NAME(4)%做・・」
+				PRINTFORML 「・・刚才没跟他做・・」
 			ENDIF
 			CALL KOJO_MESSAGE_COM_K4_300_10_02LV(奴隷, 調教者)
 			RSLT_LV = RESULT
@@ -232,15 +232,15 @@ IF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者V == 人物_訪問者 && (STAI
 	PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%にそっと抱きつくと、耳元で囁いた。
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被他在里面射得满满的，都溢出来了」
 		ELSE
-			PRINTFORML 「告诉你个好消息・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了」
+			PRINTFORML 「告诉你个好消息・・现在我的私处(今私のアソコは)、被他在里面射得满满的，都溢出来了」
 		ENDIF
 		PRINTFORML 「在私处那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却感觉像是被%NTR_NAME(4)%抱着一样・・%語尾%」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却感觉像是被他抱着一样・・%語尾%」
 		PRINTFORML 「私处那里被搅动着、精液都涂抹在深处了・・%語尾%」
 		IF TALENT:奴隷:危险日
-			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀上%NTR_NAME(4)%的孩子该怎么办・・%語尾%」
+			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀上他的孩子该怎么办・・%語尾%」
 		ENDIF
 		IF TALENT:奴隷:恋慕
 			PRINTDATAL
@@ -251,12 +251,12 @@ IF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者V == 人物_訪問者 && (STAI
 		ENDIF
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「教えてあげる・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「教えてあげる・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		PRINTFORML 「在私处那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被%NTR_NAME(4)%侵犯了一样」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被他侵犯了一样」
 		IF TALENT:奴隷:危险日
 			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀孕了怎么办呢・・？」
 		ENDIF
@@ -269,12 +269,12 @@ IF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者V == 人物_訪問者 && (STAI
 		ENDIF
 	ELSE
 		IF 1 == RSLT_LV
-			PRINTFORML 「・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「・・聞いて・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・聞いて・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		PRINTFORML 「在私处那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被%NTR_NAME(4)%侵犯了一样」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被他侵犯了一样」
 		IF TALENT:奴隷:危险日
 			PRINTFORML 「今天刚好是危险日・・万一・・怀孕的话・・」
 		ENDIF
@@ -291,12 +291,12 @@ ELSEIF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者A == 人物_訪問者 && (
 	PRINTFORML %CALLNAME:奴隷%は%CALLNAME:MASTER%にそっと抱きつくと、耳元で囁いた。
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的菊穴(今私のお尻は)、被他在里面射得满满的，都溢出来了」
 		ELSE
-			PRINTFORML 「告诉你个好消息・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了」
+			PRINTFORML 「告诉你个好消息・・现在我的菊穴(今私のお尻は)、被他在里面射得满满的，都溢出来了」
 		ENDIF
 		PRINTFORML 「在菊穴那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却感觉像是被%NTR_NAME(4)%抱着一样・・%語尾%」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却感觉像是被他抱着一样・・%語尾%」
 		PRINTFORML 「菊穴那里被搅动着、精液都涂抹在深处了・・%語尾%」
 		PRINTDATAL
 			DATAFORM 「%MSG_RE_LOVER(奴隷)%居然对这种事感到高兴、真是变态%語尾%」
@@ -305,12 +305,12 @@ ELSEIF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者A == 人物_訪問者 && (
 		ENDDATA
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的菊穴(今私のお尻は)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「教えてあげる・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「教えてあげる・・现在我的菊穴(今私のお尻は)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		PRINTFORML 「在菊穴那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被%NTR_NAME(4)%侵犯了一样」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被他侵犯了一样」
 		PRINTDATAL
 			DATAFORM 「%MSG_RE_LOVER(奴隷)%居然对这种事不以为然、哼哼、还真的是个变态吗？」
 			DATAFORM 「%MSG_RE_LOVER(奴隷)%遭遇这样的事还满不在乎、到底在想什么？」
@@ -318,12 +318,12 @@ ELSEIF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者A == 人物_訪問者 && (
 		ENDDATA
 	ELSE
 		IF 1 == RSLT_LV
-			PRINTFORML 「・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・现在我的菊穴(今私のお尻は)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「・・聞いて・・现在我的菊穴(今私のお尻は)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・聞いて・・现在我的菊穴(今私のお尻は)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		PRINTFORML 「在菊穴那里插着跳蛋/振动棒(或跳蛋+振动棒)、被贞操带包在里面着抖个不停・・」
-		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被%NTR_NAME(4)%侵犯了一样」
+		PRINTFORML 「啊啊・・现在这样明明是被%CALLNAME:MASTER%抱着、却好像被他侵犯了一样」
 		PRINTDATAL
 			DATAFORM 「・・%MSG_RE_LOVER(奴隷)%被这样还满不在乎・・？」
 			DATAFORM 「・・%MSG_RE_LOVER(奴隷)%遭遇这样的事还满不在乎、到底在想些什么・・」
@@ -334,12 +334,12 @@ ELSEIF 特殊フラグ1 == 1 && CFLAG:奴隷:射精者A == 人物_訪問者 && (
 ELSEIF CFLAG:奴隷:射精者V == 人物_訪問者 && (STAIN:奴隷:Ｖ & 汚れ_精液)
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了%語尾%」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被他在里面射得满满的，都溢出来了%語尾%」
 		ELSE
-			PRINTFORML 「告诉你个好消息・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%在里面射得满满的，都溢出来了%語尾%」
+			PRINTFORML 「告诉你个好消息・・现在我的私处(今私のアソコは)、被他在里面射得满满的，都溢出来了%語尾%」
 		ENDIF
 		IF TALENT:奴隷:危险日
-			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀上%NTR_NAME(4)%的孩子该怎么办・・%語尾%」
+			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀上他的孩子该怎么办・・%語尾%」
 		ENDIF
 		IF TALENT:奴隷:恋慕
 			PRINTDATAL
@@ -350,9 +350,9 @@ ELSEIF CFLAG:奴隷:射精者V == 人物_訪問者 && (STAIN:奴隷:Ｖ & 汚れ
 		ENDIF
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		IF 1 == RSLT_LV
-			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「做完之后呢(それでね)、唔哼哼・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「教えてあげる・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「教えてあげる・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		IF TALENT:奴隷:危险日
 			PRINTFORML 「今天刚好是危险日・・唔哼哼・・要是怀孕了怎么办呢・・？」
@@ -366,9 +366,9 @@ ELSEIF CFLAG:奴隷:射精者V == 人物_訪問者 && (STAIN:奴隷:Ｖ & 汚れ
 		ENDIF
 	ELSE
 		IF 1 == RSLT_LV
-			PRINTFORML 「・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ELSE
-			PRINTFORML 「・・聞いて・・现在我的私处(今私のアソコは)、被%NTR_NAME(4)%的精液弄得一塌糊涂了」
+			PRINTFORML 「・・聞いて・・现在我的私处(今私のアソコは)、被他的精液弄得一塌糊涂了」
 		ENDIF
 		IF TALENT:奴隷:危险日
 			PRINTFORML 「今天刚好是危险日・・万一・・怀孕的话・・」
@@ -395,13 +395,13 @@ RETURN 0
 IF CFLAG:奴隷:NTR处女喪失 == 人物_訪問者
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		PRINTFORML 「唔哼哼、告诉你个好消息♪」
-		PRINTFORML 「我的处女、献给%NTR_NAME(4)%了♪」
+		PRINTFORML 「我的处女、献给他了♪」
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		PRINTFORML 「唔哼哼、告诉你个好消息」
-		PRINTFORML 「我的处女、献给%NTR_NAME(4)%了」
+		PRINTFORML 「我的处女、献给他了」
 	ELSE
 		PRINTFORML 「・・有个很重要的事情要告诉你・・」
-		PRINTFORML 「我的处女、被%NTR_NAME(4)%夺走了・・」
+		PRINTFORML 「我的处女、被他夺走了・・」
 	ENDIF
 	RETURN 1
 ENDIF
@@ -418,7 +418,7 @@ IF CHK_NTR_SATISFACTORY(奴隷)
 	TALENT:奴隷:浮気公認 = 浮気_浮気公認
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		PRINTFORML 「・・事到如今。 不行哦。已经太迟了。老实说、跟%CALLNAME:調教者%做爱已经不能满足我了」
-		PRINTFORML 「想要挽留我的话、就带给我比%NTR_NAME(4)%更多的快乐吧」
+		PRINTFORML 「想要挽留我的话、就带给我比他更多的快乐吧」
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 		PRINTFORML 「・・不可能的哟・・实际上跟%CALLNAME:調教者%做爱已经不能满足我了・・」
 		PRINTFORML 「所以、我是不可能跟那人断绝来往的・・」
@@ -431,13 +431,13 @@ ELSE
 	;快楽を覚えていない場合０になる
 	TALENT:奴隷:浮気公認 = 浮気_非公認
 	IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-		PRINTFORML 「我知道了。我不会去诱惑%NTR_NAME(4)%了」
+		PRINTFORML 「我知道了。我不会去诱惑他了」
 		PRINTFORML 「但是如果被强制拉过去的话也拒绝不了呢・・」
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-		PRINTFORML 「既然都这么说了(普通そう言うわよね)。嗯、我不会去诱惑%NTR_NAME(4)%了」
+		PRINTFORML 「既然都这么说了(普通そう言うわよね)。嗯、我不会去诱惑他了」
 		PRINTFORML 「但是如果被强制拉过去的话也拒绝不了呢・・我说了是强行、注意这一点」
 	ELSE
-		PRINTFORML 「好、既然这样的话。那我就放心了。我不会去诱惑%NTR_NAME(4)%了」
+		PRINTFORML 「好、既然这样的话。那我就放心了。我不会去诱惑他了」
 		PRINTFORML 「但是如果被强制拉过去的话也拒绝不了呢・・到时候就来帮我一把吧。拜托了」
 	ENDIF
 ENDIF
@@ -453,15 +453,15 @@ RETURN 0
 IF CHK_NTR_SATISFACTORY(奴隷) 
 	IF TALENT:奴隷:浮気公認 < MARK:奴隷:浮気快乐刻印
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「真遗憾啊・・被%CALLNAME:調教者%公认的、不过还是想跟%NTR_NAME(4)%更亲近一些・・唔哼哼」
+			PRINTFORML 「真遗憾啊・・被%CALLNAME:調教者%公认的、不过还是想跟他更亲近一些・・唔哼哼」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「真遗憾啊・・虽然跟%CALLNAME:調教者%也不错(%CALLNAME:調教者%さえよければ)、不过还是想跟%NTR_NAME(4)%建立深厚的友谊・・唔哼哼」
+			PRINTFORML 「真遗憾啊・・虽然跟%CALLNAME:調教者%也不错(%CALLNAME:調教者%さえよければ)、不过还是想跟他建立深厚的友谊・・唔哼哼」
 		ELSE
 			PRINTFORML 「这样啊・・那就听%CALLNAME:調教者%的好了、那就像往常一样好了・・稍微有点遗憾呐」
 		ENDIF
 	ELSE
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「这样真的好吗？ 好开心♪ 因为%NTR_NAME(4)%、真的很厉害呐・・哼哼・・」
+			PRINTFORML 「这样真的好吗？ 好开心♪ 因为他、真的很厉害呐・・哼哼・・」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
 			PRINTFORML 「这样真的好吗？ 好开心♪」
 		ELSE
@@ -491,32 +491,32 @@ SELECTCASE TALENT:奴隷:浮気公認
 		PRINTFORML 「我明白了。哼哼、我会努力满足您的期待」
 	CASE 2
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「唔哼哼、既然这样那就不客气了・・在%CALLNAME:調教者%的面前诱惑%NTR_NAME(4)%吧・・感觉好期待啊」
+			PRINTFORML 「唔哼哼、既然这样那就不客气了・・在%CALLNAME:調教者%的面前诱惑他吧・・感觉好期待啊」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「我明白了。这样的话・・在%CALLNAME:調教者%的面前诱惑%NTR_NAME(4)%的话・・这样做真的好么？」
+			PRINTFORML 「我明白了。这样的话・・在%CALLNAME:調教者%的面前诱惑他的话・・这样做真的好么？」
 		ELSE
-			PRINTFORML 「我明白了・・既然这样・・在%CALLNAME:調教者%的面前%NTR_NAME(4)%・・真的可以吗・・？」
+			PRINTFORML 「我明白了・・既然这样・・在%CALLNAME:調教者%的面前他・・真的可以吗・・？」
 		ENDIF
 	CASE 3
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「可以哦・・既然想看我被%NTR_NAME(4)%抱着的样子・・甚至抱走的样子(中に出されるところまで)、那就仔细让你看个够吧」
+			PRINTFORML 「可以哦・・既然想看我被他抱着的样子・・甚至抱走的样子(中に出されるところまで)、那就仔细让你看个够吧」
 			PRINTFORML 「是不是很期待呢・・变态大人？」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「这么说的话・・那好吧・・既然想看我被%NTR_NAME(4)%抱着的样子・・那就尽情期待吧。」
+			PRINTFORML 「这么说的话・・那好吧・・既然想看我被他抱着的样子・・那就尽情期待吧。」
 		ELSE
-			PRINTFORML 「居然说・・这种要求・・被你看我被%NTR_NAME(4)%侵犯的样子・・开玩笑・的吧・・？」
+			PRINTFORML 「居然说・・这种要求・・被你看我被他侵犯的样子・・开玩笑・的吧・・？」
 		ENDIF
 	CASE 4
 		IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-			PRINTFORML 「唔哼哼、这样的话、这次我就去%NTR_NAME(4)%的家好了・・当然了、是为了去做做爱的事情」
+			PRINTFORML 「唔哼哼、这样的话、这次我就去他的家好了・・当然了、是为了去做做爱的事情」
 			PRINTFORML 「回来之后、想让我告诉你被抱了多少次吗・・那就好好期待着吧。变态大人。」
 		ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-			PRINTFORML 「这样的话、这次我就去%NTR_NAME(4)%的家好了・・当然了、是为了去做做爱的事情」
+			PRINTFORML 「这样的话、这次我就去他的家好了・・当然了、是为了去做做爱的事情」
 		ELSE
-			PRINTFORML 「这样的话、这次我就去%NTR_NAME(4)%的家好了・・想我被%NTR_NAME(4)%抱着？ 整整做一晚上？・・这样、真的好吗？」
+			PRINTFORML 「这样的话、这次我就去他的家好了・・想我被他抱着？ 整整做一晚上？・・这样、真的好吗？」
 		ENDIF
 	CASEELSE ;５以上
-		PRINTFORML 「如果变成这样的话、以后就当%NTR_NAME(4)%的妻子陪在旁边生活好了。当然了还是会时不时来看望%CALLNAME:調教者%的」
+		PRINTFORML 「如果变成这样的话、以后就当他的妻子陪在旁边生活好了。当然了还是会时不时来看望%CALLNAME:調教者%的」
 ENDSELECT
 RETURN 0
 
@@ -617,7 +617,7 @@ IF TALENT:奴隷:恋慕 && TALENT:奴隷:浮気公認 >= 浮気_外泊公認 && 
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 「会因为自己的%MSG_RE_LOVER(奴隷)%跟其他男人做爱而感到兴奋吗？ 变态大人？」
-			DATAFORM 「因为这正是%NTR_NAME(4)%正是所希望的%MSG_HEART()%(だって%NTR_NAME(4)%が望むんですもの%MSG_HEART()%)」
+			DATAFORM 「因为这正是他正是所希望的%MSG_HEART()%(だって他が望むんですもの%MSG_HEART()%)」
 		ENDDATA
 	ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 		; あなたの願いだからと主張
@@ -728,11 +728,11 @@ ENDDATA
 IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 	PRINTFORML 「这样的话、那个人也会高兴的吧」
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
-	PRINTFORML 「这样的话、%NTR_NAME(4)%也会高兴吧」
+	PRINTFORML 「这样的话、他也会高兴吧」
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
-	PRINTFORML 「这样的话、不仅仅是%CALLNAME:MASTER%而已，连%NTR_NAME(4)%也会感到高兴吧」
+	PRINTFORML 「这样的话、不仅仅是%CALLNAME:MASTER%而已，连他也会感到高兴吧」
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_主人より高い)
-	PRINTFORML 「这样的话、不仅仅是%CALLNAME:MASTER%而已，连%NTR_NAME(4)%也会感到高兴吧」
+	PRINTFORML 「这样的话、不仅仅是%CALLNAME:MASTER%而已，连他也会感到高兴吧」
 ELSE
 	;
 ENDIF
@@ -752,18 +752,18 @@ RETURN 1
 下着名 = %下着名１_２(奴隷)%
 IF ノーパン
 	IF 1 == 積極度
-		PRINTFORML 「唔哼哼、之所以今天这样做、是因为%NTR_NAME(4)%这样要求的」
+		PRINTFORML 「唔哼哼、之所以今天这样做、是因为他这样要求的」
 		PRINTFORML 「虽然这样感觉好害羞、但是也感觉好刺激呢」
 	ELSE
-		PRINTFORML 「之所以今天这样做、是因为%NTR_NAME(4)%这样要求的」
+		PRINTFORML 「之所以今天这样做、是因为他这样要求的」
 		PRINTFORML 「好羞耻、不要再看了」
 	ENDIF
 ELSE
 	IF 1 == 積極度
 		PRINTDATAL
-			DATAFORM 「唔哼哼、今天之所以这样穿、是因为%NTR_NAME(4)%这样要求的」
-			DATAFORM 「唔哼哼、今天要求要穿这个、是因为%NTR_NAME(4)%这样要求的」
-			DATAFORM 「唔哼哼、被告知今天要穿着个、是因为%NTR_NAME(4)%这样要求的」
+			DATAFORM 「唔哼哼、今天之所以这样穿、是因为他这样要求的」
+			DATAFORM 「唔哼哼、今天要求要穿这个、是因为他这样要求的」
+			DATAFORM 「唔哼哼、被告知今天要穿着个、是因为他这样要求的」
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 「虽然这样感觉好害羞、但是也感觉好刺激呢」
@@ -772,9 +772,9 @@ ELSE
 		ENDDATA
 	ELSE
 		PRINTDATAL
-			DATAFORM 「今天之所以这样穿、是因为%NTR_NAME(4)%这样要求的」
-			DATAFORM 「今天要求要穿这个、是%NTR_NAME(4)%说要这样的」
-			DATAFORM 「被告知今天要穿着个、是被%NTR_NAME(4)%强制要求的」
+			DATAFORM 「今天之所以这样穿、是因为他这样要求的」
+			DATAFORM 「今天要求要穿这个、是他说要这样的」
+			DATAFORM 「被告知今天要穿着个、是被他强制要求的」
 		ENDDATA
 		PRINTDATAL
 			DATAFORM 「・・真的(正直)、好羞耻」
@@ -834,12 +834,12 @@ ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ =
 ENDIF
 IF TALENT:TARGET:浮気公認
 	PRINTDATAL
-		DATAFORM 「在我被%NTR_NAME(4)%抱着的时候、是被禁止和%CALLNAME:PLAYER%做爱的」
+		DATAFORM 「在我被他抱着的时候、是被禁止和%CALLNAME:PLAYER%做爱的」
 		DATALIST
-			DATAFORM 「因为我渴望被%CALLNAME:PLAYER%抱着，所以就去抱%NTR_NAME(4)%了(私は%CALLNAME:PLAYER%が望むから%NTR_NAME(4)%に抱かれるわ)。所以说...%CALLNAME:PLAYER%也会满足我的愿望的吧？」
+			DATAFORM 「因为我渴望被%CALLNAME:PLAYER%抱着，所以就去抱他了(私は%CALLNAME:PLAYER%が望むから他に抱かれるわ)。所以说...%CALLNAME:PLAYER%也会满足我的愿望的吧？」
 			DATAFORM 「唔哼哼・・现在被禁止和%CALLNAME:PLAYER%做爱了」
 		ENDLIST
-		DATAFORM 「唔哼哼・・%NTR_NAME(4)%说了。不能让%CALLNAME:PLAYER%出轨哦(%CALLNAME:PLAYER%が浮気しないようにした方がいいって)」
+		DATAFORM 「唔哼哼・・他说了。不能让%CALLNAME:PLAYER%出轨哦(%CALLNAME:PLAYER%が浮気しないようにした方がいいって)」
 	ENDDATA
 ELSE
 	PRINTDATAL
@@ -858,9 +858,9 @@ IF TALENT:TARGET:浮気公認 && !TALENT:奴隷:亲爱
 	PRINTL 
 	PRINTFORML 「别用看的。对。就是这样，脑补就好了」
 	PRINTDATA
-		DATAFORM 「我被%NTR_NAME(4)%抱的样子・・
-		DATAFORM 「我和%NTR_NAME(4)%做爱的样子・・
-		DATAFORM 「我和%NTR_NAME(4)%口交的样子・・
+		DATAFORM 「我被他抱的样子・・
+		DATAFORM 「我和他做爱的样子・・
+		DATAFORM 「我和他口交的样子・・
 	ENDDATA
 	PRINTDATAL
 		DATAFORM 这就是%CALLNAME:MASTER%的所希望的吧？」
@@ -914,9 +914,9 @@ SELECTCASE BASE:PLAYER:精力
 		ENDDATA
 		IF TALENT:TARGET:浮気公認
 			PRINTDATAL
-				DATAFORM 「这样我就可以放心的去%NTR_NAME(4)%那边了」
-				DATAFORM 「我要去%NTR_NAME(4)%那边了。唔哼哼、如愿以偿了、真开心啊」
-				DATAFORM 「这样的话就不能花心了吧・・我跟%NTR_NAME(4)%待在一起感觉好开心」
+				DATAFORM 「这样我就可以放心的去他那边了」
+				DATAFORM 「我要去他那边了。唔哼哼、如愿以偿了、真开心啊」
+				DATAFORM 「这样的话就不能花心了吧・・我跟他待在一起感觉好开心」
 			ENDDATA
 		ENDIF
 		; 訪問者のもとへ移动
@@ -959,12 +959,12 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在%NTR_NAME(4)%的附近%MSG_HEART()%」
+PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在他的附近%MSG_HEART()%」
 
 PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被%NTR_NAME(4)%一直抱着的」
+	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
 	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被%NTR_NAME(4)%一直抱着的・・我明白了」
+	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
 ENDDATA
 
 PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊%MSG_HEART()%」
@@ -972,8 +972,8 @@ PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊%MSG_H
 IF TALENT:奴隷:恋慕 && TALENT:奴隷:危险日
 	PRINTFORML 「对对、忘记告诉你了。还记得吗？今日、是我的危险日哟？唔哼哼・・」
 	PRINTDATAL
-		DATAFORM 「也许、会被%NTR_NAME(4)%在里面播下种子(%NTR_NAME(4)%に種付けされちゃうかしら)・・%MSG_HEART()%」
-		DATAFORM 「已经被%NTR_NAME(4)%中出得满满当当的了・・如何？是不是感觉很心动？」
+		DATAFORM 「也许、会被他在里面播下种子(他に種付けされちゃうかしら)・・%MSG_HEART()%」
+		DATAFORM 「已经被他中出得满满当当的了・・如何？是不是感觉很心动？」
 		DATAFORM 「会被中出多少呢・・被%CALLNAME:MASTER%以外的人、会怀孕的・・%MSG_HEART()%」
 	ENDDATA
 ELSEIF TALENT:奴隷:恋慕 && !TALENT:奴隷:危险日 && 0 == RAND:10
@@ -998,12 +998,12 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在%NTR_NAME(4)%的附近♪」
+PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在他的附近♪」
 
 PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被%NTR_NAME(4)%一直抱着的」
+	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
 	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被%NTR_NAME(4)%一直抱着的・・我明白了」
+	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
 ENDDATA
 
 PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊♪」
@@ -1011,8 +1011,8 @@ PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊♪」
 IF TALENT:奴隷:恋慕 && TALENT:奴隷:危险日
 	PRINTFORML 「对对、忘记告诉你了。还记得吗？今日、是我的危险日哟？唔哼哼・・」
 	PRINTDATAL
-		DATAFORM 「也许、会被%NTR_NAME(4)%在里面播下种子(%NTR_NAME(4)%に種付けされちゃうかしら)・・？」
-		DATAFORM 「已经被%NTR_NAME(4)%中出得满满当当的了・・如何？是不是感觉很心动？」
+		DATAFORM 「也许、会被他在里面播下种子(他に種付けされちゃうかしら)・・？」
+		DATAFORM 「已经被他中出得满满当当的了・・如何？是不是感觉很心动？」
 		DATAFORM 「会被中出多少呢・・被%CALLNAME:MASTER%以外的人、会怀孕的・・♪」
 	ENDDATA
 ELSEIF TALENT:奴隷:恋慕 && !TALENT:奴隷:危险日 && 0 == RAND:10
@@ -1037,12 +1037,12 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的%NTR_NAME(4)%应该就住在这附近」
+PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的他应该就住在这附近」
 
 PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被%NTR_NAME(4)%一直抱着的」
+	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
 	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被%NTR_NAME(4)%一直抱着的・・我明白了」
+	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
 ENDDATA
 IF TALENT:奴隷:恋慕 && !TALENT:奴隷:危险日 && 0 == RAND:20
 	; 危险日ではなくてあなたが排卵诱发剂を所持、確率1/20
@@ -1065,7 +1065,7 @@ RETURN 0
 #DIM 奴隷
 #DIM 同伴
 
-PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的%NTR_NAME(4)%应该就住在这附近」
+PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的他应该就住在这附近」
 ;PRINTFORML 「ここにいたのね。，ko↑ko↓，ん?」
 
 RETURN 0
@@ -1092,8 +1092,8 @@ PRINTFORML %CALLNAME:奴隷%一边微笑着一边在%CALLNAME:MASTER%的面前�
 PRINTFORML 以自己的意愿喝了排卵诱发剂的%CALLNAME:奴隷%像挑衅一样地低声私语着。
 PRINTFORML 「唔哼哼、这样现在我的『危险日』就来了呢・・」
 PRINTDATAL
-	DATAFORM 「也许、会被%NTR_NAME(4)%在里面播下种子(%NTR_NAME(4)%に種付けされちゃうかしら)・・%MSG_HEART()%」
-	DATAFORM 「已经被%NTR_NAME(4)%中出得满满当当的了・・如何？是不是感觉很心动？」
+	DATAFORM 「也许、会被他在里面播下种子(他に種付けされちゃうかしら)・・%MSG_HEART()%」
+	DATAFORM 「已经被他中出得满满当当的了・・如何？是不是感觉很心动？」
 	DATAFORM 「会被中出多少呢・・被%CALLNAME:MASTER%以外的人、会怀孕的・・%MSG_HEART()%」
 ENDDATA
 PRINTFORML 

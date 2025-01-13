@@ -122,7 +122,6 @@ CFLAG:奴隷:TAKEOUT行为控制计数 += 1 * TALENT:奴隷:浮気的菊花
 CFLAG:奴隷:TAKEOUT行为控制计数 += 1 * TALENT:奴隷:浮気癖
 CFLAG:奴隷:TAKEOUT行为控制计数 += 1 * TALENT:奴隷:淫乱
 CFLAG:奴隷:TAKEOUT行为控制计数 += 1 * TALENT:奴隷:NTR
-CFLAG:奴隷:TAKEOUT行为控制计数 += 1 * TALENT:奴隷:浮気公認
 ;予約時間になるまでは同じ行動
 IF CFLAG:奴隷:TAKEOUT行为结束时间 > DATETIME()
 	RETURN 0
@@ -153,7 +152,7 @@ ELSE
 	RETURN 0
 ENDIF
 ;气氛が悪い時は帰る
-IF CFLAG:奴隷:TAKEOUT行为控制计数 < 0 && TALENT:奴隷:浮気公認 < 5
+IF CFLAG:奴隷:TAKEOUT行为控制计数 < 0
 	;PRINTW 气氛不好回来了
 	CFLAG:奴隷:当前位置 = 位置_红魔馆_正门
 	IF NTR_CHK_VISIBLE(CFLAG:奴隷:当前位置)
@@ -240,7 +239,7 @@ IF CFLAG:奴隷:处女喪失中
 ENDIF
 ;浮気快乐刻印の付与チェック
 CALL NTR_MARK_5(奴隷, 浮気快楽強度)
-IF RESULT:0 && TALENT:奴隷:浮気公認 < 5
+IF RESULT:0
 	DEBUGPRINTFORML 訪問者の气氛减少{-浮気快楽強度 * 2}
 	;浮気快乐刻印が増えたら、一旦气氛を減らして帰りやすくしてあげる
 	CFLAG:奴隷:TAKEOUT行为控制计数 = -浮気快楽強度 * 2

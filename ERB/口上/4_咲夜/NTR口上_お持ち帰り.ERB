@@ -142,7 +142,7 @@ RETURN 0
 #DIM 奴隷
 
 PRINTDATAL
-	DATAFORM 「是啊、从%NTR_NAME(4)%的那边回来的。当然，做了好几次呢」
+	DATAFORM 「是啊、从他的那边回来的。当然，做了好几次呢」
 	DATAFORM 「和他做了吗？ 嗯，这是当然的咯。」
 	DATAFORM 「做了什么？ 除了做爱以外还能做什么？」
 ENDDATA
@@ -230,7 +230,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「呵呵，今天要怎么疼爱我呢？」
 				DATAFORM 「对，就像说好的那样。不论做什么・・・做几次都可以」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%与%NTR_NAME(0)%亲密地挽着手，向%NTR_NAME(4)%的家走去。
+			PRINTFORML %CALLNAME:奴隷%与%NTR_NAME(0)%亲密地挽着手，向他的家走去。
 			PRINTDATA
 				DATAFORM 外宿的事%MSG_LOVER(奴隷)%也知道，
 				DATAFORM 外宿的事是%MSG_LOVER(奴隷)%所希望的，
@@ -252,7 +252,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「呵呵，今天要对我做什么呢？」
 				DATAFORM 「对，就像说好的那样。」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%与%NTR_NAME(0)%挽着手，向%NTR_NAME(4)%的家走去。
+			PRINTFORML %CALLNAME:奴隷%与%NTR_NAME(0)%挽着手，向他的家走去。
 			PRINTDATAL
 				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
 				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
@@ -389,7 +389,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 	PRINTFORML %CALLNAME:奴隷%微笑着指着脖子上带着的项圈
 	IF TALENT:奴隷:恋慕
 		; たぶん死に分岐
-		PRINTFORML 这个项圈是并非是%ANATA_LOVER(奴隷)%，而是被%NTR_NAME(3)%所有的证明。
+		PRINTFORML 这个项圈是并非是%ANATA_LOVER(奴隷)%，而是被男人所有的证明。
 		PRINTFORML 从项圈上延伸出来的锁链并没有被系在哪里。
 		PRINTFORML 也没有被拴在墙上，因为%CALLNAME:奴隷%已经不会擅自逃跑了。
 	ELSE
@@ -404,7 +404,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%微笑着指着脖子上带着的项圈
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 这个项圈是并非是%ANATA_LOVER(奴隷)%，而是被%NTR_NAME(3)%所有的证明。
+		PRINTFORML 这个项圈是并非是%ANATA_LOVER(奴隷)%，而是被男人所有的证明。
 		PRINTFORML 从项圈上延伸出来的锁链被系在墙上。
 		IF TALENT:奴隷:浮気公認
 			PRINTFORML （呵呵・・这个样子好想让%CALLNAME:MASTER%也看看呢・・）
@@ -493,7 +493,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 
 	PRINTFORML 「嗯・・啾・・嗯・・」
-	PRINTFORML %NTR_NAME(0)%吻上了%CALLNAME:奴隷%的唇，因为%CALLNAME:奴隷%太过舒服而闭上了眼睛并将%NTR_NAME(4)%的舌头含入口中。
+	PRINTFORML %NTR_NAME(0)%吻上了%CALLNAME:奴隷%的唇，因为%CALLNAME:奴隷%太过舒服而闭上了眼睛并将他的舌头含入口中。
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 不但如此，她还主动搂住了%NTR_NAME(0)%进一步吻了回去。
 	ENDIF
@@ -507,13 +507,13 @@ ELSE
 
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 「嗯！・・嗯・・嗯・・嗯・・」
-		PRINTFORML %CALLNAME:奴隷%被夺去了嘴唇，就这么将%NTR_NAME(4)%的舌头含入口中。
+		PRINTFORML %CALLNAME:奴隷%被夺去了嘴唇，就这么将他的舌头含入口中。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 这正是%MSG_LOVER(奴隷)%所期望的，于是%CALLNAME:奴隷%委身于%NTR_NAME(0)%巧妙的舌技之下。
 		ENDIF
 	ELSE
 		PRINTFORML 「嗯！姆呜・・嗯、嗯・・嗯！」
-		PRINTFORML %CALLNAME:奴隷%被夺去了嘴唇，就这么将%NTR_NAME(4)%的舌头含入口中。
+		PRINTFORML %CALLNAME:奴隷%被夺去了嘴唇，就这么将他的舌头含入口中。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，对%CALLNAME:MASTER%的爱也消失了。
 		ELSE 
@@ -560,7 +560,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:浮気公認
 		PRINTFORML 因为已经被%CALLNAME:MASTER%所认可了，所以敬请考虑着如何尽可能地享受。
 	ELSE
-		PRINTFORML 在%MSG_LOVER(奴隷)%不在的地方为其他的男人、%NTR_NAME(3)%的肉棒口交，让%CALLNAME:奴隷%感到性奋。
+		PRINTFORML 在%MSG_LOVER(奴隷)%不在的地方为其他的男人、男人的肉棒口交，让%CALLNAME:奴隷%感到性奋。
 	ENDIF
 
 ELSE
@@ -621,7 +621,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
-			PRINTFORML %CALLNAME:奴隷%将对%ANATA_LOVER(奴隷)%的爱抛到脑后，把处女献给了%NTR_NAME(3)%，而不是他。
+			PRINTFORML %CALLNAME:奴隷%将对%ANATA_LOVER(奴隷)%的爱抛到脑后，把处女献给了男人，而不是他。
 		ELSE
 			PRINTFORML 「好啊・・我的第一次就给你吧・・」
 			PRINTFORML %CALLNAME:奴隷%把处女献给了%NTR_NAME(2)%。
@@ -637,7 +637,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
-			PRINTFORML %CALLNAME:奴隷%把把处女献给了%NTR_NAME(3)%，而不是%ANATA_LOVER(奴隷)%。
+			PRINTFORML %CALLNAME:奴隷%把把处女献给了男人，而不是%ANATA_LOVER(奴隷)%。
 			IF TALENT:奴隷:浮気公認
 				PRINTFORML 尽管希望是%MSG_LOVER(奴隷)%，但将处女献给了%MSG_LOVER(奴隷)%以外的人・・令%CALLNAME:奴隷%感到了背德的快感。
 			ENDIF
@@ -657,7 +657,7 @@ ELSE
 		IF TALENT:奴隷:处女 || CFLAG:奴隷:处女喪失中
 			IF TALENT:奴隷:恋慕
 				PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
-				PRINTFORML %CALLNAME:奴隷%把把处女献给了%NTR_NAME(3)%，而不是%ANATA_LOVER(奴隷)%。
+				PRINTFORML %CALLNAME:奴隷%把把处女献给了男人，而不是%ANATA_LOVER(奴隷)%。
 				IF TALENT:奴隷:浮気公認
 					PRINTFORML 尽管希望是%MSG_LOVER(奴隷)%，但将处女献给了%MSG_LOVER(奴隷)%以外的人・・令%CALLNAME:奴隷%感到了背德的快感。
 				ENDIF
@@ -958,7 +958,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「呵呵，今天要怎么疼爱我呢？」
 				DATAFORM 「对，就像说好的那样。不论做什么・・・做几次都可以」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%的家中醒来，拥抱着%NTR_NAME(4)%的同时，用妖艳的声音低语着。
+			PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%的家中醒来，拥抱着他的同时，用妖艳的声音低语着。
 			PRINTDATA
 				DATAFORM 外宿的事%MSG_LOVER(奴隷)%也知道，
 				DATAFORM 外宿的事是%MSG_LOVER(奴隷)%所希望的，
@@ -980,7 +980,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 				DATAFORM 「呵呵，今天要对我做什么呢？」
 				DATAFORM 「对，就像说好的那样。」
 			ENDDATA
-			PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%的家中醒来，拥抱着%NTR_NAME(4)%的同时，用包含期待的声音低语着。。
+			PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%的家中醒来，拥抱着他的同时，用包含期待的声音低语着。。
 			PRINTDATAL
 				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
 				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
@@ -1011,16 +1011,16 @@ ELSE
 	SELECTCASE TALENT:奴隷:浮気公認
 		CASE IS >= 浮気_外泊公認
 			PRINTFORML 「・・好啊，我们开始吧」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了%NTR_NAME(4)%。
+			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了他。
 			PRINTFORML 在外留宿也有一部分原因是为了引起%MSG_LOVER(奴隷)%的注意，%CALLNAME:奴隷%有一半已经后悔了。
 			PRINTFORML （・・都是%CALLNAME:MASTER%・・不好・・）
 		CASE IS >= 浮気_浮気公認
 			PRINTFORML 「・・」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了%NTR_NAME(4)%。
+			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了他。
 			PRINTFORML （・・%CALLNAME:MASTER%・・这样・・真的好吗・・）
 		CASEELSE		; 非公認
 			PRINTFORML 「・・」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了%NTR_NAME(4)%。
+			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:奴隷%老老实实地将身体交给了他。
 			PRINTFORML （・・还・・不能回去吗・・）
 	ENDSELECT
 
@@ -1049,7 +1049,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		DATAFORM 「嗯嗯！ 嗯！！ ・・咕库嗯・・%MSG_HEART()%」
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%不断吮吸着%NTR_NAME(0)%的阴茎，将口内释放在口内的白浊液一滴不剩地喝下。
-	PRINTFORML 因为%NTR_NAME(0)%的肉棒的味道，%NTR_NAME(4)%的精液的腥臭味而恍惚起。
+	PRINTFORML 因为%NTR_NAME(0)%的肉棒的味道，他的精液的腥臭味而恍惚起。
 	PRINTDATAL
 		DATAFORM （啊啊・・真美味・・%MSG_HEART()%）
 		DATAFORM （啊啊・・真浓郁・・好吃・・%MSG_HEART()%）
@@ -1065,9 +1065,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%不断吮吸着%NTR_NAME(0)%的阴茎，将口内释放在口内的白浊液一滴不剩地喝下。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和他的精液已经没有抵触感了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%的肉棒的味，%NTR_NAME(4)%の精液的腥臭味对她而言如同美味一般。
+		PRINTFORML %NTR_NAME(0)%的肉棒的味，他の精液的腥臭味对她而言如同美味一般。
 	ENDIF
 	PRINTDATAL
 		DATAFORM （啊啊・・真美味・・%MSG_HEART()%）
@@ -1084,9 +1084,9 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDDATA
 	PRINTFORML %CALLNAME:奴隷%吮吸着%NTR_NAME(0)%的阴茎，将口内释放在口内的白浊液喝下。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和他的精液已经没有抵触感了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%的肉棒的味，%NTR_NAME(4)%の精液的腥臭味对她而言如同美味一般。
+		PRINTFORML %NTR_NAME(0)%的肉棒的味，他の精液的腥臭味对她而言如同美味一般。
 	ENDIF
 	PRINTDATAL
 		DATAFORM （啊啊・・真美味・・）
@@ -1099,7 +1099,7 @@ ELSE
 	IF TALENT:奴隷:处女 
 		PRINTFORML 「嗯・・嗯嗯嗯！」
 		IF TALENT:奴隷:恋慕
-			PRINTFORML 因为%NTR_NAME_1_2(奴隷)%不愿夺走自己的処女，于是她就用嘴来侍奉%NTR_NAME(4)%的阴茎，让他把精液射在嘴里。
+			PRINTFORML 因为%NTR_NAME_1_2(奴隷)%不愿夺走自己的処女，于是她就用嘴来侍奉他的阴茎，让他把精液射在嘴里。
 			IF TALENT:奴隷:浮気公認
 				PRINTDATAL
 					DATAFORM （・・%CALLNAME:MASTER%・・不行呢・・）
@@ -1114,7 +1114,7 @@ ELSE
 				ENDDATA
 			ENDIF
 		ELSE
-			PRINTFORML 为了让%CALLNAME:奴隷%不夺走自己的処女，于是她就用嘴来侍奉%NTR_NAME(4)%的阴茎，让他把精液射在嘴里。
+			PRINTFORML 为了让%CALLNAME:奴隷%不夺走自己的処女，于是她就用嘴来侍奉他的阴茎，让他把精液射在嘴里。
 			PRINTDATAL
 				DATAFORM （・・只是有点苦呢・・）
 				DATAFORM （・・苦的・・对、只是有点苦呢・・）
@@ -1148,9 +1148,9 @@ ELSE
 		ENDIF
 	ENDIF
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 对%NTR_NAME_1_2(奴隷)%的肉棒和他的精液已经没有抵触感了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%的肉棒的味，%NTR_NAME(4)%の精液的腥臭味对她而言如同美味一般。
+		PRINTFORML %NTR_NAME(0)%的肉棒的味，他の精液的腥臭味对她而言如同美味一般。
 	ENDIF
 
 ENDIF
@@ -1209,7 +1209,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			DATAFORM 「呵呵・・明明夺走我的処女也可以・・♪」
 			DATAFORM 「啊啊・・等不及了吗・・？」
 		ENDDATA
-		PRINTFORML %CALLNAME:奴隷%遵照%NTR_NAME(0)%的命令，抬起屁股，让%NTR_NAME(4)%的阴茎插入菊穴。
+		PRINTFORML %CALLNAME:奴隷%遵照%NTR_NAME(0)%的命令，抬起屁股，让他的阴茎插入菊穴。
 		PRINTFORML %NTR_NAME(0)%坚硬的肉棒探索着%CALLNAME:奴隷%的腸内的更深处，作为征服的证明，在里面将精液释放了出来。
 		IF TALENT:奴隷:恋慕
 			PRINTFORML 菊穴已经变成了%NTR_NAME(0)%的肉棒的形状，因为注入的精液的熱度而感到陶醉。
@@ -1304,7 +1304,7 @@ IF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ)
 		ENDDATA
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%身上摆动着腰，榨取着温热的白浊液。
-	PRINTFORML 从心底里渴望着%NTR_NAME(0)%的肉棒和%NTR_NAME(4)%的精液。
+	PRINTFORML 从心底里渴望着%NTR_NAME(0)%的肉棒和他的精液。
 	PRINTDATAL
 		DATAFORM （啊啊嗯・・好多・・肚子里・・好多・・%MSG_HEART()%）
 		DATAFORM （啊啊・・好棒・・好热・・好棒・・%MSG_HEART()%）
@@ -1328,7 +1328,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%在%NTR_NAME(0)%身上摆动着腰，榨取着温热的白浊液。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对%NTR_NAME(4)%的精液已经几乎没有抵触感了。
+		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对他的精液已经几乎没有抵触感了。
 		PRINTDATAL
 			DATAFORM 「呵呵・・真是个恶劣的人呢・・竟然中出了属于%MSG_LOVER(奴隷)%的女人・・%MSG_HEART()%」
 			DATAFORM 「啊啊・・竟然中出了属于%MSG_LOVER(奴隷)%的女人・・真是个坏人・・%MSG_HEART()%」
@@ -1343,7 +1343,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られ寸前)
 			ENDDATA
 		ENDIF
 	ELSE
-		PRINTFORML 小穴已经熟悉了%NTR_NAME(0)%的肉棒，对%NTR_NAME(4)%的精液已经几乎没有抵触感了。
+		PRINTFORML 小穴已经熟悉了%NTR_NAME(0)%的肉棒，对他的精液已经几乎没有抵触感了。
 		PRINTDATAL
 			DATAFORM （啊啊嗯・・好多・・肚子里・・好多・・%MSG_HEART()%）
 			DATAFORM （啊啊・・好棒・・好热・・好棒・・%MSG_HEART()%）
@@ -1368,7 +1368,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 	ENDIF
 	PRINTFORML %CALLNAME:奴隷%抱着%NTR_NAME(0)%摆动着腰，用阴道的深处喝下精子。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对他的精液已经没有抵触感了。
 		PRINTDATAL
 			DATAFORM 「呵呵・・真是个恶劣的人呢・・竟然中出了属于%MSG_LOVER(奴隷)%的女人・・♪」
 			DATAFORM 「啊啊・・竟然中出了属于%MSG_LOVER(奴隷)%的女人・・真是个坏人・・♪」
@@ -1383,7 +1383,7 @@ ELSEIF NTR_CHK_FAVORABLY(奴隷, FAV_寝取られそう)
 			ENDDATA
 		ENDIF
 	ELSE
-		PRINTFORML 小穴已经变成了%NTR_NAME(0)%的肉棒的形状，对%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 小穴已经变成了%NTR_NAME(0)%的肉棒的形状，对他的精液已经没有抵触感了。
 		PRINTDATAL
 			DATAFORM （啊啊嗯・・好多・・肚子里・・好多・・♪）
 			DATAFORM （啊啊・・好棒・・好热・・好棒・・♪）
@@ -1416,9 +1416,9 @@ ELSE
 	ENDIF
 	PRINTFORML %NTR_NAME(0)%把%CALLNAME:奴隷%强行押在身下，无情地侵犯，并朝着她的子宮射精了。
 	IF TALENT:奴隷:恋慕
-		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 小穴已经变成了%NTR_NAME_1_2(奴隷)%的肉棒的形状，对他的精液已经没有抵触感了。
 	ELSE
-		PRINTFORML 小穴已经变成了%NTR_NAME(0)%的肉棒的形状，对%NTR_NAME(4)%的精液已经没有抵触感了。
+		PRINTFORML 小穴已经变成了%NTR_NAME(0)%的肉棒的形状，对他的精液已经没有抵触感了。
 	ENDIF
 	IF TALENT:奴隷:恋慕
 		IF TALENT:奴隷:浮気公認
