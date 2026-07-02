@@ -1,0 +1,57 @@
+;-------------------------------------------------------------------------------
+;キス
+@NTR_KISS(角色,調教者=人物_訪問者)
+#DIM 角色
+#DIM 調教者
+#DIM 行為上限値
+TCVAR:角色:行為者 = 調教者
+TCVAR:行為者 = 調教者
+;玩家在场（見せつけ）
+CALL NTR_KISS_PET_FELLA_MSG_KOJO_01(角色, 2)
+IF FLAG:访问者当前行为中止时刻 == 0
+	FLAG:访问者行为计时点 = DATETIME()
+	CALL NTR_ADD_SURRENDER(角色, 2)
+	SIF EXP:角色:NTR陷落经验 
+		CALL NTR_ADD_SURRENDER(角色, 1)
+	SIF TALENT:角色:浮気的蜜唇
+		CALL NTR_ADD_SURRENDER(角色, 1)
+	BASE:角色:气力 -= 80
+	IF TALENT:角色:浮気的蜜唇
+		SOURCE:角色:情爱 = 100
+		SOURCE:角色:性行动 = 10
+		SOURCE:角色:逸脱 = 10
+	ELSE
+		SOURCE:角色:情爱 = 50
+		SOURCE:角色:性行动 = 10
+		SOURCE:角色:逸脱 = 10
+	ENDIF
+	IF TALENT:角色:NTR || TALENT:角色:浮気的蜜唇
+		SOURCE:角色:屈从 = 20
+		SOURCE:角色:反感 = 0
+	ELSEIF CFLAG:角色:屈服度 > 1000
+		SOURCE:角色:屈从 = 15
+		SOURCE:角色:反感 = 5
+	ELSE
+		SOURCE:角色:屈从 = 10
+		SOURCE:角色:反感 = 10
+	ENDIF
+	SIF TALENT:角色:自己爱 < 0 || TALENT:角色:抵抗
+		SOURCE:角色:抑郁 += 10
+	CALL NTR_EXP_ADD_KISS(角色,1)
+	FLAG:访问者当前行为中止时刻 = DATETIME() + 10
+	CALL NTR_EXP_ADD_M_EX(角色,1)
+	FLAG:访问者当前行为 = NTR_行为_接吻
+	CFLAG:角色:当前与访问者行为 = NTR_行为_接吻
+	CALL LOST_VIRGIN_M(角色, 人物_訪問者)
+	CFLAG:角色:和访问者已接吻 = 1
+	CALL NTR_SOURCE_CHECK_LITE(角色,調教者)
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;キス終了（絶頂）
+;@return 常に0
+@NTR_KISS_FINISH(角色)
+#DIM 角色
+CALL NTR_KISS_PET_FELLA_MSG_KOJO_2(角色, 2)
+RETURN 0

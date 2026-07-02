@@ -1,0 +1,168 @@
+﻿;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 今日のぱんつについて 実行判定
+; RETURN 0 コマンドの実行不可
+; RETURN 1 コマンドの実行可能
+@COM300_15_ENABLE
+#DIM 角色
+#DIM 下着１ = GETNUM(EQUIP,"下半身下着１")
+#DIMS 下着名
+角色 = TARGET:0
+下着名 = %下着名１_２(角色)%
+RESULTS:0 = %"[15]- 关于"+CALLNAME:角色+"穿着的"+下着名+"的信息"%
+IF TCVAR:角色:会话不能
+	RETURN 0
+ELSEIF Unknown下着(角色, 下着１)
+	;下着不明ならダメ
+	RETURN 0
+ELSEIF SHOW_BOTTOM(角色) == ""
+	;下半身丸出しだとダメ
+	RETURN 0
+ELSEIF CFLAG:角色:ぱんつ確認 == 3
+	;既にぱんつについて会话してたらダメ(1であれば脱がしたこと、2であれば覗きによる確認)
+	RETURN 0
+ELSE
+	RETURN 1
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 今日のぱんつについて話す
+; RETURN 0 コマンドの実行に失敗
+; RETURN 1 コマンドの実行に成功
+@COM300_15
+#DIM 調教者
+#DIM 角色
+調教者 = PLAYER:0
+角色 = TARGET:0
+IF TALENT:角色:小恶魔 || TALENT:角色:淫乱
+	CALL MESSAGE_COM_300_15_02(調教者,角色)
+ELSEIF CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 999
+	CALL MESSAGE_COM_300_15_03(調教者,角色)
+ELSEIF CFLAG:角色:ぱんつ確認 == 2
+	CALL MESSAGE_COM_300_15_04(調教者,角色)
+ELSE
+	CALL MESSAGE_COM_300_15_05(調教者,角色)
+ENDIF
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;会话拡張：ぱんつについて：ADULT下着（小恶魔/淫乱)
+;　前提：小恶魔または淫乱
+@MESSAGE_COM_300_15_02(調教者,角色)
+#DIM 調教者
+#DIM 角色
+#DIMS 下着名
+#DIM ノーパン
+
+CFLAG:角色:ぱんつ確認 = 3
+;はいてないかチェック
+ノーパン = CHK_NO_PANTS(角色)
+IF 1 == ノーパン
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"是不是没有穿内裤、"%
+	PRINTFORML %CALLNAME:角色+"眼瞳中充满了粉红的情欲，带着淫媚的笑容反问，如果"+CALLNAME:角色+"下面是真空的，"+CALLNAME:調教者+"会不会变得很兴奋。"%
+ELSE
+	下着名 = %下着名１_２(角色)%
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"是不是穿着"+下着名+"的时候、"%
+	PRINTFORML %CALLNAME:角色+"脸上浮现出淫媚的表情，反问"+下着名+"合不合适、让"+CALLNAME:調教者+"感到兴奋了吗。"%
+ENDIF
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_15_02(角色, 調教者, ノーパン)
+	FUNC KOJO_MESSAGE_COM_KU_300_15_02(角色, 調教者, ノーパン)
+ENDFUNC
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;会话拡張：ぱんつについて：ADULT下着（NTR)
+;　前提：屈服度が好感度より高く、屈服度が999以上
+@MESSAGE_COM_300_15_03(調教者,角色)
+#DIM 調教者
+#DIM 角色
+#DIMS 下着名
+#DIM ノーパン
+#DIM 積極度
+
+CFLAG:角色:ぱんつ確認 = 3
+;はいてないかチェック
+ノーパン = CHK_NO_PANTS(角色)
+;積極度チェック
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+	積極度 = 1
+ELSEIF TALENT:角色:小恶魔 || TALENT:角色:淫乱
+	積極度 = 1
+ELSE
+	積極度 = 0
+ENDIF
+;はいてないかチェック
+IF 1 == ノーパン
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"下面是不是真空的、"%
+	IF 1 == 積極度
+		PRINTFORML %CALLNAME:角色+"一时间满脸通红，解释说、是听从"+NTR_NAME(0)+"的话才这样做的。"%
+	ELSE
+		PRINTFORML %CALLNAME:角色+"一时间满脸通红，解释说、是因为被"+NTR_NAME(0)+"要求了、才不得不这么做。"%
+	ENDIF
+ELSE
+	下着名 = %下着名１_２(角色)%
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"是不是穿着"+下着名+"的时候、"%
+	IF 1 == 積極度
+		PRINTFORML %CALLNAME:角色+"双颊绯红，解释说、是听从"+NTR_NAME(0)+"的话才这样做的。"%
+	ELSE
+		PRINTFORML %CALLNAME:角色+"双颊绯红，解释说、是因为被"+NTR_NAME(0)+"要求了、才不得不这么做。"%
+	ENDIF
+ENDIF
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_15_03(角色, 調教者, ノーパン, 積極度)
+	FUNC KOJO_MESSAGE_COM_KU_300_15_03(角色, 調教者, ノーパン, 積極度)
+ENDFUNC
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;会话拡張：ぱんつについて：普通の下着(覗きで確認した場合)
+@MESSAGE_COM_300_15_04(調教者,角色)
+#DIM 調教者
+#DIM 角色
+#DIMS 下着名
+
+CFLAG:角色:ぱんつ確認 = 3
+;はいてないかチェック
+IF 1 == CHK_NO_PANTS(角色)
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"的下面是不是什么都没穿、"%
+	PRINTFORML %CALLNAME:角色+"顿时满脸通红，生气地反过来质问"+CALLNAME:調教者+"、是怎么知道的，是什么时候偷看的！"%
+ELSE
+	下着名 = %下着名１_２(角色)%
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"是不是穿着"+下着名+"的时候、"%
+	PRINTFORML %CALLNAME:角色+"顿时满脸通红，生气地反过来质问"+CALLNAME:調教者+"、是怎么知道的，是什么时候偷看的！"%
+ENDIF
+;怒意は好感度で相殺できる
+IF 0 != CFLAG:角色:好感度
+	SOURCE:角色:反感 = LIMIT(100000/CFLAG:角色:好感度,0,1000)
+ELSE
+	SOURCE:角色:反感 = 1000
+ENDIF
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_15_04(角色, 調教者)
+	FUNC KOJO_MESSAGE_COM_KU_300_15_04(角色, 調教者)
+ENDFUNC
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;会话拡張：ぱんつについて：普通の下着(脱がせて確認した場合)
+@MESSAGE_COM_300_15_05(調教者,角色)
+#DIM 調教者
+#DIM 角色
+#DIMS 下着名
+
+CFLAG:角色:ぱんつ確認 = 3
+;はいてないかチェック
+IF 1 == CHK_NO_PANTS(角色)
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"的下面是不是什么都没穿、"%
+	PRINTFORML %CALLNAME:角色+"红着脸，祈求"+CALLNAME:調教者+"不要对别人说。"%
+ELSE
+	下着名 = %下着名１_２(角色)%
+	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"是不是穿着"+下着名+"的时候、"%
+	PRINTFORML %CALLNAME:角色+"责备了"+CALLNAME:調教者+"，希望不要再说那种话。"%
+ENDIF
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_15_05(角色, 調教者)
+	FUNC KOJO_MESSAGE_COM_KU_300_15_05(角色, 調教者)
+ENDFUNC
+RETURN 1

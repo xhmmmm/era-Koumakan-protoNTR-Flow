@@ -1,0 +1,53 @@
+﻿;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 売春について 実行判定
+; RETURN 0 コマンドの実行不可
+; RETURN 1 コマンドの実行可能
+@COM300_13_ENABLE
+#DIM 角色
+
+角色 = TARGET:0
+RESULTS:0 = %"[13]-"+CALLNAME:角色+"的卖淫情况"%
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 売春について話す
+; RETURN 0 コマンドの実行に失敗
+; RETURN 1 コマンドの実行に成功
+@COM300_13
+#DIM 角色
+#DIM 調教者
+
+角色 = TARGET:0
+調教者 = PLAYER:0
+;売春人数で分岐
+PRINTFORM %CALLNAME:(TARGET:0)%はこれまでに
+SELECTCASE EXP:(TARGET:0):浮気人数-1
+	CASE IS <= 5
+		PRINTFORML 已经和一掌以内数量的人做过了。
+	CASE IS <= 10
+		PRINTFORML 已经被两只手才数得过来的人做过了。
+	CASE IS <= 20
+		PRINTFORML 已经被两只手都数不过来的数量的人做过了。
+	CASEELSE
+		PRINTFORML 到底和多少人做过了、数都数不清了。
+ENDSELECT
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_13_01(角色, 調教者)
+	FUNC KOJO_MESSAGE_COM_KU_300_13_01(角色, 調教者)
+ENDFUNC
+;前回の売春時に寝た人数
+IF EXP:角色:前回浮気人数 > 0
+	PRINTL
+	PRINTFORML この前は{EXP:角色:前回浮気人数}人と寝たと言った。
+	TRYCALLLIST
+		FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_13_01_3(角色, 調教者)
+		FUNC KOJO_MESSAGE_COM_KU_300_13_01_3(角色, 調教者)
+	ENDFUNC
+ENDIF
+PRINTL
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{CFLAG:角色:口上パターン}_300_13_02(角色, 調教者)
+	FUNC KOJO_MESSAGE_COM_KU_300_13_02(角色, 調教者)
+ENDFUNC
+RETURN 1
+;RETURN 0

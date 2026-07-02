@@ -1,0 +1,108 @@
+;-------------------------------------------------------------------------------
+;	お持ち帰りからの帰宅時処理
+;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
+;朝のご侍奉(口交)
+@NTR_MORNING_SERVICE_FELLATIO(角色)
+#DIM 角色
+CALL EJACULATION_M(角色, 人物_訪問者)
+CALL NTR_EXP_ADD_M_SEX(角色,1)
+; IF !TALENT:角色:亲爱
+; CALL NTR_EXP_ADD_M_SEX(角色,1)
+; ENDIF
+CALL LOST_VIRGIN_M(角色, 人物_訪問者,1)
+IF NTR_CHK_VISIBLE(900)
+	CALL NTR_MESSAGE_14_0(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_14_0(角色)
+		FUNC NTR_KOJO_K_14_0(角色)
+	ENDFUNC
+ENDIF
+;手
+CALL STAIN_ADD_SEMEN_HAND(角色, 人物_訪問者)
+;好感度吸収
+CALL NTR_DRAIN_LOVE(角色, 20)
+
+;-------------------------------------------------------------------------------
+;朝のご侍奉(性交)
+@NTR_MORNING_SERVICE_VSEX(角色)
+#DIM 角色
+CALL EJACULATION_V(角色, 人物_訪問者)
+CALL NTR_EXP_ADD_V_SEX_EX(角色,1)
+IF 訪問者_Ｐ大きさ == 2
+	CALL NTR_EXP_ADD_V_EXPANSION(角色,1)
+	SIF GETBIT(FLAG:ＮＴＲパッチ設定,32) || CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置
+		PRINTFORML %CALLNAME:角色%的小穴被%NTR_NAME(0)%怒挺的大肉棒蹂躏着…
+	IF ( TALENT:角色:受虐狂 || ABL:角色:抖Ｍ之气 > 2 ) && EXP:角色:Ｖ扩张经验 + EXP:角色:浮気Ｖ扩张经验 < 450
+		CUP:角色:欲情 += 500
+		CUP:角色:苦痛 += 250
+	ELSEIF EXP:角色:Ｖ扩张经验 + EXP:角色:浮気Ｖ扩张经验 < 450
+		CUP:角色:苦痛 += 500
+	ENDIF
+ENDIF
+; IF !TALENT:角色:亲爱
+; CALL NTR_EXP_ADD_V_SEX(角色,1)
+; EXP:角色:浮気绝顶经验 ++
+; ENDIF
+CALL 改变小穴色素(角色,1)
+CALL 締り具合変動, 角色, 3, 0
+CALL LOST_VIRGIN(角色,PLAYER)
+
+CALL NTR_GET_WEAKNESS_2(角色)
+;V感覚が高いと绝顶经验加算（強絶頂扱い）
+CALL NTR_V_EXP_PLUS(角色)
+IF NTR_CHK_VISIBLE(900)
+	CALL NTR_MESSAGE_14_2(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_14_2(角色)
+		FUNC NTR_KOJO_K_14_2(角色)
+	ENDFUNC
+ENDIF
+;好感度吸収
+CALL NTR_DRAIN_LOVE(角色, 50)
+;快楽経験追加
+CALL EXP_GOT_CHECK(角色)
+CFLAG:角色:与访问者最后做爱的时间 = DATETIME()
+
+;-------------------------------------------------------------------------------
+;朝のご侍奉(Ａ性交)
+@NTR_MORNING_SERVICE_ASEX(角色)
+#DIM 角色
+CALL EJACULATION_A(角色, 人物_訪問者)
+CALL NTR_EXP_ADD_A(角色,1)
+CALL NTR_EXP_ADD_A_SEX(角色,1)
+CALL NTR_EXP_ADD_A_EX(角色,1)
+IF 訪問者_Ｐ大きさ == 2
+	CALL NTR_EXP_ADD_A_EXPANSION(角色,1)
+	SIF GETBIT(FLAG:ＮＴＲパッチ設定,32) || CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置
+		PRINTFORML %CALLNAME:角色%的肛穴被%NTR_NAME(0)%坚挺的大肉棒狠狠地操弄着…
+	IF ( TALENT:角色:受虐狂 || ABL:角色:抖Ｍ之气 > 2 ) && EXP:角色:Ａ扩张经验 + EXP:角色:浮気Ａ扩张经验 < 450
+		CUP:角色:欲情 += 500
+		CUP:角色:苦痛 += 250
+	ELSEIF EXP:角色:Ａ扩张经验 + EXP:角色:浮気Ａ扩张经验 < 450
+		CUP:角色:苦痛 += 500
+	ENDIF
+ENDIF
+; IF !TALENT:角色:亲爱
+; CALL NTR_EXP_ADD_A_SEX(角色,1)
+; EXP:角色:浮気绝顶经验 ++
+; ENDIF
+CALL 改变肛门色素(角色,1)
+CALL 締り具合変動, 角色, 3, 1
+CALL LOST_VIRGIN_A(角色,PLAYER)
+
+CALL NTR_GET_WEAKNESS_2(角色)
+;A感覚が高いと绝顶经验加算（強絶頂扱い）
+CALL NTR_A_EXP_PLUS(角色)
+IF NTR_CHK_VISIBLE(900)
+	CALL NTR_MESSAGE_14_1(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_14_1(角色)
+		FUNC NTR_KOJO_K_14_1(角色)
+	ENDFUNC
+ENDIF
+;好感度吸収
+CALL NTR_DRAIN_LOVE(角色, 50)
+;快楽経験追加
+CALL EXP_GOT_CHECK(角色)
+CFLAG:角色:与访问者最后做爱的时间 = DATETIME()

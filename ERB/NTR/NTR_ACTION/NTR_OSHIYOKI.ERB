@@ -1,0 +1,169 @@
+;-------------------------------------------------------------------------------
+;訪問者によるお仕置き
+@NTR_PUNISHMENT(角色)
+#DIM 角色
+#DIM 仕置き行為
+#DIM 仕置き行為上限
+;あなた限定
+IF 角色 == 0
+	CALL NTR_PUNISHMENT_2(0)
+	;その他住人
+ELSE
+	仕置き行為上限=1
+	IF TALENT:角色:NTR
+		仕置き行為上限=4
+	ELSE
+		;行為種別で分岐
+		IF FLAG:訪問者の气氛 == 2
+			仕置き行為上限=1
+		ELSEIF FLAG:訪問者の气氛 == 3
+			仕置き行為上限=2
+		ELSEIF FLAG:訪問者の气氛 == 4
+			仕置き行為上限=3
+		ENDIF
+	ENDIF
+	仕置き行為 = RAND:仕置き行為上限
+	IF 仕置き行為 > 3
+		仕置き行為 = 3
+	ENDIF
+	;处女に跳蛋V挿入はしない
+	IF TALENT:角色:处女
+		IF 仕置き行為 == 2
+			仕置き行為 = 0
+		ELSEIF 仕置き行為 == 3
+			仕置き行為 = 1
+		ENDIF
+	ENDIF
+	;結果に応じて処理
+	IF 仕置き行為 == 3
+		CALL NTR_PUNISHMENT_3(角色)
+	ELSEIF 仕置き行為 == 2
+		CALL NTR_PUNISHMENT_1(角色)
+	ELSEIF 仕置き行為 == 1
+		CALL NTR_PUNISHMENT_2(角色)
+	ELSE
+		CALL NTR_PUNISHMENT_0(角色)
+	ENDIF
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;パンツを脱がせる
+@NTR_PUNISHMENT_0(角色)
+#DIM 角色
+SIF !CFLAG:角色:服装_下半身下着２
+	RETURN 1
+CFLAG:角色:服装_下半身下着２ = 0
+IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
+	PRINTFORML %NTR_NAME(0)%把%CALLNAME:角色%的内裤夺走了
+	PRINTFORML 下达了今天一天不准穿内裤的命令，然后整理了弄乱的衣服…
+	SIF FLAG:口上颜色
+		CALL KOJO_COLOR(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_15_0(角色)
+		FUNC NTR_KOJO_K_15_0(角色)
+	ENDFUNC
+	RESETCOLOR
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;跳蛋挿入
+@NTR_PUNISHMENT_1(角色)
+#DIM 角色
+SIF !HAS_VAGINA(角色)
+	RETURN 1
+SIF CFLAG:角色:跳蛋挿入 != 0
+	RETURN 1
+IF TALENT:角色:处女
+	CALL NTR_PUNISHMENT_2(角色)
+	RETURN 0
+ENDIF
+CFLAG:角色:跳蛋挿入 = 240
+IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
+	PRINTFORML %NTR_NAME(0)%在%CALLNAME:角色%的小穴里插入跳蛋然后固定住
+	PRINTFORML 命令暂时保持这个样子，然后整理了弄乱的衣服…
+	SIF FLAG:口上颜色
+		CALL KOJO_COLOR(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_15_1(角色)
+		FUNC NTR_KOJO_K_15_1(角色)
+	ENDFUNC
+	RESETCOLOR
+	CFLAG:角色:跳蛋挿入者 = 人物_訪問者
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;跳蛋A挿入
+@NTR_PUNISHMENT_2(角色)
+#DIM 角色
+SIF CFLAG:角色:跳蛋A挿入 != 0
+	RETURN 1
+CFLAG:角色:跳蛋A挿入 = 240
+IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
+	PRINTFORML %NTR_NAME(0)%在%CALLNAME:角色%的后穴里插入跳蛋然后固定住
+	PRINTFORML 命令暂时保持这个样子，然后整理了弄乱的衣服…
+	SIF FLAG:口上颜色
+		CALL KOJO_COLOR(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_15_2(角色)
+		FUNC NTR_KOJO_K_15_2(角色)
+	ENDFUNC
+	RESETCOLOR
+	CFLAG:角色:跳蛋挿入者 = 人物_訪問者
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;跳蛋前後挿入
+@NTR_PUNISHMENT_3(角色)
+#DIM 角色
+IF !HAS_VAGINA(角色)
+	CALL NTR_PUNISHMENT_2(角色)
+	RETURN 0
+ENDIF
+CFLAG:角色:跳蛋挿入 = 240
+CFLAG:角色:跳蛋A挿入 = 240
+IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
+	PRINTFORML %NTR_NAME(0)%在%CALLNAME:角色%的两个小穴里插入跳蛋然后固定住
+	PRINTFORML 命令暂时保持这个样子，然后整理了弄乱的衣服…
+	SIF FLAG:口上颜色
+		CALL KOJO_COLOR(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_15_3(角色)
+		FUNC NTR_KOJO_K_15_3(角色)
+	ENDFUNC
+	RESETCOLOR
+	CFLAG:角色:跳蛋挿入者 = 人物_訪問者
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;精液残留
+;角色 … 対象者コード
+;部位 … 0:膣内 1:菊花
+@NTR_PUNISHMENT_10(角色, 部位)
+#DIM 角色
+#DIM 部位
+SIF !HAS_VAGINA(角色)
+	RETURN 1
+SIF CFLAG:角色:精液残留中 != 0
+	RETURN 1
+CFLAG:角色:精液残留中 = 40
+IF NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
+	PRINTFORML 
+	IF 部位 == 0
+		PRINTFORML %NTR_NAME(0)%注入的大量精液就像是拒绝溢出一样在%CALLNAME:角色%的膣内留了下来…
+	ELSE
+		PRINTFORML %NTR_NAME(0)%注入的大量精液就像是拒绝溢出一样在%CALLNAME:角色%的肠内留了下来…
+	ENDIF
+	SIF FLAG:口上颜色
+		CALL KOJO_COLOR(角色)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_15_10(角色)
+		FUNC NTR_KOJO_K_15_10(角色)
+	ENDFUNC
+	RESETCOLOR
+ENDIF
+RETURN 0

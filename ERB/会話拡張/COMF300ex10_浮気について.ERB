@@ -1,0 +1,206 @@
+﻿;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 浮気について話す 実行判定
+; RETURN 0 コマンドの実行不可
+; RETURN 1 コマンドの実行可能
+@COM300_10_ENABLE
+#DIM 角色
+
+角色 = TARGET:0
+RESULTS:0 = %"[10]-关于"+CALLNAME:角色+"出轨的事"%
+IF FLAG:Flow版本
+	;todo
+	RETURN 0
+ELSEIF TCVAR:角色:会话不能
+	RETURN 0
+ELSE
+	IF CFLAG:角色:浮気证据有效 > 0
+		;ELSEIF STRCOUNT(SAVESTR:10,@"%CALLNAME:角色+"15PH/"%") + STRCOUNT(SAVESTR:10,@"%CALLNAME:角色+"16PH/"%")
+		;浮気の証拠がある
+		RETURN 1
+	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い) == 0 && NTR_CHK_FAVORABLY(角色, FAV_寝取られそう) == 0 && NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) == 0
+		RETURN 0
+	ELSEIF TALENT:角色:恋慕 == 0
+		RETURN 0
+	ELSE
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;会话コマンド(拡張版) - 浮気について話す
+; RETURN 0 コマンドの実行に失敗
+; RETURN 1 コマンドの実行に成功
+;SOURCEは合計300ぐらいの変化でいいかな
+@COM300_10
+#DIM 角色
+#DIM 調教者
+
+角色 = TARGET:0
+調教者 = PLAYER:0
+;会话累積値を増やしたりの処理は共通、時間は少し多めに
+LOSEBASE:气力 += 100
+DOWNBASE:調教者:气力 += 100
+DOWNBASE:角色:气力 += 100
+TCVAR:会话累積値 += 200 / (3 + ABL:MASTER:话术技能)
+TIME += 15
+;-----------------------------------------------------------------------------
+;会话不能があると失敗
+IF TCVAR:角色:会话不能
+	PRINTFORML %"想去跟"+CALLNAME:角色+"搭话但不知道说些什么"%
+	PRINTFORML %"尴尬的空气在四周流动……"%
+	TFLAG:コマンド成功度 = -1
+	RETURN 0
+ELSE
+	;特殊会话すると会话不能が増える
+	TCVAR:角色:会话不能 ++
+ENDIF
+;-----------------------------------------------------------------------------
+EXP:MASTER:会话经验 ++
+TFLAG:コマンド成功度 = 0
+IF FLAG:Flow版本
+	;todo
+	PRINTFORML 这个内容已经删了
+	; どちらの場合もここでフラグを消す。
+	CFLAG:角色:NTR处女喪失 = 0
+ENDIF
+RETURN RESULT:0
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;浮気について問い詰める
+@COM300_10_01
+#DIM 角色
+#DIM 調教者
+#DIM 浮気の証拠がある = 0
+
+角色 = TARGET:0
+調教者 = PLAYER:0
+;浮気の証拠がある = STRCOUNT(SAVESTR:10,@"%"/"+CALLNAME:角色+"15PH\d*/"%") + STRCOUNT(SAVESTR:10,@"%"/"+CALLNAME:角色+"16PH\d*/"%")
+PRINTL
+PRINTFORM %CALLNAME:調教者+"质问起和"+NTR_NAME(0)+"之间的关系"%
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+	IF CFLAG:汚れ発覚 == 汚れ発覚_あり
+		;精液汚れを見つけられた場合
+		PRINTFORML %CALLNAME:角色+"坦率地承认了出轨，反问有什么问题。"%
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:挑衅 += 200
+		SOURCE:角色:逸脱 += 100
+	ELSEIF (CFLAG:覗き発覚回数 > 0 && CFLAG:覗き発覚時行為 > 0) || (CFLAG:同席目撃回数 > 0 && CFLAG:同席目撃時行為 > 0)
+		;覗きバレしていた場合
+		PRINTFORML %CALLNAME:角色+"毫无愧疚地承认了出轨，反问"+MSG_RE_LOVER(角色)+"一直窥视而没有挺身而出、是因为看到"+CALLNAME:角色+"被肆意侵犯的样子而感到兴奋了吗？"%
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:挑衅 += 200
+		SOURCE:角色:逸脱 += 100
+	ELSE
+		;寝取られ寸前なら、証拠が無くても隠そうとしない
+		PRINTFORML %CALLNAME:角色+"坦率地承认了出轨，反问有什么问题。"%
+		SOURCE:角色:逸脱 += 300
+	ENDIF
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+	;寝取られそうなら嘘を吐こうとする
+	IF CFLAG:汚れ発覚 == 汚れ発覚_あり
+		;精液汚れを見つけられた場合、逆ギレで開き直る
+		PRINTFORML %CALLNAME:角色+"坦率地承认了出轨，反问有什么问题。"%
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:反感 += 300
+	ELSEIF (CFLAG:覗き発覚回数 > 0 && CFLAG:覗き発覚時行為 > 0) || (CFLAG:同席目撃回数 > 0 && CFLAG:同席目撃時行為 > 0)
+		;覗きバレしていた場合
+		PRINTFORML %CALLNAME:角色+"将自己的出轨行为放在一边、反而出声质问"+MSG_RE_LOVER(角色)+"为什么一直偷窥而不出来帮助呢、该不会是看到"+CALLNAME:角色+"被侵犯的样子而兴奋了吧？"%
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:反感 += 300
+	ELSEIF CFLAG:角色:浮気证据有效 > 0
+		CFLAG:角色:浮気证据有效 = 0
+		;浮気の証拠がある場合、嘘を暴かれてしまう
+		PRINTFORML %CALLNAME:角色+"撒谎说并没有出轨，但看到证据的写真后慌慌张张地进行辩解了。"%
+		SOURCE:角色:反感 += 100
+		SOURCE:角色:恐怖 += 200
+	ELSE
+		;浮気の証拠がない場合、嘘と責任転嫁で切り抜ける
+		PRINTFORML %CALLNAME:角色+"生气地说自己并没有出轨、并对怀疑自己的"+MSG_RE_LOVER(角色)+"大发脾气。"%
+		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。</font>"
+		SOURCE:角色:反感 += 150
+		SOURCE:角色:恐怖 += 100
+		SOURCE:角色:抑郁 += 50
+		TFLAG:コマンド成功度 = -1
+		;会话はここで終わる
+		RETURN 0
+	ENDIF
+ELSE
+	;それ以外の場合
+	IF CFLAG:汚れ発覚 == 汚れ発覚_あり
+		;精液汚れを見つけられた場合、強姦だったということにして切り抜ける
+		PRINTFORML %CALLNAME:角色+"辩解说自己是被强奸了。"%
+		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:反感 += 150
+		SOURCE:角色:抑郁 += 150
+		TFLAG:コマンド成功度 = -1
+		;会话はここで終わる
+		RETURN 1
+	ELSEIF (CFLAG:覗き発覚回数 > 0 && CFLAG:覗き発覚時行為 > 0) || (CFLAG:同席目撃回数 > 0 && CFLAG:同席目撃時行為 > 0)
+		;覗きバレしていた場合、強姦だったということにして切り抜ける
+		PRINTFORML %CALLNAME:角色+"质问"+MSG_LOVER(角色)+"明明看到自己被强奸为什么不出来帮助自己、是自己没有被帮助的价值吗？"%
+		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		CFLAG:覗き発覚回数 = 0
+		CFLAG:覗き発覚時行為 = 0
+		CFLAG:同席目撃回数 = 0
+		CFLAG:同席目撃時行為 = 0
+		SOURCE:角色:反感 += 150
+		SOURCE:角色:抑郁 += 150
+		TFLAG:コマンド成功度 = -1
+		;会话はここで終わる
+		RETURN 1
+	ELSEIF CFLAG:角色:浮気证据有效 > 0
+		CFLAG:角色:浮気证据有效 = 0
+		;浮気の証拠がある場合、嘘を暴かれてしまう
+		PRINTFORML %CALLNAME:角色+"虽然撒谎自己并没有出轨、但看到作为出轨证据的写真一时什么话也说不出来了。"%
+		SOURCE:角色:恐怖 += 300
+	ELSE
+		;浮気の証拠がない場合、嘘と責任転嫁で切り抜ける
+		PRINTFORML %CALLNAME:角色+"生气地说自己并没有出轨、难道不值得信任吗？"%
+		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		SOURCE:角色:反感 += 100
+		SOURCE:角色:恐怖 += 100
+		SOURCE:角色:抑郁 += 100
+		TFLAG:コマンド成功度 = -1
+		;会话はここで終わる
+		RETURN 0
+	ENDIF
+ENDIF
+;ここで表示する口上は「それで、どうしたいの？」とかそんな感じ？
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_COM_K{角色}_300_10_01(角色, 調教者)
+	FUNC KOJO_MESSAGE_COM_KU_300_10_01(角色, 調教者)
+ENDFUNC
+PRINTL
+PRINTFORML %"[1]-出轨是绝对不行的"%
+PRINTFORML %"[2]-出轨也没有关系"%
+PRINTFORML %"[3]-更加积极地出轨也没有关系吧"%
+PRINTFORML %"[4]-沉默不言..."%
+$COM300_10_01_INPUT_LOOP
+INPUT
+SIF RESULT == 4
+	RETURN 0
+TRYCCALLFORM COM300_10_01_%TOSTR(RESULT:0,"00")%
+	RETURN RESULT:0
+CATCH
+	CLEARLINE 1
+	GOTO COM300_10_01_INPUT_LOOP
+ENDCATCH
+RETURN 0

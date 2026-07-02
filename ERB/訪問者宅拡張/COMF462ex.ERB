@@ -1,0 +1,168 @@
+﻿;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+; MASTER/TARGET/PLAYER/ASSIに影響されず呼び出したいので、中身は関数に切り出す
+@COM462
+CALL COMMAND462(MASTER)
+RETURN RESULT:0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462(角色)
+#DIM 角色
+SELECTCASE CFLAG:角色:当前位置
+	CASE 位置_訪問者宅
+		CALL COMMAND462_01(角色)
+	CASE 位置_売春宿
+		CALL COMMAND462_02(角色)
+	CASEELSE
+		RETURN 0
+ENDSELECT
+TIME += 10
+RETURN RESULT:0
+RETURN 0
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01(角色)
+#DIM 角色
+IF FLAG:访问者当前位置 == 位置_訪問者宅
+	CALL COMMAND462_01_01(角色)
+ELSE
+	CALL COMMAND462_01_02(角色)
+ENDIF
+RETURN RESULT:0
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅 - 訪問者がいる
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01_01(角色)
+#DIM 角色
+SELECTCASE RAND:20
+	CASE 0 TO 5
+		CALL COMMAND462_01_01_01(角色)
+	CASE 6 TO 9
+		CALL COMMAND462_01_01_02(角色)
+	CASEELSE
+		CALL COMMAND462_01_01_03(角色)
+ENDSELECT
+RETURN RESULT:0
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅 - 訪問者がいる - 調教開始
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01_01_01(角色)
+#DIM 角色
+#DIM 回数
+#DIM 行為時間
+#DIM 累計時間
+IF !TALENT:MASTER:NTR
+	CFLAG:角色:当前位置詳細 = 25
+ENDIF
+IF TALENT:MASTER:NTR
+	PRINTFORMW "见到"+%CALLNAME:角色+"在发呆，"+NTR_NAME(0)+"饶有兴趣地开始爱抚"+CALLNAME:角色+"敏感的肉体"%
+	PRINTFORMW %"又要被狠狠地调教了，"+CALLNAME:角色+"无可奈何"%
+ELSEIF CFLAG:角色:屈服度 >= 1000
+	PRINTFORML "见到"+%CALLNAME:角色+"在发呆，"+NTR_NAME(0)+"就走过来搭话了"%
+	PRINTFORMW %"虽然知道例行的调教要开始了，但"+CALLNAME:角色+"无可奈何"%
+ELSEIF CFLAG:角色:当前位置詳細 == 25
+	PRINTFORML "见到"+%CALLNAME:角色+"在发呆，"+NTR_NAME(0)+"就走了过来"%
+	PRINTFORMW %"虽然知道例行的调教要开始了，但"+CALLNAME:角色+"无可奈何"%
+ELSE
+	PRINTFORML %CALLNAME:角色+"四处徘徊的时候，被"+NTR_NAME(0)+"带回了牢房"%
+	PRINTFORMW %"虽然知道例行的调教要开始了，但"+CALLNAME:角色+"无可奈何"%
+ENDIF
+CALL COM46x_V_2(角色)
+IF CFLAG:角色:当前位置詳細 == 25 && !TALENT:MASTER:NTR
+	;訪問者は1/2の確率で鍵を開けっ放しにする。
+	IF RAND:2 == 0
+		PRINTFORML %NTR_NAME(0)+"爬上了楼梯……。"%
+		PRINTFORML %"看来，牢房忘记上锁了"%
+		FLAG:訪問者宅の施錠状態 |= 訪問者宅_牢屋解錠済
+	ELSE
+		;牢屋の鍵はちゃんと閉める事もある
+		PRINTFORML %NTR_NAME(0)+"上了牢房的锁，就爬上了楼梯……"%
+		FLAG:訪問者宅の施錠状態 ^= 訪問者宅_牢屋解錠済
+	ENDIF
+	IF RAND:2 == 0
+		;通路は面倒なので基本的に閉めない
+		FLAG:訪問者宅の施錠状態 |= 訪問者宅_通路解錠済
+	ENDIF
+	IF RAND:2 == 0
+		;床扉は面倒なので基本的に閉めない
+		FLAG:訪問者宅の施錠状態 |= 訪問者宅_床扉解錠済
+	ENDIF
+ENDIF
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅 - 訪問者がいる - 特になにもない
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01_01_02(角色)
+#DIM 角色
+IF 角色 == MASTER
+	PRINTDATAL
+		DATAFORM %"訪問者好像出去了……"%
+	ENDDATA
+ENDIF
+FLAG:访问者当前位置 = 1
+IF RAND:2 == 0
+	;出掛ける時は床扉を閉めていく事もある
+	FLAG:訪問者宅の施錠状態 ^= 訪問者宅_床扉解錠済
+ENDIF
+IF RAND:2 == 0
+	;訪問者は1/2の確率で鍵を開けっ放しにする。
+	FLAG:訪問者宅の施錠状態 ^= 訪問者宅_玄関解錠済
+ELSE
+	;出掛ける時は玄関を閉め忘れる事もある
+	FLAG:訪問者宅の施錠状態 |= 訪問者宅_玄関解錠済
+ENDIF
+RETURN 1
+RETURN 0
+
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅 - 訪問者がいる - 特になにもない
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01_01_03(角色)
+#DIM 角色
+IF 角色 == MASTER
+	PRINTDATAL
+		DATAFORM %"訪問者在认真的阅读着书籍"%
+		DATAFORM %"訪問者正在收拾衣柜"%
+		DATAFORM %"訪問者正在给观赏植物浇水"%
+	ENDDATA
+ENDIF
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_訪問者宅 - 訪問者がいない
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_01_02(角色)
+#DIM 角色
+IF 角色 == MASTER
+	PRINTFORMW %CALLNAME:角色+"只是默默地等待时间流逝"%
+	TIME:0 += 30
+ENDIF
+IF FLAG:访问者当前位置 != 位置_訪問者宅 && RAND:20 == 0
+	CALL COMMAND461_01(角色)
+	RETURN 1
+ENDIF
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)什麽也不做 - 位置_売春宿
+; RETURN 0:コマンドの実行に失敗, 1:コマンドの実行に成功
+@COMMAND462_02(角色)
+#DIM 角色
+IF 角色 == MASTER
+	PRINTFORML %"休息的时候，访问者随意地玩弄了"+CALLNAME:角色+"的身体"%
+ENDIF
+RETURN 1
+RETURN 0

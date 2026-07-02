@@ -1,0 +1,56 @@
+;-------------------------------------------------------------------------------
+;背面座位
+@NTR_SEX_4(角色)
+#DIM 角色
+TEQUIP:角色:Ｖ性爱 = 人物_訪問者
+;性交時メッセージ・口上の前に設定
+FLAG:访问者当前行为 = NTR_行为_Ｖ背面座位
+CFLAG:角色:当前与访问者行为 = NTR_行为_Ｖ背面座位
+;性交時メッセージ・口上 玩家在场での見せつけも考慮
+CALL NTR_SEX_MSG_KOJO(角色)
+CALL NTR_EXP_ADD_V_SEX(角色,1)
+IF FLAG:访问者当前行为中止时刻 == 0
+	BASE:角色:体力 -= 50
+	BASE:角色:气力 -= 100
+	SOURCE:角色:快Ｃ = 250
+	SOURCE:角色:快Ｂ = 250
+	IF TALENT:角色:浮気的蜜壶
+		SOURCE:角色:快Ｖ = 500
+		SOURCE:角色:情爱 = 500
+		SOURCE:角色:苦痛 = 200
+	ELSE
+		SOURCE:角色:快Ｖ = 350
+		SOURCE:角色:情爱 = 350
+		SOURCE:角色:苦痛 = 400
+	ENDIF
+	SOURCE:角色:露出 = 200
+	SOURCE:角色:逸脱 = 500
+	IF TALENT:角色:NTR || TALENT:角色:浮気的蜜壶
+		SOURCE:角色:反感 = 500
+	ELSEIF CFLAG:角色:屈服度 > 1000
+		SOURCE:角色:反感 = 750
+	ELSE
+		SOURCE:角色:反感 = 1000
+	ENDIF
+	SIF TALENT:角色:自己爱 < 0 || TALENT:角色:抵抗
+		SOURCE:角色:抑郁 += 800
+	SIF TALENT:角色:贞操 > 0 && CFLAG:角色:屈服度 > CFLAG:角色:好感度
+		SOURCE:角色:反感 += 1000
+	IF TALENT:角色:处女 == 1
+		SOURCE:角色:苦痛 += 2000
+		SOURCE:角色:反感 += 3000
+	ENDIF
+	IF TALENT:角色:处女 == 2
+		SOURCE:角色:苦痛 += 500
+		SOURCE:角色:反感 += 1000
+	ENDIF
+	CALL 改变小穴色素(角色,1)
+	SIF TALENT:角色:亲爱
+		EXP:角色:被强奸经验 += 1
+	CALL NTR_GET_WEAKNESS_2(角色)
+	FLAG:访问者当前行为中止时刻 = DATETIME() + (RAND:30 + 30)
+	FLAG:访问者当前行为 = NTR_行为_Ｖ背面座位
+	CFLAG:角色:当前与访问者行为 = NTR_行为_Ｖ背面座位
+	CALL NTR_SOURCE_CHECK_LITE(角色)
+ENDIF
+RETURN 0

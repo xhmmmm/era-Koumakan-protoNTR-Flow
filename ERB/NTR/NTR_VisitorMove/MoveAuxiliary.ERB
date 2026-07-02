@@ -1,0 +1,35 @@
+;=================================================
+; MoveAuxiliary — 访问者移动辅助
+;
+; SAFE_NEXT_POS 是访问者移动系统对路径计算的调用入口。
+; 内部委托给 Map/Move/NextStep.ERB 的 NEXT_STEP 函数。
+;=================================================
+
+;=================================================
+; SAFE_NEXT_POS — 获取从当前位置到目标位置的下一步
+;
+; @param nowPos   当前位置
+; @param targetPos 目标位置
+; @return 下一步应该到达的位置编号，-1=参数异常
+;=================================================
+@SAFE_NEXT_POS(nowPos, targetPos)
+#FUNCTION
+#DIM nowPos
+#DIM targetPos
+
+SIF nowPos <= 0 || nowPos >= 1000
+	RETURNF -1
+SIF targetPos <= 0 || targetPos >= 1000
+	RETURNF -1
+
+; 已在目标位置
+SIF nowPos == targetPos
+	RETURNF nowPos
+
+; 一步可达
+IF CAN_MOVE(nowPos, targetPos)
+	RETURNF targetPos
+ENDIF
+
+; 多步：委托 NEXT_STEP（BFS只算第一步，不写入移动路线）
+RETURNF NEXT_STEP(nowPos, targetPos)

@@ -1,0 +1,104 @@
+﻿;-------------------------------------------------------------------------------
+;(訪問者宅にて)訪問者と会话コマンド(拡張版) - キスしてほしい 実行判定
+; @return 0 コマンドの実行不可, 1 コマンドの実行可能
+@COM460_11_ENABLE(角色)
+#DIM 角色
+RESULTS:0 = %"[11]-キスしてほしい"%
+IF CFLAG:角色:屈服度 > 200
+	RETURN 1
+ELSEIF TALENT:角色:浮気的蜜唇
+	RETURN 1
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)訪問者と会话コマンド(拡張版) - キスしてほしい
+; @return 0 コマンドの実行に失敗, 1 コマンドの実行に成功
+@COM460_11(角色)
+#DIM 角色
+#DIM SKIPDISP退避
+CALL COM460_11_ENABLE
+IF RESULT:0 == 0
+	RETURN 0
+ENDIF
+;SKIPDISPが既に設定されているかもしれないので退避して後で復帰
+SKIPDISP退避 = ISSKIP()
+IF !NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
+	SKIPDISP 1
+ENDIF
+PRINTFORML %CALLNAME:角色+"准备亲吻、"+NTR_NAME(0)+"娇嫩的嘴唇前，询问希望温柔点还是激烈点"%
+PRINTFORML %"[0]-温柔地"%
+PRINTFORML %"[1]-激烈地"%
+PRINTFORML %"[2]-"+NTR_NAME(0)+"的喜好就行了"%
+$COM460_11_INPUT_LOOP
+IF 角色 == MASTER
+	;対象が「あなた」の場合だけ入力を要求する
+	INPUT
+ELSE
+	RESULT:0 = RAND:3
+	;CLEARLINEでチラチラするかもしれないけどまあ妥協
+	PRINTFORML %"("+CALLNAME:角色+"は "+TOSTR(RESULT:0)+" を選択しました)"%
+ENDIF
+TRYCALLFORM COM460_11_%TOSTR(RESULT:0,"00")%
+IF RESULT:0 == 1
+	TIME += 5
+	EXP:角色:会话经验 ++
+ELSE
+	CLEARLINE 1
+	GOTO COM460_11_INPUT_LOOP
+ENDIF
+SKIPDISP SKIPDISP退避
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)訪問者と会话コマンド(拡張版) - キスしてほしい - 優しく
+; @return ; @return 0 コマンドの実行に失敗, 1 コマンドの実行に成功
+@COM460_11_00(角色)
+#DIM 角色
+PRINTDATAL
+	DATAFORM %"在"+NTR_NAME(0)+"温柔地亲吻下"+CALLNAME:角色+"意乱情迷地抱紧了"+NTR_NAME(0)+"……"%
+ENDDATA
+; 手抜き。そのうち修正。
+CALL VISITOR_TAKEOUT_10_02(角色)
+CALL NTR_SOURCE_CHECK(角色,人物_訪問者)
+CALL ORGASM_ADD(角色,人物_訪問者)
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)訪問者と会话コマンド(拡張版) - キスしてほしい - 激しく
+; @return ; @return 0 コマンドの実行に失敗, 1 コマンドの実行に成功
+@COM460_11_01(角色)
+#DIM 角色
+PRINTDATAL
+	DATAFORM %"在"+NTR_NAME(0)+"激烈地吻下"+CALLNAME:角色+"意乱情迷地抱紧了"+NTR_NAME(0)+"……"%
+ENDDATA
+; 手抜き。そのうち修正。
+CALL VISITOR_TAKEOUT_10_02(角色)
+CALL NTR_SOURCE_CHECK(角色,人物_訪問者)
+CALL ORGASM_ADD(角色,人物_訪問者)
+RETURN 1
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;(訪問者宅にて)訪問者と会话コマンド(拡張版) - キスしてほしい - 好きなように
+; @return ; @return 0 コマンドの実行に失敗, 1 コマンドの実行に成功
+@COM460_11_02(角色)
+#DIM 角色
+SELECTCASE RAND:3
+	CASE 0
+		PRINTFORML %NTR_NAME(0)+"把"+CALLNAME:角色+"拥在怀里肆意亲吻着……"%
+		; 手抜き。そのうち修正。
+		CALL VISITOR_TAKEOUT_10_02(角色)
+		CALL NTR_SOURCE_CHECK(角色,人物_訪問者)
+		CALL ORGASM_ADD(角色,人物_訪問者)
+	CASEELSE
+		PRINTFORML %NTR_NAME(0)+"把"+CALLNAME:角色+"拥在怀里肆意亲吻着……"%
+		; 手抜き。そのうち修正。
+		CALL VISITOR_TAKEOUT_10_02(角色)
+		CALL NTR_SOURCE_CHECK(角色,人物_訪問者)
+		CALL ORGASM_ADD(角色,人物_訪問者)
+ENDSELECT
+RETURN 1
+RETURN 0

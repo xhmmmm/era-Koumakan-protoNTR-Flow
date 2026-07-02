@@ -1,0 +1,331 @@
+﻿;-------------------------------------------------------------------------------
+;事前の予定に従い、訪問者の家へおでかけさせる
+; return 1 でかけた
+; return 0 でかけなかった
+@GoOut_Ready_900(角色)
+#DIM 角色
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;訪問者の家へお出かけするかどうかを判定する
+; return 0 でかけない
+; return 1 でかける
+; return 11 でかける(外泊公認時:時間が来たので)
+; return 12 でかける(外泊公認時:あなたをもっと喜ばせるため)
+; return 13 でかける(外泊公認時:訪問者をもっと喜ばせるため)
+@GoOut_Able_900(角色)
+#DIM 角色
+#DIM 放置時間
+#DIM 基本休暇時間
+#DIM 休暇時間
+#DIM 休暇時間補正値
+#DIM あなた用補正値
+#DIM 訪問者用補正値
+#DIM 子宮内精液量
+#DIM 休暇終了理由
+
+CALL GoOut_Able_Check(角色)
+IF 0 == RESULT:0
+	RETURN 出掛理由_でかけない ; 0
+ENDIF
+
+休暇終了理由 = 出掛理由_でかける ; 1
+
+;基本休暇13日（2週間に1度の浮気を强迫）
+基本休暇時間 = 18720 ;=24*60*13
+;浮気を容易にする補正値を計算
+休暇時間補正値 = 0
+休暇時間補正値 -= ( 基本休暇時間 * TALENT:角色:淫乱             / 10 ) ; 淫乱で-10%、娼婦で-20%
+休暇時間補正値 -= ( 基本休暇時間 * TALENT:角色:浮気癖           / 10 ) ; 10%
+休暇時間補正値 -= ( 基本休暇時間 * TALENT:角色:浮気的蜜壶       / 10 ) ; 10%
+休暇時間補正値 -= ( 基本休暇時間 * TALENT:角色:浮気的菊花       / 10 ) ; 10%
+休暇時間補正値 -= ( 基本休暇時間 * TALENT:角色:浮気的蜜唇         / 10 ) ; 10%
+休暇時間補正値 -= ( 基本休暇時間 * SQRT(MARK:角色:浮気快乐刻印) / 10 ) ; 10～30%
+
+;恋慕や好感度により、休暇時間を延ばせる場合がある
+あなた用補正値 = 0
+あなた用補正値 += ( 基本休暇時間 * TALENT:角色:恋慕             / 10 ) ; 10%
+あなた用補正値 += LIMIT( CFLAG:角色:好感度, 0, 基本休暇時間 * 3 / 10 ) ; 好感度により0～30%
+;訪問者の影響により、休暇時間が減る場合がある
+訪問者用補正値 = 0
+訪問者用補正値 -= LIMIT( CFLAG:角色:屈服度, 0, 基本休暇時間 * 3 / 10 ) ; 屈服度により0～30%
+訪問者用補正値 -= LIMIT( CFLAG:角色:性欲,   0, 基本休暇時間 * 3 / 10 ) ; 性欲により0～30%
+
+IF CFLAG:角色:屈服度/2 > CFLAG:角色:好感度
+	放置時間 = DATETIME() - CFLAG:角色:与访问者最后做爱的时间
+
+	IF 訪問者用補正値 < あなた用補正値
+		;好感度が高い時はあなたを喜ばせるために
+		休暇終了理由 = 出掛理由_外泊公認_あなたのため ; 12
+	ELSEIF あなた用補正値 < 訪問者用補正値
+		;屈服度が高い時は訪問者をを喜ばせるために
+		休暇終了理由 = 出掛理由_外泊公認_訪問者のため ; 13
+	ELSE
+		;同じぐらい高い時
+		休暇終了理由 = 出掛理由_外泊公認_時間経過 ; 11
+	ENDIF
+ENDIF
+
+;最低１時間は休息を確保する（会话ができないと辛いので）
+IF TALENT:角色:浮気公認 < 5
+	休暇時間 = MAX( 600 ,基本休暇時間 + 休暇時間補正値 + 訪問者用補正値 + あなた用補正値 )
+ELSE
+	;浮気公认5，回到家里休假一天
+	休暇時間 = 1430
+	休暇終了理由 = 50
+ENDIF
+[IF_DEBUG]
+SETCOLOR 黄色
+PRINTFORML %"恋人の『"+CALLNAME:角色+"』の休暇時間(分)："+TOSTR(休暇時間)+" ＆ 放置時間(分)："+TOSTR(放置時間)%
+RESETCOLOR
+[ENDIF]
+
+IF 休暇時間 < 放置時間
+	RETURN 休暇終了理由
+ENDIF
+
+RETURN 0
+
+
+;-------------------------------------------------------------------------------
+;訪問者の家へお出かけするかどうかを判定する
+;子宮内精液量の判定なし
+; return 1 でかける
+; return 0 でかけない
+@GoOut_Able_Check(角色)
+#DIM 角色
+#DIM 放置時間
+#DIM 休暇時間
+#DIM 子宮内精液量
+
+IF 0 == IS_NTR_TAKINGOUT_ENABLE()
+	;	;お持ち帰り禁止時は出て行かない
+	RETURN 0
+ENDIF
+IF TALENT:角色:妊娠 || TALENT:角色:育儿中
+	;妊娠中、育儿中は出て行かない
+	RETURN 0
+ENDIF
+IF TALENT:角色:浮気公認 < 4
+	;浮気公認４レベル以上
+	SIF CFLAG:角色:好感度 >= CFLAG:角色:屈服度 || TALENT:角色:恋慕 == 0
+		RETURN 0
+ENDIF
+IF FLAG:訪問者の气氛 > 0 && TALENT:角色:浮気公認 < 5
+	;訪問者が誰かとうふふ中だったら行かない(相手して貰えないので)
+	RETURN 0
+ENDIF
+SIF !IS_NTR_VISITOR_COME()
+	RETURN 0
+RETURN 1
+
+
+
+;-------------------------------------------------------------------------------
+;「あなた」に挨拶してから、訪問者の家へおでかけさせる
+; return 1 でかけた
+; return 0 でかけなかった
+@GoOut_SeeYou_900(角色, 強制外出)
+#DIM 角色
+#DIM 強制外出
+#DIM 外出理由
+
+IF !強制外出
+	CALL GoOut_Able_900(角色)
+	外出理由 = RESULT:0
+	IF !外出理由
+		RETURN 0
+	ENDIF
+ENDIF
+IF TALENT:角色:浮気公認 == 5
+	CALL GoOut_SeeYou_900_做访问者妻子(角色,外出理由)
+ELSEIF TALENT:角色:NTR == 0 && TALENT:角色:浮気公認 < 4
+	CALL GoOut_SeeYou_900_秘密外泊(角色,外出理由)
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+	CALL GoOut_SeeYou_900_2(角色,外出理由)
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+	CALL GoOut_SeeYou_900_3(角色,外出理由)
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+	CALL GoOut_SeeYou_900_4(角色,外出理由)
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
+	CALL GoOut_SeeYou_900_5(角色,外出理由)
+ELSE
+	CALL GoOut_SeeYou_900_9(角色,外出理由)
+ENDIF
+CALL NTR_SET_STAYOUT_MAXIMUM(LOCAL, LIMIT(CFLAG:LOCAL:屈服度 /(CFLAG:LOCAL:好感度+1),0,7))
+IF CFLAG:角色:長期滞在最大日数 == 0
+	PRINTFORMW 说是最晚明天就会回来……
+ELSE
+	PRINTFORMW 说是最晚{NTR_GET_STAYOUT_MAXIMUM(角色)}天后回来的样子……
+ENDIF
+PRINTL
+;お持ち帰り時初期化処理
+CALL INIT_TAKINGOUT(角色)
+;口上呼び出し、現在の口上は訪問者宅描写が混じっているので訪問者宅を前提とする
+IF NTR_CHK_VISIBLE(位置_訪問者宅)
+	TRYCALLLIST
+		FUNC NTR_KOJO_K{CFLAG:角色:口上パターン}_10_0(角色)
+		FUNC NTR_KOJO_K_10_0(角色)
+	ENDFUNC
+ENDIF
+[SKIPSTART]
+ENDIF
+[SKIPEND]
+RETURN 1
+RETURN 0
+
+
+;-------------------------------------------------------------------------------
+;在恋人的要求下，成为访问者的妻子住到对面去
+@GoOut_SeeYou_900_做访问者妻子(角色,理由)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+PRINTFORMW 「哪，我要走了哦~~」
+PRINTFORMW 「就像%CALLNAME:MASTER%希望的那样，去做%NTR_NAME(0)%的妻子，住到对面去了~❤~」
+PRINTFORMW 与%CALLNAME:角色%告别了…
+PRINTFORMW 「不要伤心啦，我时不时会回来看%CALLNAME:MASTER%的、拜拜~❤~~❤~~~~」
+PRINTFORMW %CALLNAME:角色%向着%NTR_NAME(0)%家的方向离开了···
+;-------------------------------------------------------------------------------
+;在恋人不知情的情况下秘密外泊
+@GoOut_SeeYou_900_秘密外泊(角色,理由)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+PRINTDATAL
+	DATAFORM %CALLNAME:角色%说是要出去玩，打了声招呼就走了。
+	DATAFORM %CALLNAME:角色%说是要出去办些事。
+	DATAFORM %CALLNAME:角色%说这几天过得很闷，想要出去散散心。
+ENDDATA
+
+;-------------------------------------------------------------------------------
+;訪問者の家へおでかけ：FAV_寝取られ
+@GoOut_SeeYou_900_2(角色,理由=0)
+#DIM 角色
+#DIM 理由
+#DIM 同伴
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+;積極的にお出かけする
+
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_K{角色}_SeeYou_900_2(角色,同伴)
+	FUNC KOJO_MESSAGE_KU_SeeYou_900_2(角色,同伴)
+ENDFUNC
+
+IF 同伴
+	PRINTDATAL
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"手拉着手走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"一边缠绵着一边走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"快乐地笑着，高兴地走了・・。"%
+	ENDDATA
+ELSE
+	PRINTFORML %CALLNAME:角色+"告诉"+CALLNAME:MASTER+"自己将要去"+NTR_NAME(0)+"的家・・。"%
+ENDIF
+
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;訪問者の家へおでかけ：FAV_寝取られ寸前
+@GoOut_SeeYou_900_3(角色,理由=0)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_K{角色}_SeeYou_900_3(角色,同伴)
+	FUNC KOJO_MESSAGE_KU_SeeYou_900_3(角色,同伴)
+ENDFUNC
+
+IF 同伴
+	PRINTDATAL
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"手拉着手走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"一边缠绵着一边走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"快乐地笑着，高兴地走了・・。"%
+	ENDDATA
+ELSE
+	PRINTFORML %CALLNAME:角色+"告诉"+CALLNAME:MASTER+"自己将要去"+NTR_NAME(0)+"的家・・。"%
+ENDIF
+
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;訪問者の家へおでかけ：FAV_寝取られそう
+@GoOut_SeeYou_900_4(角色,理由=0)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_K{角色}_SeeYou_900_4(角色,同伴)
+	FUNC KOJO_MESSAGE_KU_SeeYou_900_4(角色,同伴)
+ENDFUNC
+
+IF 同伴
+	PRINTDATAL
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"手拉着手走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"一边缠绵着一边走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"快乐地笑着，高兴地走了・・。"%
+	ENDDATA
+ELSE
+	PRINTFORML %CALLNAME:角色+"告诉"+CALLNAME:MASTER+"自己将要去"+NTR_NAME(0)+"的家・・。"%
+ENDIF
+
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;訪問者の家へおでかけ：FAV_主人より高い
+@GoOut_SeeYou_900_5(角色,理由=0)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_K{角色}_SeeYou_900_5(角色,同伴)
+	FUNC KOJO_MESSAGE_KU_SeeYou_900_5(角色,同伴)
+ENDFUNC
+
+IF 同伴
+	PRINTDATAL
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"手拉着手走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"一边缠绵着一边走了・・。"%
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"快乐地笑着，高兴地走了・・。"%
+	ENDDATA
+ELSE
+	PRINTFORML %CALLNAME:角色+"告诉"+CALLNAME:MASTER+"自己将要去"+NTR_NAME(0)+"的家・・。"%
+ENDIF
+
+RETURN 1
+
+;-------------------------------------------------------------------------------
+;訪問者の家へおでかけ：通常
+@GoOut_SeeYou_900_9(角色,理由=0)
+#DIM 角色
+#DIM 理由
+#DIM 同伴 
+同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
+IF 同伴
+	PRINTFORML %CALLNAME:角色+"被"+NTR_NAME(0)+"邀请出去了、说打算在"+NTR_NAME(0)+"的家住下……。"%
+ELSE
+	PRINTFORML %CALLNAME:角色+"说准备住在"+NTR_NAME(0)+"的家里，然后就出去了……。"%
+ENDIF
+TRYCALLLIST
+	FUNC KOJO_MESSAGE_K{角色}_SeeYou_900_9(角色,同伴)
+	FUNC KOJO_MESSAGE_KU_SeeYou_900_9(角色,同伴)
+ENDFUNC
+
+IF 同伴
+	PRINTDATAL
+		DATAFORM %CALLNAME:角色+"和"+NTR_NAME(0)+"一起出去了・・。"%
+		DATAFORM %CALLNAME:角色+"被"+NTR_NAME(0)+"带出去了・・。"%
+		DATAFORM %CALLNAME:角色+"跟着"+NTR_NAME(0)+"出去了・・。"%
+	ENDDATA
+ELSE
+	PRINTFORML %CALLNAME:角色+"告诉"+CALLNAME:MASTER+"自己将要去"+NTR_NAME(0)+"的家・・。"%
+ENDIF
+
+RETURN 1

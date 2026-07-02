@@ -1,0 +1,69 @@
+;-------------------------------------------------------------------------------
+;性交
+@NTR_SEX(角色,密室度,調教者=人物_訪問者)
+#DIM 角色
+#DIM 密室度
+#DIM 調教者
+#DIM 体位
+;バグ回避用。汚いけど許せ。
+IF IS_NTR_KEEP_VIRGIN() && TALENT:角色:处女
+	CALL NTR_A_SEX(角色, 密室度, 調教者)
+	RETURN
+ENDIF
+TCVAR:角色:行為者 = 調教者
+TCVAR:行為者 = 調教者
+TEQUIP:角色:Ｖ性爱 = 人物_訪問者
+CALL 締り具合変動, 角色, 3, 0
+IF FLAG:访问者当前行为中止时刻 == 0
+	FLAG:访问者行为计时点 = DATETIME()
+	CALL NTR_ADD_SURRENDER(角色, 10)
+	;CFLAG:角色:屈服度 += (FLAG:访问者当前行为中止时刻 - DATETIME()) / 10
+ENDIF
+SIF EXP:角色:NTR陷落经验
+	CALL NTR_ADD_SURRENDER(角色, 2)
+;体位の決定(目立たない場所か私室かで体位に違いを)
+体位 = 0
+SELECTCASE FLAG:访问者当前行为
+	CASE NTR_行为_Ｖ正常位 TO NTR_行为_Ｖ背面座位
+		体位 = FLAG:访问者当前行为 - NTR_行为_Ｖ正常位
+	CASE IS > NTR_行为_Ｖ背面座位
+		体位 = FLAG:访问者当前行为 - NTR_行为_Ｖ背面座位
+	CASEELSE
+		SIF 密室度 == 2
+			体位 = 5 + RAND:2
+		SIF 密室度 >= 3
+			体位 = RAND:5
+ENDSELECT
+体位 = MIN(体位, 6)
+CALLFORM NTR_SEX_{体位}(角色)
+;汚れ等共通する処理
+CALL STAIN_MOVE_BY_PENIS(部位_Ｖ, 角色, 人物_訪問者)
+CALL STAIN_MOVE_BY_PENIS(部位_膣内, 角色, 人物_訪問者)
+IF TALENT:角色:处女
+	SETBIT FLAG:訪問者との汚れ判定に使用,汚れB_破瓜の血
+	CALL LOST_VIRGIN(角色, 調教者)
+	;处女喪失中フラグセット
+	CFLAG:角色:处女喪失中 = 1
+ENDIF
+CFLAG:角色:和访问者已做爱 = 1
+;无知去除
+CALL 无知去除(角色)
+CFLAG:角色:精液残留中 = 0
+CFLAG:角色:与访问者最后做爱的时间 = DATETIME()
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;性交終了（絶頂）
+;@return 常に0
+@NTR_SEX_FINISH(角色)
+#DIM 角色
+CALL NTR_SEX_FINISH_MSG_KOJO(角色)
+CALL EJACULATION_V(角色, 人物_訪問者)
+CALL NTR_EXP_ADD_V_SEX_EX(角色,1)
+SIF TALENT:角色:亲爱
+	EXP:角色:被强奸经验 ++
+;V感覚が高いと绝顶经验加算（強絶頂扱い）
+CALL NTR_V_EXP_PLUS(角色)
+SIF RAND:3 == 0
+	CALL NTR_PUNISHMENT_10(角色, 0)
+RETURN 0

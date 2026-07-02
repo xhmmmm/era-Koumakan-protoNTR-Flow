@@ -1,0 +1,39 @@
+;=================================================
+; CAN_MOVE — 判断两个位置是否可一步直达
+;
+; 数据来源：DB邻接表（由 INIT_MAP_DATA 初始化）
+; 跨领域检查：通过 CAN_CROSS_REALM 判定
+;
+; @return 1=可移动, 0=不可移动
+;=================================================
+@CAN_MOVE(出发地, 目的地)
+#FUNCTION
+#DIM 出发地
+#DIM 目的地
+#DIM 邻居循环
+#DIM 邻居计数
+
+SIF 出发地 == 目的地
+	RETURNF 0
+SIF 出发地 <= 0 || 出发地 >= 1000
+	RETURNF 0
+SIF 目的地 <= 0 || 目的地 >= 1000
+	RETURNF 0
+
+; 查邻接表
+邻居计数 = DB:出发地:0
+FOR 邻居循环, 1, 邻居计数 + 1
+	SIF DB:出发地:邻居循环 == 目的地
+		GOTO CAN_MOVE_FOUND
+NEXT
+RETURNF 0
+
+$CAN_MOVE_FOUND
+; 邻接表中存在此边，但若跨领域还需检查条件
+IF DC:出发地:0 != 0 && DC:目的地:0 != 0 && DC:出发地:0 != DC:目的地:0
+	IF FLAG:DEBUG模式
+		PRINTFORML [CAN_MOVE] %GetPlaceName(出发地)%→%GetPlaceName(目的地)% 跨领域检查 领域{DC:出发地:0}→{DC:目的地:0}
+	ENDIF
+	RETURNF CAN_CROSS_REALM(MASTER, DC:出发地:0, DC:目的地:0)
+ENDIF
+RETURNF 1

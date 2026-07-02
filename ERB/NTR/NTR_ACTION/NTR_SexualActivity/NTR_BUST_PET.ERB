@@ -1,0 +1,51 @@
+;-------------------------------------------------------------------------------
+;胸爱抚
+@NTR_BUST_PET(角色,調教者=人物_訪問者)
+#DIM 角色
+#DIM 調教者
+TCVAR:角色:行為者 = 調教者
+CALL NTR_KISS_PET_FELLA_MSG_KOJO_01(角色, 4)
+IF FLAG:访问者当前行为中止时刻 == 0
+	FLAG:访问者行为计时点 = DATETIME()
+	CALL NTR_ADD_SURRENDER(角色, 3)
+	SIF EXP:角色:NTR陷落经验 
+		CALL NTR_ADD_SURRENDER(角色, 1)
+	BASE:角色:体力 -= 5
+	BASE:角色:气力 -= 50
+	SOURCE:角色:快Ｂ = 120 + 10 * (ABL:角色:Ｂ感觉) + 30 * TALENT:角色:Ｂ感度 + 60 * TALENT:角色:淫乳
+	SOURCE:角色:欢乐 = 100
+	SOURCE:角色:情爱 = 150
+	SOURCE:角色:欲情 = 170
+	SOURCE:角色:露出 = 70
+	IF TALENT:角色:NTR
+		SOURCE:角色:反感 = 150
+	ELSEIF CFLAG:角色:屈服度 > 1000
+		SOURCE:角色:反感 = 250
+	ELSE
+		SOURCE:角色:反感 = 350
+	ENDIF
+	SOURCE:角色:被动 = 120 + 240 * ABL:角色:顺从
+	IF TEQUIP:角色:1 > 1
+		TIMES SOURCE:角色:快Ｂ , 0.80
+		TIMES SOURCE:角色:欲情 , 0.80
+		TIMES SOURCE:角色:露出 , 0.80
+	ENDIF
+	SIF TALENT:角色:自己爱 < 0 || TALENT:角色:抵抗
+		SOURCE:角色:抑郁 += 20
+	FLAG:访问者当前行为中止时刻 = DATETIME() + 10
+	CALL NTR_EXP_ADD_B_EX(角色,1)
+	CALL 改变乳头色素(角色,1)
+	CALL 改变乳头大小(角色,1)
+	FLAG:访问者当前行为 = NTR_行为_胸爱抚
+	CFLAG:角色:当前与访问者行为 = NTR_行为_胸爱抚
+	CALL NTR_SOURCE_CHECK_LITE(角色,調教者)
+ENDIF
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;胸爱抚終了（絶頂）
+;@return 常に0
+@NTR_BUST_PET_FINISH(角色)
+#DIM 角色
+CALL NTR_KISS_PET_FELLA_MSG_KOJO_2(角色, 4)
+RETURN 0

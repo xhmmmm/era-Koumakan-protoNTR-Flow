@@ -1,0 +1,44 @@
+;-------------------------------------------------------------------------------
+;肛交正常位
+@NTR_A_SEX_0(角色,調教者=人物_訪問者)
+#DIM 角色
+#DIM 調教者
+TEQUIP:角色:Ａ性爱 = 調教者
+;性交時メッセージ・口上の前に設定
+FLAG:访问者当前行为 = NTR_行为_Ａ正常位
+CFLAG:角色:当前与访问者行为 = NTR_行为_Ａ正常位
+CALL NTR_A_SEX_MSG_KOJO(角色)
+IF FLAG:访问者当前行为中止时刻 == 0
+	BASE:角色:体力 -= 80
+	BASE:角色:气力 -= 120
+	IF TALENT:角色:浮気的菊花
+		SOURCE:角色:快Ａ = 600
+		SOURCE:角色:情爱 = 200
+		SOURCE:角色:苦痛 = 400
+	ELSE
+		SOURCE:角色:快Ａ = 400
+		SOURCE:角色:情爱 = 100
+		SOURCE:角色:苦痛 = 800
+	ENDIF
+	SOURCE:角色:露出 = 60
+	SOURCE:角色:逸脱 = 200
+	IF TALENT:角色:NTR || TALENT:角色:浮気的菊花
+		SOURCE:角色:反感 = 250
+	ELSEIF CFLAG:角色:屈服度 > 1000
+		SOURCE:角色:反感 = 370
+	ELSE
+		SOURCE:角色:反感 = 500
+	ENDIF
+	SIF TALENT:角色:自己爱 < 0 || TALENT:角色:抵抗
+		SOURCE:角色:抑郁 += 500
+	CALL NTR_EXP_ADD_A_SEX(角色,1) 
+	CALL 改变肛门色素(角色,1)
+	SIF TALENT:角色:亲爱
+		EXP:角色:被强奸经验 += 1
+	CALL NTR_GET_WEAKNESS_2(角色)
+	FLAG:访问者当前行为中止时刻 = DATETIME() + (RAND:30 + 30)
+	FLAG:访问者当前行为 = NTR_行为_Ａ正常位
+	CFLAG:角色:当前与访问者行为 = NTR_行为_Ａ正常位
+	CALL NTR_SOURCE_CHECK_LITE(角色,調教者)
+ENDIF
+RETURN 0

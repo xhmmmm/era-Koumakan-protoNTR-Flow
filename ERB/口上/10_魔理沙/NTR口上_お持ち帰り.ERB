@@ -1,0 +1,1424 @@
+﻿;-------------------------------------------------
+;寝取られパッチ用魔理沙口上ファイル(お持ち帰り)
+;-------------------------------------------------
+;基本方针としては寝取られ度が高くなると訪問者の呼び方がご主人様に変化(通常はあいつ呼ばわり)
+;性格としては純情系Mイメージで
+;浮気公認するとプレイヤーのことを変態野郎呼ばわりします。
+;-------------------------------------------------
+;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
+;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
+;オリジナル作者とコンタクトが取れない場合には以下の但し書きに従ってUPできるかどうか判断してください。
+
+;◎修正（誤字、脱字、条件分岐等ERB構文のバグ修正、本体のバージョンアップ、ダウン対応など）
+;（　許可　）※どちらかを選択してください
+;
+;◎加筆（未記入箇所、ランダム分岐、条件分岐等の増補）
+;（　許可　）※どちらかを選択してください
+;
+;◎改変（オリジナル作者によって書かれた部分に対しての上書き、消去を含む）
+;（　許可　）※どちらかを選択してください
+;
+;◎製作中などの理由で時限を設ける
+;（　年　月　日）まで上記の一切を認めない
+;
+;記　　シュート回転
+;追記　
+;基本的に作者の意思を確認出来ない場合、加筆改変は可能ということにします
+;-------------------------------------------------
+;CFLAG:持帰分岐
+; 1...Sコース：骑乘位
+; 2...Mコース(拘束プレイ)：后背位
+; 3...種付けコース：正常位
+; 4...着衣コース：対面座位
+;-------------------------------------------------
+;==================================================
+;訪問者宅から帰ってきた際
+;==================================================
+@NTR_KOJO_K10_0(角色)
+#DIM 角色
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATA
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からはほのかに性臭が漂い、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からは隠しきれぬ性臭が漂い、
+	ENDDATA
+	PRINTDATAL
+		DATAFORM 服にもところどころ白いものがこびりついている。
+		DATAFORM 髪にも、服にもところどころ白いものがこびりついている。
+		DATAFORM 服にところどころ白いものがこびりつき、同じもので下着が濡れている。
+	ENDDATA
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
+			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%の元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			CALL NTR_KOJO_K10_0_TalkBack1(角色)
+			IF (STAIN:角色:Ｖ & 汚れ_精液)
+				CALL NTR_KOJO_K10_0_TalkSamen(角色)
+			ENDIF
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSEIF TALENT:角色:浮気公認
+			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSE
+			PRINTFORML その汚れを隠そうともせず、彼女は自分の家に戻っていった。
+		ENDIF
+	ELSE
+		PRINTFORML その汚れを隠そうともせず、彼女は自分の家に戻っていった。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTDATA
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からはほのかに性臭が漂い、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からは隠しきれぬ性臭が漂い、
+	ENDDATA
+	PRINTDATAL
+		DATAFORM 服にもところどころ白いものがこびりついている。
+		DATAFORM 髪にも、服にもところどころ白いものがこびりついている。
+		DATAFORM 服にところどころ白いものがこびりつき、同じもので下着が濡れている。
+	ENDDATA
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
+			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%の元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			CALL NTR_KOJO_K10_0_TalkBack1(角色)
+			IF (STAIN:角色:Ｖ & 汚れ_精液)
+				CALL NTR_KOJO_K10_0_TalkSamen(角色)
+			ENDIF
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSEIF TALENT:角色:浮気公認
+			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSE
+			PRINTFORML %MSG_LOVER(角色)%に見咎められないうちに、彼女は自分の家に戻っていった。
+		ENDIF
+	ELSE
+		PRINTFORML 他の者に見咎められないうちに、彼女は自分の家に戻っていった。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
+
+	PRINTDATA
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からはほのかに性臭が漂い、
+		DATAFORM 魔法の森に戻った%CALLNAME:角色%の身体からは隠しきれぬ性臭が漂い、
+	ENDDATA
+	PRINTDATAL
+		DATAFORM 服にもところどころ白いものがこびりついている。
+		DATAFORM 髪にも、服にもところどころ白いものがこびりついている。
+		DATAFORM 服にところどころ白いものがこびりつき、同じもので下着が濡れている。
+	ENDDATA
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
+			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			CALL NTR_KOJO_K10_0_TalkBack1(角色)
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSEIF TALENT:角色:浮気公認
+			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
+			CALL NTR_KOJO_K10_0_TalkBack0(角色)
+			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の家に戻っていった。
+		ELSE
+			PRINTFORML %MSG_LOVER(角色)%に見咎められないようこっそりと、彼女は自分の家に戻っていった。
+		ENDIF
+	ELSE
+		PRINTFORML 館の者に見咎められないようこっそりと、彼女は自分の家に戻っていった。
+	ENDIF
+
+ELSE
+	; お持ち帰りは基本屈服度＞好感度なのでここにはこない
+	; 亲爱持ちの拉致時？
+	PRINTFORML 魔法の森に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、服にもところどころ白いものがこびりついている。
+	PRINTFORML 魔法の森に戻った見つからないようこっそりと、彼女は自分の家に戻っていった。
+ENDIF
+RETURN 0
+
+; 帰宅時挨拶
+@NTR_KOJO_K10_0_TalkBack0(角色)
+#DIM 角色
+
+PRINTDATAL
+	DATAFORM 「ああ、ただいま。今帰ったぜ」
+	DATAFORM 「ただいま。今帰ったぜ」
+ENDDATA
+RETURN 0
+
+; 帰宅時挨拶追い打ち
+; 　わざわざ報告してくる状況なので、前提として恋慕かつ浮気公認 == 外泊公認
+@NTR_KOJO_K10_0_TalkBack1(角色)
+#DIM 角色
+
+PRINTDATAL
+	DATAFORM 「ああ、他のところから。もちろん、いっぱい抱かれてきたぜ」
+	DATAFORM 「抱かれてきたのかって？ もちろんセックスしてきたぜ」
+	DATAFORM 「何をしてきたかって？ セックス以外何をするんだ？」
+ENDDATA
+RETURN 0
+
+; 精液汚れ報告
+; 　わざわざ報告してくる状況なので、前提として恋慕かつ浮気公認
+@NTR_KOJO_K10_0_TalkSamen(角色)
+#DIM 角色
+
+PRINTFORML 「…私のここ、精液に塗れているんだぜ…%MSG_HEART()%」
+IF GETBIT(CFLAG:角色:淫纹, 淫纹_右頬)
+	CALL COM417_GetFillingRateByPublicSperm(角色)
+	SELECTCASE (RESULT:1 * RESULT:0)
+		CASE IS >= 200	; 淫纹が鮮やかなピンク色
+			PRINTFORML 淫らに微笑む%CALLNAME:角色%は、頬に刻まれた紋が鮮やかなピンク色に変色している様を見せ付けてきた。
+			PRINTFORML その色は、彼女の子宮が夥しい量の精液で満たされていることを示していた。
+			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
+				PRINTFORML 「今ならキスも出来るぜ。もっとも、他人の精液を口にしてもいいならの話だけどな」
+			ELSE
+				PRINTFORML 「今ならキスも出来るぜ」
+			ENDIF
+		CASE IS >= 100	; 淫纹がピンク色
+			PRINTFORML 淫らに微笑む%CALLNAME:角色%は、頬に刻まれた紋がピンク色に変色している様を見せ付けてきた。
+			PRINTFORML その色は、彼女の子宮が精液で満たされていることを示していた。
+			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
+				PRINTFORML 「今ならキスも出来るぜ。もっとも、他人の精液を口にしてもいいならの話だけどな」
+			ELSE
+				PRINTFORML 「今ならキスも出来るぜ」
+			ENDIF
+		CASE 50 TO 99	; 淫纹が赤
+			PRINTFORML 淫らに微笑む%CALLNAME:角色%は、頬に刻まれた紋が赤く変色している様を見せ付けてきた。
+			PRINTFORML その色は、彼女の子宮の半分ほどが精液で満たされていることを示していた。
+			PRINTFORML 「これじゃキスはできないな」
+		CASE 1 TO 49	; 淫纹が赤紫
+			PRINTFORML 淫らに微笑む%CALLNAME:角色%の頬に刻まれた紋の色が赤紫色に変わっている。
+			PRINTFORML 「これじゃキスはできないな」
+		CASEELSE		; 淫纹が紫
+			PRINTFORML 淫らに微笑む%CALLNAME:角色%の頬に刻まれた紋は紫色のままだ。
+			PRINTFORML 「これじゃキスはできないな」
+	ENDSELECT
+ELSE
+	PRINTFORML %CALLNAME:角色%は淫らに微笑んだ。
+ENDIF
+RETURN 0
+
+;==================================================
+;お持ち帰り
+;==================================================
+;==================================================
+;訪問者宅へ
+;==================================================
+@NTR_KOJO_K10_10_0(角色)
+#DIM 角色
+
+IF TALENT:角色:亲爱
+
+	PRINTDATAL
+		DATAFORM 「やっ、やめろっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+		DATAFORM 「やっ、やめろっ！ 離せっ、離せよっ！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%によって縛られたまま他の家へと拉致された。
+	PRINTFORML 地下室の壁に鎖で繋がれた%CALLNAME:角色%のメイド服を引き裂き、%NTR_NAME(0)%は下卑た笑いを浮かべた。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTDATAL
+		DATAFORM 「ああ…また…%MSG_HEART()%」
+		DATAFORM 「ああ…ぞくぞくする…%MSG_HEART()%」
+		DATAFORM 「ああ…早く…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に项圈をつけられ、鎖に繋がれた。
+	PRINTFORML ご主人様の精液便所として過ごす甘美な時間…その期待に%CALLNAME:角色%は打ち震え、股座がジュンと湿ったのが分かった。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATAL
+		DATAFORM 「ああ…また…%MSG_HEART()%」
+		DATAFORM 「ああ…ぞくぞくする…%MSG_HEART()%」
+		DATAFORM 「ああ…早く…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に项圈をつけられ、鎖に繋がれた。
+	PRINTFORML あいつの精液便所として過ごす甘美な時間…その期待に%CALLNAME:角色%は打ち震え、股座がジュンと湿ったのが分かった。
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:MASTER%への想いよりも、%NTR_NAME(0)%から与えられる快楽の方が%CALLNAME:角色%の心の中で大きな存在となってしまっていた。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	SELECTCASE TALENT:角色:浮気公認
+		CASE IS >= 浮気_外泊公認
+			PRINTDATAL
+				DATAFORM 「ふふっ、今日はどんな風に可愛がってくれるんだ？」
+				DATAFORM 「ああ、何でも言いつけてくれ。ご主人の精液便所だからな」
+			ENDDATA
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と親しげに腕を組んで歩きながら他の家に同行した。
+			PRINTDATA
+				DATAFORM 外泊してくることは%MSG_LOVER(角色)%も承知していることであり、
+				DATAFORM 外泊してくることは%MSG_LOVER(角色)%が望んだことであり、
+				DATAFORM 泊まりがけでの浮気は%MSG_LOVER(角色)%の望みをかなえるためであり、
+			ENDDATA
+			PRINTDATAL
+				DATAFORM 彼女はもはや後ろめたさを感じてはいなかった。
+				DATAFORM 彼女はためらうことなく%NTR_NAME(0)%に従った。
+				DATAFORM 彼女は迷うどころか自ら%NTR_NAME(0)%に抱きついた。
+			ENDDATA
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてあげないとな…）
+				DATAFORM （…%CALLNAME:MASTER%…楽しみにしてろよ…ふふっ…）
+			ENDDATA
+		CASE IS >= 浮気_浮気公認
+			PRINTDATAL
+				DATAFORM 「ふふっ、今日はどんな風に可愛がってくれるんだ？」
+				DATAFORM 「ああ、言う通りにする」
+			ENDDATA
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と腕を組んで歩きながら他の家に同行した。
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてあげないとな…）
+				DATAFORM （…%CALLNAME:MASTER%…楽しみにしてろよ…ふふっ…）
+			ENDDATA
+		CASEELSE		; 非公認
+			PRINTDATAL
+				DATAFORM 「だ…だめ、帰してくれ…」
+				DATAFORM 「や…やっぱり…だめっ…ああっ」
+				DATAFORM 「や、やだ…ひどいこと、しないで…」
+			ENDDATA
+			PRINTFORML 弱々しく逆らうも%CALLNAME:角色%は%NTR_NAME(0)%の家に連れ込まれてしまった。
+			IF TALENT:角色:恋慕
+				IF TALENT:角色:伤心 && RAND:2
+					IF CFLAG:角色:伤心相手1
+						PRINTFORML %CALLNAME:MASTER%と%CALLNAME:(CFLAG:角色:伤心相手1)%の行為のイメージが脳裏をよぎる。%CALLNAME:角色%の心は揺れていた。
+					ELSE
+						PRINTFORML %CALLNAME:MASTER%の浮気現場のイメージが脳裏をよぎる。%CALLNAME:角色%の心は揺れていた。
+					ENDIF
+				ELSE
+					PRINTFORML %CALLNAME:MASTER%への想いと、%NTR_NAME(0)%から与えられる快楽との間で%CALLNAME:角色%の心は揺れていた。
+				ENDIF
+			ENDIF
+	ENDSELECT
+
+ELSE
+
+	SELECTCASE TALENT:角色:浮気公認
+		CASE IS >= 浮気_外泊公認
+			PRINTFORML 「…ああ、分かったぜ」
+			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
+			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に大見得を切ってしまったせいもあり、%CALLNAME:角色%は半ば居直っていた。
+			PRINTFORML （…%CALLNAME:MASTER%が…悪いんだからな…）
+		CASE IS >= 浮気_浮気公認
+			PRINTFORML 「…」
+			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
+			PRINTFORML （…%CALLNAME:MASTER%…本当に…これでいいのか…）
+		CASEELSE		; 非公認
+			PRINTFORML 「…」
+			PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
+	ENDSELECT
+
+ENDIF
+IF TALENT:角色:人妻
+	IF EQUIP:角色:配件 == 衣装_配件_结婚戒指
+		PRINTFORML %CALLNAME:角色%の左手の薬指では、结婚戒指が虚しく輝いていた。
+	ELSE
+		PRINTFORML %CALLNAME:角色%の左手の薬指には、そこにあるはずの结婚戒指がはめられていなかった。
+	ENDIF
+ENDIF
+
+RETURN 0
+;==================================================
+;訪問者と会话(お持ち帰り)
+;==================================================
+@NTR_KOJO_K10_10_1(角色,調教者)
+#DIM 角色
+#DIM 調教者
+#DIMS 呼称
+#DIMS 阴茎
+
+呼称 = %MSG_NTR_SEX_10(角色)%
+阴茎 = %MSG_CALL_PENIS_10(角色)%
+
+IF TALENT:角色:亲爱
+
+	PRINTDATAL
+		DATAFORM 「や…やめっ…来るな…！」
+		DATAFORM 「こ、こんなことで女を従わせようだなんて…！」
+	ENDDATA
+		PRINTFORML いやらしい笑みを浮かべる男に危険を感じるが、%CALLNAME:角色%は鎖に繋がれ逃跑こともできない。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTDATAL
+		DATAFORM 「これ、似合ってるか？」
+		DATAFORM 「はい…ご主人様…」
+		DATAFORM 「ああ…ゾクゾクする…」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は微笑みながら首に着けられた项圈を指でなぞった
+	IF TALENT:角色:恋慕
+		; たぶん死に分岐
+		PRINTFORML それは%ANATA_LOVER(角色)%以外の男人に所有されることの証である项圈だった。
+		PRINTFORML 项圈から伸びた鎖はどこにも繋がれていない。
+		PRINTFORML 壁に繋いだりしなくても、もう%CALLNAME:角色%は勝手に逃げ出したりはしないのだから。
+	ELSE
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATAL
+		DATAFORM 「これ、似合ってるか？」
+		DATAFORM 「はい…ご主人様…」
+		DATAFORM 「ああ…ゾクゾクする…」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は微笑みながら首に着けられた项圈を指でなぞった
+	IF TALENT:角色:恋慕
+		PRINTFORML それは%ANATA_LOVER(角色)%以外の男人に所有されることの証である项圈だった。
+		PRINTFORML 项圈から伸びた鎖は壁に繋がれている。
+		IF TALENT:角色:浮気公認
+			PRINTFORML （ふふ…%CALLNAME:MASTER%に、見せてあげたいわね…）
+		ENDIF
+	ELSE
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	IF TALENT:角色:浮気公認
+		PRINTDATAL
+			DATAFORM 「いきなり抱き寄せられたら…捕まるしかないじゃないか」
+			DATAFORM 「ああ…もちろん…」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%の隣に座って話していた%CALLNAME:角色%だが、ふいに抱き寄せられても抵抗しなかった。
+		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認 >= 浮気_外泊公認
+			PRINTFORML 「ああ？ もちろん泊まれというなら泊まっていくぞ」
+			PRINTFORML %MSG_LOVER(角色)%にも知られているという状況が、彼女を大胆にさせていた。
+		ELSE
+		ENDIF
+	ELSE
+		PRINTFORML 「あの人に知られるとまずいから…跡を残すのだけはやめてほしいんだぜ」
+		IF TALENT:角色:恋慕
+			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの事を知られたくなかった。
+		ELSE
+			PRINTFORML %CALLNAME:角色%は皆にこの事を知られたくなかった。
+		ENDIF
+		PRINTFORML ある程度の妥協は仕方ないと受け入れ、%NTR_NAME(0)%の隣に座った。
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		PRINTDATAL
+			DATAFORM 「ああ、なるほどな」
+			DATAFORM 「へー、そうなのか」
+			DATAFORM 「ん？どこをみているんだ？」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%の話に相槌をうち、%CALLNAME:角色%は微笑んだ。
+		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認 >= 浮気_外泊公認
+			PRINTFORML 「泊まっていくのも、悪くはないわね」
+			PRINTFORML %MSG_LOVER(角色)%にも知られているという状況が、彼女を大胆にさせていた。
+		ELSE
+		ENDIF
+	ELSE
+		PRINTDATAL
+			DATAFORM 「ああ、なるほどな…」
+			DATAFORM 「へー…」
+			DATAFORM 「ん？どこをみているんだ？」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%の話に相槌をうちつつも、%CALLNAME:角色%はあまり乗り気ではなさそうだ。
+		IF TALENT:角色:恋慕
+			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの事を知られたくなかった。
+		ELSE
+			PRINTFORML %CALLNAME:角色%は紅魔館の皆にこの事を知られたくなかった。
+		ENDIF
+	ENDIF
+
+ENDIF
+RETURN 0
+
+;==================================================
+;訪問者とキス(お持ち帰り)
+;==================================================
+@NTR_KOJO_K10_10_2(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF TALENT:角色:亲爱
+
+	PRINTDATAL
+		DATAFORM 「んっ！んむぅ！…んっ、んっ…いやあっ…んぅ！」
+		DATAFORM 「やっ、やめろっ…んっ、んんっ…むうっ！」
+		DATAFORM 「んんっ！ は、はなせ…んんんっ！」
+	ENDDATA
+		PRINTFORML %CALLNAME:角色%は男に押さえこまれ無理矢理に唇を奪われ、舌を絡みあわせられている。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTFORML 「んっ…ちゅっ…んぅ…」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と舌を絡ませ合っている。
+	PRINTFORML %NTR_NAME(0)%の巧みな舌技の虜になっているようだ。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTFORML 「んっ…ちゅっ…んぅ…%MSG_HEART()%」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と舌を絡ませ合っている。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME(0)%の巧みな舌技が、僅かに残った%CALLNAME:MASTER%への想いを霞ませてゆく。
+	ELSE 
+		PRINTFORML %NTR_NAME(0)%の巧みな舌技の虜になっているようだ。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTFORML 「んっ…ちゅっ…んぅ…」
+	PRINTFORML %NTR_NAME(0)%に唇を重ねられた%CALLNAME:角色%は、うっとりと目を閉じ他の舌を受け入れた。
+	IF TALENT:角色:浮気公認
+		PRINTFORML そればかりか、彼女は自ら%NTR_NAME(0)%の背中に腕を回し自ら唇を押し付けてゆく。
+	ENDIF
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME(0)%の巧みな舌技が、%CALLNAME:MASTER%への想いを霞ませてゆく。
+	ELSE 
+		PRINTFORML %NTR_NAME(0)%の巧みな舌技が、%CALLNAME:角色%の心をとろけさせてゆく。
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		PRINTFORML 「んっ！…ん…んっ…んっ…」
+		PRINTFORML %CALLNAME:角色%は唇を奪われたが、そのまま他の舌を受け入れた。
+		IF TALENT:角色:恋慕
+			PRINTFORML %MSG_LOVER(角色)%の望むことなのだからと、%NTR_NAME(0)%の巧みな舌技に%CALLNAME:角色%は身をゆだねた。
+		ENDIF
+	ELSE
+		PRINTFORML 「んっ！んむぅ…んっ、んっ…ん！」
+		PRINTFORML %CALLNAME:角色%は唇を奪われたが、そのまま他の舌を受け入れた。
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME(0)%の巧みな舌技が、%CALLNAME:MASTER%への想いを霞ませてゆく。
+		ELSE 
+			PRINTFORML %NTR_NAME(0)%の巧みな舌技が、%CALLNAME:角色%の心をとろけさせてゆく。
+		ENDIF
+	ENDIF
+
+ENDIF
+
+RETURN 0
+
+;==================================================
+;訪問者と六九式(お持ち帰り)
+;==================================================
+@NTR_KOJO_K10_10_3(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF TALENT:角色:亲爱
+
+	PRINTDATAL
+		DATAFORM 「うっ…うぐっ…んんっ…！！」
+		DATAFORM 「ううっ…い、いやだっ…んぐうっ！」
+		DATAFORM 「んっ…んむっ…だ、だめっ…ああっ！」
+	ENDDATA
+		PRINTFORML %CALLNAME:角色%は男に無理矢理押さえ込まれ口に阴茎を捻じ込まれている。
+		PRINTFORML 男は%CALLNAME:角色%の口を犯しながら、彼女の濡れた股間にしゃぶりついている。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTFORML 「んっ…ちゅく…ちゅく…ちゅく…」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を頬張りながら濡れた秘所を相手の顔に擦り付けた。
+	PRINTFORML 感じやすいところをしゃぶられ、%CALLNAME:角色%は身震いした。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTFORML 「んっ…ちゅく…ちゅく…ちゅく…」
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%の阴茎を頬張りながら濡れた秘所を相手の顔に擦り付けた。
+	ELSE
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を頬張りながら濡れた秘所を相手の顔に擦り付けた。
+	ENDIF
+	PRINTFORML 感じやすいところをしゃぶられ、%CALLNAME:角色%は身震いした。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTFORML 「んっ…ちゅっ…んんっ…んちゅっ…」
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%の阴茎を頬張りながら秘所を濡らした。
+	ELSE
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を頬張りながら秘所を濡らした。
+	ENDIF
+	PRINTFORML 感じやすいところをしゃぶられ、%CALLNAME:角色%は身震いした。
+	IF TALENT:角色:浮気公認
+		PRINTFORML %CALLNAME:MASTER%公認のことなのだから、せいぜい楽しもうと考えていた。
+	ELSE
+		PRINTFORML %MSG_LOVER(角色)%のいないところで他の男人の肉棒に唇を捧げることに、%CALLNAME:角色%は興奮を覚えていた。
+	ENDIF
+
+ELSE
+
+	PRINTFORML 「んっ…ちゅっ…んんっ…」
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%の阴茎を頬張りながら秘所を濡らした。
+	ELSE
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を頬張りながら秘所を濡らした。
+	ENDIF
+	IF TALENT:角色:浮気公認 
+		PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%の願いなのだからと、%NTR_NAME(0)%に唇と秘所を捧げた。
+	ELSE
+		PRINTFORML %CALLNAME:角色%は一刻も早くこの屈辱から逃れようと、%NTR_NAME(0)%に唇と秘所を捧げた。
+	ENDIF
+
+ENDIF
+
+RETURN 0
+
+;==================================================
+;訪問者と性交(お持ち帰り)
+;==================================================
+@NTR_KOJO_K10_10_4(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF TFLAG:輪姦内容 == 輪姦_1A
+	;菊花セックス分岐
+	CALL NTR_KOJO_K10_10_4_A(角色, 調教者)
+ELSE
+	;通常
+	CALL NTR_KOJO_K10_10_4_V(角色, 調教者)
+ENDIF
+RETURN 0
+
+;訪問者とＶ性交(お持ち帰り)
+@NTR_KOJO_K10_10_4_V(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF TALENT:角色:亲爱
+
+	PRINTDATAL
+		DATAFORM 「いやっ…やだっ…！！ ああああっ！！」
+		DATAFORM 「だ、だめっ…！ だめええええっ！！」
+		DATAFORM 「ああっ！ だめ、だめっ！ ああああっ！！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は男に組み敷かれ肉棒を突き込まれている。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		PRINTFORML 「はい…私の初めてを、お捧げします…」
+		PRINTFORML %CALLNAME:角色%は自ら脚を開いて%NTR_NAME(0)%を誘い、まだ男を知らない处女地に受け入れた。
+	ELSE
+		IF HAS_PENIS(MASTER)
+			PRINTFORML 「んうっ…あっ…おっきい！…%CALLNAME:MASTER%よりおっきいぃぃっ！」
+		ELSE
+			PRINTFORML 「んうっ…あっ…おっきいぃぃっ！」
+		ENDIF
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎が膣内を蹂躙する快感に悶えている
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%への想いも忘れ、彼以外の男人に处女を捧げてしまった。
+		ELSE
+			PRINTFORML 「いいぜ…私の初めてを、あげる…」
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を捧げてしまった。
+		ENDIF
+		;非处女
+	ELSE
+		PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+		PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
+			IF TALENT:角色:浮気公認
+				PRINTFORML %MSG_LOVER(角色)%の希望を受け入れてのこととはいえ、%MSG_LOVER(角色)%以外の相手に处女を捧げる…倒錯した悦びを%CALLNAME:角色%は感じていた。
+			ENDIF
+		ELSE
+			PRINTFORML 「いいぜ…私の初めてを、あげる…」
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を捧げてしまった。
+		ENDIF
+		;非处女
+	ELSE
+		PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+		PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく。
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+			IF TALENT:角色:恋慕
+				PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
+				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
+				IF TALENT:角色:浮気公認
+					PRINTFORML %MSG_LOVER(角色)%の希望を受け入れてのこととはいえ、%MSG_LOVER(角色)%以外の相手に处女を捧げる…倒錯した悦びを%CALLNAME:角色%は感じていた。
+				ENDIF
+			ELSE
+				PRINTFORML 「いいぜ…私の初めてを、あげる…」
+				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を捧げてしまった。
+			ENDIF
+			;非处女
+		ELSE
+			PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+			PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく。
+		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%が…いけないんだからな…）
+	ELSE
+		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+			IF TALENT:角色:恋慕
+				PRINTFORML 「いったぁぁっ！？…あぁ、初めては…%CALLNAME:MASTER%にってぇ…」
+				PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%に处女を奪われ涙を流している
+			ELSE 
+				PRINTFORML 「いったぁぁっ！？…あぁ、初めてなのに…こんな…こんな…」
+				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を奪われ涙を流している
+			ENDIF
+			;非处女
+		ELSE
+			PRINTFORML 「いやぁぁ…%CALLNAME:MASTER%！…%CALLNAME:MASTER%っ！！…」
+			PRINTFORML %CALLNAME:角色%は犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
+		ENDIF
+	ENDIF
+
+ENDIF
+RETURN 0
+
+
+;訪問者とＡ性交(お持ち帰り)
+@NTR_KOJO_K10_10_4_A(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	IF HAS_PENIS(MASTER)
+		PRINTFORML 「んうっ…あっ…おっきい！…%CALLNAME:MASTER%よりおっきいぃぃっ！」
+	ELSE
+		PRINTFORML 「んうっ…あっ…おっきいぃぃっ！」
+	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎が腸内を蹂躙する快感に悶えている
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+	PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%の腸内に突き入れる度に、残り僅かな%CALLNAME:MASTER%への想いが色あせてゆく。
+	PRINTFORML 「もっと！ もっと突いて！ もっとぉ！」
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+	PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%の尻穴に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく。
+	IF TALENT:角色:浮気公認
+		PRINTFORML 「もっと！ もっと突いて！ もっとぉ！」
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		PRINTFORML 「ああっ…すごいっ…おく、奥まで来るぅぅっ！」
+		PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%の尻穴に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく。
+	ELSE
+		PRINTFORML 「いやぁぁ…%CALLNAME:MASTER%！…%CALLNAME:MASTER%っ！！…」
+		PRINTFORML %CALLNAME:角色%は尻穴を犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
+	ENDIF
+
+ENDIF
+RETURN 0
+
+;==================================================
+;訪問者の射精(お持ち帰り)
+;==================================================
+@NTR_KOJO_K10_10_5(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+
+IF TFLAG:輪姦内容 == 輪姦_1A
+	;菊花セックス分岐
+	CALL NTR_KOJO_K10_10_5_A(角色, 調教者)
+ELSE
+	;通常
+	CALL NTR_KOJO_K10_10_5_V(角色, 調教者)
+ENDIF
+RETURN 0
+
+;訪問者のＶ射精(お持ち帰り)
+@NTR_KOJO_K10_10_5_V(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+#DIMS 悲鳴
+#DIMS 記号
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+	記号 = %MSG_HEART()%
+ELSE
+	記号 = ！
+ENDIF
+IF TALENT:角色:危险日
+	STRDATA 悲鳴
+		DATAFORM 「ああっ！中に、中にくるうっ…赤ちゃんできちゃう！」
+		DATAFORM 「ああっ！中に、中にだしてええっ…孕ませてええっ」
+		DATAFORM 「ああっ！出てるっ！ いっぱい出てるぅっ%記号%」
+	ENDDATA
+ELSE
+	STRDATA 悲鳴
+		DATAFORM 「ああっ！中に、中にくるううっ%記号%」
+		DATAFORM 「ああっ！中に、中にだしてええっ%記号%」
+		DATAFORM 「ああっ！出てるっ！ いっぱい出てるぅっ%記号%」
+	ENDDATA
+ENDIF
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	IF (NOWEX:角色:0+NOWEX:角色:1+NOWEX:角色:2+NOWEX:角色:3)>0
+		;いずれかの絶頂あり
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%の阴茎が子宮めがけて射精すると、%CALLNAME:角色%は淫らな声を張り上げながら達した。
+		PRINTFORML 膣内からは孕んでもおかしくないほど大量の精液が、どろりと流れ落ちた。
+	ELSE
+		;絶頂なし
+		PRINTFORML 「ああっ…出てる…熱いのが、膣内に…%MSG_HEART()%」
+		PRINTFORML %NTR_NAME(0)%の阴茎が子宮めがけて射精すると、%CALLNAME:角色%は淫らな声で喘いだ。
+		PRINTFORML 膣内からは孕んでもおかしくないほど大量の精液が、どろりと流れ落ちた。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	IF (NOWEX:角色:0+NOWEX:角色:1+NOWEX:角色:2+NOWEX:角色:3)>0
+		;いずれかの絶頂あり
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%の阴茎が子宮めがけて射精すると、%CALLNAME:角色%は淫らな声を張り上げながら達した。
+		PRINTFORML %NTR_NAME(0)%に耳元で何かを囁かれた%CALLNAME:角色%は頬を染め小さな声で答えた。
+		PRINTFORML 「はい…ご主人様…」
+	ELSE
+		;絶頂なし
+		PRINTFORML 「ああっ…出てる…熱いのが、膣内に…%MSG_HEART()%」
+		PRINTFORML %NTR_NAME(0)%の阴茎が子宮めがけて射精すると、%CALLNAME:角色%は淫らな声で喘いだ。
+		PRINTFORML %NTR_NAME(0)%に耳元で何かを囁かれた%CALLNAME:角色%は頬を染め小さな声で答えた。
+		PRINTFORML 「はい…ご主人様…」
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTFORML %NTR_NAME(0)%は悦がり狂う%CALLNAME:角色%の子宮口へ、おびただしい量の濁った白い欲望を放出した。
+	PRINTFORML %悲鳴%
+	IF TALENT:角色:恋慕
+		PRINTFORML %ANATA_LOVER(角色)%の物ではない精子が、%CALLNAME:角色%を孕ませんと染み込んでいった。
+	ELSE
+		PRINTFORML %NTR_NAME(2)%の精子が、%CALLNAME:角色%を孕ませんと染み込んでいった。
+	ENDIF
+	PRINTFORML %NTR_NAME(0)%は股間から精液を滴らせる%CALLNAME:角色%に自ら脚を開くポーズを取らせ摄影した。
+	IF TALENT:角色:浮気公認
+		PRINTFORML （ふふっ…これを見せたら、%CALLNAME:MASTER%喜んでくれるかな…）
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%は絶頂した%CALLNAME:角色%の子宮口へ、容赦なくその濁った白い欲望を放出した。
+		IF TALENT:角色:恋慕
+			PRINTFORML 「あ…ああん…%CALLNAME:MASTER%のじゃない赤ちゃん…できちゃう…」
+		ELSE
+			PRINTFORML 「あ…ああん…赤ちゃん…できちゃう…」
+		ENDIF
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%に脚を開かせ、局部から滴る白濁を彼女の笑顔とともに摄影した。
+		PRINTFORML （ふふっ…これを見せたら、%CALLNAME:MASTER%喜んでくれるかしら…）
+	ELSE
+		IF TALENT:角色:危险日
+			PRINTFORML 「ああっ！だめ、だめだっ！…今日は、今日だけは駄目だ！！」
+		ELSE
+			PRINTFORML 「ああっ！だめ、だめだっ！」
+		ENDIF
+		PRINTFORML %NTR_NAME(0)%はのけ反る%CALLNAME:角色%の子宮口へ、容赦なくその濁った白い欲望を放出した。
+		IF TALENT:角色:恋慕
+			PRINTFORML 「あ…あん…%CALLNAME:MASTER%のじゃない赤ちゃん…できちゃう…」
+		ELSE
+			PRINTFORML 「あ…あん…赤ちゃん…できちゃう…」
+		ENDIF
+		PRINTFORML %NTR_NAME(0)%は放心状態になった%CALLNAME:角色%を摄影していた。
+	ENDIF
+
+ENDIF
+RETURN 0
+
+;訪問者のＡ射精(お持ち帰り)
+@NTR_KOJO_K10_10_5_A(角色, 調教者)
+#DIM 角色
+#DIM 調教者
+#DIMS 悲鳴
+
+STRDATA 悲鳴
+	DATA 「ああっ！中に、中にくるううっ！」
+	DATA 「ああっ！あついっ！ あついのぉぉぉ！」
+	DATA 「ああっ！出てるっ！ いっぱい出てるぅっ！」
+ENDDATA
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	IF (NOWEX:角色:0+NOWEX:角色:1+NOWEX:角色:2+NOWEX:角色:3)>0
+		;いずれかの絶頂あり
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%の阴茎が腸内深くで射精すると、%CALLNAME:角色%は淫らな声を張り上げながら達した。
+	ELSE
+		;絶頂なし
+		PRINTFORML 「ああっ…出てる…熱いのが、お尻に…%MSG_HEART()%」
+		PRINTFORML %NTR_NAME(0)%の阴茎が腸内深くで射精すると、%CALLNAME:角色%は淫らな声で喘いだ。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	IF (NOWEX:角色:0+NOWEX:角色:1+NOWEX:角色:2+NOWEX:角色:3)>0
+		;いずれかの絶頂あり
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%の阴茎が腸内深くで射精すると、%CALLNAME:角色%は淫らな声を張り上げながら達した。
+		PRINTFORML %NTR_NAME(0)%に耳元で何かを囁かれた%CALLNAME:角色%は頬を染め小さな声で答えた。
+		PRINTFORML 「はい…ご主人様…」
+	ELSE
+		;絶頂なし
+		PRINTFORML 「ああっ…出てる…熱いのが、お尻に…！」
+		PRINTFORML %NTR_NAME(0)%の阴茎が腸内深くで射精すると、%CALLNAME:角色%は淫らな声で喘いだ。
+		PRINTFORML %NTR_NAME(0)%に耳元で何かを囁かれた%CALLNAME:角色%は頬を染め小さな声で答えた。
+		PRINTFORML 「はい…ご主人様…」
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTFORML %NTR_NAME(0)%は悦がり狂う%CALLNAME:角色%の腸内へ、おびただしい量の濁った白い欲望を放出した。
+	PRINTFORML %悲鳴%
+	IF TALENT:角色:恋慕
+		PRINTFORML %ANATA_LOVER(角色)%の物ではない精子が、%CALLNAME:角色%の体内深くに染み込んでゆく。
+	ELSE
+		PRINTFORML %NTR_NAME(2)%の精子が、%CALLNAME:角色%の体内深くに染み込んでゆく。
+	ENDIF
+	PRINTFORML %NTR_NAME(0)%は尻穴から精液を滴らせる%CALLNAME:角色%に自ら脚を開くポーズを取らせ摄影した。
+	IF TALENT:角色:浮気公認
+		PRINTFORML （ふふっ…これを見せたら、%CALLNAME:MASTER%喜んでくれるかな…）
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:浮気公認
+		PRINTFORML %悲鳴%
+		PRINTFORML %NTR_NAME(0)%は絶頂した%CALLNAME:角色%の尻穴へ、容赦なくその濁った白い欲望を放出した。
+		PRINTFORML 「あ…ああん…あつぅい…」
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%に脚を開かせ、尻穴から滴る白濁を彼女の笑顔とともに摄影した。
+		PRINTFORML （ふふっ…これを見せたら、%CALLNAME:MASTER%喜んでくれるかしら…）
+	ELSE
+		PRINTFORML 「いやっ！ いやあああああ！！」
+		PRINTFORML %NTR_NAME(0)%はのけ反る%CALLNAME:角色%の尻穴へ、容赦なくその濁った白い欲望を放出した。
+		PRINTFORML 「あ…ああん…あつぅい…」
+		PRINTFORML %NTR_NAME(0)%は放心状態になった%CALLNAME:角色%を摄影していた。
+	ENDIF
+
+ENDIF
+RETURN 0
+
+;==================================================
+;訪問者宅滞在継続
+;==================================================
+@NTR_KOJO_K10_10_7(角色)
+#DIM 角色
+
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTDATAL
+		DATAFORM 「ああ…また…%MSG_HEART()%」
+		DATAFORM 「ああ…ぞくぞくする…%MSG_HEART()%」
+		DATAFORM 「ああ…早く…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に项圈をつけられ、鎖に繋がれたまま目覚めた。
+	PRINTFORML 今日もまたご主人様の精液便所として過ごせる…その期待に%CALLNAME:角色%は打ち震えた。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATAL
+		DATAFORM 「ああ…また…%MSG_HEART()%」
+		DATAFORM 「ああ…ぞくぞくする…%MSG_HEART()%」
+		DATAFORM 「ああ…早く…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に项圈をつけられ、鎖に繋がれたまま目覚めた。
+	PRINTFORML 今日もまたご主人様の精液便所として過ごせる…その期待に%CALLNAME:角色%は打ち震えた。
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:MASTER%への想いよりも、%NTR_NAME(0)%から与えられる快楽の方が%CALLNAME:角色%の心の中で大きな存在となってしまっていた。
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	SELECTCASE TALENT:角色:浮気公認
+		CASE IS >= 浮気_外泊公認
+			PRINTDATAL
+				DATAFORM 「ああ、始めるか。気持ち良くしてくれよ」
+				DATAFORM 「今日はどんな風にしてくれるんだ？」
+				DATAFORM 「ああ、気持ち良くなれるなら何でもするぜ」
+			ENDDATA
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の家で目覚め、他に抱きつきながら艶のある声で囁いた。
+			PRINTDATA
+				DATAFORM 外泊してくることは%MSG_LOVER(角色)%も承知していることであり、
+				DATAFORM 外泊してくることは%MSG_LOVER(角色)%が望んだことであり、
+				DATAFORM 泊まりがけでの浮気は%MSG_LOVER(角色)%の望みをかなえるためであり、
+			ENDDATA
+			PRINTDATAL
+				DATAFORM 彼女はもはや後ろめたさを感じてはいなかった。
+				DATAFORM 彼女はためらうことなく%NTR_NAME(0)%に従った。
+				DATAFORM 彼女は迷うどころか自ら%NTR_NAME(0)%に抱きついた。
+			ENDDATA
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてやるからな…）
+				DATAFORM （…%CALLNAME:MASTER%…帰って話したらどんな顔するかな…）
+				DATAFORM （…%CALLNAME:MASTER%…お前じゃない相手に気持ち良くされる…ああ、考えるだけでゾクゾクするぜ）
+			ENDDATA
+		CASE IS >= 浮気_浮気公認
+			PRINTDATAL
+				DATAFORM 「ああ、始めるか」
+				DATAFORM 「今日はどんな風にしてくれるんだ？」
+				DATAFORM 「ああ、気持ち良くなれるなら従うぜ」
+			ENDDATA
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の家で目覚め、他に抱きつきながら期待を込めた声で囁いた。
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…帰ったら、聞かせてやるからな…）
+				DATAFORM （…%CALLNAME:MASTER%…帰って話したらどんな顔するかな…）
+				DATAFORM （…%CALLNAME:MASTER%…お前じゃない相手に気持ち良くされる…ああ、考えるだけでゾクゾクするぜ）
+			ENDDATA
+		CASEELSE		; 非公認
+			PRINTDATAL
+				DATAFORM 「だ…だめ、帰して…」
+				DATAFORM 「や…やっぱり…だめっ…ああっ」
+				DATAFORM 「や、やだ…ひどいこと、しないで…」
+			ENDDATA
+			PRINTFORML 弱々しく逆らうも%CALLNAME:角色%は%NTR_NAME(0)%の家から帰ることを許されなかった。
+			IF TALENT:角色:恋慕
+				IF TALENT:角色:伤心 && RAND:2
+					IF CFLAG:角色:伤心相手1
+						PRINTFORML %CALLNAME:MASTER%と%CALLNAME:(CFLAG:角色:伤心相手1)%の行為のイメージが脳裏をよぎる。%CALLNAME:角色%の心は揺れていた。
+					ELSE
+						PRINTFORML %CALLNAME:MASTER%の浮気現場のイメージが脳裏をよぎる。%CALLNAME:角色%の心は揺れていた。
+					ENDIF
+				ELSE
+					PRINTFORML %CALLNAME:MASTER%への想いと、%NTR_NAME(0)%から与えられる快楽との間で%CALLNAME:角色%の心は揺れていた。
+				ENDIF
+			ENDIF
+	ENDSELECT
+
+ELSE
+
+	SELECTCASE TALENT:角色:浮気公認
+		CASE IS >= 浮気_外泊公認
+			PRINTFORML 「…ああ、始めめるか」
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:角色%は大人しく他の腕に身をゆだねた。
+			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に大見得を切ってしまったせいもあり、%CALLNAME:角色%は半ば居直っていた。
+			PRINTFORML （…%CALLNAME:MASTER%が…悪いんだからな…）
+		CASE IS >= 浮気_浮気公認
+			PRINTFORML 「…」
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:角色%は大人しく他の腕に身をゆだねた。
+			PRINTFORML （…%CALLNAME:MASTER%…お前は本当にこれでいいのか…？）
+		CASEELSE		; 非公認
+			PRINTFORML 「…」
+			PRINTFORML %NTR_NAME(0)%の家で目覚めた%CALLNAME:角色%は表面上大人しく他の腕に身をゆだねた。
+			PRINTFORML （…まだ…帰られないのか…）
+	ENDSELECT
+
+ENDIF
+IF TALENT:角色:人妻
+	IF EQUIP:角色:配件 == 衣装_配件_结婚戒指
+		PRINTFORML %CALLNAME:角色%の左手の薬指では、结婚戒指が虚しく輝いていた。
+	ELSE
+		PRINTFORML %CALLNAME:角色%の左手の薬指には、そこにあるはずの结婚戒指がはめられていなかった。
+	ENDIF
+ENDIF
+
+RETURN 0
+
+;==================================================
+;朝の侍奉(お持ち帰り)
+;==================================================
+;フェラ侍奉
+@NTR_KOJO_K10_14_0(角色)
+#DIM 角色
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTDATAL
+		DATAFORM 「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+		DATAFORM 「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+		DATAFORM 「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎をしゃぶり続け、口内に放たれた白濁を一滴残さず飲み下した。
+	PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いに恍惚としていた。
+	PRINTDATAL
+		DATAFORM （ああ…精液の味…好き%MSG_HEART()%）
+		DATAFORM （ああ…濃い%MSG_HEART()%）
+		DATAFORM （ああ…精液で子宮も疼いてきちゃった%MSG_HEART()%）
+	ENDDATA
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATAL
+		DATAFORM 「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+		DATAFORM 「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+		DATAFORM 「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎をしゃぶり続け、口内に放たれた白濁を一滴残さず飲み下した。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じていた。
+	ENDIF
+	PRINTDATAL
+		DATAFORM （ああ…精液の味…好き%MSG_HEART()%）
+		DATAFORM （ああ…濃い%MSG_HEART()%）
+		DATAFORM （ああ…精液で子宮も疼いてきちゃった%MSG_HEART()%）
+	ENDDATA
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	PRINTDATAL
+		DATAFORM 「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+		DATAFORM 「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+		DATAFORM 「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎をしゃぶり、口内に放たれた白濁を飲み下した。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じていた。
+	ENDIF
+	PRINTDATAL
+		DATAFORM （ああ…精液の味…好き…）
+		DATAFORM （ああ…濃い…）
+		DATAFORM （ああ…精液で子宮も疼いてきちゃった…）
+	ENDDATA
+
+ELSE
+
+	IF TALENT:角色:处女 
+		PRINTFORML 「んっ…んんんっ！」
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME_1_2(角色)%に处女を奪われるくらいならと自ら他の阴茎に唇を捧げ、口の中に精液を受け入れた。
+			IF TALENT:角色:浮気公認
+				PRINTDATAL
+					DATAFORM （…%CALLNAME:MASTER%が…いけないんだからな…）
+					DATAFORM （…%CALLNAME:MASTER%…これでいいんだよな…）
+					DATAFORM （…%CALLNAME:MASTER%…これで喜んでくれるなら…）
+				ENDDATA
+			ELSE
+				PRINTDATAL
+					DATAFORM （…%CALLNAME:MASTER%…許して…）
+					DATAFORM （…%CALLNAME:MASTER%…すまない…）
+					DATAFORM （…%CALLNAME:MASTER%…ああ…）
+				ENDDATA
+			ENDIF
+		ELSE
+			PRINTFORML %CALLNAME:角色%は处女を奪われるよりは、と自ら%NTR_NAME(0)%の阴茎に唇を捧げ、口の中に精液を注ぎ込まれた。
+			PRINTDATAL
+				DATAFORM （…苦い…）
+				DATAFORM （…苦い…ああ、苦くて気持ち悪いんだ…）
+				DATAFORM （…慣れないな…）
+			ENDDATA
+		ENDIF
+		;非处女
+	ELSE
+		PRINTFORML 「んっ…んんんっ！ …こく、こく…」
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎をしゃぶらされ、口内に放たれた白濁を仕方なしに飲み下した。
+		IF TALENT:角色:恋慕
+			IF TALENT:角色:浮気公認
+				PRINTDATAL
+					DATAFORM （…%CALLNAME:MASTER%が…いけないんだからな…）
+					DATAFORM （…%CALLNAME:MASTER%…これでいいんだよな…）
+					DATAFORM （…%CALLNAME:MASTER%…これで喜んでくれるなら…）
+				ENDDATA
+			ELSE
+				PRINTDATAL
+					DATAFORM （…%CALLNAME:MASTER%…許して…）
+					DATAFORM （…%CALLNAME:MASTER%…すまない…）
+					DATAFORM （…%CALLNAME:MASTER%…ああ…）
+				ENDDATA
+			ENDIF
+		ELSE
+			PRINTDATAL
+				DATAFORM （…苦い…）
+				DATAFORM （…苦い…ああ、苦くて気持ち悪いんだ…）
+				DATAFORM （…慣れないな…）
+			ENDDATA
+		ENDIF
+	ENDIF
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒の味、他の精液の臭いも甘美なものと感じつつあった。
+	ENDIF
+
+ENDIF
+
+RETURN 0
+
+;舔肛侍奉
+@NTR_KOJO_K10_14_1(角色)
+#DIM 角色
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	PRINTDATAL
+		DATAFORM 「ああっ…おしり、おしり、あついいいいいっ%MSG_HEART()%」
+		DATAFORM 「ああっ…奥に、おしりの奥に出てるぅぅっ%MSG_HEART()%」
+		DATAFORM 「ああっ…出してっ、おしりで、出してぇぇっ%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は直腸深くねじこまれた阴茎によがり狂い、奥の奥に射精されて絶頂した。
+	PRINTFORML %NTR_NAME(0)%の肉棒にすっかり馴染んでしまい、注がれる精液の熱さにすら悦びを感じている。
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	PRINTDATAL
+		DATAFORM 「ああっ…おしり、おしり、あついいいいいっ%MSG_HEART()%」
+		DATAFORM 「ああっ…奥に、おしりの奥に出てるぅぅっ%MSG_HEART()%」
+		DATAFORM 「ああっ…出してっ、おしりで、出してぇぇっ%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は直腸深くねじこまれた阴茎によがり狂い、奥の奥に射精されて絶頂した。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にすっかり馴染んでしまい、注がれる精液の熱さにすら悦びを感じている。
+		IF RAND:3 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に%MSG_LOVER(角色)%と別れ自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ああ…別れる…別れますッ！ %MSG_NTR_SEX_10()%のものになります…%MSG_HEART()%」
+				DATAFORM 「ああ…別れる…別れますッ！ 私は、%MSG_NTR_SEX_10()%の角色…です…%MSG_HEART()%」
+			ENDDATA
+		ENDIF
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒にすっかり馴染んでしまい、注がれる精液の熱さにすら悦びを感じている。
+		IF RAND:3 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ああ…別れる…別れますッ！ %MSG_NTR_SEX_10()%のものになります…%MSG_HEART()%」
+				DATAFORM 「ああ…別れる…別れますッ！ 私は、%MSG_NTR_SEX_10()%の角色…です…%MSG_HEART()%」
+			ENDDATA
+		ENDIF
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	;处女
+	IF TALENT:角色:处女 
+		PRINTDATAL
+			DATAFORM 「こっちがいいんだな…%MSG_HEART()%」
+			DATAFORM 「私は…いつ处女を奪われてもいいのに…%MSG_HEART()%」
+		ENDDATA
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるままアヌスを差し出し、他の阴茎を受け入れた。
+		PRINTFORML %NTR_NAME(0)%の堅い肉棒が%CALLNAME:角色%の腸を深く深く抉り、征服の証とばかりに精液を解き放った。
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME_1_2(角色)%の肉棒に馴染みつつあり、注がれる精液の熱さに酔いしれていた。
+			IF HAS_PENIS(MASTER)
+				PRINTFORML （…%CALLNAME:MASTER%より…すごい…大きくて…）
+			ELSE
+				PRINTFORML （…すごい…大きくて…）
+			ENDIF
+		ELSE
+			PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、注がれる精液の熱さに酔いしれていた。
+		ENDIF
+		;非处女
+	ELSE
+		PRINTDATAL
+			DATAFORM 「ああっ…おしり、おしり、あついいいいいっ%MSG_HEART()%」
+			DATAFORM 「ああっ…奥に、おしりの奥に出てるぅぅっ%MSG_HEART()%」
+			DATAFORM 「ああっ…出してっ、おしりで、出してぇぇっ%MSG_HEART()%」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の尻穴深く阴茎をねじ込み、征服の証とばかりに精液を解き放った。
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME_1_2(角色)%の肉棒に馴染みつつあり、注がれる精液の熱さに酔いしれていた。
+		ELSE
+			PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、注がれる精液の熱さに酔いしれていた。
+		ENDIF
+	ENDIF
+
+ELSE
+	;处女
+	IF TALENT:角色:处女 
+		PRINTDATAL
+			DATAFORM 「…こっちで…ゆるして…あっ…ああっ！」
+			DATAFORM 「ああっ！ お、おしりが…熱いっ！！」
+			DATAFORM 「ああ…处女だけは…許して…えっ、こ、こっち…？」
+		ENDDATA
+		PRINTFORML %CALLNAME:角色%は处女を奪われるよりは、と自らアヌスを差し出し%NTR_NAME(0)%の阴茎を受け入れた。
+		PRINTFORML %NTR_NAME(0)%の堅い肉棒が%CALLNAME:角色%の腸を深く深く抉り、征服の証とばかりに精液を解き放った。
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME_1_2(角色)%の精液が%CALLNAME:角色%の腸に淫らな烙印を刻んでゆく。
+		ELSE
+			PRINTFORML %NTR_NAME(0)%の精液が%CALLNAME:角色%の腸に淫らな烙印を刻んでゆく。
+		ENDIF
+		;非处女
+	ELSE
+		PRINTDATAL
+			DATAFORM 「んっ…んああっ！そ、そんな、おく、に、ああっ！！」
+			DATAFORM 「あああっ！ お、おしりっ…熱いっ…！」
+			DATAFORM 「ああっ！　そんなっ、ふか、くっ…あああっ！」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の尻穴深く阴茎をねじ込み、征服の証とばかりに精液を解き放った。
+		IF TALENT:角色:恋慕
+			PRINTFORML %NTR_NAME_1_2(角色)%の精液が%CALLNAME:角色%の腸に淫らな烙印を刻んでゆく。
+		ELSE
+			PRINTFORML %NTR_NAME(0)%の精液が%CALLNAME:角色%の腸に淫らな烙印を刻んでゆく。
+		ENDIF
+	ENDIF
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:浮気公認
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%が…いけないんだからな…）
+				DATAFORM （…%CALLNAME:MASTER%…これでいいんだよな…）
+				DATAFORM （…%CALLNAME:MASTER%…これで喜んでくれるなら…）
+			ENDDATA
+		ELSE
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…許して…）
+				DATAFORM （…%CALLNAME:MASTER%…すまない…）
+				DATAFORM （…%CALLNAME:MASTER%…ああ…）
+			ENDDATA
+		ENDIF
+	ENDIF
+
+ENDIF
+
+RETURN 0
+
+;性交侍奉
+@NTR_KOJO_K10_14_2(角色)
+#DIM 角色
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+
+	IF TALENT:角色:危险日
+		PRINTDATAL
+			DATAFORM 「ああっ…きて、ナカにきてっ！ 孕ませてええええ%MSG_HEART()%」
+			DATAFORM 「ああっ…出して、ナカで出してっ！ 孕ませてええええ%MSG_HEART()%」
+			DATAFORM 「ああんっ…出てる、ナカで出てるっ！ 孕んじゃうぅぅ%MSG_HEART()%」
+		ENDDATA
+	ELSE
+		PRINTDATAL
+			DATAFORM 「ああっ…きて、ナカにきてっ%MSG_HEART()%」
+			DATAFORM 「ああっ…出して、ナカで出してっ%MSG_HEART()%」
+			DATAFORM 「ああんっ…出てる、ナカで出てるっ%MSG_HEART()%」
+		ENDDATA
+	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。
+	PRINTFORML %NTR_NAME(0)%の肉棒を、他の精液を心から望んでいた。
+	PRINTDATAL
+		DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
+		DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
+		DATAFORM （ああん…もっと…もっと、注いで…%MSG_HEART()%）
+	ENDDATA
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
+
+	IF TALENT:角色:危险日
+		PRINTDATAL
+			DATAFORM 「ああっ…きて、ナカにきてっ！ 孕ませてええええ%MSG_HEART()%」
+			DATAFORM 「ああっ…出して、ナカで出してっ！ 孕ませてええええ%MSG_HEART()%」
+			DATAFORM 「ああんっ…出てる、ナカで出てるっ！ 孕んじゃうぅぅ%MSG_HEART()%」
+		ENDDATA
+	ELSE
+		PRINTDATAL
+			DATAFORM 「ああっ…きて、ナカにきてっ%MSG_HEART()%」
+			DATAFORM 「ああっ…出して、ナカで出してっ%MSG_HEART()%」
+			DATAFORM 「ああんっ…出てる、ナカで出てるっ%MSG_HEART()%」
+		ENDDATA
+	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
+		PRINTDATAL
+			DATAFORM 「ふうっ…%MSG_LOVER(角色)%のいるオンナに中出しするなんて…%MSG_HEART()%」
+			DATAFORM 「ああ…%MSG_LOVER(角色)%のいるオンナに中出しするなんて…%MSG_HEART()%」
+			DATAFORM 「%MSG_LOVER(角色)%以外の人に中出しされるなんて…刺激的…%MSG_HEART()%」
+		ENDDATA
+		IF RAND:3 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に%MSG_LOVER(角色)%と別れ自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ああ…別れる…別れますッ！ %MSG_NTR_SEX_10()%のものになります…%MSG_HEART()%」
+				DATAFORM 「ああ…別れる…別れますッ！ 私は、%MSG_NTR_SEX_10()%の角色…です…%MSG_HEART()%」
+			ENDDATA
+		ENDIF
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒にも、他の精液にももはや抵抗は感じていなかった。
+		PRINTDATAL
+			DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
+			DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
+			DATAFORM （ああん…もっと…もっと、注いで…%MSG_HEART()%）
+		ENDDATA
+		IF RAND:3 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ああ…別れる…別れますッ！ %MSG_NTR_SEX_10()%のものになります…%MSG_HEART()%」
+				DATAFORM 「ああ…別れる…別れますッ！ 私は、%MSG_NTR_SEX_10()%の角色…です…%MSG_HEART()%」
+			ENDDATA
+		ENDIF
+	ENDIF
+
+ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
+
+	IF TALENT:角色:危险日
+		PRINTFORML 「ああっ…くるっ！あついの、くるっ！ 孕んじゃうぅぅ！！」
+	ELSE
+		PRINTFORML 「ああっ…くるっ！あついの、くるぅぅぅ！！」
+	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抱きつきながら腰を振り、膣内深くに精を飲み込んだ。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
+		PRINTDATAL
+			DATAFORM 「ふうっ…%MSG_LOVER(角色)%のいるオンナに中出しするなんて…」
+			DATAFORM 「ああ…%MSG_LOVER(角色)%のいるオンナに中出しするなんて…」
+			DATAFORM 「%MSG_LOVER(角色)%以外の人に中出しされるなんて…刺激的…」
+		ENDDATA
+		IF RAND:4 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に%MSG_LOVER(角色)%と別れ自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ははっ、どうするかな…？」
+				DATAFORM 「考えておくぜ…ふふっ」
+			ENDDATA
+		ENDIF
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
+		PRINTDATAL
+			DATAFORM （ああん…いっぱい…おなか…いっぱい…%MSG_HEART()%）
+			DATAFORM （ああ…いい…熱いの…いい…%MSG_HEART()%）
+			DATAFORM （ああん…もっと…もっと、注いで…%MSG_HEART()%）
+		ENDDATA
+		IF RAND:4 == 0
+			PRINTFORML %NTR_NAME(0)%は快楽に屈服した%CALLNAME:角色%に自分のものになれと囁いた。
+			PRINTDATAL
+				DATAFORM 「ははっ、どうするかな…？」
+				DATAFORM 「考えておくぜ…ふふっ」
+			ENDDATA
+		ENDIF
+	ENDIF
+
+ELSE
+
+	IF TALENT:角色:危险日
+		PRINTDATAL
+			DATAFORM 「ああっ…だ、だめだ！ 今日は、今日はだめだっ！」
+			DATAFORM 「い、やだっ…中はだめだ！ 今日は、今日だけはだめだっ！」
+			DATAFORM 「だ、だめ！ 今日は、今日は中はだめだっ！」
+		ENDDATA
+	ELSE
+		PRINTDATAL
+			DATAFORM 「ああっ…だ、だめ！」
+			DATAFORM 「い、やだっ…中はだめだ！」
+			DATAFORM 「だ、だめ！ 中はだめだっ！」
+		ENDDATA
+	ENDIF
+	PRINTFORML %NTR_NAME(0)%は組み敷いた%CALLNAME:角色%を容赦なく犯し、子宮口めがけて射精した。
+	IF TALENT:角色:恋慕
+		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
+	ELSE
+		PRINTFORML %NTR_NAME(0)%の肉棒に馴染みつつあり、他の精液にも抵抗感は無くなりつつあった。
+	ENDIF
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:浮気公認
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%が…いけないんだからな…）
+				DATAFORM （…%CALLNAME:MASTER%…これでいいんだよな…）
+				DATAFORM （…%CALLNAME:MASTER%…これで喜んでくれるなら…）
+			ENDDATA
+		ELSE
+			PRINTDATAL
+				DATAFORM （…%CALLNAME:MASTER%…許して…）
+				DATAFORM （…%CALLNAME:MASTER%…すまない…）
+				DATAFORM （…%CALLNAME:MASTER%…ああ…）
+			ENDDATA
+		ENDIF
+	ENDIF
+
+ENDIF
+
+RETURN 0
