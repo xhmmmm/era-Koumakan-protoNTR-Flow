@@ -1,4 +1,4 @@
-﻿;------------------------------------------------- 
+;------------------------------------------------- 
 ;非NTR美鈴口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -38,56 +38,14 @@ IF TALENT:角色:NTR
 	PRINTFORML %"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	;装着率３割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ええ、指輪は着けないようにしているんです」
-			DATAFORM 「指輪ですか？最近は着けてない方が多いですね」
-			DATAFORM 「指輪なら外してきました」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「だって、そのほうがあの人がお喜びになられますから」
-			DATAFORM 「デートに誘われたとき、结婚戒指なんて着けていたら無粋じゃないですか？」
-			DATAFORM 「浮気して欲しいと言ったのは%CALLNAME:MASTER%ですよね？」
-		ENDDATA
-		PRINTFORML 最近は指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
-	ENDIF
+	PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	;装着率５割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんなさい、今日は着けていないんです」
-			DATAFORM 「たまたまですよ」
-			DATAFORM 「指輪なら部屋ですね」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「こう、拳を握ったときの感覚が違うんですよ」
-			DATAFORM 「もっとこう、武器になるような指輪の方がいいですかねぇ？」
-			DATAFORM 「でも、浮気して欲しいと言ったのは%CALLNAME:MASTER%ですよね？」
-		ENDDATA
-		PRINTFORML 今日は敢えて指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"拳を握った時の感覚が違うので外している事が多いのだと言い訳された。"%
-	ENDIF
+	PRINTFORML %"拳を握った時の感覚が違うので外している事が多いのだと言い訳された。"%
 	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
 	;装着率９割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「あっはっは、ごめんなさい、忘れてました」
-			DATAFORM 「いけないいけない、うっかりしてました」
-			DATAFORM 「あ～、たぶん部屋です」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「たまたまですよ、たまたま」
-			DATAFORM 「今朝寝坊して慌てていたから、つい」
-			DATAFORM 「明日はわすれず着けますから」
-		ENDDATA
-		PRINTFORML 今日はたまたま指輪を外していたのだと謝られた。
-	ELSE
-		PRINTFORML %"拳を握った時の感覚が違うので外している事が多いのだと言い訳された。"%
-	ENDIF
+	PRINTFORML %"拳を握った時の感覚が違うので外している事が多いのだと言い訳された。"%
 ENDIF
 
 RETURN 1
@@ -154,19 +112,10 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K1_312_1
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:TARGET:浮気公認
-		PRINTFORML 「・・最好别做了・・・想品尝别人射出来的东西，是恶趣味吧？」
-		PRINTFORML 因为嘴唇脏了而被拒绝了接吻
-		PRINTFORML 「呀…是了…可以给我一杯茶吗？」
-		PRINTFORML %CALLNAME:TARGET%为了清洁嘴唇，想要喝茶。
-
-
-	ELSE
-		PRINTFORML 「不、不行啊！！」
-		PRINTFORML 不明白原因地在嘴唇碰触之前被拒绝了。
-		PRINTFORML 「呀…是了…可以给我一杯茶吗？」
-		PRINTFORML %CALLNAME:TARGET%好像想喝茶。
-	ENDIF
+	PRINTFORML 「不、不行啊！！」
+	PRINTFORML 不明白原因地在嘴唇碰触之前被拒绝了。
+	PRINTFORML 「呀…是了…可以给我一杯茶吗？」
+	PRINTFORML %CALLNAME:TARGET%好像想喝茶。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTDATAL
@@ -254,68 +203,6 @@ ELSE
 ENDIF
 RETURN 1
 
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ
-;-------------------------------------------
-@KOJO_MESSAGE_K1_SeeYou_900_2(角色,同伴)
-#DIM 角色
-#DIM 同伴
-CALL KOJO_MESSAGE_K1_SeeYou_900_3
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ寸前
-;-------------------------------------------
-@KOJO_MESSAGE_K1_SeeYou_900_3(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在他的家裹」
-PRINTFORML 「嗯，当然，直到早上都要和他做爱哟♪」
-PRINTFORML 「要说为什么，那是因为一想到身体就熱到像燒起來一樣了♪」
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られそう
-;-------------------------------------------
-@KOJO_MESSAGE_K1_SeeYou_900_4(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「啊、%CALLNAME:MASTER%・・我・・就住在他的家裹」
-PRINTFORML 「嗯，当然，直到早上都要和他做爱哟♪」
-PRINTFORML 「要说为什么，那是因为一想到身体就熱到像燒起來一樣了♪没办法了呢♪」
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_主人より高い
-;-------------------------------------------
-@KOJO_MESSAGE_K1_SeeYou_900_5(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在他的地方」
-PRINTFORML 「是啊，住下來、直到早上都要被他抱」
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認
-;-------------------------------------------
-@KOJO_MESSAGE_K1_SeeYou_900_9(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「是这边吗。%CALLNAME:MASTER%、我、会住在他的地方」
-
-RETURN 0
 
 ;==================================================
 ;汎用処理

@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;パチュリー口上NTR対応ラッパ口上
 ;
 ;NTRに対応していないパチュリー口上に、NTR独自の分岐を追加するためのラッパ口上。
@@ -89,33 +89,18 @@ RET_VAL = 0
 
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「・・やめておいた方がいいわ。精液風味のキスをお望みかしら？」
-			DATAFORM 「%CALLNAME:MASTER%が悪趣味だとは知っているけど、他人の精液を味わいたくはないでしょう？」
-			DATAFORM 「・・やめておきなさい。苦いだけよ？」
-		ENDDATA
-		PRINTFORML 唇が精液で汚れていることを理由にキスを拒まれてしまった。
-		PRINTDATAL
-			DATAFORM 「・・そうね・・お茶をもらえないかしら」
-			DATAFORM 「どうしてもキスをしたいなら、お茶を頂戴」
-			DATAFORM 「そうね。お茶を一杯いただこうかしら」
-		ENDDATA
-		PRINTFORML %CALLNAME:TARGET%は唇を清めるためにお茶を欲しがっているようだ。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「だ、だめよっ」
-			DATAFORM 「い、いけないわっ」
-			DATAFORM 「や、やめてっ」
-		ENDDATA
-		PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
-		PRINTDATAL
-			DATAFORM 「ねえ、お茶をもらえないかしら？」
-			DATAFORM 「そうだわ、お茶を頂戴」
-			DATAFORM 「そうね。お茶を一杯いただこうかしら」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%はお茶を欲しがっているようだ。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「だ、だめよっ」
+		DATAFORM 「い、いけないわっ」
+		DATAFORM 「や、やめてっ」
+	ENDDATA
+	PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
+	PRINTDATAL
+		DATAFORM 「ねえ、お茶をもらえないかしら？」
+		DATAFORM 「そうだわ、お茶を頂戴」
+		DATAFORM 「そうね。お茶を一杯いただこうかしら」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%はお茶を欲しがっているようだ。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTDATAL

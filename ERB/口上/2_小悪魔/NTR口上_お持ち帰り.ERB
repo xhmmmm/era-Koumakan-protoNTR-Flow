@@ -25,21 +25,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 館に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
-			CALL NTR_KOJO_K2_0_TalkBack0(角色)
-			CALL NTR_KOJO_K2_0_TalkBack1(角色)
-			IF (STAIN:角色:Ｖ & 汚れ_精液)
-				PRINTFORML 「・・うふふっ、今私のアソコ、ザーメンで汚れているんです」
-			ENDIF
-			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の部屋に戻っていった。
-		ELSEIF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
-			CALL NTR_KOJO_K2_0_TalkBack0(角色)
-			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の部屋に戻っていった。
-		ELSE
-			PRINTFORML %MSG_LOVER(角色)%に見咎められないうちに、彼女は自分の部屋に戻っていった。
-		ENDIF
+		PRINTFORML %MSG_LOVER(角色)%に見咎められないうちに、彼女は自分の部屋に戻っていった。
 	ELSE
 		PRINTFORML 館の者に見咎められないうちに、彼女は自分の部屋に戻っていった。
 	ENDIF
@@ -48,18 +34,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	PRINTFORML 館に戻った%CALLNAME:角色%の身体はほのかに性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
-			CALL NTR_KOJO_K2_0_TalkBack0(角色)
-			CALL NTR_KOJO_K2_0_TalkBack1(角色)
-			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の部屋に戻っていった。
-		ELSEIF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%はあなたの元を訪れると、%NTR_NAME(0)%の所から今帰ったのだと告げた。
-			CALL NTR_KOJO_K2_0_TalkBack0(角色)
-			PRINTFORML %MSG_LOVER(角色)%の耳元でそう囁いたあと、彼女は自分の部屋に戻っていった。
-		ELSE
-			PRINTFORML %MSG_LOVER(角色)%に見咎められないようこっそりと、彼女は自分の部屋に戻っていった。
-		ENDIF
+		PRINTFORML %MSG_LOVER(角色)%に見咎められないようこっそりと、彼女は自分の部屋に戻っていった。
 	ELSE
 		PRINTFORML 館の者に見咎められないようこっそりと、彼女は自分の部屋に戻っていった。
 	ENDIF
@@ -78,18 +53,6 @@ PRINTDATAL
 	DATAFORM 「うふふっ、ただいま帰りましたっ♪」
 	DATAFORM 「ただいまぁ。今帰りましよぉ♪」
 	DATAFORM 「ただいまですぅ♪」
-ENDDATA
-RETURN 0
-
-; 帰宅時挨拶追い打ち
-; 　わざわざ報告してくる状況なので、前提として恋慕かつ浮気公認 == 外泊公認
-@NTR_KOJO_K2_0_TalkBack1(角色)
-#DIM 角色
-
-PRINTDATAL
-	DATAFORM 「ええ、他のところから。もちろん、いっぱい抱かれてきましたよぉ」
-	DATAFORM 「抱かれてきたのかって？ うふふっ、もちろんです！」
-	DATAFORM 「抱かれてきたのかって？ ええ、すごかったですよぉ♪」
 ENDDATA
 RETURN 0
 
@@ -150,19 +113,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTFORML 「ええ、行きましょう♪」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に宣言していることもあり、彼女は躊躇しなかった。
-		CASE IS >= 浮気_浮気公認
-			PRINTFORML 「・・ええ、行きましょう」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML （・・%CALLNAME:MASTER%・・本当に・・これでいいんですよね・・）
-		CASEELSE		; 非公認
-			PRINTFORML 「・・紅魔館の皆には言わないでください・・おねがいします・・」
-			PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
-	ENDSELECT
+	PRINTFORML 「・・紅魔館の皆には言わないでください・・おねがいします・・」
+	PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
 
 ENDIF
 
@@ -213,12 +165,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「何をすればいいんですか？」
-	ELSE
-		PRINTFORML 「・・何をすればいいんですか？」
-		PRINTFORML （早く済ませば・・早く帰れる・・）
-	ENDIF
+	PRINTFORML 「・・何をすればいいんですか？」
+	PRINTFORML （早く済ませば・・早く帰れる・・）
 
 ENDIF
 RETURN 0
@@ -294,13 +242,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 
-		PRINTFORML 「んっ・・%CALLNAME:MASTER%より・・おっきぃ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を頬張り、六九式侍奉を続けている。
-	ELSE
-		PRINTFORML 「こんなこと・・で、感じたり・・・しません・・・・」
-		PRINTFORML 态度とは裏腹に%CALLNAME:角色%の秘所は潤い、甘い蜜を漏らしている。
-	ENDIF
+	PRINTFORML 「こんなこと・・で、感じたり・・・しません・・・・」
+	PRINTFORML 态度とは裏腹に%CALLNAME:角色%の秘所は潤い、甘い蜜を漏らしている。
 
 ENDIF
 
@@ -384,41 +327,22 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			PRINTFORML 「ふふっ・・わかりました・・私の初めてを・・ああああっ」
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%を裏切り%NTR_NAME(0)%に处女を捧げてしまった。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を捧げてしまった。
-			ENDIF
-			;非处女
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いたああいっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%のものなのにぃ・・・」
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%に处女を奪われ涙を流している。
 		ELSE
-			PRINTFORML 「んうっ・・あっ・・ああっ！・・・すごいっっ！」
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に膣内を蹂躙され、%CALLNAME:MASTER%への想いも忘れて快楽に酔いしれている。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に膣内を蹂躙され、激しい快楽に酔いしれている。
-			ENDIF
+			PRINTFORML 「いたああいっ！！・・あぁ、初めて・・・なのに・・・」
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を奪われ涙を流している。
 		ENDIF
+		;非处女
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			IF TALENT:角色:恋慕
-				PRINTFORML 「いたああいっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%のものなのにぃ・・・」
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%に处女を奪われ涙を流している。
-			ELSE
-				PRINTFORML 「いたああいっ！！・・あぁ、初めて・・・なのに・・・」
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を奪われ涙を流している。
-			ENDIF
-			;非处女
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いやぁぁっ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
+			PRINTFORML %CALLNAME:角色%は犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
 		ELSE
-			IF TALENT:角色:恋慕
-				PRINTFORML 「いやぁぁっ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
-				PRINTFORML %CALLNAME:角色%は犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
-			ELSE
-				PRINTFORML 「いやぁぁ・・やめて・・やめてくださいっ！！・・」
-				PRINTFORML %CALLNAME:角色%は犯されながら、なおも抗っている。
-			ENDIF
+			PRINTFORML 「いやぁぁ・・やめて・・やめてくださいっ！！・・」
+			PRINTFORML %CALLNAME:角色%は犯されながら、なおも抗っている。
 		ENDIF
 	ENDIF
 
@@ -456,22 +380,14 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 
-		PRINTFORML 「んうっ・・あっ・・ああっ！・・・すごいっっ！」
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎にアヌスを蹂躙され、%CALLNAME:MASTER%への想いも忘れて快楽に酔いしれている。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎にアヌスを蹂躙され、激しい快楽に酔いしれている。
-		ENDIF
+	IF TALENT:角色:恋慕
+		PRINTFORML 「いやぁぁっ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
+		PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
 	ELSE
-		IF TALENT:角色:恋慕
-			PRINTFORML 「いやぁぁっ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
-			PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
-		ELSE
-			PRINTFORML 「いやぁぁ・・やめて・・やめてくださいっ！！・・」
-			PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、なおも抗っている。
-		ENDIF
+		PRINTFORML 「いやぁぁ・・やめて・・やめてくださいっ！！・・」
+		PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、なおも抗っている。
 	ENDIF
+
 ENDIF
 
 RETURN 0
@@ -532,22 +448,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「あっあっ・・来るうぅっ、極太チンポの精子がっ・・いっぱいい！！」
-		PRINTFORML 奥の奥までねじ込まれた%NTR_NAME(0)%の阴茎から濃厚な精液が注ぎ込まれた。
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:MASTER%のものでない白濁を注がれる背徳の悦びに、%CALLNAME:角色%は身震いしながら絶頂した。
-		ELSE
-		ENDIF
+	PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の子宮口へ、容赦無く濁った白い欲望を放出した。
+	IF TALENT:角色:恋慕
+		PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない赤ちゃん・・できちゃう・・・」
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の子宮口へ、容赦無く濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない赤ちゃん・・できちゃう・・・」
-		ELSE
-			PRINTFORML 「い・・やあ、・・赤ちゃん・・できちゃう・・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
+		PRINTFORML 「い・・やあ、・・赤ちゃん・・できちゃう・・・」
 	ENDIF
+	PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
 
 ENDIF
 RETURN 0
@@ -587,22 +494,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「あっあっ・・来るうぅっ、極太チンポの精子がっ・・いっぱいい！！」
-		PRINTFORML 奥の奥までねじ込まれた%NTR_NAME(0)%の阴茎から濃厚な精液が注ぎ込まれた。
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:MASTER%のものでない白濁を注がれる背徳の悦びに、%CALLNAME:角色%は身震いしながら絶頂した。
-		ELSE
-		ENDIF
+	PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の直腸へ、容赦無く濁った白い欲望を放出した。
+	IF TALENT:角色:恋慕
+		PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない精液なんて・・いやあ・・」
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の直腸へ、容赦無く濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない精液なんて・・いやあ・・」
-		ELSE
-			PRINTFORML 「い・・やあ、・・精液なんて・・いやあ・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
+		PRINTFORML 「い・・やあ、・・精液なんて・・いやあ・・」
 	ENDIF
+	PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
 
 ENDIF
 RETURN 0

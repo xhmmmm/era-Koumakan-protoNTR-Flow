@@ -38,56 +38,15 @@ IF TALENT:角色:NTR
 	PRINTFORML %"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	;装着率３割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ふふっ、指輪はつけないようにしているんですよ♪」
-			DATAFORM 「指輪ですか？最近はつけてない方が多いですね～」
-			DATAFORM 「指輪ならお部屋の、鏡台の引き出しの中ですよ」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「だって、そのほうがあの方がよろこぶんですもの%MSG_HEART()%」
-			DATAFORM 「デートに誘われたとき、结婚戒指なんてつけていたら無粋じゃないですか？」
-			DATAFORM 「浮気して欲しいと言ったのは%CALLNAME:MASTER%でしたよね？」
-		ENDDATA
-		PRINTFORML 最近は意識して指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
-	ENDIF
+	PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
+
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	;装着率５割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんなさいっ、今日は忘れてしまって・・」
-			DATAFORM 「た、たまたまです、たまたま」
-			DATAFORM 「指輪ならお部屋ですよ？」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「そういう気分の時もあるんです」
-			DATAFORM 「こうしているとフリーっぽくていいですよね？」
-			DATAFORM 「でも、浮気して欲しいと言ったのは%CALLNAME:MASTER%でしたよね？」
-		ENDDATA
-		PRINTFORML 今日は敢えて指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
-	ENDIF
+	PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
 	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
 	;装着率９割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ご、ごめんなさい、忘れてました」
-			DATAFORM 「いっけな～い、うっかりしてました」
-			DATAFORM 「あ・・ごめんなさい、部屋に置いてきました」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「うっかり本をこすってしまわないように、外したままにしてるんです」
-			DATAFORM 「今日寝坊してしまって、慌ててたんです」
-			DATAFORM 「明日は忘れないようにしますから、許してください」
-		ENDDATA
-		PRINTFORML 今日はたまたま指輪を外していたのだと謝られた。
-	ELSE
-		PRINTFORML %"手入れをするために外したまま忘れていたからだと謝られた。"%
-	ENDIF
+	PRINTFORML %"手入れをするために外したまま忘れていたからだと謝られた。"%
 ENDIF
 
 RETURN 1
@@ -216,17 +175,10 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K2_312_1
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:TARGET:浮気公認
-		PRINTFORML 「うふふっ・・やめておいた方がいいですよぉ・・他の人のを味わいたいほど、悪趣味なんですか？」
-		PRINTFORML 唇が汚れていることを理由にキスを拒まれてしまった。
-		PRINTFORML 「でもそうですね・・私もキスしたいですし・・お茶をいただけないでしょうか？」
-		PRINTFORML %CALLNAME:TARGET%は唇を清めるためにお茶を欲しがっているようだ。
-	ELSE
-		PRINTFORML 「だ、だめですっ！」
-		PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
-		PRINTFORML 「あ、あの、お茶をいただけないでしょうか？」
-		PRINTFORML %CALLNAME:TARGET%はお茶を欲しがっているようだ。
-	ENDIF
+	PRINTFORML 「だ、だめですっ！」
+	PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
+	PRINTFORML 「あ、あの、お茶をいただけないでしょうか？」
+	PRINTFORML %CALLNAME:TARGET%はお茶を欲しがっているようだ。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTDATAL
@@ -560,27 +512,6 @@ ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ =
 	ENDDATA
 	PRINTL
 ENDIF
-SELECTCASE TALENT:TARGET:浮気公認
-	CASE 浮気_性交公認, 浮気_外泊公認
-		PRINTDATA
-			DATAFORM 「うふふっ、私が他と遊んでいる間に、
-			DATAFORM 「うふふっ、私が他とセックスしている間に、
-			DATAFORM 「うふふっ、私が他に抱かれている間に、
-		ENDDATA
-		PRINTFORML %CALLNAME:PLAYER%が他の方とするのは禁止でーす♪」
-		PRINTFORML 「私がしてくるのは%CALLNAME:PLAYER%がもっと浮気して欲しい、って言うからですよお？ 自業自得ですよね？」
-	CASE 浮気_浮気公認, 浮気_诱惑公認
-		PRINTFORML 「うふふっ、ホムンクルスの研究のために活きのいい精液を搾りとってこいって、%CALLNAME:人物_帕秋莉%様のご命令なんです」
-		PRINTDATA
-			DATAFORM 「決して私が他と遊んでいる間に、
-			DATAFORM 「決して私が他とセックスしている間に、
-			DATAFORM 「決して私が他に抱かれている間に、
-		ENDDATA
-		PRINTFORML %CALLNAME:PLAYER%が浮気するのを阻止だなんて考えていませんよ？」
-	CASEELSE
-		; 非公認時
-		PRINTFORML 「うふふっ、ホムンクルスの研究のために活きのいい精液を搾りとってこいって、%CALLNAME:人物_帕秋莉%様のご命令なんです」
-ENDSELECT
 RETURN 1
 
 @KOJO_MESSAGE_COUNTER_K2_29_2
@@ -600,19 +531,6 @@ SELECTCASE BASE:PLAYER:精力
 			DATAFORM 「うふふっ、もうすっからかんですね？」
 			DATAFORM 「うふふっ、もう粉も出ませんか？」
 		ENDDATA
-		SELECTCASE TALENT:TARGET:浮気公認
-			CASE 浮気_性交公認, 浮気_外泊公認
-				PRINTFORML 「それでは、ご希望通りに他のところに行ってまいりますね」
-			CASE 浮気_浮気公認, 浮気_诱惑公認
-				PRINTFORML 「これで安心して他のところに…いえ、なんでもないですよ？」
-			CASEELSE
-				; 非公認時
-		ENDSELECT
-		IF TALENT:TARGET:浮気公認
-			; 訪問者のもとへ移动
-			CFLAG:TARGET:移动目的 = 移动目的_訪問者
-			移动路线:TARGET:0 = 0
-		ENDIF
 	CASE IS < MAXBASE:PLAYER:精力 /2
 		;大半搾り取った
 		PRINTDATAL
@@ -629,114 +547,6 @@ SELECTCASE BASE:PLAYER:精力
 		ENDDATA
 ENDSELECT
 RETURN 1
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ
-;-------------------------------------------
-@KOJO_MESSAGE_K2_SeeYou_900_2(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-CALL KOJO_MESSAGE_K2_SeeYou_900_3(角色,同伴)
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ寸前
-;-------------------------------------------
-@KOJO_MESSAGE_K2_SeeYou_900_3(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「うふふっ・・%CALLNAME:MASTER%・・私・・他のところに泊まってきますね♪」
-PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
-PRINTFORML 「だって、身体が火照って仕方ないんですぅ♪」
-
-IF TALENT:角色:恋慕 && TALENT:角色:危险日
-	PRINTFORML 「そうそう、大切なお知らせです。実は私、今日は危ない日なんです」
-	PRINTDATAL
-		DATAFORM 「きっと、他に種付けされちゃいますよぉ・・？」
-		DATAFORM 「他にたっぷり中出しされて・・ふふっ、ゾクゾクしますね？」
-		DATAFORM 「きっといっぱい注がれちゃいます・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうんです・・%MSG_HEART()%」
-	ENDDATA
-ELSE
-	PRINTDATAL
-		DATAFORM 「今日は帰らないから・・よろしくお願いしますね」
-		DATAFORM 「お部屋のお扫除、よろしくお願いしますね。あ、ぱんつをくすねちゃ、ダメですよぉ？」
-		DATAFORM 「図書館のお扫除、よろしくお願いしますね」
-	ENDDATA
-ENDIF
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう♪」
-ELSE
-	PRINTFORML 「それじゃ、行ってきまぁす♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られそう
-;-------------------------------------------
-@KOJO_MESSAGE_K2_SeeYou_900_4(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「うふふっ・・%CALLNAME:MASTER%、私他のところに泊まってきますね」
-PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
-PRINTFORML 「だって、身体が火照って仕方ないんですぅ♪」
-
-IF TALENT:角色:恋慕 && TALENT:角色:危险日
-	PRINTFORML 「そうそう、大切なお知らせです。実は私、今日は危ない日なんです・・ふふっ、ドキッてしました？」
-ENDIF
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう♪」
-ELSE
-	PRINTFORML 「それじゃ、行ってきまぁす♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_主人より高い
-;-------------------------------------------
-@KOJO_MESSAGE_K2_SeeYou_900_5(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私他のところに泊まってきます」
-PRINTFORML 「ええ、お泊りです。朝までしっぽり、ですよぉ」
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう♪」
-ELSE
-	PRINTFORML 「それじゃ、行ってきますね♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認
-;-------------------------------------------
-@KOJO_MESSAGE_K2_SeeYou_900_9(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「こちらにいらしたんですね。%CALLNAME:MASTER%、私他のところに泊まってきます」
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう」
-ELSE
-	PRINTFORML 「それじゃ、行ってきますね」
-ENDIF
-
-RETURN 0
 
 ;==================================================
 ;汎用処理

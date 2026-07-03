@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用美鈴口上ファイル
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -1564,10 +1564,6 @@ ELSE
 	PRINTFORML 「就是这样。除了工作以外的時候请不要再接近我」
 
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「%CALLNAME:MASTER%可是不行啊・・・因为没有阻止我・・・」
-ENDIF
 
 RETURN 0
 
@@ -1603,11 +1599,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM %CALLNAME:角色%当场把脱下来的内衣交给%NTR_NAME(0)%，不穿内衣后回到了工作。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%知道的话，会很高兴的）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%只有……是）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%只有……是）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -1623,11 +1615,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%は好像因为没有穿内衣而心神不定。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%如果知道了，会很高兴呢。）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%只有……是）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%只有……是）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)

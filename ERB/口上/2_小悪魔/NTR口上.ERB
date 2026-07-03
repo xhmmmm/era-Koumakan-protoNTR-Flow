@@ -3664,11 +3664,6 @@ ELSE
 	PRINTFORML 「そういうことでよろしくお願いしますね♪」
 
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「嬉しいですよね？ だってお望みどおりにアノお方に抱かれて、アノお方に寝取られるんですだから」
-	PRINTFORML 「もし嫌だとか悔しいとかお思いになられても、自業自得ってやつですぉ？」
-ENDIF
 RETURN 0
 
 ;==================================================
@@ -3703,11 +3698,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM %CALLNAME:角色%はわざとらしい仕草で下着を脱ぐと、まだ温もりの残るそれを%NTR_NAME(0)%に笑顔で手渡した。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （・・%CALLNAME:MASTER%・・見たら喜びますよね・・というか、私がノーパンだったら喜びますよね）
-		ELSE
-			PRINTFORML （・・%CALLNAME:MASTER%・・もし見たらどんな顔するかな？）
-		ENDIF
+		PRINTFORML （・・%CALLNAME:MASTER%・・もし見たらどんな顔するかな？）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -3723,11 +3714,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%は剥き出しの局部を誰かに見られるかも、と想像し頬を染めた。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （・・%CALLNAME:MASTER%・・見たら喜びますよね・・というか、私がノーパンだったら喜びますよね）
-		ELSE
-			PRINTFORML （・・%CALLNAME:MASTER%・・もし見たらどんな顔するかな？）
-		ENDIF
+		PRINTFORML （・・%CALLNAME:MASTER%・・もし見たらどんな顔するかな？）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)

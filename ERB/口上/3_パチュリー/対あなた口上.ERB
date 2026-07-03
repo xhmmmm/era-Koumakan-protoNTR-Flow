@@ -38,56 +38,14 @@ IF TALENT:角色:NTR
 	PRINTFORML %"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	;装着率３割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「指輪はつけないようにしているわ」
-			DATAFORM 「指輪？ 最近はつけてない方が多いわ」
-			DATAFORM 「指輪なら外してきたわ」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「そのほうがあの人が喜ぶんですもの」
-			DATAFORM 「%CALLNAME:MASTER%以外の人と逢う時は無粋だわ」
-			DATAFORM 「浮気して欲しいと言ったのは%CALLNAME:MASTER%だったはずだけど？」
-		ENDDATA
-		PRINTFORML 最近は指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
-	ENDIF
+	PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	;装着率５割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんなさい、今日はつけていないわ」
-			DATAFORM 「たまたまよ」
-			DATAFORM 「指輪なら部屋よ。図書館だったかしら」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「今日はこういう気分だったのよ」
-			DATAFORM 「金属アレルギーはないはずだけど、着けていないと気楽ね」
-			DATAFORM 「でも、浮気して欲しいと言ったのは%CALLNAME:MASTER%でしょう？」
-		ENDDATA
-		PRINTFORML 今日は敢えて指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
-	ENDIF
+	PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
 	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
 	;装着率９割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんなさい、忘れてたみたい」
-			DATAFORM 「いけない、うっかりしてたみたい」
-			DATAFORM 「ごめんなさい、部屋においてあるわ。図書館かもしれないわね」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「小恶魔に探させておくわ」
-			DATAFORM 「本に夢中になっていたみたいね」
-			DATAFORM 「明日は忘れないようにするわ」
-		ENDDATA
-		PRINTFORML 今日はたまたま指輪を外していたのだと謝られた。
-	ELSE
-		PRINTFORML %"手入れをするために外したまま忘れていたからだと謝られた。"%
-	ENDIF
+	PRINTFORML %"手入れをするために外したまま忘れていたからだと謝られた。"%
 ENDIF
 
 RETURN 1
@@ -233,43 +191,23 @@ ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ =
 	ENDDATA
 	PRINTL
 ENDIF
-IF TALENT:TARGET:浮気公認
-	IF TALENT:TARGET:施虐狂
-		PRINTFORML %"「私は"+CALLNAME:PLAYER+"がそう願うから他とセックスしてくるわ」"%
-		PRINTDATAL
-			DATAFORM %"「でもその間は、"+CALLNAME:PLAYER+"のセックスは禁止よ。"+MSG_RE_LOVER(角色)+"としての命令」"%
-			DATAFORM %"「だからその間は、"+CALLNAME:PLAYER+"は誰かとセックスしないで」"%
-			DATAFORM %"「だからその間は、"+CALLNAME:PLAYER+"が誰かとセックスするのは禁止よ」"%
-		ENDDATA
-		PRINTFORML %"「まさかと思うけど、自分の浮気を正当化するためにあんなことを言ったわけじゃないんでしょう？」"%
-	ELSE
-		PRINTFORML %"「私は"+CALLNAME:PLAYER+"がそう願うから他に抱かれてくるわ」"%
-		PRINTDATAL
-			DATAFORM %"「でもその間、"+CALLNAME:PLAYER+"のセックスは禁止よ。"+MSG_RE_LOVER(角色)+"としてのお願い」"%
-			DATAFORM %"「だからその間、"+CALLNAME:PLAYER+"は誰かとセックスしてほしくないわ」"%
-			DATAFORM %"「だからその間、"+CALLNAME:PLAYER+"が誰かとセックスするのは嫌よ」"%
-		ENDDATA
-		PRINTFORML %"「私が他と遊んでる間に、浮気なんてされたらたまらないもの」"%
-	ENDIF
-ELSE
-	PRINTDATA
-		DATAFORM %"「ホムンクルスの研究のために活きのいい精液が必要なの。"%
-		DATAFORM %"「実験のためにザーメンが必要になったの。"%
-		DATAFORM %"「調合に精液が要るのよ。"%
+PRINTDATA
+	DATAFORM %"「ホムンクルスの研究のために活きのいい精液が必要なの。"%
+	DATAFORM %"「実験のためにザーメンが必要になったの。"%
+	DATAFORM %"「調合に精液が要るのよ。"%
+ENDDATA
+IF TALENT:TARGET:施虐狂
+	PRINTDATAL
+		DATAFORM %" だから提供しなさい。全部ね」"%
+		DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが苦痛が少ないわよ」"%
+		DATAFORM %" 痛くされたくなかったらおとなしくしなさい。痛いほうがいいのかしら？」"%
 	ENDDATA
-	IF TALENT:TARGET:施虐狂
-		PRINTDATAL
-			DATAFORM %" だから提供しなさい。全部ね」"%
-			DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが苦痛が少ないわよ」"%
-			DATAFORM %" 痛くされたくなかったらおとなしくしなさい。痛いほうがいいのかしら？」"%
-		ENDDATA
-	ELSE
-		PRINTDATAL
-			DATAFORM %" だから提供しなさい」"%
-			DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが楽よ」"%
-			DATAFORM %" 痛くはしないから、おとなしくしなさい」"%
-		ENDDATA
-	ENDIF
+ELSE
+	PRINTDATAL
+		DATAFORM %" だから提供しなさい」"%
+		DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが楽よ」"%
+		DATAFORM %" 痛くはしないから、おとなしくしなさい」"%
+	ENDDATA
 ENDIF
 RETURN 1
 
@@ -285,30 +223,11 @@ RETURN 1
 SELECTCASE BASE:PLAYER:精力
 	CASE IS == 0
 		;全部搾り取った
-		IF TALENT:TARGET:浮気公認
-			IF TALENT:TARGET:施虐狂
-				PRINTDATAL
-					DATAFORM %"「これなら、安心して他のところに行けるわね」"%
-					DATAFORM %"「私は他のところに行ってくるわ。愉しんでくるから、期待してなさい」"%
-					DATAFORM %"「これなら浮気もできないわね・・私は他と愉しんでるわ」"%
-				ENDDATA
-			ELSE
-				PRINTDATAL
-					DATAFORM %"「これなら、安心して他のところに行けるかしら」"%
-					DATAFORM %"「私は他のところに行ってくるわ。・・浮気なんて、考えないでね」"%
-					DATAFORM %"「これなら浮気もできないわね・・私は他のところに行ってくるわ」"%
-				ENDDATA
-			ENDIF
-			; 訪問者のもとへ移动
-			CFLAG:TARGET:移动目的 = 移动目的_訪問者
-			移动路线:TARGET:0 = 0
-		ELSE
-			PRINTDATAL
-				DATAFORM %"「もうおしまい？ まぁこれだけ搾ればたぶん十分ね」"%
-				DATAFORM %"「これで打ち止めかしら？ もう少し欲しかったけど、仕方ないわね」"%
-				DATAFORM %"「いいかげん終わりかしら？ ありがとう、助かったわ」"%
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM %"「もうおしまい？ まぁこれだけ搾ればたぶん十分ね」"%
+			DATAFORM %"「これで打ち止めかしら？ もう少し欲しかったけど、仕方ないわね」"%
+			DATAFORM %"「いいかげん終わりかしら？ ありがとう、助かったわ」"%
+		ENDDATA
 	CASE IS < MAXBASE:PLAYER:精力 /2
 		;大半搾り取った
 		PRINTDATAL
@@ -325,89 +244,6 @@ SELECTCASE BASE:PLAYER:精力
 		ENDDATA
 ENDSELECT
 RETURN 1
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ
-;-------------------------------------------
-@KOJO_MESSAGE_K3_SeeYou_900_2(角色,同伴)
-#DIM 角色
-#DIM 同伴
-CALL KOJO_MESSAGE_K3_SeeYou_900_3(角色,同伴)
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ寸前
-;-------------------------------------------
-@KOJO_MESSAGE_K3_SeeYou_900_3(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「%CALLNAME:MASTER%、ちょっと出かけてくるわ♪」
-PRINTFORML 「どこって、決まってるじゃない。他のところに泊まってくるの♪」
-PRINTFORML 「野暮なこと聞かないで。朝まで他とセックスするに決まってるじゃない♪」
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう♪」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるわ♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られそう
-;-------------------------------------------
-@KOJO_MESSAGE_K3_SeeYou_900_4(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「%CALLNAME:MASTER%、ちょっと出かけてくるわ」
-PRINTFORML 「どこって、決まってるじゃない。他のところに泊まってくるの」
-PRINTFORML 「野暮なこと聞かないで。朝まで他と過ごすためよ」
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるわ」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_主人より高い
-;-------------------------------------------
-@KOJO_MESSAGE_K3_SeeYou_900_5(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「ここにいたのね。%CALLNAME:MASTER%、ちょっと出かけてくるわ」
-PRINTFORML 「何よその顔。私が出かけるのがそんなに珍しい？」
-PRINTFORML 「どこって、決まってるじゃない。他のところに泊まってくるの」
-
-IF 同伴
-	PRINTFORML 「それじゃ、行きましょう」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるわ」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認
-;-------------------------------------------
-@KOJO_MESSAGE_K3_SeeYou_900_9(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「ここにいたのね。%CALLNAME:MASTER%、ちょっと出かけてくるわ」
-PRINTFORML 「何よその顔。私が出かけるのがそんなに珍しい？」
-
-RETURN 0
 
 ;==================================================
 ;312,接吻

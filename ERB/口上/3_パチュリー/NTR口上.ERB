@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用パチュリー口上ファイル
 ;寝取られパッチ用パチュリー口上ファイルベース
 ;お好きなように埋めまくってください
@@ -251,11 +251,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML 感受着远处%ANATA_LOVER(角色)%的视线，%CALLNAME:角色%与%NTR_NAME(0)%的嘴唇相接。
-		IF TALENT:角色:浮気公認
-			PRINTFORML 虽然最初%CALLNAME:角色%震惊了一下，但她没有抵抗，接受了%NTR_NAME(0)%侵入她口中的舌头。
-		ELSE
-			PRINTFORML 虽然最初%CALLNAME:角色%震惊了一下，但%NTR_NAME(0)%的舌头一侵入她的嘴里，她便闭上眼睛接纳了他的舌头。
-		ENDIF
+		PRINTFORML 虽然最初%CALLNAME:角色%震惊了一下，但%NTR_NAME(0)%的舌头一侵入她的嘴里，她便闭上眼睛接纳了他的舌头。
 	ELSE
 		PRINTFORML %CALLNAME:角色%毫无抵抗地接受了%NTR_NAME(0)%的嘴唇和舌头。
 	ENDIF
@@ -270,11 +266,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
 
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML 感受着远处%ANATA_LOVER(角色)%的视线，%CALLNAME:角色%被粗暴地夺走了嘴唇。
-		IF TALENT:角色:浮気公認
-			PRINTFORML 虽然%CALLNAME:角色%毫不抵抗，接受了%NTR_NAME(0)%送入她口中的舌头。
-		ELSE
-			PRINTFORML %CALLNAME:角色%虽然一开始弱弱地抵抗，但当%NTR_NAME(0)%的舌头侵入到嘴里后，便渐渐地变得老实，最终接纳了他的舌头。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%虽然一开始弱弱地抵抗，但当%NTR_NAME(0)%的舌头侵入到嘴里后，便渐渐地变得老实，最终接纳了他的舌头。
 	ELSE
 		PRINTFORML %CALLNAME:角色%被粗暴地夺走了嘴唇，即使试着弱弱地抵抗也无法摆脱%NTR_NAME(0)%。
 	ENDIF
@@ -4375,10 +4367,6 @@ ELSE
 	PRINTFORML 「前にも言ったけど、図書館と部屋の扫除は怠らないで」
 
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「これで满足かしら？ 满足よね...私は%CALLNAME:MASTER%に言われた通りのことをして、これはその必然的な帰結だもの」
-ENDIF
 
 RETURN 0
 
@@ -4414,11 +4402,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM 不知是不是对羞耻PLAY感到了侍奉以外的愉悦，%CALLNAME:角色%脸色泛红，出神地感受着股间的清凉。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が知ったらきっと喜ぶわね）
-		ELSE
-			PRINTFORML （要是被%CALLNAME:MASTER%看到了的话...呼呼，要找什么借口好呢♪）
-		ENDIF
+		PRINTFORML （要是被%CALLNAME:MASTER%看到了的话...呼呼，要找什么借口好呢♪）
 	ELSE
 	ENDIF
 
@@ -4435,11 +4419,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%担心着会不会被人看到，一副不安的样子。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が知ったらきっと喜ぶわね）
-		ELSE
-			PRINTFORML （要是被%CALLNAME:MASTER%看到了的话...呼呼，要找什么借口好呢♪）
-		ENDIF
+		PRINTFORML （要是被%CALLNAME:MASTER%看到了的话...呼呼，要找什么借口好呢♪）
 	ELSE
 	ENDIF
 
@@ -4484,11 +4464,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML 「あぁん...感じる...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、性器に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわ♪）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、それはそれで、ゾクゾクするわ♪）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、それはそれで、ゾクゾクするわ♪）
 	ELSE
 	ENDIF
 
@@ -4497,11 +4473,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML 「あぁん...感じる...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、性器に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、ゾクゾクするわね...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、ゾクゾクするわね...）
 	ELSE
 	ENDIF
 
@@ -4510,11 +4482,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML 「あぁ...ん...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、性器に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...どうやってごまかそうかしら？）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...どうやってごまかそうかしら？）
 	ELSE
 	ENDIF
 
@@ -4523,11 +4491,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	PRINTFORML 「...くっ...おぼえておきなさい...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の脅迫に屈し、性器に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%...私がこんな目にあうことが望みなの...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...何て言い訳...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...何て言い訳...）
 	ELSE
 	ENDIF
 
@@ -4555,11 +4519,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML 「あぁん...お尻で感じるなんて...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、直腸に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわ♪）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、それはそれで、ゾクゾクするわ♪）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、それはそれで、ゾクゾクするわ♪）
 	ELSE
 	ENDIF
 
@@ -4568,11 +4528,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML 「あぁん...お尻で感じるなんて...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、直腸に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、ゾクゾクするわね...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、ゾクゾクするわね...）
 	ELSE
 	ENDIF
 
@@ -4581,11 +4537,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML 「あぁ...ん...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、直腸に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...どうやってごまかそうかしら？）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...どうやってごまかそうかしら？）
 	ELSE
 	ENDIF
 
@@ -4595,11 +4547,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	PRINTFORML 「...くっ...おぼえておきなさい...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の脅迫に屈し、直腸に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%...私がこんな目にあうことが望みなの...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...何て言い訳...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...何て言い訳...）
 	ELSE
 	ENDIF
 
@@ -4627,11 +4575,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML 「あぁん...前も後ろも...感じる...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、二つの穴に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわ♪）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、言い訳の余地なんてないわね♪）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、言い訳の余地なんてないわね♪）
 	ELSE
 	ENDIF
 
@@ -4640,11 +4584,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML 「あぁん...前も後ろも...感じる...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、二つの穴に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、言い訳の余地なんてないわね...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...ふふ、言い訳の余地なんてないわね...）
 	ELSE
 	ENDIF
 
@@ -4653,11 +4593,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML 「あぁん...前も後ろも...感じる...」
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、二つの穴に跳蛋を収めたまま身だしなみを整えた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せてあげないと...ふふ、ゾクゾクするわね...）
-		ELSE
-			PRINTFORML （もし%CALLNAME:MASTER%に見られたら...言い訳の余地なんてないわね...）
-		ENDIF
+		PRINTFORML （もし%CALLNAME:MASTER%に見られたら...言い訳の余地なんてないわね...）
 	ELSE
 	ENDIF
 
