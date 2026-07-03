@@ -67,12 +67,12 @@ IF CFLAG:角色:屈服度/2 > CFLAG:角色:好感度
 ENDIF
 
 ;最低１時間は休息を確保する（会话ができないと辛いので）
-IF TALENT:角色:浮気公認 < 5
-	休暇時間 = MAX( 600 ,基本休暇時間 + 休暇時間補正値 + 訪問者用補正値 + あなた用補正値 )
-ELSE
-	;浮気公认5，回到家里休假一天
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+	;NTR的情况下回家休息
 	休暇時間 = 1430
 	休暇終了理由 = 50
+ELSE
+	休暇時間 = MAX( 600 ,基本休暇時間 + 休暇時間補正値 + 訪問者用補正値 + あなた用補正値 )
 ENDIF
 [IF_DEBUG]
 SETCOLOR 黄色
@@ -106,12 +106,11 @@ IF TALENT:角色:妊娠 || TALENT:角色:育儿中
 	;妊娠中、育儿中は出て行かない
 	RETURN 0
 ENDIF
-IF TALENT:角色:浮気公認 < 4
-	;浮気公認４レベル以上
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 	SIF CFLAG:角色:好感度 >= CFLAG:角色:屈服度 || TALENT:角色:恋慕 == 0
 		RETURN 0
 ENDIF
-IF FLAG:訪問者の气氛 > 0 && TALENT:角色:浮気公認 < 5
+IF FLAG:訪問者の气氛 > 0 && !NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 	;訪問者が誰かとうふふ中だったら行かない(相手して貰えないので)
 	RETURN 0
 ENDIF
@@ -137,11 +136,7 @@ IF !強制外出
 		RETURN 0
 	ENDIF
 ENDIF
-IF TALENT:角色:浮気公認 == 5
-	CALL GoOut_SeeYou_900_做访问者妻子(角色,外出理由)
-ELSEIF TALENT:角色:NTR == 0 && TALENT:角色:浮気公認 < 4
-	CALL GoOut_SeeYou_900_秘密外泊(角色,外出理由)
-ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
+IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 	CALL GoOut_SeeYou_900_2(角色,外出理由)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	CALL GoOut_SeeYou_900_3(角色,外出理由)
@@ -174,31 +169,6 @@ ENDIF
 RETURN 1
 RETURN 0
 
-
-;-------------------------------------------------------------------------------
-;在恋人的要求下，成为访问者的妻子住到对面去
-@GoOut_SeeYou_900_做访问者妻子(角色,理由)
-#DIM 角色
-#DIM 理由
-#DIM 同伴 
-同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
-PRINTFORMW 「哪，我要走了哦~~」
-PRINTFORMW 「就像%CALLNAME:MASTER%希望的那样，去做%NTR_NAME(0)%的妻子，住到对面去了~❤~」
-PRINTFORMW 与%CALLNAME:角色%告别了…
-PRINTFORMW 「不要伤心啦，我时不时会回来看%CALLNAME:MASTER%的、拜拜~❤~~❤~~~~」
-PRINTFORMW %CALLNAME:角色%向着%NTR_NAME(0)%家的方向离开了···
-;-------------------------------------------------------------------------------
-;在恋人不知情的情况下秘密外泊
-@GoOut_SeeYou_900_秘密外泊(角色,理由)
-#DIM 角色
-#DIM 理由
-#DIM 同伴 
-同伴 = (FLAG:访问者当前位置 != 位置_訪問者宅)
-PRINTDATAL
-	DATAFORM %CALLNAME:角色%说是要出去玩，打了声招呼就走了。
-	DATAFORM %CALLNAME:角色%说是要出去办些事。
-	DATAFORM %CALLNAME:角色%说这几天过得很闷，想要出去散散心。
-ENDDATA
 
 ;-------------------------------------------------------------------------------
 ;訪問者の家へおでかけ：FAV_寝取られ
