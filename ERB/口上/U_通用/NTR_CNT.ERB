@@ -73,18 +73,7 @@ IF FLAG:Flow版本
 	ENDIF
 ELSE
 	IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
-		PRINTFORM %CALLNAME:角色%在
-		;主人公より好意度がかなり高いか、浮気公認だと同席でも光明正大地接吻
-		IF CFLAG:角色:屈服度 > (CFLAG:角色:好感度 * 2) || TALENT:角色:浮気公認 > 0
-			PRINTFORM %ANATA_LOVER(角色)%的眼前
-			IF TALENT:角色:浮気公認 > 0
-				PRINTFORM 光明正大地
-			ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
-				PRINTFORM 完全不想隐藏地
-			ELSE
-			ENDIF
-		ELSE
-			PRINTFORM 避开了%ANATA_LOVER(角色)%的目光
+		PRINTFORM %CALLNAME:角色%避开了%ANATA_LOVER(角色)%的目光
 		ENDIF
 		PRINTFORMW 将自己的嘴唇和%NTR_NAME(0)%的嘴唇重合在一起…
 	ELSE
@@ -124,13 +113,7 @@ IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 			PRINTFORMW %CALLNAME:角色%在%ANATA_LOVER(角色)%的面前轻轻抱了抱%NTR_NAME(0)%…
 		ENDIF
 	ELSE
-		PRINTFORM %CALLNAME:角色%在
-		PRINTFORM %ANATA_LOVER(角色)%的眼前
-		IF TALENT:角色:浮気公認 > 0
-			PRINTFORM 光明正大地
-		ELSE
-		ENDIF
-		PRINTFORMW 从背后抱住了%NTR_NAME(0)%
+		PRINTFORM %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前，从背后抱住了%NTR_NAME(0)%
 		SIF TALENT:角色:胸部尺寸 > 0
 			PRINTFORML 并将自己柔软的乳房压在%NTR_NAME(0)%的脊背上…
 	ENDIF
@@ -160,13 +143,7 @@ IF FLAG:Flow版本
 	ENDIF
 ELSE
 	IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
-		PRINTFORM %CALLNAME:角色%在
-		PRINTFORM %ANATA_LOVER(角色)%的眼前
-		IF TALENT:角色:浮気公認 > 0
-			PRINTFORM 光明正大地
-		ELSE
-		ENDIF
-		PRINTFORMW 抱紧了%NTR_NAME(0)%
+		PRINTFORM %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前抱紧了%NTR_NAME(0)%
 	ELSE
 		IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
 			PRINTFORMW %CALLNAME:角色%热情地抱紧了%NTR_NAME(0)%
@@ -184,15 +161,7 @@ IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 			DATAFORM %CALLNAME:角色%\@ TALENT:角色:胸部尺寸 > 0 ? 托起自己柔软的乳房挤了挤 # 将手放在胸口上抚摸 \@，向某人露出了邀约般的诱人微笑
 		ENDDATA
 	ELSE
-		PRINTFORM %CALLNAME:角色%在
-		IF TALENT:角色:浮気公認 > 0
-			PRINTFORM %ANATA_LOVER(角色)%的眼前
-		ELSE
-		ENDIF
-		IF TALENT:角色:浮気公認 > 0
-			PRINTFORM 光明正大地
-		ELSE
-		ENDIF
+		PRINTFORM %CALLNAME:角色%
 		IF TALENT:角色:胸部尺寸 > 0
 			PRINTFORMW 拉过%NTR_NAME(0)%的手，按揉自己的乳房…
 		ELSE
@@ -214,7 +183,7 @@ ENDIF
 #DIM 角色
 IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 	PRINTFORM %CALLNAME:角色%双颊绯红地
-	IF TALENT:角色:浮気公認 > 0
+	IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 		PRINTFORM 像专门给%ANATA_LOVER(角色)%看一样
 	ELSE
 		PRINTFORM %ANATA_LOVER(角色)%的眼前
@@ -267,7 +236,7 @@ ENDIF
 #DIM 角色
 IF CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 	PRINTFORM %CALLNAME:角色%
-	IF TALENT:角色:浮気公認 > 0
+	IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 		PRINTFORM 像是专门给%ANATA_LOVER(角色)%欣赏一样
 	ELSE
 		PRINTFORM 在%ANATA_LOVER(角色)%的眼前
