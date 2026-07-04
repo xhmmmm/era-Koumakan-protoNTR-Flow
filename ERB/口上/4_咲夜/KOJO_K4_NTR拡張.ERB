@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;翻译全为脑补+机翻,欢迎提供意见修改,括号内为原句
 ;-------------------------------------------------
 ;-------------------------------------------------
@@ -101,18 +101,10 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「唔哼哼、即使是被别人睡了也无所谓、这算是什么奇怪的心理呢？」
-			DATAFORM 「怎么了？ 现在才感到后悔？」
-			DATAFORM 「..他的嫉妒心..」
-		ENDDATA
-	ELSE
-		PRINTFORML 「..・」
-		PRINTFORML 在%CALLNAME:角色%抱着%CALLNAME:MASTER%的时候%CALLNAME:角色%稍微侧过去的脸上露出了不安的表情。
-		PRINTFORML 实在不知道怎么翻了,以下原句
-		PRINTFORML 抱き寄せられた%CALLNAME:角色%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
-	ENDIF
+	PRINTFORML 「..・」
+	PRINTFORML 在%CALLNAME:角色%抱着%CALLNAME:MASTER%的时候%CALLNAME:角色%稍微侧过去的脸上露出了不安的表情。
+	PRINTFORML 实在不知道怎么翻了,以下原句
+	PRINTFORML 抱き寄せられた%CALLNAME:角色%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
 
 ELSE
 	; それ以外の場合、非NTR口上を実行する
@@ -143,17 +135,10 @@ RET_VAL = 0
 
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「哼哼..这这种事还是算了吧..品尝别人的味道、这算是什么恶趣味呢？」
-		PRINTFORML 以嘴唇有污物为由拒绝了接吻。
-		PRINTFORML 「但是..能不能给我倒杯茶呢？」
-		PRINTFORML %CALLNAME:角色%好像是想用茶水来清洁嘴唇。
-	ELSE
-		PRINTFORML 「不、不行哦」
-		PRINTFORML 以嘴唇有污物为由拒绝了接吻。
-		PRINTFORML 「呐、能不能给我倒杯茶呢？」
-		PRINTFORML %CALLNAME:角色%把茶喝了下去。
-	ENDIF
+	PRINTFORML 「不、不行哦」
+	PRINTFORML 以嘴唇有污物为由拒绝了接吻。
+	PRINTFORML 「呐、能不能给我倒杯茶呢？」
+	PRINTFORML %CALLNAME:角色%把茶喝了下去。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTFORML 「你、你在干什么」
@@ -175,15 +160,7 @@ ELSE
 			DATAFORM 「啾..啾..」
 			DATAFORM 「唔..呼唔..啾..」
 		ENDDATA
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
-				DATAFORM 「唔哼哼、是心动的感觉呢。想知道你和他技术谁更好吗？(あの人とどちらが上手か聞きたい？)」
-			ENDDATA
-		ELSE
-			PRINTFORML （果然、还是他的技术更胜一筹）
-		ENDIF
+		PRINTFORML （果然、还是他的技术更胜一筹）
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 		PRINTDATAL
@@ -191,25 +168,11 @@ ELSE
 			DATAFORM 「ちゅっ..ちゅ..」
 			DATAFORM 「ん..んん..ちゅ..」
 		ENDDATA
-		IF TALENT:角色:浮気公認 >= 浮気_性交公認
-			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
-				DATAFORM 「唔哼哼、是心动的感觉呢。想知道你和他技术谁更好吗？(あの人とどちらが上手か聞きたい？)」
-			ENDDATA
-		ELSEIF TALENT:角色:浮気公認 > 浮気_非公認
-			PRINTDATAL
-				DATAFORM 「..是挺好。不过、想让我教你更好的吗。他好像更擅长这种事哦？」
-				DATAFORM 「接吻是挺不错的。但是、跟他好像更好吧？」
-				DATAFORM （果然、还是他的技术更胜一筹）
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM （..比起跟%CALLNAME:MASTER%接吻、跟他接吻更让人心跳加速呢..）
-				DATAFORM （..不行.还是不够满足..）
-				DATAFORM （果然、还是他的技术更胜一筹）
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM （..比起跟%CALLNAME:MASTER%接吻、跟他接吻更让人心跳加速呢..）
+			DATAFORM （..不行.还是不够满足..）
+			DATAFORM （果然、还是他的技术更胜一筹）
+		ENDDATA
 
 	ELSE
 		RET_VAL = 1
@@ -251,26 +214,16 @@ ELSE
 			PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%离开%CALLNAME:MASTER%并微微脸红地向他那边走去。
 		ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 			IF TALENT:角色:恋慕
-				IF TALENT:角色:浮気公認
-					PRINTFORML 「啊啦。好像他在叫我呢？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%离开%CALLNAME:MASTER%并微微脸红地向他那边走去。
-				ELSE
-					PRINTFORML 「..」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%一脸若无其事地离开%CALLNAME:MASTER%并在他旁边停下。
-				ENDIF
+				PRINTFORML 「..」
+				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%一脸若无其事地离开%CALLNAME:MASTER%并在他旁边停下。
 			ELSE
 				PRINTFORML 「啊啦」
 				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%离开%CALLNAME:MASTER%并向他那边走去。
 			ENDIF
 		ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い) 
 			IF TALENT:角色:恋慕
-				IF TALENT:角色:浮気公認
-					PRINTFORML 「啊啦。好像他在叫我呢？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%离开%CALLNAME:MASTER%并向他那边走去。
-				ELSE
-					PRINTFORML 「..」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%一脸若无其事地离开%CALLNAME:MASTER%并在%NTR_NAME(0)%的附近停下。
-				ENDIF
+				PRINTFORML 「..」
+				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%一脸若无其事地离开%CALLNAME:MASTER%并在%NTR_NAME(0)%的附近停下。
 			ELSE
 				PRINTFORML 「啊啦」
 				PRINTFORML 感受到%NTR_NAME(0)%的视线的%CALLNAME:角色%一脸若无其事地离开%CALLNAME:MASTER%并在%NTR_NAME(0)%的附近停下。

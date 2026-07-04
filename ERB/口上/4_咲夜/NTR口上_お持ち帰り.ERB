@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用咲夜口上ファイル：お持ち帰り関係
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -37,21 +37,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_
 		DATAFORM 白色的秽物挂在女仆装各处都，还浸湿了内裤。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			CALL NTR_KOJO_K4_0_TalkBack1(角色)
-			IF (STAIN:角色:Ｖ & 汚れ_精液)
-				CALL NTR_KOJO_K4_0_TalkSamen(角色)
-			ENDIF
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她带着潇洒的脚步回到了自己的房间。
-		ELSEIF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她带着潇洒的脚步回到了自己的房间
-		ELSE
-			PRINTFORML 毫不掩饰污秽的样子，她带着潇洒的脚步回到了房间。
-		ENDIF
+		PRINTFORML 毫不掩饰污秽的样子，她带着潇洒的脚步回到了房间。
 	ELSE
 		PRINTFORML 毫不掩饰污秽的样子，她带着潇洒的脚步回到了房间。
 	ENDIF
@@ -69,21 +55,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM 白色的秽物挂在女仆装各处都，还浸湿了内裤。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			CALL NTR_KOJO_K4_0_TalkBack1(角色)
-			IF (STAIN:角色:Ｖ & 汚れ_精液)
-				CALL NTR_KOJO_K4_0_TalkSamen(角色)
-			ENDIF
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她回到了自己的房间。
-		ELSEIF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她回到了自己的房间。
-		ELSE
-			PRINTFORML 在被%MSG_LOVER(角色)%发现之前，回到了她自己的房间。
-		ENDIF
+		PRINTFORML 在被%MSG_LOVER(角色)%发现之前，回到了她自己的房间。
 	ELSE
 		PRINTFORML 在被馆内的人发现之前，她回到了自己的房间。
 	ENDIF
@@ -101,18 +73,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 		DATAFORM 白色的秽物挂在女仆装各处都，还浸湿了内裤。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			CALL NTR_KOJO_K4_0_TalkBack1(角色)
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她回到了自己的房间。
-		ELSEIF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%来到你身边、说自己是从%NTR_NAME(0)%的地方回来的。。
-			CALL NTR_KOJO_K4_0_TalkBack0(角色)
-			PRINTFORML 在%MSG_LOVER(角色)%耳边这样低语之后，她回到了自己的房间。
-		ELSE
-			PRINTFORML 在%MSG_LOVER(角色)%发现之前，她回到了她自己的房间。
-		ENDIF
+		PRINTFORML 在%MSG_LOVER(角色)%发现之前，她回到了她自己的房间。
 	ELSE
 		PRINTFORML 在被馆内的人发现之前，她回到了自己的房间。
 	ENDIF
@@ -134,59 +95,6 @@ PRINTDATAL
 	DATAFORM 「我回来了」
 	DATAFORM 「我回来了。馆内没发生什么吧？」
 ENDDATA
-RETURN 0
-
-; 帰宅時挨拶追い打ち
-; 　わざわざ報告してくる状況なので、前提として恋慕かつ浮気公認 == 外泊公認
-@NTR_KOJO_K4_0_TalkBack1(角色)
-#DIM 角色
-
-PRINTDATAL
-	DATAFORM 「是啊、从他的那边回来的。当然，做了好几次呢」
-	DATAFORM 「和他做了吗？ 嗯，这是当然的咯。」
-	DATAFORM 「做了什么？ 除了做爱以外还能做什么？」
-ENDDATA
-RETURN 0
-
-; 精液汚れ報告
-; 　わざわざ報告してくる状況なので、前提として恋慕かつ浮気公認
-@NTR_KOJO_K4_0_TalkSamen(角色)
-#DIM 角色
-
-PRINTFORML 「・・呵呵，现在我的小穴已经被精液弄脏了・・%MSG_HEART()%」
-IF GETBIT(CFLAG:角色:淫纹, 淫纹_右頬)
-	CALL COM417_GetFillingRateByPublicSperm(角色)
-	SELECTCASE (RESULT:1 * RESULT:0)
-		CASE IS >= 200	; 淫纹が鮮やかなピンク色
-			PRINTFORML 淫笑着的%CALLNAME:角色%的脸上刻着的淫纹菊穴已经变成了鲜艳的粉红色、
-			PRINTFORML 从这个颜色上来看，%CALLNAME:角色%的子宫被填充了大量的精液，可以看到小腹都因此鼓起不少.
-			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
-				PRINTFORML 「现在的话就不妨碍接吻了呢。话虽如此，现在嘴上很脏哦，呵呵」
-			ELSE
-				PRINTFORML 「现在的话就不妨碍接吻了呢。呵呵」
-			ENDIF
-		CASE IS >= 100	; 淫纹がピンク色
-			PRINTFORML 淫笑着的%CALLNAME:角色%，脸上可以看到已经变成粉红色的淫纹、
-			PRINTFORML 这个颜色表示她的子宫里已经充满了精液。
-			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
-				PRINTFORML 「现在的话就不妨碍接吻了呢。话虽如此，现在嘴上很脏哦，呵呵」
-			ELSE
-				PRINTFORML 「现在的话就不妨碍接吻了呢。呵呵」
-			ENDIF
-		CASE 50 TO 99	; 淫纹が赤
-			PRINTFORML %CALLNAME:角色%淫笑的脸颊上可以看见淫纹变成了赤色、
-			PRINTFORML 这个颜色表示她的子宫里已经填充了一半多的精液。
-			PRINTFORML 「这样就没法接吻了呢」
-		CASE 1 TO 49	; 淫纹が赤紫
-			PRINTFORML %CALLNAME:角色%淫笑的脸颊上刻着的淫纹变成了赤紫色的。
-			PRINTFORML 「这样就没法接吻了呢」
-		CASEELSE		; 淫纹が紫
-			PRINTFORML %CALLNAME:角色%淫笑的脸颊上刻着的淫纹是紫色的。
-			PRINTFORML 「这样就没法接吻了呢」
-	ENDSELECT
-ELSE
-	PRINTFORML %CALLNAME:角色%露出淫靡的微笑。
-ENDIF
 RETURN 0
 
 ;==================================================
@@ -223,77 +131,28 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTDATAL
-				DATAFORM 「好啊，我们走吧。呵呵、好期待啊」
-				DATAFORM 「呵呵，今天要怎么疼爱我呢？」
-				DATAFORM 「对，就像说好的那样。不论做什么・・・做几次都可以」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%与%NTR_NAME(0)%亲密地挽着手，向他的家走去。
-			PRINTDATA
-				DATAFORM 外宿的事%MSG_LOVER(角色)%也知道，
-				DATAFORM 外宿的事是%MSG_LOVER(角色)%所希望的，
-				DATAFORM 在外出轨是为了实现%MSG_LOVER(角色)%的愿望，
-			ENDDATA
-			PRINTDATAL
-				DATAFORM 她已经没有感到内疚了。
-				DATAFORM 她没有丝毫犹豫地顺从了%NTR_NAME(0)%。
-				DATAFORM 她毫不犹豫地与%NTR_NAME(0)%开始了交欢。
-			ENDDATA
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・我照着你的愿望做了・・）
-			ENDDATA
-		CASE IS >= 浮気_浮気公認
-			PRINTDATAL
-				DATAFORM 「好啊，我们走吧。」
-				DATAFORM 「呵呵，今天要对我做什么呢？」
-				DATAFORM 「对，就像说好的那样。」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%与%NTR_NAME(0)%挽着手，向他的家走去。
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・我照着你的愿望做了・・）
-			ENDDATA
-		CASEELSE		; 非公認
-			PRINTDATAL
-				DATAFORM 「不・・不可以，回去・・・」
-				DATAFORM 「果・・果然还是・・不行・・啊」
-				DATAFORM 「不、不要・・・请不要对我、做过分的事・・」
-			ENDDATA
-			PRINTFORML 无法反抗的%CALLNAME:角色%被%NTR_NAME(0)%带回了家。
-			IF TALENT:角色:恋慕
-				IF TALENT:角色:伤心 && RAND:2
-					IF CFLAG:角色:伤心相手1
-						PRINTFORML %CALLNAME:MASTER%和%CALLNAME:(CFLAG:角色:伤心相手1)%的所作所为浮现在脑海。%CALLNAME:角色%的心动摇了。
-					ELSE
-						PRINTFORML %CALLNAME:MASTER%出轨的场景浮现在脑海。%CALLNAME:角色%的心动摇了。
-					ENDIF
-				ELSE
-					PRINTFORML 对%CALLNAME:MASTER%的爱和%NTR_NAME(0)%所给予的快感之间，%CALLNAME:角色%的心动摇了。
-				ENDIF
+	PRINTDATAL
+		DATAFORM 「不・・不可以，回去・・・」
+		DATAFORM 「果・・果然还是・・不行・・啊」
+		DATAFORM 「不、不要・・・请不要对我、做过分的事・・」
+	ENDDATA
+	PRINTFORML 无法反抗的%CALLNAME:角色%被%NTR_NAME(0)%带回了家。
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:伤心 && RAND:2
+			IF CFLAG:角色:伤心相手1
+				PRINTFORML %CALLNAME:MASTER%和%CALLNAME:(CFLAG:角色:伤心相手1)%的所作所为浮现在脑海。%CALLNAME:角色%的心动摇了。
+			ELSE
+				PRINTFORML %CALLNAME:MASTER%出轨的场景浮现在脑海。%CALLNAME:角色%的心动摇了。
 			ENDIF
-	ENDSELECT
+		ELSE
+			PRINTFORML 对%CALLNAME:MASTER%的爱和%NTR_NAME(0)%所给予的快感之间，%CALLNAME:角色%的心动摇了。
+		ENDIF
+	ENDIF
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTFORML 「・・好啊，我们走吧」
-			PRINTFORML %CALLNAME:角色%老老实实地跟着%NTR_NAME(0)%回了家。
-			PRINTFORML 在外留宿也有一部分原因是为了引起%MSG_LOVER(角色)%的注意，%CALLNAME:角色%有一半已经后悔了。
-			PRINTFORML （・・虽然对不起・・%CALLNAME:MASTER%・・）
-		CASE IS >= 浮気_浮気公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%老老实实地跟着%NTR_NAME(0)%回了家。
-			PRINTFORML （・・%CALLNAME:MASTER%・・这样に・・可以吗・・）
-		CASEELSE		; 非公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%装作老老实实地跟着%NTR_NAME(0)%回了家。
-	ENDSELECT
+	PRINTFORML 「・・」
+	PRINTFORML %CALLNAME:角色%装作老老实实地跟着%NTR_NAME(0)%回了家。
 
 ENDIF
 IF TALENT:角色:人妻
@@ -340,62 +199,31 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	IF TALENT:角色:恋慕
 		PRINTFORML 这个项圈是并非是%ANATA_LOVER(角色)%，而是被男人所有的证明。
 		PRINTFORML 从项圈上延伸出来的锁链被系在墙上。
-		IF TALENT:角色:浮気公認
-			PRINTFORML （呵呵・・这个样子好想让%CALLNAME:MASTER%也看看呢・・）
-		ENDIF
 	ELSE
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「・・嗯・・已经・・」
-			DATAFORM 「呵呵・・真着急呢・・」
-			DATAFORM 「欸欸・・可以哦・・」
-		ENDDATA
-		PRINTFORML 与%NTR_NAME(0)%一边相邻而坐，一边说着话的%CALLNAME:角色%，被突然抱住，然而却没有丝毫抵抗。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML 「对的，是这样，我会留下来的」
-			PRINTFORML 在%MSG_LOVER(角色)%也知道的情况下，她做出了大胆的举动。
-		ELSE
-		ENDIF
+	PRINTFORML 「还请至少不要留下痕迹・・・」
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%并不想让%CALLNAME:MASTER%知道这件事。
 	ELSE
-		PRINTFORML 「还请至少不要留下痕迹・・・」
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%并不想让%CALLNAME:MASTER%知道这件事。
-		ELSE
-			PRINTFORML %CALLNAME:角色%并不想让紅魔館的大家知道这件事。
-		ENDIF
-		PRINTFORML 无奈的接受了这种程度的妥协，%NTR_NAME(0)%坐回了旁边的座位。
+		PRINTFORML %CALLNAME:角色%并不想让紅魔館的大家知道这件事。
 	ENDIF
+	PRINTFORML 无奈的接受了这种程度的妥协，%NTR_NAME(0)%坐回了旁边的座位。
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「欸欸，这样啊，呵呵」
-			DATAFORM 「呀，真是熟练呢」
-			DATAFORM 「再看哪里呢？」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%微笑着回应%NTR_NAME(0)%的话。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認 >= 浮気_外泊公認
-			PRINTFORML 「住下来也不坏呢」
-			PRINTFORML 在%MSG_LOVER(角色)%也知道的情况下，她做出了大胆的举动。
-		ELSE
-		ENDIF
+	PRINTDATAL
+		DATAFORM 「欸，欸欸，是这样啊・・」
+		DATAFORM 「呀，真会说话呢」
+		DATAFORM 「・・再看哪里呢？」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%似乎并不像继续和%NTR_NAME(0)%的对话。
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%并不想让%CALLNAME:MASTER%知道这件事。
 	ELSE
-		PRINTDATAL
-			DATAFORM 「欸，欸欸，是这样啊・・」
-			DATAFORM 「呀，真会说话呢」
-			DATAFORM 「・・再看哪里呢？」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%似乎并不像继续和%NTR_NAME(0)%的对话。
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%并不想让%CALLNAME:MASTER%知道这件事。
-		ELSE
-			PRINTFORML %CALLNAME:角色%并不想让紅魔館的大家知道这件事。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%并不想让紅魔館的大家知道这件事。
 	ENDIF
 
 ENDIF
@@ -428,9 +256,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 「嗯・・啾・・嗯・・」
 	PRINTFORML %NTR_NAME(0)%吻上了%CALLNAME:角色%的唇，因为%CALLNAME:角色%太过舒服而闭上了眼睛并将他的舌头含入口中。
-	IF TALENT:角色:浮気公認
-		PRINTFORML 不但如此，她还主动搂住了%NTR_NAME(0)%进一步吻了回去。
-	ENDIF
 	IF TALENT:角色:恋慕
 		PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，对%CALLNAME:MASTER%的爱也消失了。
 	ELSE 
@@ -439,20 +264,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「嗯！・・嗯・・嗯・・嗯・・」
-		PRINTFORML %CALLNAME:角色%被夺去了嘴唇，就这么将他的舌头含入口中。
-		IF TALENT:角色:恋慕
-			PRINTFORML 这正是%MSG_LOVER(角色)%所期望的，于是%CALLNAME:角色%委身于%NTR_NAME(0)%巧妙的舌技之下。
-		ENDIF
+	PRINTFORML 「嗯！姆呜・・嗯、嗯・・嗯！」
+	PRINTFORML %CALLNAME:角色%被夺去了嘴唇，就这么将他的舌头含入口中。
+	IF TALENT:角色:恋慕
+		PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，对%CALLNAME:MASTER%的爱也消失了。
 	ELSE
-		PRINTFORML 「嗯！姆呜・・嗯、嗯・・嗯！」
-		PRINTFORML %CALLNAME:角色%被夺去了嘴唇，就这么将他的舌头含入口中。
-		IF TALENT:角色:恋慕
-			PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，对%CALLNAME:MASTER%的爱也消失了。
-		ELSE 
-			PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，%CALLNAME:角色%的心被俘获了。
-		ENDIF
+		PRINTFORML 在%NTR_NAME(0)%巧妙的舌技下，%CALLNAME:角色%的心被俘获了。
 	ENDIF
 
 ENDIF
@@ -491,11 +308,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORML %CALLNAME:角色%把%NTR_NAME(0)%的阴茎吞入口中的同时，秘穴也湿了。
 	ENDIF
 	PRINTFORML 当被舔到敏感的地方时，%CALLNAME:角色%忍不住浑身颤抖。
-	IF TALENT:角色:浮気公認
-		PRINTFORML 因为已经被%CALLNAME:MASTER%所认可了，所以敬请考虑着如何尽可能地享受。
-	ELSE
-		PRINTFORML 在%MSG_LOVER(角色)%不在的地方为其他的男人、男人的肉棒口交，让%CALLNAME:角色%感到性奋。
-	ENDIF
+	PRINTFORML 在%MSG_LOVER(角色)%不在的地方为其他的男人、男人的肉棒口交，让%CALLNAME:角色%感到性奋。
 
 ELSE
 
@@ -505,11 +318,7 @@ ELSE
 	ELSE
 		PRINTFORML %CALLNAME:角色%把%NTR_NAME(0)%的阴茎吞入口中的同时，秘穴也湿了。
 	ENDIF
-	IF TALENT:角色:浮気公認 
-		PRINTFORML 因为是%MSG_LOVER(角色)%的愿望，%CALLNAME:角色%用嘴和秘穴侍奉着%NTR_NAME(0)%。
-	ELSE
-		PRINTFORML %CALLNAME:角色%为了尽快从这屈辱中逃离，用嘴和秘穴侍奉着%NTR_NAME(0)%、。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%为了尽快从这屈辱中逃离，用嘴和秘穴侍奉着%NTR_NAME(0)%、。
 
 ENDIF
 
@@ -572,9 +381,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		IF TALENT:角色:恋慕
 			PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
 			PRINTFORML %CALLNAME:角色%把把处女献给了男人，而不是%ANATA_LOVER(角色)%。
-			IF TALENT:角色:浮気公認
-				PRINTFORML 尽管希望是%MSG_LOVER(角色)%，但将处女献给了%MSG_LOVER(角色)%以外的人・・令%CALLNAME:角色%感到了背德的快感。
-			ENDIF
 		ELSE
 			PRINTFORML 「好啊・・我的第一次就给你吧・・」
 			PRINTFORML %CALLNAME:角色%把把处女献给了%NTR_NAME(2)%。
@@ -587,38 +393,18 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			IF TALENT:角色:恋慕
-				PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
-				PRINTFORML %CALLNAME:角色%把把处女献给了男人，而不是%ANATA_LOVER(角色)%。
-				IF TALENT:角色:浮気公認
-					PRINTFORML 尽管希望是%MSG_LOVER(角色)%，但将处女献给了%MSG_LOVER(角色)%以外的人・・令%CALLNAME:角色%感到了背德的快感。
-				ENDIF
-			ELSE
-				PRINTFORML 「好啊・・我的第一次就给你吧・・」
-				PRINTFORML %CALLNAME:角色%把把处女献给了%NTR_NAME(2)%。
-			ENDIF
-			;非処女
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:恋慕
+			PRINTFORML 「好痛！？・・第一次明明・・・想要给%CALLNAME:MASTER%的・・・」
+			PRINTFORML %CALLNAME:角色%因为被%NTR_NAME_1_2(角色)%夺去了处女而哭了出来
 		ELSE
-			PRINTFORML 「啊啊・好厉害・・最里、被插到最里面了！」
-			PRINTFORML 随着%NTR_NAME(0)%每一次的抽插，%CALLNAME:角色%对%CALLNAME:MASTER%的爱也逐渐褪去。
+			PRINTFORML 「好痛！？・・明明是第一次・・就这么・・就这么・・」
+			PRINTFORML %CALLNAME:角色%因为被%NTR_NAME(2)%夺去了处女而哭了出来
 		ENDIF
-		PRINTFORML （因为%CALLNAME:MASTER%・・不行啊・・）
+		;非処女
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			IF TALENT:角色:恋慕
-				PRINTFORML 「好痛！？・・第一次明明・・・想要给%CALLNAME:MASTER%的・・・」
-				PRINTFORML %CALLNAME:角色%因为被%NTR_NAME_1_2(角色)%夺去了处女而哭了出来
-			ELSE 
-				PRINTFORML 「好痛！？・・明明是第一次・・就这么・・就这么・・」
-				PRINTFORML %CALLNAME:角色%因为被%NTR_NAME(2)%夺去了处女而哭了出来
-			ENDIF
-			;非処女
-		ELSE
-			PRINTFORML 「不要・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%！！・・」
-			PRINTFORML %CALLNAME:角色%一边被侵犯着，一边呼喊着%CALLNAME:MASTER%的名字
-		ENDIF
+		PRINTFORML 「不要・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%！！・・」
+		PRINTFORML %CALLNAME:角色%一边被侵犯着，一边呼喊着%CALLNAME:MASTER%的名字
 	ENDIF
 
 ENDIF
@@ -649,19 +435,11 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 「啊啊・好厉害・・最里、被插到最里面了！」
 	PRINTFORML 随着%NTR_NAME(0)%每一次的对菊穴的抽插，%CALLNAME:角色%对%CALLNAME:MASTER%的爱也逐渐褪去。
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「再！ 再激烈一点！ 再激烈一点！」
-	ENDIF
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「啊啊・好厉害・・最里、被插到最里面了！」
-		PRINTFORML 随着%NTR_NAME(0)%每一次的对菊穴的抽插，%CALLNAME:角色%对%CALLNAME:MASTER%的爱也逐渐褪去。
-	ELSE
-		PRINTFORML 「不要・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%！！・・」
-		PRINTFORML %CALLNAME:角色%一边被侵犯着菊穴，一边呼喊着%CALLNAME:MASTER%的名字
-	ENDIF
+	PRINTFORML 「不要・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%！！・・」
+	PRINTFORML %CALLNAME:角色%一边被侵犯着菊穴，一边呼喊着%CALLNAME:MASTER%的名字
 
 ENDIF
 RETURN 0
@@ -748,36 +526,21 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORML %NTR_NAME(2)%的精子，为了给%CALLNAME:角色%受孕而涌入。
 	ENDIF
 	PRINTFORML %NTR_NAME(0)%拍下了精液从股间不断滴落的%CALLNAME:角色%张开自己双腿的姿势。
-	IF TALENT:角色:浮気公認
-		PRINTFORML （呵呵・・把这个给他看的话，%CALLNAME:MASTER%会很高兴吧・・）
-	ENDIF
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML %悲鳴%
-		PRINTFORML %NTR_NAME(0)%朝着绝顶的%CALLNAME:角色%的子宮口，不容分说地射出了白浊的欲望。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「啊・・啊嗯・・不是%CALLNAME:MASTER%的宝宝・・要怀上了呢・・・」
-		ELSE
-			PRINTFORML 「啊・・啊嗯・・小宝宝・・要怀上了呢・・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%拍下了双脚张开，白浊液从私处滴落地%CALLNAME:角色%的笑脸。
-		PRINTFORML （呵呵・・把这个给他看的话，%CALLNAME:MASTER%会很高兴吧・・）
+	IF TALENT:角色:危险日
+		PRINTFORML 「啊啊！不可以、不可以啊！・・今天、只有今天绝对不可以！！」
 	ELSE
-		IF TALENT:角色:危险日
-			PRINTFORML 「啊啊！不可以、不可以啊！・・今天、只有今天绝对不可以！！」
-		ELSE
-			PRINTFORML 「啊啊！不可以、不可以啊！」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%无视着话语，朝%CALLNAME:角色%的子宮口，不容分说地射出了白浊的欲望。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「啊・・啊嗯・・不是%CALLNAME:MASTER%的宝宝・・要怀上了呢・・・」
-		ELSE
-			PRINTFORML 「啊・・啊嗯・・小宝宝・・要怀上了呢・・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%拍下了放松下来的%CALLNAME:角色%的样子。
+		PRINTFORML 「啊啊！不可以、不可以啊！」
 	ENDIF
+	PRINTFORML %NTR_NAME(0)%无视着话语，朝%CALLNAME:角色%的子宮口，不容分说地射出了白浊的欲望。
+	IF TALENT:角色:恋慕
+		PRINTFORML 「啊・・啊嗯・・不是%CALLNAME:MASTER%的宝宝・・要怀上了呢・・・」
+	ELSE
+		PRINTFORML 「啊・・啊嗯・・小宝宝・・要怀上了呢・・・」
+	ENDIF
+	PRINTFORML %NTR_NAME(0)%拍下了放松下来的%CALLNAME:角色%的样子。
 
 ENDIF
 RETURN 0
@@ -832,24 +595,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORML %NTR_NAME(2)%的精子，涌入了%CALLNAME:角色%的体内深处。
 	ENDIF
 	PRINTFORML %NTR_NAME(0)%拍下了精液从菊穴不断滴落的%CALLNAME:角色%张开自己双腿的姿势。
-	IF TALENT:角色:浮気公認
-		PRINTFORML （呵呵・・把这个给他看的话，%CALLNAME:MASTER%会很高兴吧・・）
-	ENDIF
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML %悲鳴%
-		PRINTFORML %NTR_NAME(0)%朝着绝顶的%CALLNAME:角色%的菊穴，不容分说地射出了白浊的欲望。
-		PRINTFORML 「啊・・啊啊嗯・・好热・・」
-		PRINTFORML %NTR_NAME(0)%拍下了双脚张开，白浊液从菊穴滴落地%CALLNAME:角色%的笑脸。
-		PRINTFORML （呵呵・・把这个给他看的话，%CALLNAME:MASTER%会很高兴吧・・）
-	ELSE
-		PRINTFORML 「不要！ 不要啊啊啊啊啊！！」
-		PRINTFORML %NTR_NAME(0)%无视着话语，朝%CALLNAME:角色%的菊穴，不容分说地射出了白浊的欲望。
-		PRINTFORML 「啊・・啊啊嗯・・好热・・」
-		PRINTFORML %NTR_NAME(0)%拍下了放松下来的%CALLNAME:角色%的样子。
-	ENDIF
+	PRINTFORML 「不要！ 不要啊啊啊啊啊！！」
+	PRINTFORML %NTR_NAME(0)%无视着话语，朝%CALLNAME:角色%的菊穴，不容分说地射出了白浊的欲望。
+	PRINTFORML 「啊・・啊啊嗯・・好热・・」
+	PRINTFORML %NTR_NAME(0)%拍下了放松下来的%CALLNAME:角色%的样子。
 
 ENDIF
 RETURN 0
@@ -885,78 +637,29 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTDATAL
-				DATAFORM 「好啊，开始吧。呵呵、好期待啊」
-				DATAFORM 「呵呵，今天要怎么疼爱我呢？」
-				DATAFORM 「对，就像说好的那样。不论做什么・・・做几次都可以」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%在%NTR_NAME(0)%的家中醒来，拥抱着他的同时，用妖艳的声音低语着。
-			PRINTDATA
-				DATAFORM 外宿的事%MSG_LOVER(角色)%也知道，
-				DATAFORM 外宿的事是%MSG_LOVER(角色)%所希望的，
-				DATAFORM 在外出轨是为了实现%MSG_LOVER(角色)%的愿望，
-			ENDDATA
-			PRINTDATAL
-				DATAFORM 她已经没有感到内疚了。
-				DATAFORM 她没有丝毫犹豫地顺从了%NTR_NAME(0)%。
-				DATAFORM 她毫不犹豫地与%NTR_NAME(0)%开始了交欢。
-			ENDDATA
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・我照着你的愿望做了・・）
-			ENDDATA
-		CASE IS >= 浮気_浮気公認
-			PRINTDATAL
-				DATAFORM 「好啊，我们走吧。」
-				DATAFORM 「呵呵，今天要对我做什么呢？」
-				DATAFORM 「对，就像说好的那样。」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%在%NTR_NAME(0)%的家中醒来，拥抱着他的同时，用包含期待的声音低语着。。
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・等回去以后、会说给你听的哟・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・好好期待吧・・呵呵・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・我照着你的愿望做了・・）
-			ENDDATA
-		CASEELSE		; 非公認
-			PRINTDATAL
-				DATAFORM 「不・・不可以，让我回去・・・」
-				DATAFORM 「果・・果然还是・・不行・・啊」
-				DATAFORM 「不、不要・・・请不要对我、做过分的事・・」
-			ENDDATA
-			PRINTFORML 无法反抗的%CALLNAME:角色%没能从%NTR_NAME(0)%那里得到回家的许可。
-			IF TALENT:角色:恋慕
-				IF TALENT:角色:伤心 && RAND:2
-					IF CFLAG:角色:伤心相手1
-						PRINTFORML %CALLNAME:MASTER%和%CALLNAME:(CFLAG:角色:伤心相手1)%的所作所为浮现在脑海。%CALLNAME:角色%的心动摇了。
-					ELSE
-						PRINTFORML %CALLNAME:MASTER%出轨的场景浮现在脑海。%CALLNAME:角色%的心动摇了。
-					ENDIF
-				ELSE
-					PRINTFORML 对%CALLNAME:MASTER%的爱和%NTR_NAME(0)%所给予的快感之间，%CALLNAME:角色%的心动摇了。
-				ENDIF
+	PRINTDATAL
+		DATAFORM 「不・・不可以，让我回去・・・」
+		DATAFORM 「果・・果然还是・・不行・・啊」
+		DATAFORM 「不、不要・・・请不要对我、做过分的事・・」
+	ENDDATA
+	PRINTFORML 无法反抗的%CALLNAME:角色%没能从%NTR_NAME(0)%那里得到回家的许可。
+	IF TALENT:角色:恋慕
+		IF TALENT:角色:伤心 && RAND:2
+			IF CFLAG:角色:伤心相手1
+				PRINTFORML %CALLNAME:MASTER%和%CALLNAME:(CFLAG:角色:伤心相手1)%的所作所为浮现在脑海。%CALLNAME:角色%的心动摇了。
+			ELSE
+				PRINTFORML %CALLNAME:MASTER%出轨的场景浮现在脑海。%CALLNAME:角色%的心动摇了。
 			ENDIF
-	ENDSELECT
+		ELSE
+			PRINTFORML 对%CALLNAME:MASTER%的爱和%NTR_NAME(0)%所给予的快感之间，%CALLNAME:角色%的心动摇了。
+		ENDIF
+	ENDIF
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTFORML 「・・好啊，我们开始吧」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:角色%老老实实地将身体交给了他。
-			PRINTFORML 在外留宿也有一部分原因是为了引起%MSG_LOVER(角色)%的注意，%CALLNAME:角色%有一半已经后悔了。
-			PRINTFORML （・・都是%CALLNAME:MASTER%・・不好・・）
-		CASE IS >= 浮気_浮気公認
-			PRINTFORML 「・・」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:角色%老老实实地将身体交给了他。
-			PRINTFORML （・・%CALLNAME:MASTER%・・这样・・真的好吗・・）
-		CASEELSE		; 非公認
-			PRINTFORML 「・・」
-			PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:角色%老老实实地将身体交给了他。
-			PRINTFORML （・・还・・不能回去吗・・）
-	ENDSELECT
+	PRINTFORML 「・・」
+	PRINTFORML 在%NTR_NAME(0)%家中醒来的%CALLNAME:角色%老老实实地将身体交给了他。
+	PRINTFORML （・・还・・不能回去吗・・）
 
 ENDIF
 IF TALENT:角色:人妻
@@ -1034,19 +737,11 @@ ELSE
 		PRINTFORML 「嗯・・嗯嗯嗯！」
 		IF TALENT:角色:恋慕
 			PRINTFORML 因为%NTR_NAME_1_2(角色)%不愿夺走自己的処女，于是她就用嘴来侍奉他的阴茎，让他把精液射在嘴里。
-			IF TALENT:角色:浮気公認
-				PRINTDATAL
-					DATAFORM （・・%CALLNAME:MASTER%・・不行呢・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・这样就可以了吗・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・会高兴吧・・）
-				ENDDATA
-			ELSE
-				PRINTDATAL
-					DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
-				ENDDATA
-			ENDIF
+			PRINTDATAL
+				DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
+				DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
+				DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
+			ENDDATA
 		ELSE
 			PRINTFORML 为了让%CALLNAME:角色%不夺走自己的処女，于是她就用嘴来侍奉他的阴茎，让他把精液射在嘴里。
 			PRINTDATAL
@@ -1060,19 +755,11 @@ ELSE
 		PRINTFORML 「嗯・・嗯嗯嗯！ ・・咕库、咕库・・」
 		PRINTFORML %CALLNAME:角色%吮吸着%NTR_NAME(0)%的阴茎，不得已地将释放在口内的白浊液喝下。
 		IF TALENT:角色:恋慕
-			IF TALENT:角色:浮気公認
-				PRINTDATAL
-					DATAFORM （・・%CALLNAME:MASTER%・・不行呢・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・这样就可以了吗・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・会高兴吧・・）
-				ENDDATA
-			ELSE
-				PRINTDATAL
-					DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
-					DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
-				ENDDATA
-			ENDIF
+			PRINTDATAL
+				DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
+				DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
+				DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
+			ENDDATA
 		ELSE
 			PRINTDATAL
 				DATAFORM （・・只是有点苦呢・・）
@@ -1200,19 +887,11 @@ ELSE
 		ENDIF
 	ENDIF
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・不行呢・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・这样就可以了吗・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・会高兴吧・・）
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
+			DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
+			DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
+		ENDDATA
 	ENDIF
 
 ENDIF
@@ -1355,19 +1034,11 @@ ELSE
 		PRINTFORML 小穴已经变成了%NTR_NAME(0)%的肉棒的形状，对他的精液已经没有抵触感了。
 	ENDIF
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・不行呢・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・这样就可以了吗・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・会高兴吧・・）
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
-				DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM （・・%CALLNAME:MASTER%・・原谅我・・）
+			DATAFORM （・・%CALLNAME:MASTER%・・对不起・・）
+			DATAFORM （・・%CALLNAME:MASTER%・・啊啊・・）
+		ENDDATA
 	ENDIF
 
 ENDIF

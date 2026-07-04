@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;非NTR芙兰朵露お嬢様汎用口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -41,182 +41,17 @@ IF TALENT:角色:NTR
 	PRINTFORML %"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	;装着率３割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「えへへっ、指輪はつけてないんだ」
-			DATAFORM 「指輪？最近はつけてないよ」
-			DATAFORM 「指輪なら外してきたよ？」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「だって、そのほうがウワキっぽいよね%MSG_HEART()%」
-			DATAFORM 「デートのお誘いがあった時に、结婚戒指なんてしないよね？」
-			DATAFORM 「ウワキして欲しいと言ったのは%CALLNAME:MASTER%だよね？」
-		ENDDATA
-		PRINTFORML 最近は指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
-	ENDIF
+	PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	;装着率５割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんね、今日はつけていないの」
-			DATAFORM 「たまたまだよ」
-			DATAFORM 「指輪ならお部屋だよ」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「今日はそんな気分なんだ」
-			DATAFORM 「えへへ、今日の私はフリーなんだ♪」
-			DATAFORM 「でも、ウワキして欲しいと言ったのは%CALLNAME:MASTER%だよね？」
-		ENDDATA
-		PRINTFORML 今日は敢えて指輪を外しているのだと言われてしまった。
-	ELSE
-		PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
-	ENDIF
+	PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
 	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
 	;装着率９割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ごめんね、忘れちゃった」
-			DATAFORM 「いけなーい、うっかりしちゃって」
-			DATAFORM 「あ・・ごめんね、ちゃんと部屋にあるよ？」
-		ENDDATA
-		PRINTFORML 今日はたまたま指輪を外していたのだと謝られた。
-	ELSE
-		PRINTFORML %"たまたま外したまま忘れていたからだと謝られた。"%
-	ENDIF
+	PRINTFORML %"たまたま外したまま忘れていたからだと謝られた。"%
 ENDIF
 
 RETURN 1
-
-
-;NTR拡張.ERBに移动
-;;==================================================
-;;312,接吻
-;;==================================================
-;@KOJO_MESSAGE_COM_K6_312
-;	IF TFLAG:193 == 0
-;		CALL TRAIN_MESSAGE
-;	ENDIF
-;	CALL KOJO_MESSAGE_COM_K6_312_1
-;RETURN RESULT
-;
-;@KOJO_MESSAGE_COM_K6_312_1
-;	;唇の汚れで拒否された時
-;	IF TFLAG:193 == -2
-;		IF TALENT:TARGET:浮気公認
-;			PRINTFORML 「ん～～？ キスしたいの？ やめたほうがいいと思うな」
-;			PRINTFORML 唇が精液で汚れていることを理由にキスを拒まれてしまった。
-;			PRINTFORML 「ね、お茶入れてよ。そしたら、キスできるよ？」
-;			PRINTFORML %CALLNAME:TARGET%は唇を清めるためにお茶を欲しがっているようだ。
-;		ELSE
-;			PRINTFORML 「だ、だめっ！」
-;			PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
-;			PRINTFORML 「ね、お茶入れてよ。いいかな？」
-;			PRINTFORML %CALLNAME:TARGET%はお茶を欲しがっているようだ。
-;		ENDIF
-;	;失敗時
-;	ELSEIF TFLAG:193 == -1
-;		IF TALENT:TARGET:恋慕
-;			PRINTDATAL
-;				DATAFORM 「・・キャッ・・あ、ごめんね、びっくりしちゃった」
-;				DATAFORM 「・・やんっ・・あ、大丈夫？」
-;				DATAFORM 「・・やっ・・あ・・ご、ごめんね？」
-;			ENDDATA
-;			PRINTFORML 反射的に突き飛ばしてしまった%CALLNAME:MASTER%の顔を、心配そうに覗き込んでいる。
-;		ELSE
-;			PRINTDATAL
-;				DATAFORM 「・・な、なにするのっ！」
-;				DATAFORM 「・・やんっ！！」
-;				DATAFORM 「・・きゃっ！」
-;			ENDDATA
-;			PRINTFORML 拒絶され、突き飛ばされてしまった。
-;		ENDIF
-;	;成功時
-;	ELSE
-;		IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ)
-;			;唇が精液で汚れていたとき
-;			IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
-;				PRINTFORML %CALLNAME:TARGET%とくちづけした%CALLNAME:MASTER%は彼女の唾液の味に違和感を覚え唇を離した。
-;				PRINTFORML 「・・あ、苦かった？ ごめんね・・ふふっ」
-;			;好意度低いと冷たい
-;			ELSE
-;				PRINTDATAL
-;					DATAFORM 「んっ・・やめて・・怒られちゃうから」
-;					DATAFORM 「んっ・・だめ・・だめなの」
-;					DATAFORM 「んっ・・もう・・だめなのに・・」
-;				ENDDATA
-;				PRINTFORML %CALLNAME:TARGET%は拒否こそしなかったが、冷ややかな目で%CALLNAME:MASTER%を睨みつけた。
-;			ENDIF
-;		ELSEIF ABL:欲望 >= 5
-;			;互いに激しく
-;			PRINTDATAL
-;				DATAFORM 「んっ・・んんっ・・くちゅっ・・」
-;				DATAFORM 「ちゅっ・・ぢゅっ・・ちゅぱっ・・」
-;				DATAFORM 「ん・・れる・・れろっ・・」
-;			ENDDATA
-;			PRINTDATAL
-;				DATAFORM 互いの唇と舌を貪り合い、その味を堪能した。
-;				DATAFORM %CALLNAME:TARGET%の口の中に送り込んだ舌でその歯のひとつひとつを舐め上げた。鋭い牙さえも。
-;				DATAFORM %CALLNAME:TARGET%の口の中に送り込んだ舌から唾液を流し込むと、白い咽がこくりと鳴った。
-;			ENDDATA
-;			IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(TARGET, FAV_寝取られそう)
-;				PRINTDATAL
-;					DATAFORM 「・・ねぇ、これだけ？」
-;					DATAFORM 「・・もっと・・したいな・・」
-;					DATAFORM 「・・ふふっ、%CALLNAME:TARGET%のこと、もっと欲しいよね？」
-;				ENDDATA
-;				PRINTFORML %CALLNAME:MASTER%を見つめる%CALLNAME:TARGET%の視線に、飢えたような熱を感じる。
-;			ELSE
-;				PRINTDATAL
-;					DATAFORM 「あん・・もっと奥まで舐めていいよぉ・・」
-;					DATAFORM 「んふ・・上手だね、%CALLNAME:MASTER%・・もっと、欲しくなっちゃう」
-;					DATAFORM 「うん・・もっと・・もっとして・・」
-;				ENDDATA
-;			ENDIF
-;		ELSEIF ABL:亲密 >= 5
-;			;親しく求め合うように
-;			PRINTDATAL
-;				DATAFORM 「ん・・ちゅっ・・」
-;				DATAFORM 「ちゅっ・・ちゅぷ・・」
-;				DATAFORM 「ん・・んん・・」
-;			ENDDATA
-;			PRINTDATAL
-;				DATAFORM 互いに唇を寄せ合い、少しだけ舌をそよがせた。
-;				DATAFORM 小さな身体を抱き寄せ唇を重ね続けた。
-;				DATAFORM 唇を離すと、%CALLNAME:TARGET%は真っ赤になって%CALLNAME:MASTER%を見つめている。
-;			ENDDATA
-;			IF NTR_CHK_FAVORABLY(TARGET, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(TARGET, FAV_寝取られそう)
-;				PRINTDATAL
-;					DATAFORM 「くすっ・・そうだよね。こうでなくちゃ」
-;					DATAFORM 「ん・・そうだよ。もっとキスしてほしいな」
-;					DATAFORM 「うん・・もっと、したいな」
-;				ENDDATA
-;				PRINTFORML %CALLNAME:MASTER%を見つめる%CALLNAME:TARGET%の視線に、飢えたような熱を感じる。
-;			ELSE
-;				PRINTDATAL
-;					DATAFORM 「あ・・これだけ？もっとしてくれるよね？」
-;					DATAFORM 「ん・・うん、もっと、していいよ・・」
-;					DATAFORM 「うん・・%CALLNAME:MASTER%・・だいすき・・」
-;				ENDDATA
-;			ENDIF
-;		ELSE
-;			;不意打ちで
-;			PRINTFORML 「んっ・・！？」
-;			PRINTDATAL
-;				DATAFORM 不意を突かれたのか、唇を奪われた%CALLNAME:TARGET%はきょとんとした後、一拍置いて真っ赤になった。
-;				DATAFORM 唇を重ねられ、%CALLNAME:TARGET%は驚きの表情を浮かべている。
-;				DATAFORM 唇を離すと、%CALLNAME:TARGET%はしばらく息を止めていたが、ようやく声を出した。
-;			ENDDATA
-;			PRINTDATAL
-;				DATAFORM 「・・ごあいさつのキスなら、ほっぺでいいんだよ？」
-;				DATAFORM 「・・び、びっくりしたぁ」
-;				DATAFORM 「・・えっ・・今のって・・？」
-;			ENDDATA
-;		ENDIF
-;	ENDIF
-;RETURN 1
 
 ;==================================================
 ;463,诱惑访问者→あなたを連れて逃走
@@ -340,11 +175,7 @@ ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ =
 	PRINTFORML 「あーっ…ノーパンなんだぁ。エッチぃ～♪」
 	PRINTL
 ENDIF
-IF TALENT:TARGET:浮気公認
-	PRINTFORML 「%CALLNAME:角色%があの人とエッチしてる間は、%CALLNAME:PLAYER%はエッチ禁止なの！！」
-ELSE
-	PRINTFORML 「%CALLNAME:PLAYER%が%CALLNAME_K6(人物_芙兰朵露, 人物_蕾米莉亚)%や%CALLNAME_K6(人物_芙兰朵露, 人物_咲夜)%とエッチするなんてダメ！」
-ENDIF
+PRINTFORML 「%CALLNAME:PLAYER%が%CALLNAME_K6(人物_芙兰朵露, 人物_蕾米莉亚)%や%CALLNAME_K6(人物_芙兰朵露, 人物_咲夜)%とエッチするなんてダメ！」
 PRINTFORML 「だから、%CALLNAME:PLAYER%のを一滴残らず搾り取っちゃうの」
 RETURN 1
 
@@ -369,146 +200,6 @@ SELECTCASE BASE:PLAYER:精力
 		PRINTFORML 「まだまだ元気だよね。もっと搾ってあげるよ？
 ENDSELECT
 RETURN 1
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ
-;-------------------------------------------
-@KOJO_MESSAGE_K6_SeeYou_900_2(角色,同伴)
-#DIM 角色
-#DIM 同伴
-CALL KOJO_MESSAGE_K6_SeeYou_900_3(角色,同伴)
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ寸前
-;-------------------------------------------
-@KOJO_MESSAGE_K6_SeeYou_900_3(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-IF 同伴
-	PRINTFORML 「あ、見つけた。%CALLNAME:MASTER%、私この人のところにお泊りしてくるね♪」
-ELSE
-	PRINTFORML 「あ、見つけた。%CALLNAME:MASTER%、私あの人のところにお泊りしてくるね♪」
-ENDIF
-
-PRINTDATAL
-	DATAFORM 「吼啊、もちろん、いっぱいエッチしてくるよ？」
-	DATAFORM 「そうだよ、泊りがけでエッチしてくるんだよ♪」
-	DATAFORM 「吼啊、そうだよ、お風呂も、ベッドも一緒だよ？」
-ENDDATA
-IF TALENT:角色:恋慕
-	IF TALENT:角色:处女
-		PRINTFORML 「うふふ、もしかしたらバージン、捧げてきちゃうかも？」
-		PRINTFORML %CALLNAME:MASTER%を焦らせるためか、%CALLNAME:角色%はそんなことを口にした。
-	ENDIF
-ELSE
-ENDIF
-
-IF 同伴
-	PRINTFORML %CALLNAME:角色%は嬉しそうに%NTR_NAME(0)%の腕にしがみ付いている。
-	PRINTFORML 「それじゃ、行こうよ♪」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるね♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られそう
-;-------------------------------------------
-@KOJO_MESSAGE_K6_SeeYou_900_4(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-IF 同伴
-	PRINTFORML 「あ、見つけた。%CALLNAME:MASTER%、私この人のところにお泊りしてくるね」
-ELSE
-	PRINTFORML 「あ、見つけた。%CALLNAME:MASTER%、私あの人のところにお泊りしてくるね」
-ENDIF
-
-PRINTDATAL
-	DATAFORM 「吼啊、もちろん、いっぱいエッチしてくるよ？」
-	DATAFORM 「そうだよ、泊りがけでエッチしてくるんだよ♪」
-	DATAFORM 「吼啊、そうだよ、お風呂も、ベッドも一緒だよ？」
-ENDDATA
-IF TALENT:角色:恋慕
-	IF TALENT:角色:处女
-		PRINTFORML 「うふふ、もしかしたらバージン、奪われちゃうかも？」
-		PRINTFORML %CALLNAME:MASTER%を焦らせるためか、%CALLNAME:角色%はそんなことを口にした。
-	ENDIF
-ELSE
-ENDIF
-
-IF 同伴
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抱き寄せられると、頬を染めながら寄り添った。
-	PRINTFORML 「それじゃ、行こうよ？」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるね♪」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_主人より高い
-;-------------------------------------------
-@KOJO_MESSAGE_K6_SeeYou_900_5(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-IF 同伴
-	PRINTFORML 「こんなところにいたんだ。%CALLNAME:MASTER%、私この人のところにお泊りしてくるね」
-ELSE
-	PRINTFORML 「こんなところにいたんだ。%CALLNAME:MASTER%、私あの人のところにお泊りしてくるね」
-ENDIF
-
-PRINTDATAL
-	DATAFORM 「吼啊、もちろん、いっぱいエッチしてくるよ」
-	DATAFORM 「そうだよ、泊りがけでエッチしてくるんだよ」
-	DATAFORM 「吼啊、そうだよ、お風呂も、ベッドも一緒だよ」
-ENDDATA
-IF TALENT:角色:恋慕
-	IF TALENT:角色:处女
-		PRINTFORML 「もしかしたら、バージン、奪われちゃうかもしれないよ？」
-		PRINTFORML %CALLNAME:MASTER%を焦らせるためか、%CALLNAME:角色%はそんなことを口にした。
-	ENDIF
-ELSE
-ENDIF
-
-IF 同伴
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抱き寄せられても逆らおうとしていない。
-	PRINTFORML 「それじゃ、行ってくるね」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるね」
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認
-;-------------------------------------------
-@KOJO_MESSAGE_K6_SeeYou_900_9(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-IF 同伴
-	PRINTFORML 「こんなところにいたんだ。%CALLNAME:MASTER%、私この人のところにお泊りしてくるね」
-ELSE
-	PRINTFORML 「こんなところにいたんだ。%CALLNAME:MASTER%、私あの人のところにお泊りしてくるね」
-ENDIF
-
-IF 同伴
-	PRINTFORML 「それじゃ、行こうよ？」
-ELSE
-	PRINTFORML 「それじゃ、行ってくるね」
-ENDIF
-
-RETURN 0
 
 ;-------------------------------------------
 ;フランが他の人を呼ぶときの例外処理関数

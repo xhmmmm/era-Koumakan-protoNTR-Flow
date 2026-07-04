@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;非NTR咲夜さん汎用口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -40,56 +40,14 @@ IF TALENT:角色:NTR
 	PRINTFORML %"因为已经不属于"+CALLNAME:MASTER+"了，所以没必要继续戴着戒指。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	;装着率３割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「唔哼哼、并不需要戴戒指哟」
-			DATAFORM 「戒指？最近都没怎么戴呢」
-			DATAFORM 「戒指已经摘下来了」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「因为、这样会让%MSG_HEART()%高兴」
-			DATAFORM 「在被谁邀请的时候、戴上婚戒都显得太无趣了吧？」
-			DATAFORM 「说希望对方出轨的是%CALLNAME:MASTER%吧？」
-		ENDDATA
-		PRINTFORML 看起来最近都没怎么戴戒指。
-	ELSE
-		PRINTFORML %"最近戒指都不怎么合手纸、还被反驳说为什么最近不戴戒指。"%
-	ENDIF
+	PRINTFORML %"最近戒指都不怎么合手纸、还被反驳说为什么最近不戴戒指。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	;装着率５割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「对不起、今天没戴」
-			DATAFORM 「偶尔戴」
-			DATAFORM 「戒指放房间里了」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「有时候也会有这种感觉」
-			DATAFORM 「这样的话就觉得不自由了？」
-			DATAFORM 「但是、当初说想让对方出轨的是%CALLNAME:MASTER%吧？」
-		ENDDATA
-		PRINTFORML 被告知今天特意把戒指摘下来了。
-	ELSE
-		PRINTFORML %"以最近手指发肿为由解释了最近不戴戒指的原因。"%
-	ENDIF
-	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
+	PRINTFORML %"以最近手指发肿为由解释了最近不戴戒指的原因。"%
+;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
 	;装着率９割
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「对不起、忘记了」
-			DATAFORM 「糟糕、一不小心忘记了」
-			DATAFORM 「啊・・对不起、忘在房间里了」
-		ENDDATA
-		PRINTDATAL
-			DATAFORM 「因为今天要洗的东西有点多、所以就摘下来了」
-			DATAFORM 「今天早上起来的时候太匆忙了、突然就..忘记戴了」
-			DATAFORM 「明天我不会忘戴了的、这次就原谅我吧」
-		ENDDATA
-		PRINTFORML 为这次偶然摘下戒指而道歉了。
-	ELSE
-		PRINTFORML %"以最近因为保养戒指摘下来为由解释了为什么不戴戒指，然后就道歉了。"%
-	ENDIF
+	PRINTFORML %"以最近因为保养戒指摘下来为由解释了为什么不戴戒指，然后就道歉了。"%
 ENDIF
 
 RETURN 1
@@ -221,69 +179,34 @@ ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ =
 	ENDDATA
 	PRINTL
 ENDIF
-IF TALENT:TARGET:浮気公認
-	PRINTDATAL
-		DATAFORM 「在我被他抱着的时候、是被禁止和%CALLNAME:PLAYER%做爱的」
-		DATALIST
-			DATAFORM 「因为我渴望被%CALLNAME:PLAYER%抱着，所以就去抱他了(私は%CALLNAME:PLAYER%が望むから他に抱かれるわ)。所以说...%CALLNAME:PLAYER%也会满足我的愿望的吧？」
-			DATAFORM 「唔哼哼・・现在被禁止和%CALLNAME:PLAYER%做爱了」
-		ENDLIST
-		DATAFORM 「唔哼哼・・他说了。不能让%CALLNAME:PLAYER%出轨哦(%CALLNAME:PLAYER%が浮気しないようにした方がいいって)」
-	ENDDATA
-ELSE
-	PRINTDATAL
-		DATAFORM 「为了不让%CALLNAME:PLAYER%对%CALLNAME_K4(人物_咲夜, 人物_蕾米莉亚)%和%CALLNAME_K4(人物_咲夜, 人物_芙兰朵露)%图谋不轨、这是必要的举措」
-		DATAFORM 「别一副无精打采的样子，打起精神来・・不要让红魔馆因为你被蒙羞了，给我老实一点」
-		DATAFORM 「唔哼哼、作为女仆的%CALLNAME:MASTER%不要把大小姐给忽略掉了哦」
-	ENDDATA
-ENDIF
+PRINTDATAL
+	DATAFORM 「为了不让%CALLNAME:PLAYER%对%CALLNAME_K4(人物_咲夜, 人物_蕾米莉亚)%和%CALLNAME_K4(人物_咲夜, 人物_芙兰朵露)%图谋不轨、这是必要的举措」
+	DATAFORM 「别一副无精打采的样子，打起精神来・・不要让红魔馆因为你被蒙羞了，给我老实一点」
+	DATAFORM 「唔哼哼、作为女仆的%CALLNAME:MASTER%不要把大小姐给忽略掉了哦」
+ENDDATA
 PRINTDATAL
 	DATAFORM 「如果这样的话、就把%CALLNAME:PLAYER%榨得一滴不剩，勃不起来为止」
 	DATAFORM 「老实点。马上就好了。・・虽然这次确实是太赶了」
 	DATAFORM 「你想忍着的话也没关系。不过忍也没用。唔哼哼」
 ENDDATA
-IF TALENT:TARGET:浮気公認 && !TALENT:角色:亲爱
-	; 悪趣味な特別分岐ｗ
-	PRINTL 
-	PRINTFORML 「别用看的。对。就是这样，脑补就好了」
-	PRINTDATA
-		DATAFORM 「我被他抱的样子・・
-		DATAFORM 「我和他做爱的样子・・
-		DATAFORM 「我和他口交的样子・・
-	ENDDATA
-	PRINTDATAL
-		DATAFORM 这就是%CALLNAME:MASTER%的所希望的吧？」
-		DATAFORM 你喜欢这样吗？」
-		DATAFORM 是不是感觉很心动呢？」
-	ENDDATA
-ENDIF
 RETURN 1
 
 @KOJO_MESSAGE_COUNTER_K4_29_2
 #DIM 角色
 
 角色 = 人物_咲夜
-IF TALENT:TARGET:浮気公認 && !TALENT:角色:亲爱
-	; 悪趣味な特別分岐ｗ
-	PRINTFORM 「%MSG_RE_LOVER(角色)%想看和其他人做爱时射精的样子、
+IF IS_DOUTEI(PLAYER)
 	PRINTDATAL
-		DATAFORM 简直太恶趣味了！」
-		DATAFORM 真是个十足的变态！！」
+		DATAFORM 「不管怎么说射出来也太快了吧？ 果然处男还是不行啊」
+		DATAFORM 「是不是因为做处男太久了所以手淫习惯了/太多了・・我说得没错吧？」
+		DATAFORM 「唔哼哼、对于处男来说太过刺激了吧・・？」
 	ENDDATA
 ELSE
-	IF IS_DOUTEI(PLAYER)
-		PRINTDATAL
-			DATAFORM 「不管怎么说射出来也太快了吧？ 果然处男还是不行啊」
-			DATAFORM 「是不是因为做处男太久了所以手淫习惯了/太多了・・我说得没错吧？」
-			DATAFORM 「唔哼哼、对于处男来说太过刺激了吧・・？」
-		ENDDATA
-	ELSE
-		PRINTDATAL
-			DATAFORM 「不管怎么说射出来也太快了吧？ 还是说、更喜欢用屁股呢？」
-			DATAFORM 「好像屁股也不错・・还是说、你掏出来只摩擦屁股也能射出来？(もしかして、阴茎を扱かなくてもお尻だけで出せるんじゃない？)」
-			DATAFORM 「唔哼哼、就是这样・・全部射出来。全都给我射出来、射到射不出来为止吧・・」
-		ENDDATA
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「不管怎么说射出来也太快了吧？ 还是说、更喜欢用屁股呢？」
+		DATAFORM 「好像屁股也不错・・还是说、你掏出来只摩擦屁股也能射出来？(もしかして、阴茎を扱かなくてもお尻だけで出せるんじゃない？)」
+		DATAFORM 「唔哼哼、就是这样・・全部射出来。全都给我射出来、射到射不出来为止吧・・」
+	ENDDATA
 ENDIF
 RETURN 1
 
@@ -301,13 +224,6 @@ SELECTCASE BASE:PLAYER:精力
 			DATAFORM 既然这样、那就回去工作吧」
 			DATAFORM 明天也会榨精的。而且是、一滴不剩那样」
 		ENDDATA
-		IF TALENT:TARGET:浮気公認
-			PRINTDATAL
-				DATAFORM 「这样我就可以放心的去他那边了」
-				DATAFORM 「我要去他那边了。唔哼哼、如愿以偿了、真开心啊」
-				DATAFORM 「这样的话就不能花心了吧・・我跟他待在一起感觉好开心」
-			ENDDATA
-		ENDIF
 		; 訪問者のもとへ移动
 		CFLAG:TARGET:移动目的 = 移动目的_訪問者
 		移动路线:TARGET:0 = 0
@@ -329,135 +245,6 @@ SELECTCASE BASE:PLAYER:精力
 		PRINTFORML 「之前就说过了。会把你榨得一滴不剩的」
 ENDSELECT
 RETURN 1
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ
-;-------------------------------------------
-@KOJO_MESSAGE_K4_SeeYou_900_2(角色,同伴)
-#DIM 角色
-#DIM 同伴
-CALL KOJO_MESSAGE_K4_SeeYou_900_3(角色,同伴)
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られ寸前
-;-------------------------------------------
-@KOJO_MESSAGE_K4_SeeYou_900_3(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在他的附近%MSG_HEART()%」
-
-PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
-	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
-ENDDATA
-
-PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊%MSG_HEART()%」
-
-IF TALENT:角色:恋慕 && TALENT:角色:危险日
-	PRINTFORML 「对对、忘记告诉你了。还记得吗？今日、是我的危险日哟？唔哼哼・・」
-	PRINTDATAL
-		DATAFORM 「也许、会被他在里面播下种子(他に種付けされちゃうかしら)・・%MSG_HEART()%」
-		DATAFORM 「已经被他中出得满满当当的了・・如何？是不是感觉很心动？」
-		DATAFORM 「会被中出多少呢・・被%CALLNAME:MASTER%以外的人、会怀孕的・・%MSG_HEART()%」
-	ENDDATA
-ELSEIF TALENT:角色:恋慕 && !TALENT:角色:危险日 && 0 == RAND:10
-	; 危险日ではなくてあなたが排卵诱发剂を所持、確率1/10
-	; 排卵诱发剂は所持できるアイテムではないので条件から外した。
-	CALL KOJO_MESSAGE_K4_SeeYou_900_PILL(角色, 同伴)
-ELSE
-	PRINTDATAL
-		DATAFORM 「因为今天不回馆了・・馆内的事情、就多拜托你了♪」
-		DATAFORM 「不要因为我不在馆内，就扫除的时候偷懒哦♪」
-		DATAFORM 「照顾大小姐是第一要务。千万不要失礼了，要多注意♪」
-	ENDDATA
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_寝取られそう
-;-------------------------------------------
-@KOJO_MESSAGE_K4_SeeYou_900_4(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「唔哼哼・・%CALLNAME:MASTER%・・我・・将会住在他的附近♪」
-
-PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
-	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
-ENDDATA
-
-PRINTFORML 「没有办法啊。因为、欲火中烧的感觉好难受啊♪」
-
-IF TALENT:角色:恋慕 && TALENT:角色:危险日
-	PRINTFORML 「对对、忘记告诉你了。还记得吗？今日、是我的危险日哟？唔哼哼・・」
-	PRINTDATAL
-		DATAFORM 「也许、会被他在里面播下种子(他に種付けされちゃうかしら)・・？」
-		DATAFORM 「已经被他中出得满满当当的了・・如何？是不是感觉很心动？」
-		DATAFORM 「会被中出多少呢・・被%CALLNAME:MASTER%以外的人、会怀孕的・・♪」
-	ENDDATA
-ELSEIF TALENT:角色:恋慕 && !TALENT:角色:危险日 && 0 == RAND:10
-	; 危险日ではなくてあなたが排卵诱发剂を所持、確率1/10
-	; 排卵诱发剂は所持できるアイテムではないので条件から外した。
-	CALL KOJO_MESSAGE_K4_SeeYou_900_PILL(角色, 同伴)
-ELSE
-	PRINTDATAL
-		DATAFORM 「因为今天不回馆了・・馆内的事情、就多拜托你了♪」
-		DATAFORM 「不要因为我不在馆内，就扫除的时候偷懒哦♪」
-		DATAFORM 「照顾大小姐是第一要务。千万不要失礼了，要多注意♪」
-	ENDDATA
-ENDIF
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認、FAV_主人より高い
-;-------------------------------------------
-@KOJO_MESSAGE_K4_SeeYou_900_5(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的他应该就住在这附近」
-
-PRINTDATAL
-	DATAFORM 「嗯、我说过会住下来的。在住宿的时候、会被他一直抱着的」
-	DATAFORM 「嗯、我说过会住下来的。我想以后应该不会了、不会再尝试挽留你了吧？」
-	DATAFORM 「嗯、我说过会住下来的。会被他一直抱着的・・我明白了」
-ENDDATA
-IF TALENT:角色:恋慕 && !TALENT:角色:危险日 && 0 == RAND:20
-	; 危险日ではなくてあなたが排卵诱发剂を所持、確率1/20
-	; 排卵诱发剂は所持できるアイテムではないので条件から外した。
-	CALL KOJO_MESSAGE_K4_SeeYou_900_PILL(角色, 同伴)
-ENDIF
-PRINTDATAL
-	DATAFORM 「因为今天不回馆了・・馆内的事情、就多拜托你了」
-	DATAFORM 「不要因为我不在馆内，就扫除的时候偷懒哦」
-	DATAFORM 「照顾大小姐是第一要务。千万不要失礼了，要多注意」
-ENDDATA
-
-RETURN 0
-
-;-------------------------------------------
-;訪問者の家におでかけするときの挨拶
-;	前提条件	浮気公認Lv >= 浮気_外泊公認
-;-------------------------------------------
-@KOJO_MESSAGE_K4_SeeYou_900_9(角色,同伴)
-#DIM 角色
-#DIM 同伴
-
-PRINTFORML 「应该就在这里吧。%CALLNAME:MASTER%、我的他应该就住在这附近」
-;PRINTFORML 「ここにいたのね。，ko↑ko↓，ん?」
-
-RETURN 0
 
 ;-------------------------------------------
 ;訪問者の家におでかけするときの挨拶拡張

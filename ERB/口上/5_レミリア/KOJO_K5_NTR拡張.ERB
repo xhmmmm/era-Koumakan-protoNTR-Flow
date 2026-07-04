@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;蕾米莉亚口上NTR対応ラッパ口上
 ;
 ;NTRに対応していない蕾米莉亚口上に、NTR独自の分岐を追加するためのラッパ口上。
@@ -89,19 +89,10 @@ RET_VAL = 0
 
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「库库库・・你想品尝别人的精液吗？还是算了吧」
-		PRINTFORML 「我知道%CALLNAME:MASTER%你的恶趣味、这是我的忠告」
-
-		PRINTFORML 以嘴唇被精液污染了为由拒绝了接吻。
-		PRINTFORML 「我知道・・来。你难道不想亲吻我吗？」
-		PRINTFORML %CALLNAME:角色%似乎为了清洁嘴唇而想要喝茶。
-	ELSE
-		PRINTFORML 「住、住手」
-		PRINTFORML 原因不明，可是在嘴唇碰触之前就被拒绝了。
-		PRINTFORML 「喂、来杯茶」
-		PRINTFORML %CALLNAME:角色%似乎想要茶。
-	ENDIF
+	PRINTFORML 「住、住手」
+	PRINTFORML 原因不明，可是在嘴唇碰触之前就被拒绝了。
+	PRINTFORML 「喂、来杯茶」
+	PRINTFORML %CALLNAME:角色%似乎想要茶。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTDATAL
