@@ -285,14 +285,6 @@
 #DIM CONST 淫纹_胸元				= 3
 #DIM CONST 淫纹_右頬				= 4
 
-;浮気公認レベル
-#DIM CONST 浮気_非公認				= 0
-#DIM CONST 浮気_浮気公認			= 1
-#DIM CONST 浮気_诱惑公認			= 2
-#DIM CONST 浮気_性交公認			= 3
-#DIM CONST 浮気_外泊公認			= 4
-#DIM CONST 浮気_人妻公认			= 5
-
 ;TFLAG:1で使用する射精箇所ビット番号
 #DIM CONST 射精箇所_避孕套		= 0
 #DIM CONST 射精箇所_膣内			= 1

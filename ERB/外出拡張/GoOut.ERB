@@ -10,14 +10,13 @@ RETURN 0
 ;「あなた」に挨拶してから、紅魔館の外へおでかけさせる
 ; return 1 でかけた
 ; return 0 でかけなかった
-@GoOut_SeeYou(キャラ, 強制外出)
+@GoOut_SeeYou(キャラ, 强制外出)
 #DIM キャラ
-#DIM 強制外出
+#DIM 强制外出
 IF CFLAG:MASTER:当前位置 != CFLAG:キャラ:当前位置 || CFLAG:キャラ:性欲 < 50
 	RETURN 0
 ENDIF
-RESULT:0 = 900
-TRYCCALLFORM GoOut_SeeYou_%TOSTR(RESULT:0,"000")%(キャラ, 強制外出)
+TRYCCALLFORM GoOut_SeeYou_900(キャラ, 强制外出)
 	RETURN RESULT:0
 CATCH
 	RETURN 0

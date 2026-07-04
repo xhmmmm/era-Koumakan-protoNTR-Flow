@@ -49,15 +49,16 @@ RETURN 1
 IF !IS_NTR_ESCAPE()
 	RETURN 1
 ENDIF
-IF TALENT:角色:恋慕 && 0 == TALENT:角色:浮気公認
+IF TALENT:角色:恋慕
 	; 汚れ部位とあなたの射精履歴が一致しない
 	IF 0 == CHK_350_STAIN_SEMEN(角色)
-		;射精者が訪問者であれば滞在（会话→浮気公認）
+		;射精者が訪問者であれば滞在
+		;注：这个地方原版的设计是，苦主发现角色身上别人的痕迹，然后追问角色，然后允许角色出轨，开始NTRS的剧情，虽然移除了那玩意，但是这地方我决定做到了这里再改。——2026.07.05
 		IF 人物_訪問者 == CFLAG:角色:射精者M || 人物_訪問者 == CFLAG:角色:射精者V || 人物_訪問者 == CFLAG:角色:射精者A
 			PRINTFORML %CALLNAME:MASTER+"接近了"+CALLNAME:角色+"，但被用现在出了很多汗为理由拒绝了"%
 			PRINTFORML %CALLNAME:MASTER+"感到很可疑，于是强行推到了"+CALLNAME:角色+"，接着"+CALLNAME:角色+"身上的精液痕迹被发现了。"%
 			CFLAG:角色:汚れ発覚 = 汚れ発覚_あり
-			;射精者が訪問者でなければ逃走
+		;射精者が訪問者でなければ逃走
 		ELSE
 			PRINTFORML %CALLNAME:MASTER+"一靠近，"+CALLNAME:角色+"就表现得很慌张似得，说现在出了很多汗，于是就跑去洗澡了。"%
 			CFLAG:角色:汚れ発覚 = 汚れ発覚_逃走
@@ -77,7 +78,7 @@ RETURN 1
 @CHK_350_STAIN_SEMEN(角色)
 #FUNCTION
 #DIM 角色
-IF TALENT:角色:恋慕 && 0 == TALENT:角色:浮気公認
+IF TALENT:角色:恋慕
 	; 口,V,B,A のいずれかに精液汚れあり
 	IF GETBIT(STAIN:角色:部位_口, 汚れB_精液) || GETBIT(STAIN:角色:部位_Ｖ, 汚れB_精液) || GETBIT(STAIN:角色:部位_Ａ, 汚れB_精液) || GETBIT(STAIN:角色:部位_Ｂ, 汚れB_精液)
 		; 本日あなたによる射精履歴なし

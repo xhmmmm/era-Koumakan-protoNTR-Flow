@@ -111,11 +111,13 @@ ELSEIF GETBIT(CFLAG:ARG:淫纹,淫纹_右頬)
 ENDIF
 
 IF TALENT:ARG:NTR || NTR_CHK_FAVORABLY(ARG,FAV_寝取られ寸前)
-	吃药方式 = 被%NTR_NAME(0)%捏着下巴，张开的嘴里满是精液，避孕药正浸泡在精液中，准备吞下去的瞬间
+	IF RAND:2
+		吃药方式 = 被%NTR_NAME(0)%捏着下巴，张开的嘴里满是精液，避孕药正浸泡在精液中，准备吞下去的瞬间
+	ELSE
+		吃药方式 = 辛福地张开嘴等待%NTR_NAME(0)%将避孕药投入口中的瞬间
+	ENDIF
 ELSEIF TALENT:ARG:亲爱
 	吃药方式 = 一脸无奈地让%NTR_NAME(0)%拿着药塞入嘴中的瞬间
-ELSEIF TALENT:ARG:浮気公認 == 5
-	吃药方式 = 辛福地张开嘴等待%NTR_NAME(0)%将避孕药投入口中的瞬间
 ELSEIF TALENT:ARG:恋慕
 	吃药方式 = 红着脸拿着避孕药放入口中的瞬间
 ENDIF
