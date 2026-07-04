@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用汎用口上ファイル
 ;注意：この口上が呼ばれるのは対象が主人から見える位置に居る状態か
 ;　　　筒抜けコマンド(デバグ用)を実行した場合に限ります
@@ -51,34 +51,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 4	; 外泊公認
-			PRINTFORML 「ええ、行きましょう。・・楽しみね♪」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と腕を組んで歩きながら他の家に同行した。
-			PRINTFORML 外泊してくることは%MSG_LOVER(角色)%も承知していることであり、彼女はもはや後ろめたさを感じてはいなかった。
-		CASE IS >= 1	; 浮気公認
-			PRINTFORML 「ええ、行きましょう♪」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と腕を組んで歩きながら他の家に同行した。
-		CASEELSE		; 非公認
-			PRINTFORML 「ええ・・行きましょう」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と手を繋いで歩きながら他の家に同行した。
-	ENDSELECT
+	PRINTFORML 「ええ・・行きましょう」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と手を繋いで歩きながら他の家に同行した。
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 4	; 外泊公認
-			PRINTFORML 「・・ええ、行きましょう」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に大見得を切ってしまったせいもあり、彼女は半ば居直っていた。
-			PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-		CASE IS >= 1	; 浮気公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML （・・%CALLNAME:MASTER%・・本当に・・これでいいの・・）
-		CASEELSE		; 非公認
-			PRINTFORML 「は、離してっ、帰してっ！」
-	ENDSELECT
+	PRINTFORML 「は、離してっ、帰してっ！」
 
 ENDIF
 
@@ -195,13 +173,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 >= 4
-		PRINTFORML 「んっ・・ちゅく・・ちゅく・・ちゅく・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に唇と秘所を捧げた。
-	ELSE
-		PRINTFORML （早く・・終わらせてしまば・・・）
-		PRINTFORML %CALLNAME:角色%は一刻も早くこの屈辱から逃れようと、%NTR_NAME(0)%に唇と秘所を捧げた。
-	ENDIF
+	PRINTFORML （早く・・終わらせてしまば・・・）
+	PRINTFORML %CALLNAME:角色%は一刻も早くこの屈辱から逃れようと、%NTR_NAME(0)%に唇と秘所を捧げた。
 
 ENDIF
 
@@ -296,41 +269,21 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 >= 4
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			PRINTFORML 「・・いいわ・・私の初めてを、あげる・・」
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
-				PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を捧げてしまった。
-			ENDIF
-			;非处女
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いったぁぁっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%にってぇ・・・」
 		ELSE
-			PRINTFORML 「ああっ・・すごいっ・・おく、奥まで来るぅぅっ！」
-			IF TALENT:角色:恋慕
-				PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%に突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく
-				PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-			ELSE
-			ENDIF
+			PRINTFORML 「いったぁぁっ！？・・あぁ、初めてなのに・・初めてなのに・・」
 		ENDIF
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%处女を奪われ涙を流している
+		;非处女
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			IF TALENT:角色:恋慕
-				PRINTFORML 「いったぁぁっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%にってぇ・・・」
-			ELSE
-				PRINTFORML 「いったぁぁっ！？・・あぁ、初めてなのに・・初めてなのに・・」
-			ENDIF
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%处女を奪われ涙を流している
-			;非处女
+		IF TALENT:角色:恋慕
+			PRINTFORML 「いやぁぁ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
+			PRINTFORML %CALLNAME:角色%は犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
 		ELSE
-			IF TALENT:角色:恋慕
-				PRINTFORML 「いやぁぁ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
-				PRINTFORML %CALLNAME:角色%は犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
-			ELSE
-				PRINTFORML 「いやぁぁ・・だれか！・・・だれかぁっ！！・・」
-				PRINTFORML %CALLNAME:角色%は犯されながら泣き叫んでいる。
-			ENDIF
+			PRINTFORML 「いやぁぁ・・だれか！・・・だれかぁっ！！・・」
+			PRINTFORML %CALLNAME:角色%は犯されながら泣き叫んでいる。
 		ENDIF
 	ENDIF
 
@@ -375,21 +328,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 >= 4
-		PRINTFORML 「ああっ・・すごいっ・・おく、奥まで来るぅぅっ！」
-		IF TALENT:角色:恋慕
-			PRINTFORML %NTR_NAME(0)%が%CALLNAME:角色%のアヌスに突き入れる度に、%CALLNAME:MASTER%への想いが色あせてゆく
-			PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-		ELSE
-		ENDIF
+	IF TALENT:角色:恋慕
+		PRINTFORML 「いやぁぁ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
+		PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
 	ELSE
-		IF TALENT:角色:恋慕
-			PRINTFORML 「いやぁぁ・・%CALLNAME:MASTER%！・・・%CALLNAME:MASTER%っ！！・・」
-			PRINTFORML %CALLNAME:角色%はアヌスを犯されながら、%CALLNAME:MASTER%の名前を叫んでいる
-		ELSE
-			PRINTFORML 「いやぁぁ・・だれか！・・・だれかぁっ！！・・」
-			PRINTFORML %CALLNAME:角色%はアヌスを犯されながら泣き叫んでいる。
-		ENDIF
+		PRINTFORML 「いやぁぁ・・だれか！・・・だれかぁっ！！・・」
+		PRINTFORML %CALLNAME:角色%はアヌスを犯されながら泣き叫んでいる。
 	ENDIF
 
 ENDIF
@@ -489,24 +433,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 >= 4
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の子宮口へ、おびただしい量の濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「・・ああん・・%CALLNAME:MASTER%のじゃない赤ちゃん・・できちゃう・・」
-		ELSE
-			PRINTFORML 「・・ああん・・赤ちゃん・・できちゃう・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は股間から精液を滴らせる%CALLNAME:角色%に自ら脚を開くポーズを取らせ摄影した。
-		PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
+	PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の子宮口へ、容赦なくその濁った白い欲望を放出した。
+	IF TALENT:角色:恋慕
+		PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない赤ちゃん・・できちゃう・・」
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%の子宮口へ、容赦なくその濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃない赤ちゃん・・できちゃう・・」
-		ELSE
-			PRINTFORML 「い・・やあ、・・赤ちゃん・・できちゃう・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
+		PRINTFORML 「い・・やあ、・・赤ちゃん・・できちゃう・・」
 	ENDIF
+	PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
 
 ENDIF
 RETURN 0
@@ -554,24 +487,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 >= 4
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%のアヌスへ、おびただしい量の濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「・・ああん・・%CALLNAME:MASTER%のじゃないザーメン・・あつぅい・・」
-		ELSE
-			PRINTFORML 「・・ああん・・ザーメン・・あつぅい・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は尻穴から精液を滴らせる%CALLNAME:角色%に自ら脚を開くポーズを取らせ摄影した。
-		PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
+	PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%のアヌスへ、容赦なくその濁った白い欲望を放出した。
+	IF TALENT:角色:恋慕
+		PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃないザーメン、いやああ・・」
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は泣き叫ぶ%CALLNAME:角色%のアヌスへ、容赦なくその濁った白い欲望を放出した。
-		IF TALENT:角色:恋慕
-			PRINTFORML 「い・・やあ、・・%CALLNAME:MASTER%のじゃないザーメン、いやああ・・」
-		ELSE
-			PRINTFORML 「い・・やあ、・・ザーメン、いやああ・・」
-		ENDIF
-		PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
+		PRINTFORML 「い・・やあ、・・ザーメン、いやああ・・」
 	ENDIF
+	PRINTFORML %NTR_NAME(0)%は犯され放心状態になった%CALLNAME:角色%を次の陵辱のネタにするために摄影していた。
 
 ENDIF
 RETURN 0

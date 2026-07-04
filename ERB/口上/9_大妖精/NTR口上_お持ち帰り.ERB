@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用大妖精口上ファイル：お持ち帰り関係
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -87,21 +87,9 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 浮気_外泊公認
-			PRINTFORML 「・・ええ、行きましょう」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に言ってしまったせいもあり、彼女は半ば居直っていた。
-			PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-		CASE IS >= 浮気_浮気公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML （・・%CALLNAME:MASTER%・・本当に・・これでいいの・・）
-		CASEELSE		; 非公認
-			PRINTFORML 「こ、ここどこですか！？ 帰して、帰してください！」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の手を振り切って逃げようとするも、非力な彼女が男人に勝てるはずもなく
-			PRINTFORML 彼の家に連れ込まれてしまった。
-	ENDSELECT
+	PRINTFORML 「こ、ここどこですか！？ 帰して、帰してください！」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の手を振り切って逃げようとするも、非力な彼女が男人に勝てるはずもなく
+	PRINTFORML 彼の家に連れ込まれてしまった。
 
 ENDIF
 
@@ -166,12 +154,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「は、是的、わかりました・・」
-		PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の隣に座っている。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は不安そうに震えている。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は不安そうに震えている。
 
 ENDIF
 RETURN 0
@@ -222,15 +205,11 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に唇を奪われたが、抵抗せずにそのキスを受け入れている。
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に強引に唇を奪われたが、恐怖に震え抵抗できない。
+	IF TALENT:角色:恋慕
+		PRINTFORML %ANATA_LOVER(角色)%以外の男人の唇は、恐怖によって%CALLNAME:角色%を捕らえ、次第に快楽を流し込みつつあった。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に強引に唇を奪われたが、恐怖に震え抵抗できない。
-		IF TALENT:角色:恋慕
-			PRINTFORML %ANATA_LOVER(角色)%以外の男人の唇は、恐怖によって%CALLNAME:角色%を捕らえ、次第に快楽を流し込みつつあった。
-		ELSE
-			PRINTFORML %NTR_NAME(2)%の唇は、恐怖によって%CALLNAME:角色%を捕らえ、次第に快楽を流し込みつつあった。
-		ENDIF
+		PRINTFORML %NTR_NAME(2)%の唇は、恐怖によって%CALLNAME:角色%を捕らえ、次第に快楽を流し込みつつあった。
 	ENDIF
 
 ENDIF

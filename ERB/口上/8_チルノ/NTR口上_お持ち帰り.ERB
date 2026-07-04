@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用チルノ口上ファイル：お持ち帰り関係
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -31,11 +31,7 @@ ELSE
 
 	PRINTFORML %CALLNAME:角色%はこそこそと自宅に帰っていった。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%公認とはいえ、汚れた姿を見られたくはなかったのだろう。
-		ELSE
-			PRINTFORML %MSG_LOVER(角色)%にだけは汚れた姿を見られたくはなかったのだろう。
-		ENDIF
+		PRINTFORML %MSG_LOVER(角色)%にだけは汚れた姿を見られたくはなかったのだろう。
 	ELSE
 		PRINTFORML 衣服は乱れ、髪には白い粘液がこびり付いている。	
 	ENDIF
@@ -71,9 +67,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML %NTR_NAME(0)%に鎖を見せられた%CALLNAME:角色%は、それを拒もうとせず大人しく繋がれ、『気持ちイイこと』にわくわくしている。
 	IF TALENT:角色:恋慕
 		PRINTFORML そして%CALLNAME:MASTER%のことも忘れたかのように彼の手から伸びる鎖に引かれて門をくぐった。
-		IF TALENT:角色:浮気公認
-			PRINTFORML 「えへへっ、あの人もいいって言ってるし、いっぱいエッチしようね！」
-		ENDIF
 	ELSE
 		PRINTFORML そしてまるで角色のように彼の手から伸びる鎖に引かれて門をくぐった。
 	ENDIF
@@ -87,34 +80,17 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDDATA
 	IF TALENT:角色:恋慕
 		PRINTFORML %NTR_NAME(0)%の家までついてきた%CALLNAME:角色%は、%CALLNAME:MASTER%のことも忘れたかのように彼に肩を抱かれながら門をくぐった。
-		IF TALENT:角色:浮気公認
-			PRINTFORML 「えへへっ、あの人もいいって言ってるし、いっぱいエッチしようね！」
-		ENDIF
 	ELSE
 		PRINTFORML %NTR_NAME(0)%の家までついてきた%CALLNAME:角色%は、まるで恋人同士のように彼に肩を抱かれながら門をくぐった。
 	ENDIF
 
 ELSE
 
-	SELECTCASE TALENT:角色:浮気公認
-		CASE IS >= 4	; 外泊公認
-			PRINTFORML 「・・うん・・行こ・・」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			PRINTFORML 外泊してくると%MSG_LOVER(角色)%相手に大見得を切ってしまったせいもあり、%CALLNAME:角色%は半ば居直っていた。
-			PRINTFORML （・・%CALLNAME:MASTER%が・・悪いんだから・・）
-		CASE IS >= 1	; 浮気公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%は大人しく%NTR_NAME(0)%の家に同行した。
-			IF TALENT:角色:恋慕
-				PRINTFORML （・・%CALLNAME:MASTER%・・本当に・・いいんだよね・・）
-			ENDIF
-		CASEELSE		; 非公認
-			PRINTFORML 「・・」
-			PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
-			IF TALENT:角色:恋慕
-				PRINTFORML （・・許して・・%CALLNAME:MASTER%・・）
-			ENDIF
-	ENDSELECT
+	PRINTFORML 「・・」
+	PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
+	IF TALENT:角色:恋慕
+		PRINTFORML （・・許して・・%CALLNAME:MASTER%・・）
+	ENDIF
 
 ENDIF
 
@@ -146,11 +122,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「あたいの家より片付いてるね」
-	ELSE
-		PRINTFORML 「ここ、どこ！おうちに帰して」 
-	ENDIF
+	PRINTFORML 「ここ、どこ！おうちに帰して」
 
 ENDIF
 
@@ -181,15 +153,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「んっ・・んっ・・ちゅっ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と唇を重ね、彼の舌を受け入れている。
+	PRINTFORML %CALLNAME:角色%は抵抗したが頬を張られ、震えながら口付けをした。
+	IF TALENT:角色:恋慕
+		PRINTFORML （・・%CALLNAME:MASTER%・・たすけて・・）
 	ELSE
-		PRINTFORML %CALLNAME:角色%は抵抗したが頬を張られ、震えながら口付けをした。
-		IF TALENT:角色:恋慕
-			PRINTFORML （・・%CALLNAME:MASTER%・・たすけて・・）
-		ELSE
-		ENDIF
 	ENDIF
 
 ENDIF
@@ -229,13 +196,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認 
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に従い六九式の体勢になり、阴茎を咥えた。
-		PRINTFORML （%CALLNAME:MASTER%・・これでいいよね・・）
-	ELSE
-		PRINTFORML %CALLNAME:角色%は暴力の恐怖に怯え、%NTR_NAME(0)%に従い六九式の体勢になり、阴茎を咥えた。
-		PRINTFORML （こんなこと、したくないよぅ）
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は暴力の恐怖に怯え、%NTR_NAME(0)%に従い六九式の体勢になり、阴茎を咥えた。
+	PRINTFORML （こんなこと、したくないよぅ）
 
 ENDIF
 
@@ -318,44 +280,23 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			PRINTFORML 「あっ・・それってっ・・やだ・・・あっ・・ああーーーっ！！」
-			IF TALENT:角色:恋慕
-				PRINTFORML 直前で%CALLNAME:MASTER%への想いを思い出した%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の想いを引き裂いた。
-			ELSE
-				PRINTFORML 直前で怖気づいてしまった%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の純潔を引き裂いた。
-			ENDIF
-			;非处女
+	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		PRINTFORML 「やだッ！それだけは、やだぁ・・・ぁぁぁああああ～～～」
+		PRINTFORML %NTR_NAME(0)%は抵抗する%CALLNAME:角色%を組み敷き、笑みを浮かべながら幼いワレメを貫いた。
+		PRINTFORML 太ももを赤い雫が伝っている
+		IF TALENT:角色:恋慕
+			PRINTFORML 直前で%CALLNAME:MASTER%への想いを思い出した%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の想いを引き裂いた。
 		ELSE
-			PRINTFORML 「あっ・・や・・・やだ・・だ、だめぇ・・」
-			PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱して喘いでいる
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
-			ELSE
-				PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
-			ENDIF
+			PRINTFORML 直前で怖気づいてしまった%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の純潔を引き裂いた。
 		ENDIF
+		;非处女
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-			PRINTFORML 「やだッ！それだけは、やだぁ・・・ぁぁぁああああ～～～」
-			PRINTFORML %NTR_NAME(0)%は抵抗する%CALLNAME:角色%を組み敷き、笑みを浮かべながら幼いワレメを貫いた。		
-			PRINTFORML 太ももを赤い雫が伝っている
-			IF TALENT:角色:恋慕
-				PRINTFORML 直前で%CALLNAME:MASTER%への想いを思い出した%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の想いを引き裂いた。
-			ELSE
-				PRINTFORML 直前で怖気づいてしまった%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の純潔を引き裂いた。
-			ENDIF
-			;非处女
+		PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
+		PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
+		IF TALENT:角色:恋慕
+			PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
 		ELSE
-			PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
-			PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
-			ELSE
-				PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
-			ENDIF
+			PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
 		ENDIF
 	ENDIF
 
@@ -396,22 +337,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 「あっ・・や・・やだ・・おしり、だ、だめぇ・・」
-		PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱して喘いでいる
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
-		ELSE
-			PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
-		ENDIF
+	PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
+	PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
+	IF TALENT:角色:恋慕
+		PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
 	ELSE
-		PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
-		PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
-		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
-		ELSE
-			PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
-		ENDIF
+		PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
 	ENDIF
 
 ENDIF

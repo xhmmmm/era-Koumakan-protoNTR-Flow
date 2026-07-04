@@ -1,9 +1,8 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用魔理沙口上ファイル
 ;-------------------------------------------------
 ;基本方针としては寝取られ度が高くなると訪問者の呼び方がご主人様に変化(通常はあいつ呼ばわり)
 ;性格としては純情系Mイメージで
-;浮気公認するとプレイヤーのことを変態野郎呼ばわりします。
 ;-------------------------------------------------
 ;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
 ;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
@@ -221,11 +220,7 @@ IF CFLAG:角色:当前位置 == 位置_红魔馆_大浴场
 		ENDDATA
 		IF TALENT:角色:恋慕
 			PRINTFORML 湯船に入った%CALLNAME:角色%は%ANATA_LOVER(角色)%ではなく%NTR_NAME(0)%の隣に腰を下ろした。
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:MASTER%の見ている前で、まるで恋人同士であるかのように寄り添いながら話をしている。
-			ELSE
-				PRINTFORML 全身を舐めるような視線や、肩にまわされた手も気にかけていないようだ。
-			ENDIF
+			PRINTFORML 全身を舐めるような視線や、肩にまわされた手も気にかけていないようだ。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%から距離をおき%NTR_NAME(0)%の近くで話をしている。
 		ENDIF
@@ -238,11 +233,7 @@ IF CFLAG:角色:当前位置 == 位置_红魔馆_大浴场
 		ENDDATA
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%から距離をおき%NTR_NAME(0)%の近くで話をしている。
-			IF TALENT:角色:浮気公認
-				PRINTFORML 全身を舐めるような視線もあまり気にかけていない…いや、%CALLNAME:MASTER%の前でわざわざ裸身を見せ付けているのだろう。
-			ELSE
-				PRINTFORML 全身を舐めるような視線もあまり気にかけていないようだ。
-			ENDIF
+			PRINTFORML 全身を舐めるような視線もあまり気にかけていないようだ。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%から距離をおき%NTR_NAME(0)%の近くで話をしている。
 		ENDIF
@@ -251,18 +242,10 @@ IF CFLAG:角色:当前位置 == 位置_红魔馆_大浴场
 
 		IF IS_NTR_SOFT()
 			PRINTFORML 「…」
-			IF TALENT:角色:浮気公認
-				PRINTFORML %NTR_NAME(0)%の視線を浴びながら、%CALLNAME:角色%は%ANATA_LOVER(角色)%の隣で%NTR_NAME_1_2(角色)%に裸身を晒している。
-			ELSE
-				PRINTFORML %NTR_NAME(0)%の視線に恥らった%CALLNAME:角色%は平静を装っている。
-			ENDIF
+			PRINTFORML %NTR_NAME(0)%の視線に恥らった%CALLNAME:角色%は平静を装っている。
 		ELSE
 			PRINTFORML 「…%CALLNAME:MASTER%…」
-			IF TALENT:角色:浮気公認
-				PRINTFORML %NTR_NAME(0)%の舐めるような視線を浴びながら、%CALLNAME:角色%は%ANATA_LOVER(角色)%の隣で%NTR_NAME_1_2(角色)%に裸身を晒している。
-			ELSE
-				PRINTFORML %NTR_NAME(0)%の舐めるような視線に恥らった%CALLNAME:角色%は縋るような目で%ANATA_LOVER(角色)%を見ている。
-			ENDIF
+			PRINTFORML %NTR_NAME(0)%の舐めるような視線に恥らった%CALLNAME:角色%は縋るような目で%ANATA_LOVER(角色)%を見ている。
 		ENDIF
 
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
@@ -274,14 +257,6 @@ IF CFLAG:角色:当前位置 == 位置_红魔馆_大浴场
 	ELSE
 		PRINTFORML %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%ANATA_LOVER(角色)%の側に少し移动し距離をとった。
 	ENDIF
-	;处女特別分岐
-	;条件が「寝取られそう」なので寝取られ寸前も含む
-ELSEIF TALENT:角色:处女 && NTR_CHK_FAVORABLY(角色, FAV_寝取られそう) && TALENT:角色:恋慕 && TALENT:角色:浮気公認 && RAND:10 == 0
-	PRINTDATAL
-		DATAFORM 「私のここはまだ处女なんだが、いつ使ってくれるんだ？」
-		DATAFORM 「そろそろ私の处女を奪う気になったか？早くここでも侍奉できるようになりたいぜ」
-	ENDDATA
-	PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にあてつけるように%NTR_NAME(0)%の耳元でなまめかしく囁いて、%NTR_NAME(0)%の手を秘裂に導いた。
 	;その他
 ELSE
 	IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
@@ -296,22 +271,13 @@ ELSE
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 		IF TALENT:角色:恋慕
-			IF TALENT:角色:浮気公認
-				PRINTDATAL
-					DATAFORM 「ああ、いいぜ…またいつでも」
-					DATAFORM 「泊りがけで…ああ、楽しみだ」
-				ENDDATA
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%にあてつけるかのように%NTR_NAME(0)%とばかり話をしている。
-				PRINTFORML 際どい内容の話も、わざと%CALLNAME:MASTER%に聞かせているようだ。
-			ELSE
-				PRINTDATAL
-					DATAFORM 「ああ、いいぜ…またその時に」
-					DATAFORM 「その話は、また今度にしようぜ？」
-					DATAFORM 「ああ、分かってる」
-				ENDDATA
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の方を見もせずに%NTR_NAME(0)%とばかり話をしている。
-				PRINTFORML 所々で言葉を濁している。%CALLNAME:MASTER%には聞かれたくない話でもしているのだろうか。
-			ENDIF
+			PRINTDATAL
+				DATAFORM 「ああ、いいぜ…またその時に」
+				DATAFORM 「その話は、また今度にしようぜ？」
+				DATAFORM 「ああ、分かってる」
+			ENDDATA
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の方を見もせずに%NTR_NAME(0)%とばかり話をしている。
+			PRINTFORML 所々で言葉を濁している。%CALLNAME:MASTER%には聞かれたくない話でもしているのだろうか。
 		ELSE
 			PRINTDATAL
 				DATAFORM 「へー、そんなこともあるんだ」
@@ -329,11 +295,7 @@ ELSE
 			DATAFORM 「ああ、それは面白うそうだ」
 		ENDDATA
 		IF TALENT:角色:恋慕
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の方を見もせずに%NTR_NAME(0)%とばかり話をしている。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%を時折気にしつつも%NTR_NAME(0)%とばかり話をしている。
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%を時折気にしつつも%NTR_NAME(0)%とばかり話をしている。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%を時折気にしつつも%NTR_NAME(0)%とばかり話をしている。
 		ENDIF
@@ -346,11 +308,7 @@ ELSE
 				DATAFORM 「面白そうだな？ 今度一緒に行こうぜ？」
 				DATAFORM 「ああ、それは面白うそうだ」
 			ENDDATA
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の側だというのに、%NTR_NAME(0)%と楽しそうに話をしている。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%と%NTR_NAME(0)%一緒に話をしている。
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%と%NTR_NAME(0)%一緒に話をしている。
 		ELSE
 			IF IS_NTR_SOFT()
 				PRINTDATAL
@@ -440,11 +398,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 			DATAFORM 「んっ…ふふ…悪趣味…んっ…」
 			DATAFORM 「ふふ…見せつけるのか…？ んんっ…」
 		ENDDATA
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は自分から%NTR_NAME(0)%に抱きつくとその身をゆだね、%ANATA_LOVER(角色)%の視線の先で唇を重ねた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に身をゆだね、%ANATA_LOVER(角色)%の視線の先で唇を重ねた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に身をゆだね、%ANATA_LOVER(角色)%の視線の先で唇を重ねた。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「はあぁ…んっ…んむぅ…」
@@ -471,11 +425,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ENDIF
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線の先で唇を重ねられた。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%にキスを許し、口内に送り込まれた他の舌をも受け入れた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は驚いていたが、%NTR_NAME(0)%の舌が口内に侵入するとうっとりと目を閉じ他の舌を受け入れた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は驚いていたが、%NTR_NAME(0)%の舌が口内に侵入するとうっとりと目を閉じ他の舌を受け入れた。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は唇を重ねられてもそれを拒まなかった。
 	ENDIF
@@ -494,11 +444,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
 	ENDIF
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線の先で唇を奪われた。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抵抗をせず、口内に送り込まれた他の舌を受け入れた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の舌が口内に侵入すると次第に大人しくなりついには他の舌を受け入れた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の舌が口内に侵入すると次第に大人しくなりついには他の舌を受け入れた。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は唇を奪われたがそれを拒まなかった。
 	ENDIF
@@ -559,10 +505,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%と%NTR_NAME(0)%は舌を伸ばし、互いに絡ませあう様を%ANATA_LOVER(角色)%に見せつけている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と唇を重ねながら、%ANATA_LOVER(角色)%に視線をなげかけ挑衅するかのように微笑んだ。
-		ELSE
-		ENDIF
 	ELSE
 		PRINTFORML %CALLNAME:角色%と%NTR_NAME(0)%はお互いに舌を絡ませあっている。
 	ENDIF
@@ -636,28 +578,15 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「んっ…ああ…」
-				DATAFORM 「あん…ん…」
-				DATAFORM 「…もっと…」
-			ENDDATA
-			IF NTR_CHK_PEEP_CONT(角色)
-				PRINTFORML %MSG_LOVER(角色)%の視線の先で他の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
-			ELSE
-				PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
-			ENDIF
+		PRINTDATAL
+			DATAFORM 「だめ…」
+			DATAFORM 「もう…やるならやるって言って欲しいんだけどな…」
+			DATAFORM 「…もう…」
+		ENDDATA
+		IF NTR_CHK_PEEP_CONT(角色)
+			PRINTFORML %MSG_LOVER(角色)%の視線の先で他の相手と唇を重ねたことを後悔しているようだが、その表情は名残惜しそうだった。
 		ELSE
-			PRINTDATAL
-				DATAFORM 「だめ…」
-				DATAFORM 「もう…やるならやるって言って欲しいんだけどな…」
-				DATAFORM 「…もう…」
-			ENDDATA
-			IF NTR_CHK_PEEP_CONT(角色)
-				PRINTFORML %MSG_LOVER(角色)%の視線の先で他の相手と唇を重ねたことを後悔しているようだが、その表情は名残惜しそうだった。
-			ELSE
-				PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねたことを後悔しているようだが、その表情は満更じゃない表情だった。
-			ENDIF
+			PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねたことを後悔しているようだが、その表情は満更じゃない表情だった。
 		ENDIF
 	ELSE
 		PRINTDATAL
@@ -739,11 +668,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM 「サービス過剰じゃない？ ふふっ…んっ…」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%であるはずの%CALLNAME:MASTER%に見せ付けるかのように自分から%NTR_NAME(0)%に舌を絡ませた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%である%CALLNAME:MASTER%の視線を気にしながらも%NTR_NAME(0)%の舌を受け入れた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%である%CALLNAME:MASTER%の視線を気にしながらも%NTR_NAME(0)%の舌を受け入れた。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%の視線を気にしながらも%NTR_NAME(0)%の舌を受け入れた。
 	ENDIF
@@ -760,11 +685,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 		ENDDATA
 	ENDIF
 	PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の目の前で唇を重ねられた。
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%にキスを許し、口内に送り込まれた他の舌をも受け入れた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は驚いていたが、%NTR_NAME(0)%の舌が口内に侵入するとうっとりと目を閉じ他の舌を受け入れた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は驚いていたが、%NTR_NAME(0)%の舌が口内に侵入するとうっとりと目を閉じ他の舌を受け入れた。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
 
@@ -827,11 +748,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM 「あん…ん…いい…ん…くちゅっ…」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%である%CALLNAME:MASTER%に見せ付けるために%NTR_NAME(0)%と舌を絡め合っている。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と舌を絡め合っている。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%である%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と舌を絡め合っている。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に見せ付けるかのように%NTR_NAME(0)%と舌を絡め合っている。
 	ENDIF
@@ -907,25 +824,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML %NTR_NAME(0)%と%CALLNAME:角色%が唇を離すと混ざり合った唾液が糸を引いた
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「んっ…ああ…気持ちいい…」
-				DATAFORM 「あん…ん…」
-				DATAFORM 「…もっと…」
-			ENDDATA
-			PRINTFORML %MSG_LOVER(角色)%の目の前で他の相手と唇を重ねた%CALLNAME:角色%は、うっとりと頬を染めさらなる行為を望んでいるかのようであった。
-			IF 0 == RAND:3
-				; 時々表示される悪趣味台詞
-				CALL NTR_KOJO_KW10_2_2_EX(角色)
-			ENDIF
-		ELSE
-			PRINTDATAL
-				DATAFORM 「だめ…」
-				DATAFORM 「もう…やるならやるって言って欲しいんだけどな…」
-				DATAFORM 「…もう…」
-			ENDDATA
-			PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「だめ…」
+			DATAFORM 「もう…やるならやるって言って欲しいんだけどな…」
+			DATAFORM 「…もう…」
+		ENDDATA
+		PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「だめ…」
@@ -939,25 +843,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	PRINTFORML %NTR_NAME(0)%と%CALLNAME:角色%が唇を離すと混ざり合った唾液が糸を引いた
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「だめ…」
-				DATAFORM 「もう…%CALLNAME:MASTER%が見てるだろ…」
-				DATAFORM 「…もう…」
-			ENDDATA
-			PRINTFORML %MSG_LOVER(角色)%の目の前で他の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
-			IF 0 == RAND:3
-				; 時々表示される悪趣味台詞
-				CALL NTR_KOJO_KW10_2_2_EX(角色)
-			ENDIF
-		ELSE
-			PRINTDATAL
-				DATAFORM 「だ…だめだ…悪趣味なやつめ…」
-				DATAFORM 「も、もう…いきなりなんだから…」
-				DATAFORM 「…もう…」
-			ENDDATA
-			PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「だ…だめだ…悪趣味なやつめ…」
+			DATAFORM 「も、もう…いきなりなんだから…」
+			DATAFORM 「…もう…」
+		ENDDATA
+		PRINTFORML %MSG_LOVER(角色)%以外の相手と唇を重ねた%CALLNAME:角色%は、頬を染めさらなる行為を望んでいるかのようであった。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「だ…だめだ…悪趣味なやつめ…」
@@ -1010,7 +901,7 @@ ENDIF
 RETURN 0
 
 ;キス終了（あなた同席）時に時々表示される悪趣味台詞
-;恋慕かつ浮気公認時限定
+;恋慕限定
 @NTR_KOJO_KW10_2_2_EX(角色)
 #DIM 角色
 #DIMS 呼称
@@ -1021,8 +912,6 @@ RETURN 0
 SIF TALENT:角色:亲爱
 	RETURN 0
 SIF !TALENT:角色:恋慕
-	RETURN 0
-SIF !TALENT:角色:浮気公認
 	RETURN 0
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML キスの余韻に酔う%CALLNAME:角色%の耳元で、%NTR_NAME(0)%がお前の%MSG_LOVER(角色)%とどちらのキスが巧いかと尋ねた。
@@ -1114,24 +1003,14 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「ああ…いいぜ…ふふっ…」
-				DATAFORM 「んんっ…もう…」
-				DATAFORM 「ああ…見られてる…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚している。
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の手による爱抚に身をゆだね、うっとりとしながら一瞬%CALLNAME:MASTER%に視線を投げた。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「ああ…だめ…やめて…」
-				DATAFORM 「んんっ…だめ…だめ…」
-				DATAFORM 「ああ…ああっ…」
-				DATAFORM 「…気持ちいい」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚している。
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の手による爱抚に身をゆだねている。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「ああ…だめ…やめて…」
+			DATAFORM 「んんっ…だめ…だめ…」
+			DATAFORM 「ああ…ああっ…」
+			DATAFORM 「…気持ちいい」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚している。
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の手による爱抚に身をゆだねている。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「ああ…だめ…やめて…」
@@ -1144,23 +1023,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2) 
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「ああっ…いい…続けて…」
-				DATAFORM 「ああっ…み、見てる…」
-				DATAFORM 「ああ…そ、そこ…そこ…ああ…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
-			PRINTFORML %CALLNAME:角色%はうっとりと目を閉じて爱抚を受け入れている。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「ああ…やめ…さわらないで…」
-				DATAFORM 「いやっ…だめ…ああ…」
-				DATAFORM 「ああ…やめっ…やめて…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
-			PRINTFORML %CALLNAME:角色%はわずかに身をよじるが%NTR_NAME(0)%の手から逃れられないでいる。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「ああ…やめ…さわらないで…」
+			DATAFORM 「いやっ…だめ…ああ…」
+			DATAFORM 「ああ…やめっ…やめて…」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
+		PRINTFORML %CALLNAME:角色%はわずかに身をよじるが%NTR_NAME(0)%の手から逃れられないでいる。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「ああ…やめ…さわらないで…」
@@ -1174,23 +1043,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「ああっ…いい…続けて…」
-				DATAFORM 「ああっ…み、見てる…」
-				DATAFORM 「ああ…そ、そこ…は…ああ…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
-			PRINTFORML %CALLNAME:角色%は真っ赤になりながらも%NTR_NAME(0)%の手を振り払おうとせず、爱抚を受け入れている。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「なっ…やめっ…さわるなっ…」
-				DATAFORM 「いやっ…だめ…ああっ…」
-				DATAFORM 「ああ…やめっ…やめてっ…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
-			PRINTFORML %CALLNAME:角色%は身をよじって%NTR_NAME(0)%の手から逃れようとしている。	
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「なっ…やめっ…さわるなっ…」
+			DATAFORM 「いやっ…だめ…ああっ…」
+			DATAFORM 「ああ…やめっ…やめてっ…」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は%ANATA_LOVER(角色)%の視線の先で見せつけるかのように%CALLNAME:角色%の性器を爱抚し始めた。
+		PRINTFORML %CALLNAME:角色%は身をよじって%NTR_NAME(0)%の手から逃れようとしている。	
 	ELSE
 		PRINTDATAL
 			DATAFORM 「なっ…やめっ…さわるなっ…」
@@ -1278,25 +1137,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「あぁん…見られてる…ああっ…」
-				DATAFORM 「あぁ…そ…そこ…もっと…」
-				DATAFORM 「ああ…い、いい…もっと、見せ付けて…ああ…」
-				DATAFORM 「恥ずかしいのに… いや、恥ずかしいから…」
-				DATAFORM 「…気持ちいい」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を我が物顔で爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に見せつけるかのように%NTR_NAME(0)%にしなだれかかり、さらなる爱抚を受け入れている。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「あぁ…だめ…だめだ…ああ…」
-				DATAFORM 「あぁ…そ…そこは…だめ…」
-				DATAFORM 「んっ…だめ、だめ…」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を我が物顔で爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%は言葉とは裏腹に%NTR_NAME(0)%の爱抚に逆らうことなく、局部をほしいままにされる快楽に甘い声をあげている。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「あぁ…だめ…だめだ…ああ…」
+			DATAFORM 「あぁ…そ…そこは…だめ…」
+			DATAFORM 「んっ…だめ、だめ…」
+		ENDDATA
+		PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を我が物顔で爱抚し続けている。
+		PRINTFORML %CALLNAME:角色%は言葉とは裏腹に%NTR_NAME(0)%の爱抚に逆らうことなく、局部をほしいままにされる快楽に甘い声をあげている。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「あぁ…だめ…だめ…ああ…」
@@ -1313,23 +1160,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2) 
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「あ、ああ…い、いい…ああ…」
-				DATAFORM 「ああ…見られてる…見られてるぅ…」
-				DATAFORM 「恥ずかしい…」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%はすっかり%NTR_NAME(0)%の爱抚を受け入れ、局部をほしいままにされてうっとりとしている。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「ああ…だめ…だめ…」
-				DATAFORM 「だ、だめ… ああ…」
-				DATAFORM 「や、やめ…んん…ああ…」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%は弱々しく身をよじっているが%NTR_NAME(0)%の爱抚に感じてしまい、うっとりと目を細めている。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「ああ…だめ…だめ…」
+			DATAFORM 「だ、だめ… ああ…」
+			DATAFORM 「や、やめ…んん…ああ…」
+		ENDDATA
+		PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
+		PRINTFORML %CALLNAME:角色%は弱々しく身をよじっているが%NTR_NAME(0)%の爱抚に感じてしまい、うっとりと目を細めている。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「ああ…だめ…だめ…」
@@ -1346,23 +1183,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「やめっ、見られてる…！」
-				DATAFORM 「ああ…恥ずかしい！」
-				DATAFORM 「ああっ…んっ…そ、そこ、は…」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の爱抚から逃れようとせず、局部をほしいままにされ次第に感じはじめている。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「は、離せ！こんなの…っ！？」
-				DATAFORM 「だ、だめっ！ やめ…！」
-				DATAFORM 「や、やめろっ…んっ…だめ、だめっ！」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
-			PRINTFORML %CALLNAME:角色%は身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「は、離せ！こんなの…っ！？」
+			DATAFORM 「だ、だめっ！ やめ…！」
+			DATAFORM 「や、やめろっ…んっ…だめ、だめっ！」
+		ENDDATA
+		PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%NTR_NAME(0)%は%CALLNAME:角色%の性器を爱抚し続けている。
+		PRINTFORML %CALLNAME:角色%は身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「離せ！こんなの…っ！？」
@@ -1439,11 +1266,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 			DATAFORM 「ああっ…も、もっと、もっと…強くっ！！」
 			DATAFORM 「んっ…ん…い、いい…い、イイーーーーっ！！」
 		ENDDATA
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を浴びながら、%NTR_NAME(0)%の手による爱抚を求めながら絶頂した。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を浴びながら、%NTR_NAME(0)%の手による爱抚を受け入れ絶頂した。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を浴びながら、%NTR_NAME(0)%の手による爱抚を受け入れ絶頂した。
 		PRINTFORML ぐったりと力なく身体を預けてくる%CALLNAME:角色%を抱きしめながら、%NTR_NAME(0)%は阴茎を隆起させている。
 	ELSE
 		PRINTDATAL
@@ -1462,23 +1285,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2) 
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-				DATAFORM 「ああ…見、見ないでっ…みないでえええええっ！！」
-				DATAFORM 「ああっ…いく…見られながら、い、いくぅぅぅ！！」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で感じやすいところを摘み上げられながら達してしまった。
-			PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為を求めるかのように他にしなだれかかった。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-				DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
-				DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
-			PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対して抗おうとしていなかった。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
+			DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
+			DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
+		ENDDATA
+		PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
+		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対して抗おうとしていなかった。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「ああ…誰かに…見られたら …ああーーっ！！」
@@ -1495,23 +1308,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	IF NTR_CHK_PEEP_CONT(角色)
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-				DATAFORM 「ああ…見、見ないでっ…みないでえええええっ！！」
-				DATAFORM 「ああっ…いく…見られながら、い、いくぅぅぅ！！」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で感じやすいところを摘み上げられながら達してしまった。
-			PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対してもまったく逆らおうとしていなかった。
-		ELSE
-			PRINTDATAL
-				DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-				DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
-				DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
-			PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対しても弱々しく逆らうことしかできなかった。
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
+			DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
+			DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
+		ENDDATA
+		PRINTFORML %ANATA_LOVER(角色)%の視線の先で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
+		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対しても弱々しく逆らうことしかできなかった。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「だめ、誰かに見られたら …っ！？…～～～～～～～～～っ！？」
@@ -1576,21 +1379,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ふふっ…悪趣味…ああ…」
-			DATAFORM 「そうだな…見せつけてやろう…ん…」
-			DATAFORM 「寝取られ趣味の変態には…あん…垂涎物のおかずになるだろ」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に求められ自ら裙子の裾を持ち上げ%BOTTOM_BODY(角色)%をむきだしにした。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「ああ…いいぜ…あっ…」
-			DATAFORM 「見せ付けるの…そんな…ああ、わかった…ん…」
-			DATAFORM 「見られながらなんて…こう…？ あ…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに裙子の裾を持ち上げ%BOTTOM_BODY(角色)%をむきだしにした。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「ああ…いいぜ…あっ…」
+		DATAFORM 「見せ付けるの…そんな…ああ、わかった…ん…」
+		DATAFORM 「見られながらなんて…こう…？ あ…」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに裙子の裾を持ち上げ%BOTTOM_BODY(角色)%をむきだしにした。
 	IF TALENT:角色:恋慕
 		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を爱抚し始めた。
 	ELSE
@@ -1599,43 +1393,23 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「…悪趣味…もう…あっ…」
-			DATAFORM 「…見せつけるんだな…あん…」
-			DATAFORM 「見られているなんて思うと…ん…恥ずかしい…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるまま自ら裙子の裾を持ち上げ%BOTTOM_BODY(角色)%をむきだしにした。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を爱抚し始めた。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「そ、そんなっ…だめ…あ、ああっ」
-			DATAFORM 「み、見られながらなんて…あっ、あああっ」
-			DATAFORM 「だ、だめだ、恥ずかしい…ああっ」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%を背後から抱きすくめると裙子の裾を持ち上げ%BOTTOM_BODY(角色)%に露出させた。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を爱抚し始めた。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「そ、そんなっ…だめ…あ、ああっ」
+		DATAFORM 「み、見られながらなんて…あっ、あああっ」
+		DATAFORM 「だ、だめだ、恥ずかしい…ああっ」
+	ENDDATA
+	PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%を背後から抱きすくめると裙子の裾を持ち上げ%BOTTOM_BODY(角色)%に露出させた。
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を爱抚し始めた。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「…悪趣味…もう…あっ…」
-			DATAFORM 「…見せつけるんだな…あん…」
-			DATAFORM 「見られているなんて思うと…ん…恥ずかしい…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるまま自ら裙子の裾を持ち上げ%BOTTOM_BODY(角色)%をむきだしにした。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を爱抚し始めた。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「そ、そんなっ…やだっ！ あ、ああっ！！」
-			DATAFORM 「み、見られながらなんてっ…あっ、あああっ！」
-			DATAFORM 「だっ、やめろっ、恥ずかしいわっ…ああっ！！」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%を背後から抱きすくめると裙子の裾を持ち上げ%BOTTOM_BODY(角色)%無理矢理に露出させた。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を強引に爱抚し始めた。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「そ、そんなっ…やだっ！ あ、ああっ！！」
+		DATAFORM 「み、見られながらなんてっ…あっ、あああっ！」
+		DATAFORM 「だっ、やめろっ、恥ずかしいわっ…ああっ！！」
+	ENDDATA
+	PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%を背後から抱きすくめると裙子の裾を持ち上げ%BOTTOM_BODY(角色)%無理矢理に露出させた。
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の性器を強引に爱抚し始めた。
 
 ELSE
 
@@ -1690,19 +1464,11 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「あぁん…ああっ…」
-			DATAFORM 「あぁ…そ…そこ…もっと…」
-			DATAFORM 「い、いい…変態野朗、しっかり目に焼き付けておくんだぞ…ああ…」
-		ENDDATA
-	ELSE
-		PRINTDATAL
-			DATAFORM 「あぁ…だめ…だめ…ああ…」
-			DATAFORM 「あぁ…そ…そこは…だめ…」
-			DATAFORM 「んっ…だめ、だめ…」
-		ENDDATA
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「あぁ…だめ…だめ…ああ…」
+		DATAFORM 「あぁ…そ…そこは…だめ…」
+		DATAFORM 「んっ…だめ、だめ…」
+	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
 	IF EQUIP:角色:下半身下着１
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
@@ -1712,27 +1478,15 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%を挑衅するかのように自ら腰をくねらせて%NTR_NAME(0)%の爱抚を受け入れ、甘い声を上げている。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は弱々しく対抗しながらも%NTR_NAME(0)%の爱抚を受け入れ、甘い声を上げている。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は弱々しく対抗しながらも%NTR_NAME(0)%の爱抚を受け入れ、甘い声を上げている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「あ、ああ…い、痛くしないで…ああ…」
-			DATAFORM 「ああ…見られてる…見られてる…」
-			DATAFORM 「ああっ…んっ…そ、そこ、は…」
-		ENDDATA
-	ELSE
-		PRINTDATAL
-			DATAFORM 「は、離せ…こんなの…」
-			DATAFORM 「だ、だめ… あ…」
-			DATAFORM 「や、やめろ…ん…だめ、だめだ…」
-		ENDDATA
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「は、離せ…こんなの…」
+		DATAFORM 「だ、だめ… あ…」
+		DATAFORM 「や、やめろ…ん…だめ、だめだ…」
+	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
 	IF EQUIP:角色:下半身下着１
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
@@ -1742,27 +1496,15 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の爱抚から逃れようとせず、局部をほしいままにされ次第に感じはじめている。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は弱々しく身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は弱々しく身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「う…い、痛くしないでくれよ…ああ…」
-			DATAFORM 「ああ…見られてる…見られてる…のに…」
-			DATAFORM 「ああっ…んっ…そ、そこ、は…」
-		ENDDATA
-	ELSE
-		PRINTDATAL
-			DATAFORM 「は、離せ！こんなの…っ！？」
-			DATAFORM 「だ、だめっ！ あっ…！」
-			DATAFORM 「や、やめっ…んっ…だめ、だめだっ！」
-		ENDDATA
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「は、離せ！こんなの…っ！？」
+		DATAFORM 「だ、だめっ！ あっ…！」
+		DATAFORM 「や、やめっ…んっ…だめ、だめだっ！」
+	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
 	IF EQUIP:角色:下半身下着１
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
@@ -1772,11 +1514,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の爱抚から逃れようとせず、局部をほしいままにされ次第に感じはじめている。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
 
 ELSE
 
@@ -1820,62 +1558,33 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ああ…そこ、そこよっ…あっ、あっ、ああああーーーーーーっ！！」
-			DATAFORM 「ああっ…も、もっと、もっと、つよ…くっ、ああああああっ！！」
-			DATAFORM 「んっ…ん…い、いかせて…いかせてっ…い、イくぅぅーーーーっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手による爱抚を求めながら絶頂した。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「ああ…そ、そこぉ…あっ、ああああーーーーーーっ！！」
-			DATAFORM 「ああっ…も、もっと、もっと…強くっ！！」
-			DATAFORM 「んっ…ん…い、いい…い、イイーーーーっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手による爱抚を受け入れ絶頂した。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「ああ…そ、そこぉ…あっ、ああああーーーーーーっ！！」
+		DATAFORM 「ああっ…も、もっと、もっと…強くっ！！」
+		DATAFORM 「んっ…ん…い、いい…い、イイーーーーっ！！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手による爱抚を受け入れ絶頂した。
 	PRINTFORML ぐったりと力なく身体を預けてくる%CALLNAME:角色%を抱きしめながら、%NTR_NAME(0)%は阴茎を隆起させている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-			DATAFORM 「ああ…い…いくっ…いっ…ちゃううっ！！」
-			DATAFORM 「あ、ああっ・・だめ、だめっ…あああっ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で感じやすいところを摘み上げられながら達してしまった。
-		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為を期待しているかのようだった。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「あ…ああ…だめ…いく…い、いっちゃううう！！」
-			DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
-			DATAFORM 「ああっ…だめ…だめ…あああああっ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
-		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけて呆然としている。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「あ…ああ…だめ…いく…い、いっちゃううう！！」
+		DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
+		DATAFORM 「ああっ…だめ…だめ…あああああっ！！」
+	ENDDATA
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
+	PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけて呆然としている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-			DATAFORM 「ああ…見、見ないでっ…みないでえええええっ！！」
-			DATAFORM 「ああっ…いく…見られながら、い、いくぅぅぅ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で感じやすいところを摘み上げられながら達してしまった。
-		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対してもまったく逆らおうとしていなかった。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
-			DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
-			DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
-		PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対しても弱々しく逆らうことしかできなかった。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「やぁ、やめっ…て、…あっだめ、…くるっ…きちゃうっ…っ！？」
+		DATAFORM 「ああ…いや…見ないでっ…みないでえええええっ！！」
+		DATAFORM 「ああっ…だめ…だめ、だめだめだめっ…あああああっ！！」
+	ENDDATA
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は%NTR_NAME(0)%の指先で刺激されながら絶頂に追い込まれてしまった。
+	PRINTFORML %CALLNAME:角色%はぐったりと%NTR_NAME(0)%に身体をあずけており、さらなる行為に対しても弱々しく逆らうことしかできなかった。
 
 ELSE
 
@@ -2192,11 +1901,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 				DATAFORM 「ああ…%呼称%の言う通り…最後まで、見せてやろうじゃないか…」
 			ENDDATA
 		ENDIF
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の足元に跪くと阴茎を露出させ、%ANATA_LOVER(角色)%に見せつけるように口に含んだ。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命じるままに、%ANATA_LOVER(角色)%の視線の先で阴茎を口に含んだ。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命じるままに、%ANATA_LOVER(角色)%の視線の先で阴茎を口に含んだ。
 	ELSE
 		IF CSTR:角色:M处女丧失记录 == ""
 			PRINTFORML 「ああ…ファーストキスをこのいやらしい%阴茎%に捧げるぜ…」
@@ -2232,11 +1937,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 			PRINTFORML （こんなの…ファーストキスが%阴茎%だなんて…）
 		IF TALENT:角色:恋慕
 			PRINTFORML 阴茎を口に含むことを求められた%CALLNAME:角色%は%ANATA_LOVER(角色)%の視線の先で唇を許した。
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に求められるまま、口に捻じ込まれた肉棒を受け入れた。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
 		ENDIF
@@ -2269,12 +1970,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 			PRINTFORML （ファーストキスが%阴茎%に奪われたなんて…嘘…）
 		IF TALENT:角色:恋慕
 			PRINTFORML 阴茎を口に含むことを强迫された%CALLNAME:角色%は%ANATA_LOVER(角色)%の視線の先で唇を犯された。
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抵抗をせず、口に捻じ込まれた肉棒を受け入れた。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
-				PRINTFORML （…%CALLNAME:MASTER%…許して…）
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
+			PRINTFORML （…%CALLNAME:MASTER%…許して…）
 		ELSE
 			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
 		ENDIF
@@ -2335,8 +2032,6 @@ IF CSTR:角色:M处女丧失记录 == ""
 		内容 = %"許した"%
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度) 
 		内容 = %"許した"%
-	ELSEIF TALENT:角色:浮気公認
-		内容 = %"奪ってもらった"%
 	ELSE
 		内容 = %"奪われた"%
 	ENDIF
@@ -2388,10 +2083,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%は肉棒を口に含み、ねっとりとしゃぶる様を%ANATA_LOVER(角色)%に見せつけている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に視線をなげかけ挑衅するかのように微笑んだ。
-		ELSE
-		ENDIF
 	ELSE
 		PRINTFORML %CALLNAME:角色%はうっとりと目を閉じ、阴茎への侍奉を続けている。
 		IF TALENT:角色:恋慕
@@ -2410,11 +2101,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%は肉棒を口に含み、%ANATA_LOVER(角色)%に見られながらそれをしゃぶり続けている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に視線をなげかけ思わしげに微笑んだ。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線をなげかけた後目を逸らした。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線をなげかけた後目を逸らした。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は目を閉じ、阴茎への侍奉を続けている。
 		IF TALENT:角色:恋慕
@@ -2433,11 +2120,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%は肉棒を口にねじ込まれ、%ANATA_LOVER(角色)%に見られながらそれをしゃぶり続けている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に視線をなげかけた後目を逸らした。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線を投げかけている。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線を投げかけている。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は辛そうに目を閉じ、阴茎への侍奉を強いられている。
 		IF TALENT:角色:恋慕
@@ -2522,11 +2205,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%は口内に放たれた精液を飲み干し、阴茎の汚れを愛しげに舐め取った。
 			PRINTFORML その後、覗き見していた%ANATA_LOVER(角色)%に視線を向けた。
-			IF TALENT:角色:浮気公認
-				PRINTFORML その表情は『羨ましいだろ？』と囁いているかのようだった。
-			ELSE
-				PRINTFORML その表情は『止めてくれないんだな？』と囁いているかのようだった。
-			ENDIF
+			PRINTFORML その表情は『止めてくれないんだな？』と囁いているかのようだった。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は口内に放たれた精液を飲み干した。
 			PRINTFORML その後、覗き見していた%ANATA_LOVER(角色)%に視線を向けた。
@@ -2645,75 +2324,33 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「え…口で…？ 見せつけるのか…？ ははっ…いいぜ…」
-			DATAFORM 「口で…？ まあ、%呼称%が言うなら…」
-			DATAFORM 「ああ…欲しい…たっぷり…ください…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に求められるままに跪くと他のモノを露出させた。
-		IF 0 == RAND:3
-			; 時々表示される悪趣味台詞
-			CALL NTR_KOJO_KW10_5_0_EX(角色)
-		ENDIF
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%の唇が他の男人の阴茎に捧げられた。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「え…口で…？ 見てるだろ…？ ああ…わかったぜ…」
-			DATAFORM 「口で…？ はい…すればいいんだろ…」
-			DATAFORM 「ああ…欲しい…たっぷり…ください…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に求められるままに跪くと他のモノを露出させた。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%の唇が他の男人の阴茎を受け入れた。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「え…口で…？ 見てるだろ…？ ああ…わかったぜ…」
+		DATAFORM 「口で…？ はい…すればいいんだろ…」
+		DATAFORM 「ああ…欲しい…たっぷり…ください…」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に求められるままに跪くと他のモノを露出させた。
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%の唇が他の男人の阴茎を受け入れた。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「…口で…？ 悪趣味だな…あーもう…わかったわかった…」
-			DATAFORM 「…見せつけるなんて…」
-			DATAFORM 「見られながらなんて…ああ、わかったぜ…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるままに跪くと他のモノを露出させた。
-		IF 0 == RAND:3
-			; 時々表示される悪趣味台詞
-			CALL NTR_KOJO_KW10_5_0_EX(角色)
-		ENDIF
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%の唇が他の男人の阴茎を受け入れた。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「そ、そんな…だめだ… う、ううっ！」
-			DATAFORM 「み、見られながらなんて…うっ、うううっ！」
-			DATAFORM 「だ、だめだ、恥ずかしいぜ…ううっ！」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%は渋る%CALLNAME:角色%の口を開かせ、勃起したモノを突きつけ彼女の唇に挿入した。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、他の男人の阴茎が%CALLNAME:角色%の唇を汚した。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「そ、そんな…だめだ… う、ううっ！」
+		DATAFORM 「み、見られながらなんて…うっ、うううっ！」
+		DATAFORM 「だ、だめだ、恥ずかしいぜ…ううっ！」
+	ENDDATA
+	PRINTFORML %NTR_NAME(0)%は渋る%CALLNAME:角色%の口を開かせ、勃起したモノを突きつけ彼女の唇に挿入した。
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、他の男人の阴茎が%CALLNAME:角色%の唇を汚した。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「…口で…？ 悪趣味だな…あーもう…わかったわかった…」
-			DATAFORM 「…見せつけるなんて…」
-			DATAFORM 「見られながらなんて…ああ、わかったぜ…」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるままに跪くと他のモノを露出させた。
-		IF 0 == RAND:3
-			; 時々表示される悪趣味台詞
-			CALL NTR_KOJO_KW10_5_0_EX(角色)
-		ENDIF
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%の唇が他の男人の阴茎を受け入れた。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「そ、そんな…だめだ… う、ううっ！」
-			DATAFORM 「み、見られながらなんて…うっ、うううっ！」
-			DATAFORM 「だ、だめだ、恥ずかしいぜ…ううっ！」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%は渋る%CALLNAME:角色%を強引にねじ伏せると、勃起したモノを突きつけ彼女の唇を犯した。
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、他の男人の阴茎が%CALLNAME:角色%の唇を汚した。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「そ、そんな…だめだ… う、ううっ！」
+		DATAFORM 「み、見られながらなんて…うっ、うううっ！」
+		DATAFORM 「だ、だめだ、恥ずかしいぜ…ううっ！」
+	ENDDATA
+	PRINTFORML %NTR_NAME(0)%は渋る%CALLNAME:角色%を強引にねじ伏せると、勃起したモノを突きつけ彼女の唇を犯した。
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、他の男人の阴茎が%CALLNAME:角色%の唇を汚した。
 
 ELSE
 
@@ -2810,63 +2447,33 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「んっ…ちゅっ…ちゅぱっ…ああ…」
-			DATAFORM 「ん…れるっ…いい…いい…ああ…」
-			DATAFORM 「ふふっ…ああ…んっ…んっ…」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は自ら顔を前後させ唇で阴茎を扱き侍奉し続けている。
-		PRINTFORML %NTR_NAME(0)%の肉棒を口に含みながら、時折視線を%CALLNAME:MASTER%に投げかけている。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「んっ…んんっ…んっ…んんんんっ！！」
-			DATAFORM 「ん…れるっ…い…いやっ…んんっ！！」
-			DATAFORM 「ああ…だ、だめ…んんっ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭に手を置き侍奉を強いている。
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に見られ恥ずかしがっているが逆らわずに阴茎をしゃぶり続けている。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「んっ…んんっ…んっ…んんんんっ！！」
+		DATAFORM 「ん…れるっ…い…いやっ…んんっ！！」
+		DATAFORM 「ああ…だ、だめ…んんっ！！」
+	ENDDATA
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭に手を置き侍奉を強いている。
+	PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に見られ恥ずかしがっているが逆らわずに阴茎をしゃぶり続けている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「んっ…ちゅっ…ちゅぱっ…」
-			DATAFORM 「ん…れるっ…ああ…」
-			DATAFORM 「ああ…んっ…んっ…」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は顔を前後させ唇で阴茎を扱き侍奉し続けている。
-		PRINTFORML %NTR_NAME(0)%の肉棒を口に含みながら、時折視線を%CALLNAME:MASTER%に投げかけている。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「んっ…んんっ…んっ…んんんんっ…」
-			DATAFORM 「ん…れるっ…い…いやっ…んんっ…」
-			DATAFORM 「ああ…だ、だめ…んんっ…」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭を手で撫でながら侍奉を求めている。
-		PRINTFORML %CALLNAME:角色%は見ないでとでも言いたげに%CALLNAME:MASTER%に視線を投げかけながら侍奉を続けている。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「んっ…んんっ…んっ…んんんんっ…」
+		DATAFORM 「ん…れるっ…い…いやっ…んんっ…」
+		DATAFORM 「ああ…だ、だめ…んんっ…」
+	ENDDATA
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭を手で撫でながら侍奉を求めている。
+	PRINTFORML %CALLNAME:角色%は見ないでとでも言いたげに%CALLNAME:MASTER%に視線を投げかけながら侍奉を続けている。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「んっ…ちゅっ…ちゅぱっ…」
-			DATAFORM 「ん…れるっ…ああ…」
-			DATAFORM 「ああ…んっ…んっ…」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%CALLNAME:角色%は顔を前後させ唇で阴茎を扱き侍奉し続けている。
-		PRINTFORML %NTR_NAME(0)%の肉棒を口に含みながら、時折視線を%CALLNAME:MASTER%に投げかけている。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「んっ…んんっ…んっ…んんんんっ！！」
-			DATAFORM 「ん…れるっ…い…いやっ…んんっ！！」
-			DATAFORM 「ああ…だ、だめ…んんっ！！」
-		ENDDATA
-		PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭を手で掴み侍奉を強いている。
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に視線で救いを求めている。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「んっ…んんっ…んっ…んんんんっ！！」
+		DATAFORM 「ん…れるっ…い…いやっ…んんっ！！」
+		DATAFORM 「ああ…だ、だめ…んんっ！！」
+	ENDDATA
+	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%が%CALLNAME:角色%の頭を手で掴み侍奉を強いている。
+	PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%に視線で救いを求めている。
 
 ELSE
 
@@ -2906,63 +2513,33 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「きて…いっぱい、いっぱい出してっ…んっ、んんんんっ！！」
-			DATAFORM 「早くっ…精液、いっぱい出してっ…んんんんんっ！！」
-			DATAFORM 「んっ…イく…？ 出る…？ んむっ、んっ！ んんんんっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を深々と咥え、解き放たれた白濁のすべてを受け入れた。
-		PRINTFORML %ANATA_LOVER(角色)%に見せつけるかのように、%CALLNAME:角色%の咽がこくりとそれを飲み下した。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「ああ…んっ、んんっ！ んんんんんっ！！」
-			DATAFORM 「ああっ…うっ、うぐっ！！ うううううううっ！！」
-			DATAFORM 「んっ…ん…ううっ、うぐううーーーーっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を深々と捻じ込まれ、解き放たれた白濁のすべてを受け入れさせられた。
-		PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%の咽がこくりとそれを飲み下した。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「ああ…んっ、んんっ！ んんんんんっ！！」
+		DATAFORM 「ああっ…うっ、うぐっ！！ うううううううっ！！」
+		DATAFORM 「んっ…ん…ううっ、うぐううーーーーっ！！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を深々と捻じ込まれ、解き放たれた白濁のすべてを受け入れさせられた。
+	PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%の咽がこくりとそれを飲み下した。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ああ…きて…口に、出してっ…んっ、んんんんっ！！」
-			DATAFORM 「早くっ…精液、いっぱい出してっ…んんんんんっ！！」
-			DATAFORM 「んっ…イく…？ 出る…？ んむっ、んっ！ んんんんっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を咥え、解き放たれた白濁を受け入れた。
-		PRINTFORML %ANATA_LOVER(角色)%に見せつけるかのように、%CALLNAME:角色%の咽がこくりとそれを飲み下した。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「ああ…だ、だめ、だめだめ…んんんんんっ！」
-			DATAFORM 「いや…うっ、うぐっ！！ うううううううっ！」
-			DATAFORM 「んっ…やあっ…ううっ、うぐううーーーーっ！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を咥え、解き放たれた白濁を口内に注がれた。
-		PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%はそれを飲み下した。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「ああ…だ、だめ、だめだめ…んんんんんっ！」
+		DATAFORM 「いや…うっ、うぐっ！！ うううううううっ！」
+		DATAFORM 「んっ…やあっ…ううっ、うぐううーーーーっ！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を咥え、解き放たれた白濁を口内に注がれた。
+	PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%はそれを飲み下した。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM 「ああ…きて…口に、出してっ…んっ、んんんんっ！！」
-			DATAFORM 「早くっ…精液、いっぱい出してっ…んんんんんっ！！」
-			DATAFORM 「んっ…イく…？ 出る…？ んむっ、んっ！ んんんんっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を咥え、解き放たれた白濁を受け入れた。
-		PRINTFORML %ANATA_LOVER(角色)%に見せつけるかのように、%CALLNAME:角色%の咽がこくりとそれを飲み下した。
-	ELSE
-		PRINTDATAL
-			DATAFORM 「ああ…だ、だめっ、んんっ！ んんんんんっ！！」
-			DATAFORM 「いやっ…うっ、うぐっ！！ うううううううっ！！」
-			DATAFORM 「んっ…いやあっ…ううっ、うぐううーーーーっ！！」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を深々と捻じ込まれ、夥しい量の白濁を注ぎ込まれた。
-		PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%はそれを飲み下すことを強いられた。
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「ああ…だ、だめっ、んんっ！ んんんんんっ！！」
+		DATAFORM 「いやっ…うっ、うぐっ！！ うううううううっ！！」
+		DATAFORM 「んっ…いやあっ…ううっ、うぐううーーーーっ！！」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を深々と捻じ込まれ、夥しい量の白濁を注ぎ込まれた。
+	PRINTFORML %ANATA_LOVER(角色)%の見ている前で、%CALLNAME:角色%はそれを飲み下すことを強いられた。
 
 ELSE
 
@@ -3448,17 +3025,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML 押し倒された%CALLNAME:角色%は何かを決心したかのように、%NTR_NAME(0)%の背中に腕を回した。
-	ELSE
-		PRINTFORML 押し倒された%CALLNAME:角色%は弱々しく抵抗している。
-	ENDIF
+	PRINTFORML 押し倒された%CALLNAME:角色%は弱々しく抵抗している。
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
 		PRINTFORML 「そ、それはだめっ…そ、それだけは許して！…やだっ…やだああああ！！」
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORML 「…いいぜ…せめて優しく…お願いします…」
-			PRINTFORML %CALLNAME:MASTER%が望んだことだからと、%CALLNAME:角色%は%NTR_NAME(0)%に处女を捧げようとしている。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORML 「ああっ…だめ…だめ…」
 			PRINTFORML %NTR_NAME(0)%に組み敷かれた%CALLNAME:角色%は抜け出すことができずにいる。
 			PRINTFORML 彼女は他の男人に处女を奪われることを受け入れようとしている。
@@ -3570,18 +3140,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		IF TALENT:角色:恋慕&& TALENT:角色:浮気公認
-			PRINTFORML %NTR_NAME(0)%の阴茎が%CALLNAME:角色%の男を知らぬ秘所を貫いた。
-			PRINTFORML 接合部からは乙女であった証が流れている。		
-			PRINTFORML %CALLNAME:MASTER%が望んだことだからと、%CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
+		PRINTFORML 許しを懇願するも、無情にも%NTR_NAME(0)%の阴茎は%CALLNAME:角色%の男を知らぬ秘所を貫いた。
+		PRINTFORML 接合部からは乙女であった証が流れている。		
+		IF TALENT:角色:恋慕
+			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を奪われてしまった。
 		ELSE
-			PRINTFORML 許しを懇願するも、無情にも%NTR_NAME(0)%の阴茎は%CALLNAME:角色%の男を知らぬ秘所を貫いた。
-			PRINTFORML 接合部からは乙女であった証が流れている。		
-			IF TALENT:角色:恋慕
-				PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を奪われてしまった。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を奪われてしまった。
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に处女を奪われてしまった。
 		ENDIF
 		;非处女
 	ELSE
@@ -3595,9 +3159,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 			DATAFORM 堅くそそり勃つモノで彼女を犯した。
 			DATAFORM 一思いに秘所を貫いた。
 		ENDDATA
-		IF TALENT:角色:恋慕&& TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人を受け入れてしまった。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に犯されてしまった。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は%NTR_NAME(2)%に犯されてしまった。
@@ -4085,18 +3647,11 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDIF
 	PRINTFORML %NTR_NAME(0)%に耳元で囁かれた%CALLNAME:角色%は、他の望みどおりの言葉を口にはしなかった。
 	PRINTFORML しかし明確に拒絶することもできなかった彼女が%NTR_NAME(0)%の手に屈するのは時間の問題であった。
-	IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-		PRINTFORML （あいつが望むなら…このまま…）
-	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		IF TALENT:角色:恋慕&& TALENT:角色:浮気公認
-			PRINTFORML 「ひどいんじゃないか…初めてなのに中出しなんて…」
-			PRINTFORML %MSG_LOVER(角色)%に捧げる筈だった他の相手に純潔を捧げてしまった%CALLNAME:角色%は、気丈にも微笑んで見せた。
-			PRINTFORML （でもあいつが望んだことだもの…ふふっ）
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORML 「ごめん、%CALLNAME:MASTER%…ごめん…なさい」
 			PRINTFORML %MSG_LOVER(角色)%に捧げる筈だった純潔を奪われた上に处女地を精液で汚されたショックで咽び泣く%CALLNAME:角色%を眺めながら、%NTR_NAME(0)%は征服欲を満たしていた。		
 		ELSE
@@ -4222,11 +3777,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:角色%は仰向けになると%CALLNAME:MASTER%に見せ付けるかのように自ら脚を開いて%NTR_NAME(0)%を誘った。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は仰向けになると%CALLNAME:MASTER%の目の前で自ら脚を開いて%NTR_NAME(0)%を誘った。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は仰向けになると%CALLNAME:MASTER%の目の前で自ら脚を開いて%NTR_NAME(0)%を誘った。
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
 		PRINTFORML 「ああ…いいぜ、初めてだから、やさしくして…欲しいんくれよ…んっ、つぅ！」
 		IF TALENT:角色:恋慕
@@ -4259,16 +3810,9 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:浮気公認
-		PRINTFORML %CALLNAME:MASTER%の目の前で押し倒された%CALLNAME:角色%は%ANATA_LOVER(角色)%に見せ付けるかのように、%NTR_NAME(0)%の背中に腕を回した。
-	ELSE
-		PRINTFORML %CALLNAME:MASTER%の目の前で押し倒された%CALLNAME:角色%は弱々しく抵抗している。
-	ENDIF
+	PRINTFORML %CALLNAME:MASTER%の目の前で押し倒された%CALLNAME:角色%は弱々しく抵抗している。
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORML 「あいつが見てるけど…いいぜ…でもせめて…痛くしないで…」
-			PRINTFORML %CALLNAME:MASTER%が望んだことだからと、%CALLNAME:角色%は%NTR_NAME(0)%に处女を捧げようとしている。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORML 「ああっ…だめ…だめ…」
 			PRINTFORML %NTR_NAME(0)%に組み敷かれた%CALLNAME:角色%は抜け出すことができずにいる。
 			PRINTFORML %ANATA_LOVER(角色)%の目の前で、彼女は他の男人に处女を奪われることを受け入れようとしている。
@@ -4380,14 +3924,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 		ENDIF
 		;非处女
 	ELSE
-		IF TALENT:角色:浮気公認
-			PRINTDATA
-				DATAFORM 「ああっ！ いいっ」
-				DATAFORM 「ああっ！ いいっ、いいのおっ」
-				DATAFORM 「ああっ！ すごいっ、ああああっ」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の目の前で他の男人を受け入れた。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTDATA
 				DATAFORM 「ああっ！ だめっ、だめなのっ！！」
 				DATAFORM 「ああっ！ だめ…だめ…ああ！！」
@@ -4499,15 +4036,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「…ああ…大丈夫だから…もっと深くっ…」
-				DATAFORM 「いいぜ…動いて…もっともっと動いて…」
-				DATAFORM 「…もっと強く突いてもいいぞ…」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に見せ付けるかのように、处女を捧げた相手を受け入れ続けている。
-			PRINTFORML 彼女の身体は次第に阴茎に順応し始めていた。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTDATAL
 				DATAFORM 「…うそ…ああ…どうして…」
 				DATAFORM 「…ちがう…ああ…ちがう…」
@@ -4653,23 +4182,14 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 			DATAFORM 「ああっ…そ、そう、そのまま…」
 			DATAFORM 「い、いい…続けて…」
 		ENDDATA
-		IF TALENT:角色:恋慕&& TALENT:角色:浮気公認
-			PRINTFORML %ANATA_LOVER(角色)%に見せ付けるかのように%CALLNAME:角色%はその動きに合わせて腰を動かし始めていた。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORML %ANATA_LOVER(角色)%に見られながら%CALLNAME:角色%はその動きに合わせて腰を動かし始めていた。
 		ELSE
 			PRINTFORML %CALLNAME:MASTER%に見られながら%CALLNAME:角色%はその動きに合わせて腰を動かし始めていた。
 		ENDIF
 		;非处女
 	ELSE
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「ああ…いいっ、いいのおっ」
-				DATAFORM 「いいっ…いいのっ！ もっとぉ」
-				DATAFORM 「突いて！ もっともっと突いて」
-			ENDDATA
-			PRINTFORML %ANATA_LOVER(角色)%に見せ付けるかのように%CALLNAME:角色%はその動きに合わせて腰を動かしていた。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTDATAL
 				DATAFORM 「ああ…だめ…だめ…」
 				DATAFORM 「んっ…いっ…だ、だめぇ…」
@@ -4782,9 +4302,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORML 「いいっ…いくっ…いくっ、あああーーーーーっ%MSG_HEART()%」
 		PRINTFORML %NTR_NAME(0)%が阴茎を抜くと%CALLNAME:角色%の膣内から赤いものの混じった精液が零れ落ちた。
 		PRINTFORMW %CALLNAME:角色%は%MSG_LOVER(角色)%の目の前で%NTR_NAME(0)%に抱き寄せられ唇を重ねられ舌を絡められても抗おうとはしなかった。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORMW %CALLNAME:角色%は%CALLNAME:MASTER%に視線を投げかけ『これで满足したか？』とでも言いたげに微笑んだ。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORMW %CALLNAME:角色%は处女を奪われそうになっているのに助けようともしなかった%CALLNAME:MASTER%に対する不信感で心が揺れ動いている。
 		ELSE
 		ENDIF
@@ -4797,10 +4315,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		ENDDATA
 		PRINTFORML %NTR_NAME(0)%が阴茎を抜くと%CALLNAME:角色%の膣内から精液が零れ落ちた。
 		PRINTFORMW %CALLNAME:角色%は%MSG_LOVER(角色)%の目の前で%NTR_NAME(0)%に抱き寄せられ唇を重ねられ舌を絡められても抗おうとはしなかった。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は激しい快楽に恍惚としながら、%ANATA_LOVER(角色)%にちらりと視線を投げかけた。
-			PRINTFORMW その視線は（これでよかったんだよな？）とでも言いたげであった。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORMW %CALLNAME:角色%は激しい快楽に恍惚としており、%ANATA_LOVER(角色)%のことを忘れているかのようだった。
 		ELSE
 			PRINTFORMW %CALLNAME:角色%は激しい快楽に恍惚としている。
@@ -4812,35 +4327,20 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
 		PRINTFORML 「いやっ…だめっ…だめっ、あああーーーーーっ！」
 		PRINTFORML %NTR_NAME(0)%が阴茎を抜くと%CALLNAME:角色%の膣内から赤いものの混じった精液が零れ落ちた。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORML %ANATA_LOVER(角色)%が望んだこととはいえ、%CALLNAME:角色%は軽いショックを受けていた。
-			PRINTFORML 想い人の純潔を他の相手に奪われて本当にあいつは满足しているのだろうか。
-			PRINTFORMW あいつは本当に私を愛しているのだろうか。不信感の種子が%CALLNAME:角色%の心に根を下ろした。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORMW %CALLNAME:角色%は处女を失ったことと%ANATA_LOVER(角色)%が助けてくれなかったことのショックで放心している。
 		ELSE
 			PRINTFORMW %CALLNAME:角色%は处女を失ったことと%CALLNAME:MASTER%が助けてくれなかったことのショックで放心している。
 		ENDIF
 		;非处女
 	ELSE
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM 「ああ…そんな…なか…に…今日…は…ああ…！」
-				DATAFORM 「ああ…だめって…だめって、言った…のに…今日だけ…は…！」
-				DATAFORM 「今日…は…いやあ…あかちゃん…でき…ちゃう…」
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM 「ああ…そんな…なか…に…ああ…！」
-				DATAFORM 「ああ…だめって…だめって、言った…のに…中に…！」
-				DATAFORM 「…いやあ…あかちゃん…でき…ちゃう…」
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM 「ああ…そんな…なか…に…ああ…！」
+			DATAFORM 「ああ…だめって…だめって、言った…のに…中に…！」
+			DATAFORM 「…いやあ…あかちゃん…でき…ちゃう…」
+		ENDDATA
 		PRINTFORML %NTR_NAME(0)%が阴茎を抜くと%CALLNAME:角色%の膣内から精液が零れ落ちた。
-		IF TALENT:角色:恋慕 && TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%は軽く放心しながら%CALLNAME:MASTER%に視線を投げかけた。
-			PRINTFORMW 『これで满足したか？』とその目が語っていた。
-		ELSEIF TALENT:角色:恋慕
+		IF TALENT:角色:恋慕
 			PRINTFORMW %CALLNAME:角色%は%ANATA_LOVER(角色)%が助けてくれなかったことのショックで放心している。
 		ELSE
 			PRINTFORMW %CALLNAME:角色%は%CALLNAME:MASTER%が助けてくれなかったことのショックで放心している。
@@ -7206,11 +6706,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML %NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(0)%の前に跪いた%CALLNAME:角色%は艶のある目つきで他を見上げた。
 	IF TALENT:角色:恋慕
 		PRINTFORML %MSG_LOVER(角色)%に見られたら、という意識はもはや%CALLNAME:角色%の中には存在しなかった。
-		IF TALENT:角色:浮気公認
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
-		ENDIF
+		PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
 		PRINTFORML %NTR_NAME(0)%が望むのであればあらゆる行為を%MSG_LOVER(角色)%に見せ付けてもよいとすら思っていた。
 	ELSE
 		PRINTFORML 誰かに見られてしまっても問題は無い。それほどまでに彼女は快楽に屈していた。
@@ -7225,13 +6721,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDIF
 	PRINTFORML %NTR_GetPlaceName(FLAG:访问者当前位置)%で%CALLNAME:角色%は期待を込めた笑顔で%NTR_NAME(0)%を見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML %MSG_LOVER(角色)%に見られたらそれはそれで仕方ない、と%CALLNAME:角色%は考えていた。
-			PRINTFORML %NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなりつつあった。
-		ENDIF
+		PRINTFORML %MSG_LOVER(角色)%に見られたらそれはそれで仕方ない、と%CALLNAME:角色%は考えていた。
+		PRINTFORML %NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなりつつあった。
 	ELSE
 		PRINTFORML 誰かに見られてしまってもなんとかなる。そう考えるほどにに彼女は快楽に屈しつつあった。
 	ENDIF
@@ -7243,19 +6734,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ELSE
 		PRINTFORML 「こんなところだけど…お前が言うなら仕方ない」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7296,11 +6778,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML %NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(0)%の前に跪いた%CALLNAME:角色%は艶のある目つきで他を見上げた。
 	IF TALENT:角色:恋慕
 		PRINTFORML %MSG_LOVER(角色)%に見られたら、という意識はもはや%CALLNAME:角色%の中には存在しなかった。
-		IF TALENT:角色:浮気公認
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
-		ENDIF
+		PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
 		PRINTFORML %NTR_NAME(0)%が望むのであればあらゆる行為を%MSG_LOVER(角色)%に見せ付けてもよいとすら思っていた。
 	ELSE
 		PRINTFORML 誰かに見られてしまうかもしれない。だがそれでも問題は無い。それほどまでに彼女は快楽に屈していた。
@@ -7313,19 +6791,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ELSE
 		PRINTFORML 「ここで？ いや、いいけどさ…」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML %MSG_LOVER(角色)%に見られたらそれはそれで仕方ない、と%CALLNAME:角色%は考えていた。
-			PRINTFORML %NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなりつつあった。
-		ENDIF
+		PRINTFORML %MSG_LOVER(角色)%に見られたらそれはそれで仕方ない、と%CALLNAME:角色%は考えていた。
+		PRINTFORML %NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなりつつあった。
 	ELSE
 		PRINTFORML 誰かに見られてしまってもなんとかなる。そう考えるほどにに彼女は快楽に屈しつつあった。
 	ENDIF
@@ -7337,19 +6806,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ELSE
 		PRINTFORML 「こんなところだけど…お前が言うなら仕方ないな」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7392,19 +6852,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ELSE
 		PRINTFORML 「ふふ…ここならたぶん大丈夫だろ…」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。その時は%CALLNAME:MASTER%の态度次第だと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。その時は%CALLNAME:MASTER%の态度次第だと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7417,19 +6868,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ELSE
 		PRINTFORML 「ここなら大丈夫だろ」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7466,11 +6908,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML %NTR_GetPlaceName(FLAG:访问者当前位置)%で%NTR_NAME(0)%の前に跪いた%CALLNAME:角色%は艶のある目つきで他を見上げた。
 	IF TALENT:角色:恋慕
 		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、という意識はもはや%CALLNAME:角色%の中には存在しなかった。
-		IF TALENT:角色:浮気公認
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
-		ENDIF
+		PRINTFORML 既にそれほどまでに%NTR_NAME(0)%の存在が%CALLNAME:角色%の中で大きなものとなっていた。
 	ELSE
 		PRINTFORML 誰かに見られたら、という意識はもはや%CALLNAME:角色%の中には存在しなかった。
 	ENDIF
@@ -7478,19 +6916,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 「ここなら大丈夫だろ…」
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を期待を込めた笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。その時は%CALLNAME:MASTER%の态度次第だと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。その時は%CALLNAME:MASTER%の态度次第だと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7503,19 +6932,10 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ELSE
 		PRINTFORML 「ここなら大丈夫だろ」
 	ENDIF
-	IF IS_CAN_LOCK(FLAG:访问者当前位置) && TALENT:角色:浮気公認 < 3
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%の鍵をかけると、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
-	ENDIF
+	PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%で、%NTR_NAME(0)%を妖しげな笑顔で見つめた。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %MSG_LOVER(角色)%に覗かれたらそれもまた一興、と%CALLNAME:角色%は考えていた。
-			PRINTFORML そもそも%CALLNAME:MASTER%が望んだことなのだから。
-		ELSE
-			PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
-			PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
-		ENDIF
+		PRINTFORML 万一%MSG_LOVER(角色)%に見られたら、と%CALLNAME:角色%は警戒していた。
+		PRINTFORML 面倒なことになるかもしれない。どう言い訳すればよいだろうかと考えていた。
 	ELSE
 		PRINTFORML 万一誰かに見られたら、と%CALLNAME:角色%は警戒していた。
 		PRINTFORML 館のことをおろそかにしていると思われたくはなかったのだ。
@@ -7586,10 +7006,6 @@ ELSE
 	ENDIF
 
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「ははっ、嬉しいだろ？ %呼称%の望みどおりに%呼称%に抱かれて、%呼称%に寝取られるんだから…」
-ENDIF
 
 RETURN 0
 
@@ -7628,11 +7044,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM %CALLNAME:角色%は局部露出の羞恥に頬を染めながら家に戻った。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が知ったら興奮するんだろうか…）
-		ELSE
-			PRINTFORML （でも%CALLNAME:MASTER%には知られないほうがいいな…）
-		ENDIF
+		PRINTFORML （でも%CALLNAME:MASTER%には知られないほうがいいな…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -7648,11 +7060,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%は下着を身に着けないまま家に戻った。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が知ったら興奮するんだろうか…）
-		ELSE
-			PRINTFORML （でも%CALLNAME:MASTER%には知られないほうがいいな…）
-		ENDIF
+		PRINTFORML （でも%CALLNAME:MASTER%には知られないほうがいいな…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
@@ -7668,11 +7076,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 		DATAFORM %CALLNAME:角色%は%NTR_NAME(0)%に下着を渡し、局部を露出したまま家に戻った。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:MASTER%が望んだことだから、と思うと気が楽になった。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの姿を見られたら、と不安と同時に興奮を覚えていた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの姿を見られたら、と不安と同時に興奮を覚えていた。
 	ENDIF
 
 	;その他
@@ -7689,11 +7093,7 @@ ELSE
 		DATAFORM %CALLNAME:角色%は%NTR_NAME(0)%に下着を奪われ、局部を露出したまま家に戻った。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%が望んだことだから、と無理矢理自分を納得させた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの姿を見られたら、と不安に青ざめた。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%にこの姿を見られたら、と不安に青ざめた。
 	ENDIF
 
 ENDIF
@@ -7749,11 +7149,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML %MSG_HEART()+"」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、秘所に跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せたら興奮するんだろうか…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
@@ -7766,11 +7162,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML %"♪」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、秘所に跳蛋を収めたまま仕事に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せたら興奮するんだろうか…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
@@ -7808,11 +7200,7 @@ ELSE
 		DATAFORM 「…覚えてろよ」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%はなんなら%CALLNAME:MASTER%に見せて来いと言われ、屈辱に真っ赤になりながら秘所に跳蛋を入れたまま家に戻った。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なく秘所に跳蛋を入れたまま家に戻った。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なく秘所に跳蛋を入れたまま家に戻った。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は自分たちの関係を館の皆にばらすと脅され、仕方なく秘所に跳蛋を入れたまま家に戻った。
 	ENDIF
@@ -7885,11 +7273,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML %MSG_HEART()+"」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に言われるままに、アヌスに跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に教えてあげようかしら…ふふっ…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
@@ -7902,11 +7286,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML %"♪」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、アヌスに跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せたら興奮するだろうか…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
@@ -7918,11 +7298,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ENDDATA
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、アヌスに跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%…これでよかったんだよな…？）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 	IF TALENT:角色:恋慕 && TALENT:角色:亲爱
 		IF CHK_NTR_SATISFACTORY(角色) && ABL:角色:Ａ感觉 >= 1
@@ -7948,11 +7324,7 @@ ELSE
 		DATAFORM 「…覚えてろよ」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%はなんなら%CALLNAME:MASTER%に見せて来いと言われ、屈辱に真っ赤になりながらアヌスに跳蛋を入れたまま家に戻った。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なくアヌスに跳蛋を入れたまま家に戻った。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なくアヌスに跳蛋を入れたまま家に戻った。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は自分たちの関係を館の皆にばらすと脅され、仕方なくアヌスに跳蛋を入れたまま家に戻った。
 	ENDIF
@@ -8026,11 +7398,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML %MSG_HEART()+"」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、前後の穴に跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せたら興奮するだろうか…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
@@ -8043,11 +7411,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	PRINTFORML %"♪」"%
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、前後の穴に跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%に見せたら興奮するだろうか…）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
@@ -8059,11 +7423,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	ENDDATA
 	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命令に従い、前後の穴に跳蛋を収めたまま家に戻った。
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%…これでよかったんだよな…？）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%には知られないようにしないと…）
 	ENDIF
 	IF TALENT:角色:恋慕 && TALENT:角色:亲爱
 		IF CHK_NTR_SATISFACTORY(角色) && (ABL:角色:Ｖ感觉 >= 1 || ABL:角色:Ａ感觉 >= 1)
@@ -8094,11 +7454,7 @@ ELSE
 		DATAFORM 「…覚えてろよ」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%はなんなら%CALLNAME:MASTER%に見せて来いと言われ、屈辱に真っ赤になりながら前後の穴に跳蛋を入れたまま家に戻った。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なく前後の穴に跳蛋を入れたまま家に戻った。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は自分たちの関係を%CALLNAME:MASTER%にばらすと脅され、仕方なく前後の穴に跳蛋を入れたまま家に戻った。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は自分たちの関係を館の者にばらすと脅され、仕方なく前後の穴に跳蛋を入れたまま家に戻った。
 	ENDIF
@@ -8169,25 +7525,14 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) || NTR_CHK_FAVORABLY(角色, FAV_
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 
-			PRINTFORML %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%を一瞥することもなく、%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「そうだよな、他人に抱かれても平気なお前なんだから、間近で見たいよな。この変態め！」
-				DATAFORM 「そんなに私が犯されるところを見たいんだな…。まあいいか、最初から見せてやるから…目を逸らすなよ」
-				DATAFORM 「私が他人に犯されるところを見たいんだろ…。いいぜ、でもマスは掻くんじゃないぞ」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%をからかうかのように他に自ら身を寄せた。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は漸く部屋に入ってきた%CALLNAME:MASTER%に艶っぽい目線を向けて、一旦%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「%CALLNAME:MASTER%…。私…%NTR_NAME(0)%に、抱かれてる…」
-				DATAFORM 「%NTR_NAME(0)%のこれ…すごいんだぜ…」
-				DATAFORM 「私のことが好きなら見てて…。でも…マスは掻くんじゃないぞ」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を受けても動じず、%NTR_NAME(0)%の腕から逃れようともしなかった。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は漸く部屋に入ってきた%CALLNAME:MASTER%に艶っぽい目線を向けて、一旦%NTR_NAME(0)%から離れた。
+		PRINTDATAL
+			DATAFORM 「%CALLNAME:MASTER%…。私…%NTR_NAME(0)%に、抱かれてる…」
+			DATAFORM 「%NTR_NAME(0)%のこれ…すごいんだぜ…」
+			DATAFORM 「私のことが好きなら見てて…。でも…マスは掻くんじゃないぞ」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を受けても動じず、%NTR_NAME(0)%の腕から逃れようともしなかった。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は漸く部屋に入ってきた%CALLNAME:MASTER%艶っぽい目線を向けて、一旦%NTR_NAME(0)%から離れた。
 		PRINTDATAL
@@ -8199,45 +7544,27 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を受けても動じず、%NTR_NAME(0)%の腕から逃れようともしなかった。
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
-	IF TALENT:角色:恋慕&& TALENT:角色:浮気公認 
-		PRINTFORML %CALLNAME:角色%は漸く部屋に入ってきた%CALLNAME:MASTER%に驚いたが、%NTR_NAME(0)%から離れた。
-		PRINTDATAL
-			DATAFORM 「そうだよな、他人に抱かれても平気なお前なんだから、間近で見たいよな。この変態め！」
-			DATAFORM 「そんなに私が犯されるところを見たいんだな…。まあいいか、最初から見せてやるから…目を逸らすなよ」
-			DATAFORM 「私が他人に犯されるところを見たいんだろ…。いいぜ、でもマスは掻くんじゃないぞ」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%を挑衅するかのように%CALLNAME:角色%を抱き寄せた。
-		PRINTFORML %CALLNAME:角色%は他の腕から逃れようともしない。
+	PRINTFORML %CALLNAME:MASTER%は目の前で%NTR_NAME(0)%に犯されている%CALLNAME:角色%を助けた。
+	IF RAND:3 == 0
+		PRINTFORML %CALLNAME:角色%は助けてくれた事に感謝したが
+		PRINTFORML 先程から部屋の前にいた%CALLNAME:MASTER%に何度も助けを求めていたにも関わらず
+		PRINTFORMW 無視された事実が不信感を抱き、重く心にのしかかっている。
+		PRINTFORMW （……）
+	ELSEIF RAND:2 == 0
+		PRINTFORML %CALLNAME:角色%は助けてくれた事に感謝したが、先程から部屋の前に居て何度も助けを求めていたにも関わらず無視され
+		PRINTFORMW 今更になって助けに来た%CALLNAME:MASTER%に%CALLNAME:角色%は不信感を抱いている。
+		PRINTFORMW （……）
 	ELSE
-		PRINTFORML %CALLNAME:MASTER%は目の前で%NTR_NAME(0)%に犯されている%CALLNAME:角色%を助けた。
-		IF RAND:3 == 0
-			PRINTFORML %CALLNAME:角色%は助けてくれた事に感謝したが
-			PRINTFORML 先程から部屋の前にいた%CALLNAME:MASTER%に何度も助けを求めていたにも関わらず
-			PRINTFORMW 無視された事実が不信感を抱き、重く心にのしかかっている。
-			PRINTFORMW （……）
-		ELSEIF RAND:2 == 0
-			PRINTFORML %CALLNAME:角色%は助けてくれた事に感謝したが、先程から部屋の前に居て何度も助けを求めていたにも関わらず無視され
-			PRINTFORMW 今更になって助けに来た%CALLNAME:MASTER%に%CALLNAME:角色%は不信感を抱いている。
-			PRINTFORMW （……）
-		ELSE
-			PRINTFORMW %CALLNAME:角色%は助けてくれた事に感謝したが、何故か助かった事に残念と感じている自分に気づき
-			PRINTFORMW 無意識に%NTR_NAME(0)%に熱い視線を送ってしまった。
-			PRINTDATAL
-				DATAFORM （…私…どうして…）
-				DATAFORM （…これで…これでいいのか…）
-				DATAFORM （…だめだ…はしたない…）
-			ENDDATA
-		ENDIF
+		PRINTFORMW %CALLNAME:角色%は助けてくれた事に感謝したが、何故か助かった事に残念と感じている自分に気づき
+		PRINTFORMW 無意識に%NTR_NAME(0)%に熱い視線を送ってしまった。
+		PRINTDATAL
+			DATAFORM （…私…どうして…）
+			DATAFORM （…これで…これでいいのか…）
+			DATAFORM （…だめだ…はしたない…）
+		ENDDATA
 	ENDIF
 ELSE
-	IF TALENT:角色:浮気公認 
-		PRINTFORML %CALLNAME:角色%は漸く部屋に入ってきた%CALLNAME:MASTER%に驚いたが、%NTR_NAME(0)%から離れた。
-		PRINTDATAL
-			DATAFORM 「そうだよな、他人に抱かれても平気なお前なんだから、間近で見たいよな。この変態め！」
-			DATAFORM 「そんなに私が犯されるところを見たいんだな…。まあいいか、最初から見せてやるから…目を逸らすなよ」
-			DATAFORM 「私が他人に犯されるところを見たいんだろ…。いいぜ、でもマスは掻くんじゃないぞ」
-		ENDDATA
-	ELSEIF RAND:3 == 0
+	IF RAND:3 == 0
 		PRINTDATAL
 			DATAFORM 「助かったぜ…」
 			DATAFORM 「ありがとう。助かったぜ」
@@ -8275,31 +7602,19 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 	口上種別 = 0
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			口上種別 = 1
-		ELSE
-			口上種別 = 0
-		ENDIF
+		口上種別 = 0
 	ELSE
 		口上種別 = 0
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			口上種別 = 1
-		ELSE
-			口上種別 = 0
-		ENDIF
+		口上種別 = 0
 	ELSE
 		口上種別 = 0
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			口上種別 = 1
-		ELSE
-			口上種別 = 2
-		ENDIF
+		口上種別 = 2
 	ELSE
 		口上種別 = 2
 	ENDIF
@@ -8383,26 +7698,14 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 
-			PRINTFORML %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に驚いたが、残念そうな顔をしながら%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「何だいきなり…。そうだ、お前の言う通りのことをしていただけだぞ？」
-				DATAFORM 「いきなり乙女の部屋に入ってくるなんてデリカシーがないぜ…。まあいいか、最初から見せてやるから…目を逸らすなよ」
-				DATAFORM 「うお…いきなり入ってくるなよ。ナニをしていたらどうするんだ。…うん？ いいぜ、でもマスは掻くんじゃないぞ」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%をからかうかのように他に自ら身を寄せた。
-		ELSE
-			;浮気公認に繋がる屈服度レベルなので既に強気
-			PRINTFORMW %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に気付くとバツの悪そうな顔をしながら%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「何だいきなり…。何か用かしら？」
-				DATAFORM 「いきなり乙女の部屋に入ってくるなんてデリカシーがないぜ…。それで、何だ？」
-				DATAFORM 「ああ、また後でな。で、何だ？」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を受けても動じず、%NTR_NAME(0)%の腕から逃れようともしなかった。
-		ENDIF
+		PRINTFORMW %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に気付くとバツの悪そうな顔をしながら%NTR_NAME(0)%から離れた。
+		PRINTDATAL
+			DATAFORM 「何だいきなり…。何か用かしら？」
+			DATAFORM 「いきなり乙女の部屋に入ってくるなんてデリカシーがないぜ…。それで、何だ？」
+			DATAFORM 「ああ、また後でな。で、何だ？」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は自分の物だと言いたげに%CALLNAME:MASTER%の目の前で%CALLNAME:角色%を抱き寄せた。
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%の視線を受けても動じず、%NTR_NAME(0)%の腕から逃れようともしなかった。
 	ELSE
 		PRINTFORMW %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に気付くと残念そうな顔をしながら%NTR_NAME(0)%から離れた。
 		PRINTDATAL
@@ -8415,24 +7718,13 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 
-			PRINTFORML %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に驚いたが、%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「何だいきなり…。そうだ、お前の言う通りのことをしていただけだぞ？」
-				DATAFORM 「いきなり乙女の部屋に入ってくるなんてデリカシーがないぜ…。まあいいか、最初から見せてやるから…目を逸らすなよ」
-				DATAFORM 「うお…いきなり入ってくるなよ。ナニをしていたらどうするんだ。」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%を挑衅するかのように%CALLNAME:角色%を抱き寄せた。
-			PRINTFORML %CALLNAME:角色%は他の腕から逃れようともしない。
-		ELSE
-			PRINTFORML %CALLNAME:MASTER%に驚いた%CALLNAME:角色%は言い逃れ出来ない状況を見られた事に青ざめている。
-			PRINTDATAL
-				DATAFORM 「こ、これは…その…」
-				DATAFORM 「ち、違う…これは無理矢理…」
-				DATAFORM 「乙女の部屋に断りもなく入るなんて、非常識だぜ…」
-			ENDDATA
-			PRINTFORML %NTR_NAME(0)%は突然の修羅場に苦笑している。
-		ENDIF
+		PRINTFORML %CALLNAME:MASTER%に驚いた%CALLNAME:角色%は言い逃れ出来ない状況を見られた事に青ざめている。
+		PRINTDATAL
+			DATAFORM 「こ、これは…その…」
+			DATAFORM 「ち、違う…これは無理矢理…」
+			DATAFORM 「乙女の部屋に断りもなく入るなんて、非常識だぜ…」
+		ENDDATA
+		PRINTFORML %NTR_NAME(0)%は突然の修羅場に苦笑している。
 	ELSE
 		PRINTFORML %CALLNAME:MASTER%にあられもない姿を見られた%CALLNAME:角色%は羞恥のためか怒意のためか顔を真っ赤にしている。
 		PRINTDATAL
@@ -8444,26 +7736,17 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	ENDIF
 ELSE
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認 
-			PRINTFORML %CALLNAME:角色%は部屋に入ってきた%CALLNAME:MASTER%に驚いたが、%NTR_NAME(0)%から離れた。
-			PRINTDATAL
-				DATAFORM 「何だよ…自分が望んだことだろ…」
-				DATAFORM 「%CALLNAME:MASTER%が望んだことだろ…でも、助かったぜ」
-				DATAFORM 「ここは乙女の部屋だぜ、ノックぐらいしろよ…でも、助かったぜ」
-			ENDDATA
+		PRINTFORM %CALLNAME:MASTER%は目の前で犯されている%MSG_LOVER(角色)%の%CALLNAME:角色%を助けると
+		IF RAND:2 == 0
+			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%によって望まぬ性交を强迫された事を告白した。
 		ELSE
-			PRINTFORM %CALLNAME:MASTER%は目の前で犯されている%MSG_LOVER(角色)%の%CALLNAME:角色%を助けると
-			IF RAND:2 == 0
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%によって望まぬ性交を强迫された事を告白した。
-			ELSE
-				PRINTFORML 助けられた%CALLNAME:角色%は%CALLNAME:MASTER%に感謝を述べた。
-			ENDIF
-			PRINTDATAL
-				DATAFORM 「ああ…いいところに来てくれた…」
-				DATAFORM 「助かったぜ…」
-				DATAFORM 「ありがとう…あのままだったら…」
-			ENDDATA
+			PRINTFORML 助けられた%CALLNAME:角色%は%CALLNAME:MASTER%に感謝を述べた。
 		ENDIF
+		PRINTDATAL
+			DATAFORM 「ああ…いいところに来てくれた…」
+			DATAFORM 「助かったぜ…」
+			DATAFORM 「ありがとう…あのままだったら…」
+		ENDDATA
 	ELSE
 		PRINTFORM %CALLNAME:MASTER%は目の前で犯されている%MSG_LOVER(角色)%の%CALLNAME:角色%を助けると
 		IF RAND:2 == 0
@@ -8500,52 +7783,20 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM 「ああ、分かった」
 		DATAFORM 「ああ、来たぜ」
 	ENDDATA
-	IF TALENT:角色:浮気公認 >= 浮気_性交公認 && RAND:2
-		PRINTDATAL
-			DATAFORM 「なんなら覗いていくか？」
-			DATAFORM 「こっそり見ていても私は構わないぜ？」
-			DATAFORM 「窥视のは構わないけど、邪魔はするなよ？」
-		ENDDATA
-	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
-	IF TALENT:角色:浮気公認
-		PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%は%CALLNAME:MASTER%に声をかけた。
-		PRINTDATAL
-			DATAFORM 「悪い、他が私に用があるらしい」
-			DATAFORM 「悪い、お呼びがかかった」
-			DATAFORM 「他が呼んでいるみたいだから、悪い」
-		ENDDATA
-		IF TALENT:角色:浮気公認 >= 浮気_性交公認 && RAND:2
-			PRINTDATAL
-				DATAFORM 「なんなら覗いていくか？」
-				DATAFORM 「こっそり見ていても私は構わないぜ？」
-				DATAFORM 「窥视のは構わないけど、邪魔はするなよ？」
-			ENDDATA
-		ENDIF
-	ELSE
-		PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%はさりげなく%CALLNAME:MASTER%から離れた。
-		PRINTDATAL
-			DATAFORM 「悪い、用事を思い出したわ」
-			DATAFORM 「あれ、こんな所にいたのか」
-			DATAFORM 「うん、何か用か？」
-		ENDDATA
-	ENDIF
+	PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%はさりげなく%CALLNAME:MASTER%から離れた。
+	PRINTDATAL
+		DATAFORM 「悪い、用事を思い出したわ」
+		DATAFORM 「あれ、こんな所にいたのか」
+		DATAFORM 「うん、何か用か？」
+	ENDDATA
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
-	IF TALENT:角色:浮気公認
-		PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%は%CALLNAME:MASTER%に声をかけた。
-		PRINTDATAL
-			DATAFORM 「悪い、他が私に用があるらしい」
-			DATAFORM 「悪い、お呼びがかかった」
-			DATAFORM 「他が呼んでいるみたいだから、悪い」
-		ENDDATA
-	ELSE
-		PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%はさりげなく%CALLNAME:MASTER%から離れた。
-		PRINTDATAL
-			DATAFORM 「悪い、用事を思い出したわ」
-			DATAFORM 「あれ、こんな所にいたのか」
-			DATAFORM 「うん、何か用か？」
-		ENDDATA
-	ENDIF
+	PRINTFORML %NTR_NAME(0)%に目配せされた%CALLNAME:角色%はさりげなく%CALLNAME:MASTER%から離れた。
+	PRINTDATAL
+		DATAFORM 「悪い、用事を思い出したわ」
+		DATAFORM 「あれ、こんな所にいたのか」
+		DATAFORM 「うん、何か用か？」
+	ENDDATA
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	IF TALENT:角色:恋慕
 		PRINTFORML %NTR_NAME(0)%に睨まれた%CALLNAME:角色%は%CALLNAME:MASTER%を気にしながらも距離をおいた。

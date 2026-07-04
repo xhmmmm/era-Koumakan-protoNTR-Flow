@@ -1,11 +1,10 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;魔理沙口上NTR対応ラッパ口上
 ;
 ;オリジナル→寝の人様 咲夜口上NTR対応ラッパ口上
 ;上記口上を魔理沙用に改変
 ;基本方针としては寝取られ度が高くなると訪問者の呼び方がご主人様に変化(通常はあいつ呼ばわり)
 ;性格としては純情系Mイメージで
-;浮気公認するとプレイヤーのことを変態野郎呼ばわりします。
 ;-------------------------------------------------
 ;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
 ;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
@@ -104,21 +103,10 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:浮気公認
-		PRINTDATAL
-			DATAFORM “哈哈，拜托我和其他男人睡觉的变态家伙，事到如今怎么了？”
-			;TranslatedMark 「ははっ、他の男と寝て欲しいってお願いする変態野郎が、今更どうしたんだ？」
-			DATAFORM “怎么了？是变态家伙拿手的新游戏吗？”
-			;TranslatedMark 「どうした？ 変態野郎はお得意の新しいプレイか？」
-			DATAFORM “要是这种状态被他看见的话，说不定会发生更糟糕的事情哦。”
-			;TranslatedMark 「こんなところ他に見られたら、さらに酷いことされるかもしれないぞ」
-		ENDDATA
-	ELSE
-		PRINTFORML “……”
-		;TranslatedMark 「…」
-		PRINTFORML 被%CALLNAME:MASTER%抱住了的%CALLNAME:角色%稍微转过脸去，漏出了像害怕什么一样的表情。
-		;TranslatedMark 抱き寄せられた%CALLNAME:角色%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
-	ENDIF
+	PRINTFORML ”……“
+	;TranslatedMark 「…」
+	PRINTFORML 被%CALLNAME:MASTER%抱住了的%CALLNAME:角色%稍微转过脸去，漏出了像害怕什么一样的表情。
+	;TranslatedMark 抱き寄せられた%CALLNAME:角色%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
 
 ELSE
 	; それ以外の場合、非NTR口上を実行する
@@ -149,25 +137,14 @@ RET_VAL = 0
 
 ;唇の汚れで拒否された時
 IF TFLAG:193 == -2
-	IF TALENT:角色:浮気公認
-		PRINTFORML “哈哈……不会是想吃别人的精液吧？”
-		;TranslatedMark 「ははっ…さすがに他人の精液は口にしたくないだろ？」
-		PRINTFORML 因为嘴唇脏了的理由而拒绝了接吻。
-		;TranslatedMark 唇が汚れていることを理由にキスを拒まれてしまった。
-		PRINTFORML “对了……给我来杯茶好吗？”
-		;TranslatedMark 「そうだな…お茶をくれないか？」
-		PRINTFORML %CALLNAME:角色%似乎为了清洁嘴唇想要喝茶。
-		;TranslatedMark %CALLNAME:角色%は唇を清めるためにお茶を欲しがっているようだ。
-	ELSE
-		PRINTFORML “不，不行啊”
-		;TranslatedMark 「だ、だめだっ」
-		PRINTFORML 在嘴唇碰触之前原因不明的被拒绝了。
-		;TranslatedMark 理由はわからないが唇が触れる前に拒絶されてしまった。
-		PRINTFORML “喂，给我杯茶好吗？”
-		;TranslatedMark 「なあ、お茶をくれないか？」
-		PRINTFORML %CALLNAME:角色%似乎想要喝茶。
-		;TranslatedMark %CALLNAME:角色%はお茶を欲しがっているようだ。
-	ENDIF
+	PRINTFORML “不，不行啊”
+	;TranslatedMark 「だ、だめだっ」
+	PRINTFORML 在嘴唇碰触之前原因不明的被拒绝了。
+	;TranslatedMark 理由はわからないが唇が触れる前に拒絶されてしまった。
+	PRINTFORML “喂，给我杯茶好吗？”
+	;TranslatedMark 「なあ、お茶をくれないか？」
+	PRINTFORML %CALLNAME:角色%似乎想要喝茶。
+	;TranslatedMark %CALLNAME:角色%はお茶を欲しがっているようだ。
 	;失敗時
 ELSEIF TFLAG:193 == -1
 	PRINTFORML “喂，你在干什么？”
@@ -199,19 +176,8 @@ ELSE
 			DATAFORM “嗯……嗯……啾……”
 			;TranslatedMark 「ん…んん…ちゅ…」
 		ENDDATA
-		IF TALENT:角色:浮気公認
-			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
-				DATAFORM “想听听和那个人相比哪个更好嘛？”
-				;TranslatedMark 「あの人とどちらが上手か聞きたい？」
-			ENDDATA
-		ELSE
-			PRINTFORML （果然，还是他好啊）
-			;TranslatedMark （やっぱり、他の方が上手ね）
-		ENDIF
+		PRINTFORML （果然，还是他好啊）
+		;TranslatedMark （やっぱり、他の方が上手ね）
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 		PRINTDATAL
@@ -222,34 +188,14 @@ ELSE
 			DATAFORM “嗯……嗯……啾……”
 			;TranslatedMark 「ん…んん…ちゅ…」
 		ENDDATA
-		IF TALENT:角色:浮気公認 >= 浮気_性交公認
-			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
-				DATAFORM “呵呵，心跳不已啊。想听听和那个人相比哪个更好嘛？”
-				;TranslatedMark 「ふふ、ドキドキするわ。あの人とどちらが上手か聞きたい？」
-			ENDDATA
-		ELSEIF TALENT:角色:浮気公認 > 浮気_非公認
-			PRINTDATAL
-				DATAFORM “…接吻真舒服啊。但还是他的吻让人更开心”
-				;TranslatedMark 「…キスって気持ちいいな。断然、他のキスの方が気持ちいいけどな」
-				DATAFORM “接吻果然让人心跳不已啊。你的也和他的吻一样让我心跳不已呢？”
-				;TranslatedMark 「キスってドキドキするな。お前も他とのキスくらいドキドキさせてくれよな？」
-				DATAFORM （……果然……还是他好啊……）
-				;TranslatedMark （…やっぱり…他の方がうまいな…）
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM （……比起%CALLNAME:MASTER%，和他的吻更让人心跳加速……）
-				;TranslatedMark （…%CALLNAME:MASTER%よりも、他とのキスの方がドキドキする…）
-				DATAFORM （……还不够……）
-				;TranslatedMark （…物足りない…）
-				DATAFORM （……果然……还是他的吻比较好呢……）
-				;TranslatedMark （…やっぱり…他のキスの方がうまいな…）
-			ENDDATA
-		ENDIF
+		PRINTDATAL
+			DATAFORM （……比起%CALLNAME:MASTER%，和他的吻更让人心跳加速……）
+			;TranslatedMark （…%CALLNAME:MASTER%よりも、他とのキスの方がドキドキする…）
+			DATAFORM （……还不够……）
+			;TranslatedMark （…物足りない…）
+			DATAFORM （……果然……还是他的吻比较好呢……）
+			;TranslatedMark （…やっぱり…他のキスの方がうまいな…）
+		ENDDATA
 
 	ELSE
 		RET_VAL = 1
@@ -295,17 +241,10 @@ ELSE
 			;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から離れ頬を染めながら他の方に歩いていった。
 		ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 			IF TALENT:角色:恋慕
-				IF TALENT:角色:浮気公認
-					PRINTFORML “咦，他在叫我吗？”
-					;TranslatedMark 「あれ、他が呼んでる？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%离开了%CALLNAME:MASTER%，脸颊微红，向他方向走去。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から離れ頬を染めながら他の方に歩いていった。
-				ELSE
-					PRINTFORML “……”
-					;TranslatedMark 「…」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%若无其事的从%CALLNAME:MASTER%身边离开了一步，并为了陪伴%NTR_NAME(0)%而停下了跟随的脚步。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から一歩離れさりげなく%NTR_NAME(0)%の傍らで足をとめた。
-				ENDIF
+				PRINTFORML ”……”
+				;TranslatedMark 「…」
+				PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%若无其事的从%CALLNAME:MASTER%身边离开了一步，并为了陪伴%NTR_NAME(0)%而停下了跟随的脚步。
+				;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から一歩離れさりげなく%NTR_NAME(0)%の傍らで足をとめた。
 			ELSE
 				PRINTFORML “诶”
 				;TranslatedMark 「あれ」
@@ -314,17 +253,10 @@ ELSE
 			ENDIF
 		ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い) 
 			IF TALENT:角色:恋慕
-				IF TALENT:角色:浮気公認
-					PRINTFORML “咦，他在叫我吗？”
-					;TranslatedMark 「あれ、他が呼んでる？」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%离开了%CALLNAME:MASTER%，向他走去。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から離れ他の方に歩いていった。
-				ELSE
-					PRINTFORML “……”
-					;TranslatedMark 「…」
-					PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%若无其事的从%CALLNAME:MASTER%身边离开了一步，并为了靠近%NTR_NAME(0)%而停下了跟随的脚步。
-					;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から一歩離れさりげなく%NTR_NAME(0)%の近くで足を止めた。
-				ENDIF
+				PRINTFORML “……”
+				;TranslatedMark 「…」
+				PRINTFORML 感受到%NTR_NAME(0)%的视线，%CALLNAME:角色%若无其事的从%CALLNAME:MASTER%身边离开了一步，并为了靠近%NTR_NAME(0)%而停下了跟随的脚步。
+				;TranslatedMark %NTR_NAME(0)%の視線を感じた%CALLNAME:角色%は%CALLNAME:MASTER%から一歩離れさりげなく%NTR_NAME(0)%の近くで足を止めた。
 			ELSE
 				PRINTFORML “诶”
 				;TranslatedMark 「あれ」

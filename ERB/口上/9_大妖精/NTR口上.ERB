@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用大妖精口上ファイル
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -1663,10 +1663,6 @@ ELSE
 	ENDIF
 
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「%CALLNAME:MASTER%が背中を押してくれたから私、あの方といっぱいエッチできたんです・・ふふっ、ありがとうございました」
-ENDIF
 RETURN 0
 
 ;==================================================
@@ -1701,11 +1697,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM %CALLNAME:角色%は局部露出の恥じらいに頬を染めている。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が見たら驚きますよね・・それとも喜んでくれるのかな・・？）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%が見たら・・）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%が見たら・・）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -1721,11 +1713,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%は命じられるままに局部を露出し、羞耻心で真っ赤になっている。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （%CALLNAME:MASTER%が見たら驚きますよね・・それとも喜んでくれるのかな・・？）
-		ELSE
-			PRINTFORML （%CALLNAME:MASTER%が見たら・・）
-		ENDIF
+		PRINTFORML （%CALLNAME:MASTER%が見たら・・）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)

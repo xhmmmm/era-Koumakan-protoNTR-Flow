@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;汎用口上(KUのUはユニバーサルということでひとつ）
 ;半分くらい実験をかねて、非NTR汎用口上を記述。
 ;咲夜さん、小恶魔あたりをイメージしているのでチルノとかでは違和感バリバリかと。
@@ -5118,18 +5118,10 @@ ELSE
 ENDIF
 RETURN 1
 @KOJO_MESSAGE_COUNTER_KU_29_1
-IF TALENT:TARGET:浮気公認
-	IF TALENT:TARGET:施虐狂
-		PRINTFORML %"「在我被他的肉棒操弄的时候、不许"+CALLNAME:PLAYER+"进行任何性行为！」"%
-	ELSE
-		PRINTFORML %"「在我和他在一起玩的时候、"+CALLNAME:PLAYER+"可不能出轨啊」"%
-	ENDIF
+IF TALENT:TARGET:施虐狂
+	PRINTFORML %"「没什么特别的理由。只是想把"+CALLNAME:PLAYER+"榨取到不能勃起为止」"%
 ELSE
-	IF TALENT:TARGET:施虐狂
-		PRINTFORML %"「没什么特别的理由。只是想把"+CALLNAME:PLAYER+"榨取到不能勃起为止」"%
-	ELSE
-		PRINTFORML %"「哼、不榨干的话，像"+CALLNAME:PLAYER+"这样下半身思考的动物，会随便袭击街上的女人吧」"%
-	ENDIF
+	PRINTFORML %"「哼、不榨干的话，像"+CALLNAME:PLAYER+"这样下半身思考的动物，会随便袭击街上的女人吧」"%
 ENDIF
 RETURN 1
 @KOJO_MESSAGE_COUNTER_KU_29_2

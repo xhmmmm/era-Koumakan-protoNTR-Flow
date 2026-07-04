@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用汎用口上ファイル
 ;咲夜さん口上がベースなのでキャラによっては違和感バリバリです
 ;
@@ -1565,11 +1565,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 			DATAFORM 「ふふ・・見せつけてあげるのね・・ええ、いいわ・・」
 			DATAFORM 「ええ・・最後まで、見せてあげましょう・・」
 		ENDDATA
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の足元に跪くと阴茎を露出させ、%ANATA_LOVER(角色)%に見せつけるように口に含んだ。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命じるままに、%ANATA_LOVER(角色)%の視線の先で阴茎を口に含んだ。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の命じるままに、%ANATA_LOVER(角色)%の視線の先で阴茎を口に含んだ。
 	ELSE
 		PRINTDATAL
 			DATAFORM 「ん・・お、おっきい・・ちゅっ・・」
@@ -1599,12 +1595,8 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 		ENDDATA
 		IF TALENT:角色:恋慕
 			PRINTFORML 阴茎を口に含むことを强迫された%CALLNAME:角色%は%ANATA_LOVER(角色)%の視線の先で唇を犯された。
-			IF TALENT:角色:浮気公認
-				PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抵抗をせず、口に捻じ込まれた肉棒を受け入れた。
-			ELSE
-				PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
-				PRINTFORML （・・%CALLNAME:MASTER%・・許して・・）
-			ENDIF
+			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
+			PRINTFORML （・・%CALLNAME:MASTER%・・許して・・）
 		ELSE
 			PRINTFORML %CALLNAME:角色%は弱々しく抵抗していたが、%NTR_NAME(0)%の肉棒が口内に侵入すると次第に大人しくなりついには彼を受け入れた。
 		ENDIF
@@ -1684,10 +1676,6 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) && NTR_CHK_MISETUKE(角色)
 		PRINTFORML %CALLNAME:角色%は肉棒を口に含み、ねっとりとしゃぶる様を%ANATA_LOVER(角色)%に見せつけている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に視線をなげかけ挑衅するかのように微笑んだ。
-		ELSE
-		ENDIF
 	ELSE
 		PRINTFORML %CALLNAME:角色%はうっとりと目を閉じ、阴茎への侍奉を続けている。
 		IF TALENT:角色:恋慕
@@ -1706,11 +1694,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) && NTR_CHK_MISETUKE(角色)
 		PRINTFORML %CALLNAME:角色%は肉棒を口に含み、%ANATA_LOVER(角色)%に見られながらそれをしゃぶり続けている。
-		IF TALENT:角色:浮気公認
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に視線をなげかけ思わしげに微笑んだ。
-		ELSE
-			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線をなげかけた後目を逸らした。
-		ENDIF
+		PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%に何か言いたげに視線をなげかけた後目を逸らした。
 	ELSE
 		PRINTFORML %CALLNAME:角色%は目を閉じ、阴茎への侍奉を続けている。
 		IF TALENT:角色:恋慕
@@ -1795,11 +1779,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%は口内に放たれた精液を飲み干し、阴茎の汚れを愛しげに舐め取った。
 			PRINTFORML その後、覗き見していた%ANATA_LOVER(角色)%に視線を向けた。
-			IF TALENT:角色:浮気公認
-				PRINTFORML その表情は『羨ましいでしょう？』と囁いているかのようだった。
-			ELSE
-				PRINTFORML その表情は『止めてくれないのね？』と囁いているかのようだった。
-			ENDIF
+			PRINTFORML その表情は『止めてくれないのね？』と囁いているかのようだった。
 		ELSE
 			PRINTFORML %CALLNAME:角色%は口内に放たれた精液を飲み干した。
 			PRINTFORML その後、覗き見していた%ANATA_LOVER(角色)%に視線を向けた。

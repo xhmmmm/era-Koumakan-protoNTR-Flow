@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;寝取られパッチ用チルノ口上ファイル
 ;お好きなように埋めまくってください
 ;そしてあわよくばうｐしてください
@@ -4108,10 +4108,6 @@ ELSE
 		PRINTFORML 「%CALLNAME:MASTER%は優しいけど、やっぱり気持ちイイ方がいいんだ！」
 	ENDIF
 ENDIF
-;浮気公認時
-IF TALENT:角色:浮気公認
-	PRINTFORML 「えへへっ、%CALLNAME:MASTER%ありがとね！ アノ人とエッチしていいって言ってくれて！」
-ENDIF
 RETURN 0
 
 ;==================================================
@@ -4146,11 +4142,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM %CALLNAME:角色%は脱いだ下着を%NTR_NAME(0)%にかぶせようとしてたしなめられた。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （えへへっ、%CALLNAME:MASTER%よろこんでくれるよね！）
-		ELSE
-			PRINTFORML （えへへっ、%CALLNAME:MASTER%どう思うかな？）
-		ENDIF
+		PRINTFORML （えへへっ、%CALLNAME:MASTER%どう思うかな？）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -4166,11 +4158,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM %CALLNAME:角色%は脱いだばかりの下着を%NTR_NAME(0)%に手渡した。
 	ENDDATA
 	IF TALENT:角色:恋慕
-		IF TALENT:角色:浮気公認
-			PRINTFORML （えへへっ、%CALLNAME:MASTER%よろこんでくれるよね！）
-		ELSE
-			PRINTFORML （えへへっ、%CALLNAME:MASTER%どう思うかな？）
-		ENDIF
+		PRINTFORML （えへへっ、%CALLNAME:MASTER%どう思うかな？）
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
