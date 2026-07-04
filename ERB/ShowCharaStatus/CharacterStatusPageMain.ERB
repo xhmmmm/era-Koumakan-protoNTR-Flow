@@ -244,23 +244,6 @@ ELSE
 	ENDIF
 	BASE:角色:Ｖ松弛度 += 上昇値
 ENDIF
-; [IF_DEBUG]
-; SETCOLOR 0xFFFF00
-; IF 部位 == 0
-; PRINT Ｖ
-; ELSE
-; PRINT Ａ
-; ENDIF
-; IF 上昇値 > 0
-; PRINTFORML 松弛度上升值（%CALLNAME:角色%） + {上昇値}
-; ELSEIF 上昇値 == 0
-; PRINTL 松弛度上升值（%CALLNAME:角色%）没有变化
-; ELSEIF 上昇値 < 0
-; PRINTFORML 松弛度上升值（（%CALLNAME:角色%） - {上昇値}
-; ENDIF
-; RESETCOLOR
-; [ENDIF]
-
 
 ;数值 最大数值 字符1 字符2 颜色1 颜色2 长度
 @数据条绘制(ARG,ARG:1,ARGS,ARGS:1,ARG:2,ARG:3,ARG:4)

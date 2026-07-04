@@ -110,13 +110,13 @@ VARSET LOCAL
 
 ;初期キャラの兄弟関係
 IF ARG == 人物_蕾米莉亚
-	SETCOLOR 色設定_兄弟_自分
+	SETCOLOR 颜色_兄弟_自己
 	PRINTFORM  1_%CALLNAME:人物_蕾米莉亚%
 	RESETCOLOR
 	PRINTFORM  2_%CALLNAME:人物_芙兰朵露%
 ELSEIF ARG == 人物_芙兰朵露
 	PRINTFORM  1_%CALLNAME:人物_蕾米莉亚%
-	SETCOLOR 色設定_兄弟_自分
+	SETCOLOR 颜色_兄弟_自己
 	PRINTFORM  2_%CALLNAME:人物_芙兰朵露%
 	RESETCOLOR
 ENDIF
@@ -129,7 +129,7 @@ FOR 対象, 0, CHARANUM
 	IF (NO:対象 == 148 || NO:対象 == 149) && (CFLAG:対象:父親 == CFLAG:ARG:父親 || CFLAG:対象:母親 == CFLAG:ARG:母親)
 		LOCAL:2 ++
 		SIF 対象 == ARG
-			SETCOLOR 色設定_兄弟_自分
+			SETCOLOR 颜色_兄弟_自己
 		PRINTFORM  {LOCAL:2}_%CALLNAME:対象%
 		RESETCOLOR
 		;対象とARGが多生児の関係である場合

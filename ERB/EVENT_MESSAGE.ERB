@@ -84,7 +84,7 @@ SELECTCASE TCVAR:角色:苦痛刻印取得
 		RETURN 0
 ENDSELECT
 IF CFLAG:角色:苦痛刻印主人 != MASTER
-	SETCOLOR 色設定_状態_ＮＴＲ
+	SETCOLOR 颜色_状态_ＮＴＲ
 ENDIF
 PRINTFORML %"在"+GET_DESCRIPTIVE_NAME(CFLAG:角色:苦痛刻印主人)+"的责备下，"+CALLNAME:角色+"获得了苦痛刻印LV"+TOSTR(MARK:角色:苦痛刻印)+"！"%
 RESETCOLOR
@@ -130,7 +130,7 @@ SELECTCASE TCVAR:角色:快乐刻印取得
 		RETURN 0
 ENDSELECT
 IF CFLAG:角色:快乐刻印主人 != MASTER
-	SETCOLOR 色設定_状態_ＮＴＲ
+	SETCOLOR 颜色_状态_ＮＴＲ
 ENDIF
 PRINTFORML %"被"+GET_DESCRIPTIVE_NAME(CFLAG:角色:快乐刻印主人)+"充分疼爱后，"+CALLNAME:角色+"获得了快乐刻印LV"+TOSTR(MARK:角色:快乐刻印)+"！"%
 RESETCOLOR
@@ -170,7 +170,7 @@ SELECTCASE TCVAR:角色:屈服刻印取得
 		RETURN 0
 ENDSELECT
 IF CFLAG:角色:屈服刻印主人 != MASTER
-	SETCOLOR 色設定_状態_ＮＴＲ
+	SETCOLOR 颜色_状态_ＮＴＲ
 ENDIF
 PRINTFORML %"在"+GET_DESCRIPTIVE_NAME(CFLAG:角色:屈服刻印主人)+"的调教下，"+CALLNAME:角色+"获得了屈服刻印LV"+TOSTR(MARK:角色:屈服刻印)+"！"%
 RESETCOLOR
@@ -203,7 +203,7 @@ SELECTCASE TCVAR:角色:反発刻印取得
 		RETURN 0
 ENDSELECT
 IF CFLAG:角色:反発刻印主人 != MASTER
-	SETCOLOR 色設定_状態_ＮＴＲ
+	SETCOLOR 颜色_状态_ＮＴＲ
 ENDIF
 PRINTFORML %"在"+GET_DESCRIPTIVE_NAME(CFLAG:角色:反発刻印主人)+"的冒犯下，"+CALLNAME:角色+"获得了反発刻印LV"+TOSTR(MARK:角色:反発刻印)+"！"%
 RESETCOLOR

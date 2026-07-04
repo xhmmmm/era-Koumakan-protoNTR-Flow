@@ -159,7 +159,7 @@ FOR LOCAL:2, 0, 6
 		;特殊顺序控制-----------------------------------
 		;性特征组第一个输出NTR
 		IF LOCAL:2 == 1 && LOCAL:1 == 0 && TALENT:ARG:NTR
-			SETCOLOR 色設定_状態_ＮＴＲ
+			SETCOLOR 颜色_状态_ＮＴＲ
 			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:3)%]
 			RESETCOLOR
 			FONTREGULAR
@@ -174,7 +174,7 @@ FOR LOCAL:2, 0, 6
 			CONTINUE
 		;NTR为2时精神组输出NTR
 		IF LOCAL:2 == 3 && LOCAL:1 == 0 && TALENT:ARG:NTR == 2
-			SETCOLOR 色設定_状態_ＮＴＲ
+			SETCOLOR 颜色_状态_ＮＴＲ
 			FONTBOLD
 			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:3)%]
 			RESETCOLOR
@@ -209,10 +209,10 @@ FOR LOCAL:2, 0, 6
 			SETCOLOR 255, 120, 200
 			FONTBOLD
 			; IF GROUPMATCH(LOCAL,0,5)
-			; 	SETCOLOR 色設定_状態_恋慕
+			; 	SETCOLOR 颜色_状态_恋慕
 			; 	FONTBOLD
 		ELSEIF GROUPMATCH(LOCAL,3)
-			SETCOLOR 色設定_状態_ＮＴＲ
+			SETCOLOR 颜色_状态_ＮＴＲ
 			; FONTBOLD
 		ELSEIF GROUPMATCH(LOCAL,4)
 			SETCOLOR 颜色_状态_恋人
@@ -485,171 +485,3 @@ SELECTCASE ABL_VAL
 	CASEELSE
 		RETURNF 9
 ENDSELECT
-
-;原显示方案
-[SKIPSTART]
-@PRINT_STATE_CLOTH(ARG)
-IF !EQUIP:ARG:衣服着用
-	PRINTL 全裸
-	RETURN 0
-ENDIF
-FOR LOCAL,1,20
-	;下半身下着１
-	IF ARG != MASTER && LOCAL == 5 && GETBIT(FLAG:雑多設定,1) && Unknown下着(ARG, LOCAL)
-		PRINTFORML [%"？？？？？"%]
-		LOCAL:1 ++
-		;下半身下着２
-	ELSEIF  ARG != MASTER && LOCAL == 6 && GETBIT(FLAG:雑多設定,1) && Unknown下着(ARG, LOCAL)
-		;无论是否有穿着，在未能确定的情况下什么都不显示（装着の有無に限らず確認が取れていない場合何も表示されないようにする）
-		LOCAL:1 ++
-	ELSEIF EQUIP:ARG:LOCAL
-		IF GETBIT(FLAG:匂いフェチ,1) 
-			PRINTFORML [%IRUINAME_SMELL(EQUIP:ARG:LOCAL)%%CLOTHNAME(LOCAL,EQUIP:ARG:LOCAL)%]
-		ELSE
-			PRINTFORML [%CLOTHNAME(LOCAL,EQUIP:ARG:LOCAL)%]
-		ENDIF
-		LOCAL:1 ++
-	ENDIF
-NEXT
-SIF !LOCAL:1
-	PRINTL 全裸
-
-@PRINT_STATE_TALENT(ARG)
-LOCAL:1 = 0
-LOCALS = ""
-;TALENT:200(无名氏)は表示させない
-;性别
-LOCALS += GET_TALENTNAME(2,TALENT:ARG:2)
-PRINTFORM [%GET_TALENTNAME(2,TALENT:ARG:2)%]
-;处女
-IF TALENT:ARG:处女 && HAS_VAGINA(ARG)
-	SETCOLOR 色設定_状態_恋慕
-	FONTBOLD
-	LOCALS += GET_TALENTNAME(0,TALENT:ARG:0)
-	PRINTFORM [%GET_TALENTNAME(0,TALENT:ARG:0)%]
-	RESETCOLOR
-	FONTREGULAR
-ENDIF
-;童贞
-IF TALENT:ARG:童贞 && HAS_PENIS(ARG)
-	LOCALS += GET_TALENTNAME(1,TALENT:ARG:1)
-	PRINTFORM [%GET_TALENTNAME(1,TALENT:ARG:1)%]
-ENDIF
-FOR LOCAL,3,200
-	IF STRLENS(GET_TALENTNAME(LOCAL,TALENT:ARG:LOCAL))
-		LOCALS += GET_TALENTNAME(LOCAL,TALENT:ARG:LOCAL)
-		IF GROUPMATCH(LOCAL,0,5)
-			SETCOLOR 色設定_状態_恋慕
-			FONTBOLD
-		ELSEIF GROUPMATCH(LOCAL,3)
-			SETCOLOR 色設定_状態_ＮＴＲ
-			; FONTBOLD
-		ELSEIF GROUPMATCH(LOCAL,4)
-			SETCOLOR 颜色_状态_恋人
-			FONTBOLD
-		ENDIF
-		PRINTFORM [%GET_TALENTNAME(LOCAL,TALENT:ARG:LOCAL)%]
-		RESETCOLOR
-		FONTREGULAR
-		IF STRLENS(LOCALS) > 50
-			LOCALS = ""
-			PRINTL
-		ENDIF
-	ENDIF
-NEXT
-
-@PRINT_STATE_ABL(ARG)
-PRINTL
-PRINTL □ 能力 □---------------------------------------------------------------------
-LOCAL:1 = 0
-FOR LOCAL,0,50
-	SIF !STRLENS(ABLNAME:LOCAL)
-		CONTINUE
-	SIF LOCAL > 50 && ARG != MASTER
-		CONTINUE
-	;同性愛関係
-	IF !(HAS_VAGINA(ARG)) && (LOCAL == 17 || LOCAL == 32)
-		CONTINUE
-	ELSEIF HAS_VAGINA(ARG) && (LOCAL == 18 || LOCAL == 33)
-		CONTINUE
-	ENDIF		
-	PRINTFORM %ABLNAME:LOCAL,12%:{ABL:ARG:LOCAL,5,LEFT} 
-	LOCAL:1 ++
-	SIF LOCAL:1 % 4 == 0
-		PRINTL 
-NEXT
-PRINTL
-PRINTL □ 性技 □---------------------------------------------------------------------
-LOCAL:1 = 0
-FOR LOCAL,50,60
-	SIF !STRLENS(ABLNAME:LOCAL)
-		CONTINUE
-	SIF !(HAS_VAGINA(ARG)) && (LOCAL == 52 || LOCAL == 54)
-		CONTINUE
-	PRINTFORM %ABLNAME:LOCAL,12%:{ABL:ARG:LOCAL,5,LEFT} 
-	LOCAL:1 ++
-	SIF LOCAL:1 % 4 == 0
-		PRINTL 
-NEXT
-
-@PRINT_STATE_MARK(角色)
-#DIM  角色
-#DIM  刻印番号
-#DIM  刻印番号最大値
-#DIM  セパレータ
-#DIM  改行
-#DIM  単行文字数
-#DIMS 合計文字列
-#DIMS 単行文字列
-
-PRINTL
-PRINTL □ 刻印 □---------------------------------------------------------------------
-IF 刻印番号最大値 == 0
-	刻印番号最大値 = VARSIZE("MARK")
-	FOR 刻印番号, 刻印番号最大値-1,-1,-1
-		IF MARKNAME:刻印番号 == ""
-			刻印番号最大値 = 刻印番号
-			BREAK
-		ENDIF
-	NEXT
-ENDIF
-
-セパレータ = 0
-単行文字数 = 0
-合計文字列 = %""%
-IF FLAG:真实模式 && 角色 != 0
-	FOR 刻印番号,6,12
-		IF MARK:角色:刻印番号 && (MARKNAME:刻印番号 != "")
-			単行文字列 = %"  "*セパレータ+GET_MARK_LEVEL_OWNERNAME(角色,刻印番号)%
-			IF (STRLENS(単行文字列)+単行文字数) > STRLENS(DRAWLINESTR)
-				セパレータ = 0
-				合計文字列 = %合計文字列+"<br>"+単行文字列%
-				単行文字数 = STRLENS(単行文字列)
-			ELSE
-				セパレータ = 1
-				合計文字列 = %合計文字列+単行文字列%
-				単行文字数 += STRLENS(単行文字列)
-			ENDIF
-		ENDIF
-	NEXT
-ELSE
-	FOR 刻印番号,0,5
-		IF MARK:角色:刻印番号 && (MARKNAME:刻印番号 != "")
-			単行文字列 = %"  "*セパレータ+GET_MARK_LEVEL_OWNERNAME(角色,刻印番号)%
-			IF (STRLENS(単行文字列)+単行文字数) > STRLENS(DRAWLINESTR)
-				セパレータ = 0
-				合計文字列 = %合計文字列+"<br>"+単行文字列%
-				単行文字数 = STRLENS(単行文字列)
-			ELSE
-				セパレータ = 1
-				合計文字列 = %合計文字列+単行文字列%
-				単行文字数 += STRLENS(単行文字列)
-			ENDIF
-		ENDIF
-	NEXT
-ENDIF
-
-HTML_PRINT 合計文字列
-
-RETURN 0
-[SKIPEND]

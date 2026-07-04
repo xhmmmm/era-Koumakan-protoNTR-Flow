@@ -64,24 +64,24 @@ RETURN 1
 #DIM 位置编号
 SELECTCASE FLAG:(100 + 位置编号)
 	CASE IS < 100
-		SETCOLOR 色設定_清潔度１
+		SETCOLOR 颜色_清洁度1
 		RETURNF "    最高"
 	CASE IS < 500
-		SETCOLOR 色設定_清潔度２
+		SETCOLOR 颜色_清洁度2
 		RETURNF "      高"
 	CASE IS < 1000
-		SETCOLOR 色設定_清潔度３
+		SETCOLOR 颜色_清洁度3
 		RETURNF "    较高"
 	CASE IS < 2000
-		SETCOLOR 色設定_清潔度４
+		SETCOLOR 颜色_清洁度4
 		RETURNF "      中"
 	CASE IS < 3500
-		SETCOLOR 色設定_清潔度５
+		SETCOLOR 颜色_清洁度5
 		RETURNF "    较低"
 	CASE IS < 5000
-		SETCOLOR 色設定_清潔度６
+		SETCOLOR 颜色_清洁度6
 		RETURNF "      低"
 	CASEELSE
-		SETCOLOR 色設定_清潔度７
+		SETCOLOR 颜色_清洁度7
 		RETURNF "垃圾之山"
 ENDSELECT

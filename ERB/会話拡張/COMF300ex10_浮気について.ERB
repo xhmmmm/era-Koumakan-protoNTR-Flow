@@ -130,7 +130,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ELSE
 		;浮気の証拠がない場合、嘘と責任転嫁で切り抜ける
 		PRINTFORML %CALLNAME:角色+"生气地说自己并没有出轨、并对怀疑自己的"+MSG_RE_LOVER(角色)+"大发脾气。"%
-		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。</font>"
+		HTML_PRINT @"<font color='#" +TOSTR(颜色_文本_备注,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。</font>"
 		SOURCE:角色:反感 += 150
 		SOURCE:角色:恐怖 += 100
 		SOURCE:角色:抑郁 += 50
@@ -143,7 +143,7 @@ ELSE
 	IF CFLAG:汚れ発覚 == 汚れ発覚_あり
 		;精液汚れを見つけられた場合、強姦だったということにして切り抜ける
 		PRINTFORML %CALLNAME:角色+"辩解说自己是被强奸了。"%
-		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		HTML_PRINT @"<font color='#" +TOSTR(颜色_文本_备注,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
 		CFLAG:覗き発覚回数 = 0
 		CFLAG:覗き発覚時行為 = 0
 		CFLAG:同席目撃回数 = 0
@@ -156,7 +156,7 @@ ELSE
 	ELSEIF (CFLAG:覗き発覚回数 > 0 && CFLAG:覗き発覚時行為 > 0) || (CFLAG:同席目撃回数 > 0 && CFLAG:同席目撃時行為 > 0)
 		;覗きバレしていた場合、強姦だったということにして切り抜ける
 		PRINTFORML %CALLNAME:角色+"质问"+MSG_LOVER(角色)+"明明看到自己被强奸为什么不出来帮助自己、是自己没有被帮助的价值吗？"%
-		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		HTML_PRINT @"<font color='#" +TOSTR(颜色_文本_备注,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
 		CFLAG:覗き発覚回数 = 0
 		CFLAG:覗き発覚時行為 = 0
 		CFLAG:同席目撃回数 = 0
@@ -174,7 +174,7 @@ ELSE
 	ELSE
 		;浮気の証拠がない場合、嘘と責任転嫁で切り抜ける
 		PRINTFORML %CALLNAME:角色+"生气地说自己并没有出轨、难道不值得信任吗？"%
-		HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
+		HTML_PRINT @"<font color='#" +TOSTR(颜色_文本_备注,"x") +"'>拿到证据的照片之后，就能让承认自己出轨了吧。。</font>"
 		SOURCE:角色:反感 += 100
 		SOURCE:角色:恐怖 += 100
 		SOURCE:角色:抑郁 += 100

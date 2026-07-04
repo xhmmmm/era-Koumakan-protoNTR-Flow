@@ -9,13 +9,13 @@ SIF FLAG:訪問者の嫌いな相手 >= CHARANUM
 	FLAG:訪問者の嫌いな相手 = 999
 PRINTL 项目设定
 PRINTFORM [ 1] %"喜欢的人",25,LEFT%
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 IF FLAG:訪問者のお気に入り == 999
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - 無し -
 ELSE
-	SETCOLOR 色設定_設定_肯定的
+	SETCOLOR 颜色_设定_肯定
 	IF FLAG:ランダム_訪問者のお気に入り == 0
 		PRINTFORML  %CALLNAME:(FLAG:訪問者のお気に入り)%
 	ELSE
@@ -25,10 +25,10 @@ ENDIF
 RESETCOLOR
 
 PRINTFORM [ 2] %"讨厌的人",25,LEFT%
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 IF FLAG:訪問者の嫌いな相手 == 999
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - 無し -
 ELSE
 	SETCOLOR 0xBBAADD
@@ -41,7 +41,7 @@ ENDIF
 RESETCOLOR
 
 PRINTFORM [ 3] %"ストライクゾーン下限",25,LEFT%
-SETCOLOR 色設定_設定_肯定的
+SETCOLOR 颜色_设定_肯定
 PRINT :
 SELECTCASE FLAG:訪問者のストライクゾーン下限
 	CASE 1
@@ -60,13 +60,13 @@ ENDSELECT
 RESETCOLOR
 
 PRINTFORM [10] %"喜欢去的地方",25,LEFT%
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 IF FLAG:訪問者の気になる場所 == 0
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - 無し -
 ELSE
-	SETCOLOR 色設定_設定_肯定的
+	SETCOLOR 颜色_设定_肯定
 	IF FLAG:ランダム_訪問者の気になる場所 == 0
 		PRINTFORML  %GetPlaceName(FLAG:訪問者の気になる場所)%
 	ELSE
@@ -75,25 +75,25 @@ ELSE
 ENDIF
 RESETCOLOR
 PRINT [11] 会在喜欢去的地方的附近逗留（2階から外へ降りた場合などは無効）
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 IF !GETBIT(FLAG:雑多設定, 4)
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - Off -
 ELSE
-	SETCOLOR 色設定_設定_肯定的
+	SETCOLOR 颜色_设定_肯定
 	PRINTL - On -
 ENDIF
 RESETCOLOR
 
 PRINTFORM [12] %"喜欢与对象一起去的地方",25,LEFT%
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 IF FLAG:訪問者のお気に入りの場所 == 0
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - 無し -
 ELSE
-	SETCOLOR 色設定_設定_肯定的
+	SETCOLOR 颜色_设定_肯定
 	IF FLAG:ランダム_訪問者のお気に入りの場所 == 0
 		PRINTFORML  %GetPlaceName(FLAG:訪問者のお気に入りの場所)%
 	ELSE
@@ -103,20 +103,20 @@ ENDIF
 RESETCOLOR
 
 PRINTFORM [20] %"訪問者的外貌追加",25,LEFT%
-SETCOLOR 色設定_テキスト_備考
+SETCOLOR 颜色_文本_备注
 PRINT :
 
 IF !GETBIT(FLAG:雑多設定, 3)
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL - Off -
 ELSE
-	SETCOLOR 色設定_設定_肯定的
+	SETCOLOR 颜色_设定_肯定
 	PRINTL - On -
 ENDIF
 RESETCOLOR
 
 IF !GETBIT(FLAG:雑多設定, 3)
-	SETCOLOR 色設定_設定_無効化
+	SETCOLOR 颜色_设定_无效化
 	PRINTL [-] 訪問者的外貌设定
 ELSE
 	PRINTL [21] 訪問者的外貌设定
@@ -130,9 +130,9 @@ IF RESULT == 1
 	PRINTL 以下より選択してください
 	FOR LOCAL, 0, CHARANUM
 		SIF LOCAL == FLAG:訪問者の嫌いな相手
-			SETCOLOR 色設定_テキスト_備考
+			SETCOLOR 颜色_文本_备注
 		PRINTFORM [{LOCAL, 3}]%CALLNAME:LOCAL, 16, LEFT%
-		SETCOLOR 色設定_テキスト_無効
+		SETCOLOR 颜色_文本_无效
 		SIF !FLAG:真实模式
 			PRINTFORM (屈服度:{CFLAG:LOCAL:21, 5})
 		RESETCOLOR
@@ -172,9 +172,9 @@ ELSEIF RESULT == 2
 	PRINTL 以下より選択してください
 	FOR LOCAL, 0, CHARANUM
 		SIF LOCAL == FLAG:訪問者の嫌いな相手
-			SETCOLOR 色設定_テキスト_備考
+			SETCOLOR 颜色_文本_备注
 		PRINTFORM [{LOCAL, 3}]%CALLNAME:LOCAL, 16, LEFT%
-		SETCOLOR 色設定_テキスト_無効
+		SETCOLOR 颜色_文本_无效
 		SIF !FLAG:真实模式
 			PRINTFORM (屈服度:{CFLAG:LOCAL:21, 5})
 		RESETCOLOR

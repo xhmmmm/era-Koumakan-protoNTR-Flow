@@ -85,7 +85,7 @@ IF CAN_MOVE(CFLAG:MASTER:当前位置, targetArea) == 1
 			isSoundOnly = 0
 		ELSE
 			PRINTFORML %CALLNAME:MASTER + "は仕方なく、耳を寄せて" + GetPlaceName(targetArea) + "の様子をうかがった……。"%
-			HTML_PRINT @"<font color='#" +TOSTR(色設定_テキスト_備考,"x") +"'>ＮＴＲ筒抜けモードを有効にすると、採光窓から中を窥视事ができるようになります。</font>"
+			HTML_PRINT @"<font color='#" +TOSTR(颜色_文本_备注,"x") +"'>ＮＴＲ筒抜けモードを有効にすると、採光窓から中を窥视事ができるようになります。</font>"
 			isSoundOnly = 1
 		ENDIF
 	ENDIF

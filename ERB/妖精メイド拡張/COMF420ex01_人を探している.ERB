@@ -27,11 +27,11 @@ FOR キャラ番号,1,CHARANUM
 	PRINTFORM %" "*MAX(0,(20-STRLENS(ボタン文字列)))%
 	PRINTFORM %TOSTR(CFLAG:キャラ番号:好感度,"#####0"),7%
 	PRINTFORM %TOSTR(CFLAG:キャラ番号:屈服度,"#####0"),7%
-	SETCOLOR 色設定_状態_恋慕
+	SETCOLOR 颜色_状态_恋慕
 	PRINTFORM %"恋慕"*(TALENT:キャラ番号:恋慕>0),5%
-	SETCOLOR 色設定_状態_ＮＴＲ
+	SETCOLOR 颜色_状态_ＮＴＲ
 	PRINTFORM %"NTR "*(TALENT:キャラ番号:NTR>0),5%
-	SETCOLOR 色設定_状態_睡眠中
+	SETCOLOR 颜色_状态_睡眠中
 	PRINTFORM %"睡眠"*(CFLAG:キャラ番号:睡眠>0),5%
 	RESETCOLOR
 	PRINTFORM %" "+CHARA_KATUDOU(キャラ番号)%

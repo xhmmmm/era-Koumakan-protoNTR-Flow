@@ -25,7 +25,7 @@ IF RESULT == 1
 		PRINTL 请选择改变NAME的角色
 		FOR LOCAL, 0, CHARANUM
 			PRINTFORM [{LOCAL, 3}]%NAME:LOCAL, 16, LEFT%
-			SETCOLOR 色設定_テキスト_備考
+			SETCOLOR 颜色_文本_备注
 			PRINTFORML (%CALLNAME:LOCAL%)
 			RESETCOLOR
 		NEXT
@@ -36,7 +36,7 @@ IF RESULT == 1
 			LOCAL = RESULT
 			PRINTL 
 			PRINTFORM %NAME:LOCAL%の名前を入力してください
-			SETCOLOR 色設定_テキスト_備考
+			SETCOLOR 颜色_文本_备注
 			PRINTL 　　(無入力でデフォルトに戻す)
 			RESETCOLOR
 			INPUTS
@@ -69,7 +69,7 @@ IF RESULT == 1
 			LOCAL = RESULT
 			PRINTL 
 			PRINTFORM %CALLNAME:LOCAL%の名前を入力してください
-			SETCOLOR 色設定_テキスト_備考
+			SETCOLOR 颜色_文本_备注
 			PRINTL 　　(無入力でデフォルトに戻す)
 			RESETCOLOR
 			INPUTS
@@ -100,17 +100,17 @@ ELSEIF RESULT == 2
 	PRINTL - 設定
 	PRINT [0] 处女設定：
 	IF select & 1
-		SETCOLOR 色設定_設定_肯定的
+		SETCOLOR 颜色_设定_肯定
 		PRINTFORML 有
 	ELSE
-		SETCOLOR 色設定_設定_無効化
+		SETCOLOR 颜色_设定_无效化
 		PRINTFORML 无
 	ENDIF
 	RESETCOLOR
 	PRINTL 
 	FOR LOCAL, 1, CHARANUM
 		PRINTFORM [{LOCAL, 3}]%NAME:LOCAL, 16, LEFT%
-		SETCOLOR 色設定_テキスト_備考
+		SETCOLOR 颜色_文本_备注
 		PRINTFORML (%CALLNAME:LOCAL%)
 		RESETCOLOR
 	NEXT
@@ -148,10 +148,10 @@ ELSEIF RESULT == 3
 	PRINTFORML 把%CALLNAME:MASTER%以外的人物全都初始化吗？
 	PRINT [0] 处女設定：
 	IF select & 1
-		SETCOLOR 色設定_設定_肯定的
+		SETCOLOR 颜色_设定_肯定
 		PRINTFORML 有
 	ELSE
-		SETCOLOR 色設定_設定_無効化
+		SETCOLOR 颜色_设定_无效化
 		PRINTFORML 无
 	ENDIF
 	RESETCOLOR

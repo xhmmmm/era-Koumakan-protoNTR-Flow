@@ -18,22 +18,6 @@ FOR LOCAL,80,130
 		PRINTL 
 NEXT
 PRINTL
-; PRINTL □ 特殊经验 □-----------------------------------------------------------------------
-; LOCAL:1 = 0
-; FOR LOCAL,85,91
-; 	SIF !STRLENS(EXPNAME:LOCAL)85,86,87,88,89,90,
-; 		CONTINUE
-; 	; SIF !EXP:角色:LOCAL
-; 	; 	CONTINUE
-; 	; PRINTFORM %EXPNAME:LOCAL,18%:{MIN(EXP:角色:LOCAL,99999),5,RIGHT}
-; 	PRINTFORM %EXPNAME:LOCAL,20%:{EXP:角色:LOCAL,6,LEFT} 
-; 	LOCAL:1 += 1
-; 	SIF LOCAL:1 % 3 == 0
-; 		PRINTL 
-; NEXT
-
-
-
 
 ;❤
 @PRINT_STATE_MEMORIAL(角色)
@@ -50,15 +34,15 @@ IF CFLAG:角色:初始无接吻经验
 		IF CFLAG:角色:初吻丧失对象 == 人物_訪問者
 			CALL COLORMESSAGE(@"%CSTR:角色:初吻丧失记录%",0xE178C8,1)
 		ELSE
-			CALL COLORMESSAGE(@"%CSTR:角色:初吻丧失记录%",C_PINK,1)
+			CALL COLORMESSAGE(@"%CSTR:角色:初吻丧失记录%",颜色_粉,1)
 		ENDIF
 	ELSEIF !CSVCFLAG(角色, GETNUM(CFLAG, "初始无接吻经验"))
-		CALL COLORMESSAGE(@"在这个世界线里，尚还没有拥吻过心爱之人的嘴唇",C_YELLOW,1)
+		CALL COLORMESSAGE(@"在这个世界线里，尚还没有拥吻过心爱之人的嘴唇",颜色_黄,1)
 	ELSE
-		CALL COLORMESSAGE(@"诱人的双唇还在等待着能撬开它的嘴唇",C_YELLOW,1)
+		CALL COLORMESSAGE(@"诱人的双唇还在等待着能撬开它的嘴唇",颜色_黄,1)
 	ENDIF
 ELSE
-	CALL COLORMESSAGE(@"对第一位心爱之人的吻，在和%CALLNAME:MASTER%相遇之前失去了",C_AQUA,1)
+	CALL COLORMESSAGE(@"对第一位心爱之人的吻，在和%CALLNAME:MASTER%相遇之前失去了",颜色_水青,1)
 ENDIF
 SIF EXP:角色:接吻经验
 	PRINTFORML 现在为止有过{EXP:角色:接吻经验}次接吻经验
@@ -102,10 +86,10 @@ IF CSTR:角色:A处女丧失记录 != ""
 	IF CFLAG:角色:处女丧失对象_A == 人物_訪問者
 		CALL COLORMESSAGE(@"%CSTR:角色:A处女丧失记录%",0xE178C8,1)
 	ELSE
-		CALL COLORMESSAGE(@"%CSTR:角色:A处女丧失记录%",C_PINK,1)
+		CALL COLORMESSAGE(@"%CSTR:角色:A处女丧失记录%",颜色_粉,1)
 	ENDIF
 ELSEIF !EXP:角色:Ａ性交经验
-	CALL COLORMESSAGE(@"崭新的第二性器还未被人涉足",C_YELLOW,1)
+	CALL COLORMESSAGE(@"崭新的第二性器还未被人涉足",颜色_黄,1)
 ELSE
 	PRINTFORML 
 ENDIF
@@ -116,36 +100,6 @@ SELECTCASE ABL:角色:Ａ感觉
 		PRINT 感度良好　
 ENDSELECT
 IF 角色
-[SKIPSTART]
-	SELECTCASE 挿入不可(角色)
-		CASE 3
-			PRINTFORML 无论如何也无法容纳%CALLNAME:MASTER%的阴茎的尺寸
-			LOCAL:6 ++
-		CASE 2
-			IF EXP:角色:Ａ经验 < 50 && TALENT:MASTER:禁断的知识
-				PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
-				LOCAL:6 ++
-			ELSEIF !TALENT:MASTER:禁断的知识
-				PRINTFORML %CALLNAME:MASTER%的阴茎就这様插进去也太残酷了吧
-				LOCAL:6 ++
-			ENDIF
-		CASE 1
-			IF EXP:角色:Ａ经验 < 50 || !TALENT:MASTER:禁断的知识
-				PRINTFORML 不稍微放松一些就没办法把%CALLNAME:MASTER%的阴茎放进来吧
-				LOCAL:6 ++
-			ENDIF
-		CASE -1
-			IF ABL:角色:Ａ感觉 < 2
-				PRINTFORML 与%CALLNAME:MASTER%阴茎的尺寸有些不合
-				LOCAL:6 ++
-			ENDIF
-		CASE -2
-			IF ABL:角色:Ａ感觉 < 3
-				PRINTFORML 太大了即使插进去也不会感到舒服的様子…
-				LOCAL:6 ++
-			ENDIF
-	ENDSELECT
-[SKIPEND]
 	SELECTCASE ABL:角色:Ａ感觉
 		CASE IS >= 5
 			PRINTL 极品名器
@@ -184,16 +138,6 @@ SELECTCASE ABL:角色:肛射中毒
 		PRINTFORML 每当被肛内射精的都会浑身躁动难耐
 ENDSELECT
 
-; SIF ABL:角色:Ａ感觉 >= 5 && CFLAG:角色:积攒度 > 300 && 角色
-; 	PRINTFORML 想和%CALLNAME:MASTER%做想的不得了
-
-; IF 充填率(角色,2) >= 100
-; 	PRINTFORML 直肠的所有容量完完全全的被精液填满
-; ELSEIF 充填率(角色,2) >= 50
-; 	PRINTFORML 直肠内蠢动着大量的精子
-; ELSEIF 充填率(角色,2) >= 20
-; 	PRINTFORML 直肠内精子在有活力地游来游去
-; ENDIF
 PRINTL
 IF HAS_VAGINA(角色)
 	PRINTL 【膣】
@@ -202,18 +146,18 @@ IF HAS_VAGINA(角色)
 		IF CFLAG:角色:处女丧失对象_V == 人物_訪問者
 			CALL COLORMESSAGE(@"%CSTR:角色:V处女丧失记录%",0xE178C8,1)
 		ELSE
-			CALL COLORMESSAGE(@"%CSTR:角色:V处女丧失记录%",C_PINK,1)
+			CALL COLORMESSAGE(@"%CSTR:角色:V处女丧失记录%",颜色_粉,1)
 		ENDIF
 	ELSEIF !CSVTALENT(角色, GETNUM(TALENT, "处女")) && TALENT:角色:处女
-		CALL COLORMESSAGE(@"在这个世界线里，此处还没有迎来过心爱之人的涉足",C_YELLOW,1)
+		CALL COLORMESSAGE(@"在这个世界线里，此处还没有迎来过心爱之人的涉足",颜色_黄,1)
 	ELSEIF !CSVTALENT(角色, GETNUM(TALENT, "处女")) && !TALENT:角色:处女
-		CALL COLORMESSAGE(@"在和%CALLNAME:MASTER%相遇之前失去了",C_AQUA,1)
+		CALL COLORMESSAGE(@"在和%CALLNAME:MASTER%相遇之前失去了",颜色_水青,1)
 	ELSE
 		IF TALENT:角色:处女 == 1
 			IF ABL:角色:Ｖ感觉 >= 5
-				CALL COLORMESSAGE(@"还没被任何人进入过，入口的处女膜还在等待心爱之人的到来，但即便如此，当给予足够的刺激时，就会轻易地陷入绝顶",C_YELLOW,1)
+				CALL COLORMESSAGE(@"还没被任何人进入过，入口的处女膜还在等待心爱之人的到来，但即便如此，当给予足够的刺激时，就会轻易地陷入绝顶",颜色_黄,1)
 			ELSE
-				CALL COLORMESSAGE(@"还没被任何人进入过，入口的处女膜还在等待心爱之人的到来",C_YELLOW,1)
+				CALL COLORMESSAGE(@"还没被任何人进入过，入口的处女膜还在等待心爱之人的到来",颜色_黄,1)
 			ENDIF
 		ENDIF
 	ENDIF
@@ -468,15 +412,3 @@ ENDSELECT
 ;较大 1		4		3		2		1		0		-1	 	-2
 ;特大 2		5		4		3		2		1		0	 	-1
 ;极大 3		6		5		4		3		2		1		 0	;这个实际上不存在，阴茎2就是极限了，考虑访问者的判定值要不要+1
-
-[SKIPSTART]
-;-------------------------------------------------------------------------------
-;体験の记録を表示
-@PRINT_STATE_MEMORIAL(角色)
-#DIM 角色
-PRINTFORML %"初次接吻      ："+CSTR:角色:初吻丧失记录%
-PRINTFORML %"Ｍ初体验      ："+CSTR:角色:M处女丧失记录%
-PRINTFORML %"处女丧失      ："+CSTR:角色:V处女丧失记录%
-PRINTFORML %"肛门处女丧失  ："+CSTR:角色:A处女丧失记录%
-RETURN 0
-[SKIPEND]

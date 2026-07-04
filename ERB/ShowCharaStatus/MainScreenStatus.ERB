@@ -163,7 +163,7 @@ IF CFLAG:うふふ
 		PRINTBUTTON "＞", 819
 		PRINT ]
 	ELSE
-		SETCOLOR C_L_GRAY
+		SETCOLOR 颜色_浅灰
 		PRINTBUTTON  "[关闭动画]", 817
 		RESETCOLOR
 	ENDIF
@@ -754,22 +754,22 @@ ENDIF
 PRINTFORM %日期_月份名称(日期_月数)%{日期_天数}日[%TOSTR(DAY)+"日目]("+GET_DAY()+") "+TOSTR(TIME/60,"00")+"時"+TOSTR(TIME%60,"00")+"分"%
 IF 6<=TIME/60 && TIME/60<=18
 	;06時から18時までは昼間
-	SETCOLOR 色設定_日時_昼間
+	SETCOLOR 颜色_时间_白天
 	PRINTFORM %UNICODE(0x2600)%
 ELSE
 	;18時から06時までは夜間
-	SETCOLOR 色設定_日時_夜間
+	SETCOLOR 颜色_时间_夜间
 	PRINTFORM %UNICODE(0x262A)%
 ENDIF
 RESETCOLOR
 PRINTFORM （%天候(天候値)%）{FLAG:60}℃
 IF DATETIME() - CFLAG:(ARG:0):起床時間 >= 要睡眠経過時間
 	;起床から16時間経過していれば[要睡眠]
-	SETCOLOR 色設定_状態_要睡眠
+	SETCOLOR 颜色_状态_要睡眠
 	PRINTFORM %"[要睡眠]"%
 ELSEIF DATETIME() - CFLAG:(ARG:0):起床時間 >= 睡眠可経過時間
 	;起床から12時間経過していれば[睡眠可]
-	SETCOLOR 色設定_状態_睡眠可
+	SETCOLOR 颜色_状态_可睡眠
 	PRINTFORM %"[睡眠可]"%
 ENDIF
 CALL INFO_PrintRestroom(ARG:0)
@@ -795,25 +795,25 @@ ELSE
 	PRINTFORM %"清潔度:"%
 	SELECTCASE FLAG:(100+CFLAG:(ARG:0):当前位置)
 		CASE IS < 100
-			SETCOLOR 色設定_清潔度１
+			SETCOLOR 颜色_清洁度1
 			PRINTFORM %"最高"%
 		CASE IS < 500
-			SETCOLOR 色設定_清潔度２
+			SETCOLOR 颜色_清洁度2
 			PRINTFORM %"高"%
 		CASE IS < 1000
-			SETCOLOR 色設定_清潔度３
+			SETCOLOR 颜色_清洁度3
 			PRINTFORM %"较高"%
 		CASE IS < 2000
-			SETCOLOR 色設定_清潔度４
+			SETCOLOR 颜色_清洁度4
 			PRINTFORM %"中"%
 		CASE IS < 3500
-			SETCOLOR 色設定_清潔度５
+			SETCOLOR 颜色_清洁度5
 			PRINTFORM %"较低"%
 		CASE IS < 5000
-			SETCOLOR 色設定_清潔度６
+			SETCOLOR 颜色_清洁度6
 			PRINTFORM %"低"%
 		CASEELSE
-			SETCOLOR 色設定_清潔度７
+			SETCOLOR 颜色_清洁度7
 			PRINTFORM %"垃圾之山"%
 	ENDSELECT
 	RESETCOLOR
@@ -1137,10 +1137,10 @@ FOR LOOP_CHR,1,CHARANUM
 			PRINT 、
 		ENDIF
 		IF CFLAG:LOOP_CHR:睡眠
-			SETCOLOR 色設定_状態_睡眠中
+			SETCOLOR 颜色_状态_睡眠中
 			LOCALS = (睡眠中)
 		ELSEIF CFLAG:LOOP_CHR:同行
-			SETCOLOR 色設定_状態_同行中
+			SETCOLOR 颜色_状态_同行中
 			LOCALS = (同行中)
 		ELSE
 			LOCALS = 
@@ -1158,7 +1158,7 @@ IF 角色 > 0
 		PRINTFORM 屈服度:{CFLAG:21}
 	PRINT )
 	IF CFLAG:角色:怒意
-		SETCOLOR 色設定_状態_激おこ
+		SETCOLOR 颜色_状态_激怒
 		PRINTFORM %"怒"%
 		RESETCOLOR
 	ELSE
@@ -1197,7 +1197,7 @@ RETURN 0
 PRINTFORM %"气氛:"%
 IF BASE:(ARG:0):气氛 == MAXBASE:(ARG:0):气氛
 	;最大だったらピンク色
-	SETCOLOR 色設定_状態_発情中
+	SETCOLOR 颜色_状态_发情
 ENDIF
 PRINTFORML %UNICODE(0x2764)*LIMIT(BASE:(ARG:0):气氛/200,0,5)+UNICODE(0x2715)*(5-LIMIT(BASE:(ARG:0):气氛/200,0,5))%
 RESETCOLOR
@@ -1211,7 +1211,7 @@ RETURN 0
 PRINTFORM %"理性:"%
 IF BASE:(ARG:0):理性 < 100
 	;100以下なら黄色
-	SETCOLOR 色設定_状態_理性的
+	SETCOLOR 颜色_状态_理性
 ENDIF
 PRINTFORML %"★"*(MAX(BASE:(ARG:0):理性/200,1))%
 RESETCOLOR
@@ -1301,10 +1301,10 @@ RETURNF ""
 @INFO_PrintRestroom(ARG:0)
 SELECTCASE REST_NeedRestroom(ARG:0)
 	CASE 1
-		SETCOLOR 色設定_状態_注意
+		SETCOLOR 颜色_状态_注意
 		PRINTFORM %"[尿意]"%
 	CASE 2
-		SETCOLOR 色設定_状態_警告
+		SETCOLOR 颜色_状态_警告
 		PRINTFORM %"[尿意]"%
 ENDSELECT
 RETURN 0
@@ -1466,12 +1466,3 @@ IF 乳头可见判定(ARG)
 	CALL 确认乳头颜色(ARG)
 	CALL 确认乳头大小(ARG)
 ENDIF
-
-
-
-
-
-
-
-
-
