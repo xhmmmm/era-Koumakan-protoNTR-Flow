@@ -117,19 +117,17 @@ FOR LOCAL,0,CHARANUM
 	ENDIF
 NEXT
 ;-------------------------------------------------
-;情報表示
+;显示信息
 ;-------------------------------------------------
 CALL UI_重分隔
 ;当前时间
 CALL INFO_PrintCurrentTime(MASTER)
 CALL UI_重分隔
-;位置（用节标题分出独立区块）
-CALL UI_节标题("位置")
-CALL INFO_PrintCurrentPosition(MASTER)
-;在场人员（已在INFO_SetTrainMode内用节标题显示）
+;位置 + 在场人员
+CALL INFO_PrintPositionLine(MASTER)
 CALL INFO_SetTrainMode
 ;-------------------------------------------------
-;TARGET情報
+;显示TARGET的状态
 ;-------------------------------------------------
 IF TARGET > 0
 	CALL UI_方框上边缘(NAME:TARGET)
@@ -778,6 +776,75 @@ RESETCOLOR
 RETURN
 
 ;-------------------------------------------------------------------------------
+;位置信息行：✦ 位置：XXX 清洁度：YYY ────...───
+;位置名保持默认色，清洁度值用对应颜色，其余用主题星色
+;@param ARG:0 角色编号
+;-------------------------------------------------------------------------------
+@INFO_PrintPositionLine(ARG:0)
+#DIMS 位置名
+#DIMS 清洁度字段
+#DIM 清洁度颜色
+#DIM 内容宽度
+#DIM 剩余宽度
+;获取位置名
+TRYCCALLFORM %"GetPlaceName_"+TOSTR(CFLAG:(ARG:0):当前位置)%, ARG:0
+	位置名 = %GetPlaceName(CFLAG:(ARG:0):当前位置)%(%RESULTS:0%)
+CATCH
+	位置名 = %GetPlaceName(CFLAG:(ARG:0):当前位置)%
+ENDCATCH
+;获取清洁度
+清洁度字段 =
+清洁度颜色 = 0
+IF !FLAG:ゴミ表示OFF && TFLAG:COMABLE管理 != 2
+	SELECTCASE FLAG:(100+CFLAG:(ARG:0):当前位置)
+		CASE IS < 100
+			清洁度颜色 = 颜色_清洁度1
+			清洁度字段 = 最高
+		CASE IS < 500
+			清洁度颜色 = 颜色_清洁度2
+			清洁度字段 = 高
+		CASE IS < 1000
+			清洁度颜色 = 颜色_清洁度3
+			清洁度字段 = 较高
+		CASE IS < 2000
+			清洁度颜色 = 颜色_清洁度4
+			清洁度字段 = 中
+		CASE IS < 3500
+			清洁度颜色 = 颜色_清洁度5
+			清洁度字段 = 较低
+		CASE IS < 5000
+			清洁度颜色 = 颜色_清洁度6
+			清洁度字段 = 低
+		CASEELSE
+			清洁度颜色 = 颜色_清洁度7
+			清洁度字段 = 垃圾之山
+	ENDSELECT
+ENDIF
+内容宽度 = (18 + STRLENS(位置名) + STRLENS(清洁度字段))/2
+剩余宽度 = UI_窗口宽度 - 内容宽度
+SIF 剩余宽度 < 0
+	剩余宽度 = 0
+;输出
+SETCOLOR 颜色_主题_星
+PRINTFORM ✦ 位置：
+RESETCOLOR
+PRINTFORM %位置名%
+IF STRLENS(清洁度字段) > 0
+	SETCOLOR 颜色_主题_星
+	PRINTFORM  清洁度：
+	RESETCOLOR
+	SETCOLOR 清洁度颜色
+	PRINTFORM %清洁度字段%
+	RESETCOLOR
+ENDIF
+SETCOLOR 颜色_主题_星
+PRINTFORM  %UI_重复横线(剩余宽度)%
+RESETCOLOR
+PRINTL
+RETURN 0
+
+;-------------------------------------------------------------------------------
+;TODO 已经废弃，保留的原因是有气味系统相关的内容，但重写的时候没考虑到它，等以后决定气味系统要不要用的时候再做决定
 ;当前位置情報を表示する
 ;@param ARG:0 キャラクターの番号
 @INFO_PrintCurrentPosition(ARG:0)
@@ -876,8 +943,8 @@ ENDIF
 RETURN 0
 
 ;-------------------------------------------------------------------------------
-;単一キャラの体力・气力・勃起・精力・射精・母乳を表示（每个条一行）
-;@param ARG:0 表示するキャラクター番号
+;显示一个角色的体力、气力、勃起、精力、射精、母乳的进度条
+;@param ARG:0 角色编号
 ;-------------------------------------------------------------------------------
 @INFO_PrintCharaBar(ARG:0)
 ;体力
@@ -1062,8 +1129,6 @@ ENDIF
 ;同じ場所にいるキャラクターを表示
 ;0:ループ用キャラクター番号、1:同じ場所にいる人数
 同室人数 = 0
-CALL UI_节标题("在场")
-PRINTFORM  
 ;访问者
 IF FLAG:访问者当前位置 == POS_NOW
 	IF 同室人数
