@@ -1168,22 +1168,22 @@ RETURN 0
 DispCount = 0
 CALL UI_竖边框
 FOR ParamNo, 0, 101
-	;パラメータ名が無いものは処理しない
+	;跳过没有PALAMNAME的PALAM
 	IF !STRLENS(PALAMNAME:ParamNo)
 		CONTINUE
 	ENDIF
 	;何度も使うので現在のPALAMLVを保持
 	ParamLv = GETPALAMLV(PALAM:角色:ParamNo,15)
-	;パラメータ名と現在のレベルを表示
+	;显示PALAM名和当前等级
 	PRINTFORM %" "+PALAMNAME:ParamNo + "Lv"%{ParamLv,2}
 	PRINTFORM %" "%
-	;PALAMLVが15以上なら上限扱い
+	;PALAMLV超过15就当作全满处理
 	IF ParamLv >= 15
-		SETCOLOR 颜色_主题_星
-		PRINT ★★★★★★
+		SETCOLOR 颜色_灰粉
+		PRINTFORM %"░"*8%
 		RESETCOLOR
 	ELSE
-		;進捗バー（満=░(柔和粉) 空=░(深灰)、長さ8）
+		;进度条长度为8，用`颜色_灰粉`和`颜色_深灰`填色
 		SETCOLOR 颜色_灰粉
 		PRINTFORM %"░"*LIMIT(  8 * (PALAM:角色:ParamNo - PALAMLV:ParamLv) / (PALAMLV:(ParamLv+1) - PALAMLV:ParamLv), 0, 8)%
 		RESETCOLOR
