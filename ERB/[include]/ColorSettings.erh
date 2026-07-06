@@ -1,7 +1,12 @@
-﻿;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
 ;颜色设定集中定义
 ;所有颜色常量统一以「颜色_」开头
 ;-------------------------------------------------------------------------------
+
+;主题装饰色（红魔馆魔法奇幻风）
+#DIM CONST 颜色_主题_星     = 0xE6C35C  ;暗金，✦ 装饰
+#DIM CONST 颜色_主题_边框   = 0x8B6B3A  ;暗金，卡片边框
+#DIM CONST 颜色_主题_次星   = 0xB8A06A  ;浅金，✧ 子标题
 
 ;清洁度（位置/房间整洁度）配色
 #DIM CONST 颜色_清洁度1      = 0x39E639
@@ -67,16 +72,24 @@
 ;基础色板——黄系
 #DIM CONST 颜色_黄   = 0xFFFF00
 #DIM CONST 颜色_暗黄 = 0x505020
+#DIM CONST 颜色_浊黄 = 0xB0B040
 #DIM CONST 颜色_奶油 = 0xFFFFCC
 
 ;基础色板——红/橙系
+#DIM CONST 颜色_橙红 = 0xFF7800
+#DIM CONST 颜色_橘红 = 0xFF4500
 #DIM CONST 颜色_橙   = 0xFFA500
 #DIM CONST 颜色_深橙 = 0xFF6400
+#DIM CONST 颜色_褐橙 = 0xB05020
 #DIM CONST 颜色_红   = 0xFF0000
 #DIM CONST 颜色_深红 = 0x990000
+#DIM CONST 颜色_品红 = 0xFF00FF
+#DIM CONST 颜色_紫   = 0x960096
 #DIM CONST 颜色_淡紫 = 0xC070C0
 
 ;基础色板——蓝系
+#DIM CONST 颜色_亮青 = 0x00FFFF
+#DIM CONST 颜色_灰青 = 0x40A0A0
 #DIM CONST 颜色_蓝     = 0x0000FF
 #DIM CONST 颜色_水青   = 0x66FFFF
 #DIM CONST 颜色_淡蓝   = 0x7070C0
@@ -85,11 +98,19 @@
 #DIM CONST 颜色_天蓝   = 0xA0D2FF
 
 ;基础色板——无彩色
+#DIM CONST 颜色_纯白 = 0xFFFFFF
 #DIM CONST 颜色_白    = 0xC0C0C0
+#DIM CONST 颜色_银   = 0xA0A0A0
 #DIM CONST 颜色_浅灰 = 0x777777
+#DIM CONST 颜色_中灰 = 0x808080
+#DIM CONST 颜色_深灰 = 0x3C3C3C
 #DIM CONST 颜色_灰   = 0x404040
+#DIM CONST 颜色_黑   = 0x1E1E1E
 
 ;基础色板——粉系
+#DIM CONST 颜色_粉红 = 0xFF96C8
+#DIM CONST 颜色_暗粉红 = 0xC87090
+#DIM CONST 颜色_灰粉 = 0xC890B0
 #DIM CONST 颜色_粉   = 0xFFCCFF
 #DIM CONST 颜色_深粉 = 0x990099
 #DIM CONST 颜色_热粉 = 0xFF69B4

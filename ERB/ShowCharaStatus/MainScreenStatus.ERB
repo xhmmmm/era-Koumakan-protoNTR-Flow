@@ -119,37 +119,53 @@ NEXT
 ;-------------------------------------------------
 ;情報表示
 ;-------------------------------------------------
-DRAWLINE
-;現在時刻と睡眠可否の表示
+CALL UI_重分隔
+;当前时间
 CALL INFO_PrintCurrentTime(MASTER)
-;当前位置と汚れ状態の表示
+CALL UI_重分隔
+;位置（用节标题分出独立区块）
+CALL UI_节标题("位置")
 CALL INFO_PrintCurrentPosition(MASTER)
-;-------------------------------------------------
-;TARGET情報とモード切り替え
-;-------------------------------------------------
+;在场人员（已在INFO_SetTrainMode内用节标题显示）
 CALL INFO_SetTrainMode
-;特殊プレイ状況を表示する
-CALL SHOW_EQUIP_2
-;HP、MP、勃起、精力のバーを表示する
-CALL INFO_PrintHPMPBar(TARGET,MASTER)
-;ターゲットがいるなら气氛と理性の表示
+;-------------------------------------------------
+;TARGET情報
+;-------------------------------------------------
 IF TARGET > 0
-	CALL INFO_绘制角色配件(TARGET)
+	CALL UI_方框上边缘(NAME:TARGET)
+	CALL INFO_PrintTargetStatusLine(TARGET)
+	CALL INFO_PrintTargetRelation(TARGET)
 	CALL INFO_PrintTargetCloth(TARGET)
-	CALL INFO_PrintTargetMood(TARGET)
-	CALL INFO_PrintTargetReason(TARGET)
-	CALL INFO_PrintTargetFeeling(TARGET)
+	CALL INFO_PrintCharaBar(TARGET)
+	CALL SHOW_EQUIP_2
+	CALL UI_方框内子标题("状态")
 	CALL INFO_PrintPalams(TARGET)
+	CALL UI_方框下边缘
 ENDIF
-;●マスター状態呼び出し
-PRINTFORML %"自身状态："+SHOW_EQUIP_3(MASTER)%
+;玩家状态
+CALL UI_方框上边缘(CALLNAME:MASTER)
+CALL INFO_PrintCharaBar(MASTER)
+;显示玩家的状态，仅在没有TARGET时显示
+;其实我觉得这个可能也是可以移除的，因为在Flow版本里，玩家不是被行为者
+;但我认为有待观察，所以可以先留着
+IF TARGET <= 0
+	CALL SHOW_EQUIP_2
+ENDIF
+; TODO 在确认删除玩家可能会被塞跳蛋的情况后将此处代码删除，现在先注释处理
+; 这是输出玩家角色有没有塞跳蛋的，是原版玩家为女的情况下才有的，我的评价是先留着，但以后迟早要删，到时候换成空行
+; CALL UI_竖边框
+; PRINTFORM %SHOW_EQUIP_3(MASTER)%
+; CALL UI_竖边框
+; PRINTL
+CALL UI_方框内子标题("状态")
 CALL INFO_PrintPalams(MASTER)
+CALL UI_方框下边缘
 IF TFLAG:COMABLE管理 == 2 || TFLAG:COMABLE管理 == 3
 	;うふふ中
-	DRAWLINE
 	CALL SHOW_EQUIP_1
 ENDIF
 ;数值输出结束，图像区域开始
+CALL UI_重分隔
 PRINT -- 
 PRINTBUTTON  "[人物图像]", 816
 SIF FLAG:AA表示
@@ -176,9 +192,8 @@ IF FLAG:AA表示
 ENDIF
 PRINTL
 ;分割线，图像区域完
-CUSTOMDRAWLINE =
+CALL UI_重分隔
 IF TFLAG:COMABLE管理 == 3 || TFLAG:COMABLE管理 == 4
-	;カウンター
 	FOR LOCAL,1,CHARANUM
 		SIF TARGET:LOCAL <= 0
 			CONTINUE
@@ -399,19 +414,25 @@ PUTFORM {DAY}日目
 ;（場所変更、マスターや助手が使用する道具等）
 ;@return 1:xxx,0:xxx
 @SHOW_EQUIP_2
+#DIMS 状态内容
+#DIM 行宽 = 0
+CALL UI_竖边框
+状态内容 = 
 SIF TEQUIP:28
-	PRINTFORM [录像摄影中(テープ残量{TEQUIP:28}]
+	状态内容 += @"[录像摄影中(テープ残量{TEQUIP:28}]"
 IF TEQUIP:野外PLAY == 2
-	PRINT  [野外PLAY中]
+	状态内容 += @"[野外PLAY中]"
 ELSEIF TEQUIP:野外PLAY == 1
-	PRINT  [館内露出プレイ中]
+	状态内容 += @"[館内露出プレイ中]"
 ENDIF
 SIF TEQUIP:30 == 1
-	PRINT  [羞耻PLAY中]
+	状态内容 += @"[羞耻PLAY中]"
 SIF TEQUIP:浴场PLAY
-	PRINT  [浴场PLAY中]
+	状态内容 += @"[浴场PLAY中]"
 SIF TEQUIP:33
-	PRINT  [新妻PLAY中]
+	状态内容 += @"[新妻PLAY中]"
+行宽 = STRLENS(状态内容)
+CALL UI_装饰右边框(UI_行宽度辅助 - 行宽)
 PRINTL 
 
 ;-------------------------------------------------------------------------------
@@ -476,61 +497,40 @@ SIF CFLAG:(ARG:0):跳蛋A挿入
 RETURNF LOCALS:0
 
 ;-------------------------------------------------------------------------------
-;パラメーターを表示する
-;@param ARG:0 表示するキャラクター番号
-@SHOW_INFO_PALAM(ARG:0)
-VARSET LOCAL
-FOR LOCAL,0,100
-	SIF !STRLENS(PALAMNAME:LOCAL)
-		CONTINUE
-	PRINTFORM  %PALAMNAME:LOCAL%Lv{GETPALAMLV(PALAM:(ARG:0):LOCAL,15),2}[
-	IF GETPALAMLV(PALAM:(ARG:0):LOCAL,15) >= 15
-		PRINT ********
-	ELSE
-		;現在のPALAMLV
-		LOCAL:1 = PALAMLV:(GETPALAMLV(PALAM:(ARG:0):LOCAL,15) + 1) - PALAMLV:(GETPALAMLV(PALAM:(ARG:0):LOCAL,15))
-		FOR LOCAL:10,0,8
-			IF PALAM:(ARG:0):LOCAL - PALAMLV:(GETPALAMLV(PALAM:(ARG:0):LOCAL,15)) > LOCAL:1 * LOCAL:10 / 8
-				PRINT *
-			ELSE
-				PRINT .
-			ENDIF
-		NEXT
+;角色关系信息一行显示：好感度 + 屈服度 + 性欲 + 怒意
+;@param ARG:0 キャラクターの番号
+;格式：│ 好感 320  屈服 50  性欲 12  怒！！！！ │
+;-------------------------------------------------------------------------------
+@INFO_PrintTargetRelation(ARG:0)
+#DIM 怒数
+#DIMS 前半内容
+#DIMS 怒意内容
+#DIM 行宽
+前半内容 = 好感度：{CFLAG:(ARG:0):好感度}
+SIF !FLAG:真实模式
+	前半内容 += @"  屈服度：{CFLAG:(ARG:0):屈服度}"
+前半内容 += @"  性欲：{CFLAG:(ARG:0):性欲}"
+行宽 = 1 + STRLENS(前半内容)
+CALL UI_竖边框
+PRINTFORM %前半内容%
+IF CFLAG:(ARG:0):怒意
+	怒意内容 = " 怒"
+	SETCOLOR 颜色_状态_激怒
+	PRINTFORM %怒意内容%
+	RESETCOLOR
+	行宽 += STRLENS(怒意内容)
+ELSE
+	怒数 = BASE:(ARG:0):怒意/200
+	怒意内容 = %" 怒意："%
+	IF 怒数 > 0
+		怒意内容 += @"%"！"*怒数%"
+		SETCOLOR 颜色_状态_注意
 	ENDIF
-	PRINT ]
-	LOCAL:1 = PALAM:(ARG:0):LOCAL
-	LOCAL:2 = 0
-	;これだけ特殊
-	IF LOCAL == 9 && LOCAL:1 >= 20000
-		PRINTFORM %"摩擦 0",6% 
-	ELSE
-		;桁合わせ
-		FOR LOCAL:10,0,10
-			IF LOCAL:1 > 999999
-				LOCAL:1 /= 1000
-				LOCAL:2 ++
-			ENDIF
-		NEXT
-		PRINTFORM {LOCAL:1,6}
-		SELECTCASE LOCAL:2
-			CASE 0
-				PRINT  
-			CASE 1
-				PRINT k
-			CASE 2
-				PRINT M
-			CASE 3
-				PRINT G
-			CASE 4
-				PRINT T
-			CASE 5
-				PRINT P
-		ENDSELECT
-	ENDIF
-	LOCAL:3 ++
-	SIF LOCAL:3 % PRINTCPERLINE() == 0
-		PRINTL 
-NEXT
+	PRINTFORM %怒意内容%
+	RESETCOLOR
+	行宽 += STRLENS(怒意内容)
+ENDIF
+CALL UI_装饰右边框(UI_行宽度辅助 - 行宽 + 1)
 PRINTL
 RETURN 0
 
@@ -876,131 +876,74 @@ ENDIF
 RETURN 0
 
 ;-------------------------------------------------------------------------------
-;体力、气力を表示する
-;@param ARG:0 犠牲者のキャラクター番号
-;@param ARG:1 調教者のキャラクター番号
-@INFO_PrintHPMPBar(ARG:0,ARG:1)
-;犠牲者の体力
-IF ARG:0 != ARG:1
-	PRINTFORM %"体力("+CALLNAME:(ARG:0)+")",20,LEFT%
-	;数值 最大数值 字符1 字符2 颜色1 颜色2 长度
-	CALL 数据条绘制(BASE:(ARG:0):体力,MAXBASE:(ARG:0):体力,"▥","▥",粉红色,深灰色,16)
-	PRINTFORM %"("%{BASE:(ARG:0):体力,4}%"/"%{MAXBASE:(ARG:0):体力,4}%")   "%
+;単一キャラの体力・气力・勃起・精力・射精・母乳を表示（每个条一行）
+;@param ARG:0 表示するキャラクター番号
+;-------------------------------------------------------------------------------
+@INFO_PrintCharaBar(ARG:0)
+;体力
+CALL UI_竖边框
+PRINTFORM %"体力",6,LEFT%
+CALL 数据条绘制(BASE:(ARG:0):体力,MAXBASE:(ARG:0):体力,"░","░",颜色_暗粉红,颜色_深灰,10)
+PRINTFORM  {BASE:(ARG:0):体力,4}/{MAXBASE:(ARG:0):体力,4}
+CALL UI_装饰右边框(118)
+PRINTL
+;气力
+CALL UI_竖边框
+PRINTFORM %"气力",6,LEFT%
+CALL 数据条绘制(BASE:(ARG:0):气力,MAXBASE:(ARG:0):气力,"░","░",颜色_浊黄,颜色_深灰,10)
+PRINTFORM  {BASE:(ARG:0):气力,4}/{MAXBASE:(ARG:0):气力,4}
+CALL UI_装饰右边框(118)
+PRINTL
+;勃起
+IF HAS_PENIS(ARG:0)
+	CALL UI_竖边框
+	PRINTFORM %"勃起",6,LEFT%
+	CALL 数据条绘制(BASE:(ARG:0):勃起, 1000 ,"░","░",颜色_褐橙,颜色_深灰,10)
+	PRINTFORM  {MIN(BASE:(ARG:0):勃起,1000),4}/{1000}
+	CALL UI_装饰右边框(118)
+	PRINTL
 ENDIF
-;調教者の体力
-PRINTFORM %"体力("+CALLNAME:(ARG:1)+")",16,LEFT%
-CALL 数据条绘制(BASE:(ARG:1):体力,MAXBASE:(ARG:1):体力,"▥","▥",粉红色,深灰色,16)
-PRINTFORML %"("%{BASE:(ARG:1):体力,4}%"/"%{MAXBASE:(ARG:1):体力,4}%")"%
-;犠牲者の气力
-IF ARG:0 != ARG:1
-	PRINTFORM %"气力("+CALLNAME:(ARG:0)+")",20,LEFT%
-	CALL 数据条绘制(BASE:(ARG:0):气力,MAXBASE:(ARG:0):气力,"▥","▥",黄色,深灰色,16)
-	PRINTFORM %"("%{BASE:(ARG:0):气力,4}%"/"%{MAXBASE:(ARG:0):气力,4}%")   "%
+;精力
+IF HAS_PENIS(ARG:0) && TALENT:(ARG:0):157 == 0
+	CALL UI_竖边框
+	PRINTFORM %"精力",6,LEFT%
+	CALL 数据条绘制(BASE:(ARG:0):精力,MAXBASE:(ARG:0):精力,"░","░",颜色_灰青,颜色_深灰,10)
+	PRINTFORM  {BASE:(ARG:0):精力,4}/{MAXBASE:(ARG:0):精力,4}
+	CALL UI_装饰右边框(118)
+	PRINTL
+ELSEIF HAS_PENIS(ARG:0) && TALENT:(ARG:0):157 == 1
+	CALL UI_竖边框
+	PRINTFORM %"精力",6,LEFT%
+	CALL 数据条绘制(BASE:(ARG:0):精力,MAXBASE:(ARG:0):精力,"░","░",颜色_灰青,颜色_深灰,10)
+	PRINTFORM (無限精液)
+	CALL UI_装饰右边框(115)
+	PRINTL
 ENDIF
-;調教者の气力
-PRINTFORM %"气力("+CALLNAME:(ARG:1)+")",16,LEFT%
-CALL 数据条绘制(BASE:(ARG:1):气力,MAXBASE:(ARG:1):气力,"▥","▥",黄色,深灰色,16)
-PRINTFORML %"("%{BASE:(ARG:1):气力,4}%"/"%{MAXBASE:(ARG:1):气力,4}%")"%
-;犠牲者の勃起力
-IF ARG:0 != ARG:1
-	IF HAS_PENIS(ARG:0)
-		PRINTFORM %"勃起("+CALLNAME:(ARG:0)+")",20,LEFT%
-		CALL 数据条绘制(BASE:(ARG:0):勃起, 1000 ,"▥","▥",橘红色,深灰色,16)
-		PRINTFORM %"("%{MIN(BASE:(ARG:0):勃起,1000),4}%"/"%{1000}%")   "%
-	ELSE
-		;ちんこ無い場合は空白
-		PRINTFORM %"",52%
-	ENDIF
-ENDIF
-;調教者の勃起力
-IF HAS_PENIS(MASTER)
-	PRINTFORM %"勃起("+CALLNAME:(ARG:1)+")",16,LEFT%
-	CALL 数据条绘制(BASE:(ARG:1):勃起, 1000 ,"▥","▥",橘红色,深灰色,16)
-	PRINTFORML %"("%{MIN(BASE:(ARG:1):勃起,1000),4}%"/"%{1000}%")"%
-ELSEIF ARG:0 != ARG:1
-	;犠牲者がいる場合、空白が出力されているため改行が必要になる
-	PRINTFORML 
-ENDIF
-;犠牲者の精力
-IF TARGET > 0
-	IF HAS_PENIS(TARGET) && TALENT:TARGET:157 == 0
-		PRINTFORM %"精力("+CALLNAME:(ARG:0)+")",20,LEFT%
-		CALL 数据条绘制(BASE:(ARG:0):精力,MAXBASE:(ARG:0):精力,"▥","▥",青色,深灰色,16)
-		PRINTFORM %"("%{BASE:(ARG:0):精力,4}%"/"%{MAXBASE:(ARG:0):精力,4}%")   "%
-	ELSEIF HAS_PENIS(TARGET) && TALENT:TARGET:157 == 1
-		PRINTFORM %"精力("+CALLNAME:(ARG:0)+")",20,LEFT%
-		CALL 数据条绘制(BASE:(ARG:1):精力,MAXBASE:(ARG:1):精力,"▥","▥",青色,深灰色,16)
-		PRINTFORM %"(無限精液)"%
-	ELSE
-		;ちんこ無い場合は空白
-		PRINTFORM %"",52%
-	ENDIF
-ENDIF
-;調教者の精力
-IF HAS_PENIS(MASTER) && TALENT:MASTER:157 == 0
-	PRINTFORM %"精力("+CALLNAME:(ARG:1)+")",16,LEFT%
-	CALL 数据条绘制(BASE:(ARG:1):精力,MAXBASE:(ARG:1):精力,"▥","▥",青色,深灰色,16)
-	PRINTFORML %"("%{BASE:(ARG:1):精力,4}%"/"%{MAXBASE:(ARG:1):精力,4}%")"%
-ELSEIF HAS_PENIS(MASTER) && TALENT:MASTER:157 == 1
-	PRINTFORM %"精力("+CALLNAME:(ARG:1)+")",16,LEFT%
-	CALL 数据条绘制(BASE:(ARG:1):精力,MAXBASE:(ARG:1):精力,"▥","▥",青色,深灰色,16)
-	PRINTFORML %"(無限精液)"%
-ELSEIF ARG:0 != ARG:1
-	;犠牲者がいる場合、空白が出力されているため改行が必要になる
-	PRINTFORML 
-ENDIF
+;うふふ中：射精と母乳
 IF TFLAG:COMABLE管理 == 2 || TFLAG:COMABLE管理 == 3 || CFLAG:MASTER:うふふ == 3
-	;うふふ中 or ？ or 自慰中 なら、射精と母乳を表示
-	;犠牲者の射精
-	IF TARGET > 0
-		IF HAS_PENIS(TARGET)
-			MAXBASE:TARGET:射精 = 5000 + 5000*(!TALENT:TARGET:精力旺盛)
-			PRINTFORM %"射精("+CALLNAME:TARGET+")",20,LEFT%
-			CALL 数据条绘制(BASE:TARGET:射精,MAXBASE:TARGET:射精,"▥","▥",白色,深灰色,16)
-			IF TCVAR:TARGET:イきそう
-				PRINTFORM %"(！限 界！)"%
-			ELSE
-				PRINTFORM %"("%%TOSTR(100*BASE:TARGET:射精/MAXBASE:TARGET:射精),8,RIGHT%%"%)   "%
-			ENDIF
+	;射精
+	IF HAS_PENIS(ARG:0)
+		MAXBASE:(ARG:0):射精 = 5000 + 5000*(!TALENT:(ARG:0):精力旺盛)
+		CALL UI_竖边框
+		PRINTFORM %"射精",6,LEFT%
+		CALL 数据条绘制(BASE:(ARG:0):射精,MAXBASE:(ARG:0):射精,"░","░",颜色_银,颜色_深灰,10)
+		IF TCVAR:(ARG:0):イきそう
+			PRINTFORM  ！限界！
+			CALL UI_装饰右边框(118)
 		ELSE
-			;ちんこ無い場合は空白
-			PRINTFORM %"",52%
+			PRINTFORM %TOSTR(100*BASE:(ARG:0):射精/MAXBASE:(ARG:0):射精),9,RIGHT%%"%"%
+			CALL UI_装饰右边框(117)
 		ENDIF
+		PRINTL
 	ENDIF
-	;調教者の射精
-	IF HAS_PENIS(MASTER)
-		MAXBASE:MASTER:射精 = 5000 + 5000*(!TALENT:MASTER:精力旺盛)
-		PRINTFORM %"射精("+CALLNAME:MASTER+")",16,LEFT%
-		CALL 数据条绘制(BASE:MASTER:射精,MAXBASE:MASTER:射精,"▥","▥",白色,深灰色,16)
-		IF TCVAR:MASTER:イきそう
-			PRINTFORML %"(！限 界！)"%
-		ELSE
-			PRINTFORML %"("%%TOSTR(100*BASE:MASTER:射精/MAXBASE:MASTER:射精),8,RIGHT%%"%)"%
-		ENDIF
-	ELSEIF ARG:0 != ARG:1
-		;犠牲者がいる場合、空白が出力されているため改行が必要になる
-		PRINTFORML 
-	ENDIF
-	;犠牲者の母乳
-	IF TARGET > 0
-		IF TALENT:TARGET:泌乳体质
-			MAXBASE:TARGET:母乳 = 5000+5000*(!TALENT:TARGET:淫乳)
-			PRINTFORM %"母乳("+CALLNAME:TARGET+")",20,LEFT%
-			CALL 数据条绘制(BASE:TARGET:母乳,MAXBASE:TARGET:母乳,"▥","▥",白色,深灰色,16)
-		ELSE
-			;泌乳体质で無い場合は空白
-			PRINTFORM %"",52%
-		ENDIF
-	ENDIF
-	;調教者の母乳
-	IF TALENT:MASTER:泌乳体质
-		MAXBASE:MASTER:母乳 = 5000+5000*(!TALENT:MASTER:淫乳)
-		PRINTFORM %"母乳("+CALLNAME:MASTER+")",16,LEFT%
-		CALL 数据条绘制(BASE:MASTER:母乳,MAXBASE:MASTER:母乳,"▥","▥",白色,深灰色,16)
-		PRINTFORML %"("%%TOSTR(100*BASE:MASTER:母乳/MAXBASE:MASTER:母乳),7%%"％)"%
-	ELSEIF ARG:0 != ARG:1
-		;犠牲者がいる場合、空白が出力されているため改行が必要になる
-		PRINTFORML 
+	;母乳
+	IF TALENT:(ARG:0):泌乳体质
+		MAXBASE:(ARG:0):母乳 = 5000+5000*(!TALENT:(ARG:0):淫乳)
+		CALL UI_竖边框
+		PRINTFORM %"母乳",6,LEFT%
+		CALL 数据条绘制(BASE:(ARG:0):母乳,MAXBASE:(ARG:0):母乳,"░","░",颜色_银,颜色_深灰,10)
+		CALL UI_装饰右边框(128)
+		PRINTL
 	ENDIF
 ENDIF
 RETURN 0
@@ -1119,7 +1062,8 @@ ENDIF
 ;同じ場所にいるキャラクターを表示
 ;0:ループ用キャラクター番号、1:同じ場所にいる人数
 同室人数 = 0
-PRINTFORM %"在场的人:"%
+CALL UI_节标题("在场")
+PRINTFORM  
 ;访问者
 IF FLAG:访问者当前位置 == POS_NOW
 	IF 同室人数
@@ -1151,23 +1095,6 @@ FOR LOOP_CHR,1,CHARANUM
 	ENDIF
 NEXT
 PRINTL
-PRINTL
-IF 角色 > 0
-	PRINTFORM %NAME:角色+"(好感度:"%{CFLAG:2}%"　"%
-	SIF !FLAG:真实模式
-		PRINTFORM 屈服度:{CFLAG:21}
-	PRINT )
-	IF CFLAG:角色:怒意
-		SETCOLOR 颜色_状态_激怒
-		PRINTFORM %"怒"%
-		RESETCOLOR
-	ELSE
-		PRINTFORM %"怒意:"%%"！" * (BASE:怒意/200)%
-	ENDIF
-	PRINTL
-	SIF !FLAG:真实模式
-		PRINTFORM 性欲:{CFLAG:角色:性欲}
-ENDIF
 RETURN 0
 
 ;-------------------------------------------------------------------------------
@@ -1190,42 +1117,41 @@ ENDIF
 RETURN 0
 
 ;-------------------------------------------------------------------------------
-;气氛を表示
-;@param ARG:0 キャラクターの番号
-;@return 1:xxx,0:xxx
-@INFO_PrintTargetMood(ARG:0)
-PRINTFORM %"气氛:"%
+;显示角色的气氛、理性、满足
+;@param ARG:0 角色编号
+;格式：│ 气氛 ♥❤❤❤❤  理性 ★★★☆☆  满足 ▰▰▰▰▱ │
+;-------------------------------------------------------------------------------
+@INFO_PrintTargetStatusLine(ARG:0)
+#DIM 气氛值
+#DIM 理性值
+#DIM 满足数
+气氛值 = LIMIT(BASE:(ARG:0):气氛/200, 0, 5)
+理性值 = MAX(BASE:(ARG:0):理性/200, 1)
+满足数 = LIMIT(BASE:(ARG:0):满足 * 5 / MAXBASE:(ARG:0):满足, 0, 5)
+CALL UI_竖边框
+;气氛
+PRINTFORM 气氛 
 IF BASE:(ARG:0):气氛 == MAXBASE:(ARG:0):气氛
-	;最大だったらピンク色
 	SETCOLOR 颜色_状态_发情
 ENDIF
-PRINTFORML %UNICODE(0x2764)*LIMIT(BASE:(ARG:0):气氛/200,0,5)+UNICODE(0x2715)*(5-LIMIT(BASE:(ARG:0):气氛/200,0,5))%
+PRINTFORM %"♥"*气氛值%%"❤"*(5-气氛值)%
 RESETCOLOR
-RETURN 0
-
-;-------------------------------------------------------------------------------
-;理性を表示
-;@param ARG:0 キャラクターの番号
-;@return 1:xxx,0:xxx
-@INFO_PrintTargetReason(ARG:0)
-PRINTFORM %"理性:"%
+PRINTFORM  
+;理性
+PRINTFORM 理性 
 IF BASE:(ARG:0):理性 < 100
-	;100以下なら黄色
 	SETCOLOR 颜色_状态_理性
 ENDIF
-PRINTFORML %"★"*(MAX(BASE:(ARG:0):理性/200,1))%
+PRINTFORM %"★"*理性值%%"☆"*(5-理性值)%
 RESETCOLOR
-RETURN 0
-
-;-------------------------------------------------------------------------------
-;满足度を表示
-;@param ARG:0 キャラクターの番号
-;@return 1:xxx,0:xxx
-@INFO_PrintTargetFeeling(ARG:0)
-PRINTFORM 满足:
-;数值 最大数值 字符1 字符2 颜色1 颜色2 长度
-CALL 数据条绘制(BASE:(ARG:0):满足,MAXBASE:(ARG:0):满足,"♥","×",粉红色,品红色,10)
-PRINTFORML ({BASE:(ARG:0):满足,4}/{MAXBASE:(ARG:0):满足,4})
+PRINTFORM  
+;满足
+PRINTFORM 满足 
+SETCOLOR 颜色_粉
+PRINTFORM %"▰"*满足数%%"▱"*(5-满足数)%
+RESETCOLOR
+CALL UI_装饰右边框(103)
+PRINTL
 RETURN 0
 
 ;-------------------------------------------------------------------------------
@@ -1237,7 +1163,10 @@ RETURN 0
 #DIM ParamLv
 #DIM NextSource
 #DIM DispCount
+#DIM 项宽
+#DIM 空项数
 DispCount = 0
+CALL UI_竖边框
 FOR ParamNo, 0, 101
 	;パラメータ名が無いものは処理しない
 	IF !STRLENS(PALAMNAME:ParamNo)
@@ -1247,16 +1176,22 @@ FOR ParamNo, 0, 101
 	ParamLv = GETPALAMLV(PALAM:角色:ParamNo,15)
 	;パラメータ名と現在のレベルを表示
 	PRINTFORM %" "+PALAMNAME:ParamNo + "Lv"%{ParamLv,2}
-	PRINTFORM %"["%
+	PRINTFORM %" "%
 	;PALAMLVが15以上なら上限扱い
 	IF ParamLv >= 15
-		PRINT ********
+		SETCOLOR 颜色_主题_星
+		PRINT ★★★★★★
+		RESETCOLOR
 	ELSE
-		;次のレベルまでどれくらいかを表示(0x00BB使いたいなあ。≫の半角サイズ)
-		PRINTFORM %UNICODE(0x002A)*LIMIT(  8 * (PALAM:角色:ParamNo - PALAMLV:ParamLv) / (PALAMLV:(ParamLv+1) - PALAMLV:ParamLv), 0, 8)%
-		PRINTFORM %UNICODE(0x002E)*LIMIT(8-8 * (PALAM:角色:ParamNo - PALAMLV:ParamLv) / (PALAMLV:(ParamLv+1) - PALAMLV:ParamLv), 0, 8)%
+		;進捗バー（満=░(柔和粉) 空=░(深灰)、長さ8）
+		SETCOLOR 颜色_灰粉
+		PRINTFORM %"░"*LIMIT(  8 * (PALAM:角色:ParamNo - PALAMLV:ParamLv) / (PALAMLV:(ParamLv+1) - PALAMLV:ParamLv), 0, 8)%
+		RESETCOLOR
+		SETCOLOR 颜色_深灰
+		PRINTFORM %"░"*LIMIT(8-8 * (PALAM:角色:ParamNo - PALAMLV:ParamLv) / (PALAMLV:(ParamLv+1) - PALAMLV:ParamLv), 0, 8)%
+		RESETCOLOR
 	ENDIF
-	PRINTFORM %"]"%
+	PRINTFORM %" "%
 	IF LOCAL:0 == 9 && PALAM:角色:ParamNo >= 20000
 		;润滑(9)が十分にある場合だけ特殊表示
 		PRINTFORM %"摩擦 0 "%
@@ -1265,9 +1200,19 @@ FOR ParamNo, 0, 101
 		PRINTFORM %INFO_ToSIPrefixed(PALAM:角色:ParamNo),7%
 	ENDIF
 	DispCount++
-	SIF DispCount % PRINTCPERLINE() == 0
+	IF DispCount % PRINTCPERLINE() == 0
+		CALL UI_装饰右边框(1)
 		PRINTL 
+		CALL UI_竖边框
+	ENDIF
 NEXT
+;最后一行的项目不满一行，补空项数×项宽个空格
+空项数 = PRINTCPERLINE() - DispCount % PRINTCPERLINE()
+IF 空项数 == PRINTCPERLINE()
+	空项数 = 0
+ENDIF
+;反正空两项的情况下，60个空格是差不多对的，姑且就这样吧
+CALL UI_装饰右边框(空项数*30)
 PRINTL
 RETURN 0
 
@@ -1316,43 +1261,80 @@ RETURN 0
 #DIM 角色
 #DIM 服番号
 #DIM 着衣数
+#DIM 下着不可见
+#DIMS 服装内容
+#DIMS 配件内容
+#DIM 行宽
 着衣数 = 0
-PRINTFORM 服装(%CALLNAME:角色%)：
+服装内容 = 服装(%CALLNAME:角色%)：
 IF !EQUIP:角色:衣服着用
-	PRINTFORM %"[全裸]"%
+	服装内容 += "[全裸]"
 ELSE
 	FOR 服番号,1,20
-
 		SELECTCASE 服番号
 			CASE GETNUM(EQUIP,"下半身下着１")
 				IF (角色 != MASTER) && Unknown下着(角色, 服番号)
-					PRINTFORM %"[？下着？]"%
+					服装内容 += "[？下着？]"
 					着衣数++
 					CONTINUE
 				ENDIF
 			CASE GETNUM(EQUIP,"下半身下着２")
 				IF (角色 != MASTER) && Unknown下着(角色, 服番号)
-					PRINTFORM %""%
+					服装内容 += ""
 					着衣数++
 					CONTINUE
 				ENDIF
 			CASEELSE
 		ENDSELECT
-
 		IF EQUIP:角色:服番号
-			IF GETBIT(FLAG:匂いフェチ,1) 
-				PRINTFORM %"["+IRUINAME_SMELL(EQUIP:角色:服番号)+CLOTHNAME(服番号,EQUIP:角色:服番号)+"]"%
+			IF GETBIT(FLAG:匂いフェチ,1)
+				服装内容 += @"["+IRUINAME_SMELL(EQUIP:角色:服番号)+CLOTHNAME(服番号,EQUIP:角色:服番号)+"]"
 			ELSE
-				PRINTFORM %"["+CLOTHNAME(服番号,EQUIP:角色:服番号)+"]"%
+				服装内容 += @"["+CLOTHNAME(服番号,EQUIP:角色:服番号)+"]"
 			ENDIF
 			着衣数++
 		ENDIF
 	NEXT
 	IF 着衣数 == 0
-		PRINTFORM %"[全裸]"%
+		服装内容 += "[全裸]"
 	ENDIF
 ENDIF
-;最後に１回だけ改行
+行宽 = STRLENS(服装内容)
+CALL UI_竖边框
+PRINTFORM %服装内容%
+;配件显示（肛塞/膣塞/口塞/眼罩），接在服装后面同一行
+下着不可见 = GETBIT(FLAG:雑多設定,1)
+配件内容 =
+IF 下着不可见
+	IF 下着可见判定(角色)
+		IF !EQUIP:角色:下半身下着２ && CFLAG:角色:肛塞
+			配件内容 += @"[{CFLAG:角色:肛塞}cm肛塞]装备！  "
+		ENDIF
+		IF !EQUIP:角色:下半身下着２ && CFLAG:角色:膣塞
+			配件内容 += @"[{CFLAG:角色:膣塞}cm膣塞]装备！  "
+		ENDIF
+	ENDIF
+ELSE
+	IF CFLAG:角色:肛塞
+		配件内容 += @"[{CFLAG:角色:肛塞}cm肛塞]装备！  "
+	ENDIF
+	IF CFLAG:角色:膣塞
+		配件内容 += @"[{CFLAG:角色:膣塞}cm膣塞]装备！  "
+	ENDIF
+ENDIF
+IF CFLAG:角色:口塞
+	配件内容 += @"[%口塞类型名称(角色)%]装备！  "
+ENDIF
+IF CFLAG:角色:眼罩
+	配件内容 += "[眼罩]装备！  "
+ENDIF
+IF STRLENSU(配件内容) > 0
+	SETCOLOR 颜色_红
+	PRINTFORM %配件内容%
+	RESETCOLOR
+	行宽 += STRLENS(配件内容)
+ENDIF
+CALL UI_装饰右边框(UI_行宽度辅助 - 行宽)
 PRINTL
 RETURN 0
 
@@ -1407,46 +1389,6 @@ RETURNF !EQUIP:ARG:下半身上着１ && !EQUIP:ARG:下半身上着２ && !EQUIP
 @乳头可见判定(ARG)
 #FUNCTION
 RETURNF (!EQUIP:ARG:上半身上着２||EQUIP:ARG:上半身上着２ == 14||EQUIP:ARG:上半身上着２==22 ) && !EQUIP:ARG:上半身上着１ && !EQUIP:ARG:上半身下着１ && (!EQUIP:ARG:上半身下着２||!EQUIP:ARG:上半身下着２ == 4 ) && (!EQUIP:ARG:连衣裙||EQUIP:ARG:连衣裙 == 4 )
-
-@INFO_绘制角色配件(ARG)
-#DIM 下着不可见
-下着不可见 = GETBIT(FLAG:雑多設定,1)
-IF 下着不可见
-	IF 下着可见判定(ARG)
-		IF !EQUIP:ARG:下半身下着２ && CFLAG:ARG:肛塞
-			SETCOLOR 红色
-			PRINTFORM [{CFLAG:ARG:肛塞}cm肛塞]装备！  
-			RESETCOLOR
-		ENDIF
-		IF !EQUIP:ARG:下半身下着２ && CFLAG:ARG:膣塞
-			SETCOLOR 红色
-			PRINTFORM [{CFLAG:ARG:膣塞}cm膣塞]装备！  
-			RESETCOLOR
-		ENDIF
-	ENDIF
-ELSE
-	IF CFLAG:ARG:肛塞
-		SETCOLOR 红色
-		PRINTFORM [{CFLAG:ARG:肛塞}cm肛塞]装备！  
-		RESETCOLOR
-	ENDIF
-	IF CFLAG:ARG:膣塞
-		SETCOLOR 红色
-		PRINTFORM [{CFLAG:ARG:膣塞}cm膣塞]装备！  
-		RESETCOLOR
-	ENDIF
-ENDIF
-IF CFLAG:ARG:口塞
-	SETCOLOR 红色
-	PRINTFORM [%口塞类型名称(ARG)%]装备！  
-	RESETCOLOR
-ENDIF
-IF CFLAG:ARG:眼罩
-	SETCOLOR 红色
-	PRINTFORM [眼罩]装备！  
-	RESETCOLOR
-ENDIF
-PRINTL
 
 
 

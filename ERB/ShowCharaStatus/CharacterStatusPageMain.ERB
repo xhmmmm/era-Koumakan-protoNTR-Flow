@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
 ;キャラクターの能力表示を行う
 ;@param ARG:0 表示するキャラクター番号
 ;@param ARG:1 宝珠を表示 1:する 0:しない
@@ -34,10 +34,10 @@ IF !FLAG:真实模式
 ENDIF
 PRINT 体力:
 ;数值 最大数值 字符1 字符2 颜色1 颜色2 长度
-CALL 数据条绘制(BASE:角色:体力,MAXBASE:角色:体力,"▥","▥",粉红色,深灰色,16)
+CALL 数据条绘制(BASE:角色:体力,MAXBASE:角色:体力,"░","░",颜色_暗粉红,颜色_深灰,10)
 PRINTFORM ({BASE:角色:体力,4}/{MAXBASE:角色:体力,4}) 
 PRINT 气力:
-CALL 数据条绘制(BASE:角色:气力,MAXBASE:角色:气力,"▥","▥",黄色,深灰色,16)
+CALL 数据条绘制(BASE:角色:气力,MAXBASE:角色:气力,"░","░",颜色_浊黄,颜色_深灰,10)
 PRINTFORM ({BASE:角色:气力,4}/{MAXBASE:角色:气力,4})
 PRINTL
 PRINTL
@@ -245,7 +245,7 @@ ELSE
 	BASE:角色:Ｖ松弛度 += 上昇値
 ENDIF
 
-;数值 最大数值 字符1 字符2 颜色1 颜色2 长度
+;数值 最大数值 满字符 空字符 满颜色 空颜色 长度
 @数据条绘制(ARG,ARG:1,ARGS,ARGS:1,ARG:2,ARG:3,ARG:4)
 #DIM 满槽个数
 SIF ARG > ARG:1
@@ -253,7 +253,6 @@ SIF ARG > ARG:1
 SIF ARG < 0
 	ARG = 0
 满槽个数 = ARG * 100 / ARG:1 * ARG:4 / 100
-PRINT [
 SETCOLOR ARG:2
 SIF 满槽个数 <= 0 && ARG > 0
 	满槽个数 = 1
@@ -262,4 +261,3 @@ RESETCOLOR
 SETCOLOR ARG:3
 PRINTS ARGS:1 * (ARG:4 - 满槽个数)
 RESETCOLOR
-PRINT ]
