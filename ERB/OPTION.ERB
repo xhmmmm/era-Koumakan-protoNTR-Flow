@@ -1,5 +1,6 @@
 ;オプション設定処理
 @OPTION
+$INPUT_LOOP
 CLEARLINE 10000
 PRINTL □选项设置----------------------------------------------------------------------------------------□
 PRINTL
@@ -31,10 +32,7 @@ SIF FLAG:AA表示
 PRINTL
 PRINTL [100]-返回
 PRINTL □选项设置----------------------------------------------------------------------------------------□
-$INPUT_LOOP
 INPUT
-SIF RESULT != 100
-	CLEARLINE 10000
 IF RESULT == 0
 	CALL OPTION_TEXT_SETTING
 ELSEIF RESULT == 1
