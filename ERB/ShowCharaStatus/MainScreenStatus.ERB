@@ -123,8 +123,9 @@ CALL UI_重分隔
 ;当前时间
 CALL INFO_PrintCurrentTime(MASTER)
 CALL UI_重分隔
-;位置 + 在场人员
+;当前位置和清洁度
 CALL INFO_PrintPositionLine(MASTER)
+;当前在场角色
 CALL INFO_SetTrainMode
 ;-------------------------------------------------
 ;显示TARGET的状态
@@ -430,7 +431,7 @@ SIF TEQUIP:浴场PLAY
 SIF TEQUIP:33
 	状态内容 += @"[新妻PLAY中]"
 行宽 = STRLENS(状态内容)
-CALL UI_装饰右边框(UI_行宽度辅助 - 行宽)
+CALL UI_装饰右边框(UI_行半角宽度辅助 - 行宽)
 PRINTL 
 
 ;-------------------------------------------------------------------------------
@@ -528,7 +529,7 @@ ELSE
 	RESETCOLOR
 	行宽 += STRLENS(怒意内容)
 ENDIF
-CALL UI_装饰右边框(UI_行宽度辅助 - 行宽 + 1)
+CALL UI_装饰右边框(UI_行半角宽度辅助 - 行宽 + 1)
 PRINTL
 RETURN 0
 
@@ -821,7 +822,7 @@ IF !FLAG:ゴミ表示OFF && TFLAG:COMABLE管理 != 2
 	ENDSELECT
 ENDIF
 内容宽度 = (18 + STRLENS(位置名) + STRLENS(清洁度字段))/2
-剩余宽度 = UI_窗口宽度 - 内容宽度
+剩余宽度 = UI_行全角宽度 - 内容宽度
 SIF 剩余宽度 < 0
 	剩余宽度 = 0
 ;输出
@@ -1069,6 +1070,11 @@ RETURN 0
 #DIM POS_NOW		; MASTERの当前位置
 #DIM LOOP_CHR
 #DIM 告白判定値
+#DIM 右侧宽度
+#DIM 左侧宽度
+#DIM 填充宽度
+#DIM 填充宽度补正
+#DIMS 按钮文本
 
 角色 = TARGET:0
 POS_NOW = CFLAG:MASTER:当前位置
@@ -1126,24 +1132,85 @@ ELSE
 	TFLAG:COMABLE管理 = 0
 ENDIF
 ;同じ場所にいるキャラクターを表示
-;0:ループ用キャラクター番号、1:同じ場所にいる人数
+
 同室人数 = 0
+右侧宽度 = 0
+填充宽度补正 = 0
+;计算右侧宽度
 ;访问者
 IF FLAG:访问者当前位置 == POS_NOW
-	IF 同室人数
-		PRINTFORM %"、"%
-	ENDIF
-	PRINTFORM %NTR_NAME(0)%
+	按钮文本 = ✧ %NTR_NAME(0)%
 	SIF FLAG:訪問者同行フラグ
-		PRINT (同行中)
+		按钮文本 += "(同行中)"
+	按钮文本 += " "
+	右侧宽度 += STRLENS(按钮文本)
+	填充宽度补正 += 1
 	同室人数++
 ENDIF
-;同じ場所にいる他のキャラクターを表示
+;角色们
 FOR LOOP_CHR,1,CHARANUM
-	IF CFLAG:LOOP_CHR:当前位置 == POS_NOW
-		IF 同室人数
-			PRINT 、
+	IF CFLAG:LOOP_CHR:当前位置 == POS_NOW && LOOP_CHR != TARGET
+		按钮文本 = ✧ %CALLNAME:LOOP_CHR%
+		IF CFLAG:LOOP_CHR:睡眠
+			按钮文本 += "(睡眠中)"
+		ELSEIF CFLAG:LOOP_CHR:同行
+			按钮文本 += "(同行中)"
 		ENDIF
+		按钮文本 += " "
+		右侧宽度 += STRLENS(按钮文本)
+		填充宽度补正 += 1
+		同室人数++
+	ENDIF
+NEXT
+IF 同室人数 > 0
+	右侧宽度 += STRLENS("✧ 点击切换对象")
+	填充宽度补正 += 1
+ENDIF
+;左侧宽度
+左侧宽度 = STRLENS("  ✧ 当前对象：")
+填充宽度补正 += 1
+IF TARGET > 0
+	左侧宽度 += STRLENS(CALLNAME:TARGET)
+	IF CFLAG:TARGET:睡眠
+		左侧宽度 += STRLENS("(睡眠中)")
+	ELSEIF CFLAG:TARGET:同行
+		左侧宽度 += STRLENS("(同行中)")
+	ENDIF
+ELSE
+	左侧宽度 += STRLENS("无")
+ENDIF
+;“填充宽度补正”计算的是有几个“✧”，而在游戏中5个“✧”大概是6格半角，因此每5个“✧”应该减去一个空格，这样长度才能差不多不超过限度
+填充宽度 = UI_行半角宽度 - 左侧宽度 - 右侧宽度 - 填充宽度补正/5
+SIF 填充宽度 < 1
+	填充宽度 = 1
+;输出左侧
+SETCOLOR 颜色_主题_次星
+PRINT   ✧ 当前对象：
+RESETCOLOR
+IF TARGET > 0
+	IF CFLAG:TARGET:睡眠
+		SETCOLOR 颜色_状态_睡眠中
+		PRINTFORM %CALLNAME:TARGET%(睡眠中)
+		RESETCOLOR
+	ELSEIF CFLAG:TARGET:同行
+		SETCOLOR 颜色_状态_同行中
+		PRINTFORM %CALLNAME:TARGET%(同行中)
+		RESETCOLOR
+	ELSE
+		PRINTFORM %CALLNAME:TARGET%
+	ENDIF
+ELSE
+	PRINT 无
+ENDIF
+;输出填充
+PRINTFORM %" "*填充宽度%
+;输出右侧
+;其他在场角色（排除TARGET）
+FOR LOOP_CHR,1,CHARANUM
+	IF CFLAG:LOOP_CHR:当前位置 == POS_NOW && LOOP_CHR != TARGET
+		SETCOLOR 颜色_主题_次星
+		PRINT ✧ 
+		RESETCOLOR
 		IF CFLAG:LOOP_CHR:睡眠
 			SETCOLOR 颜色_状态_睡眠中
 			LOCALS = (睡眠中)
@@ -1155,9 +1222,26 @@ FOR LOOP_CHR,1,CHARANUM
 		ENDIF
 		PRINTBUTTON CALLNAME:LOOP_CHR+LOCALS, 700 + LOOP_CHR
 		RESETCOLOR
-		同室人数++
+		PRINT  
 	ENDIF
 NEXT
+;访问者
+IF FLAG:访问者当前位置 == POS_NOW
+	SETCOLOR 颜色_主题_次星
+	PRINT ✧ 
+	RESETCOLOR
+	PRINTFORM %NTR_NAME(0)%
+	SIF FLAG:訪問者同行フラグ
+		PRINT (同行中)
+	PRINT  
+ENDIF
+;提示
+IF 同室人数 > 0
+	SETCOLOR 颜色_主题_次星
+	PRINTFORMC %"✧ 点击切换对象           "%
+	PRINT 
+	RESETCOLOR
+ENDIF
 PRINTL
 RETURN 0
 
@@ -1398,7 +1482,7 @@ IF STRLENSU(配件内容) > 0
 	RESETCOLOR
 	行宽 += STRLENS(配件内容)
 ENDIF
-CALL UI_装饰右边框(UI_行宽度辅助 - 行宽)
+CALL UI_装饰右边框(UI_行半角宽度辅助 - 行宽)
 PRINTL
 RETURN 0
 
