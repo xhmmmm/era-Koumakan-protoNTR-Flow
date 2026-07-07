@@ -249,60 +249,6 @@ ELSE
 	RETURNF "非常紧致"
 ENDIF
 
-;-------------------------------------------------------------------------------
-;淫纹の表示（あれば）
-@PRINT_STATE_PROTECTION(ARG)
-PRINTL □ 其它 □-----------------------------------------------------------------------
-VARSET LOCALS
-IF CFLAG:ARG:淫纹 == 0
-	RETURN 0
-ENDIF
-IF GETBIT(CFLAG:ARG:淫纹, 淫纹_恥丘)
-	IF LOCALS:0 != ""
-		LOCALS:0 = %LOCALS:0 + "、"%
-	ENDIF
-	LOCALS:0 = %LOCALS:0 + "恥丘"%
-ENDIF
-IF GETBIT(CFLAG:ARG:淫纹, 淫纹_太股)
-	IF LOCALS:0 != ""
-		LOCALS:0 = %LOCALS:0 + "、"%
-	ENDIF
-	LOCALS:0 = %LOCALS:0 + "太腿"%
-ENDIF
-IF GETBIT(CFLAG:ARG:淫纹, 淫纹_左尻)
-	IF LOCALS:0 != ""
-		LOCALS:0 = %LOCALS:0 + "、"%
-	ENDIF
-	LOCALS:0 = %LOCALS:0 + "左尻"%
-ENDIF
-IF GETBIT(CFLAG:ARG:淫纹, 淫纹_胸元)
-	IF LOCALS:0 != ""
-		LOCALS:0 = %LOCALS:0 + "、"%
-	ENDIF
-	LOCALS:0 = %LOCALS:0 + "胸元"%
-ENDIF
-IF GETBIT(CFLAG:ARG:淫纹, 淫纹_右頬)
-	IF LOCALS:0 != ""
-		LOCALS:0 = %LOCALS:0 + "、"%
-	ENDIF
-	LOCALS:0 = %LOCALS:0 + "右頬"%
-ENDIF
-;子宮内が他人の精子で満たされているかどうかチェック
-CALL COM417_GetFillingRateByPublicSperm(ARG)
-SELECTCASE RESULT:1 * RESULT:0
-	CASE IS >= 200
-		PRINTFORML %"鲜艳的粉红色の淫纹("+LOCALS:0+")"%
-	CASE 100 TO 199
-		PRINTFORML %"粉红色的淫纹("+LOCALS:0+")"%
-	CASE 50 TO 99
-		PRINTFORML %"赤色的淫纹("+LOCALS:0+")"%
-	CASE 1 TO 49
-		PRINTFORML %"赤紫色的淫纹("+LOCALS:0+")"%
-	CASEELSE
-		PRINTFORML %"紫色的淫纹("+LOCALS:0+")"%
-ENDSELECT
-RETURN 0
-
 ;-------------------------------------------------
 ;キャラ同士の相性表示処理
 ;-------------------------------------------------

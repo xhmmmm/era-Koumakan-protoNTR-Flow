@@ -1,7 +1,7 @@
-﻿@EVENT_COUNTER_REACTION(ARG,ARG:1)
+@EVENT_COUNTER_REACTION(ARG,ARG:1)
 
 ;膣挿入
-IF MASTER_POSE(6,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_太股)
+IF MASTER_POSE(6,1) == ARG
 	LOCAL = RAND:5
 	SELECTCASE LOCAL
 		CASE 1
@@ -50,7 +50,7 @@ IF MASTER_POSE(3,1) == ARG
 	ENDSELECT
 ENDIF
 ;口交
-IF MASTER_POSE(4,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_右頬)
+IF MASTER_POSE(4,1) == ARG
 	LOCAL = RAND:4
 	SELECTCASE LOCAL
 		CASE 1
@@ -79,7 +79,7 @@ IF MASTER_POSE(4,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_�
 	ENDSELECT
 ENDIF
 ;乳交
-IF MASTER_POSE(5,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_胸元)
+IF MASTER_POSE(5,1) == ARG
 	LOCAL = RAND:4
 	SELECTCASE LOCAL
 		CASE 1
@@ -109,7 +109,7 @@ IF MASTER_POSE(5,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_�
 		TCVAR:ARG:20 = 504
 ENDIF
 ;素股
-IF MASTER_POSE(2,1) == ARG && !COM417_is_Protected_CheckOnly(MASTER,ARG,淫纹_恥丘)
+IF MASTER_POSE(2,1) == ARG
 	LOCAL = RAND:3
 	SELECTCASE LOCAL
 		CASE 1

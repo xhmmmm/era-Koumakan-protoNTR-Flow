@@ -65,16 +65,6 @@ RETURN 0
 
 TEQUIP:角色:Ｖ性爱 = 射精者
 CFLAG:角色:射精者V = 射精者
-IF MASTER == 射精者
-	IF CFLAG:角色:淫纹 > 0
-		IF 获取子宫精液填充率(角色) > 0
-			PRINTFORMW %CALLNAME:射精者%的精液被射入了%CALLNAME:角色%的膣内
-			PRINTFORMW 注入子宫的精液，与子宫里的其他人的精液混合在了一起
-			PRINTFORMW 原本%COM417_GetProstituteMarkColor(角色)%的淫纹慢慢暗淡下来
-			PRINTFORMW 最后变成了普通的紫色……
-		ENDIF
-	ENDIF
-ENDIF
 TRYCALL 精力取得, 射精者
 TRYCALL 精子取得, 射精者, 角色
 CFLAG:角色:精液残留中 = 40

@@ -278,13 +278,6 @@
 #DIM CONST 訪問者宅_玄関解錠済 = 1p4
 #DIM CONST 訪問者宅_便所使用済 = 1p5
 
-;淫纹ビット番号
-#DIM CONST 淫纹_恥丘				= 0
-#DIM CONST 淫纹_太股				= 1
-#DIM CONST 淫纹_左尻				= 2
-#DIM CONST 淫纹_胸元				= 3
-#DIM CONST 淫纹_右頬				= 4
-
 ;TFLAG:1で使用する射精箇所ビット番号
 #DIM CONST 射精箇所_避孕套		= 0
 #DIM CONST 射精箇所_膣内			= 1

@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
 ;実行可否判定を行う
 @ACTABLE(加害者,カウンター行為)
 #FUNCTION
@@ -49,8 +49,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_キス
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF CHK_COM312_STAIN(加害者, MASTER)
 			RETURNF 0
 		SIF TFLAG:60
@@ -68,8 +66,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_胸を揉ませる
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_胸元) == 0
-			RETURNF 0
 		SIF TFLAG:61
 			RETURNF 0
 		RETURNF 1
@@ -106,8 +102,6 @@ SELECTCASE カウンター行為
 	CASE CNT_口交
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF TFLAG:62
 			RETURNF 0
 		SIF !(HAS_PENIS(MASTER))
@@ -116,8 +110,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_素股
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_恥丘) == 0
-			RETURNF 0
 		SIF TFLAG:62
 			RETURNF 0
 		SIF ABL:加害者:腰 < 1
@@ -130,8 +122,6 @@ SELECTCASE カウンター行為
 		RETURNF 1
 	CASE CNT_乳交
 		SIF is_virgin_m(加害者)
-			RETURNF 0
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_胸元) == 0
 			RETURNF 0
 		SIF TFLAG:62
 			RETURNF 0
@@ -165,8 +155,6 @@ SELECTCASE カウンター行為
 	CASE CNT_舔舐肛门
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF TFLAG:64
 			RETURNF 0
 		SIF STAIN:MASTER:Ａ & 汚れ_菊花 && TALENT:加害者:污臭耐性 < 1
@@ -191,8 +179,6 @@ SELECTCASE カウンター行為
 	CASE CNT_吮吸乳首
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF TFLAG:65
 			RETURNF 0
 		SIF ABL:加害者:舌 < 1
@@ -202,54 +188,40 @@ SELECTCASE カウンター行為
 		;初めてがディープキスでもいいじゃない
 		;SIF is_virgin_m(加害者)
 		;	RETURNF 0
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF CHK_COM312_STAIN(加害者, MASTER)
 			RETURNF 0
 		SIF TFLAG:60
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_强制舔阴
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_恥丘) == 0
-			RETURNF 0
 		SIF !(HAS_VAGINA(加害者))
 			RETURNF 0
 		SIF TFLAG:60
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_口交強制
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_恥丘) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
 		SIF TFLAG:60
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_舔肛侍奉
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_左尻) == 0
-			RETURNF 0
 		SIF TFLAG:60
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_ぱふぱふ
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_胸元) == 0
-			RETURNF 0
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
 		SIF TFLAG:60
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_乳合わせ
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_胸元) == 0
-			RETURNF 0
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
 		SIF TFLAG:65
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_タワシ洗い
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_右頬) == 0
-			RETURNF 0
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
 		;润滑
@@ -262,8 +234,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_正常位挿入される
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_太股) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
 		SIF !(HAS_VAGINA(MASTER))
@@ -274,8 +244,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_骑乘位A挿入される
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_左尻) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
 		SIF BASE:加害者:勃起 < 1000
@@ -286,8 +254,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_后背位A挿入される
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_左尻) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
 		SIF BASE:加害者:勃起 < 1000
@@ -298,8 +264,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_背面座位A挿入される
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_左尻) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
 		SIF BASE:加害者:勃起 < 1000
@@ -310,8 +274,6 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_骑乘位逆强奸
-		SIF !COM417_is_Protected_CheckOnly(MASTER,加害者,淫纹_太股) == 0
-			RETURNF 0
 		SIF !(HAS_PENIS(MASTER))
 			RETURNF 0
 		SIF !(HAS_VAGINA(加害者))

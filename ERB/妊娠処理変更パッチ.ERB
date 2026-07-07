@@ -121,17 +121,11 @@ SIF 射精者 == 人物_訪問者
 
 ;子宮内精子量増加（TFLAG:精子量の分だけ上昇）
 REPEAT 9
-	IF CFLAG:被害者:淫纹身体改造 == 1
-		TA:被害者:射精者:0 += TFLAG:精子量
+	;日数が0なら、精子量追加
+	IF TB:被害者:射精者:COUNT == 0
+		TA:被害者:射精者:COUNT += TFLAG:精子量
 		TRYCALL 精子取得DEBUG(TFLAG:精子量, TA:被害者:射精者:COUNT, 被害者, 射精者, COUNT)
 		BREAK
-	ELSE
-		;日数が0なら、精子量追加
-		IF TB:被害者:射精者:COUNT == 0
-			TA:被害者:射精者:COUNT += TFLAG:精子量
-			TRYCALL 精子取得DEBUG(TFLAG:精子量, TA:被害者:射精者:COUNT, 被害者, 射精者, COUNT)
-			BREAK
-		ENDIF
 	ENDIF
 REND
 子宫内精子量 = 0
@@ -199,54 +193,32 @@ FOR 母親候補, 0, CHARANUM
 		総精子量 = 0
 		REPEAT 9
 			;日数フラグが0、精子量が０超なら日数セット 日数为0 精子量大于0 则日数设为3
-			IF TB:母親候補:父親候補:COUNT == 0 && TA:母親候補:父親候補:COUNT > 0
-				;默认保质三天
-				TB:母親候補:父親候補:COUNT = 3
-				;每多一个淫纹，精子保质期加一天
-				SIF GETBIT(CFLAG:母親候補:淫纹,淫纹_恥丘)
-					TB:母親候補:父親候補:COUNT++
-				SIF GETBIT(CFLAG:母親候補:淫纹,淫纹_太股)
-					TB:母親候補:父親候補:COUNT++
-				SIF GETBIT(CFLAG:母親候補:淫纹,淫纹_左尻)
-					TB:母親候補:父親候補:COUNT++
-				SIF GETBIT(CFLAG:母親候補:淫纹,淫纹_胸元)
-					TB:母親候補:父親候補:COUNT++
-				SIF GETBIT(CFLAG:母親候補:淫纹,淫纹_右頬)
-					TB:母親候補:父親候補:COUNT++
-				;日数フラグが１、精子量が０超ならリセット 日数为1 精子量大于0 则精子过期设为0 在淫纹身体改造之后，精子不会过期
-			ELSEIF TB:母親候補:父親候補:COUNT == 1 && TA:母親候補:父親候補:COUNT > 0 && CFLAG:母親候補:淫纹身体改造 == 0
-				精子过期量 += TA:母親候補:父親候補:COUNT
-				TA:母親候補:父親候補:COUNT = 0
-				TB:母親候補:父親候補:COUNT = 0
-				;日数フラグが残っており、精子量が０超なら日数フラグ減少＋精子量20％減
-				;日数还有剩余，精子量超过0则每次减少百分比
-			ELSEIF TB:母親候補:父親候補:COUNT > 0 && TA:母親候補:父親候補:COUNT > 0
-				;完整的淫纹保护下，流失量减少
-				IF CFLAG:母親候補:淫纹 == 31
-					LOCAL = TA:母親候補:父親候補:COUNT
-					TIMES TA:母親候補:父親候補:COUNT, 0.90
-					精子流失量 += LOCAL - TA:母親候補:父親候補:COUNT
-				ELSE
-					LOCAL = TA:母親候補:父親候補:COUNT
-					TIMES TA:母親候補:父親候補:COUNT, 0.80
-					精子流失量 += LOCAL - TA:母親候補:父親候補:COUNT
-				ENDIF
-				;日数减少1
-				TB:母親候補:父親候補:COUNT --
-			ENDIF
-			総精子量 += TA:母親候補:父親候補:COUNT
-		REND
+		IF TB:母親候補:父親候補:COUNT == 0 && TA:母親候補:父親候補:COUNT > 0
+			;默认保质三天
+			TB:母親候補:父親候補:COUNT = 3
+			;日数フラグが１、精子量が０超ならリセット 日数为1 精子量大于0 则精子过期设为0
+		ELSEIF TB:母親候補:父親候補:COUNT == 1 && TA:母親候補:父親候補:COUNT > 0
+			精子过期量 += TA:母親候補:父親候補:COUNT
+			TA:母親候補:父親候補:COUNT = 0
+			TB:母親候補:父親候補:COUNT = 0
+			;日数フラグが残っており、精子量が０超なら日数フラグ減少＋精子量20％減
+			;日数还有剩余，精子量超过0则每次减少百分比
+		ELSEIF TB:母親候補:父親候補:COUNT > 0 && TA:母親候補:父親候補:COUNT > 0
+			LOCAL = TA:母親候補:父親候補:COUNT
+			TIMES TA:母親候補:父親候補:COUNT, 0.80
+			精子流失量 += LOCAL - TA:母親候補:父親候補:COUNT
+			;日数减少1
+			TB:母親候補:父親候補:COUNT --
+		ENDIF
+		総精子量 += TA:母親候補:父親候補:COUNT
+	REND
 		;現在の総精子量のセット
 		DA:母親候補:父親候補 = 総精子量
 		TRYCALL 精子処理DEBUG2(母親候補, 父親候補, 総精子量)
 
 	NEXT
-	DEBUGPRINTFORML %CALLNAME:母親候補%\@CFLAG:母親候補:淫纹身体改造 == 1?是淫纹身体改造过的#\@，因此精子过期量:{精子过期量}
-	IF CFLAG:母親候補:淫纹 == 31
-		DEBUGPRINTFORML %CALLNAME:母親候補%在淫纹的保护下精子流失量:{精子流失量}
-	ELSE
-		DEBUGPRINTFORML %CALLNAME:母親候補%的精子流失量:{精子流失量}
-	ENDIF
+	DEBUGPRINTFORML %CALLNAME:母親候補%的精子过期量:{精子过期量}
+	DEBUGPRINTFORML %CALLNAME:母親候補%的精子流失量:{精子流失量}
 NEXT
 
 ;受精関連（此処3つで一つ）-------------------------------

@@ -315,26 +315,14 @@ NEXT
 IF TARGET
 	IF CFLAG:TARGET:睡眠
 		PRINTFORMW %CALLNAME:MASTER%醒来的时候，%CALLNAME:TARGET%还睡得很香甜
-		SIF CFLAG:TARGET:淫纹身体改造 == 1
-			PRINTFORMW 外表变得淫靡的%CALLNAME:TARGET%在熟睡中稍稍变得有些可爱。
-		SIF CFLAG:MASTER:淫纹身体改造
-			PRINTFORMW 转头看了看自己的褐色身体，还有%COM417_GetProstituteMarkColor(MASTER)%的淫纹，忍不住凑过去抱了抱%CALLNAME:TARGET%、
 		PRINTFORMW 为了不吵醒%CALLNAME:TARGET%，%CALLNAME:MASTER%溜下床，开始了新一天的准备
 	ELSE
 		IF TALENT:恋慕
 			PRINTFORMW %CALLNAME:MASTER%醒来的时候跟%CALLNAME:TARGET%的视线对上了
-			SIF CFLAG:TARGET:淫纹身体改造 == 1
-				PRINTFORMW %CALLNAME:TARGET%蔷薇色的眼睛发出了些许光芒，褐色的肌肤在蔷薇色的渲染下变得更加淫靡了
-			SIF CFLAG:MASTER:淫纹身体改造
-				PRINTFORMW 「%CALLNAME:MASTER%的褐色肌肤和眼睛看起来好淫荡呢~❤~~」%CALLNAME:TARGET%如此说道
 			PRINTFORMW 过了一会儿，避开了%CALLNAME:TARGET%视线开始了新一天的准备
 		ELSE
 			PRINTFORMW %CALLNAME:MASTER%醒来的时候跟%CALLNAME:TARGET%的视线对上了
 			IF 親子関係(MASTER, TARGET)
-				SIF CFLAG:TARGET:淫纹身体改造 == 1
-					PRINTFORMW %CALLNAME:TARGET%蔷薇色的眼睛发出了些许光芒，褐色的肌肤在蔷薇色的渲染下变得更加淫靡了
-				SIF CFLAG:MASTER:淫纹身体改造
-					PRINTFORMW 但是看了看自己，也是一样的感觉嘛~
 				PRINTFORMW %CALLNAME:MASTER%跟自己的孩子打了声招呼，起床开始了新一天的准备
 			ELSE
 				PRINTFORMW 不知道为什么%CALLNAME:TARGET%会在这里，虽然觉得很可疑，但还是起床开始了新一天的准备

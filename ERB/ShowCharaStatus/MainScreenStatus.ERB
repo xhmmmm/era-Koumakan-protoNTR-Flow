@@ -1087,9 +1087,8 @@ IF 角色 && !CFLAG:角色:睡眠
 	ELSEIF CFLAG:角色:うふふ == 2
 		;押し倒し(2)時
 		TFLAG:COMABLE管理 = 3
-	ELSEIF TCVAR:MASTER:亲密程度 > 2 && !同室人数 && BASE:角色:满足*2 < MAXBASE:角色:满足 && !OPENPLACE(POS_NOW) && POS_NOW != FLAG:访问者当前位置 && !TALENT:NTR && CHK_350_STAIN_SEMEN(角色) && CFLAG:角色:性欲 > 25 && COM417_is_Protected_CheckOnly(MASTER,角色,淫纹_太股) == 0
+	ELSEIF TCVAR:MASTER:亲密程度 > 2 && !同室人数 && BASE:角色:满足*2 < MAXBASE:角色:满足 && !OPENPLACE(POS_NOW) && POS_NOW != FLAG:访问者当前位置 && !TALENT:NTR && CHK_350_STAIN_SEMEN(角色) && CFLAG:角色:性欲 > 25
 		;あなたの亲密程度が3以上で、対象が满足状態でなく、密室で、訪問者がいなく、NTRでもない場合は押し倒される
-		;如果集齐了淫纹 只能在淫纹失效时逆推
 		;オープンスペース（正門、広間、庭、二階踊り場、廊下）では押し倒されない
 		;精液汚れによる押し倒し可否で失敗すると押し倒されない
 		IF TFLAG:COMABLE管理 != 3
@@ -1409,24 +1408,6 @@ RETURN 0
 #DIM 角色
 #DIMS 描写文章
 描写文章 = %""%
-IF GETBIT(CFLAG:角色:淫纹, 淫纹_右頬)
-	IF 描写文章 != ""
-		描写文章 = %描写文章+"、"%
-	ENDIF
-	CALL COM417_GetFillingRateByPublicSperm(角色)
-	SELECTCASE RESULT:1 * RESULT:0
-		CASE IS >= 200
-			描写文章 = %描写文章+"脸颊上看到了鲜艳的粉红色的娼妇纹"%
-		CASE 100 TO 199
-			描写文章 = %描写文章+"脸颊上看到了粉红色的娼妇纹"%
-		CASE 50 TO 99
-			描写文章 = %描写文章+"脸颊上看到了赤色的娼妇纹"%
-		CASE 1 TO 49
-			描写文章 = %描写文章+"脸颊上看到了赤紫色的娼妇纹"%
-		CASEELSE
-			描写文章 = %描写文章+"脸颊上看到了紫色的娼妇纹"%
-	ENDSELECT
-ENDIF
 IF TALENT:角色:泌乳体质 && BASE:角色:母乳 > MAXBASE:角色:母乳
 	IF 描写文章 != ""
 		描写文章 = %描写文章+"、"%
