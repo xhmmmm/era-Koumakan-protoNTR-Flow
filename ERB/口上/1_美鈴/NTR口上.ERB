@@ -1,21 +1,21 @@
 ;-------------------------------------------------
-;寝取られパッチ用美鈴口上ファイル
-;お好きなように埋めまくってください
-;そしてあわよくばうｐしてください
-;いやマジで
-;注意：この口上が呼ばれるのは対象が主人から見える位置に居る状態か
-;　　　筒抜けコマンド(デバグ用)を実行した場合に限ります
-;　　　対象は気づいてない事が前提なので書く際にはご注意を
+;寝取补丁用美铃口上文件
+;请随意填满吧
+;然后如果可以的话请上传
+;不，说真的
+;注意：此口上被调用的条件是对象在主人可见的位置
+;　　　或执行了筒抜け命令(调试用)的情况
+;　　　前提是对象没有注意到，编写时请注意
 ;
 ;protoNTR版追加要素
-;関数名に「KW」がつく項目はMASTER同席の見せつけコマンド。
-;　美鈴はデフォで施虐狂持ちではないので若干見せつけ度は低めで
-;　設定で施虐狂を追加したときの分岐はおいおい追加していきたいです。
+;函数名带「KW」的项目是MASTER在场的炫耀命令。
+;　美铃默认没有施虐狂属性，所以炫耀程度稍低
+;　设置了施虐狂时的分支之后慢慢追加。
 ;-------------------------------------------------
 ;==================================================
-;訪問者と会话
+;与访问者会话
 ;==================================================
-;主人(マスター)は同席していない
+;主人(玩家)不在场
 @NTR_KOJO_K1_1(角色)
 #DIM 角色
 ;大浴場
@@ -299,11 +299,11 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	PRINTDATAL
-		DATAFORM 「んぅ・・んぅう・・くぅん・・・ふぁん・・♪」
-		DATAFORM 「んん・・ああ・・んんっ・・ちゅ・・♪」
-		DATAFORM 「あん・・ん・・うふ・・ん・・くちゅっ・・♪」
+		DATAFORM 「嗯ぅ・・嗯ぅう・・咕ぅん・・・呼ぁん・・♪」
+		DATAFORM 「嗯嗯・・啊啊・・嗯嗯っ・・啾・・♪」
+		DATAFORM 「啊嗯・・嗯・・呼ふ・・嗯・・咕啾っ・・♪」
 	ENDDATA
-	IF NTR_CHK_PEEP_CONT(角色) 
+	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML %CALLNAME:角色%向着%NTR_NAME(0)%伸出手臂,發出了撒娇般的声音。
 		PRINTFORML 在%ANATA_LOVER(角色)%眼前热烈地交换接吻的样子。
 	ELSE
@@ -313,9 +313,9 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	PRINTDATAL
-		DATAFORM 「んぅ・・んぅう・・くぅん・・・ふぁん・・♪」
-		DATAFORM 「んん・・ああ・・んんっ・・ちゅ・・♪」
-		DATAFORM 「あん・・ん・・うふ・・ん・・くちゅっ・・♪」
+		DATAFORM 「嗯ぅ・・嗯ぅう・・咕ぅん・・・呼ぁん・・♪」
+		DATAFORM 「嗯嗯・・啊啊・・嗯嗯っ・・啾・・♪」
+		DATAFORM 「啊嗯・・嗯・・呼ふ・・嗯・・咕啾っ・・♪」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) 
 		PRINTFORML %CALLNAME:角色%向着%NTR_NAME(0)%伸出手臂,發出了撒娇般的声音。
@@ -334,9 +334,9 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTDATAL
-		DATAFORM 「んぅ・・んぅう・・くぅん・・・ふぁん・・」
-		DATAFORM 「んん・・ああ・・んんっ・・ちゅ・・」
-		DATAFORM 「あん・・ん・・うふ・・ん・・くちゅっ・・」
+		DATAFORM 「嗯ぅ・・嗯ぅう・・咕ぅん・・・呼ぁん・・」
+		DATAFORM 「嗯嗯・・啊啊・・嗯嗯っ・・啾・・」
+		DATAFORM 「啊嗯・・嗯・・呼ふ・・嗯・・咕啾っ・・」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) 
 		PRINTFORML %CALLNAME:角色%向着%NTR_NAME(0)%伸出手臂,發出了撒娇般的声音。
@@ -352,9 +352,9 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	PRINTDATAL
-		DATAFORM 「ん・・んぅ・・・・・」
-		DATAFORM 「んっ・・ん・・うん・・」
-		DATAFORM 「う・・んっ・・くちゅっ・・」
+		DATAFORM 「嗯・・嗯ぅ・・・・・」
+		DATAFORM 「嗯っ・・嗯・・嗯ん・・」
+		DATAFORM 「呼・・嗯っ・・咕啾っ・・」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) 
 		PRINTFORML %CALLNAME:角色%接受%NTR_NAME(0)%的舌头，自己也开始响应。
@@ -369,9 +369,9 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
 
 	PRINTDATAL
-		DATAFORM 「ん・・んぅ・・・・・」
-		DATAFORM 「んっ・・ん・・うん・・」
-		DATAFORM 「う・・んっ・・くちゅっ・・」
+		DATAFORM 「嗯・・嗯ぅ・・・・・」
+		DATAFORM 「嗯っ・・嗯・・嗯ん・・」
+		DATAFORM 「呼・・嗯っ・・咕啾っ・・」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色) 
 		PRINTFORML %CALLNAME:角色%虽然持续抵抗，但渐渐地也接受了%NTR_NAME(0)%的舌头。
@@ -426,7 +426,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTDATAL
 		DATAFORM 「嗯……哼哼……哼哼・・♪」
 		DATAFORM 「哈・・・嗯・・再多一点・・・明明可以・・♪」
-		DATAFORM 「んっ・・ん・・はぁん・・♪」
+		DATAFORM 「嗯っ・・嗯・・哈ぁん・・♪」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML 一边拉唾液的线一边离开口、%CALLNAME:角色%满足地对%NTR_NAME(0)%撒娇了。
@@ -448,7 +448,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTDATAL
 		DATAFORM 「嗯……哼哼……哼哼・・♪」
 		DATAFORM 「哈・・・嗯・・再多一点・・・明明可以・・♪」
-		DATAFORM 「んっ・・ん・・はぁん・・」
+		DATAFORM 「嗯っ・・嗯・・哈ぁん・・」
 	ENDDATA
 	IF NTR_CHK_PEEP_CONT(角色)
 		PRINTFORML 一边拉唾液的线一边离开口、%CALLNAME:角色%满足地对%NTR_NAME(0)%撒娇了。
@@ -526,7 +526,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	IF TALENT:角色:恋慕
 		PRINTFORML 「啊……恩……恩恩恩恩……」
-		PRINTFORML %CALLNAME:角色%は%MSG_LOVER(角色)%であるはずの%CALLNAME:MASTER%看着,自己将嘴唇与%NTR_NAME(0)%重叠缠绕。
+		PRINTFORML %CALLNAME:角色%在应该是%MSG_LOVER(角色)%的%CALLNAME:MASTER%注视下，自己将嘴唇与%NTR_NAME(0)%重叠缠绕。
 	ELSE
 		PRINTFORML 「啊……恩……恩恩恩恩……」
 		PRINTFORML %CALLNAME:角色%被%CALLNAME:MASTER%看着,自己将嘴唇与%NTR_NAME(0)%重叠缠绕。
@@ -576,41 +576,41 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「んっ・・ちゅっ、んちゅっ・・こくっ・・」
+	PRINTFORML 「嗯っ・・啾っ、嗯啾っ・・咕嘟っ・・」
 	PRINTFORML %CALLNAME:角色%和%NTR_NAME(0)%在%CALLNAME:MASTER%的面前互相缠绕舌头,喝着唾沫。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「んっ・・ちゅっ、んちゅっ・・こくっ・・」
+	PRINTFORML 「嗯っ・・啾っ、嗯啾っ・・咕嘟っ・・」
 	PRINTFORML %CALLNAME:角色%和%NTR_NAME(0)%在%CALLNAME:MASTER%的面前互相缠绕舌头,喝着唾沫。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	IF TALENT:角色:恋慕
-		PRINTFORML 「んっ・・ちゅっ、んちゅっ・・」
+		PRINTFORML 「嗯っ・・啾っ、嗯啾っ・・」
 		PRINTFORML %CALLNAME:角色%就在%MSG_LOVER(角色)%的%CALLNAME:MASTER%的面前，与%NTR_NAME(0)%纠缠着舌头。
 	ELSE
-		PRINTFORML 「んっ・・ちゅっ、んちゅっ・・」
+		PRINTFORML 「嗯っ・・啾っ、嗯啾っ・・」
 		PRINTFORML %CALLNAME:角色%在%CALLNAME:MASTER%的面前与%NTR_NAME(0)%纠缠着舌头。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	IF TALENT:角色:恋慕
-		PRINTFORML 「ん・・ん、んくっ・・ちゅ・・」
+		PRINTFORML 「嗯・・嗯、嗯咕っ・・啾・・」
 		PRINTFORML %CALLNAME:角色%在%MSG_LOVER(角色)%的面前与%NTR_NAME(0)%接吻，无法抗拒。
 	ELSE
-		PRINTFORML 「ん・・ん、んくっ・・ちゅ・・」
+		PRINTFORML 「嗯・・嗯、嗯咕っ・・啾・・」
 		PRINTFORML %CALLNAME:角色%在%CALLNAME:MASTER%的面前与%NTR_NAME(0)%接吻，无法抗拒。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_侍奉する程度)
 
 	IF TALENT:角色:恋慕
-		PRINTFORML 「んっ・・ん、んくっ・・」
+		PRINTFORML 「嗯っ・・嗯、嗯咕っ・・」
 		PRINTFORML %CALLNAME:角色%被%MSG_LOVER(角色)%的面前夺走了嘴唇%NTR_NAME(0)%，但是拒绝的手似乎没有使用力量。
 	ELSE
-		PRINTFORML 「んっ・・ん、んくっ・・」
+		PRINTFORML 「嗯っ・・嗯、嗯咕っ・・」
 		PRINTFORML %CALLNAME:角色%被%MSG_LOVER(角色)%的面前夺走了嘴唇%NTR_NAME(0)%，但是拒绝的手似乎没有使用力量。
 	ENDIF
 
@@ -758,7 +758,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	PRINTFORML 「啊…不行…不行」
 	PRINTFORML 对于不听从%CALLNAME:角色%的恳求,在%NTR_NAME(0)%的爱抚中，她逐渐溶化了。
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%の性器は%MSG_LOVER(角色)%である%CALLNAME:MASTER%以外的手,男人的手被单方面蹂躏。
+		PRINTFORML %CALLNAME:角色%的性器被%MSG_LOVER(角色)%即%CALLNAME:MASTER%以外的男人的手单方面蹂躏着。
 	ENDIF
 
 ELSE
@@ -766,7 +766,7 @@ ELSE
 	PRINTFORML 「喂……嗯…拜託你…嗯……对谁都不要说……哎……」
 	PRINTFORML 虽然%CALLNAME:角色%希望被释放、但%NTR_NAME(0)%的手指不停地抽插,房間回响着淫荡的水声。。
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%の性器は%MSG_LOVER(角色)%である%CALLNAME:MASTER%以外の男人的手正在被污染。
+		PRINTFORML %CALLNAME:角色%的性器正被%MSG_LOVER(角色)%即%CALLNAME:MASTER%以外的男人的手所玷污。
 	ENDIF
 
 ENDIF
@@ -785,7 +785,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	PRINTFORML 「啊啊・・・啊啊・・・啊・・・那个・・那个・・・那个」
 	PRINTFORML %NTR_NAME(0)%的手一离开，%CALLNAME:角色%露出了請求进行一步的表情。
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外向男人身心都被委托着。
+		PRINTFORML %CALLNAME:角色%将身心都交给了%CALLNAME:MASTER%以外的男人。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
@@ -793,7 +793,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML 「啊啊・・・啊啊・・・啊・・・那个・・那个・・・那个」
 	PRINTFORML %NTR_NAME(0)%的手一离开，%CALLNAME:角色%露出了請求进行一步的表情。
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外向男人身心都被委托着。
+		PRINTFORML %CALLNAME:角色%将身心都交给了%CALLNAME:MASTER%以外的男人。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
@@ -801,7 +801,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 	PRINTFORML 「啊啊啊啊啊啊啊啊」
 	PRINTFORML %NTR_NAME(0)%一放开手，膝盖就无力了%CALLNAME:角色%就像是把身体交给%NTR_NAME(0)%
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人接受了双手的爱抚，被引导到了绝顶。
+		PRINTFORML %CALLNAME:角色%接受了%CALLNAME:MASTER%以外的男人的双手爱抚，被引导到了绝顶。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
@@ -809,7 +809,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 	PRINTFORML 「啊啊啊啊啊啊啊啊」
 	PRINTFORML %NTR_NAME(0)%一放开手，膝盖就无力了%CALLNAME:角色%就像是把身体交附给%NTR_NAME(0)%
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人的手指引到了绝顶。
+		PRINTFORML %CALLNAME:角色%被%CALLNAME:MASTER%以外的男人的手指引到了绝顶。
 	ENDIF
 
 ELSE
@@ -817,7 +817,7 @@ ELSE
 	PRINTFORML 「・・・啊・・喵・・哈・・・・哈・・・哈・・・」
 	PRINTFORML %NTR_NAME(0)%一放开手膝盖就使不上劲，%CALLNAME:角色%一屁股坐在那里。
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人的手指引到了绝顶。
+		PRINTFORML %CALLNAME:角色%被%CALLNAME:MASTER%以外的男人的手指引到了绝顶。
 	ENDIF
 
 ENDIF
@@ -1018,12 +1018,12 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「哼，嗯・・・れる・・・れろ・・・・」
+	PRINTFORML 「哼，嗯・・・舔噜・・・舔噜・・・・」
 	PRINTFORML %CALLNAME:角色%含着%NTR_NAME(0)%的阴茎，用舌头细心地舔着龟头。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「哼，嗯・・・れる・・・れろ・・・・」
+	PRINTFORML 「哼，嗯・・・舔噜・・・舔噜・・・・」
 	PRINTFORML %CALLNAME:角色%含着%NTR_NAME(0)%的阴茎，用舌头细心地舔着龟头。
 	IF TALENT:角色:恋慕
 		PRINTFORML 那简直就像是在幫恋人口交一样，细致又溫柔。
@@ -1033,7 +1033,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「哼，嗯・・・れる・・・れろ・・・・」
+	PRINTFORML 「哼，嗯・・・舔噜・・・舔噜・・・・」
 	PRINTFORML %CALLNAME:角色%含着%NTR_NAME(0)%的阴茎，用舌头细心地舔着龟头。
 	IF TALENT:角色:恋慕
 		PRINTFORML 那简直就像是在幫恋人口交一样，细致又溫柔。
@@ -1090,7 +1090,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTFORML %CALLNAME:角色%闭着眼睛不斷前后移动着头，催促着%NTR_NAME(0)%射精。
 	PRINTFORML （啊・・・快点・・快点，射给我吧❤・・・）
 	IF TALENT:角色:恋慕
-		PRINTFORML %MSG_LOVER(角色)%對%CALLNAME:MASTER%以外的精液,男人的精液を%CALLNAME:角色%渴求着。
+		PRINTFORML %CALLNAME:角色%渴求着%MSG_LOVER(角色)%即%CALLNAME:MASTER%以外的男人的精液。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%的精液,%CALLNAME:角色%渴求着。
 	ENDIF
@@ -1111,7 +1111,7 @@ ELSE
 	PRINTFORML 「・・恩・・・ちゅ・・・唔・・・恩・・・・」
 	PRINTFORML %CALLNAME:角色%看起来很讨厌地口交,不过，由于口内蔓延的雄性臭味,在欲望的影子开始显现。
 	IF TALENT:角色:恋慕
-		PRINTFORML %MSG_LOVER(角色)%である%CALLNAME:MASTER%以外の男人的阴茎味和臭味充斥着%CALLNAME:角色%的味覚和嗅覚。
+		PRINTFORML %MSG_LOVER(角色)%即%CALLNAME:MASTER%以外的男人的阴茎味道和气味充斥着%CALLNAME:角色%的味觉和嗅觉。
 	ELSE
 		PRINTFORML %NTR_NAME(2)%的阴茎味和臭味充斥着%CALLNAME:角色%的味覚和嗅覚。
 	ENDIF
@@ -1192,7 +1192,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「んっ、んむ・・・ん・・ちゅ・・」
+	PRINTFORML 「嗯っ、嗯唔・・・嗯・・啾・・」
 	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%舔着秘所，自己也伸长舌头舔着阴茎。
 	IF TALENT:角色:恋慕
 		PRINTFORML 對%NTR_NAME_1_2(角色)%的龟头渗出的味道和臭味%CALLNAME:角色%没有厌恶感。
@@ -1475,14 +1475,14 @@ ENDIF
 RETURN 0
 
 ;==================================================
-;訪問者と性交
+;与访问者性交
 ;==================================================
-;@@@ 空関数だったので、汎用口上を表示させるためコメントアウト
+;@@@ 因为是空函数，为了显示通用口上而注释掉了
 
 ;==================================================
-;訪問者と菊花性交
+;与访问者菊花性交
 ;==================================================
-;@@@ 空関数だったので、汎用口上を表示させるためコメントアウト
+;@@@ 因为是空函数，为了显示通用口上而注释掉了
 
 ;==================================================
 ;納屋、自室に同行
@@ -1490,41 +1490,41 @@ RETURN 0
 ;開始
 @NTR_KOJO_K1_11(角色, 誘いフラグ)
 #DIM 角色
-#DIM 誘いフラグ		; 0:訪問者が連行　1:住人が诱惑
+#DIM 誘いフラグ		; 0:访问者带走　1:住人诱惑
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	PRINTFORML 「是……正如您所说……」
 	IF 0 == 誘いフラグ
-		PRINTFORML %NTR_NAME(0)%を%NTR_GetPlaceName(FLAG:访问者当前位置)%同行%CALLNAME:角色%被他被紧紧抱住脸颊染红了。
+		PRINTFORML 被%NTR_NAME(0)%带到%NTR_GetPlaceName(FLAG:访问者当前位置)%，%CALLNAME:角色%被他紧紧抱住，脸颊染红了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%を%NTR_GetPlaceName(FLAG:访问者当前位置)%的邀请%CALLNAME:角色%被他被紧紧抱住脸颊染红了。
+		PRINTFORML 受%CALLNAME:角色%邀请来到%NTR_GetPlaceName(FLAG:访问者当前位置)%，%NTR_NAME(0)%紧紧抱住她，脸颊染红了。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	PRINTFORML 「是……照您所说的……」
 	IF 0 == 誘いフラグ
-		PRINTFORML %NTR_NAME(0)%を%NTR_GetPlaceName(FLAG:访问者当前位置)%同行%CALLNAME:角色%被他被紧紧抱住脸颊染红了。
+		PRINTFORML 被%NTR_NAME(0)%带到%NTR_GetPlaceName(FLAG:访问者当前位置)%，%CALLNAME:角色%被他紧紧抱住，脸颊染红了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%を%NTR_GetPlaceName(FLAG:访问者当前位置)%的邀请%CALLNAME:角色%被他に被紧紧抱住脸颊染红了。
+		PRINTFORML 受%CALLNAME:角色%邀请来到%NTR_GetPlaceName(FLAG:访问者当前位置)%，%NTR_NAME(0)%紧紧抱住她，脸颊染红了。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 「嗯……这里没问题。」
 	IF IS_CAN_LOCK(FLAG:访问者当前位置)
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%的钥匙，染红了脸颊,对%NTR_NAME(0)%微笑了。
+		PRINTFORML %CALLNAME:角色%锁上了%NTR_GetPlaceName(FLAG:访问者当前位置)%的门，染红了脸颊，对%NTR_NAME(0)%微笑了。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%然后，脸颊染红了,对%NTR_NAME(0)%的微笑。
+		PRINTFORML %CALLNAME:角色%在%NTR_GetPlaceName(FLAG:访问者当前位置)%脸颊染红了，对%NTR_NAME(0)%微笑了。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 	PRINTFORML 「・・这里没关系・・・」
 	IF IS_CAN_LOCK(FLAG:访问者当前位置)
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%的钥匙，对%NTR_NAME(0)%微笑了。
+		PRINTFORML %CALLNAME:角色%锁上了%NTR_GetPlaceName(FLAG:访问者当前位置)%的门，对%NTR_NAME(0)%微笑了。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_GetPlaceName(FLAG:访问者当前位置)%然后，对%NTR_NAME(0)%微笑。
+		PRINTFORML %CALLNAME:角色%在%NTR_GetPlaceName(FLAG:访问者当前位置)%对%NTR_NAME(0)%微笑了。
 	ENDIF
 
 ELSE
@@ -1612,7 +1612,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	PRINTDATAL
 		DATAFORM %CALLNAME:角色%想着如果被谁看见了裸露的私所，羞耻地染上了脸颊。
 		DATAFORM %CALLNAME:角色%对沒有内衣的事感到不安，羞耻沾染了脸颊。
-		DATAFORM %CALLNAME:角色%は好像因为没有穿内衣而心神不定。
+		DATAFORM %CALLNAME:角色%因为沒有穿內衣而心神不定。
 	ENDDATA
 	IF TALENT:角色:恋慕
 		PRINTFORML （%CALLNAME:MASTER%只有……是）
@@ -1640,7 +1640,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 ELSE
 
 	PRINTDATAL
-		DATAFORM 「・・くっ・・」
+		DATAFORM 「・・咕っ・・」
 		DATAFORM 「……真是不知廉耻……」
 		DATAFORM 「这样的事……」
 	ENDDATA
@@ -1717,7 +1717,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 
 ELSE
 
-	PRINTFORML 「・・くっ・・・这样的事・・・」
+	PRINTFORML 「・・咕っ・・・这种事・・・」
 	IF TALENT:角色:恋慕
 		PRINTFORML %CALLNAME:角色%被威胁把和自己的关系暴露给%CALLNAME:MASTER%，没办法只好把震蛋放进菊穴后回去工作。
 	ELSE
