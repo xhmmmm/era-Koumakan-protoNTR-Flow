@@ -1340,7 +1340,7 @@ FOR ParamNo, 0, 101
 		RESETCOLOR
 	ENDIF
 	PRINTFORM %" "%
-	IF LOCAL:0 == 9 && PALAM:角色:ParamNo >= 20000
+	IF ParamNo == 9 && PALAM:角色:ParamNo >= 20000
 		;润滑(9)が十分にある場合だけ特殊表示
 		PRINTFORM %"摩擦 0 "%
 	ELSE
