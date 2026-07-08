@@ -1,41 +1,41 @@
 ;-------------------------------------------------
-;パチュリー口上NTR対応ラッパ口上
+;帕秋莉口上NTR对应包装口上
 ;
-;NTRに対応していないパチュリー口上に、NTR独自の分岐を追加するためのラッパ口上。
-;たとえばコマンド311の時に KOJO_MESSAGE_COM_K3_311 が実行される場合、
-;NTR_KOJO_MESSAGE_COM_K3_311があればそちらが優先される。
-;さらにNTR_KOJO_MESSAGE_COM_K3_311 の中で、NTR固有の分岐がすべて条件が
-;叶わなかったとき、通常の(非NTR対応の) KOJO_MESSAGE_COM_K3_311 を実行できる。
+;为未对应NTR的帕秋莉口上添加NTR独有分支的包装口上。
+;例如执行命令311时调用 KOJO_MESSAGE_COM_K3_311 的情况，
+;若存在 NTR_KOJO_MESSAGE_COM_K3_311 则优先执行该函数。
+;且在 NTR_KOJO_MESSAGE_COM_K3_311 中，若NTR固有的分支条件
+;全部不满足时，仍可执行通常的（非NTR对应的）KOJO_MESSAGE_COM_K3_311。
 ;-------------------------------------------------
-;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
-;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
-;オリジナル作者とコンタクトが取れない場合には以下の但し書きに従ってUPできるかどうか判断してください。
+;※※※※※※关于他人进行修正、加笔、改动的声明※※※※※※
+;前提是原作作者以外的人进行修改时，应征求原作作者的许可
+;若无法与原作作者取得联系，请根据以下声明判断是否可以上传。
 
-;◎修正（誤字、脱字、条件分岐等ERB構文のバグ修正、本体のバージョンアップ、ダウン対応など）
-;（　許可　）※どちらかを選択してください
+;◎修正（错字、漏字、条件分支等ERB语法的bug修正、本体版本升级/降级对应等）
+;（　许可　）※请选择其中之一
 ;
-;◎加筆（未記入箇所、ランダム分岐、条件分岐等の増補）
-;（　別人版と明記するなら可　）※どちらかを選択してください
+;◎加笔（未填写部分、随机分支、条件分支等增补）
+;（　标明为他人版本则可　）※请选择其中之一
 ;
-;◎改変（オリジナル作者によって書かれた部分に対しての上書き、消去を含む）
-;（　別人版と明記するなら可　）※どちらかを選択してください
+;◎改动（对原作作者所写部分的覆盖、删除）
+;（　标明为他人版本则可　）※请选择其中之一
 ;
-;◎製作中などの理由で時限を設ける
-;（　年　月　日）まで上記の一切を認めない
+;◎因制作中等理由设置时限
+;（　年　月　日）之前不认可上述任何一项
 ;
-;記　　寝の人
-;追記　
-;基本的に作者の意思を確認出来ない場合、加筆改変は可能ということにします
+;记　寝の人
+;追记
+;基本上在无法确认作者意愿的情况下，加笔改动是允许的
 
 ;==================================================
 ;311,抱住
 ;==================================================
 @NTR_KOJO_MESSAGE_COM_K3_311
 CALL TRAIN_MESSAGE
-; NTR対応口上実行
+; 执行NTR对应口上
 CALL NTR_KOJO_MESSAGE_COM_K3_311_1
 IF 1 == RESULT
-	; 戻り値が1であれば、非NTR対応口上を実行
+	; 返回值为1时，执行非NTR对应口上
 	TRYCALL KOJO_MESSAGE_COM_K3_311_1
 ENDIF
 RETURN RESULT
@@ -50,18 +50,18 @@ RET_VAL = 0
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ) 
 
 	PRINTDATAL
-		DATAFORM 「・・いけないわ」
-		DATAFORM 「・・やめてちょうだい」
-		DATAFORM 「・・だ・・だめよ・・」
+		DATAFORM 「・・不可以」
+		DATAFORM 「・・请住手」
+		DATAFORM 「・・不・・不行・・」
 	ENDDATA
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML 「・・・」
-	PRINTFORML 抱き寄せられた%CALLNAME:角色%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
+	PRINTFORML 被揽入怀中的%CALLNAME:角色%微微将脸从%CALLNAME:MASTER%处别开，露出了仿佛惧怕着什么的神情。
 
 ELSE
-	; それ以外の場合、非NTR口上を実行する
+	; 其他情况，执行非NTR口上
 	RET_VAL = 1
 ENDIF 
 RETURN RET_VAL
@@ -75,7 +75,7 @@ IF TFLAG:193 == 0
 ENDIF
 CALL NTR_KOJO_MESSAGE_COM_K3_312_1
 IF 1 == RESULT
-	; 戻り値が1であれば、非NTR対応口上を実行
+	; 返回值为1时，执行非NTR对应口上
 	TRYCALL KOJO_MESSAGE_COM_K3_312_1
 ENDIF
 RETURN RESULT
@@ -87,77 +87,77 @@ RETURN RESULT
 角色 = 人物_帕秋莉
 RET_VAL = 0
 
-;唇の汚れで拒否された時
+;因嘴唇污渍被拒绝时
 IF TFLAG:193 == -2
 	PRINTDATAL
-		DATAFORM 「だ、だめよっ」
-		DATAFORM 「い、いけないわっ」
-		DATAFORM 「や、やめてっ」
+		DATAFORM 「不、不行！」
+		DATAFORM 「不、不可以！」
+		DATAFORM 「住、住手！」
 	ENDDATA
-	PRINTFORML 理由はわからないが唇が触れる前に拒絶されてしまった。
+	PRINTFORML 虽然不知道理由，但在嘴唇触碰之前就被拒绝了。
 	PRINTDATAL
-		DATAFORM 「ねえ、お茶をもらえないかしら？」
-		DATAFORM 「そうだわ、お茶を頂戴」
-		DATAFORM 「そうね。お茶を一杯いただこうかしら」
+		DATAFORM 「呐，能给我一杯茶吗？」
+		DATAFORM 「对了，给我来杯茶」
+		DATAFORM 「是呢。让我喝杯茶吧」
 	ENDDATA
-	PRINTFORML %CALLNAME:角色%はお茶を欲しがっているようだ。
-	;失敗時
+	PRINTFORML %CALLNAME:角色%似乎想要喝茶。
+	;失败时
 ELSEIF TFLAG:193 == -1
 	PRINTDATAL
-		DATAFORM 「や、やめなさいっ」
-		DATAFORM 「いきなり何をっ！？」
-		DATAFORM 「そこまでよ！」
+		DATAFORM 「住、住手！」
+		DATAFORM 「突然做什么！？」
+		DATAFORM 「到此为止！」
 	ENDDATA
-	PRINTFORML 拒絶されてしまった。
-	;成功時
+	PRINTFORML 被拒绝了。
+	;成功时
 ELSE
 	IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
-		;唇が精液で汚れていたとき
+		;嘴唇被精液沾污时
 		IF CFLAG:射精者M != 0 && STAIN:口 & 汚れ_精液
-			PRINTFORML %CALLNAME:角色%とくちづけした%CALLNAME:MASTER%は彼女の唾液の味に違和感を覚え唇を離した。
-			PRINTFORML 「・・ふふ・・淫らな味のキス・・慣れるとこれがいいものなのよ」
-			;好意度低いと冷たい
+			PRINTFORML 与%CALLNAME:角色%接吻的%CALLNAME:MASTER%对唾液的异样味道感到违和，离开了嘴唇。
+			PRINTFORML 「・・呵呵・・淫靡味道的吻・・习惯之后倒也别有一番风味呢」
+			;好感度低则冷淡
 		ELSE
-			PRINTFORML 「・・だ、だめよ・・んっ・・」
+			PRINTFORML 「・・不、不行・・嗯・・」
 		ENDIF
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		IF ABL:欲望 >= 5
 			PRINTDATAL
-				DATAFORM 「んっ・・ちゅっ・・ちゅぱ・・」
-				DATAFORM 「ちゅっ・・ぢゅ・・」
-				DATAFORM 「ん・・んんっ・・ちゅ・・」
+				DATAFORM 「嗯・・啾・・啾啪・・」
+				DATAFORM 「啾・・嘬・・」
+				DATAFORM 「嗯・・嗯嗯・・啾・・」
 			ENDDATA
 			PRINTDATAL
-				DATAFORM 互いの唇と舌を貪り合い、その味を堪能した。
-				DATAFORM 柔らかなその舌を啜るように味わい、清らかな露を飲み下した。
-				DATAFORM %CALLNAME:TARGET%の口の中に送り込んだ舌から唾液を流し込むと、白い咽がこくりと鳴った。
+				DATAFORM 互相贪婪地吮吸着彼此的唇与舌，尽情品味着那滋味。
+				DATAFORM 如啜饮般品味着那柔软的舌头，咽下了清纯的甘露。
+				DATAFORM 将舌头送入%CALLNAME:TARGET%口中注入唾液后，她白皙的咽喉咕咚一声轻响。
 			ENDDATA
 			PRINTDATAL
-				DATAFORM 「はぁ・・これでおわりじゃ、ないのよね・・？」
-				DATAFORM 「ふ・・いいわ・・もっと飲ませて・・」
-				DATAFORM 「ふふ・・まだ足りないわ・・」
+				DATAFORM 「哈・・这就结束了吗・・不是吧・・？」
+				DATAFORM 「呼・・真好・・再让我多喝一点・・」
+				DATAFORM 「呵呵・・还不够呢・・」
 			ENDDATA
 		ELSE
 			PRINTDATAL
-				DATAFORM 「んっ・・ちゅっ・・ちゅぱ・・」
-				DATAFORM 「ちゅっ・・ぢゅ・・」
-				DATAFORM 「ん・・んんっ・・ちゅ・・」
+				DATAFORM 「嗯・・啾・・啾啪・・」
+				DATAFORM 「啾・・嘬・・」
+				DATAFORM 「嗯・・嗯嗯・・啾・・」
 			ENDDATA
 			PRINTDATAL
-				DATAFORM 互いに唇を寄せ合い、柔らかなその味を堪能した。
-				DATAFORM 互いに寄り添うような姿勢で唇を交わした。
-				DATAFORM 唇を離すと、%CALLNAME:TARGET%は頬を染め続きを期待しているかのようであった。
+				DATAFORM 彼此将嘴唇贴近，细细品味着那柔软的触感。
+				DATAFORM 以相互依偎的姿势交换了一个吻。
+				DATAFORM 唇分之际，%CALLNAME:TARGET%双颊染上了红晕，似乎还在期待着后续。
 			ENDDATA
 			PRINTDATAL
-				DATAFORM 「・・おしまい？」
-				DATAFORM 「・・まだ研究の余地があると思わない・・？」
-				DATAFORM 「・・うれしい・・」
+				DATAFORM 「・・就到这里？」
+				DATAFORM 「・・你不觉得还有进一步研究的余地吗・・？」
+				DATAFORM 「・・好开心・・」
 			ENDDATA
 		ENDIF
 		IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
-			PRINTFORML （・・足りない・・ぜんぜん足りないのよ・・）
+			PRINTFORML （・・不够・・完全不够・・）
 		ELSE
-			PRINTFORML （・・どうしても、比較してしまうものね・・）
+			PRINTFORML （・・无论如何，总是忍不住去比较呢・・）
 		ENDIF
 	ELSE
 		RET_VAL = 1
@@ -170,10 +170,10 @@ RETURN RET_VAL
 ;==================================================
 @NTR_KOJO_MESSAGE_COM_K3_352
 CALL TRAIN_MESSAGE
-; NTR対応口上実行
+; 执行NTR对应口上
 CALL NTR_KOJO_MESSAGE_COM_K3_352_1
 IF 1 == RESULT
-	; 戻り値が1であれば、非NTR対応口上を実行
+	; 返回值为1时，执行非NTR对应口上
 	TRYCALL KOJO_MESSAGE_COM_K3_352_1
 ENDIF
 RETURN RESULT
@@ -187,17 +187,17 @@ RET_VAL = 0
 ;告白成功
 IF TFLAG:193
 	RET_VAL = 1
-	;告白失敗
+	;告白失败
 ELSE
 	IF TALENT:角色:NTR
 		IF 400 < CFLAG:角色:好感度
-			PRINTFORML 「・・だめよ・・だめなのよ・・」
+			PRINTFORML 「・・不行・・不行的・・」
 		ELSEIF 300 < CFLAG:角色:好感度
-			PRINTFORML 「やめて・・横恋慕なんて・・辛いだけ・・だから・・」
+			PRINTFORML 「住手・・横刀夺爱什么的・・只会徒增痛苦・・所以・・」
 		ELSE
-			PRINTFORML 「やめておきなさい。横恋慕なんて、辛いだけよ」
+			PRINTFORML 「还是放弃吧。横刀夺爱什么的，只会徒增痛苦哦」
 		ENDIF
-		;その他
+		;其他
 	ELSE
 		RET_VAL = 1
 	ENDIF

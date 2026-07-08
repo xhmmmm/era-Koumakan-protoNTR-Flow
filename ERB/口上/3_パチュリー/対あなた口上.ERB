@@ -1,57 +1,57 @@
-﻿;------------------------------------------------- 
-;非NTRパチュリー口上
-;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
-;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
+﻿;-------------------------------------------------
+;非NTR帕秋莉口上
+;虽说是非NTR，但因为面向protoNTR，所以也要考虑NTR相关标志的实现。
+;如果能写出恋慕状态与NTR状态之间的落差就好了——这是个人的期望。
 ;
-;パチュリーはエッチ関係は大人しい、漠不关心、保守的…ということで
-;浮気はあまり積極的ではないという方向で。
+;帕秋莉在H方面是安静、漠不关心、保守的……
+;所以出轨方向上不太积极。
 ;-------------------------------------------------
-;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
-;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
-;オリジナル作者とコンタクトが取れない場合には以下の但し書きに従ってUPできるかどうか判断してください。
+;※※※※※※关于他人修正、加笔、改动的声明※※※※※※
+;前提：原作者以外的人进行修改时，须征求原作者的许可
+;若无法联系到原作者，请根据以下声明判断是否可以上传
 
-;◎修正（誤字、脱字、条件分岐等ERB構文のバグ修正、本体のバージョンアップ、ダウン対応など）
-;（　許可　）※どちらかを選択してください
+;◎修正（错字、漏字、条件分支等ERB语法bug修正、本体版本升降适配等）
+;（　许可　）※请选择其一
 ;
-;◎加筆（未記入箇所、ランダム分岐、条件分岐等の増補）
-;（　別人版と明記するなら可　）※どちらかを選択してください
+;◎加笔（未填写部分、随机分支、条件分支等增补）
+;（　标注为他人版本则可　）※请选择其一
 ;
-;◎改変（オリジナル作者によって書かれた部分に対しての上書き、消去を含む）
-;（　別人版と明記するなら可　）※どちらかを選択してください
+;◎改动（对原作者所写部分进行覆写，包括删除）
+;（　标注为他人版本则可　）※请选择其一
 ;
-;◎製作中などの理由で時限を設ける
-;（　年　月　日）まで上記の一切を認めない
+;◎因制作中等理由设定时限
+;（　年　月　日）之前不认可上述任何一项
 ;
-;記　　寝の人
-;追記　
-;基本的に作者の意思を確認出来ない場合、加筆改変は可能ということにします
+;记　寝の人
+;追记
+;基本上在无法确认作者意愿的情况下，加笔改动的可能性是开放的
 
 ;==================================================
-;会话拡張：结婚戒指について
-;　前提：恋慕かつ人妻
+;会话扩展：关于结婚戒指
+;　前提：恋慕且人妻
 ;==================================================
 @KOJO_MESSAGE_COM_K3_300_14_01(角色, 調教者)
 #DIM 調教者
 #DIM 角色
 IF TALENT:角色:NTR
-	;チョーカーが優先
-	PRINTFORML %"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%
+	;颈环优先
+	PRINTFORML %"「已经不再是"+CALLNAME:MASTER+"的人了，所以没必要戴戒指。」她断言道。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
-	;装着率３割
-	PRINTFORML %"指に合わない感じがして、最近はあまり指輪をしないのだと言い返された。"%
+	;佩戴率3成
+	PRINTFORML %"「感觉尺寸不合手，最近不怎么戴戒指了。」她反驳道。"%
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
-	;装着率５割
-	PRINTFORML %"最近指が腫れるので外している事が多いのだと言い訳された。"%
+	;佩戴率5成
+	PRINTFORML %"「最近手指容易肿，所以经常摘下来。」她找借口说。"%
 	;ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 ELSE
-	;装着率９割
-	PRINTFORML %"手入れをするために外したまま忘れていたからだと謝られた。"%
+	;佩戴率9成
+	PRINTFORML %"「为了保养摘下来之后忘记戴回去了。」她道歉道。"%
 ENDIF
 
 RETURN 1
 
 ;==================================================
-;会话拡張：ぱんつについて：ADULT下着（小恶魔/淫乱)
+;会话扩展：关于内裤：ADULT内衣（小恶魔/淫乱)
 ;==================================================
 @KOJO_MESSAGE_COM_K3_300_15_02(角色, 調教者, ノーパン)
 #DIM 調教者
@@ -61,31 +61,31 @@ RETURN 1
 
 下着名 = %下着名１_２(角色)%
 IF ノーパン
-	PRINTFORML 「ええ、開放的で気持ちいいわよ？」
+	PRINTFORML 「嗯，开放的很舒服哦？」
 ELSE
-	PRINTFORML 「ええ、刺激的すぎたかしら？」
+	PRINTFORML 「嗯，难道说有点太刺激了？」
 ENDIF
 PRINTDATAL
-	DATAFORM 「%CALLNAME:MASTER%もこういうの、好きなんじゃないかしら？」
-	DATAFORM 「%CALLNAME:MASTER%もこういうの、好きなんでしょう？」
-	DATAFORM 「今の%CALLNAME:MASTER%、いやらしい視線だったわよ？」
+	DATAFORM 「%CALLNAME:MASTER%也喜欢这样的，对吧？」
+	DATAFORM 「%CALLNAME:MASTER%也喜欢这样的吧？」
+	DATAFORM 「刚才%CALLNAME:MASTER%的眼神，很色哦？」
 ENDDATA
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
-	PRINTFORML 「あの人も喜んでくれるわ」
+	PRINTFORML 「那个人也会高兴的」
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
-	PRINTFORML 「他も喜んでくれるわ」
+	PRINTFORML 「那个人也会高兴的」
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
-	PRINTFORML 「%CALLNAME:MASTER%だけじゃなくて他も喜んでくれるわ」
+	PRINTFORML 「不只是%CALLNAME:MASTER%，那个人也会高兴的」
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
-	PRINTFORML 「%CALLNAME:MASTER%だけじゃなくて他も喜んでくれるわ」
+	PRINTFORML 「不只是%CALLNAME:MASTER%，那个人也会高兴的」
 ELSE
-	PRINTFORML 「あまり下半身を冷やしたくないのだけど」
+	PRINTFORML 「不过我可不想让下半身着凉」
 ENDIF
 RETURN 1
 
 ;==================================================
-;会话拡張：ぱんつについて：ADULT(NTR)
-;　前提：屈服度>好感度 かつ 屈服度>999
+;会话扩展：关于内裤：ADULT(NTR)
+;　前提：屈服度>好感度 且 屈服度>999
 ;==================================================
 @KOJO_MESSAGE_COM_K3_300_15_03(角色, 調教者, ノーパン, 積極度)
 #DIM 調教者
@@ -97,34 +97,34 @@ RETURN 1
 下着名 = %下着名１_２(角色)%
 IF ノーパン
 	IF 1 == 積極度
-		PRINTFORML 「ええ、今日はこうしていろって、他に言われたの」
-		PRINTFORML 「恥ずかしいけど、こういうのも刺激的でいいわね」
+		PRINTFORML 「嗯，今天有人跟我说就这样别穿了」
+		PRINTFORML 「虽然害羞，不过这样也挺刺激的呢」
 	ELSE
-		PRINTFORML 「今日はこうしていろって、他に言われたの」
-		PRINTFORML 「恥ずかしいから、あまり見ないで欲しいわ」
+		PRINTFORML 「今天有人跟我说就这样别穿了」
+		PRINTFORML 「很害羞，希望你别盯着看」
 	ENDIF
 ELSE
 	IF 1 == 積極度
 		PRINTDATAL
-			DATAFORM 「ええ、今日はこれを穿いていろって、他に言われたの」
-			DATAFORM 「ええ、今日はこれを穿くようにって、他に言われたの」
-			DATAFORM 「ええ、今日はこれを身に着けるようにって、他に言われたの」
+			DATAFORM 「嗯，今天有人让我穿上这个的」
+			DATAFORM 「嗯，今天有人让我穿这个的」
+			DATAFORM 「嗯，今天有人让我把这个穿上的」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 「恥ずかしいけど、こういうのも刺激的ね」
-			DATAFORM 「恥ずかしいけど、どう？ 似合うかしら？」
-			DATAFORM 「恥ずかしいけど、こういうのも刺激的ね」
+			DATAFORM 「虽然害羞，不过这样也挺刺激的呢」
+			DATAFORM 「虽然害羞，怎么样？适合我吗？」
+			DATAFORM 「虽然害羞，不过这样也挺刺激的呢」
 		ENDDATA
 	ELSE
 		PRINTDATAL
-			DATAFORM 「今日はこれを穿いていろって、他に言われたの」
-			DATAFORM 「今日はこれを穿くようにって、他に言われたの」
-			DATAFORM 「今日はこれを身に着けるようにって、他に押し付けられたの」
+			DATAFORM 「今天有人让我穿上这个的」
+			DATAFORM 「今天有人让我穿这个的」
+			DATAFORM 「今天有人硬要我穿上这个的」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 「・・正直、恥ずかしいわね」
-			DATAFORM 「恥ずかしいから、あまり見ないで欲しいわ」
-			DATAFORM 「あまり下半身を冷やしたくないのだけど」
+			DATAFORM 「……说实话，很害羞呢」
+			DATAFORM 「很害羞，希望你别盯着看」
+			DATAFORM 「我可不想让下半身着凉」
 		ENDDATA
 	ENDIF
 ENDIF	
@@ -134,23 +134,23 @@ RETURN 1
 
 
 ;==================================================
-;カウンター：乳搾り手コキ
+;计数器：榨乳手交
 ;==================================================
-;パチュリーということでこういうネタに走る
-;相手しだいでは変なことになるかもしれないけど気にしない
-;たしかふたなりの時はこないはず（弱気
+;毕竟是帕秋莉所以走这种路线
+;根据对象不同可能会变成奇怪的事不过不在乎
+;扶她的时候应该不会来（弱气
 @KOJO_MESSAGE_COUNTER_K3_29_0
 IF TALENT:TARGET:施虐狂
 	PRINTDATAL
-		DATAFORM %"「後ろを向いて、壁に手をついて」"%
-		DATAFORM %"「後ろを向いて。いいからそこの壁に手をついて」"%
-		DATAFORM %"「そこの壁に手をつきなさい、そのまま動かないで」"%
+		DATAFORM %"「转过身去，手扶着墙」"%
+		DATAFORM %"「转过身去。别废话，手扶着那面墙」"%
+		DATAFORM %"「手扶那面墙，不许动」"%
 	ENDDATA
 ELSE
 	PRINTDATAL
-		DATAFORM %"「ちょっと後ろを向いてくれるかしら？ 悪いようにはしないから安心して」"%
-		DATAFORM %"「後ろを向いて、そこの壁に手をついて頂戴。悪いようにはしないわ」"%
-		DATAFORM %"「そこの壁に手をついてくれるかしら？ いいことしてあげるから、動かないで」"%
+		DATAFORM %"「能转过身去吗？不会害你的，放心吧」"%
+		DATAFORM %"「转过身去，手扶那面墙。不会害你的」"%
+		DATAFORM %"「手扶那面墙可以吗？我会让你舒服的，别动」"%
 	ENDDATA
 ENDIF
 RETURN 1
@@ -159,88 +159,88 @@ RETURN 1
 #DIM 角色
 角色 = 人物_帕秋莉
 IF CFLAG:PLAYER:跳蛋A挿入 != 0
-	;あなたが菊花に跳蛋挿入時分岐
-	PRINTFORML %CALLNAME:角色%は%CALLNAME:PLAYER%がアヌスに跳蛋を挿入していることに気付いて微笑んだ。
+	;你菊花中插着跳蛋时的分支
+	PRINTFORML %CALLNAME:角色%注意到%CALLNAME:PLAYER%的菊花里插着跳蛋，微微一笑。
 	IF CFLAG:PLAYER:跳蛋挿入者 == 角色
 		PRINTDATA
-			DATAFORM %"「あら・・言いつけどおりにしていたのね。"%
-			DATAFORM %"「あら、勝手に抜いたりしていないようね。"%
-			DATAFORM %"「あら、跳蛋が気に入ったのかしら？"%
+			DATAFORM %"「哎呀……看来有好好听话呢。"%
+			DATAFORM %"「哎呀，没有擅自拔掉呢。"%
+			DATAFORM %"「哎呀，是喜欢上跳蛋了吗？"%
 		ENDDATA
 	ELSE
 		PRINTDATA
-			DATAFORM %"「あら・・誰の言いつけなのかしら。"%
-			DATAFORM %"「・・これは誰に入れられたのかしら？"%
-			DATAFORM %"「まさか自分で入れてるの？"%
+			DATAFORM %"「哎呀……是谁吩咐你的呢。"%
+			DATAFORM %"「……这是谁放进去的呢？"%
+			DATAFORM %"「不会是自己放进去的吧？"%
 		ENDDATA
 	ENDIF
 	PRINTDATAL
-		DATAFORM %" ちょうどいいから、このまましてあげるわ」"%
-		DATAFORM %" 気持ちいい方がいいでしょう？ 入れたまましてあげるわ」"%
-		DATAFORM %" 跳蛋が好きなら仕方ないわね。このまましてあげるわ」"%
+		DATAFORM %" 正好，就这样给你弄吧」"%
+		DATAFORM %" 舒服一点比较好吧？就这样不取出来给你弄吧」"%
+		DATAFORM %" 喜欢跳蛋的话也没办法。就这样给你弄吧」"%
 	ENDDATA
 	PRINTL
 ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
-	;あなたがノーパンの時分岐
-	PRINTFORML %CALLNAME:角色%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて微笑んだ。
-	PRINTFORML 「あら…ノーパンだなんて、ふふっ、ちょうどいいわね」
+	;你没穿内裤时的分支
+	PRINTFORML %CALLNAME:角色%注意到%CALLNAME:PLAYER%没有穿内裤，微微一笑。
+	PRINTFORML 「哎呀……没穿内裤，呵呵，正好呢」
 	PRINTDATAL
-		DATAFORM %"「あら・・ノーパンだなんて、丁度いいわね」"%
-		DATAFORM %"「ふふ・・履いてないだなんて、そういう健康法かしら？」"%
-		DATAFORM %"「・・誰かに下着を取られたのかしら？ また何かしたの？」"%
+		DATAFORM %"「哎呀……没穿内裤，正好呢」"%
+		DATAFORM %"「呵呵……没穿是什么养生法吗？」"%
+		DATAFORM %"「……是被谁拿走了内裤吗？又干了什么好事？」"%
 	ENDDATA
 	PRINTL
 ENDIF
 PRINTDATA
-	DATAFORM %"「ホムンクルスの研究のために活きのいい精液が必要なの。"%
-	DATAFORM %"「実験のためにザーメンが必要になったの。"%
-	DATAFORM %"「調合に精液が要るのよ。"%
+	DATAFORM %"「为了霍蒙克鲁斯的研究，需要新鲜有活力的精液。"%
+	DATAFORM %"「实验需要精液。"%
+	DATAFORM %"「调配需要精液哦。"%
 ENDDATA
 IF TALENT:TARGET:施虐狂
 	PRINTDATAL
-		DATAFORM %" だから提供しなさい。全部ね」"%
-		DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが苦痛が少ないわよ」"%
-		DATAFORM %" 痛くされたくなかったらおとなしくしなさい。痛いほうがいいのかしら？」"%
+		DATAFORM %" 所以，交出来。全部"%
+		DATAFORM %" 在你抵抗之前赶紧射出来的话，痛苦会少一些哦」"%
+		DATAFORM %" 不想被弄疼就老实点。还是说你更喜欢疼的？」"%
 	ENDDATA
 ELSE
 	PRINTDATAL
-		DATAFORM %" だから提供しなさい」"%
-		DATAFORM %" 抵抗する前に、とっとと出しちゃったほうが楽よ」"%
-		DATAFORM %" 痛くはしないから、おとなしくしなさい」"%
+		DATAFORM %" 所以，交出来吧」"%
+		DATAFORM %" 在你抵抗之前赶紧射出来的话会轻松一些哦」"%
+		DATAFORM %" 不会弄疼你的，老实点吧」"%
 	ENDDATA
 ENDIF
 RETURN 1
 
 @KOJO_MESSAGE_COUNTER_K3_29_2
 IF CFLAG:PLAYER:跳蛋A挿入 != 0
-	PRINTFORML 「早いわね・・跳蛋ってそんなにイイのかしら？」
+	PRINTFORML 「好快呢……跳蛋有那么舒服吗？」
 ELSE
-	PRINTFORML 「早いわね・・もしかしてお尻の方が好きなの？」
+	PRINTFORML 「好快呢……难道说你更喜欢后面？」
 ENDIF
 RETURN 1
 
 @KOJO_MESSAGE_COUNTER_K3_29_3
 SELECTCASE BASE:PLAYER:精力
 	CASE IS == 0
-		;全部搾り取った
+		;全部榨干了
 		PRINTDATAL
-			DATAFORM %"「もうおしまい？ まぁこれだけ搾ればたぶん十分ね」"%
-			DATAFORM %"「これで打ち止めかしら？ もう少し欲しかったけど、仕方ないわね」"%
-			DATAFORM %"「いいかげん終わりかしら？ ありがとう、助かったわ」"%
+			DATAFORM %"「已经结束了？嗯，榨了这么多大概够了吧」"%
+			DATAFORM %"「这就到极限了吗？还想再多要一点的，不过没办法呢」"%
+			DATAFORM %"「差不多该结束了吧？谢谢，帮大忙了」"%
 		ENDDATA
 	CASE IS < MAXBASE:PLAYER:精力 /2
-		;大半搾り取った
+		;榨了大半
 		PRINTDATAL
-			DATAFORM %"「結構出たわね。でもまだ余裕があるんじゃないかしら？」"%
-			DATAFORM %"「いい塩梅ね？ でもまだ元気みたいね。もう一度、お願いできるかしら？」"%
-			DATAFORM %"「まだまだいけそうね？ 頑張ってみる？」"%
+			DATAFORM %"「出了不少呢。不过你应该还有余裕吧？」"%
+			DATAFORM %"「恰到好处呢？不过看起来还很有精神。能再来一次吗？」"%
+			DATAFORM %"「看起来还能继续呢？要不要再试试？」"%
 		ENDDATA
 	CASEELSE
-		;少し搾り取った
+		;只榨了一点
 		PRINTDATAL
-			DATAFORM %"「さすがね。たっぷり出たけど、まだまだ足りないわよ？」"%
-			DATAFORM %"「いい塩梅ね？ でもまだまだ元気みたいね。続けるわよ？」"%
-			DATAFORM %"「まだまだ余裕でいけそうね？ 頑張りなさい」"%
+			DATAFORM %"「真厉害。虽然出了不少，但还远远不够哦？」"%
+			DATAFORM %"「恰到好处呢？不过看起来还很有精神。继续吧？」"%
+			DATAFORM %"「看起来还很从容呢？努力吧」"%
 		ENDDATA
 ENDSELECT
 RETURN 1
@@ -255,72 +255,72 @@ ENDIF
 CALL KOJO_MESSAGE_COM_K3_312_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K3_312_1
-;失敗時
+;失败时
 IF TFLAG:193 == -1
 	PRINTDATAL
-		DATAFORM 「や、やめなさいっ」
-		DATAFORM 「いきなり何をっ！？」
-		DATAFORM 「そこまでよ！」
+		DATAFORM 「住、住手」
+		DATAFORM 「突然干什么！？」
+		DATAFORM 「到此为止！」
 	ENDDATA
-	PRINTFORML 拒絶されてしまった。
-	;成功時
+	PRINTFORML 被拒绝了。
+	;成功时
 ELSE
 	IF ABL:欲望 >= 5
-		;互いに激しく
+		;彼此激烈地
 		PRINTDATAL
-			DATAFORM 「んっ・・ちゅ・・くちゅっ・・」
-			DATAFORM 「ちゅっ・・ぢゅっ・・ちゅぱっ・・」
-			DATAFORM 「ん・・れる・・れろっ・・」
+			DATAFORM 「嗯……啾……咕啾……」
+			DATAFORM 「啾……嘬……啾啪……」
+			DATAFORM 「嗯……被舔了……嘞噜……」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 互いの唇と舌を貪り合い、その味を堪能した。
-			DATAFORM 柔らかなその舌を啜るように味わい、清らかな露を飲み下した。
-			DATAFORM %CALLNAME:TARGET%の口の中に送り込んだ舌から唾液を流し込むと、白い咽がこくりと鳴った。
+			DATAFORM 互相贪婪地索取彼此的唇与舌，尽情品味着对方。
+			DATAFORM 如啜饮般品味那柔软的舌尖，将清澈的甘露吞咽而下。
+			DATAFORM 将唾液从探入%CALLNAME:TARGET%口中的舌头上渡过去，只见那白皙的喉间轻轻一动。
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 「はぁ・・これでおわりじゃ、ないのよね・・？」
-			DATAFORM 「ふ・・いいわ・・もっと飲ませて・・」
-			DATAFORM 「ふふ・・まだ足りないわ・・」
+			DATAFORM 「哈……这还不是结束吧……？」
+			DATAFORM 「呼……好舒服……再让我多喝一些……」
+			DATAFORM 「呵呵……还不够呢……」
 		ENDDATA
 	ELSEIF ABL:亲密 >= 5
-		;親しく求め合うように
+		;亲密地相互渴求
 		PRINTDATAL
-			DATAFORM 「んっ・・ちゅっ・・ちゅぱ・・」
-			DATAFORM 「ちゅっ・・ぢゅ・・」
-			DATAFORM 「ん・・んんっ・・ちゅ・・」
+			DATAFORM 「嗯……啾……啾啪……」
+			DATAFORM 「啾……嘬……」
+			DATAFORM 「嗯……嗯嗯……啾……」
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 互いに唇を寄せ合い、柔らかなその味を堪能した。
-			DATAFORM 互いに寄り添うような姿勢で唇を交わした。
-			DATAFORM 唇を離すと、%CALLNAME:TARGET%は頬を染め続きを期待しているかのようであった。
+			DATAFORM 互相将唇凑近，品味那份柔软的触感。
+			DATAFORM 以互相依偎的姿势交叠了双唇。
+			DATAFORM 唇分开后，%CALLNAME:TARGET%双颊微红，似乎还在期待着后续。
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 「・・おしまい？」
-			DATAFORM 「・・まだ研究の余地があると思わない・・？」
-			DATAFORM 「・・うれしい・・」
+			DATAFORM 「……结束了？」
+			DATAFORM 「……你不觉得还有继续研究的余地吗……？」
+			DATAFORM 「……好开心……」
 		ENDDATA
 	ELSE
-		;不意打ちで
-		PRINTFORML 「んっ・・！？」
+		;突然袭击
+		PRINTFORML 「嗯……！？」
 		PRINTDATAL
-			DATAFORM 不意を突かれたのか、唇を奪われた%CALLNAME:TARGET%は目を丸くしている。
-			DATAFORM 唇を重ねられ、%CALLNAME:TARGET%は一瞬身を堅くした。
-			DATAFORM 唇を離すと、%CALLNAME:TARGET%は一呼吸ついて気を静めた。
+			DATAFORM 似乎被打了个措手不及，嘴唇被夺走的%CALLNAME:TARGET%瞪大了眼睛。
+			DATAFORM 双唇重叠，%CALLNAME:TARGET%一瞬间僵住了身子。
+			DATAFORM 唇分开后，%CALLNAME:TARGET%深吸一口气，平复了心绪。
 		ENDDATA
 		PRINTDATAL
-			DATAFORM 「・・いきなりなのね。心臓に悪いわ」
-			DATAFORM 「・・強引なだけでは駄目よ」
-			DATAFORM 「・・もっと精進なさい」
+			DATAFORM 「……太突然了。对心脏不好」
+			DATAFORM 「……光靠蛮横是不行的哦」
+			DATAFORM 「……再多精进吧」
 		ENDDATA
 	ENDIF
 ENDIF
 RETURN 1
 
 ;==================================================
-;汎用処理
+;通用处理
 ;==================================================
 ;-------------------------------------------
-;パチュリーが他の人を呼ぶときの例外処理関数
+;帕秋莉称呼他人时的例外处理函数
 ;-------------------------------------------
 @CALLNAME_K3(角色, 対象)
 #FUNCTIONS
@@ -337,6 +337,6 @@ IF CALLNAME:角色 == "パチュリー"
 	ELSE
 	ENDIF
 ELSE
-	; 名称変更時はデフォルトのまま
+	; 名称变更时使用默认
 ENDIF
 RETURNF 呼称
