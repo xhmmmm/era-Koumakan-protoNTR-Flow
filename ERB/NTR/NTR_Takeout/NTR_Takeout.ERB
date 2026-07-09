@@ -183,7 +183,7 @@ ELSEIF CFLAG:角色:TAKEOUT行为控制计数 < 20
 	CALL VISITOR_TAKEOUT_10_02(角色,調教者)
 	;口上(地の文)呼び出し
 	IF NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
-		CALLFORM NTR_MESSAGE_10_{プレイ内容}(角色, 調教者, TFLAG:輪姦内容)
+		CALLFORM NTR_MESSAGE_10_{プレイ内容}(角色, 調教者)
 	ENDIF
 ELSEIF CFLAG:角色:TAKEOUT行为控制计数 < 30
 	;色々前戯 六九式イメージ
@@ -192,7 +192,7 @@ ELSEIF CFLAG:角色:TAKEOUT行为控制计数 < 30
 	CALL VISITOR_TAKEOUT_10_03(角色,調教者)
 	;口上(地の文)呼び出し
 	IF NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
-		CALLFORM NTR_MESSAGE_10_{プレイ内容}(角色, 調教者, TFLAG:輪姦内容)
+		CALLFORM NTR_MESSAGE_10_{プレイ内容}(角色, 調教者)
 	ENDIF
 ELSE
 	IF CFLAG:角色:TAKEOUT行为控制计数 > 44 && プレイ内容 > 3
@@ -251,7 +251,7 @@ DEBUGPRINTFORML 浮気快楽強度{浮気快楽強度} 訪問者の气氛{CFLAG:
 ;NTRがあれば減る事はない。快楽により气氛増加。上限以上あれば上限値に切り詰め。
 CFLAG:角色:TAKEOUT行为控制计数 += MIN(气氛上限値,CFLAG:角色:TAKEOUT行为控制计数+(RAND:13 - 4)+浮気快楽強度)
 ;行為における口上や射精関連のフラグリセット
-TFLAG:輪姦内容 = 輪姦_0
+TFLAG:访问者宅遗留TFLAG = 遗留参数_行为_0
 ;处女喪失口上が何度も出るのを防止
 CFLAG:角色:处女喪失中 = 0
 RETURN 0

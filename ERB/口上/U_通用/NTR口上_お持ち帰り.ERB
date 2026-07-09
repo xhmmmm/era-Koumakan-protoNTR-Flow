@@ -171,7 +171,7 @@ RETURN 0
 @NTR_KOJO_K_10_4(角色, 調教者)
 #DIM 角色
 #DIM 調教者
-IF TFLAG:輪姦内容 == 輪姦_1A
+IF TFLAG:访问者宅遗留TFLAG == 遗留参数_行为_1A
 	;菊花セックス分岐
 	CALL NTR_KOJO_K_10_4_A(角色, 調教者)
 ELSE
@@ -300,34 +300,7 @@ RETURN 0
 #DIM 角色
 #DIM 調教者
 
-SELECTCASE TFLAG:輪姦内容
-	CASE 輪姦_1V		;客あり、輪姦なし
-		PRINTFORML 「あっっ・・・はぁん・・んぅ・・うぁん・・」
-		PRINTFORML %CALLNAME:角色%は四つんばいになって背後から客に突き入れられている。
-	CASE 輪姦_1A		;客あり、輪姦なし
-		PRINTFORML 「あっっ・・・はぁん・・んぅ・・うぁん・・」
-		PRINTFORML %CALLNAME:角色%は四つんばいになってアヌスに阴茎を突き入れられている。
-	CASE 輪姦_2MV		;客あり、２人、ＭＶ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORML %CALLNAME:角色%は四つんばいになって口と膣に阴茎を突きこまれている。
-	CASE 輪姦_2MA		;客あり、２人、ＭＡ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORMW %CALLNAME:角色%は四つんはいになって口とアヌスに阴茎を突きこまれている。
-	CASE 輪姦_2VA		;客あり、２人、ＶＡ
-		PRINTFORML 「あっっ・・・はぁん・・んぅ・・うぁん・・」
-		PRINTFORMW %CALLNAME:角色%は前後から抱きかかえられるような姿勢で二つの穴に阴茎を突きこまれている。
-	CASE 輪姦_2VV		;客あり、２人、ＶＶ
-		PRINTFORML 「あっっ・・・はぁん・・にほん・・も・・うぁん・・」
-		PRINTFORMW %CALLNAME:角色%は前後から抱きかかえられるような姿勢で性器に二本の阴茎を突きこまれている。
-	CASE 輪姦_2AA		;客あり、２人、ＡＡ
-		PRINTFORML 「あっっ・・・はぁん・・にほん・・も・・うぁん・・」
-		PRINTFORMW %CALLNAME:角色%は前後から抱きかかえられるような姿勢でアヌスに二本の阴茎を突きこまれている。
-	CASE 輪姦_3MAV		;客あり、３人、ＭＡＶ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORMW %CALLNAME:角色%は三つの穴にそれぞれ阴茎を突きこまれている。
-	CASEELSE			;客なし、訪問者と
-		PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とセックスしている
-ENDSELECT
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とセックスしている
 
 RETURN 0
 
@@ -337,7 +310,7 @@ RETURN 0
 @NTR_KOJO_K_10_5(角色, 調教者)
 #DIM 角色
 #DIM 調教者
-IF TFLAG:輪姦内容 == 輪姦_1A
+IF TFLAG:访问者宅遗留TFLAG == 遗留参数_行为_1A
 	;菊花セックス分岐
 	CALL NTR_KOJO_K_10_5_A(角色, 調教者)
 ELSE
@@ -438,55 +411,9 @@ RETURN 0
 @NTR_KOJO_K_10_5_MULTI(角色, 調教者)
 #DIM 角色
 #DIM 調教者
-#DIMS 陵辱者
-#DIMS 悲鳴
 
-IF TALENT:角色:亲爱
-	陵辱者 = "男"
-	悲鳴 = 「いっ、いやああっ！ 中は、中は許してえええっ！！」
-ELSE
-	陵辱者 = "客"
-	悲鳴 = 「あっあっ・・出してっ、中の中で出してええっ！」
-ENDIF
-SELECTCASE TFLAG:輪姦内容
-	CASE 輪姦_1V		;客あり、輪姦なし
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%は淫らな声を張り上げて射精を、膣内深くでの射精を望んだ。
-		PRINTFORML %陵辱者%の阴茎が二度、三度とヒクついて子宮めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_1A		;客あり、輪姦なし
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%は淫らな声を張り上げて射精を、腸内深くでの射精を望んだ。
-		PRINTFORML %陵辱者%の阴茎が二度、三度とヒクついてはらわたの奥に射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_2MV		;客あり、２人、ＭＶ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の口と膣とで同時に熱いものが弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて咽と子宮めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_2MA		;客あり、２人、ＭＡ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の口とアヌスとで同時に熱いものが弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて咽と直腸めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_2VA		;客あり、２人、ＶＡ
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の膣とアヌスとで同時に熱いものが弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて子宮と直腸めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_2VV		;客あり、２人、ＶＶ
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の膣で二本の阴茎が同時に弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて子宮射めがけて精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-		PRINTFORMW %CALLNAME:角色%は前後から抱きかかえられるような姿勢で性器に二本の阴茎を突きこまれている。
-	CASE 輪姦_2AA		;客あり、２人、ＡＡ
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の腸内で二本の阴茎が同時に弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASE 輪姦_3MAV		;客あり、３人、ＭＡＶ
-		PRINTFORML 「んっ・・うっ、うぐっ！ ううんっ！」
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%の口内、膣内、そして腸内で二本の阴茎が同時に弾けた。
-		PRINTFORML %陵辱者%達の阴茎が二度、三度とヒクついて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-	CASEELSE			;客なし、訪問者と
-		PRINTFORML %悲鳴%
-		PRINTFORML 絶頂の瞬間、%CALLNAME:角色%は淫らな声を張り上げて射精を、膣内深くでの射精を望んだ。
-		PRINTFORML %NTR_NAME(0)%の阴茎が二度、三度とヒクついて子宮めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
-ENDSELECT
+PRINTFORML 絶頂の瞬間、%CALLNAME:角色%は淫らな声を張り上げて射精を、膣内深くでの射精を望んだ。
+PRINTFORML %NTR_NAME(0)%の阴茎が二度、三度とヒクついて子宮めがけて射精するたび、%CALLNAME:角色%は大きな声を張り上げながら達した。
 
 RETURN 0
 

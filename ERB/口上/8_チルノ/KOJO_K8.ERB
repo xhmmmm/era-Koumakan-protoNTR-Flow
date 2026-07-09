@@ -1,32 +1,32 @@
-﻿;-------------------------------------------------
-;チルノな口上 作者：龍鱗
 ;-------------------------------------------------
-;※※※※※※他者による修正、加筆、改変についての但し書き※※※※※※
-;前提としてオリジナル作者以外が手を入れる場合は、オリジナル作者の許可を求めること
-;オリジナル作者とコンタクトが取れない場合には以下の但し書きに従ってUPできるかどうか判断してください。
+;琪露诺口上 作者：龍鱗
+;-------------------------------------------------
+;※※※※※※关于他人进行修正、加笔、改变的但书※※※※※※
+;前提是原版作者以外的人进行修改时，须征求原版作者的许可
+;若无法与原版作者取得联系，请根据以下但书判断是否可以上传。
 
-;◎修正（誤字、脱字、条件分岐等ERB構文のバグ修正、本体のバージョンアップ、ダウン対応など）
-;（　許可　　）※どちらかを選択してください
+;◎修正（错字、漏字、条件分支等ERB语法的BUG修复、本体的版本升级、降级对应等）
+;（　许可　　）※请选择其中之一
 ;
-;◎加筆（未記入箇所、ランダム分岐、条件分岐等の増補）
-;（　別人版と明記の上で許可（導入の際の混乱を防ぐため）　）※どちらかを選択してください
+;◎加笔（未填写部分、随机分支、条件分支等的增补）
+;（　标明为他人版后许可（为防止导入时的混乱）　）※请选择其中之一
 ;
-;◎改変（オリジナル作者によって書かれた部分に対しての上書き、消去を含む）
-;（　上に同じ　）※どちらかを選択してください
+;◎改变（对原版作者所写部分进行覆盖、消除等）
+;（　同上　）※请选择其中之一
 ;
-;◎製作中などの理由で時限を設ける
-;（　年　月　日）まで上記の一切を認めない
+;◎因制作中等原因设置时限
+;（　年　月　日）之前不认可上述一切
 ;
-;記　紅い人
-;基本的に作者の意思を確認出来ない場合、加筆改変は可能ということにします
+;记　红之人
+;基本上在无法确认作者意图的情况下，加笔改变是允许的
 
 ;・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
-;最新版の口上に移植しました。
-;日常口上、うふふ口上をやや加筆、でもまだ完全とはいえません。
-;この口上の改変や修正はだれでもご自由に、
-;加筆したものを別人加筆版として新しく上げても大丈夫です。
-;この口上と数式はera紅魔館全ての口上を肩を元に参考して制作しています。
-;口上作者に多大なる感謝を…。
+;已移植到最新版的口上。
+;日常口上、唔呵呵口上略有加笔，但还不算完全。
+;这个口上的改变和修正谁都可以自由进行，
+;加笔后的内容作为他人加笔版重新上传也没问题。
+;这个口上和公式是以era红魔馆所有口上为参考制作的。
+;对口上作者致以最大的感谢…。
 ;・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
 
 
@@ -34,21 +34,21 @@
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※※
-;コマンド非依存イベント
+;指令非依赖事件
 ;※※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
-;部屋で遭遇
+;房间里遭遇
 ;==================================================
 @KOJO_EVENT_K8_0(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;情事を目撃してしまったことについて問い詰める
-	;記入チェック
+	;就目击情事一事进行追问
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
@@ -56,45 +56,45 @@ IF LOCAL
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;MASTERが入ってきた
-	;記入チェック
+	;MASTER进来了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
-		;PRINTWにしない方がいいでしょう
+		;不要用PRINTW比较好
 		PRINTFORML
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;TARGETが入ってきた
-	;記入チェック
+	;TARGET进来了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
 		PRINTFORML
 		RETURN 0
 	ENDIF
-	;その他
+	;其他
 	PRINTFORML
 ENDIF
 RETURN 0
 
 ;==================================================
-;情事発覚 うふふ終了 情事を見た人の口上
+;情事发觉 唔呵呵结束 目击情事者的口上
 ;==================================================
 @KOJO_EVENT_K8_1(ARG,ARG:1)
-;口上主はTARGET
-;ARG うふふの対象（最も地位の高い人,ほかにもいる可能性あり）
-;キャラで分岐させるときは IF CFLAG:4:ウフフ (咲夜とウフフしてた)
+;口上主是TARGET
+;ARG 唔呵呵的对象（地位最高的人，可能还有其他人）
+;按角色分支时用 IF CFLAG:4:うふふ（和咲夜唔呵呵了）
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;襲われてた
-	;記入チェック
+	;被袭击了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && CFLAG:PLAYER:うふふ == 2
@@ -102,8 +102,8 @@ IF LOCAL
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;まぐわってた
-	;記入チェック
+	;交合中
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && MASTER_POSE(6,1,1)
@@ -111,274 +111,274 @@ IF LOCAL
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;まぐわってた
-	;記入チェック
+	;交合中
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && MASTER_POSE(1,6,1)
 		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;情事発覚 うふふ終了 情事を見られた人の口上
+;情事发觉 唔呵呵结束 被目击情事者的口上
 ;==================================================
-;小分岐は↑をコピペ
+;小分支复制上面的
 @KOJO_EVENT_K8_2(ARG,ARG:1)
-;口上主はTARGET
-;ARG 見た人
+;口上主是TARGET
+;ARG 目击者
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;情事発覚 うふふ続行 情事を見た人の口上
+;情事发觉 唔呵呵继续 目击情事者的口上
 ;==================================================
 @KOJO_EVENT_K8_3(ARG,ARG:1)
-;口上主はTARGET
-;ARG うふふの対象（最も地位の高い人,ほかにもいる可能性あり）
+;口上主是TARGET
+;ARG 唔呵呵的对象（地位最高的人，可能还有其他人）
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 ;==================================================
-;情事発覚 うふふ続行 情事を見られた人の口上
+;情事发觉 唔呵呵继续 被目击情事者的口上
 ;==================================================
 @KOJO_EVENT_K8_4(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;おはよう口上
+;早安口上
 ;==================================================
 @KOJO_EVENT_K8_6(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;起きたのは%CALLNAME:MASTER%
-	;記入チェック
+	;起床的是%CALLNAME:MASTER%
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG
-		PRINTFORMW 「あ、おはよう、%CALLNAME:MASTER%。」
+		PRINTFORMW 「啊，早安，%CALLNAME:MASTER%。」
 		RETURN 0
 	ENDIF
-	;以降起きたのはTARGET
+	;之后起床的是TARGET
 	;-------------------------------------------------
-	;記入チェック
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && GET_TRAIN_NAME(PREVCOM) == "扫除"
 		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;おやすみ口上
+;晚安口上
 ;==================================================
 @KOJO_EVENT_K8_7(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;眠っている
-	;記入チェック
+	;正在睡觉
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF CFLAG:睡眠
 		IF LOCAL:1 && ARG == 2
-			PRINTFORMW 「あたいは…サイキョー…。」
-			PRINTFORMW なんの夢を見ているんだろうか？
+			PRINTFORMW 「本小姐…是最强的…。」
+			PRINTFORMW 不知道她在做什么梦呢？
 		ENDIF
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;眠いので部屋に帰った
-	;記入チェック
+	;困了所以回房间了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
-		PRINTFORMW 「むにぃ…眠いから帰るねぇ…。」
+		PRINTFORMW 「呼唔…好困，先回去了啦…。」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;寝るので%CALLNAME:MASTER%を追い出した
-	;記入チェック
+	;要睡觉了所以把%CALLNAME:MASTER%赶出去了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
-		PRINTFORMW 「あたい寝るから、また明日ねぇ…。」
+		PRINTFORMW 「本小姐要睡了，明天见啦…。」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;%CALLNAME:MASTER%の見てる前で寝ちゃった
-	;記入チェック
+	;在%CALLNAME:MASTER%面前睡着了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
-		PRINTFORMW 「ふぁぁ…眠い…くぅ…。」
+		PRINTFORMW 「呼ぁ…好困…呼…。」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;%CALLNAME:MASTER%の見てる前で寝ちゃったのでベッドまでお運び
-	;記入チェック
+	;在%CALLNAME:MASTER%面前睡着了所以搬到床上去
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
-		PRINTFORMW 「あたい…眠いよぉ…%CALLNAME:MASTER%…。」
-		PRINTFORMW %CALLNAME:MASTER%は眠る%CALLNAME:人物_琪露诺%を家まで運んだ…。
+		PRINTFORMW 「本小姐…好困哟…%CALLNAME:MASTER%…。」
+		PRINTFORMW %CALLNAME:MASTER%把睡着的%CALLNAME:人物_琪露诺%搬回了家…。
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;%CALLNAME:MASTER%の部屋で寝ちゃったのでそのままおやすみ
-	;記入チェック
+	;在%CALLNAME:MASTER%的房间睡着了所以就这样晚安
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 4
-		PRINTFORMW 眠る%CALLNAME:人物_琪露诺%に%CALLNAME:MASTER%は布団をかけた。
+		PRINTFORMW %CALLNAME:MASTER%给睡着的%CALLNAME:人物_琪露诺%盖上了被子。
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;%CALLNAME:MASTER%が寝ちゃったのでお運び
-	;記入チェック
+	;%CALLNAME:MASTER%睡着了所以搬过去
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 5
-		PRINTFORMW 「う、うぐ、%CALLNAME:MASTER%を運べなくて何がサイキョーよ！」
+		PRINTFORMW 「呜、呜咕，搬不动%CALLNAME:MASTER%还算什么最强啊！」
 		RETURN 0
 	ENDIF
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;おのれー口上
+;可恶——口上
 ;==================================================
 @KOJO_EVENT_K8_8(ARG,ARG:1)
-;口上主はTARGET、ARGが空気を変えた犯人
+;口上主是TARGET，ARG是改变气氛的犯人
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;移动中にすれ違う
+;移动中擦肩而过
 ;==================================================
 @KOJO_EVENT_K8_10(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;無視した
-	;記入チェック
+	;无视了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;立ち止まった
-	;記入チェック
+	;停下了脚步
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
 		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;その他
+	;其他
 	PRINTFORMW
 ENDIF
 RETURN 0
 
 ;==================================================
-;弱みを握られる
+;被抓住弱点
 ;==================================================
 @KOJO_EVENT_K8_11(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;パンツ没収
-	;記入チェック
+	;没收内裤
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
 		;-------------------------------------------------
-		;誰のパンツか
-		;記入チェック
+		;是谁的内裤
+		;填写检查
 		LOCAL:2 = 0
 		;-------------------------------------------------
-		;口上主のぱんつ
+		;口上主的内裤
 		IF LOCAL:2 && STRCOUNT(CSTR:PLAYER:収集品,CALLNAME:TARGET)
-			PRINTFORML 「あれ？　ちょっと、なんであたいのパンツ持ってんのよ？」
-			PRINTFORMW 「むー…こんなの盗んでどうすんのよ。」
-			PRINTFORMW 「とにかく返してね、恥ずかしいし。」
+			PRINTFORML 「咦？等等，你为什么拿着本小姐的内裤啊？」
+			PRINTFORMW 「唔—…偷这种东西有什么用啦。」
+			PRINTFORMW 「总之还给我啦，怪羞人的。」
 			RETURN 0
 		ELSEIF LOCAL:2
-			PRINTFORMW 
+			PRINTFORMW
 			RETURN 0
 		ENDIF
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 ENDIF
 RETURN 0
 
 ;==================================================
-;押し倒される
+;被推倒
 ;==================================================
 @KOJO_EVENT_K8_12(ARG,ARG:1)
-;口上主はTARGET
+;口上主是TARGET
 ;--------------------------------------------------
 LOCAL = 1
 IF LOCAL
-	PRINTFORML 「あたいは%CALLNAME:MASTER%の事大好きだよ。」
-	PRINTFORML 「だから、こうして欲しいって思ったことがあるんだよ？」
-	PRINTFORMW そう言いながら、%CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%を押し倒した。
+	PRINTFORML 「本小姐最喜欢%CALLNAME:MASTER%了哟。」
+	PRINTFORML 「所以呢，本小姐一直想要你这样对人家哦？」
+	PRINTFORMW 一边这么说着，%CALLNAME:人物_琪露诺%把%CALLNAME:MASTER%推倒了。
 	RETURN 0
 ENDIF
 RETURN 0
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;日常系コマンド
+;日常系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;300,会话
@@ -394,114 +394,114 @@ DRAWLINE
 IF TCVAR:302 && !TALENT:恋慕
 	RETURN RESULT
 ELSEIF CFLAG:318 == 1
-	;ど怒意状態
-	PRINTFORML 「なに、凍りづけにでもなりたいの？」
-	PRINTFORML %CALLNAME:MASTER%は思わず恐れて%CALLNAME:人物_琪露诺%をなだめた
+	;大怒状态
+	PRINTFORML 「怎么，想被冻成冰块吗？」
+	PRINTFORML %CALLNAME:MASTER%不由得害怕起来，安抚了%CALLNAME:人物_琪露诺%
 	RETURN RESULT
 ENDIF
-PRINTFORM %CALLNAME:PLAYER%は%CALLNAME:TARGET%と
+PRINTFORM %CALLNAME:PLAYER%和%CALLNAME:TARGET%
 IF TALENT:恋慕
-	LOCAL = RAND:6 
+	LOCAL = RAND:6
 	IF LOCAL == 5
-		PRINTFORM 指先を絡ませながら
+		PRINTFORM 十指交缠着
 	ELSEIF LOCAL == 4
-		PRINTFORM 隣りあって
+		PRINTFORM 并肩而坐
 	ELSEIF LOCAL == 3
-		PRINTFORM 少し照れながら
+		PRINTFORM 稍微害羞着
 	ELSEIF LOCAL == 2
-		PRINTFORM じゃれ合いながら
+		PRINTFORM 嬉闹玩耍着
 	ELSEIF LOCAL == 1
-		PRINTFORM 微笑みを交わしながら
+		PRINTFORM 交换着微笑
 	ELSE
 		IF (CFLAG:MASTER:当前位置 == 4) || (CFLAG:MASTER:当前位置 == 5) || (CFLAG:MASTER:当前位置 == 11) || (CFLAG:MASTER:当前位置 == 17) || (CFLAG:MASTER:当前位置 == 18)
 			LOCAL = (RAND:5 + 1)
 			IF LOCAL == 5
-				PRINTFORM 指先を絡ませながら
+				PRINTFORM 十指交缠着
 			ELSEIF LOCAL == 4
-				PRINTFORM 隣りあって
+				PRINTFORM 并肩而坐
 			ELSEIF LOCAL == 3
-				PRINTFORM 少し照れながら
+				PRINTFORM 稍微害羞着
 			ELSEIF LOCAL == 2
-				PRINTFORM じゃれ合いながら
+				PRINTFORM 嬉闹玩耍着
 			ELSEIF LOCAL == 1
-				PRINTFORM 微笑みを交わしながら
+				PRINTFORM 交换着微笑
 			ENDIF
 		ELSE
 			IF TIME >= 360 && TIME <= 1080
-				PRINTFORM 昼の光の中で
+				PRINTFORM 在白昼的光芒中
 			ELSE
-				PRINTFORM 夜の静けさの中で
+				PRINTFORM 在夜晚的静谧中
 			ENDIF
 		ENDIF
 	ENDIF
 ELSE
 	IF RAND:6 == 0
-		PRINTFORM 世間
+		PRINTFORM 聊着世间
 	ELSEIF RAND:5 == 0
-		PRINTFORM とりとめのない
+		PRINTFORM 聊着漫无边际的
 	ELSEIF RAND:4 == 0
-		PRINTFORM 下らない
+		PRINTFORM 聊着无聊的
 	ELSEIF RAND:3 == 0
-		PRINTFORM たわいない
+		PRINTFORM 聊着闲适的
 	ELSEIF RAND:2 == 0
-		PRINTFORM 取るに足らない
+		PRINTFORM 聊着微不足道的
 	ELSE
-		PRINTFORM 少し
+		PRINTFORM 稍微
 	ENDIF
 ENDIF
-PRINTFORML 話をした
+PRINTFORML 聊了聊天
 IF TFLAG:193 == 1
-	PRINTFORML 楽しい時間が流れた…
+	PRINTFORML 快乐的时光流逝着…
 ELSEIF TFLAG:193 == -1
-	PRINTFORML 会话が途切れると気まずい空気が流れた…
+	PRINTFORML 话一停下来就弥漫了尴尬的气氛…
 	RETURN RESULT
 ENDIF
-PRINTFORML 
+PRINTFORML
 CALL KOJO_MESSAGE_COM_K8_300_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_300_1
 IF LOCAL >= 0 && TFLAG:193 >= 0
 	IF LOCAL == 5
-		PRINTFORML %CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%の話を聞いていた。
-		PRINTFORML 「こうやって、あなたと一緒にお話している時間ってさ。」
-		PRINTFORMW 「すっごく楽しいんだよね、ずっとこうしていたい。」
+		PRINTFORML %CALLNAME:MASTER%倾听着%CALLNAME:人物_琪露诺%的话语。
+		PRINTFORML 「像这样，和你一起聊天的时光啊。」
+		PRINTFORMW 「超级开心的呢，真想一直这样下去。」
 	ELSEIF LOCAL == 4
-		PRINTFORML 「えへへ、こんなのんびりしてるのも、悪く無いわね♪」
-		PRINTFORML 「あ、手、冷たくない？」
-		PRINTFORMW 平気だと伝えると安堵した様子で頬を緩めた。
+		PRINTFORML 「嘿嘿，这样悠闲也不错嘛♪」
+		PRINTFORML 「啊，手，不冷吗？」
+		PRINTFORMW 告诉她没关系后，她安心地放松了脸颊。
 	ELSEIF LOCAL == 3
-		PRINTFORML 「あ、もうこんな時間…。」
-		PRINTFORML 「%CALLNAME:MASTER%と一緒に居ると、あっという間だね。」
-		PRINTFORMW 
+		PRINTFORML 「啊，已经这个时间了…。」
+		PRINTFORML 「和%CALLNAME:MASTER%在一起，一转眼就过去了呢。」
+		PRINTFORMW
 	ELSEIF LOCAL == 2
-		PRINTFORML 「寒い季節は好きだけど、暑い日は疲れるのよね。」
-		PRINTFORML 「え？秋とか春？」
-		PRINTFORMW 「そんなに変わらないわよ、暖かくも寒くもないし。」
+		PRINTFORML 「喜欢寒冷的季节，不过炎热的日子真累人呢。」
+		PRINTFORML 「诶？秋天和春天？」
+		PRINTFORMW 「没什么差别啦，不暖也不凉的。」
 	ELSEIF LOCAL == 1
-		PRINTFORML 「ねえ、手、握って？」
-		PRINTFORML 手を握ってやると、%CALLNAME:人物_琪露诺%は嬉しそうに顔を赤くした。
-		PRINTFORMW 「落ち着くなぁ…。」
+		PRINTFORML 「呐，握着手好吗？」
+		PRINTFORML 握住她的手后，%CALLNAME:人物_琪露诺%高兴得脸红了。
+		PRINTFORMW 「好安心啊…。」
 	ELSE
 		IF TIME <= 360 && TIME >= 1080
-			PRINTFORML 「昼じゃないと%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%と遊べないのよね…。」
-			PRINTFORMW 「%CALLNAME:MASTER%は好きな時間とかあるの？」
+			PRINTFORML 「不是白天的话就没法和%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%一起玩了呢…。」
+			PRINTFORMW 「%CALLNAME:MASTER%有什么喜欢的时间吗？」
 		ENDIF
 	ENDIF
 ELSEIF TFLAG:193 >= 0
 	IF RAND:5 == 0
-		PRINTFORMW 「こうやって%CALLNAME:MASTER%と話すのも楽しいわね。」
+		PRINTFORMW 「像这样和%CALLNAME:MASTER%聊天也很开心呢。」
 	ELSEIF RAND:4 == 0
-		PRINTFORML %CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%の話を聞いていた。
-		PRINTFORML 「あんたが居る館って一回霧が出てきた館なのよ、
-		PRINTFORMW あの時は遊び場が涼しくて過ごしやすかったわね。」
+		PRINTFORML %CALLNAME:MASTER%倾听着%CALLNAME:人物_琪露诺%的话语。
+		PRINTFORML 「你住的那个馆啊，就是以前那次起雾的那个馆对吧，
+		PRINTFORMW 那时候游乐的地方凉凉的，待着挺舒服的呢。」
 	ELSEIF RAND:3 == 0
-		PRINTFORMW 「いつかあの巫女と白黒に仕返ししてやるんだから。」
+		PRINTFORMW 「总有一天要向那个巫女和黑白报复的。」
 	ELSEIF RAND:2 == 0
-		PRINTFORML 「そういえば、なんで%CALLNAME:MASTER%ってなんであの館に住んでるの？
-		PRINTFORML 「なんでそんなの聞くのって？気になったのよ。」
-		PRINTFORMW ・・・聞かれてはいけないことを聞かれた気がするのは何故だ？
+		PRINTFORML 「说起来，%CALLNAME:MASTER%你为什么住在那个馆里啊？
+		PRINTFORML 「为什么问这个？就是好奇嘛。」
+		PRINTFORMW ・・・为什么会有一种被问了不该问的问题的感觉呢？
 	ELSE
-		PRINTFORMW 「何して遊ぼうか？」
+		PRINTFORMW 「玩点什么好呢？」
 
 	ENDIF
 ENDIF
@@ -515,20 +515,20 @@ CALL KOJO_MESSAGE_COM_K8_301_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_301_1
 SIF TALENT:恋慕
-	PRINTFORML 「%CALLNAME:MASTER%、楽しみにしてたんだよねー♪！」
-PRINTFORMW 嬉しそうに頬を緩めている%CALLNAME:人物_琪露诺%に%CALLNAME:MASTER%は微笑んだ
+	PRINTFORML 「%CALLNAME:MASTER%，人家一直很期待呢--♪！」
+PRINTFORMW %CALLNAME:MASTER%对着高兴得眉开眼笑的%CALLNAME:人物_琪露诺%微笑了
 IF TFLAG:193 == 1
-	PRINTFORML 「%CALLNAME:MASTER%のお茶って、落ち着くなぁ…。」
-	PRINTFORML %CALLNAME:人物_琪露诺%ははふぅとした顔でお茶を楽しんでいる。
-	PRINTFORMW …快活な顔とは違う静かな%CALLNAME:人物_琪露诺%も可愛いと思えた。
+	PRINTFORML 「%CALLNAME:MASTER%的茶，喝了真安心啊…。」
+	PRINTFORML %CALLNAME:人物_琪露诺%一脸惬意地享受着茶。
+	PRINTFORMW …和平时活泼的神情不同，安静的%CALLNAME:人物_琪露诺%也很可爱。
 ELSEIF TFLAG:193 == -1
-	PRINTFORML 「あち、あちちち…あたい、暑いものって苦手なのよね…。」
-	PRINTFORMW 舌をべーっと出しながら%CALLNAME:人物_琪露诺%はお茶をふーふーしている。
-	PRINTFORML %CALLNAME:MASTER%は首をかしげながら、自分も飲んでみることにした
-	PRINTFORMW 思った以上に熱かった、舌を火傷したかもしれない。
+	PRINTFORML 「烫、烫烫烫…本小姐不太擅长喝烫的东西啦…。」
+	PRINTFORMW %CALLNAME:人物_琪露诺%一边吐着舌头一边对着茶呼呼吹气。
+	PRINTFORML %CALLNAME:MASTER%歪着头，决定自己也喝一口试试
+	PRINTFORMW 比想象中还要烫，舌头可能烫伤了。
 ELSE
-	PRINTFORML 「%CALLNAME:MASTER%のお菓子って美味しいわね。」
-	PRINTFORMW 「でも、%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%のお菓子も負けないくらい美味しいのよ♪」
+	PRINTFORML 「%CALLNAME:MASTER%的点心真好吃呢。」
+	PRINTFORMW 「不过，%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%的点心也不输哦♪」
 ENDIF
 RETURN 1
 @KOJO_MESSAGE_COM_K8_302
@@ -541,28 +541,28 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K8_302_1
 IF CFLAG:MASTER:当前位置 == 18
 	IF TFLAG:193 == 1
-		;風呂場にて
-		PRINTFORML %CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%の身体を洗っている。
-		PRINTFORML 「うーん、気持ちいいなぁ…。」
-		PRINTFORMW 洗いかたが上手なのに%CALLNAME:人物_琪露诺%は気を良くしているようだ。
+		;在浴室
+		PRINTFORML %CALLNAME:MASTER%正在清洗%CALLNAME:人物_琪露诺%的身体。
+		PRINTFORML 「嗯-…好舒服啊…。」
+		PRINTFORMW 洗得很熟练，%CALLNAME:人物_琪露诺%似乎很满意。
 	ELSEIF TFLAG:193 == -1
-		PRINTFORML 「熱い！お湯が思った以上に熱かったよぉ…。」
-		PRINTFORML %CALLNAME:人物_琪露诺%は熱そうに擦っている。
+		PRINTFORML 「好烫！水比想象的还要烫啊…。」
+		PRINTFORML %CALLNAME:人物_琪露诺%一副怕烫的样子擦着身子。
 	ELSE
-		PRINTFORML 「あ、羽根も洗ってくれる？」
-		PRINTFORMW 「時々手が届かないのよね…。」
+		PRINTFORML 「啊，翅膀也帮忙洗一下吗？」
+		PRINTFORMW 「有时候自己够不到呢…。」
 	ENDIF
 ELSE
 	IF TFLAG:193 == 1
-		PRINTFORML 「んー…こんなのも悪く無いわね…。」
-		PRINTFORML %CALLNAME:人物_琪露诺%と交友を深めながら指を絡めてのんびりとした時間を過ごす。
-		PRINTFORML やがてリラックスした様子で全身をあなたに預けてきた
-		PRINTFORMW  「こうした時間、ずっと続けばいいのになぁ…。」
+		PRINTFORML 「嗯-…这样也不坏呢…。」
+		PRINTFORML 和%CALLNAME:人物_琪露诺%加深交情，十指交缠度过悠闲的时光。
+		PRINTFORML 不久她放松下来，把全身靠在了你身上
+		PRINTFORMW  「这样的时光，要是一直持续下去就好了啊…。」
 	ELSEIF TFLAG:193 == -1
-		PRINTFORMW %CALLNAME:MASTER%を%CALLNAME:人物_琪露诺%はひんやりとした手で首筋を触った。
+		PRINTFORMW %CALLNAME:人物_琪露诺%用冰凉的手摸了%CALLNAME:MASTER%的脖颈。
 	ELSE
-		PRINTFORML 「羽根を触ってもいいかって？別にいいわよ、減るものじゃないし。」
-		PRINTFORML %CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%の羽根のひんやりとした感覚を楽しんだ。
+		PRINTFORML 「摸翅膀可以吗？当然可以啦，又不会少一块。」
+		PRINTFORML %CALLNAME:MASTER%享受着%CALLNAME:人物_琪露诺%翅膀上冰凉的触感。
 		PRINTFORMW
 	ENDIF
 ENDIF
@@ -576,22 +576,22 @@ CALL KOJO_MESSAGE_COM_K8_310_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_310_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「きゃぁうっ…こんなに優しく撫でられたら…！」
-	PRINTFORML 抱きしめながら%CALLNAME:人物_琪露诺%の桃尻を撫で回すと冷たい息がかかった
-	PRINTFORML 「こんなに優しくされたらあたい…駄目になりそうだよぉ…。」
-	PRINTFORMW 撫で回される快感に浸り涙を浮かべ%CALLNAME:MASTER%を上目で見ている。
+	PRINTFORML 「呀啊呜…这么温柔地摸人家…！」
+	PRINTFORML 一边抱着一边抚摸%CALLNAME:人物_琪露诺%的蜜桃臀，感受到了冰凉的吐息
+	PRINTFORML 「被这么温柔对待的话，本小姐…要变得不行了啦…。」
+	PRINTFORMW 沉浸在被抚摸的快感中，含着泪用上目线看着%CALLNAME:MASTER%。
 ELSEIF ABL:亲密 > 5
-	PRINTFORML 「あぁぅ…撫で方が気持ちいい…。」
-	PRINTFORMW 「あたいの身体、すっかり%CALLNAME:MASTER%に知られちゃったね。」
+	PRINTFORML 「啊呜…摸得好舒服…。」
+	PRINTFORMW 「本小姐的身体，已经被%CALLNAME:MASTER%摸透了呢。」
 ELSEIF ABL:亲密 > 2 && TALENT:恋慕
-	PRINTFORML 「あたいのお尻そんなに触るの楽しいの？」
-	PRINTFORMW 「いいけどね、あたい、%CALLNAME:MASTER%に触られるのも嫌いじゃないし」
+	PRINTFORML 「本小姐的屁股摸起来有那么好玩吗？」
+	PRINTFORMW 「也不是不行啦，本小姐也不讨厌被%CALLNAME:MASTER%摸」
 ELSEIF ABL:亲密 > 2
-	PRINTFORML 「うきゅ！？なにすんのさ！？」
-	PRINTFORMW 可愛らしい声を上げながら%CALLNAME:人物_琪露诺%は飛びのいた。
+	PRINTFORML 「呜啾！？你干嘛啦！？」
+	PRINTFORMW %CALLNAME:人物_琪露诺%发出可爱的叫声跳开了。
 ELSE
-	PRINTFORML 「…そんなとこ触って楽しいの？」
-	PRINTFORMW %CALLNAME:MASTER%思わず手を引いたが%CALLNAME:人物_琪露诺%の感触が印象的だった。
+	PRINTFORML 「…摸那种地方好玩吗？」
+	PRINTFORMW %CALLNAME:MASTER%不由得缩回了手，但%CALLNAME:人物_琪露诺%的触感令人印象深刻。
 ENDIF
 RETURN 1
 ;==================================================
@@ -603,29 +603,29 @@ CALL KOJO_MESSAGE_COM_K8_311_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_311_1
 IF ABL:亲密 >= 8 && TALENT:恋慕
-	PRINTFORML 「えへへ…幸せすぎて溶けちゃいそう…。」
-	PRINTFORML %CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%に安心して身を委ねている。
-	PRINTFORML 冷たい身体に感じた確かな温もりを離さないようにしっかりと抱きとめた。
-	PRINTFORML 「眠くなりそう…もっと強く、ぎゅっとして…？」
-	PRINTFORMW %CALLNAME:人物_琪露诺%はとろけるような声で先を促した。
+	PRINTFORML 「嘿嘿…幸福得快要融化了…。」
+	PRINTFORML %CALLNAME:人物_琪露诺%安心地把身体靠在%CALLNAME:MASTER%身上。
+	PRINTFORML 紧紧抱住那冰凉身体中感受到的确实温暖，不愿松开。
+	PRINTFORML 「好像要困了…再紧一点，抱紧人家…？」
+	PRINTFORMW %CALLNAME:人物_琪露诺%用快要融化的声音催促着继续。
 ELSEIF ABL:亲密 >= 8
-	PRINTL 「ふにゅ～…幸せぇ…。」
-	PRINTFORMW 抱きとめられている%CALLNAME:人物_琪露诺%から幸せそうな声が漏れた。
+	PRINTL 「呼唔～…好幸福…。」
+	PRINTFORMW 被抱住的%CALLNAME:人物_琪露诺%发出了幸福的声音。
 ELSEIF ABL:亲密 >= 4 && TALENT:恋慕
-	PRINTFORML 「えへへ、これってお姫様抱っこっていうんだよね？」
-	PRINTFORML 「本のお姫様になった気分…♪」
-	PRINTFORMW %CALLNAME:人物_琪露诺%の軽い身体をしっかりと抱きとめると青い瞳と目があった。
-	PRINTFORML 「あ…%CALLNAME:MASTER%…。」
-	PRINTFORMW 顔を赤くしてじっとして見つめ合った。
+	PRINTFORML 「嘿嘿，这叫公主抱对吧？」
+	PRINTFORML 「感觉像变成了书里的公主一样…♪」
+	PRINTFORMW 稳稳地抱起%CALLNAME:人物_琪露诺%轻盈的身体，视线和蓝色的眼瞳对上了。
+	PRINTFORML 「啊…%CALLNAME:MASTER%…。」
+	PRINTFORMW 脸红着静静地相互凝视。
 ELSEIF ABL:亲密 >= 4
-	PRINTL 「んっ…あたいからもお返し。」
-	PRINTFORMW %CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%に手を回して、背中に抱きついた。
+	PRINTL 「嗯…本小姐也回抱你。」
+	PRINTFORMW %CALLNAME:人物_琪露诺%伸手环绕%CALLNAME:MASTER%，从背后抱了上来。
 ELSEIF TFLAG:193 == -1
-	PRINTFORML 「冷たいから触らないほうがいいよ。」
-	PRINTFORMW %CALLNAME:人物_琪露诺%はやんわりと断った。
+	PRINTFORML 「凉凉的，还是别摸比较好哦。」
+	PRINTFORMW %CALLNAME:人物_琪露诺%委婉地拒绝了。
 ELSE
-	PRINTL 「ちょ、ちょっと、しもやけしちゃうわよ離れなさい。」
-	PRINTFORMW 抱きしめられるのに悪い気はしていないようだがこちらを気遣っている、
+	PRINTL 「等、等等，会冻疮的啦，快放开。」
+	PRINTFORMW 被抱住似乎并不讨厌，但她是在担心这边。
 ENDIF
 RETURN 1
 ;==================================================
@@ -637,19 +637,19 @@ CALL KOJO_MESSAGE_COM_K8_312_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_312_1
 IF ABL:欲望 >= 5
-	PRINTFORML 「%CALLNAME:MASTER%、何もしなくていいからね、あたいがしてあげる。」
-	PRINTFORML %CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%の顔を両手で優しく包むと%CALLNAME:人物_琪露诺%の舌が口内に入り、
-	PRINTFORML  冷たい舌でじっくりと舌を絡ませ上達した舌头灵巧で口内をなぞる。
-	PRINTFORMW 「ぷはっ…%CALLNAME:MASTER%…もっとして欲しい？」
+	PRINTFORML 「%CALLNAME:MASTER%，你什么都不用做，本小姐来。」
+	PRINTFORML %CALLNAME:人物_琪露诺%用双手温柔地捧住%CALLNAME:MASTER%的脸，%CALLNAME:人物_琪露诺%的舌头探入口中，
+	PRINTFORML  用冰凉的舌头仔细地纠缠，进步了的舌头灵巧地描绘着口腔。
+	PRINTFORMW 「啵哈…%CALLNAME:MASTER%…还想要吗？」
 ELSEIF ABL:亲密 >= 5
-	PRINTFORML 「ちゅっ…ん…もっと欲しい…もっとしよう？」
-	PRINTFORMW %CALLNAME:人物_琪露诺%の口内を味わいながら、舌を絡めて抱き合った。
+	PRINTFORML 「啾…嗯…还想要…再来更多？」
+	PRINTFORMW 品味着%CALLNAME:人物_琪露诺%的口腔，舌交着拥抱在一起。
 ELSEIF TFLAG:193 == -1
-	PRINTFORML 「ちょ、ちょっと馬鹿じゃないの！？」
-	PRINTFORMW %CALLNAME:MASTER%がキスをすると%CALLNAME:人物_琪露诺%は離れて頭を軽く叩いた
+	PRINTFORML 「你、你傻不傻啊！？」
+	PRINTFORMW %CALLNAME:MASTER%一亲上去，%CALLNAME:人物_琪露诺%就躲开并轻轻敲了敲头
 ELSE
-	PRINTFORML 「な、なにすんのよ！？」
-	PRINTFORMW まんざらでもないようだが驚いたようだ。
+	PRINTFORML 「你、你干嘛啦！？」
+	PRINTFORMW 看起来并非不情愿，但似乎被吓到了。
 ENDIF
 RETURN 1
 ;==================================================
@@ -661,18 +661,18 @@ CALL KOJO_MESSAGE_COM_K8_313_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_313_1
 IF TFLAG:193 == -1
-	PRINTFORML 「いつっ…痛いわよ…何するのよ…。」
-	PRINTFORMW 力加減を間違えてしまい、痛そうに涙をにじませた。
+	PRINTFORML 「嘶…好痛啦…你干嘛…。」
+	PRINTFORMW 力道没掌握好，她疼得眼泪都渗出来了。
 ELSEIF ABL:Ｂ感觉 <= 1
-	PRINTFORML 服の上から%CALLNAME:人物_琪露诺%の胸を触ると電撃が走ったように身体がはねた。
-	PRINTFORMW 「きゃんっ…身体がビクンってなったわよ…？」
+	PRINTFORML 隔着衣服摸%CALLNAME:人物_琪露诺%的胸部，她像触电一样身体弹了一下。
+	PRINTFORMW 「呀嗯…身体抖了一下啦…？」
 ELSEIF ABL:Ｂ感觉 <= 4
-	PRINTFORML 「んくぅぅぅ…先っぽが気持ちいい…。」
-	PRINTFORML 「なにこれ…からだがおかしいよ…何かしたの…？」
+	PRINTFORML 「嗯咕呜呜…前端好舒服…。」
+	PRINTFORML 「这是什么…身体好奇怪…你做了什么…？」
 ELSE
-	PRINTFORML 「あうっ…ちょっと、擽ったいわよ、どうしたの%CALLNAME:MASTER%？」
-	PRINTFORML なんとなく触りたくなったと告げると%CALLNAME:人物_琪露诺%は不思議そうに笑った。
-	PRINTFORML 「もう、あたいの触って楽しいの？変わってるわね%CALLNAME:MASTER%は。」
+	PRINTFORML 「啊呜…等等，好痒啦，怎么了%CALLNAME:MASTER%？」
+	PRINTFORML 告诉她就是莫名想摸，%CALLNAME:人物_琪露诺%一脸不解地笑了。
+	PRINTFORML 「真是的，摸本小姐的有那么好玩吗？%CALLNAME:MASTER%真奇怪。」
 ENDIF
 RETURN 1
 ;-------------------------------------------------
@@ -684,20 +684,20 @@ CALL KOJO_MESSAGE_COM_K8_314_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_314_1
 IF ABL:Ａ感觉 <= 1
-	PRINTFORML 「んぐ！？なんてとこ触ってんのよ…？」
-	PRINTFORML %CALLNAME:人物_琪露诺%はいきなりの下半身から来る刺激に桃尻を両手で抑えてこちらを見ている。
-	PRINTFORML 「あのね、嫌じゃないけど、変なとこさわらないでよぉ…。」
-	PRINTFORMW 感覚が気になっているのか擦りながらこちらを睨んでいる。
+	PRINTFORML 「嗯咕！？你摸什么奇怪的地方啦…？」
+	PRINTFORML %CALLNAME:人物_琪露诺%被下半身突如其来的刺激吓到，双手捂着蜜桃臀看着这边。
+	PRINTFORML 「那个呢，不是讨厌啦，但别摸奇怪的地方啦…。」
+	PRINTFORMW 似乎在意那种感觉，她一边擦着一边瞪着这边。
 ELSEIF ABL:Ａ感觉 <= 3
-	PRINTFORML 「や、やめなさいよ、きたない…んっ！？」
-	PRINTFORML 以前とは違う刺激に思わず後ろを締める%CALLNAME:人物_琪露诺%、挿入していた指が
-	PRINTFORML 桃尻の穴に締め付けられているがそれもまた一つの刺激になって%CALLNAME:人物_琪露诺%を刺激している。
-	PRINTFORMW 「変な気持ちになっちゃうわよ…こんなの続けられたら…。」
+	PRINTFORML 「住、住手啦，好脏…嗯！？」
+	PRINTFORML 和之前不同的刺激让%CALLNAME:人物_琪露诺%不由得收紧了后面，插入的手指
+	PRINTFORML 被蜜桃臀的穴紧紧夹住，但那也成了一种刺激刺激着%CALLNAME:人物_琪露诺%。
+	PRINTFORMW 「会变得怪怪的啦…再这样下去的话…。」
 ELSE
-	PRINTFORML 「んぁっ、%CALLNAME:MASTER%酷いよぉ…あたいのお尻おかしくなっちゃったぁ…。」
-	PRINTFORML %CALLNAME:人物_琪露诺%を抱き寄せて菊門を数本の指でグリグリと刺激すると
-	PRINTFORML 弱々しい嬌声を上げながら後ろからくる快楽に%CALLNAME:人物_琪露诺%は身悶えた。
-	PRINTFORML 「きゃぁん…！おしりが、気持ちいい…！もっとしてぇ…！」
+	PRINTFORML 「嗯啊，%CALLNAME:MASTER%好过分…本小姐的屁股变得好奇怪…。」
+	PRINTFORML 把%CALLNAME:人物_琪露诺%拉过来，用几根手指咕噜咕噜地刺激菊门，
+	PRINTFORML 她发出微弱的娇声，因从后面传来的快乐而扭动着身子。
+	PRINTFORML 「呀嗯…！屁股，好舒服…！再多一点…！」
 ENDIF
 RETURN 1
 ;==================================================
@@ -709,21 +709,21 @@ CALL KOJO_MESSAGE_COM_K8_315_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_315_1
 IF ABL:Ｃ感觉 <= 1
-	PRINTFORML %CALLNAME:人物_琪露诺%を後ろから抱きしめて服の上から秘所を弄った
-	PRINTFORMW 「ひゃん！ちょ、ちょっと…。」
+	PRINTFORML 从背后抱住%CALLNAME:人物_琪露诺%，隔着衣服玩弄了秘处
+	PRINTFORMW 「呀嗯！等、等等…。」
 ELSEIF ABL:Ｃ感觉 <= 3
-	PRINTFORML 「もう、何回も、弄られちゃったから、おかしくなっちゃった…。」
-	PRINTFORMW 幾度にもわたって開発された陰核は快感を素直に受け入れている。
+	PRINTFORML 「真是的，被弄了好多次，已经变得怪怪的了…。」
+	PRINTFORMW 经过多次开发的阴蒂老实地接受着快感。
 ELSEIF ABL:Ｃ感觉 <= 4
-	PRINTFORML 「あ、あぁ…！もうダメ、あたいのお豆が、じんじんする…。」
-	PRINTFORML ずらされた下着から陰核が剥き出しとなって%CALLNAME:人物_琪露诺%に快楽を与えている。
-	PRINTFORML 「は、恥ずかしいのに、誰かが来たら…でもいいのぉ…。」
-	PRINTFORMW 羞恥と快楽に挟まれて%CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%に身を委ねている。
+	PRINTFORML 「啊、啊…！不行了，本小姐的豆豆，酥酥麻麻的…。」
+	PRINTFORML 被拨开的内裤下阴蒂暴露在外，给%CALLNAME:人物_琪露诺%带来快感。
+	PRINTFORML 「明明、明明好羞人，要是有人来了…但也没关系…。」
+	PRINTFORMW 夹在羞耻和快感之间，%CALLNAME:人物_琪露诺%把身体交给了%CALLNAME:MASTER%。
 ELSE
-	PRINTFORML %CALLNAME:MASTER%は下着に手を入れて陰核を弄っている
-	PRINTFORML 「んきゅぅっ…！弄らないでよ、変な気分になるじゃない…。」
-	PRINTFORMW 「ちょっと、やめなさいって…気持ちいいんだから…。」
-	PRINTFORMW 「くぁ…もう、下着が濡れちゃったじゃない…。」
+	PRINTFORML %CALLNAME:MASTER%把手伸进内裤里玩弄着阴蒂
+	PRINTFORML 「嗯啾呜…！别玩啦，会变得怪怪的…。」
+	PRINTFORMW 「等等，叫你住手啦…好舒服…。」
+	PRINTFORMW 「呼啊…真是的，内裤都湿了嘛…。」
 ENDIF
 RETURN 1
 ;==================================================
@@ -735,44 +735,44 @@ CALL KOJO_MESSAGE_COM_K8_350_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_350_1
 IF FIRSTTIME(TOSTR(350),1)
-	;初めて集
+	;第一次
 	;琪露诺的家OR玩家房间
 	IF (CFLAG:当前位置 ==20) || (CFLAG:MASTER:当前位置 == 15)
-		PRINTFORML 「え、えへへ、あたいでも知ってるよこれくらい。」
-		PRINTFORML %CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%を押し倒したまま静止している。
-		PRINTFORMW 「あたいもずっとして欲しかったよ。」
-		PRINTFORML 「だってあたい、%CALLNAME:MASTER%の事大好きだもん。」
-		PRINTFORMW 「ねえ、キス、して。」
-		PRINTFORML 「気持よくしてね、%CALLNAME:MASTER%。」
-		PRINTFORMW %CALLNAME:人物_琪露诺%は%CALLNAME:MASTER%にその躰を委ねた。
+		PRINTFORML 「诶、嘿嘿，这种程度本小姐也是知道的啦。」
+		PRINTFORML %CALLNAME:MASTER%把%CALLNAME:人物_琪露诺%推倒后静止不动。
+		PRINTFORMW 「本小姐也一直想让你这样做的。」
+		PRINTFORML 「因为本小姐最喜欢%CALLNAME:MASTER%了嘛。」
+		PRINTFORMW 「呐，亲我。」
+		PRINTFORML 「要让人家舒服哦，%CALLNAME:MASTER%。」
+		PRINTFORMW %CALLNAME:人物_琪露诺%把身体交给了%CALLNAME:MASTER%。
 	ELSE
-		PRINTFORML 「いいわよ…あたいもしてほしいと思っていたし。」
-		PRINTFORML 「でもさ、家とか%CALLNAME:MASTER%の部屋でしたかったわよ。」
-		PRINTFORMW 「いいけどね、%CALLNAME:MASTER%がいいならさ♪」
+		PRINTFORML 「可以哦…本小姐也想让你这样做。」
+		PRINTFORML 「不过呢，想在家里或者%CALLNAME:MASTER%的房间做的。」
+		PRINTFORMW 「不过也行啦，%CALLNAME:MASTER%想的话就♪」
 	ENDIF
 ELSEIF TALENT:恋慕
-	;あなたOR琪露诺的家
+	;你OR琪露诺的家
 	IF (CFLAG:当前位置 ==20) || (CFLAG:MASTER:当前位置 == 15)
-		PRINTFORML 「ねえ、今日%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%も来ないんだ、だからさ。」
-		PRINTFORML %CALLNAME:人物_琪露诺%は赤面して%CALLNAME:MASTER%を見ている
-		PRINTFORML 「あたいを気持ちよくして、あたいも頑張るから。」
+		PRINTFORML 「呐，今天%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%也不来，所以呢。」
+		PRINTFORML %CALLNAME:人物_琪露诺%红着脸看着%CALLNAME:MASTER%
+		PRINTFORML 「让本小姐舒服，本小姐也会加油的。」
 	ELSE
-		PRINTFORML 「もう、好きなんだね、%CALLNAME:MASTER%も…。」
-		PRINTFORMW %CALLNAME:人物_琪露诺%も嫌ではないのかすっかりと身を任せている。
+		PRINTFORML 「真是的，%CALLNAME:MASTER%也很喜欢呢…。」
+		PRINTFORMW %CALLNAME:人物_琪露诺%似乎也不讨厌，完全任由摆布。
 	ENDIF
 ELSE
-	;あなたOR琪露诺的家
+	;你OR琪露诺的家
 	IF (CFLAG:当前位置 ==20) || (CFLAG:MASTER:当前位置 == 15)
-		PRINTFORML 「あたい、もっとして欲しいよ…%CALLNAME:MASTER%…。」
-		PRINTFORMW %CALLNAME:人物_琪露诺%の求めに応じて%CALLNAME:MASTER%は%CALLNAME:人物_琪露诺%を押し倒した。
+		PRINTFORML 「本小姐，想要更多…%CALLNAME:MASTER%…。」
+		PRINTFORMW 应%CALLNAME:人物_琪露诺%的请求，%CALLNAME:MASTER%把%CALLNAME:人物_琪露诺%推倒了。
 	ELSE
-		PRINTFORML 「…誰かに見られても知らないんだから。」
-		PRINTFORMW %CALLNAME:MASTER%は苦笑いをしながら%CALLNAME:人物_琪露诺%を抱き寄せた。
+		PRINTFORML 「…被谁看到了我可不负责哦。」
+		PRINTFORMW %CALLNAME:MASTER%苦笑着把%CALLNAME:人物_琪露诺%拉了过来。
 	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
-;351,連れ出す
+;351,带走
 ;==================================================
 @KOJO_MESSAGE_COM_K8_351
 CALL TRAIN_MESSAGE
@@ -783,39 +783,39 @@ RETURN RESULT
 #DIM 人物
 
 人物 = 人物_琪露诺
-;この関数が呼ばれるとき既に同行フラグは変化している
+;调用此函数时同行标志已经变化
 IF CFLAG:同行
 	IF ABL:亲密 > 5 && TALENT:恋慕
-		PRINTFORML 「てりゃ♪」
-		PRINTFORML 背中に重みを感じたと思ったら、%CALLNAME:人物%にへばりつかれた。
-		PRINTFORML 「えへへ、引き剥がせないでしょ？」
-		PRINTFORMW 「あたいも着いて行くわよ♪」
+		PRINTFORML 「嘿呀♪」
+		PRINTFORML 感觉到背上的重量，%CALLNAME:人物%黏了上来。
+		PRINTFORML 「嘿嘿，甩不掉了吧？」
+		PRINTFORMW 「本小姐也要一起去哟♪」
 	ELSEIF ABL:亲密 > 5
-		PRINTFORML 「%CALLNAME:MASTER%どこかに行っちゃうの？」
-		PRINTFORMW 「ならあたいも着いてくわ、嫌とは言わせないわよ♪」
+		PRINTFORML 「%CALLNAME:MASTER%要去哪里吗？」
+		PRINTFORMW 「那本小姐也要去，不会让你说不的哟♪」
 	ELSEIF ABL:亲密 > 2 && TALENT:恋慕
-		PRINTFORML 「わーい、デートだデート♪」
-		PRINTFORMW 平然とそういうことを言われると照れるのだが…。
+		PRINTFORML 「好耶，约会约会♪」
+		PRINTFORMW 被她这么淡定地说出来还真有点害羞…。
 	ELSEIF ABL:亲密 > 2
-		PRINTFORML 「ねえ、%CALLNAME:MASTER%、一緒に行ってもいい？」
-		PRINTFORMW %CALLNAME:人物%は笑いながら、%CALLNAME:MASTER%に寄り添った。
+		PRINTFORML 「呐，%CALLNAME:MASTER%，一起去可以吗？」
+		PRINTFORMW %CALLNAME:人物%笑着依偎到了%CALLNAME:MASTER%身边。
 	ELSE
-		PRINTFORML 「%CALLNAME:MASTER%、どこかに行くの？」
-		PRINTFORMW 「ならあたいも着いて行く！」
+		PRINTFORML 「%CALLNAME:MASTER%，要去哪里吗？」
+		PRINTFORMW 「那本小姐也要去！」
 	ENDIF
 ELSE
-	;既に同行していたら同行解除
+	;已经在同行中的话解除同行
 	IF ABL:亲密 > 5
-		PRINTFORML 「…%CALLNAME:MASTER%がそう言うなら」
-		PRINTFORMW 「あ、後であたいと遊んでね！ 約束だからね！！」
-		PRINTFORMW %CALLNAME:人物%は名残惜しそうに%CALLNAME:MASTER%から離れた。
+		PRINTFORML 「…%CALLNAME:MASTER%都这么说了的话」
+		PRINTFORMW 「啊，等下要和本小姐玩哦！说好了啊！！」
+		PRINTFORMW %CALLNAME:人物%依依不舍地离开了%CALLNAME:MASTER%。
 	ELSEIF ABL:亲密 > 2
-		PRINTFORML 「えーっ？ %CALLNAME:MASTER%お仕事なの？」
-		PRINTFORMW 「あたいだってお手伝いできるのに…」
-		PRINTFORMW %CALLNAME:人物%はしぶしぶ%CALLNAME:MASTER%から離れた。
+		PRINTFORML 「诶--？%CALLNAME:MASTER%要工作吗？」
+		PRINTFORMW 「本小姐也能帮忙的…」
+		PRINTFORMW %CALLNAME:人物%不情不愿地离开了%CALLNAME:MASTER%。
 	ELSE
-		PRINTFORML 「え？ %CALLNAME:MASTER%お仕事なの？」
-		PRINTFORMW 「ならあたいはあっちで遊んでくるね！」
+		PRINTFORML 「诶？%CALLNAME:MASTER%要工作吗？」
+		PRINTFORMW 「那本小姐去那边玩啦！」
 	ENDIF
 ENDIF
 RETURN 1
@@ -828,15 +828,15 @@ CALL KOJO_MESSAGE_COM_K8_352_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_352_1
 IF TFLAG:193
-	PRINTFORML 「%CALLNAME:MASTER%…の好きってさ、あたいと%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%みたいなのじゃなくて。」
-	PRINTFORML 「恋人ってやつなんでしょ？」
-	PRINTFORMW 「吼啊、あたいも大好きだよ、遊んでくれる%CALLNAME:MASTER%の事。」
-	PRINTFORML 「紅魔館でお仕事してる%CALLNAME:MASTER%の事邪魔したくないけど。」
-	PRINTFORMW 「ずっと一緒にいてね、あたいだって、%CALLNAME:MASTER%の事大好きだよ！」
+	PRINTFORML 「%CALLNAME:MASTER%…说的喜欢啊，不是像本小姐和%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%那种。」
+	PRINTFORML 「是叫恋人对吧？」
+	PRINTFORMW 「吼啊、本小姐也最喜欢了哟，会陪本小姐玩的%CALLNAME:MASTER%。」
+	PRINTFORML 「不想打扰在红魔馆工作的%CALLNAME:MASTER%。」
+	PRINTFORMW 「要一直在一起哦，本小姐也，最喜欢%CALLNAME:MASTER%了！」
 ELSE
-	PRINTFORML 「あたいも大好きだよ？%CALLNAME:MASTER%の事。」
-	PRINTFORML 首を傾げてきているあたり、LOVEではなくLIKEで見られているようだ…。
-	PRINTFORMW 「？どうしたのさ落ち込んで、具合悪いの？」
+	PRINTFORML 「本小姐也最喜欢了哟？%CALLNAME:MASTER%。」
+	PRINTFORML 歪着头看过来的样子，看来是被当作LIKE而不是LOVE了…。
+	PRINTFORMW 「？怎么了这么失落，身体不舒服吗？」
 ENDIF
 RETURN 1
 ;==================================================
@@ -850,31 +850,31 @@ RETURN RESULT
 IF TALENT:恋慕
 	SELECTCASE TFLAG:194
 		CASE 0
-			PRINTFORML 「ねぇー扫除もいいけど構ってよ…。」
-			PRINTFORML すぐに終わることを伝えると%CALLNAME:人物_琪露诺%は扫除を眺めてた。
+			PRINTFORML 「呐--扫除也不错啦，但理理人家嘛…。」
+			PRINTFORML 告诉她马上就好，%CALLNAME:人物_琪露诺%就盯着扫除看了。
 		CASE 1
-			PRINTFORML 「細かいゴミが多いわね、えい♪」
-			PRINTFORML 手を振ったら塵とかが集まって氷になった…。
-			PRINTFORML 「これなら集めるのも簡単でしょ♪」
+			PRINTFORML 「细小的垃圾好多呢，嘿♪」
+			PRINTFORML 手一挥，灰尘之类就聚集起来结成了冰…。
+			PRINTFORML 「这样收集起来也简单了吧♪」
 		CASE 2
-			PRINTFORML 「ここってこんなに汚れてるのね…。」
-			PRINTFORML 呆れるほどの汚れに嫌になりながらも%CALLNAME:人物_琪露诺%と扫除を始めた。
+			PRINTFORML 「这里竟然这么脏啊…。」
+			PRINTFORML 面对令人咋舌的污渍虽然有些厌烦，但还是和%CALLNAME:人物_琪露诺%一起开始扫除。
 		CASE 3
-			PRINTFORML 「…なんでこんなに散らかってんの？」
-			PRINTFORML %CALLNAME:人物_琪露诺%も思わずのけぞってしまう惨状がそこにあった
+			PRINTFORML 「…为什么乱成这样啊？」
+			PRINTFORML 连%CALLNAME:人物_琪露诺%都不由得后仰的惨状就在那里
 	ENDSELECT
 ELSE
 	SELECTCASE TFLAG:194
 		CASE 0
-			PRINTFORMW 「あ、汚れ発見、取っちゃおう。」
+			PRINTFORMW 「啊，发现脏东西了，弄掉吧。」
 		CASE 1
-			PRINTFORMW 「ちゃっちゃとやっちゃおうね。」
+			PRINTFORMW 「速战速决搞定啦。」
 		CASE 2
-			PRINTFORML 「手伝いくらいならやるわ、暇だしね。」
-			PRINTFORMW 氷精の手も借りたいとはこのことか。
+			PRINTFORML 「帮忙还是可以的，反正闲着嘛。」
+			PRINTFORMW 所谓想借冰精之手就是这个意思吧。
 		CASE 3
-			PRINTFORML 「うーわー…これひどいね…。」
-			PRINTFORMW 嫌になりそうなくらいのゴミを%CALLNAME:人物_琪露诺%と片付けた。
+			PRINTFORML 「呜哇--…这太惨了…。」
+			PRINTFORMW 和%CALLNAME:人物_琪露诺%一起收拾了让人想放弃的垃圾。
 	ENDSELECT
 ENDIF
 RETURN 1
@@ -887,23 +887,23 @@ CALL KOJO_MESSAGE_COM_K8_411_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_411_1
 IF ABL:战斗技能 > 5 && TALENT:恋慕
-	PRINTFORML 「うーん強いね、%CALLNAME:MASTER%は。」
-	PRINTFORML 「あたいも負けてられないなぁ…。」
-	PRINTFORML 「%CALLNAME:MASTER%が強くてあたいも強くなれば…♪」
-	PRINTFORMW 「最強カップルの誕生ね！%CALLNAME:人物_蕾米莉亚%と決闘してやるわ！」
-	PRINTFORMW 気持ちはとても嬉しいのだが…なるべくやめて欲しい…。
+	PRINTFORML 「嗯-好强呢，%CALLNAME:MASTER%。」
+	PRINTFORML 「本小姐也不能输啊…。」
+	PRINTFORML 「%CALLNAME:MASTER%很强本小姐也变强的话…♪」
+	PRINTFORMW 「最强情侣的诞生！去和%CALLNAME:人物_蕾米莉亚%决斗！」
+	PRINTFORMW 心情是很开心的啦…但尽量还是别这么做…。
 ELSEIF ABL:战斗技能 > 5
-	PRINTFORML 「今の%CALLNAME:MASTER%なら%CALLNAME:人物_蕾米莉亚%にも勝てるんじゃない？」
-	PRINTFORMW 無理ではないかもしれないが、恐れ多いことを言わないで欲しい…。
+	PRINTFORML 「现在的%CALLNAME:MASTER%的话，能赢过%CALLNAME:人物_蕾米莉亚%吧？」
+	PRINTFORMW 虽然也不是不可能，但别说这么吓人的话…。
 ELSEIF ABL:战斗技能 > 2 && TALENT:恋慕
-	PRINTFORML 「はいおつかれー♪」
-	PRINTFORMW 身体を動かして熱くなった身体を%CALLNAME:人物_琪露诺%が冷やしてくれた。
+	PRINTFORML 「好，辛苦了--♪」
+	PRINTFORMW %CALLNAME:人物_琪露诺%帮运动后发热的身体降了温。
 ELSEIF ABL:战斗技能 > 2
-	PRINTFORML 「%CALLNAME:MASTER%はあの吸血鬼くらい強いの？」
-	PRINTFORMW 絶対に無理だと%CALLNAME:MASTER%の顔がひきつった。
+	PRINTFORML 「%CALLNAME:MASTER%有那个吸血鬼那么强吗？」
+	PRINTFORMW 绝对不可能，%CALLNAME:MASTER%的脸都抽搐了。
 ELSE
-	PRINTFORML 「おお、%CALLNAME:MASTER%特訓中なの？」
-	PRINTFORMW 鍛錬中に%CALLNAME:人物_琪露诺%が物珍しく見てきた。
+	PRINTFORML 「哦哦，%CALLNAME:MASTER%在特训吗？」
+	PRINTFORMW 锻炼的时候%CALLNAME:人物_琪露诺%好奇地看了过来。
 ENDIF
 RETURN 1
 ;==================================================
@@ -915,21 +915,21 @@ CALL KOJO_MESSAGE_COM_K8_412_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_412_1
 IF ABL:教养 > 5 && TALENT:恋慕
-	PRINTFORML 「あ、これかなり難しかった問題だ、懐かしいわね。」
-	PRINTFORML 以前とは比べられないくらいに教养を身につけた%CALLNAME:人物_琪露诺%は
-	PRINTFORMW 以前苦戦していた問題を懐かしく見ている。
+	PRINTFORML 「啊，这是相当难的题目呢，好怀念啊。」
+	PRINTFORML 和以前判若两人般掌握了教养的%CALLNAME:人物_琪露诺%
+	PRINTFORMW 怀念地看着以前苦战过的题目。
 ELSEIF ABL:教养 > 5
-	PRINTFORML 「あれ、これ前にやったような……？」
-	PRINTFORMW 「でもこれこんなに簡単だったかな？」
+	PRINTFORML 「咦，这个之前好像做过……？」
+	PRINTFORMW 「不过这个有这么简单吗？」
 ELSEIF ABL:教养 > 2 && TALENT:恋慕
-	PRINTFORML 「むむ・・・。」
-	PRINTFORMW 一緒に誘った学习だったがかなり苦戦しているようだ。
+	PRINTFORML 「唔唔・・・」
+	PRINTFORMW 虽然是一起邀约的学习，但似乎相当苦战。
 ELSEIF ABL:教养 > 2
-	PRINTFORML 「ぬぁぁぁ！！分かんないわよ！？」
-	PRINTFORMW かなり悪戦苦闘しているようだ。。
+	PRINTFORML 「呜啊啊啊！！搞不懂啦！？」
+	PRINTFORMW 似乎在相当艰苦地奋斗着。。
 ELSE
-	PRINTFORML 「むー学习は苦手だよぉ…。」
-	PRINTFORMW 簡単な本を渡してみたが目を回している。
+	PRINTFORML 「唔-学习不擅长啦…。」
+	PRINTFORMW 试着给了本简单的书，但她看得头晕眼花。
 ENDIF
 RETURN 1
 ;==================================================
@@ -941,24 +941,24 @@ CALL KOJO_MESSAGE_COM_K8_413_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_413_1
 IF ABL:料理技能 > 3 && TALENT:恋慕
-	PRINTFORML 「%CALLNAME:MASTER%！それおいしそうね！」
-	PRINTFORML …せっかくなので%CALLNAME:人物_琪露诺%に味見をしてもらった。
-	PRINTFORML 「いいの？あーん！」
-	PRINTFORMW 「吼啊、とっても美味しいよ、%CALLNAME:MASTER%♪」
+	PRINTFORML 「%CALLNAME:MASTER%！那个看起来好好吃！」
+	PRINTFORML …难得的机会，让%CALLNAME:人物_琪露诺%尝了味道。
+	PRINTFORML 「可以吗？啊--！」
+	PRINTFORMW 「吼啊，超级好吃的，%CALLNAME:MASTER%♪」
 ELSEIF ABL:料理技能 > 3
-	PRINTFORML …料理をしていたのだが、一種類見当たらない？
-	PRINTFORMW 「…けぷ。」
-	PRINTFORMW さて…この可愛いネズミさんを追い出すべきか否か…！
+	PRINTFORML …正在做料理，但有一种不见了？
+	PRINTFORMW 「…嗝。」
+	PRINTFORMW 那么…该不该把这个可爱的小老鼠赶出去呢…！
 ELSEIF ABL:料理技能 > 1 && TALENT:恋慕
-	;紅魔館の吸血鬼の吃饭って言ったら…。
-	PRINTFORML 「？？？なんでそれを入れるの？」
-	PRINTFORMW 「%CALLNAME:人物_蕾米莉亚%達用なの？ふーん、吃饭にも混ぜるんだ…。」
+	;红魔馆吸血鬼的吃饭的话…。
+	PRINTFORML 「？？？为什么放那个进去？」
+	PRINTFORMW 「是给%CALLNAME:人物_蕾米莉亚%她们的？嗯，吃饭也掺进去啊…。」
 ELSEIF ABL:料理技能 > 1
-	PRINTFORML 「あちち、美味しいけど熱いわねこれ・・。」
-	PRINTFORMW …つまみ食いするならもう少し忍ぶべきだと思うが…？
+	PRINTFORML 「烫烫，好吃但是好烫啊这个・・。」
+	PRINTFORMW …偷吃的话应该再隐蔽一点吧…？
 ELSE
-	PRINTFORML 「あ、%CALLNAME:MASTER%、何作ってんの？」
-	PRINTFORMW %CALLNAME:人物_琪露诺%は興味ありげに厨房を覗きこんだ。
+	PRINTFORML 「啊，%CALLNAME:MASTER%，你在做什么？」
+	PRINTFORMW %CALLNAME:人物_琪露诺%兴致勃勃地探头看厨房。
 ENDIF
 RETURN 1
 ;==================================================
@@ -970,26 +970,26 @@ CALL KOJO_MESSAGE_COM_K8_414_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_414_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「%CALLNAME:MASTER%、あーん♪」
-	PRINTFORML %CALLNAME:人物_琪露诺%が運んでくれたのを食べながら%CALLNAME:人物_琪露诺%にお返しした。
-	PRINTFORML 「お、ちょっと嬉しいわね♪」
-	PRINTFORMW %CALLNAME:人物_琪露诺%と吃饭を堪能した。
+	PRINTFORML 「%CALLNAME:MASTER%，啊--♪」
+	PRINTFORML 吃着%CALLNAME:人物_琪露诺%端来的，也给%CALLNAME:人物_琪露诺%回喂了。
+	PRINTFORML 「哦，有点开心呢♪」
+	PRINTFORMW 和%CALLNAME:人物_琪露诺%一起享用了吃饭。
 ELSEIF ABL:亲密 > 5
-	PRINTFORML %CALLNAME:人物_琪露诺%が楽しそうに吃饭を楽しんでいる。
-	PRINTFORMW 「身体が溶けちゃうくらい熱いのは無理だけど、%CALLNAME:MASTER%のは平気だよ♪」
+	PRINTFORML %CALLNAME:人物_琪露诺%开心地享受着吃饭。
+	PRINTFORMW 「热到身体要融化的那种受不了，%CALLNAME:MASTER%的没关系哟♪」
 ELSEIF ABL:亲密 > 3 && TALENT:恋慕
-	PRINTFORML 「あたいも料理の学习しようかな…。」
-	PRINTFORMW 「あたいも%CALLNAME:MASTER%にごちそうしてあげたいし♪」
+	PRINTFORML 「本小姐也来学习料理吧…。」
+	PRINTFORMW 「本小姐也想请%CALLNAME:MASTER%吃饭嘛♪」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML %CALLNAME:人物_琪露诺%と吃饭を楽しんだ。
-	PRINTFORMW 「%CALLNAME:MASTER%の料理は上手ね、毎日食べても飽きないわよ？」
+	PRINTFORML 和%CALLNAME:人物_琪露诺%一起享用了吃饭。
+	PRINTFORMW 「%CALLNAME:MASTER%的料理很棒呢，每天吃都不会腻的哟？」
 ELSE
-	PRINTFORMW 「んぐ、んっぐん、美味しい！」
-	PRINTFORMW …もう少し落ち着いて食べるように言うべきか？
+	PRINTFORMW 「嗯咕，嗯咕嗯，好吃！」
+	PRINTFORMW …是不是该叫她再安静一点吃？
 ENDIF
 RETURN 1
 ;==================================================
-;415,吃饭に誘う
+;415,邀请吃饭
 ;==================================================
 @KOJO_MESSAGE_COM_K8_415
 CALL TRAIN_MESSAGE
@@ -997,17 +997,17 @@ CALL KOJO_MESSAGE_COM_K8_415_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K8_415_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「%CALLNAME:MASTER%、頂きます♪」
-	PRINTFORMW %CALLNAME:人物_琪露诺%と一緒に、吃饭を楽しんだ。
+	PRINTFORML 「%CALLNAME:MASTER%，开动了♪」
+	PRINTFORMW 和%CALLNAME:人物_琪露诺%一起，享用了吃饭。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「わーい、%CALLNAME:MASTER%のご飯ー♪」
-	PRINTFORMW 思った以上に好感触だった。
+	PRINTFORML 「好耶，%CALLNAME:MASTER%的饭--♪」
+	PRINTFORMW 反应比想象中好。
 ELSE
-	PRINTFORMW 「ごはん？一緒に食べていいの？」
+	PRINTFORMW 「吃饭？可以一起吃吗？」
 ENDIF
 RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;爱抚系コマンド
+;爱抚系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;0,爱抚
@@ -1019,68 +1019,68 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_0_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「んっ優しいんだね、%CALLNAME:MASTER%…。」
+		PRINTFORMW 「嗯，好温柔呢，%CALLNAME:MASTER%…。」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;挿入中
-	;記入チェック
+	;插入中
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
-	;V挿入
+	;V插入
 	IF LOCAL:1 && TEQUIP:50 == PLAYER
-		;射精した
+		;射精了
 		IF NOWEX:PLAYER:11
-			PRINTFORMW 「んっ…！出しちゃったね、気持ちいいよ…。」
+			PRINTFORMW 「嗯…！射出来了呢，好舒服…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「挿れられたまま、こんなに触られたら…！」
+			PRINTFORMW 「被插着不动，又被这样摸…！」
 			RETURN 0
 		ENDIF
-		;A挿入
+		;A插入
 	ELSEIF LOCAL:1 && TEQUIP:51 == PLAYER
-		;射精した
+		;射精了
 		IF NOWEX:PLAYER:11
-			PRINTFORMW 「お、お腹に、沢山…出されて…。」
+			PRINTFORMW 「肚、肚子里，被射了…好多…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「変な気分になりそうだよぉ…。」
+			PRINTFORMW 「感觉要变得怪怪的了…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;ふたなり
-	;記入チェック
+	;扶她
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TALENT:2 & 3
-		PRINTFORMW 「ひんっ…変な気分…。」
+		PRINTFORMW 「嘶嗯…怪怪的感觉…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「気持よくて、あたい女の子なのに…。」
+		PRINTFORMW 「好舒服，本小姐明明是女孩子…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「あ、あぁう、しゅっしゅってされて気持ちいい…。」
+		PRINTFORMW 「啊、啊呜，被噗噗地弄着好舒服…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「そんなとこ触っちゃ駄目ぇ…。」
+		PRINTFORMW 「那种地方不可以摸啦…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1095,58 +1095,58 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_1_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「そんなとこ舐めるの…？」
+		PRINTFORMW 「要舔那种地方吗…？」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;膣内射精直後
-	;記入チェック
+	;膣内射精直后
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
 		IF TCVAR:102
-			PRINTFORMW 「やぁ…恥ずかしいよぉ…。」
+			PRINTFORMW 「呀…好羞人…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;絶頂した
-	;記入チェック
+	;高潮了
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && NOWEX:Ｃ绝顶
-		PRINTFORMW 「舌が気持ちいっ…！はぁぁぁ！」
+		PRINTFORMW 「舌头好舒服…！哈啊啊！」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「…頭が真っ白になっちゃったぁ。」
+		PRINTFORMW 「…脑袋变得一片空白了。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「だめぇ！これ以上されたらイッちゃうよぉぉ…！」
+		PRINTFORMW 「不行！再这样下去要去了…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「ひぁぁぁぁぁぁ！なにこれぇ…？」
+		PRINTFORMW 「呀啊啊啊啊！这是什么…？」
 		RETURN 0
 	ENDIF
 ENDIF
 RETURN 1
-;あとは適当な分岐を追加してください
+;之后请随意添加分支
 ;==================================================
 ;2,调教者口交
 ;==================================================
@@ -1157,41 +1157,41 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_2_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「ここ舐めちゃうの？きゃぁ！今背中になにか走ったよぉ…！」
-		PRINTFORMW %CALLNAME:人物_琪露诺%に生えた男性器をしっかりと舐め上げた。
+		PRINTFORMW 「要舔这里吗？呀！刚才背后有什么窜过去了…！」
+		PRINTFORMW 确实地舔舐了%CALLNAME:人物_琪露诺%长出的男性器。
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もっと舐めて%CALLNAME:MASTER%、気持ちいい…！」
+		PRINTFORMW 「再舔舔%CALLNAME:MASTER%，好舒服…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「おかしくなる、あたい女の子なのに舐められてる…！」
+		PRINTFORMW 「要变奇怪了，本小姐明明是女孩子却被舔…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「そんなとこなめちゃ駄目…！」
+		PRINTFORMW 「那种地方不可以舔…！」
 		RETURN 0
 	ENDIF
 ENDIF
 RETURN 1
 
 ;==================================================
-;3,指挿入れ
+;3,指插入
 ;==================================================
 @KOJO_MESSAGE_COM_K8_3
 CALL TRAIN_MESSAGE
@@ -1200,32 +1200,32 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_3_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1241,33 +1241,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_4_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「おしりなんて舐めちゃ…うぐ…。」
+		PRINTFORMW 「屁股什么的怎么可以舔…呜咕…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「%CALLNAME:MASTER%の舌が奥の方まで入ってるよぉ…。」
+		PRINTFORMW 「%CALLNAME:MASTER%的舌头进到深处去了哟…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「あ…ほじられてる、%CALLNAME:MASTER%の下であたいのおしりがぁ…！」
+		PRINTFORMW 「啊…被挖着，在%CALLNAME:MASTER%身下本小姐的屁股…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「やめてってば、そこはそんな舐めちゃ駄目ぇ…！」
+		PRINTFORMW 「说了不要了，那里不可以舔啦…！」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1283,33 +1283,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_5_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「んぐっ！？そこ触っちゃ駄目ぇ…！」
+		PRINTFORMW 「嗯咕！？那里不可以摸…！」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「おしりが気持ちいいなんておかしいよぉ…！」
+		PRINTFORMW 「屁股舒服什么的太奇怪了啦…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「ひ、広げちゃやぁ…！」
+		PRINTFORMW 「不、不要掰开啦…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「そこは駄目だってば！」
+		PRINTFORMW 「说了那里不行！」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1325,33 +1325,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_6_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「あたいの胸なんか触って楽しいの？」
+		PRINTFORMW 「摸本小姐的胸有那么好玩吗？」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もっと触って%CALLNAME:MASTER%…！」
+		PRINTFORMW 「再多摸摸%CALLNAME:MASTER%…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「そこそんなにされたら、だめぇ…！」
+		PRINTFORMW 「那里被那样弄的话，不行…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「そんなに揉まないでよぉ…。」
+		PRINTFORMW 「别那样揉啦…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1367,33 +1367,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_7_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「や、やめ、先っぽそんなに弄ったら…。」
+		PRINTFORMW 「住、住手，前端被那样玩的话…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もっと、弄って、気持ちいいから…。」
+		PRINTFORMW 「再多、多玩弄，好舒服…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「気持いいのに…先っぽが取れちゃいそう…。」
+		PRINTFORMW 「明明好舒服…前端要被弄掉了…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「そんなにたくさん、弄ったら…。」
+		PRINTFORMW 「那样玩太多的话…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1409,44 +1409,44 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_8_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「うう、恥ずかしいけど、見えてる？」
+		PRINTFORMW 「呜呜，好羞人，看得见吗？」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
-	;膣内射精直後
-	;記入チェック
+	;膣内射精直后
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
 		IF TCVAR:102
-			PRINTFORMW 「あはは、%CALLNAME:MASTER%に出されたのが溢れてる♪」
+			PRINTFORMW 「啊哈哈，被%CALLNAME:MASTER%射进去的溢出来了♪」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「ほら、ここで繋がるんだよね、あたいと%CALLNAME:MASTER%…は。」
+		PRINTFORMW 「看，这里是连接的地方对吧，本小姐和%CALLNAME:MASTER%…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「見えてる？恥ずかしいけど…。」
+		PRINTFORMW 「看得见吗？好羞人…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「こんなとこ見てて楽しいの？」
+		PRINTFORMW 「看这种地方好玩吗？」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1462,39 +1462,39 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_9_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 ENDIF
 RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;ソフト系コマンド
+;软体系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;20,接吻
@@ -1509,33 +1509,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_20_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「普通にするよりも、落ち着けるね…。」
+		PRINTFORMW 「比普通地做更安心呢…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「キスだけでこんなに、気持ちいいんだね…。」
+		PRINTFORMW 「光是亲亲就，这么舒服呢…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「もっともっと、キスしようよ…。」
+		PRINTFORMW 「再多再多，亲亲嘛…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「ちゅ…これ、好き…。」
+		PRINTFORMW 「啾…这个，喜欢…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1550,40 +1550,40 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_21_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 ENDIF
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;道具系コマンド
+;道具系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;40,跳蛋
@@ -1595,33 +1595,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_40_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 
+		PRINTFORMW
 		RETURN 0
 	ENDIF
 ENDIF
@@ -1637,22 +1637,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_41_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -1661,7 +1661,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -1679,23 +1679,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_42_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:阴蒂夹
 		;恋慕
 		IF TALENT:恋慕
@@ -1705,7 +1705,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1727,23 +1727,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_43_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:飞机杯
 		;恋慕
 		IF TALENT:恋慕
@@ -1753,7 +1753,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1775,15 +1775,15 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_44_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
@@ -1795,8 +1795,8 @@ IF LOCAL
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:振动棒
 		;恋慕
 		IF TALENT:恋慕
@@ -1806,7 +1806,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1828,23 +1828,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_45_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:肛门振动棒
 		;恋慕
 		IF TALENT:恋慕
@@ -1854,7 +1854,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1876,23 +1876,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_46_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:肛珠
 		;恋慕
 		IF TALENT:恋慕
@@ -1902,7 +1902,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1915,7 +1915,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;47,二プルキャップ
+;47,乳头帽
 ;==================================================
 @KOJO_MESSAGE_COM_K8_47
 CALL TRAIN_MESSAGE
@@ -1924,23 +1924,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_47_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:乳头夹
 		;恋慕
 		IF TALENT:恋慕
@@ -1950,7 +1950,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -1962,7 +1962,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;48,搾乳机
+;48,榨乳机
 ;==================================================
 @KOJO_MESSAGE_COM_K8_48
 CALL TRAIN_MESSAGE
@@ -1971,23 +1971,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_48_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:搾乳机
 		;恋慕
 		IF TALENT:恋慕
@@ -1997,7 +1997,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -2009,7 +2009,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;性交系コマンド
+;性交系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;60,正常位
@@ -2022,68 +2022,68 @@ RETURN RESULT
 @KOJO_MESSAGE_COM_K8_60_1
 
 ;-------------------------------------------------
-;立位
-;記入チェック（=0, 非表示、1, 表示）
+;站立位
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;处女
 		IF TALENT:处女 == 1
-			PRINTFORMW 「一緒になれたね、凄く嬉しい。」
+			PRINTFORMW 「能在一起了呢，超级开心的。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「この姿勢、凄く安心できる…。」
+			PRINTFORMW 「这个姿势，超级安心…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:102
-			PRINTFORMW 「こぽって溢れちゃってるね…。」
+			PRINTFORMW 「咕嘟咕嘟溢出来了呢…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「気持ちいいよ、%CALLNAME:MASTER%…。」
+			PRINTFORMW 「好舒服哟，%CALLNAME:MASTER%…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「あぅぅぅ…奥の方まで突かれてるみたい…。」
+		PRINTFORMW 「呜呜呜…好像被顶到深处了…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「%CALLNAME:MASTER%…気持ちいよぉ…。」
+		PRINTFORMW 「%CALLNAME:MASTER%…好舒服哟…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
 	;正常位
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL = 0
 	;-------------------------------------------------
 	IF LOCAL
 		;-------------------------------------------------
-		;小分岐
+		;小分支
 		;-------------------------------------------------
-		;初めて
-		;記入チェック
+		;第一次
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
@@ -2097,12 +2097,12 @@ IF LOCAL && TFLAG:193
 			ENDIF
 		ENDIF
 		;-------------------------------------------------
-		;挿入継続
-		;記入チェック
+		;插入继续
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && TCVAR:100 == PLAYER
-			;前回射精した
+			;上次射精了
 			IF TCVAR:102
 				PRINTFORMW 
 				RETURN 0
@@ -2111,7 +2111,7 @@ IF LOCAL && TFLAG:193
 				RETURN 0
 			ENDIF
 		ENDIF
-		;基本セット
+		;基本套装
 		;恋慕
 		IF TALENT:恋慕
 			PRINTFORMW 
@@ -2120,7 +2120,7 @@ IF LOCAL && TFLAG:193
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -2138,68 +2138,68 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_61_1
 ;-------------------------------------------------
-;立位
-;記入チェック（=0, 非表示、1, 表示）
+;站立位
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;处女
 		IF TALENT:处女 == 1
-			PRINTFORMW 「この格好だと、%CALLNAME:MASTER%の顔が見えないから少し怖い…。」
+			PRINTFORMW 「这个姿势的话，看不到%CALLNAME:MASTER%的脸有点害怕…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「なんだか、変な気分、犬みたいだし…。」
+			PRINTFORMW 「总觉得，怪怪的感觉，像小狗一样…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:102
-			PRINTFORMW 「あ、足の方に垂れちゃった…。」
+			PRINTFORMW 「啊，流到脚那边了…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「腰がくっついてる…暖かい。」
+			PRINTFORMW 「腰贴在一起…好暖和。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「%CALLNAME:MASTER%…もっとパンパンってしてぇ…。」
+		PRINTFORMW 「%CALLNAME:MASTER%…再噗噗地弄人家…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「あぁ！こんなに激しく突かれたらおかしくなりそうだよぉ…！」
+		PRINTFORMW 「啊啊！被这么激烈地顶的话要变奇怪了…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
 	;后背位
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL = 0
 	;-------------------------------------------------
 	IF LOCAL
 		;-------------------------------------------------
-		;小分岐
+		;小分支
 		;-------------------------------------------------
-		;初めて
-		;記入チェック
+		;第一次
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
@@ -2213,12 +2213,12 @@ IF LOCAL && TFLAG:193
 			ENDIF
 		ENDIF
 		;-------------------------------------------------
-		;挿入継続
-		;記入チェック
+		;插入继续
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && TCVAR:100 == PLAYER
-			;前回射精した
+			;上次射精了
 			IF TCVAR:102
 				PRINTFORMW 
 				RETURN 0
@@ -2227,7 +2227,7 @@ IF LOCAL && TFLAG:193
 				RETURN 0
 			ENDIF
 		ENDIF
-		;基本セット
+		;基本套装
 		;恋慕
 		IF TALENT:恋慕
 			PRINTFORMW 
@@ -2236,7 +2236,7 @@ IF LOCAL && TFLAG:193
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -2254,68 +2254,68 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_62_1
 ;-------------------------------------------------
-;立位
-;記入チェック（=0, 非表示、1, 表示）
+;站立位
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;菊花处女
 		IF !EXP:Ａ性交经验
-			PRINTFORMW 「そ、そっちに挿れるの？いいけど、やさしくね…？」
+			PRINTFORMW 「要、要插那里吗？可以啦，但要温柔点…？」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「この格好で、おしりに挿れるんだ…恥ずかしい…。」
+			PRINTFORMW 「这个姿势，插屁股…好羞人…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:104
-			PRINTFORMW 「あ、下にこぼれちゃう…。」
+			PRINTFORMW 「啊，要漏到下面了…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「ん、お腹の奥に当たりそう…。」
+			PRINTFORMW 「嗯，好像顶到肚子深处了…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「おしりでするのが、気持ちいいよぉ…。」
+		PRINTFORMW 「用屁股做，好舒服哟…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「だめぇ…おしりでこんなにぃ…。」
+		PRINTFORMW 「不行…屁股被这样…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
 	;正常位
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL = 0
 	;-------------------------------------------------
 	IF LOCAL
 		;-------------------------------------------------
-		;小分岐
+		;小分支
 		;-------------------------------------------------
-		;初めて
-		;記入チェック
+		;第一次
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
@@ -2329,12 +2329,12 @@ IF LOCAL && TFLAG:193
 			ENDIF
 		ENDIF
 		;-------------------------------------------------
-		;挿入継続
-		;記入チェック
+		;插入继续
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && TCVAR:101 == PLAYER
-			;前回射精した
+			;上次射精了
 			IF TCVAR:104
 				PRINTFORMW 
 				RETURN 0
@@ -2343,7 +2343,7 @@ IF LOCAL && TFLAG:193
 				RETURN 0
 			ENDIF
 		ENDIF
-		;基本セット
+		;基本套装
 		;恋慕
 		IF TALENT:恋慕
 			PRINTFORMW 
@@ -2352,7 +2352,7 @@ IF LOCAL && TFLAG:193
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -2370,68 +2370,68 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_63_1
 ;-------------------------------------------------
-;立位
-;記入チェック（=0, 非表示、1, 表示）
+;站立位
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;菊花处女
 		IF !EXP:Ａ性交经验
-			PRINTFORMW 「こんな格好でおしりにするの？恥ずかしい…。」
+			PRINTFORMW 「这种姿势做屁股吗？好羞人…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「うう、変な感じだけど…頑張る…。」
+			PRINTFORMW 「呜呜，虽然感觉怪怪的…但会加油的…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:104
-			PRINTFORMW 「お腹の中に入ってくる…変な感じ…。」
+			PRINTFORMW 「进到肚子里了…怪怪的感觉…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「お腹の中が、引っ張られてるみたい…。」
+			PRINTFORMW 「肚子里，好像被拉着…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「気持ちいいよぉ後ろからこんなに沢山…。」
+		PRINTFORMW 「好舒服哟后面被这么多…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「す、すごい、おしりがパンパンしてるぅ…。」
+		PRINTFORMW 「好、好厉害，屁股胀胀的…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「恥ずかしいよこの格好…。」
+		PRINTFORMW 「好羞人这个姿势…。」
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
 	;后背位
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL = 0
 	;-------------------------------------------------
 	IF LOCAL
 		;-------------------------------------------------
-		;小分岐
+		;小分支
 		;-------------------------------------------------
-		;初めて
-		;記入チェック
+		;第一次
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
@@ -2445,12 +2445,12 @@ IF LOCAL && TFLAG:193
 			ENDIF
 		ENDIF
 		;-------------------------------------------------
-		;挿入継続
-		;記入チェック
+		;插入继续
+		;填写检查
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1 && TCVAR:101 == PLAYER
-			;前回射精した
+			;上次射精了
 			IF TCVAR:104
 				PRINTFORMW 
 				RETURN 0
@@ -2459,7 +2459,7 @@ IF LOCAL && TFLAG:193
 				RETURN 0
 			ENDIF
 		ENDIF
-		;基本セット
+		;基本套装
 		;恋慕
 		IF TALENT:恋慕
 			PRINTFORMW 
@@ -2468,7 +2468,7 @@ IF LOCAL && TFLAG:193
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -2486,34 +2486,34 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_64_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		;調教者が处女
+		;调教者是处女
 		IF TALENT:PLAYER:处女 == 1
-			PRINTFORMW 「えへへ変な気分、あたいが貰う方なんて…。」
+			PRINTFORMW 「嘿嘿怪怪的感觉，本小姐是接受方什么的…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「じゃあ挿れるね、気持よくしてあげる…。」
+			PRINTFORMW 「那就插进去了哦，让人家舒服…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:PLAYER:100 == TARGET
-		;前回射精した
+		;上次射精了
 		IF TCVAR:PLAYER:102
 			PRINTFORMW 
 			RETURN 0
@@ -2522,18 +2522,18 @@ IF LOCAL
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「こうしてつながってるだけでも、すごく幸せだよ…%CALLNAME:MASTER%…。」
+		PRINTFORMW 「光是这样连在一起，就超级幸福哟…%CALLNAME:MASTER%…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「沢山突いてあげる、気持ちいいでしょ？」
+		PRINTFORMW 「多捅捅你，舒服吧？」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「ほら見えてる…？あたいのが%CALLNAME:MASTER%に入ってるよ？」
+		PRINTFORMW 「喂看得见吗…？本小姐的进到%CALLNAME:MASTER%里面了哟？」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2549,54 +2549,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_65_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;处女
 		IF TALENT:处女 == 1
-			PRINTFORMW 「勢い良く行ったら…凄く痛そうだね…。」
+			PRINTFORMW 「猛地进去的话…看起来会很痛呢…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「あたいが上になるのね…わかったわ。」
+			PRINTFORMW 「本小姐在上面是吧…知道了。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:102
-			PRINTFORMW 「あ…中から溢れちゃってる…。」
+			PRINTFORMW 「啊…从里面溢出来了…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「このまま、動いて…あたいも動くから…。」
+			PRINTFORMW 「就这样，动起来…本小姐也动…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「%CALLNAME:MASTER%はじっとしてていいから、あたいが動くね…。」
+		PRINTFORMW 「%CALLNAME:MASTER%乖乖不动就好，本小姐来动…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「うぁぁ！奥の方にコツンって当たったのが気持ちいい…！！」
+		PRINTFORMW 「呜啊！顶到深处咚的一下好舒服…！！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「あぁ、やぁ…下からこんなに突き上げられたらぁ…！」
+		PRINTFORMW 「啊啊、呀…从下面被这样顶的话…！」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2612,54 +2612,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_66_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;菊花处女
 		IF !EXP:Ａ性交经验
-			PRINTFORMW 「おしりに自分で入れるの…少し怖いよ…。」
+			PRINTFORMW 「自己插进屁股里…有点害怕…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「おしりにこうやって挿れるの？変な気分…。」
+			PRINTFORMW 「屁股这样插进去？怪怪的感觉…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:104
-			PRINTFORMW 「お腹に、こんなに出てる…もっと欲しいかも…。」
+			PRINTFORMW 「肚子里，有这么多…可能还想要更多…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「んぐっ…もっと動くね…。」
+			PRINTFORMW 「嗯咕…再多动动…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「あたいが自分で動くね…気持よくしてあげる…。」
+		PRINTFORMW 「本小姐自己动哦…让人家舒服…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「うあぁ…下からお腹に突き入れられて…。」
+		PRINTFORMW 「呜啊…从下面被顶进肚子里…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「お腹が突かれてるみたい…。」
+		PRINTFORMW 「肚子好像被顶着…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2675,54 +2675,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_67_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;处女
 		IF TALENT:处女 == 1
-			PRINTFORMW 「抱きしめられてると、安心するね、このまま、繋がるんだね…。」
+			PRINTFORMW 「被抱着的话，好安心呢，就这样，连在一起呢…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「やっぱりこの体勢が好き、%CALLNAME:MASTER%が見えるし抱きしめられるし…。」
+			PRINTFORMW 「果然喜欢这个姿势，能看到%CALLNAME:MASTER%又能被抱着…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:102
-			PRINTFORMW 「お腹がきついけど気持ちいよぉ…。」
+			PRINTFORMW 「肚子虽然有点紧但好舒服哟…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「もっと動いて…下から突き上げて…。」
+			PRINTFORMW 「再动动…从下面顶上来…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「ん、んぅぅぅぅ沢山突かれて気持ちいいよぉ…。」
+		PRINTFORMW 「嗯、嗯呜呜呜被捅好多下好舒服哟…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「このまま、中に出して…！」
+		PRINTFORMW 「就这样，射在里面…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「%CALLNAME:MASTER%の顔がよく見えるね…。」
+		PRINTFORMW 「%CALLNAME:MASTER%的脸看得很清楚呢…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2738,54 +2738,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_68_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;处女
 		IF TALENT:处女 == 1
-			PRINTFORMW 「見えちゃってるね、あたいの初めてが無くなっちゃうとこ…。」
+			PRINTFORMW 「看得见呢，本小姐第一次要消失的地方…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「後ろから持ち上げられてするの？」
+			PRINTFORMW 「从后面被抬起来做吗？」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:102
-			PRINTFORMW 「動いてたら溢れちゃってるね、もったいない…。」
+			PRINTFORMW 「动的时候溢出来了呢，好可惜…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「んっ…下から%CALLNAME:MASTER%のがずんずん来てる…。」
+			PRINTFORMW 「嗯…从下面%CALLNAME:MASTER%的咚咚地来了…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もっと突いてよぉ、あたい沢山されたいよぉ…。」
+		PRINTFORMW 「再顶顶人家哟，本小姐想被做更多…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「あ、はぁう…沢山突かれてこんなに…！」
+		PRINTFORMW 「啊、哈呜…被顶了好多下变成这样…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「恥ずかしい…してるのが見えちゃってるよぉ…。」
+		PRINTFORMW 「好羞人…做的时候被看见了哟…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2801,54 +2801,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_69_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;菊花处女
 		IF !EXP:Ａ性交经验
-			PRINTFORMW 「え、こっちに挿れるの？いいけど抱きしめてね…？」
+			PRINTFORMW 「诶，要插这里吗？可以啦，但要抱紧人家…？」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「ずぶずぶ入ってくる…したから太いのがぁ…。」
+			PRINTFORMW 「噗嗤噗嗤地进来了…从下面粗粗的…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:104
-			PRINTFORMW 「溢れてるよぉ…まだ動くの…？」
+			PRINTFORMW 「溢出来了哟…还在动吗…？」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「おしりが気持ちよくておかしくなりそう…。」
+			PRINTFORMW 「屁股太舒服了要变奇怪了…。」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「抱きしめられて下から突き上げられるのが気持ちいいよぉ…。」
+		PRINTFORMW 「被抱着从下面被顶好舒服哟…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「ダメダメダメぇ…こんなに動かれたらおかしく…。」
+		PRINTFORMW 「不行不行不行…被这样动的话会变奇怪…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「きゃん、おしりから熱いのが入ってくるぅ…。」
+		PRINTFORMW 「呀嗯，从屁股进来热热的东西…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2864,54 +2864,54 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_70_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		;菊花处女
 		IF !EXP:Ａ性交经验
-			PRINTFORMW 「やぁ…おしりに下から入ってくるよぉ…。」
+			PRINTFORMW 「呀…从下面插进屁股了哟…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「おしりに入ってるよ…%CALLNAME:MASTER%…。」
+			PRINTFORMW 「进到屁股里了哟…%CALLNAME:MASTER%…。」
 			RETURN 0
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
-	;挿入継続
-	;記入チェック
+	;插入继续
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;前回射精した
+		;上次射精了
 		IF TCVAR:104
-			PRINTFORMW 「出したばかりなのにまだ動くの…？お腹いっぱいだよぉ…。」
+			PRINTFORMW 「刚射完还在动吗…？肚子满满的哟…。」
 			RETURN 0
 		ELSE
-			PRINTFORMW 「まだ動くの？んぅぅぅ！？」
+			PRINTFORMW 「还在动吗？嗯呜呜！？」
 			RETURN 0
 		ENDIF
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「はぁう…奥まで届いて…！」
+		PRINTFORMW 「哈呜…顶到深处了…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「こんなに深く入っちゃ…うぁぁぁ…。
+		PRINTFORMW 「插得这么深…呜啊啊啊…。
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「おしりに入ってくるよぉ…。」
+		PRINTFORMW 「进到屁股里了哟…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -2927,11 +2927,11 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_71_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;考えうる分岐が多すぎるので地の文の大まかな分岐だけ
+	;可能的分支太多所以只做大致的旁白分支
 	;連続
 	IF PREVCOM == SELECTCOM
 		PRINTFORMW 
@@ -2957,7 +2957,7 @@ ENDIF
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;侍奉系コマンド
+;侍奉系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;80,手淫
@@ -2969,33 +2969,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_80_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「うわ、熱いのね…こんなに」
+		PRINTFORMW 「哇，好烫呢…这么烫」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「触ってるだけでも冷たくて気持ちいいでしょ…ほらほら♪」
+		PRINTFORMW 「光是摸着就凉凉的很舒服吧…看呐看呐♪」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「先っぽを撫でると気持ちいいらしいけど…。」
+		PRINTFORMW 「摸前端的话好像很舒服的样子…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「…あたいの手って冷たいけど、いいのかな？」
+		PRINTFORMW 「…本小姐的手凉凉的，没问题吗？」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -3011,33 +3011,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_81_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「咥えればいいのね？あむっ…。」
+		PRINTFORMW 「含住就可以了吧？啊唔…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「んぐっ…出したいならいつでもいいよ…。」
+		PRINTFORMW 「嗯咕…想射的话什么时候都可以…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「喉の奥まで届きそう…。」
+		PRINTFORMW 「好像顶到喉咙深处了…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「れろっ…これ…気持ちいいの…？」
+		PRINTFORMW 「舔舔…这个…舒服吗…？」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -3052,33 +3052,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_82_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「胸で擦るって…無理だと思うんだけど…。」
+		PRINTFORMW 「用胸蹭什么的…感觉做不到…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「胸とかいじったらもっと大きくならないかなぁ…？」
+		PRINTFORMW 「揉揉胸的话会不会变得更大呢…？」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「こうしているとさ、胸が大きくならないかなぁ…。」
+		PRINTFORMW 「这样做的话，胸会不会变大呢…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「胸って言うより、身体で擦ってる気分…。」
+		PRINTFORMW 「与其说是胸，更像是在用身体蹭…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -3094,33 +3094,33 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_83_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
-		PRINTFORMW 「挿れるんじゃなくて擦るの？変なの…。」
+		PRINTFORMW 「不是插进去而是蹭？真奇怪…。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もう我慢できないよぉ…%CALLNAME:MASTER%…欲しいよぉ…。」
+		PRINTFORMW 「已经忍不了了…%CALLNAME:MASTER%…想要…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「気持ちいい？%CALLNAME:MASTER%…。」
+		PRINTFORMW 「舒服吗？%CALLNAME:MASTER%…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「熱いのが擦れて…。」
+		PRINTFORMW 「热热的东西蹭着…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -3136,22 +3136,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_84_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3160,7 +3160,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3169,7 +3169,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;85,足扱き
+;85,足交
 ;==================================================
 @KOJO_MESSAGE_COM_K8_85
 CALL TRAIN_MESSAGE
@@ -3178,22 +3178,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_85_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3202,7 +3202,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3212,7 +3212,7 @@ RETURN 1
 
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;虐待系コマンド
+;虐待系指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;100,打屁股
@@ -3224,22 +3224,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_100_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3248,7 +3248,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3266,22 +3266,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_101_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3290,7 +3290,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3308,22 +3308,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_102_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3332,7 +3332,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3350,22 +3350,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_103_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3374,7 +3374,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3392,23 +3392,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_104_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:眼罩
 		;恋慕
 		IF TALENT:恋慕
@@ -3418,7 +3418,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -3441,23 +3441,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_105_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:绳
 		;恋慕
 		IF TALENT:恋慕
@@ -3467,7 +3467,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -3490,23 +3490,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_106_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:口球
 		;恋慕
 		IF TALENT:恋慕
@@ -3516,7 +3516,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -3530,7 +3530,7 @@ ENDIF
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;助手によるコマンド、及びレズプレイ
+;助手指令及百合Play
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;120,强制舔阴
@@ -3542,22 +3542,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_120_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3566,7 +3566,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3575,7 +3575,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;121,貝あわせ
+;121,磨贝
 ;==================================================
 @KOJO_MESSAGE_COM_K8_121
 CALL TRAIN_MESSAGE
@@ -3584,22 +3584,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_121_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3608,7 +3608,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3626,22 +3626,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_123_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3650,7 +3650,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3668,22 +3668,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_126_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3692,7 +3692,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3701,7 +3701,7 @@ ENDIF
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;ハードな調教コマンド
+;硬调教指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;140,强迫口交
@@ -3713,22 +3713,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_140_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3737,7 +3737,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3755,22 +3755,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_141_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3779,7 +3779,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3797,22 +3797,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_142_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3821,7 +3821,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3839,22 +3839,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_143_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3863,7 +3863,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3881,22 +3881,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_144_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3905,7 +3905,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3923,22 +3923,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_145_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -3947,7 +3947,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -3965,22 +3965,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_146_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;灌肠液注入
 	IF TEQUIP:灌肠
 		;恋慕
@@ -3991,7 +3991,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4014,23 +4014,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_147_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:扩张气球
 		;恋慕
 		IF TALENT:恋慕
@@ -4040,7 +4040,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4063,23 +4063,23 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_148_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
-	;装着
+	;基本套装
+	;装备
 	IF TEQUIP:肛门电极
 		;恋慕
 		IF TALENT:恋慕
@@ -4089,7 +4089,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4103,7 +4103,7 @@ ENDIF
 RETURN 1
 
 ;=================================================
-;特殊コマンド
+;特殊指令
 ;=================================================
 ;-------------------------------------------------
 ;180,润滑剂
@@ -4115,22 +4115,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_180_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4139,7 +4139,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4157,22 +4157,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_181_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4181,7 +4181,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4199,22 +4199,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_182_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4223,7 +4223,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4241,22 +4241,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_183_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;開始
 	IF TEQUIP:录像摄影
 		;恋慕
@@ -4267,7 +4267,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4290,22 +4290,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_187_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;開始
 	IF TEQUIP:浴场PLAY
 		;恋慕
@@ -4316,7 +4316,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4339,22 +4339,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_188_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;開始
 	IF TEQUIP:淋浴
 		;恋慕
@@ -4365,7 +4365,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4388,22 +4388,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_189_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;開始
 	IF TEQUIP:新妻PLAY
 		;恋慕
@@ -4414,7 +4414,7 @@ IF LOCAL
 		ELSEIF MARK:屈服刻印 == 3
 			PRINTFORMW 
 			RETURN 0
-			;それ以外
+			;其他
 		ELSE
 			PRINTFORMW 
 			RETURN 0
@@ -4428,7 +4428,7 @@ ENDIF
 RETURN 1
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-;ハードな調教コマンド
+;硬调教指令
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;200,上半身上着脱衣
@@ -4440,22 +4440,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_200_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4464,7 +4464,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4482,22 +4482,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_201_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4506,7 +4506,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4514,7 +4514,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;202,ブラ脱衣
+;202,脱胸罩
 ;==================================================
 @KOJO_MESSAGE_COM_K8_202
 CALL TRAIN_MESSAGE
@@ -4523,22 +4523,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_202_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4547,7 +4547,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4555,7 +4555,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;203,パンティ脱衣
+;203,脱内裤
 ;==================================================
 @KOJO_MESSAGE_COM_K8_203
 CALL TRAIN_MESSAGE
@@ -4564,22 +4564,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K8_203_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4588,7 +4588,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4604,33 +4604,33 @@ CALL KOJO_MESSAGE_SCOM_K8_1_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_1_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
-		PRINTFORMW 「一緒に舐めあうのね？よいしょっと…あむっ。」
+		PRINTFORMW 「互相舔是吧？嘿咻…啊唔。」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「一緒にイッちゃうよぉ…！」
+		PRINTFORMW 「要一起去…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「あたいの方もっとなめてぇ…。」
+		PRINTFORMW 「本小姐这边也多舔舔…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「はむっちゅる、んぁ…。」
+		PRINTFORMW 「哈唔啾噜，嗯啊…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -4647,22 +4647,22 @@ CALL KOJO_MESSAGE_SCOM_K8_2_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_2_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4671,7 +4671,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4690,22 +4690,22 @@ CALL KOJO_MESSAGE_SCOM_K8_3_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_3_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4714,7 +4714,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4725,7 +4725,7 @@ CALLFORM KOJO_MESSAGE_COM_K8_{SELECTCOM}_1
 RETURN RESULT
 
 ;==================================================
-;4,乱れ牡丹
+;4,乱牡丹
 ;==================================================
 @KOJO_MESSAGE_SCOM_K8_4
 CALL TRAIN_MESSAGE
@@ -4733,22 +4733,22 @@ CALL KOJO_MESSAGE_SCOM_K8_4_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_4_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4757,7 +4757,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4776,22 +4776,22 @@ CALL KOJO_MESSAGE_SCOM_K8_5_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_5_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4800,7 +4800,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4811,7 +4811,7 @@ CALLFORM KOJO_MESSAGE_COM_K8_{SELECTCOM}_1
 RETURN RESULT
 
 ;==================================================
-;6,挿入Ｇスポ責め
+;6,插入G点责备
 ;==================================================
 @KOJO_MESSAGE_SCOM_K8_6
 CALL TRAIN_MESSAGE
@@ -4819,33 +4819,33 @@ CALL KOJO_MESSAGE_SCOM_K8_6_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_6_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
-		PRINTFORMW 「あぁ！今なんか変なとこにあたったぁ…？」
+		PRINTFORMW 「啊啊！刚才顶到奇怪的地方了…？」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「もっともっとしてぇ…。」
+		PRINTFORMW 「再多再多…。」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「気持ちいいよぉ…そこ弄られたらぁ…。」
+		PRINTFORMW 「好舒服哟…那里被玩的话…。」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「んぎっ…こんな無理矢理…。」
+		PRINTFORMW 「嗯咕…这样强行…。」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -4862,33 +4862,33 @@ CALL KOJO_MESSAGE_SCOM_K8_7_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_7_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
-		PRINTFORMW 「ひぎっ！？今奥にまで当たったぁ…！？」
+		PRINTFORMW 「嘶咕！？刚才顶到深处了…！？」
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
-		PRINTFORMW 「あたいこれ好きぃ…好きなのぉ…！」
+		PRINTFORMW 「本小姐喜欢这个…喜欢…！」
 		RETURN 0
 		;屈服3
 	ELSEIF MARK:屈服刻印 == 3
-		PRINTFORMW 「はぁう…あたいこれが好きになりそう…！」
+		PRINTFORMW 「哈呜…本小姐好像要喜欢这个了…！」
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
-		PRINTFORMW 「や、やめっ…おかしくなるからぁ…！？」
+		PRINTFORMW 「住、住手…会变奇怪的…！？」
 		RETURN 0
 	ENDIF
 ENDIF
@@ -4906,22 +4906,22 @@ CALL KOJO_MESSAGE_SCOM_K8_8_1
 RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_8_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4930,7 +4930,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -4946,8 +4946,8 @@ RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_9
 CALL TRAIN_MESSAGE
 CALL KOJO_MESSAGE_SCOM_K8_9_1
-;戻り値とTARGETを保存、TARGETを二人目に一時的に交代して二人目口上を呼び出した後、TARGETをもどして保存した戻り値でRETURNする
-;二人目はいらない場合はここで処理
+;保存返回值和TARGET，临时将TARGET切换为第二人调用第二人口上后，恢复TARGET并用保存的返回值RETURN
+;不需要第二人的情况在这里处理
 ;二人目
 LOCAL = MASTER_POSE(4,1,1)
 RESULT = LOCAL:1
@@ -4960,22 +4960,22 @@ RETURN LOCAL:1
 ;一人目口上
 @KOJO_MESSAGE_SCOM_K8_9_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -4984,7 +4984,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5000,22 +5000,22 @@ VARSET LOCAL
 ;一人目
 LOCAL:101 = MASTER_POSE(4,1)
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5024,7 +5024,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5037,8 +5037,8 @@ ENDIF
 @KOJO_MESSAGE_SCOM_K8_10
 CALL TRAIN_MESSAGE
 CALL KOJO_MESSAGE_SCOM_K8_10_1
-;戻り値とTARGETを保存、TARGETを二人目に一時的に交代して二人目口上を呼び出した後、TARGETをもどして保存した戻り値でRETURNする
-;二人目はいらない場合はここで処理
+;保存返回值和TARGET，临时将TARGET切换为第二人调用第二人口上后，恢复TARGET并用保存的返回值RETURN
+;不需要第二人的情况在这里处理
 ;二人目
 LOCAL = MASTER_POSE(2,1,1)
 RESULT = LOCAL:1
@@ -5050,22 +5050,22 @@ RETURN LOCAL:1
 
 @KOJO_MESSAGE_SCOM_K8_10_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5074,7 +5074,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5086,22 +5086,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_SCOM_K8_10_2
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5110,7 +5110,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5123,8 +5123,8 @@ ENDIF
 @KOJO_MESSAGE_SCOM_K8_11
 CALL TRAIN_MESSAGE
 CALL KOJO_MESSAGE_SCOM_K8_11_1
-;戻り値とTARGETを保存、TARGETを二人目に一時的に交代して二人目口上を呼び出した後、TARGETをもどして保存した戻り値でRETURNする
-;二人目はいらない場合はここで処理
+;保存返回值和TARGET，临时将TARGET切换为第二人调用第二人口上后，恢复TARGET并用保存的返回值RETURN
+;不需要第二人的情况在这里处理
 ;二人目
 LOCAL = MASTER_POSE(5,1,1)
 RESULT = LOCAL:1
@@ -5136,22 +5136,22 @@ RETURN LOCAL:1
 
 @KOJO_MESSAGE_SCOM_K8_11_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5160,7 +5160,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5172,22 +5172,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_SCOM_K8_11_2
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5196,7 +5196,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5209,22 +5209,22 @@ ENDIF
 @KOJO_MESSAGE_SCOM_K8_12
 CALL TRAIN_MESSAGE
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(SELECTCOM))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5233,7 +5233,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5249,8 +5249,8 @@ RETURN RESULT
 @KOJO_MESSAGE_SCOM_K8_13
 CALL TRAIN_MESSAGE
 CALL KOJO_MESSAGE_SCOM_K8_13_1
-;戻り値とTARGETを保存、TARGETを二人目に一時的に交代して二人目口上を呼び出した後、TARGETをもどして保存した戻り値でRETURNする
-;二人目はいらない場合はここで処理
+;保存返回值和TARGET，临时将TARGET切换为第二人调用第二人口上后，恢复TARGET并用保存的返回值RETURN
+;不需要第二人的情况在这里处理
 ;二人目
 LOCAL = MASTER_POSE(6,1,1)
 RESULT = LOCAL:1
@@ -5262,22 +5262,22 @@ RETURN LOCAL:1
 
 @KOJO_MESSAGE_SCOM_K8_13_1
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5286,7 +5286,7 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
@@ -5298,22 +5298,22 @@ RETURN RESULT
 
 @KOJO_MESSAGE_SCOM_K8_13_2
 ;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
-	;小分岐
+	;小分支
 	;-------------------------------------------------
-	;初めて
-	;記入チェック
+	;第一次
+	;填写检查
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
-	;基本セット
+	;基本套装
 	;恋慕
 	IF TALENT:恋慕
 		PRINTFORMW 
@@ -5322,30 +5322,30 @@ IF LOCAL
 	ELSEIF MARK:屈服刻印 == 3
 		PRINTFORMW 
 		RETURN 0
-		;それ以外
+		;其他
 	ELSE
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
 ENDIF
 
-;SOURCEやNOWEXを使ってSELECTCOMに依存しない口上があってもいいんじゃない
+;用SOURCE或NOWEX做不依赖SELECTCOM的口上也可以
 @KOJO_MESSAGE_COM_K8_00
-;性交处女喪失をRETURN 100して
-;IF RESULT == 100 でまとめるとか
-;苦痛や快楽のSOURCEをトリガーとして汎用あえぎ口上を作るとか
-;いろいろ利用方法は考えられますが適当にやってください
+;性交处女丧失RETURN 100
+;用 IF RESULT == 100 汇总之类
+;以苦痛或快感的SOURCE为触发制作通用喘息口上之类
+;各种使用方法都可以考虑，请随意
 
 
 
 ;※※※※※※※※※※※※※※※※※※※※※※※※※※
-;カウンター口上
+;反击口上
 ;※※※※※※※※※※※※※※※※※※※※※※※※※※
 ;-------------------------------------------------
-;ソフト
+;软体
 ;-------------------------------------------------
 ;==================================================
-;色っぽい仕草
+;色气动作
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_10
 CALL EVENT_COUNTER_MESSAGE
@@ -5353,20 +5353,20 @@ CALL KOJO_MESSAGE_COUNTER_K8_10_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_10_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「ねえ、%CALLNAME:MASTER%、今暇？」
-	PRINTFORMW 快活な笑顔の中に内包された艷を含んだ诱惑に熱が上った。
+	PRINTFORML 「呐，%CALLNAME:MASTER%，现在有空吗？」
+	PRINTFORMW 活泼的笑容中蕴含的艳丽诱惑让人热血上涌。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「あーもう、暑い季節は苦手よ。」
-	PRINTFORMW 上着にひらひらとして空気を送っているが、下着が見えている。
+	PRINTFORML 「啊--真是的，不擅长炎热的季节啦。」
+	PRINTFORMW 对着衣服扇风送气，但内裤都看见了。
 ELSE
-	PRINTFORML 「くぅぅぅ…はぁ、退屈ね…。」
-	PRINTFORML 「ん、どうしたの？%CALLNAME:MASTER%。」
-	PRINTFORMW …伸びをした時の声が…いつになく色っぽかった。
+	PRINTFORML 「呼呜呜…哈啊，好无聊…。」
+	PRINTFORML 「嗯，怎么了？%CALLNAME:MASTER%。」
+	PRINTFORMW …伸懒腰时的声音…比平时更加色气。
 ENDIF
 RETURN 1
 
 ;==================================================
-;見つめる
+;注视
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_11
 CALL EVENT_COUNTER_MESSAGE
@@ -5374,21 +5374,21 @@ CALL KOJO_MESSAGE_COUNTER_K8_11_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_11_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML %CALLNAME:人物_琪露诺%が構ってほしそうな目でこちらを見ている。
-	PRINTFORML 「んーでも仕事の邪魔して%CALLNAME:MASTER%の邪魔したくないし・・・。」
-	PRINTFORMW こちらを気遣う%CALLNAME:人物_琪露诺%に自然と頬が緩んだ。
+	PRINTFORML %CALLNAME:人物_琪露诺%用想要被理睬的眼神看着这边。
+	PRINTFORML 「嗯-但是不想打扰工作不想妨碍%CALLNAME:MASTER%・・・。」
+	PRINTFORMW 看着体谅这边的%CALLNAME:人物_琪露诺%，自然地放松了脸颊。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「なんていうか見てて飽きないね、%CALLNAME:MASTER%ってさ。」
-	PRINTFORMW どういう意味で言っているのだろうか？
+	PRINTFORML 「怎么说呢看着不会腻呢，%CALLNAME:MASTER%。」
+	PRINTFORMW 到底是什么意思呢？
 ELSE
-	PRINTFORML （じー…）
-	PRINTFORML 氷精なのに熱視線、一体どうしたのだろうか？
-	PRINTFORMW 「%CALLNAME:MASTER%の服に埃ついてない？」
+	PRINTFORML （盯-…）
+	PRINTFORML 明明是冰精却投来热辣的视线，到底怎么了？
+	PRINTFORMW 「%CALLNAME:MASTER%的衣服上没有灰尘吗？」
 ENDIF
 RETURN 1
 
 ;==================================================
-;体を摺り寄せる
+;身体蹭过来
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_12
 CALL EVENT_COUNTER_MESSAGE
@@ -5396,19 +5396,19 @@ CALL KOJO_MESSAGE_COUNTER_K8_12_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_12_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「えへへ、%CALLNAME:MASTER%ー♪」
-	PRINTFORMW 自然な形で擦り寄ってきた%CALLNAME:人物_琪露诺%を%CALLNAME:MASTER%は抱きとめた。
+	PRINTFORML 「嘿嘿，%CALLNAME:MASTER%--♪」
+	PRINTFORMW %CALLNAME:MASTER%接住了自然地蹭过来的%CALLNAME:人物_琪露诺%。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「・・・あたい冷たくない？」
-	PRINTFORMW 「夏ならいいとは思うけど冬だと少し迷惑だよね…。」
+	PRINTFORML 「・・・本小姐凉不凉？」
+	PRINTFORMW 「夏天的话还好，冬天的话有点添麻烦呢…。」
 ELSE
-	PRINTFORML 「んー・・・なんか%CALLNAME:MASTER%の近くにいると落ち着くね。」
-	PRINTFORMW 冷たくも温もりを感じる身体がもたれかかってきた。
+	PRINTFORML 「嗯-・・・总觉得在%CALLNAME:MASTER%身边就安心呢。」
+	PRINTFORMW 冰凉却能感受到温暖的身体靠了过来。
 ENDIF
 RETURN 1
 
 ;==================================================
-;裙子めくり
+;掀裙子
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_13
 CALL EVENT_COUNTER_MESSAGE
@@ -5416,37 +5416,37 @@ CALL KOJO_MESSAGE_COUNTER_K8_13_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_13_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「んーなんていうかもう少し抵抗してくれても…。」
-	PRINTFORMW 悪戯が成功しているのに複雑な%CALLNAME:人物_琪露诺%だった
+	PRINTFORML 「嗯-怎么说呢再稍微抵抗一下也可以…。」
+	PRINTFORMW 恶作剧成功了却心情复杂的%CALLNAME:人物_琪露诺%
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「あはは、%CALLNAME:MASTER%は引っかかりやすいなぁ。」
-	PRINTFORMW 「…もしかしてわざと無抵抗なの？」
+	PRINTFORML 「啊哈哈，%CALLNAME:MASTER%真容易上当呢。」
+	PRINTFORMW 「…难道是故意不抵抗的？」
 ELSE
-	PRINTFORML 「とりゃ、隙ありー！」
-	PRINTFORML 隙を伺っていた%CALLNAME:人物_琪露诺%に裙子をめくられてしまった。
-	PRINTFORMW 「油断禁物だよ%CALLNAME:MASTER%♪」
+	PRINTFORML 「嘿呀，破绽百出--！」
+	PRINTFORML 裙子被伺机而动的%CALLNAME:人物_琪露诺%掀了起来。
+	PRINTFORMW 「不可大意哟%CALLNAME:MASTER%♪」
 ENDIF
 RETURN 1
 
 ;==================================================
-;息を吹きかける
+;吹气
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_14
 CALL EVENT_COUNTER_MESSAGE
 CALL KOJO_MESSAGE_COUNTER_K8_14_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_14_1
-;地の文が「熱い」のはスルーの方向で。
+;旁白为「热」的方向就忽略。
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 背後から抱きついてきたと思ったら耳に何かが走り抜けた
-	PRINTFORMW 「構ってくれないからお仕置きだよ。」
+	PRINTFORML 刚觉得从背后被抱住，耳边就有什么窜过
+	PRINTFORMW 「不理人家所以是惩罚哟。」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「後ろから耳元に息がかかって思わず耳元を抑えた。」
-	PRINTFORMW 「えへへ、びっくりした？」
+	PRINTFORML 「从后面耳边被吹了气，不由得捂住了耳朵。」
+	PRINTFORMW 「嘿嘿，吓到了吗？」
 ELSE
-	PRINTFORML 休息をしていると耳元に空気があたって思わず飛び跳ねた。
-	PRINTFORML 「あはは、%CALLNAME:MASTER%面白いー♪」
-	PRINTFORMW 後ろを振り返ると笑った%CALLNAME:人物_琪露诺%の顔があった。
+	PRINTFORML 休息的时候耳边感受到气流不由得跳了起来。
+	PRINTFORML 「啊哈哈，%CALLNAME:MASTER%真有趣--♪」
+	PRINTFORMW 回头一看是笑着的%CALLNAME:人物_琪露诺%的脸。
 ENDIF
 RETURN 1
 
@@ -5459,24 +5459,24 @@ CALL KOJO_MESSAGE_COUNTER_K8_15_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_15_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML %CALLNAME:人物_琪露诺%が前から抱きつくと%CALLNAME:MASTER%の尻を揉みしだいている。
-	PRINTFORML 「%CALLNAME:MASTER%のおしり…柔らかい♪」
-	PRINTFORMW 感触を楽しんでいるのだろうか？
+	PRINTFORML %CALLNAME:人物_琪露诺%从前面抱住的同时揉捏着%CALLNAME:MASTER%的屁股。
+	PRINTFORML 「%CALLNAME:MASTER%的屁股…好软♪」
+	PRINTFORMW 是在享受触感吗？
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「%CALLNAME:MASTER%のおしりってむにむにするんだよねー。」
-	PRINTFORMW 「あ、ごめん、太ってるって意味じゃないんだよ？」
+	PRINTFORML 「%CALLNAME:MASTER%的屁股软软弹弹的呢--。」
+	PRINTFORMW 「啊，抱歉，不是说胖的意思哟？」
 ELSE
-	PRINTFORML 冷たい感触が下半身伝わり背筋にぞわわとするものが走った。
-	PRINTFORML 「あ、ごめんね。」
-	PRINTFORMW あまり悪びれていないように感じるが・・・。
+	PRINTFORML 冰凉的触感传到下半身，背脊窜过一阵酥麻。
+	PRINTFORML 「啊，抱歉啦。」
+	PRINTFORMW 感觉并没有太内疚的样子・・・。
 ENDIF
 RETURN 1
 
 ;-------------------------------------------------
-;セクハラ
+;性骚扰
 ;-------------------------------------------------
 ;==================================================
-;キス
+;亲吻
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_30
 CALL EVENT_COUNTER_MESSAGE
@@ -5484,20 +5484,20 @@ CALL KOJO_MESSAGE_COUNTER_K8_30_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_30_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「ちゅ、んー…ちゅる、ぷぁ…。」
-	PRINTFORMW 「もっとしよう、%CALLNAME:MASTER%…？」
+	PRINTFORML 「啾、嗯-…啾噜、噗啊…。」
+	PRINTFORMW 「再多亲亲嘛，%CALLNAME:MASTER%…？」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「ちゅっ・・・えへへ♪」
-	PRINTFORMW 「%CALLNAME:MASTER%の唇柔らかい…。」
+	PRINTFORML 「啾・・・嘿嘿♪」
+	PRINTFORMW 「%CALLNAME:MASTER%的嘴唇好软…。」
 ELSE
-	PRINTFORML 「いつも遊んでくれる%CALLNAME:MASTER%にお礼するね。」
-	PRINTFORML %CALLNAME:人物_琪露诺%が話し終わるといきなり%CALLNAME:人物_琪露诺%と距離が縮んで…？
-	PRINTFORMW 「えへへ、これからもあたいと遊んでね？」
+	PRINTFORML 「向一直陪本小姐玩的%CALLNAME:MASTER%表示感谢。」
+	PRINTFORML %CALLNAME:人物_琪露诺%话音刚落，和%CALLNAME:人物_琪露诺%的距离突然拉近了…？
+	PRINTFORMW 「嘿嘿，今后也陪本小姐玩好吗？」
 ENDIF
 RETURN 1
 
 ;==================================================
-;後ろから抱きつく
+;从背后抱住
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_31
 CALL EVENT_COUNTER_MESSAGE
@@ -5505,19 +5505,19 @@ CALL KOJO_MESSAGE_COUNTER_K8_31_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_31_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 暇を持て余していると後ろから%CALLNAME:人物_琪露诺%が突撃してきた。
-	PRINTFORMW 「%CALLNAME:MASTER%、あそんでー♪」
+	PRINTFORML 正闲着没事，%CALLNAME:人物_琪露诺%从背后突袭了过来。
+	PRINTFORMW 「%CALLNAME:MASTER%，玩嘛--♪」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML %CALLNAME:人物_琪露诺%が後ろにがっしりと抱きついてはなれない・・・。
-	PRINTFORMW 「えへへ、落ち着く♪」
+	PRINTFORML %CALLNAME:人物_琪露诺%从背后紧紧抱住不放手・・・。
+	PRINTFORMW 「嘿嘿，好安心♪」
 ELSE
-	PRINTFORML 「えいっ♪」
-	PRINTFORMW %CALLNAME:人物_琪露诺%が勢い良く抱きついてきた、衝撃で腰が痛い・・・。
+	PRINTFORML 「嘿咻♪」
+	PRINTFORMW %CALLNAME:人物_琪露诺%猛地抱了过来，冲击力让腰好痛・・・。
 ENDIF
 RETURN 1
 
 ;==================================================
-;前ろから抱きつく
+;从前面抱住
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_32
 CALL EVENT_COUNTER_MESSAGE
@@ -5528,16 +5528,16 @@ IF ABL:亲密 > 5 && TALENT:恋慕
 	PRINTFORML 「」
 	PRINTFORMW 
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「%CALLNAME:MASTER%ー構ってー」
-	PRINTFORMW %CALLNAME:人物_琪露诺%が鳩尾にクリーンヒットして暫く%CALLNAME:MASTER%は悶た。
+	PRINTFORML 「%CALLNAME:MASTER%--理理人家--」
+	PRINTFORMW %CALLNAME:人物_琪露诺%正中鸠尾，%CALLNAME:MASTER%闷了好一阵。
 ELSE
-	PRINTFORML 「んー…なんか落ち着く気がするわ…。」
-	PRINTFORMW いきなり抱きついてきた%CALLNAME:人物_琪露诺%をどうするかで暫く悩んだ。
+	PRINTFORML 「嗯-…总觉得好安心…。」
+	PRINTFORMW 对突然抱上来的%CALLNAME:人物_琪露诺%该怎么办，苦恼了一阵。
 ENDIF
 RETURN 1
 
 ;==================================================
-;胸を揉ませる
+;让揉胸
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_33
 CALL EVENT_COUNTER_MESSAGE
@@ -5545,22 +5545,22 @@ CALL KOJO_MESSAGE_COUNTER_K8_33_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_33_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「あたいだって女の子なんだよ、だから、触って欲しいんだ。」
-	PRINTFORMW 「他でもない、大切で一番の恋人の%CALLNAME:MASTER%に。」
+	PRINTFORML 「本小姐也是女孩子啦，所以，想让你摸摸。」
+	PRINTFORMW 「不是别人，是最重要最好的恋人%CALLNAME:MASTER%。」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「ねえねえ、%CALLNAME:MASTER%、あたいの胸触ってよ。」
-	PRINTFORML いきなり何を言っているのかと疑問に思うが手を取られて胸に当てられた。
-	PRINTFORML 「さっき%CALLNAME:人物_蕾米莉亚%に馬鹿にされたんだけどあたいのほうが大きいわよね？」
-	PRINTFORMW 妖精相手に何を張り合っているのだろうか・・・。
+	PRINTFORML 「呐呐，%CALLNAME:MASTER%，摸摸本小姐的胸嘛。」
+	PRINTFORML 正想着她突然在说什么，手就被拉着按到了胸上。
+	PRINTFORML 「刚才被%CALLNAME:人物_蕾米莉亚%嘲笑了，但本小姐的比较大对吧？」
+	PRINTFORMW 跟妖精较什么劲呢・・・。
 ELSE
-	PRINTFORML 「%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%に胸って揉んでもらうとおっきくなるって聞いたんだけど。」
-	PRINTFORML 「気軽には頼めないし、%CALLNAME:MASTER%ちょっと触ってよ。」
-	PRINTFORMW そこでこちらに振られても困るのだが…。
+	PRINTFORML 「听说被%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%揉胸的话会变大的。」
+	PRINTFORML 「不好随便拜托，%CALLNAME:MASTER%你摸摸嘛。」
+	PRINTFORMW 被推到这边也很困扰…。
 ENDIF
 RETURN 1
 
 ;==================================================
-;股間をまさぐる
+;摸索胯间
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_34
 CALL EVENT_COUNTER_MESSAGE
@@ -5568,20 +5568,20 @@ CALL KOJO_MESSAGE_COUNTER_K8_34_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_34_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 後ろから忍び込まれて服のうえから中をいじられた。
-	PRINTFORML 「あたいは生えてないんだけど、%CALLNAME:MASTER%は生えてるの？」
-	PRINTFORMW 何がと聞くのは無粋なのだろう・・・。
+	PRINTFORML 从后面潜入，隔着衣服被玩弄了里面。
+	PRINTFORML 「本小姐没长毛，%CALLNAME:MASTER%你长了吗？」
+	PRINTFORMW 问是什么的话似乎不太识趣・・・。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「んー…なんか、変な気分になりそう。」
-	PRINTFORMW ならば何故触っているのだろうか…。
+	PRINTFORML 「嗯-…总觉得，要变得怪怪的了。」
+	PRINTFORMW 那为什么还在摸呢…。
 ELSE
-	PRINTFORML 「あたいと%CALLNAME:MASTER%ってこっちも違うんだね。」
-	PRINTFORMW 「あ、ごめん何がってわけじゃないんだけど…。」
+	PRINTFORML 「本小姐和%CALLNAME:MASTER%这边也不一样呢。」
+	PRINTFORMW 「啊，抱歉不是说什么的…。」
 ENDIF
 RETURN 1
 
 ;==================================================
-;裙子の中を見せる
+;展示裙中
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_35
 CALL EVENT_COUNTER_MESSAGE
@@ -5589,19 +5589,19 @@ CALL KOJO_MESSAGE_COUNTER_K8_35_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_35_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「えへへ、あたいのここ見て興奮しちゃった？」
-	PRINTFORMW 「%CALLNAME:MASTER%になら見せても恥ずかしくないや。」
+	PRINTFORML 「嘿嘿，看本小姐这里兴奋了吗？」
+	PRINTFORMW 「给%CALLNAME:MASTER%看的话不害羞。」
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「わわ、裙子の中に虫が入った！？」
-	PRINTFORMW 裙子をおもむろに広げて虫を追い払っているが、丸見え…。
+	PRINTFORML 「哇哇，裙子里面进虫子了！？」
+	PRINTFORMW 慢悠悠地掀开裙子赶虫子，但全都看见了…。
 ELSE
-	PRINTFORML 「さっき遊んでたら少し擦り剥いちゃった。」
-	PRINTFORMW たくし上げた裙子から下着がチラリと見えた。
+	PRINTFORML 「刚才玩的时候稍微擦破了。」
+	PRINTFORMW 掀起的裙子下内裤一闪而过。
 ENDIF
 RETURN 1
 
 ;==================================================
-;後ろから胸もみもみ
+;从背后揉胸
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_36
 CALL EVENT_COUNTER_MESSAGE
@@ -5609,14 +5609,14 @@ CALL KOJO_MESSAGE_COUNTER_K8_36_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_36_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「柔らかいのもあるんだけどさ、%CALLNAME:MASTER%のここ揉むと気持ちいいよ？」
-	PRINTFORMW 褒め言葉なのだろうが微妙に嬉しくない…。
+	PRINTFORML 「虽然很软，但揉%CALLNAME:MASTER%这里很舒服哟？」
+	PRINTFORMW 应该是夸奖吧但微妙地高兴不起来…。
 ELSEIF ABL:亲密 > 3
-	PRINTFORML 「あたいが揉んだら%CALLNAME:MASTER%の大きくなるのかな？」
-	PRINTFORMW 「だったらあたいももんでもらおうかな？」
+	PRINTFORML 「本小姐揉的话%CALLNAME:MASTER%的会变大吗？」
+	PRINTFORMW 「那样的话本小姐也让你揉揉？」
 ELSE
-	PRINTFORML 「んーなんかここ柔らかいね。」
-	PRINTFORMW 後ろから抱きついている中での無自覚なのだろうか…？
+	PRINTFORML 「嗯-总觉得这里好软呢。」
+	PRINTFORMW 是从背后抱着时的无自觉吗…？
 ENDIF
 RETURN 1
 
@@ -5633,14 +5633,14 @@ CALL KOJO_MESSAGE_COUNTER_K8_50_1
 RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_50_1
 IF ABL:亲密 > 5 && TALENT:恋慕
-	PRINTFORML 「ふふ、おっきいね、%CALLNAME:MASTER%のここ♪」
-	PRINTFORMW %CALLNAME:人物_琪露诺%は愛おしげに%CALLNAME:MASTER%の阴茎に侍奉している。
+	PRINTFORML 「呼呼，好大呢，%CALLNAME:MASTER%的这里♪」
+	PRINTFORMW %CALLNAME:人物_琪露诺%满怀爱意地侍奉着%CALLNAME:MASTER%的阴茎。
 ELSEIF ABL:亲密 > 3
 	PRINTFORML 
 	PRINTFORMW 
 ELSE
-	PRINTFORML 「なんか触ってると変な気分になりそう…。」
-	PRINTFORML 「でもなんだろうなこの感じ、もっと触ってみたくなりそう。」
+	PRINTFORML 「总觉得摸着要变怪怪的了…。」
+	PRINTFORML 「但这是什么感觉呢，好像想多摸摸。」
 ENDIF
 RETURN 1
 
@@ -5834,7 +5834,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;ディープキス
+;深吻
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_60
 CALL EVENT_COUNTER_MESSAGE
@@ -5909,7 +5909,7 @@ RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_72_1
 RETURN 1
 ;==================================================
-;ぱふぱふ
+;啪呼啪呼
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_73
 CALL EVENT_COUNTER_MESSAGE
@@ -5918,7 +5918,7 @@ RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_73_1
 RETURN 1
 ;==================================================
-;乳合わせ
+;乳交
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_74
 CALL EVENT_COUNTER_MESSAGE
@@ -5927,7 +5927,7 @@ RETURN RESULT
 @KOJO_MESSAGE_COUNTER_K8_74_1
 RETURN 1
 ;==================================================
-;タワシ洗い
+;刷洗
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_75
 CALL EVENT_COUNTER_MESSAGE
@@ -5940,7 +5940,7 @@ RETURN 1
 ;性交
 ;-------------------------------------------------
 ;==================================================
-;挿入される（MASTER受け）
+;被插入（MASTER受）
 ;==================================================
 @KOJO_MESSAGE_COUNTER_K8_80
 CALL EVENT_COUNTER_MESSAGE
@@ -5950,12 +5950,12 @@ RETURN RESULT
 RETURN 1
 
 ;-------------------------------------------------
-;うふふカウンター
+;唔呵呵反击
 ;-------------------------------------------------
-;まだ
+;还没有
 
 ;-------------------------------------------------
-;角色の絶頂時の口上
+;角色高潮时的口上
 ;NOWEX:Ｃ绝顶～3 CVAB絶頂
 ;NOWEX:二重绝顶 二重绝顶
 ;NOWEX:三重绝顶 三重绝顶
@@ -5963,13 +5963,13 @@ RETURN 1
 ;NOWEX:喷乳 喷乳
 ;NOWEX:射精 射精
 ;NOWEX:放尿 放尿
-;適当に組み合わせて使ってください
+;请随意组合使用
 ;-------------------------------------------------
 @KOJO_MESSAGE_PALAMCNG_B_K8
 CALL PALAM_MESSAGE_B
 ;-------------------------------------------------
 ;喷乳
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && NOWEX:喷乳
@@ -5977,7 +5977,7 @@ IF LOCAL && NOWEX:喷乳
 ENDIF
 ;-------------------------------------------------
 ;射精
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && NOWEX:射精
@@ -5985,7 +5985,7 @@ IF LOCAL && NOWEX:射精
 ENDIF
 ;-------------------------------------------------
 ;放尿
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && NOWEX:放尿
@@ -5993,23 +5993,23 @@ IF LOCAL && NOWEX:放尿
 ENDIF
 ;-------------------------------------------------
 ;絶頂
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
 	;四重绝顶
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:四重绝顶
 		PRINTFORMW 「…！」
-		PRINTFORMW 躰の全てに快楽が巡り、%CALLNAME:人物_琪露诺%は最高の絶頂を朧気な意識で味わった。
+		PRINTFORMW 快感流遍全身，%CALLNAME:人物_琪露诺%在朦胧的意识中品味着最高潮。
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
 	;三重绝顶
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:三重绝顶
@@ -6034,7 +6034,7 @@ IF LOCAL
 	ENDIF
 	;-------------------------------------------------
 	;二重绝顶
-	;記入チェック（=0, 非表示、1, 表示）
+	;填写检查（=0, 不显示，1, 显示）
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:二重绝顶
@@ -6068,52 +6068,52 @@ IF LOCAL
 	IF NOWEX:Ｃ绝顶
 		;強絶頂Ｃ
 		IF NOWEX:Ｃ绝顶 == 2
-			PRINTFORMW 「んぅぅぅ！お豆が、熱くて、あたいおかしくっ・・・！」
+			PRINTFORMW 「嗯呜呜！豆豆，好热，本小姐要怪怪的・・・！」
 			;絶頂Ｃ
 		ELSE
-			PRINTFORMW 「はぁあぅう・・・頭がふわってなったぁ・・・。」
+			PRINTFORMW 「哈啊呜呜・・・脑袋变得轻飘飘的・・・。」
 		ENDIF
 	ENDIF
 	IF NOWEX:Ｖ绝顶
 		;強絶頂Ｖ
 		IF NOWEX:Ｖ绝顶 == 2
-			PRINTFORMW 「ん、んんん！？お腹の下が、ビクンって…！」
+			PRINTFORMW 「嗯、嗯嗯嗯！？肚子下面，抖了一下…！」
 			;絶頂Ｖ
 		ELSE
-			PRINTFORMW 「あ、はぁ、あ・・・奥がビクンってなったぁ、なにこれ・・・。」
+			PRINTFORMW 「啊、哈啊、啊・・・深处抖了一下，这是什么・・・。」
 		ENDIF
 	ENDIF
 	IF NOWEX:Ａ绝顶
 		;強絶頂Ａ
 		IF NOWEX:Ａ绝顶 == 2
-			PRINTFORMW 「はぅぁぁぁぁぁ！おしりの穴が、気持ちいいよぉぉぉ！」
+			PRINTFORMW 「哈呜啊啊啊！屁股的洞，好舒服哟！」
 			;絶頂Ａ
 		ELSE
-			PRINTFORMW 「や、やだぁ・・・おかしいよぉ・・・こっちでこうなるなんてぇ！」
+			PRINTFORMW 「不、不要・・・好奇怪・・・这边竟然会这样！」
 		ENDIF
 	ENDIF
 	IF NOWEX:Ｂ绝顶
 		;強絶頂Ｂ
 		IF NOWEX:Ｂ绝顶 == 2
-			PRINTFORMW 胸への快楽が最高潮に達した時、%CALLNAME:人物_琪露诺%は背を仰け反らせて達した快楽に浸った。
+			PRINTFORMW 胸部的快感达到最高潮时，%CALLNAME:人物_琪露诺%仰起背沉浸在到达的快乐中。
 			;絶頂Ｂ
 		ELSE
-			PRINTFORMW 「先っぽが・・・ジンジンする、取れちゃうかと思った・・・。」
+			PRINTFORMW 「前端・・・酥酥麻麻的，以为要被弄掉了・・・。」
 		ENDIF
 	ENDIF
 ENDIF
 
 
 ;-------------------------------------------------
-;射精に関する口上の表示
-;一時的にTARGETを口上主に設定している
+;射精相关口上的显示
+;临时将TARGET设为口上主
 ;-------------------------------------------------
 
 @KOJO_MESSAGE_PALAMCNG_A_K8_0(ARG)
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;避孕套
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6126,7 +6126,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;强迫口交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6139,7 +6139,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;六九式
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6147,24 +6147,24 @@ IF LOCAL
 	IF NOWEX:射精 && NOWEX:MASTER:11
 		PRINTFORMW
 		RETURN 1
-		;TARGETだけ射精
+		;仅TARGET射精
 	ELSEIF NOWEX:射精
-		;PLAYERについてる
+		;PLAYER有阴茎
 		IF TALENT:PLAYER & 2
 			PRINTFORMW
 			RETURN 1
-			;付いてない
+			;没有阴茎
 		ELSE
 			PRINTFORMW
 			RETURN 1
 		ENDIF
-		;PLAYERだけ射精
+		;仅PLAYER射精
 	ELSE
-		;TARGETについてる
+		;TARGET有阴茎
 		IF TALENT:2 & 2
 			PRINTFORMW
 			RETURN 1
-			;付いてない
+			;没有阴茎
 		ELSE
 			PRINTFORMW
 			RETURN 1
@@ -6177,7 +6177,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;乳夹口交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6190,7 +6190,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;手淫口交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6203,7 +6203,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;舔肛侍奉
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6216,7 +6216,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;泡澡
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6224,24 +6224,24 @@ IF LOCAL
 	IF NOWEX:射精 && NOWEX:MASTER:11
 		PRINTFORMW
 		RETURN 1
-		;TARGETだけ射精
+		;仅TARGET射精
 	ELSEIF NOWEX:射精
-		;PLAYERについてる
+		;PLAYER有阴茎
 		IF TALENT:PLAYER & 2
 			PRINTFORMW
 			RETURN 1
-			;付いてない
+			;没有阴茎
 		ELSE
 			PRINTFORMW
 			RETURN 1
 		ENDIF
-		;PLAYERだけ射精
+		;仅PLAYER射精
 	ELSE
-		;TARGETについてる
+		;TARGET有阴茎
 		IF TALENT:2 & 2
 			PRINTFORMW
 			RETURN 1
-			;付いてない
+			;没有阴茎
 		ELSE
 			PRINTFORMW
 			RETURN 1
@@ -6254,7 +6254,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;足交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6267,7 +6267,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;素股
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6280,7 +6280,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;乳交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6293,7 +6293,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;口交
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6306,7 +6306,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;手淫
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6319,7 +6319,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;菊花
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6332,7 +6332,7 @@ RETURN 0
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;膣内
-;記入チェック（=0, 非表示、1, 表示）
+;填写检查（=0, 不显示，1, 显示）
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
@@ -6342,8 +6342,8 @@ ENDIF
 RETURN 0
 
 ;-------------------------------------------
-;調教後のテキスト
-;TFLAG:8 (1=TARGETがお扫除 2=ASSIがお扫除 3=TARGETとASSIがお扫除)
+;调教后的文本
+;TFLAG:8 (1=TARGET打扫 2=ASSI打扫 3=TARGET和ASSI打扫)
 ;-------------------------------------------
 @KOJO_MESSAGE_PALAMCNG_C_K8
 CALL PALAM_MESSAGE_C
@@ -6354,7 +6354,7 @@ IF TFLAG:4
 	PRINTFORMW 
 ENDIF
 
-;フェラで射精後のお扫除
+;口交射精后的打扫
 IF (TFLAG:8 & 1) && NOWEX:PLAYER:11
 	PRINTFORMW 
 ENDIF
@@ -6375,36 +6375,36 @@ ENDIF
 
 ;快乐刻印
 IF TCVAR:角色:快乐刻印取得 == 1
-	PRINTFORMW 「っ……、あ、今ふわってしたぁ……」
+	PRINTFORMW 「っ……、啊，刚才轻飘飘的……」
 ELSEIF TCVAR:角色:快乐刻印取得 == 2
-	PRINTFORML 「うきゃうっ……！」
+	PRINTFORML 「呜呀呜……！」
 ELSEIF TCVAR:角色:快乐刻印取得 == 3
-	PRINTFORML 「%GET_CALLNAME(CFLAG:角色:快乐刻印主人)%と一緒にずっとこうして居たいよ、気持ちいい…！」」
-	PRINTFORMW 「んぁ…！あぁ…も、もうあたい、壊れちゃった…。」
+	PRINTFORML 「想和%GET_CALLNAME(CFLAG:角色:快乐刻印主人)%一直这样在一起，好舒服…！」」
+	PRINTFORMW 「嗯啊…！啊啊…本、本小姐已经，坏掉了…。」
 ENDIF
 
 ;屈服刻印
-;快楽による刻印
+;快感刻印
 ;LV1
 IF TCVAR:角色:屈服刻印取得 == 11
-	PRINTFORMW 「気持ちいいのが好きになりそう…。」
+	PRINTFORMW 「好像要喜欢上舒服的感觉了…。」
 	;LV2
 ELSEIF TCVAR:角色:屈服刻印取得 == 12
-	PRINTFORMW 「だめっこれ以上されたらあたい気持よくておかしくっ…！」
+	PRINTFORMW 「不行再这样的话本小姐舒服得要变奇怪了…！」
 	;LV3
 ELSEIF TCVAR:角色:屈服刻印取得 == 13
-	PRINTFORMW 「駄目ぇ…あたいもうこれしか考えられなく…！」
-	;屈服、恭顺による刻印
+	PRINTFORMW 「不行…本小姐已经只能想这个了…！」
+	;屈服、恭顺刻印
 	;LV1
 ELSEIF TCVAR:角色:屈服刻印取得 == 31
-	PRINTFORMW 「えへへ、%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%って面白いね♪」
+	PRINTFORMW 「嘿嘿，%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%真有趣呢♪」
 	;LV2
 ELSEIF TCVAR:角色:屈服刻印取得 == 32
-	PRINTFORMW 「%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%と一緒に遊ぶのも楽しいけど、%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%と一緒に居るのも楽しいよ。」
+	PRINTFORMW 「和%CALLNAME_K8(人物_琪露诺, 人物_大妖精)%一起玩也开心，但和%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%在一起也开心哟。」
 	;LV3
 ELSEIF TCVAR:角色:屈服刻印取得 == 33
-	PRINTFORML 「…ねえ、%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%ずっと一緒にいてくれるよね？」
-	PRINTFORMW 「%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%が居ないと、あたい、おかしくなっちゃいそうなんだよ…。」
+	PRINTFORML 「…呐，%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%会一直在一起吧？」
+	PRINTFORMW 「没有%GET_CALLNAME(CFLAG:角色:屈服刻印主人)%的话，本小姐好像要变奇怪了…。」
 ENDIF
 
 ;反発刻印

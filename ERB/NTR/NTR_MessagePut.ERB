@@ -1387,109 +1387,46 @@ RETURN 0
 ;==================================================
 ;訪問者と会话（お持ち帰り）
 ;==================================================
-@NTR_MESSAGE_10_1(角色,調教者,輪姦内容)
+@NTR_MESSAGE_10_1(角色,調教者)
 #DIM 角色
 #DIM 調教者
-#DIM 輪姦内容
-IF 調教者 == 人物_客
-	PRINTFORMW %CALLNAME:角色%は客と会话している(お持ち帰り)
-ELSE
-	PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%と会话している(お持ち帰り)
-ENDIF
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%と会话している(お持ち帰り)
 RETURN 0
 
 ;==================================================
 ;訪問者とキス（お持ち帰り）
 ;==================================================
-@NTR_MESSAGE_10_2(角色,調教者,輪姦内容)
+@NTR_MESSAGE_10_2(角色,調教者)
 #DIM 角色
 #DIM 調教者
-#DIM 輪姦内容
-IF 調教者 == 人物_客
-	PRINTFORMW %CALLNAME:角色%は客とキスしている(お持ち帰り)
-ELSE
-	PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とキスしている(お持ち帰り)
-ENDIF
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とキスしている(お持ち帰り)
 RETURN 0
 
 ;==================================================
 ;訪問者と６９（お持ち帰り）
 ;==================================================
-@NTR_MESSAGE_10_3(角色,調教者,輪姦内容)
+@NTR_MESSAGE_10_3(角色,調教者)
 #DIM 角色
 #DIM 調教者
-#DIM 輪姦内容
-IF 調教者 == 人物_客
-	PRINTFORMW %CALLNAME:角色%は客と互いの性器を舐めあっている(お持ち帰り)
-ELSE
-	PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%と互いの性器を舐めあっている(お持ち帰り)
-ENDIF
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%と互いの性器を舐めあっている(お持ち帰り)
 RETURN 0
 
 ;==================================================
 ;訪問者と性交（お持ち帰り）
 ;==================================================
-@NTR_MESSAGE_10_4(角色,調教者,輪姦内容)
+@NTR_MESSAGE_10_4(角色,調教者)
 #DIM 角色
 #DIM 調教者
-#DIM 輪姦内容
-#DIMS 相手
-相手 = "客"
-SIF (調教者 == 人物_訪問者) 
-	相手 = %NTR_NAME(0)%
-SELECTCASE 輪姦内容
-	CASE 輪姦_1V		;客あり、輪姦なし
-		PRINTFORMW %CALLNAME:角色%は%相手%とセックスしている(お持ち帰り)
-	CASE 輪姦_1A		;客あり、輪姦なし
-		PRINTFORMW %CALLNAME:角色%は%相手%と菊花セックスしている(お持ち帰り)
-	CASE 輪姦_2MV		;客あり、２人、ＭＶ
-		PRINTFORMW %CALLNAME:角色%は二人の客の阴茎を口と膣に咥え込んでいる(お持ち帰り)
-	CASE 輪姦_2MA		;客あり、２人、ＭＡ
-		PRINTFORMW %CALLNAME:角色%は二人の客の阴茎を口と菊花に咥え込んでいる(お持ち帰り)
-	CASE 輪姦_2VA		;客あり、２人、ＶＡ
-		PRINTFORMW %CALLNAME:角色%は二人の客の阴茎を膣と菊花に咥え込んでいる(お持ち帰り)
-	CASE 輪姦_2VV		;客あり、２人、ＶＶ
-		PRINTFORMW %CALLNAME:角色%は客の阴茎を２本同時に膣内へ挿入している(お持ち帰り)
-	CASE 輪姦_2AA		;客あり、２人、ＡＡ
-		PRINTFORMW %CALLNAME:角色%は客の阴茎を２本同時に腸内へ挿入している(お持ち帰り)
-	CASE 輪姦_3MAV		;客あり、３人、ＭＡＶ
-		PRINTFORMW %CALLNAME:角色%は三人の客の阴茎を膣、口、菊花に咥え込んでいる(お持ち帰り)
-	CASEELSE			;客なし、訪問者と
-		PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とセックスしている(お持ち帰り)
-ENDSELECT
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%とセックスしている(お持ち帰り)
 RETURN 0
 
 ;==================================================
 ;訪問者の射精（お持ち帰り）
 ;==================================================
-@NTR_MESSAGE_10_5(角色,調教者,輪姦内容)
+@NTR_MESSAGE_10_5(角色,調教者)
 #DIM 角色
 #DIM 調教者
-#DIM 輪姦内容
-#DIMS 相手
-相手 = "客"
-SIF 調教者 == 人物_訪問者 
-	相手 = %NTR_NAME(0)%
-SELECTCASE 輪姦内容
-	CASE 輪姦_1V		;客あり、輪姦なし
-		PRINTFORMW %CALLNAME:角色%は%相手%の精液を受けている(お持ち帰り)
-	CASE 輪姦_1A		;客あり、輪姦なし
-		PRINTFORMW %CALLNAME:角色%は%相手%の精液を菊花に受けている(お持ち帰り)
-	CASE 輪姦_2MV		;客あり、２人、ＭＶ
-		PRINTFORMW %CALLNAME:角色%は二人の客の精液を口と膣に注がれている(お持ち帰り)
-	CASE 輪姦_2MA		;客あり、２人、ＭＡ
-		PRINTFORMW %CALLNAME:角色%は二人の客の精液を口と菊花に注がれている(お持ち帰り)
-	CASE 輪姦_2VA		;客あり、２人、ＶＡ
-		PRINTFORMW %CALLNAME:角色%は二人の客の精液を膣と菊花に注がれている(お持ち帰り)
-	CASE 輪姦_2VV		;客あり、２人、ＶＶ
-		PRINTFORMW %CALLNAME:角色%は二人の客の精液を膣に注がれている(お持ち帰り)
-	CASE 輪姦_2AA		;客あり、２人、ＡＡ
-		PRINTFORMW %CALLNAME:角色%は二人の客の精液を菊花に注がれている(お持ち帰り)
-	CASE 輪姦_3MAV		;客あり、２人、ＭＡＶ
-		PRINTFORMW %CALLNAME:角色%は三人の客の精液を膣、口、菊花に注がれている(お持ち帰り)
-	CASEELSE			;客なし、訪問者と
-		PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%の精液を受けている(お持ち帰り)
-ENDSELECT
+PRINTFORMW %CALLNAME:角色%は%NTR_NAME(0)%の精液を受けている(お持ち帰り)
 RETURN 0
 
 

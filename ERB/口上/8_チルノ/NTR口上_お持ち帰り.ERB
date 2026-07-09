@@ -1,48 +1,48 @@
 ;-------------------------------------------------
-;寝取られパッチ用チルノ口上ファイル：お持ち帰り関係
-;お好きなように埋めまくってください
-;そしてあわよくばうｐしてください
-;いやマジで
-;注意：この口上が呼ばれるのは対象が主人から見える位置に居る状態か
-;　　　筒抜けコマンド(デバグ用)を実行した場合に限ります
-;　　　対象は気づいてない事が前提なので書く際にはご注意を
+;NTR补丁用琪露诺口上文件：お持ち帰り
+;请随意填满吧
+;然后如果可以的话请上传
+;不，说真的
+;注意：此口上被调用的前提是对象处于主人可见的位置
+;　　　或执行了透底命令（调试用）的情况
+;　　　对象并未察觉到这一点，书写时请注意
 ;-------------------------------------------------
 ;==================================================
-;訪問者宅から帰ってきた際
+;从访客宅邸归来时
 ;==================================================
 @NTR_KOJO_K8_0(角色)
 #DIM 角色
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML %CALLNAME:角色%は普段とは違う『女』を感じさせる表情で自宅へと歩いていった。
-	PRINTFORML 歩いた跡には、点々と白い水滴が続いている。
+	PRINTFORML %CALLNAME:角色%带着与平日不同的、散发『女人』气息的表情走回了家。
+	PRINTFORML 走过的路上，点点白色水滴连绵不断。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML %CALLNAME:角色%は熱を帯びたようにふらふらと自宅に帰っていった。
+	PRINTFORML %CALLNAME:角色%像是带着热度般摇摇晃晃地回了家。
 	IF TALENT:角色:恋慕
-		PRINTFORML もはや%MSG_LOVER(角色)%の視線すら気にしていないようであった。
+		PRINTFORML 似乎已经不再在意%MSG_LOVER(角色)%的视线了。
 	ELSE
-		PRINTFORML 衣服は乱れ、口元や内股には白い粘液がこびり付いている。	
+		PRINTFORML 衣衫凌乱，嘴角和大腿内侧沾满了白色粘液。
 	ENDIF
 
 ELSE
 
-	PRINTFORML %CALLNAME:角色%はこそこそと自宅に帰っていった。
+	PRINTFORML %CALLNAME:角色%鬼鬼祟祟地回了家。
 	IF TALENT:角色:恋慕
-		PRINTFORML %MSG_LOVER(角色)%にだけは汚れた姿を見られたくはなかったのだろう。
+		PRINTFORML 大概是不想让%MSG_LOVER(角色)%看到自己肮脏的样子吧。
 	ELSE
-		PRINTFORML 衣服は乱れ、髪には白い粘液がこびり付いている。	
+		PRINTFORML 衣衫凌乱，头发上沾满了白色粘液。
 	ENDIF
 
 ENDIF
 RETURN 0
 
 ;==================================================
-;お持ち帰り
+;带回家
 ;==================================================
-;訪問者宅へ
+;前往访客宅邸
 ;==================================================
 @NTR_KOJO_K8_10_0(角色)
 #DIM 角色
@@ -51,45 +51,45 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	PRINTDATAL
-		DATAFORM 「うんっ、あたいははご主人様のどれーだもんね！」
-		DATAFORM 「えへへっ、ご主人様・・」
-		DATAFORM 「なんでもごほーしするよ！」
+		DATAFORM 「嗯っ，本大爷是主人的奴隶嘛！」
+		DATAFORM 「嘿嘿っ，主人・・」
+		DATAFORM 「什么都会侍奉哦！」
 	ENDDATA
-	PRINTFORML %NTR_NAME(0)%に鎖で繋がれた%CALLNAME:角色%は、『気持ちイイこと』にわくわくしている。
+	PRINTFORML 被%NTR_NAME(0)%用锁链拴住的%CALLNAME:角色%，对『舒服的事情』兴奋不已。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	PRINTDATAL
-		DATAFORM 「うんっ、あたいははご主人様のどれーだもんね！」
-		DATAFORM 「えへへっ、ご主人様・・」
-		DATAFORM 「なんでもごほーしするよ！」
+		DATAFORM 「嗯っ，本大爷是主人的奴隶嘛！」
+		DATAFORM 「嘿嘿っ，主人・・」
+		DATAFORM 「什么都会侍奉哦！」
 	ENDDATA
-	PRINTFORML %NTR_NAME(0)%に鎖を見せられた%CALLNAME:角色%は、それを拒もうとせず大人しく繋がれ、『気持ちイイこと』にわくわくしている。
+	PRINTFORML 被%NTR_NAME(0)%展示锁链的%CALLNAME:角色%，没有拒绝，乖乖地被拴上，对『舒服的事情』兴奋不已。
 	IF TALENT:角色:恋慕
-		PRINTFORML そして%CALLNAME:MASTER%のことも忘れたかのように彼の手から伸びる鎖に引かれて門をくぐった。
+		PRINTFORML 然后像是忘记了%CALLNAME:MASTER%的存在一般，被他从手中延伸的锁链牵引着穿过大门。
 	ELSE
-		PRINTFORML そしてまるで角色のように彼の手から伸びる鎖に引かれて門をくぐった。
+		PRINTFORML 然后就像角色一样，被他从手中延伸的锁链牵引着穿过大门。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTDATAL
-		DATAFORM 「ねぇ、またするんだよね？」
-		DATAFORM 「ねぇねぇ、今日はなにをするの？」
-		DATAFORM 「どんなコトするのかな？」
+		DATAFORM 「呐，还要做对吧？」
+		DATAFORM 「呐呐，今天要做什么？」
+		DATAFORM 「会做什么样的事情呢？」
 	ENDDATA
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME(0)%の家までついてきた%CALLNAME:角色%は、%CALLNAME:MASTER%のことも忘れたかのように彼に肩を抱かれながら門をくぐった。
+		PRINTFORML 跟到%NTR_NAME(0)%家门的%CALLNAME:角色%，像是忘记了%CALLNAME:MASTER%的存在一般，被他搂着肩膀穿过大门。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の家までついてきた%CALLNAME:角色%は、まるで恋人同士のように彼に肩を抱かれながら門をくぐった。
+		PRINTFORML 跟到%NTR_NAME(0)%家门的%CALLNAME:角色%，宛如恋人般被他搂着肩膀穿过大门。
 	ENDIF
 
 ELSE
 
 	PRINTFORML 「・・」
-	PRINTFORML %CALLNAME:角色%は表面上大人しく%NTR_NAME(0)%の家に同行した。
+	PRINTFORML %CALLNAME:角色%表面上乖乖地跟着去了%NTR_NAME(0)%的家。
 	IF TALENT:角色:恋慕
-		PRINTFORML （・・許して・・%CALLNAME:MASTER%・・）
+		PRINTFORML （・・原谅我・・%CALLNAME:MASTER%・・）
 	ENDIF
 
 ENDIF
@@ -98,64 +98,64 @@ ENDIF
 RETURN 0
 
 ;==================================================
-;訪問者と会话(お持ち帰り)
+;与访客对话（带回家）
 ;==================================================
-@NTR_KOJO_K8_10_1(角色, 調教者)
+@NTR_KOJO_K8_10_1(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「今日は、ナニするの？」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の膝の上に腰掛けて話している。
+	PRINTFORML 「今天，要做什么？」
+	PRINTFORML %CALLNAME:角色%坐在%NTR_NAME(0)%的膝上聊着天。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「今日は、ナニするの？」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の膝の上に腰掛けて話している。
+	PRINTFORML 「今天，要做什么？」
+	PRINTFORML %CALLNAME:角色%坐在%NTR_NAME(0)%的膝上聊着天。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「痛いことはしないよね？」 
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の隣に腰掛けて話している。
+	PRINTFORML 「不会做痛痛的事对吧？」
+	PRINTFORML %CALLNAME:角色%坐在%NTR_NAME(0)%的身旁聊着天。
 
 ELSE
 
-	PRINTFORML 「ここ、どこ！おうちに帰して」
+	PRINTFORML 「这里，是哪里！让我回家」
 
 ENDIF
 
 RETURN 0
 
 ;==================================================
-;訪問者とキス(お持ち帰り)
+;与访客接吻（带回家）
 ;==================================================
-@NTR_KOJO_K8_10_2(角色, 調教者)
+@NTR_KOJO_K8_10_2(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「んっ・・んっ・・ちゅっ・・」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と舌を絡ませあっている。
+	PRINTFORML 「嗯っ・・嗯っ・・啾っ・・」
+	PRINTFORML %CALLNAME:角色%与%NTR_NAME(0)%舌头纠缠在一起。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「んっ・・んっ・・ちゅっ・・」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と唇を重ね、彼の舌を拒むことなく受け入れ舌を絡めている。
+	PRINTFORML 「嗯っ・・嗯っ・・啾っ・・」
+	PRINTFORML %CALLNAME:角色%与%NTR_NAME(0)%双唇相叠，没有拒绝他的舌头，主动缠绕上去。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「んっ・・んっ・・ちゅっ・・」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と唇を重ね、彼の舌を拒むことなく受け入れている。
+	PRINTFORML 「嗯っ・・嗯っ・・啾っ・・」
+	PRINTFORML %CALLNAME:角色%与%NTR_NAME(0)%双唇相叠，没有拒绝他的舌头，接受了进来。
 
 ELSE
 
-	PRINTFORML %CALLNAME:角色%は抵抗したが頬を張られ、震えながら口付けをした。
+	PRINTFORML %CALLNAME:角色%反抗了一下，却被扇了耳光，颤抖着接受了亲吻。
 	IF TALENT:角色:恋慕
-		PRINTFORML （・・%CALLNAME:MASTER%・・たすけて・・）
+		PRINTFORML （・・%CALLNAME:MASTER%・・救救我・・）
 	ELSE
 	ENDIF
 
@@ -164,139 +164,139 @@ ENDIF
 RETURN 0
 
 ;==================================================
-;訪問者と六九式(お持ち帰り)
+;与访客六九式（带回家）
 ;==================================================
-@NTR_KOJO_K8_10_3(角色, 調教者)
+@NTR_KOJO_K8_10_3(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「れろっ・・ぺろっ・・あっ、あっ、んあっ」
-	PRINTFORML %NTR_NAME(0)%の指が%CALLNAME:角色%の膣をかき回すと、%CALLNAME:角色%は阴茎から口を離して喘ぎ声を上げた。
+	PRINTFORML 「舔ろっ・・舔ろっ・・啊っ、啊っ、嗯啊っ」
+	PRINTFORML %NTR_NAME(0)%的手指搅弄着%CALLNAME:角色%的阴道，%CALLNAME:角色%松开了嘴里的阴茎，发出娇喘声。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「れろっ・・ぺろっ・・あっ、あっ、んあっ」
-	PRINTFORML %NTR_NAME(0)%の指が%CALLNAME:角色%の膣をかき回すと、%CALLNAME:角色%は阴茎から口を離して喘ぎ声を上げた。
+	PRINTFORML 「舔ろっ・・舔ろっ・・啊っ、啊っ、嗯啊っ」
+	PRINTFORML %NTR_NAME(0)%的手指搅弄着%CALLNAME:角色%的阴道，%CALLNAME:角色%松开了嘴里的阴茎，发出娇喘声。
 	IF TALENT:角色:恋慕
-		PRINTFORML 快楽に酔いしれる%CALLNAME:角色%は、%CALLNAME:MASTER%への想いを手放してしまったかのようだった。
+		PRINTFORML 沉醉于快感的%CALLNAME:角色%，似乎已经放手了对%CALLNAME:MASTER%的思念。
 	ELSE
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「ぺろっ・・あっ、あっ、んんっ、おっきぃっ」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎をしゃぶりながら、舔阴の快楽に溺れつつあった。
+	PRINTFORML 「舔っ・・啊っ、啊っ、嗯嗯っ、好大っ」
+	PRINTFORML %CALLNAME:角色%一边吮吸着%NTR_NAME(0)%的阴茎，一边沉溺于舔阴的快感之中。
 	IF TALENT:角色:恋慕
-		PRINTFORML 快楽に酔いしれる%CALLNAME:角色%からは、%CALLNAME:MASTER%への想いは消えうせつつあった。
+		PRINTFORML 沉醉于快感的%CALLNAME:角色%身上，对%CALLNAME:MASTER%的思念正在逐渐消散。
 	ELSE
 	ENDIF
 
 ELSE
 
-	PRINTFORML %CALLNAME:角色%は暴力の恐怖に怯え、%NTR_NAME(0)%に従い六九式の体勢になり、阴茎を咥えた。
-	PRINTFORML （こんなこと、したくないよぅ）
+	PRINTFORML %CALLNAME:角色%因对暴力的恐惧而颤抖，顺从%NTR_NAME(0)%摆出六九式的姿势，含住了阴茎。
+	PRINTFORML （这种事，人家不想做啦）
 
 ENDIF
 
 RETURN 0
 
 ;==================================================
-;訪問者と性交(お持ち帰り)
+;与访客性交（带回家）
 ;==================================================
-@NTR_KOJO_K8_10_4(角色, 調教者)
+@NTR_KOJO_K8_10_4(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
-IF TFLAG:輪姦内容 == 輪姦_1A
-	;菊花セックス分岐
-	CALL NTR_KOJO_K8_10_4_A(角色, 調教者)
+IF TFLAG:访问者宅遗留TFLAG == 遗留参数_行为_1A
+	;菊花性爱分支
+	CALL NTR_KOJO_K8_10_4_A(角色, 调教者)
 ELSE
 	;通常
-	CALL NTR_KOJO_K8_10_4_V(角色, 調教者)
+	CALL NTR_KOJO_K8_10_4_V(角色, 调教者)
 ENDIF
 RETURN 0
 
-;訪問者とＶ性交(お持ち帰り)
-@NTR_KOJO_K8_10_4_V(角色, 調教者)
+;与访客Ｖ性交（带回家）
+@NTR_KOJO_K8_10_4_V(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		PRINTFORML 「あっん・・んぅあっ・・エッチって・・・気持ちっ・・イイ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎から与えられる初めての快感に酔いしれている
+		PRINTFORML 「啊っ嗯・・嗯ぅ啊っ・・色色的事・・・好っ・・舒服・・」
+		PRINTFORML %CALLNAME:角色%沉醉于%NTR_NAME(0)%的阴茎所带来的初次快感之中
 		;非处女
 	ELSE
 
-		PRINTFORML 「あんっあっあっんっ、んあっはぁっあっくぅん」
-		PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱し、涎を垂らしながら喘いでいる
+		PRINTFORML 「啊嗯っ啊っ啊っ嗯っ、嗯啊っ哈ぁっ啊っ咕ぅ嗯」
+		PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱，流着口水娇喘着
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		PRINTFORML 「あっん・・んぅあっ・・エッチって・・・気持ちっ・・イイ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎から与えられる初めての快感に酔いしれている
+		PRINTFORML 「啊っ嗯・・嗯ぅ啊っ・・色色的事・・・好っ・・舒服・・」
+		PRINTFORML %CALLNAME:角色%沉醉于%NTR_NAME(0)%的阴茎所带来的初次快感之中
 		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人に处女を捧げてしまった。
+			PRINTFORML %CALLNAME:角色%将处女之身献给了%CALLNAME:MASTER%以外的男人。
 		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に初めてを捧げることができて嬉しそうだ。
+			PRINTFORML %CALLNAME:角色%能将初次献给%NTR_NAME(0)%，看起来很高兴。
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「あんっあっあっんっ、んあっはぁっあっくぅん」
-		PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱し、涎を垂らしながら喘いでいる
+		PRINTFORML 「啊嗯っ啊っ啊っ嗯っ、嗯啊っ哈ぁっ啊っ咕ぅ嗯」
+		PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱，流着口水娇喘着
 		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人と激しく交わっている。
+			PRINTFORML %CALLNAME:角色%正与%CALLNAME:MASTER%以外的男人激烈交合着。
 		ELSE
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と激しく交わっている。
+			PRINTFORML %CALLNAME:角色%正与%NTR_NAME(0)%激烈交合着。
 		ENDIF
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		PRINTFORML 「あっ・・それってっ・・やだ・・・あっ・・ああーーーっ！！」
+		PRINTFORML 「啊っ・・那个っ・・不要・・・啊っ・・啊啊---っ！！」
 		IF TALENT:角色:恋慕
-			PRINTFORML 直前で%CALLNAME:MASTER%への想いを思い出した%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の想いを引き裂いた。
+			PRINTFORML 在最后一刻想起了对%CALLNAME:MASTER%的思念的%CALLNAME:角色%，却被%NTR_NAME(0)%毫不留情地撕裂了她的思念。
 		ELSE
-			PRINTFORML 直前で怖気づいてしまった%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の純潔を引き裂いた。
+			PRINTFORML 在最后一刻退缩了的%CALLNAME:角色%，却被%NTR_NAME(0)%毫不留情地撕裂了她的纯洁。
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「あっ・・や・・・やだ・・だ、だめぇ・・」
-		PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱して喘いでいる
+		PRINTFORML 「啊っ・・不要・・不要・・不、不行诶・・」
+		PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱地娇喘着
 		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
+			PRINTFORML %NTR_NAME(0)%毫不留情地压制着%CALLNAME:角色%对%CALLNAME:MASTER%的思念。
 		ELSE
-			PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
+			PRINTFORML %NTR_NAME(0)%毫不留情地压制着她。
 		ENDIF
 	ENDIF
 
 ELSE
 
 	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
-		PRINTFORML 「やだッ！それだけは、やだぁ・・・ぁぁぁああああ～～～」
-		PRINTFORML %NTR_NAME(0)%は抵抗する%CALLNAME:角色%を組み敷き、笑みを浮かべながら幼いワレメを貫いた。
-		PRINTFORML 太ももを赤い雫が伝っている
+		PRINTFORML 「不要ッ！只有那个，不要啊・・・啊啊啊ああああ～～～」
+		PRINTFORML %NTR_NAME(0)%将反抗的%CALLNAME:角色%压在身下，浮现笑容，贯穿了幼小的裂隙。
+		PRINTFORML 大腿上流淌着红色的血滴
 		IF TALENT:角色:恋慕
-			PRINTFORML 直前で%CALLNAME:MASTER%への想いを思い出した%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の想いを引き裂いた。
+			PRINTFORML 在最后一刻想起了对%CALLNAME:MASTER%的思念的%CALLNAME:角色%，却被%NTR_NAME(0)%毫不留情地撕裂了她的思念。
 		ELSE
-			PRINTFORML 直前で怖気づいてしまった%CALLNAME:角色%であったが、%NTR_NAME(0)%は容赦なく彼女の純潔を引き裂いた。
+			PRINTFORML 在最后一刻退缩了的%CALLNAME:角色%，却被%NTR_NAME(0)%毫不留情地撕裂了她的纯洁。
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
-		PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
+		PRINTFORML 「啊ぁっ，不要啊・・っ！・・明明不行・・・不是的・・明明・・」
+		PRINTFORML %NTR_NAME(0)%对安静下来的%CALLNAME:角色%，为了满足欲望而挺腰撞击着
 		IF TALENT:角色:恋慕
-			PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
+			PRINTFORML %NTR_NAME(0)%毫不留情地压制着%CALLNAME:角色%对%CALLNAME:MASTER%的思念。
 		ELSE
-			PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
+			PRINTFORML %NTR_NAME(0)%毫不留情地压制着她。
 		ENDIF
 	ENDIF
 
@@ -305,44 +305,44 @@ ENDIF
 RETURN 0
 
 
-;訪問者とＡ性交(お持ち帰り)
-@NTR_KOJO_K8_10_4_A(角色, 調教者)
+;与访客Ａ性交（带回家）
+@NTR_KOJO_K8_10_4_A(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「あんっあっ、おっ、おしりっ、イイっ、んあっはぁっあっくぅん」
-	PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱し、涎を垂らしながら喘いでいる
+	PRINTFORML 「啊嗯っ啊っ，哦っ，屁股っ，好舒服っ，嗯啊っ哈ぁっ啊っ咕ぅ嗯」
+	PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱，流着口水娇喘着
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「あんっあっ、おっ、おしりっ、イイっ、んあっはぁっあっくぅん」
-	PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱し、涎を垂らしながら喘いでいる
+	PRINTFORML 「啊嗯っ啊っ，哦っ，屁股っ，好舒服っ，嗯啊っ哈ぁっ啊っ咕ぅ嗯」
+	PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱，流着口水娇喘着
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%以外の男人と激しく交わっている。
+		PRINTFORML %CALLNAME:角色%正与%CALLNAME:MASTER%以外的男人激烈交合着。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%と激しく交わっている。
+		PRINTFORML %CALLNAME:角色%正与%NTR_NAME(0)%激烈交合着。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「あっ・・や・・やだ・・おしり、だ、だめぇ・・」
-	PRINTFORML %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:角色%は、息を乱して喘いでいる
+	PRINTFORML 「啊っ・・不要・・不要・・屁股，不、不行诶・・」
+	PRINTFORML %NTR_NAME(0)%粗暴的腰部动作让%CALLNAME:角色%呼吸紊乱地娇喘着
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
+		PRINTFORML %NTR_NAME(0)%毫不留情地压制着%CALLNAME:角色%对%CALLNAME:MASTER%的思念。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
+		PRINTFORML %NTR_NAME(0)%毫不留情地压制着她。
 	ENDIF
 
 ELSE
 
-	PRINTFORML 「あぁっ、やだぁ・・っ！・・だめなのに・・・ちがうの・・なのに・・・」
-	PRINTFORML %NTR_NAME(0)%は大人しくなった%CALLNAME:角色%に対し、欲望を満たすために腰を打ちつけた
+	PRINTFORML 「啊ぁっ，不要啊・・っ！・・明明不行・・・不是的・・明明・・」
+	PRINTFORML %NTR_NAME(0)%对安静下来的%CALLNAME:角色%，为了满足欲望而挺腰撞击着
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%の%CALLNAME:MASTER%への想いを、%NTR_NAME(0)%は容赦なくねじ伏せてゆく。
+		PRINTFORML %NTR_NAME(0)%毫不留情地压制着%CALLNAME:角色%对%CALLNAME:MASTER%的思念。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%は容赦なく彼女をねじ伏せてゆく。
+		PRINTFORML %NTR_NAME(0)%毫不留情地压制着她。
 	ENDIF
 
 ENDIF
@@ -350,160 +350,160 @@ ENDIF
 RETURN 0
 
 ;==================================================
-;訪問者の射精(お持ち帰り)
+;访客的射精（带回家）
 ;==================================================
-@NTR_KOJO_K8_10_5(角色, 調教者)
+@NTR_KOJO_K8_10_5(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
-IF TFLAG:輪姦内容 == 輪姦_1A
-	;菊花セックス分岐
-	CALL NTR_KOJO_K8_10_5_A(角色, 調教者)
+IF TFLAG:访问者宅遗留TFLAG == 遗留参数_行为_1A
+	;菊花性爱分支
+	CALL NTR_KOJO_K8_10_5_A(角色, 调教者)
 ELSE
 	;通常
-	CALL NTR_KOJO_K8_10_5_V(角色, 調教者)
+	CALL NTR_KOJO_K8_10_5_V(角色, 调教者)
 ENDIF
 RETURN 0
 
-;訪問者のＶ射精(お持ち帰り)
-@NTR_KOJO_K8_10_5_V(角色, 調教者)
+;访客的Ｖ射精（带回家）
+@NTR_KOJO_K8_10_5_V(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が子宮を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始在阴道内射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击子宫的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的体内，装不下的东西发出声响漏了出来
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が子宮を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
-	PRINTFORML 「ねぇ・・あたい、ご主人様のオンナになるんだよね？」
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始在阴道内射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击子宫的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的体内，装不下的东西发出声响漏了出来
+	PRINTFORML 「呐・・本大爷，要成为主人的女人了对吧？」
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%への想いも忘れ、頬を染め%NTR_NAME(0)%にしがみついた。
+		PRINTFORML %CALLNAME:角色%忘记了对%CALLNAME:MASTER%的思念，染红了脸颊紧紧抱住%NTR_NAME(0)%。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は頬を染め%NTR_NAME(0)%にしがみついた。
+		PRINTFORML %CALLNAME:角色%染红了脸颊紧紧抱住%NTR_NAME(0)%。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が子宮を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始在阴道内射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击子宫的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的体内，装不下的东西发出声响漏了出来
 	IF TALENT:角色:恋慕
-		PRINTFORML 胎内に残る精液の熱さが%CALLNAME:MASTER%への想いをも溶かしてゆく。
+		PRINTFORML 体内残留的精液的热度，正在融化对%CALLNAME:MASTER%的思念。
 	ELSE
 	ENDIF
-	PRINTFORML %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:角色%の姿をニヤつきながら摄影している。
+	PRINTFORML %NTR_NAME(0)%一边坏笑着，一边拍摄着双腿敞开、茫然失神的%CALLNAME:角色%的样子。
 
 ELSE
 
-	PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣奥に阴茎を押し付けると、そのまま大量に射精した。
-	PRINTFORML 「あっ・・あっ・・お腹・・熱い・・よぅ・・・」
+	PRINTFORML %NTR_NAME(0)%将阴茎顶到%CALLNAME:角色%的阴道深处，就那样大量射精了。
+	PRINTFORML 「啊っ・・啊っ・・肚子・・好烫・・啦・・・」
 	IF TALENT:角色:恋慕
-		PRINTFORML 胎内に残る精液の熱さが%CALLNAME:MASTER%を裏切った自分への罰だとでも思っているのだろうか。
+		PRINTFORML 体内残留的精液的热度，她大概觉得这是对背叛了%CALLNAME:MASTER%的自己的惩罚吧。
 	ELSE
 	ENDIF
-	PRINTFORML %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:角色%の姿をニヤつきながら摄影している。
+	PRINTFORML %NTR_NAME(0)%一边坏笑着，一边拍摄着双腿敞开、茫然失神的%CALLNAME:角色%的样子。
 
 ENDIF
 
 RETURN 0
 
 
-;訪問者のＡ射精(お持ち帰り)
-@NTR_KOJO_K8_10_5_A(角色, 調教者)
+;访客的Ａ射精（带回家）
+@NTR_KOJO_K8_10_5_A(角色, 调教者)
 #DIM 角色
-#DIM 調教者
+#DIM 调教者
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が腸壁を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の腸内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始在阴道内射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击肠壁的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的肠内，装不下的东西发出声响漏了出来
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が腸壁を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の腸内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
-	PRINTFORML 「ねぇ・・あたい、ご主人様のオンナになるんだよね？」
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击肠壁的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的肠内，装不下的东西发出声响漏了出来
+	PRINTFORML 「呐・・本大爷，要成为主人的女人了对吧？」
 	IF TALENT:角色:恋慕
-		PRINTFORML %CALLNAME:角色%は%CALLNAME:MASTER%への想いも忘れ、頬を染め%NTR_NAME(0)%にしがみついた。
+		PRINTFORML %CALLNAME:角色%忘记了对%CALLNAME:MASTER%的思念，染红了脸颊紧紧抱住%NTR_NAME(0)%。
 	ELSE
-		PRINTFORML %CALLNAME:角色%は頬を染め%NTR_NAME(0)%にしがみついた。
+		PRINTFORML %CALLNAME:角色%染红了脸颊紧紧抱住%NTR_NAME(0)%。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
-	PRINTFORML %NTR_NAME(0)%が射精を始めると、%CALLNAME:角色%は腹に手を当てて精液が腸壁を叩く感覚に浸った
-	PRINTFORML どろりとした%NTR_NAME(0)%の精液が%CALLNAME:角色%の腸内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+	PRINTFORML 「呼ゃぁあああぅっ・・啊っ・・抽搐着・・好厉害・・・」
+	PRINTFORML %NTR_NAME(0)%开始射精，%CALLNAME:角色%把手放在腹部，沉浸在精液敲击肠壁的感觉中
+	PRINTFORML 浓稠的%NTR_NAME(0)%的精液填满了%CALLNAME:角色%的肠内，装不下的东西发出声响漏了出来
 	IF TALENT:角色:恋慕
-		PRINTFORML 腸内に残る精液の熱さが%CALLNAME:MASTER%への想いをも溶かしてゆく。
+		PRINTFORML 肠内残留的精液的热度，正在融化对%CALLNAME:MASTER%的思念。
 	ELSE
 	ENDIF
-	PRINTFORML %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:角色%の姿をニヤつきながら摄影している。
+	PRINTFORML %NTR_NAME(0)%一边坏笑着，一边拍摄着双腿敞开、茫然失神的%CALLNAME:角色%的样子。
 
 ELSE
 
-	PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%のアヌスに阴茎を深々と突きこむと、そのまま大量に射精した。
-	PRINTFORML 「あっ・・あっ・・お腹・・熱い・・よぅ・・・」
+	PRINTFORML %NTR_NAME(0)%将阴茎深深插入%CALLNAME:角色%的肛门，就那样大量射精了。
+	PRINTFORML 「啊っ・・啊っ・・肚子・・好烫・・啦・・・」
 	IF TALENT:角色:恋慕
-		PRINTFORML 腸内に残る精液の熱さが%CALLNAME:MASTER%を裏切った自分への罰だとでも思っているのだろうか。
+		PRINTFORML 肠内残留的精液的热度，她大概觉得这是对背叛了%CALLNAME:MASTER%的自己的惩罚吧。
 	ELSE
 	ENDIF
-	PRINTFORML %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:角色%の姿をニヤつきながら摄影している。
+	PRINTFORML %NTR_NAME(0)%一边坏笑着，一边拍摄着双腿敞开、茫然失神的%CALLNAME:角色%的样子。
 
 ENDIF
 
 RETURN 0
 
 ;==================================================
-;朝の侍奉(お持ち帰り)
+;早晨的侍奉（带回家）
 ;==================================================
-;フェラ侍奉
+;口交侍奉
 @NTR_KOJO_K8_14_0(角色)
 #DIM 角色
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「んっ・・ちゅ・・ぢゅ・・くちゅっ・・」」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を口いっぱいにほお張るようにして吸い続けた。
-	PRINTFORML 「んっ・・んんっ！ ん・・・・こくっ・・」
-	PRINTFORML そして口内に放たれたおびただしい量の精液を残さず飲み込んだ。
+	PRINTFORML 「嗯っ・・啾・・咕啾・・咕啾っ・・」」
+	PRINTFORML %CALLNAME:角色%把%NTR_NAME(0)%的阴茎塞满口腔，不停吸吮着。
+	PRINTFORML 「嗯っ・・嗯んっ！ 嗯・・・・咕くっ・・」
+	PRINTFORML 然后把射在口中的大量精液一滴不剩地咽了下去。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「んっ・・ちゅ・・ぢゅ・・くちゅっ・・」」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を口いっぱいにほお張るようにして吸い続けた。
-	PRINTFORML 「んっ・・んんっ！ ん・・・・こくっ・・」
-	PRINTFORML そして口内に放たれたおびただしい量の精液を残さず飲み込んだ。
+	PRINTFORML 「嗯っ・・啾・・咕啾・・咕啾っ・・」」
+	PRINTFORML %CALLNAME:角色%把%NTR_NAME(0)%的阴茎塞满口腔，不停吸吮着。
+	PRINTFORML 「嗯っ・・嗯嗯っ！ 嗯・・・・咕くっ・・」
+	PRINTFORML 然后把射在口中的大量精液一滴不剩地咽了下去。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、彼の精液にももはや抵抗は感じていなかった。
+		PRINTFORML 对%NTR_NAME_1_2(角色)%的肉棒和他的精液，她已经不再感到抗拒了。
 		IF HAS_PENIS(MASTER)
-			PRINTFORML （・・%CALLNAME:MASTER%より・・すごい・・大きいし・・太いし・・）
+			PRINTFORML （・・比%CALLNAME:MASTER%・・好厉害・・又大又粗・・）
 		ELSE
-			PRINTFORML （・・すごい・・大きいし・・太いし・・）
+			PRINTFORML （・・好厉害・・又大又粗・・）
 		ENDIF
 	ELSE
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「んっ・・ちゅ・・ぢゅ・・くちゅっ・・」」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を口いっぱいにほお張るようにして吸い続けた。
-	PRINTFORML 「んっ・・んんっ！ ん・・・・こくっ・・」
-	PRINTFORML そして口内に放たれたおびただしい量の精液を残さず飲み込んだ。
+	PRINTFORML 「嗯っ・・啾・・咕啾・・咕啾っ・・」」
+	PRINTFORML %CALLNAME:角色%把%NTR_NAME(0)%的阴茎塞满口腔，不停吸吮着。
+	PRINTFORML 「嗯っ・・嗯嗯っ！ 嗯・・・・咕くっ・・」
+	PRINTFORML 然后把射在口中的大量精液一滴不剩地咽了下去。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+		PRINTFORML 对%NTR_NAME_1_2(角色)%的肉棒和他的精液，她的抗拒正在逐渐消失。
 		IF HAS_PENIS(MASTER)
-			PRINTFORML （・・%CALLNAME:MASTER%より・・すごい・・）
+			PRINTFORML （・・比%CALLNAME:MASTER%・・好厉害・・）
 		ELSE
-			PRINTFORML （・・すごい・・こんなの・・）
+			PRINTFORML （・・好厉害・・这种东西・・）
 		ENDIF
 	ELSE
 	ENDIF
@@ -511,22 +511,22 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSE
 
 	;处女
-	IF TALENT:角色:处女 
-		PRINTFORML 「んっ・・んんっ・・むっ・・」
-		PRINTFORML %CALLNAME:角色%は处女を奪われるよりはと自ら%NTR_NAME(0)%の阴茎に唇を捧げた。
-		PRINTFORML 「んっ・・んんっ！ ん・・・・こくっ・・」
-		PRINTFORML そして口内に放たれたおびただしい量の精液を吐き出すことなく飲みこむしかなかった。
+	IF TALENT:角色:处女
+		PRINTFORML 「嗯っ・・嗯んっ・・唔っ・・」
+		PRINTFORML %CALLNAME:角色%想着总比被夺走处女要好，主动用嘴唇侍奉了%NTR_NAME(0)%的阴茎。
+		PRINTFORML 「嗯っ・・嗯嗯っ！ 嗯・・・・咕くっ・・」
+		PRINTFORML 然后射在口中的大量精液，她只能全部咽下去。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「んっ・・んんっ・・むっ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を口いっぱいにほお張るようにして吸うことを強いられた。
-		PRINTFORML 「んっ・・んんっ！ ん・・・・こくっ・・」
-		PRINTFORML そして口内に放たれたおびただしい量の精液を吐き出すことなく飲みこむしかなかった。
+		PRINTFORML 「嗯っ・・嗯嗯っ・・唔っ・・」
+		PRINTFORML %CALLNAME:角色%被迫把%NTR_NAME(0)%的阴茎塞满口腔吸吮着。
+		PRINTFORML 「嗯っ・・嗯嗯っ！ 嗯・・・・咕くっ・・」
+		PRINTFORML 然后射在口中的大量精液，她只能全部咽下去。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 	ENDIF
 
@@ -540,51 +540,51 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「ああんっ！ お、おしりっ・・おしりっ、いいよおっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を直腸深く打ち込まれ、奥の奥まで犯されよがり狂った。
-	PRINTFORML 深々と挿入されたまま射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊んっ！ 哦、屁股っ・・屁股っ，好棒っ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入直肠，被侵犯到最深处而疯狂高潮。
+	PRINTFORML 就那样深深插入着射精的同时，%CALLNAME:角色%也迎来了高潮。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「ああんっ！ お、おしりっ・・おしりっ、いいよおっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を直腸深く打ち込まれ、奥の奥まで犯されよがり狂った。
-	PRINTFORML 深々と挿入されたまま射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊んっ！ 哦、屁股っ・・屁股っ，好棒っ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入直肠，被侵犯到最深处而疯狂高潮。
+	PRINTFORML 就那样深深插入着射精的同时，%CALLNAME:角色%也迎来了高潮。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にすっかり馴染んだ彼女の菊花は、もはや彼専用の性器とさえいえた。
+		PRINTFORML 完全习惯了%NTR_NAME_1_2(角色)%肉棒的她的菊花，已经可以说是他专用的性器了。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒にすっかり馴染んだ彼女の菊花は、もはや彼専用の性器とさえいえた。
+		PRINTFORML 完全习惯了%NTR_NAME(0)%肉棒的她的菊花，已经可以说是他专用的性器了。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「ああっ！ お、おしりっ・・おしりで、いっちゃううっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を直腸深く打ち込まれ、奥の奥まで犯された。
-	PRINTFORML 深々と挿入されたまま射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊っ！ 哦、屁股っ・・用屁股，要去了っ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入直肠，被侵犯到最深处。
+	PRINTFORML 就那样深深插入着射精的同时，%CALLNAME:角色%也迎来了高潮。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+		PRINTFORML 对%NTR_NAME_1_2(角色)%的肉棒和他的精液，她的抗拒正在逐渐消失。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+		PRINTFORML 对%NTR_NAME(0)%的肉棒和他的精液，她的抗拒正在逐渐消失。
 	ENDIF
 
 ELSE
 
 	;处女
-	IF TALENT:角色:处女 
-		PRINTFORML 「んっ・・んあっ・・ぐっ・・」
-		PRINTFORML %CALLNAME:角色%は处女を奪われるよりはと%NTR_NAME(0)%にアヌスを捧げた。
-		PRINTFORML 「あっ・・ああっ！ あああああっ！！」
-		PRINTFORML 深々と挿入されたまま射精され、%CALLNAME:角色%は悲痛な叫び声をあげた。
+	IF TALENT:角色:处女
+		PRINTFORML 「嗯っ・・嗯啊っ・・咕っ・・」
+		PRINTFORML %CALLNAME:角色%想着总比被夺走处女要好，将肛门献给了%NTR_NAME(0)%。
+		PRINTFORML 「啊っ・・啊啊っ！ 啊啊啊啊啊っ！！」
+		PRINTFORML 就那样深深插入着射精，%CALLNAME:角色%发出了悲痛的叫声。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「んっ・・んあっ・・ぐっ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を直腸深く打ち込まれ、奥の奥まで犯された。
-		PRINTFORML 「あっ・・ああっ！ あああああっ！！」
-		PRINTFORML 深々と挿入されたまま射精され、%CALLNAME:角色%は悲痛な叫び声をあげた。
+		PRINTFORML 「嗯っ・・嗯啊っ・・咕っ・・」
+		PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入直肠，被侵犯到最深处。
+		PRINTFORML 「啊っ・・啊啊っ！ 啊啊啊啊啊っ！！」
+		PRINTFORML 就那样深深插入着射精，%CALLNAME:角色%发出了悲痛的叫声。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 	ENDIF
 
@@ -598,51 +598,51 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	PRINTFORML 「ああんっ！ だ、出してっ！ いっぱい出してえええっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を膣奥深く打ち込まれ、激しく犯されよがり狂った。
-	PRINTFORML 子宮めがけて射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊んっ！ 射、射进来っ！ 全都射进来えええっ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入阴道深处，被激烈侵犯而疯狂高潮。
+	PRINTFORML 对着子宫射精的同时，%CALLNAME:角色%也迎来了高潮。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	PRINTFORML 「ああんっ！ だ、出してっ！ いっぱい出してえええっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を膣奥深く打ち込まれ、激しく犯されよがり狂った。
-	PRINTFORML 子宮めがけて射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊んっ！ 射、射进来っ！ 全都射进来えええっ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入阴道深处，被激烈侵犯而疯狂高潮。
+	PRINTFORML 对着子宫射精的同时，%CALLNAME:角色%也迎来了高潮。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にすっかり馴染んだ彼女の性器は、もはや彼専用のものになりつつあった・
+		PRINTFORML 完全习惯了%NTR_NAME_1_2(角色)%肉棒的她的性器，正在变成他专用的东西・
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒にすっかり馴染んだ彼女の性器は、もはや彼専用のものになりつつあった・
+		PRINTFORML 完全习惯了%NTR_NAME(0)%肉棒的她的性器，正在变成他专用的东西・
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	PRINTFORML 「ああっ！ いくっ！ あたい、いっちゃううっ！！」
-	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を膣奥深く打ち込まれ、奥の奥まで犯された。
-	PRINTFORML 子宮めがけて射精されると同時に、%CALLNAME:角色%もまた絶頂をむかえた。
+	PRINTFORML 「啊啊っ！ 要去了っ！ 本大爷，要去了っ！！」
+	PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入阴道深处，被侵犯到最深处。
+	PRINTFORML 对着子宫射精的同时，%CALLNAME:角色%也迎来了高潮。
 	IF TALENT:角色:恋慕
-		PRINTFORML %NTR_NAME_1_2(角色)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+		PRINTFORML 对%NTR_NAME_1_2(角色)%的肉棒和他的精液，她的抗拒正在逐渐消失。
 	ELSE
-		PRINTFORML %NTR_NAME(0)%の肉棒にも、彼の精液にも抵抗は感じなくなりつつあった。
+		PRINTFORML 对%NTR_NAME(0)%的肉棒和他的精液，她的抗拒正在逐渐消失。
 	ENDIF
 
 ELSE
 
 	;处女
-	IF TALENT:角色:处女 
-		PRINTFORML 「やだ、やだああ！ いやああああっ！」
-		PRINTFORML %CALLNAME:角色%は处女を奪われ、悲痛な叫び声をあげた。
-		PRINTFORML 「い、いたっ・・いたい、よおっ・・」
-		PRINTFORML 無残に純潔を引き裂かれたあげく深々と挿入されたまま射精され、%CALLNAME:角色%はすすり泣くしかなかった。
+	IF TALENT:角色:处女
+		PRINTFORML 「不要，不要啊啊！ 不要啊啊啊啊っ！」
+		PRINTFORML %CALLNAME:角色%被夺走了处女，发出了悲痛的叫声。
+		PRINTFORML 「痛、痛っ・・好痛，啦っ・・」
+		PRINTFORML 纯洁被残忍撕裂后，就那样深深插入着射精，%CALLNAME:角色%只能抽泣着。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 		;非处女
 	ELSE
-		PRINTFORML 「やっ・・やあっ・・んんっ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎を膣奥深く打ち込まれ、奥の奥まで犯された。
-		PRINTFORML 「あっ・・いやっ！ いやあああああっ！！」
-		PRINTFORML 深々と挿入されたまま射精され、%CALLNAME:角色%は悲痛な叫び声をあげた。
+		PRINTFORML 「呀っ・・呀あっ・・嗯んっ・・」
+		PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%的阴茎深深插入阴道深处，被侵犯到最深处。
+		PRINTFORML 「啊っ・・不要っ！ 不要啊啊啊啊啊っ！！」
+		PRINTFORML 就那样深深插入着射精，%CALLNAME:角色%发出了悲痛的叫声。
 		IF TALENT:角色:恋慕
-			PRINTFORML （・・ごめんね・・ごめんね、%CALLNAME:MASTER%・・）
+			PRINTFORML （・・对不起・・对不起，%CALLNAME:MASTER%・・）
 		ENDIF
 	ENDIF
 

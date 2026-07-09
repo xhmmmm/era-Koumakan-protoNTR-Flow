@@ -160,15 +160,9 @@
 #DIM CONST 写真詳細_絶頂           = 3
 #DIM CONST 写真詳細_恋人           = 4
 
-#DIM CONST 輪姦_1V				   = 0
-#DIM CONST 輪姦_1A				   = 1
-#DIM CONST 輪姦_2MV				   = 2
-#DIM CONST 輪姦_2MA				   = 3
-#DIM CONST 輪姦_2VA				   = 4
-#DIM CONST 輪姦_2VV				   = 10
-#DIM CONST 輪姦_2AA				   = 11
-#DIM CONST 輪姦_3MAV			   = 20
-#DIM CONST 輪姦_0				   = -1
+#DIM CONST 遗留参数_行为_1V				   = 0
+#DIM CONST 遗留参数_行为_1A				   = 1
+#DIM CONST 遗留参数_行为_0				   = -1
 
 ;関数NTR_CHK_FAVORABLY()で使用する訪問者との好感度レベル
 #DIM CONST FAV_寝取られ			   = 9
