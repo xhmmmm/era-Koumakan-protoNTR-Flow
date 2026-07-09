@@ -1,0 +1,12 @@
+# 更新配置文件
+# 每行一个配置项，格式: key=value
+# # 开头为注释，不需要的项保持注释即可
+
+# 仓库地址（可选，留空使用默认地址）
+# repo_url=https://github.com/xhmmmm/era-Koumakan-protoNTR-Flow.git
+
+# 分支名称（可选，留空使用main）
+# branch=main
+
+# 代理：自动检测Windows系统代理设置，无需手动配置
+# 在"设置 > 网络和Internet > 代理"中配置即可
