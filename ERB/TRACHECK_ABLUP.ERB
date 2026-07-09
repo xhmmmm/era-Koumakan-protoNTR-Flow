@@ -1,4 +1,4 @@
-﻿@SOURCE_ABLUP(ARG)
+@SOURCE_ABLUP(ARG)
 IF ABL:ARG:战斗技能 < 20
 	IF EXP:ARG:战斗经验 > EXPLV:(ABL:ARG:战斗技能 + 3) || (EXP:ARG:战斗经验 > 5 && ABL:ARG:战斗技能 == 0)
 		ABL:ARG:战斗技能 ++
