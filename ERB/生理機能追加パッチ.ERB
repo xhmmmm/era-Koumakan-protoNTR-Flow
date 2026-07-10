@@ -9,8 +9,6 @@
 
 
 ;====================================================
-;SHOP.ERB～～～～～～～～～～～～～～～～～～
-
 
 ;AFTERTRA.ERB～～～～～～～～～～～～～～～～～～
 
@@ -23,8 +21,6 @@ TALENT:ARG:危险日 = 0
 
 ;生理関連---------------------------------
 @生理周期, ARG
-TRYCALL 生理周期DEBUG, ARG
-
 
 ;男(ふたなり以外)はスキップ
 SIF TALENT:ARG:性別 == 2 || TALENT:ARG:妖精 == 1
@@ -81,83 +77,3 @@ ELSEIF CFLAG:ARG:卵子生存日数 == 1
 	TALENT:ARG:危险日 = 0
 	CFLAG:ARG:卵子生存日数 ++
 ENDIF
-
-
-TRYCALL 生理周期DEBUG, ARG
-
-;SHOP_ITEM.ERB～～～～～～～～～～～～～～～～～
-;排卵诱发剂---------------------
-@排卵诱发剂追加処理, ARG
-TRYCALL 生理周期DEBUG, ARG
-
-;排卵日処理
-TALENT:ARG:危险日 = 1
-CFLAG:ARG:卵子生存日数 = 1
-CFLAG:ARG:生理周期 = 12
-
-TRYCALL 生理周期DEBUG, ARG
-
-
-;SHOP2.ERB～～～～～～～～～～～～～～～～～
-@簡易追加情報(ARG)
-
-IF TALENT:ARG:性別 == 3
-	LOCALS = ふ
-ELSEIF TALENT:ARG:性別 == 2
-	LOCALS = ♂
-ELSE
-	LOCALS = ♀
-ENDIF
-IF !FLAG:真实模式
-	IF TALENT:ARG:妊娠
-		LOCALS:1 = 孕
-	ELSEIF CFLAG:ARG:卵子生存日数 == 1
-		LOCALS:1 = 排
-	ELSEIF TALENT:ARG:危险日
-		LOCALS:1 = 危
-	ELSE
-		LOCALS:1 = 　
-	ENDIF
-	IF TALENT:ARG:处女 && (TALENT:ARG:性別 >= 2 && !TALENT:ARG:童贞)
-		LOCALS:2 = 処貞
-	ELSEIF TALENT:ARG:处女
-		LOCALS:2 = 処　
-		;ELSEIF TALENT:ARG:性別 >= 2 && !TALENT:ARG:童贞
-	ELSEIF IS_DOUTEI(ARG)
-		LOCALS:2 = 　貞
-	ELSE
-		LOCALS:2 = 　　
-	ENDIF
-	IF TALENT:ARG:恋慕
-		LOCALS:3 = 恋
-	ELSE
-		LOCALS:3 = 　
-	ENDIF
-	IF TALENT:ARG:淫乱 == 1
-		LOCALS:4 = 淫
-	ELSE
-		LOCALS:4 = 　
-	ENDIF
-	IF TALENT:ARG:NTR
-		LOCALS:5 = Ｎ
-	ELSE
-		LOCALS:5 = 　
-	ENDIF
-	LOCALS:6 = 　
-	IF TALENT:ARG:浮気的蜜唇
-		LOCALS:7 = 唇
-	ELSE
-		LOCALS:7 = 　
-	ENDIF
-	IF TALENT:ARG:浮気的蜜壶
-		LOCALS:8 = 壷
-	ELSE
-		LOCALS:8 = 　
-	ENDIF
-	IF TALENT:ARG:浮気的菊花
-		LOCALS:9 = 尻
-	ELSE
-		LOCALS:9 = 　
-	ENDIF
-ENDIF
-PRINTFORM  %LOCALS%%LOCALS:1%%LOCALS:2%%LOCALS:3%%LOCALS:4%%LOCALS:5%%LOCALS:6%%LOCALS:7%%LOCALS:8%%LOCALS:9%

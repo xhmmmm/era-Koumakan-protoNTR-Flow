@@ -43,8 +43,8 @@ PRINTFORM  气力
 CALL SHOP_彩色数据条(MAX(BASE:角色:1,0), MAXBASE:角色:1, 10, 颜色_浊黄, 颜色_深灰)
 PRINTFORM {MAX(BASE:角色:1,0),4}/{MAXBASE:角色:1,4}
 
-;行末：始终显示"簡易追加情報"，选中额外项目时在其后面追加
-CALL 簡易追加情報(角色)
+;行末：始终显示"SHOP_角色行_简易角色状态表"，选中额外项目时在其后面追加
+CALL SHOP_角色行_简易角色状态表(角色)
 SELECTCASE FLAG:能力显示_分组标签
 		;能力表示選択or性技表示選択
 		CASE 3, 4
@@ -352,3 +352,66 @@ ELSEIF RESULT >= 8000
 ENDIF
 CLEARLINE 1
 GOTO INPUT_LOOP
+
+@SHOP_角色行_简易角色状态表(ARG)
+
+IF TALENT:ARG:性別 == 3
+	LOCALS = ふ
+ELSEIF TALENT:ARG:性別 == 2
+	LOCALS = ♂
+ELSE
+	LOCALS = ♀
+ENDIF
+IF !FLAG:真实模式
+	IF TALENT:ARG:妊娠
+		LOCALS:1 = 孕
+	ELSEIF CFLAG:ARG:卵子生存日数 == 1
+		LOCALS:1 = 排
+	ELSEIF TALENT:ARG:危险日
+		LOCALS:1 = 危
+	ELSE
+		LOCALS:1 = 　
+	ENDIF
+	IF TALENT:ARG:处女 && (TALENT:ARG:性別 >= 2 && !TALENT:ARG:童贞)
+		LOCALS:2 = 処貞
+	ELSEIF TALENT:ARG:处女
+		LOCALS:2 = 処　
+		;ELSEIF TALENT:ARG:性別 >= 2 && !TALENT:ARG:童贞
+	ELSEIF IS_DOUTEI(ARG)
+		LOCALS:2 = 　貞
+	ELSE
+		LOCALS:2 = 　　
+	ENDIF
+	IF TALENT:ARG:恋慕
+		LOCALS:3 = 恋
+	ELSE
+		LOCALS:3 = 　
+	ENDIF
+	IF TALENT:ARG:淫乱 == 1
+		LOCALS:4 = 淫
+	ELSE
+		LOCALS:4 = 　
+	ENDIF
+	IF TALENT:ARG:NTR
+		LOCALS:5 = Ｎ
+	ELSE
+		LOCALS:5 = 　
+	ENDIF
+	LOCALS:6 = 　
+	IF TALENT:ARG:浮気的蜜唇
+		LOCALS:7 = 唇
+	ELSE
+		LOCALS:7 = 　
+	ENDIF
+	IF TALENT:ARG:浮気的蜜壶
+		LOCALS:8 = 壷
+	ELSE
+		LOCALS:8 = 　
+	ENDIF
+	IF TALENT:ARG:浮気的菊花
+		LOCALS:9 = 尻
+	ELSE
+		LOCALS:9 = 　
+	ENDIF
+ENDIF
+PRINTFORM  %LOCALS%%LOCALS:1%%LOCALS:2%%LOCALS:3%%LOCALS:4%%LOCALS:5%%LOCALS:6%%LOCALS:7%%LOCALS:8%%LOCALS:9%

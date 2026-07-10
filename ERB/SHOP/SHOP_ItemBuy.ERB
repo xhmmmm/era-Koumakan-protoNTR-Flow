@@ -551,3 +551,10 @@ FOR LOOP_I,70,96
 	ENDIF
 NEXT
 ITEMSALES:92 = 0
+
+;排卵诱发剂---------------------
+@排卵诱发剂追加処理, ARG
+;排卵日処理
+TALENT:ARG:危险日 = 1
+CFLAG:ARG:卵子生存日数 = 1
+CFLAG:ARG:生理周期 = 12
