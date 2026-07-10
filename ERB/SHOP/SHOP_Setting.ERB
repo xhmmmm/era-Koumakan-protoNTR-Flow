@@ -1,0 +1,52 @@
+;-------------------------------------------------------------------------------
+;起床时间快捷设定（从主菜单直接调用）
+;-------------------------------------------------------------------------------
+@SHOP_起床时间设定
+#DIM 当前时
+当前时 = CFLAG:MASTER:通常起床時間 / 60 + 1000
+$INPUT_LOOP
+PRINTFORML 今天的起床时间是{当前时 - 1000, 3}时
+PRINTL 什么时候起床？
+PRINTBUTTON "[－]", (当前时 == 1000 ? 1023 # 当前时 - 1)
+PRINTBUTTON "[＋]", (当前时 == 1023 ? 1000 # 当前时 + 1)
+PRINTL
+PRINTL [100] - 設定完了
+INPUT
+IF RESULT == 100
+	CFLAG:MASTER:通常起床時間 = (当前时 - 1000) * 60
+ELSEIF RESULT >= 0 && RESULT < 24
+	CFLAG:MASTER:通常起床時間 = RESULT * 60
+ELSE
+	SIF RESULT >= 1000 && RESULT < 1024
+		当前时 = RESULT
+	CLEARLINE 5
+	GOTO INPUT_LOOP
+ENDIF
+RETURN
+
+;-------------------------------------------------------------------------------
+;卧室快捷设定（从主菜单直接调用）
+;-------------------------------------------------------------------------------
+@SHOP_卧室设定
+#DIM LOOP_CHR
+PRINTL 可以改变睡觉的房间
+PRINTL [0] - 自己的房间
+FOR LOOP_CHR,1,CHARANUM
+	SIF TALENT:LOOP_CHR:恋慕
+		PRINTFORML [{LOOP_CHR,3}] - %CALLNAME:LOOP_CHR%の部屋
+NEXT
+$INPUT_LOOP
+INPUT
+IF RESULT < 0 || RESULT >= CHARANUM
+	CLEARLINE 1
+	GOTO INPUT_LOOP
+ELSEIF RESULT == 0
+	CFLAG:MASTER:開始位置 = 15
+ELSEIF TALENT:RESULT:恋慕
+	CFLAG:MASTER:開始位置 = CFLAG:RESULT:311
+ELSE
+	CLEARLINE 1
+	GOTO INPUT_LOOP
+ENDIF
+PRINTW 改变从第二天生效
+RETURN

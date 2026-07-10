@@ -1,7 +1,30 @@
 ;-------------------------------------------------------------------------------
+;收藏
+;-------------------------------------------------------------------------------
+@SHOP_收藏
+PRINTL [0] - 自己的收藏
+PRINTL [1] - 妖精女仆的收藏
+PRINTL [100] - 返回
+INPUT
+IF RESULT == 0
+	IF STRLENS(SAVESTR:10) > 1
+		CALL SHOP_收藏一览
+	ELSE
+		PRINTW 没有收藏
+	ENDIF
+	RESTART
+ELSEIF RESULT == 1
+	CALL 查看从妖精女仆那取得的收藏
+	RESTART
+ELSEIF RESULT == 100
+	RETURN
+ENDIF
+RESTART
+
+;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
-@SHOW_COLLECTION
+@SHOP_收藏一览
 #DIM キャラ番号
 #DIM キャラ番号2
 #DIM コマンド
@@ -25,7 +48,7 @@ FOR キャラ番号, 1, CHARANUM
 	NEXT
 NEXT
 DRAWLINE
-PRINT [0] - 返回 
+PRINT [0] - 返回
 INPUT
 コマンド = RESULT
 IF 0 == コマンド
@@ -85,7 +108,7 @@ FOR 収集品番号, 0, 99
 	収集品文字列 = %CALLNAME:キャラ番号 + TOSTR(収集品番号) + "/"%
 	収集品枚数 = STRCOUNT(SAVESTR:10, 収集品文字列)
 	IF 収集品枚数 > 0
-		重複枚数 += (収集品枚数 - 1) 
+		重複枚数 += (収集品枚数 - 1)
 		IF 重複削除
 			SAVESTR:10 = %REPLACE(SAVESTR:10 , 収集品文字列, "") + 収集品文字列%
 			販売価格 += 重複枚数 * 100
@@ -128,7 +151,7 @@ FOR 収集品番号, 写真_普段, 写真_NTR_抱擁
 		収集品文字列 = %CALLNAME:キャラ番号 + TOSTR(収集品番号) + "PH" + TOSTR(収集品詳細, "#")  + "/"%
 		収集品枚数 = STRCOUNT(SAVESTR:10, 収集品文字列)
 		IF 収集品枚数 > 0
-			重複枚数 += (収集品枚数 - 1) 
+			重複枚数 += (収集品枚数 - 1)
 			IF 重複削除
 				SAVESTR:10 = %REPLACE(SAVESTR:10 , 収集品文字列, "") + 収集品文字列%
 				SELECTCASE 収集品番号
@@ -180,7 +203,7 @@ FOR 収集品番号, 写真_NTR_キス, 写真_NTR_抱擁
 		収集品文字列 = %CALLNAME:キャラ番号 + TOSTR(収集品番号) + "PH" + TOSTR(収集品詳細, "#")  + "/"%
 		収集品枚数 = STRCOUNT(SAVESTR:10, 収集品文字列)
 		IF 収集品枚数 > 0
-			重複枚数 += (収集品枚数 - 1) 
+			重複枚数 += (収集品枚数 - 1)
 			IF 重複削除
 				SAVESTR:10 = %REPLACE(SAVESTR:10 , 収集品文字列, "") + 収集品文字列%
 				; 絶頂時の写真は値段３倍になる
@@ -252,4 +275,3 @@ IF 情色经验上昇量 > 0
 	PRINTFORML %"写真を売ったことで、" + CALLNAME:キャラ番号 + "は誰にでも股を開く淫売なのではないか、との噂が流れ始めた……。"%
 	EXP:キャラ番号:情色经验 += 情色经验上昇量
 ENDIF
-

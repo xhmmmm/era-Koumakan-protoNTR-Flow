@@ -1,0 +1,133 @@
+@SHOP_角色基础体力气力(ARG,类型)
+#FUNCTION
+#DIMS 类型
+SELECTCASE CALLNAME:ARG
+	CASE "美铃"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2500
+			CASE "气力"
+				RETURNF 2300
+		ENDSELECT
+	CASE "小恶魔"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2000
+			CASE "气力"
+				RETURNF 1000
+		ENDSELECT
+	CASE "帕秋莉"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 1300
+			CASE "气力"
+				RETURNF 2000
+		ENDSELECT
+	CASE "咲夜"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2000
+			CASE "气力"
+				RETURNF 1200
+		ENDSELECT
+	CASE "蕾米莉亚"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2200
+			CASE "气力"
+				RETURNF 1500
+		ENDSELECT
+	CASE "芙兰朵露"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2500
+			CASE "气力"
+				RETURNF 1000
+		ENDSELECT
+	CASE "艾丽娅"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 1800
+			CASE "气力"
+				RETURNF 1000
+		ENDSELECT
+	CASE "琪露诺"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2000
+			CASE "气力"
+				RETURNF 1100
+		ENDSELECT
+	CASE "大妖精"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 1900
+			CASE "气力"
+				RETURNF 1000
+		ENDSELECT
+	CASE "魔理沙"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2000
+			CASE "气力"
+				RETURNF 1300
+		ENDSELECT
+	CASE "灵梦"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2100
+			CASE "气力"
+				RETURNF 1400
+		ENDSELECT
+	CASE "露米娅"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2200
+			CASE "气力"
+				RETURNF 1100
+		ENDSELECT
+	CASE "爱丽丝"
+		SELECTCASE 类型
+			CASE "体力"
+				RETURNF 2000
+			CASE "气力"
+				RETURNF 1400
+		ENDSELECT
+ENDSELECT
+SELECTCASE 类型
+	CASE "体力"
+		RETURNF 2000
+	CASE "气力"
+		RETURNF 1500
+ENDSELECT
+
+@SHOP_计算最大体气(ARG)
+#DIM 最大值
+最大值 = SHOP_角色基础体力气力(ARG,"体力")
+最大值 += TALENT:ARG:淫乱 * 300
+最大值 += EXP:ARG:NTR陷落经验 > 0 ? 300 # 0
+最大值 += TALENT:ARG:自慰狂 * 200
+最大值 += TALENT:ARG:淫壶 * 200
+最大值 += TALENT:ARG:淫肛 * 200
+最大值 += TALENT:ARG:淫乳 * 200
+最大值 += TALENT:ARG:浮気的蜜唇 * 200
+最大值 += TALENT:ARG:浮気的蜜壶 * 200
+最大值 += TALENT:ARG:浮気的菊花 * 200
+SIF TALENT:ARG:妊娠
+	最大值 -= 500
+MAXBASE:ARG:体力 = MAX(1,最大值)
+
+最大值 = SHOP_角色基础体力气力(ARG,"气力")
+最大值 += TALENT:ARG:淫乱 * 300
+最大值 += EXP:ARG:NTR陷落经验 > 0 ? 300 # 0
+最大值 += TALENT:ARG:自慰狂 * 100
+最大值 += TALENT:ARG:淫壶 * 100
+最大值 += TALENT:ARG:淫肛 * 100
+最大值 += TALENT:ARG:淫乳 * 100
+最大值 += TALENT:ARG:浮気的蜜唇 * 300
+最大值 += TALENT:ARG:浮気的蜜壶 * 300
+最大值 += TALENT:ARG:浮気的菊花 * 300
+最大值 += TALENT:ARG:浮気癖 * 300
+SIF TALENT:ARG:妊娠
+	最大值 -= 500
+MAXBASE:ARG:气力 = MAX(1,最大值)
