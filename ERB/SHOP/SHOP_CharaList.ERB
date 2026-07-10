@@ -4,7 +4,7 @@
 #DIM LOOP_J
 #DIM 精子量
 ;默认不显示额外信息，选择后才在行末追加
-DRAWLINE
+CALL UI_轻分隔
 LOCALS = [ 0] %NAME:MASTER%
 PRINTFORM %LOCALS%
 ;名字对齐：补空格到固定宽度
@@ -13,7 +13,7 @@ SIF LOCAL > 0
 	PRINTFORM %" "*LOCAL%
 CALL SHOP_角色行数据(0)
 PRINTL
-DRAWLINE
+CALL UI_轻分隔
 FOR LOOP_CHR,1, CHARANUM
 	LOCALS = [{LOOP_CHR,2}] %CALLNAME:LOOP_CHR%
 	PRINTFORM %LOCALS%
@@ -167,17 +167,17 @@ SETCOLOR 保存色
 ;能力表示主界面
 ;-------------------------------------------------------------------------------
 @SHOP_能力表示
-CALL UI_重分隔
+CALL 主界面_重分隔
 ;如果选中了显示项目，第一行标注项目名称
 IF FLAG:能力显示_分组标签 >= 2
-	SETCOLOR 颜色_主题_星
-	PRINTFORM ✦ 显示项目：%SHOP_显示项目名称()%
+	SETCOLOR 颜色_深粉
+	PRINTFORM 额外显示项目：%SHOP_显示项目名称()%
 	RESETCOLOR
 	PRINTL
 ENDIF
 CALL SHOP_CharaList
-CALL UI_重分隔
-PRINTFORM [102] 选择显示项目                                  [1000] 返回
+CALL 主界面_重分隔
+PRINTFORM [102] 选择显示项目 [1000] 返回
 PRINTL
 
 $INPUT_LOOP
@@ -237,11 +237,11 @@ RETURNF ""
 #DIM 选择项目
 #DIM LOOP_I
 
-CALL UI_重分隔
+CALL 主界面_重分隔
 IF !FLAG:真实模式
 	;能力
 	PRINTL
-	CALL UI_节标题("能力")
+	CALL 主界面_节标题("能力")
 	FOR LOOP_I,0,40
 		SIF !STRLENS(ABLNAME:LOOP_I)
 			CONTINUE
@@ -249,7 +249,7 @@ IF !FLAG:真实模式
 	NEXT
 	;性技
 	PRINTL
-	CALL UI_节标题("性技")
+	CALL 主界面_节标题("性技")
 	FOR LOOP_I,50,60
 		SIF !STRLENS(ABLNAME:LOOP_I)
 			CONTINUE
@@ -257,7 +257,7 @@ IF !FLAG:真实模式
 	NEXT
 	;刻印
 	PRINTL
-	CALL UI_节标题("刻印")
+	CALL 主界面_节标题("刻印")
 	FOR LOOP_I,0,5
 		SIF !STRLENS(MARKNAME:LOOP_I)
 			CONTINUE
@@ -265,7 +265,7 @@ IF !FLAG:真实模式
 	NEXT
 	;経験
 	PRINTL
-	CALL UI_节标题("经验")
+	CALL 主界面_节标题("经验")
 	FOR LOOP_I,0,100
 		SIF !STRLENS(EXPNAME:LOOP_I)
 			CONTINUE
@@ -273,7 +273,7 @@ IF !FLAG:真实模式
 	NEXT
 	;宝珠
 	PRINTL
-	CALL UI_节标题("宝珠")
+	CALL 主界面_节标题("宝珠")
 	FOR LOOP_I,0,22
 		SIF !STRLENS(PALAMNAME:LOOP_I)
 			CONTINUE
@@ -282,7 +282,7 @@ IF !FLAG:真实模式
 	PRINTFORMC [7100]     否定之珠
 	;其他
 	PRINTL
-	CALL UI_节标题("其他")
+	CALL 主界面_节标题("其他")
 	PRINTFORMC [8001] 既成事実
 	PRINTFORMC [8002] 好感度
 	PRINTFORMC [8004] 子宮内精液量
@@ -290,7 +290,7 @@ IF !FLAG:真实模式
 ENDIF
 
 PRINTL
-CALL UI_重分隔
+CALL 主界面_重分隔
 PRINTFORM [100] 清除显示项目                          [1000] 返回
 PRINTL
 
