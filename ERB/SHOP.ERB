@@ -13,28 +13,46 @@ FOR LOCAL, 1, CHARANUM
 NEXT
 ;角色購入ページフラグ
 TFLAG:100 = 0
-DRAWLINE
-PRINTFORML %日期_年份名称(日期_年数)%（第{日期_年数}年）%日期_月份名称(日期_月数)% {日期_天数}日[{DAY}日目](%GET_DAY()%)
-PRINTFORML (所持金:{MONEY} 元)
-PRINT 体力:
-BAR BASE:MASTER:0,MAXBASE:MASTER:0,16
-PRINTFORM ({BASE:MASTER:0,4}/{MAXBASE:MASTER:0,4}) 
-PRINT 气力:
-BAR BASE:MASTER:1,MAXBASE:MASTER:1,16
-PRINTFORM ({BASE:MASTER:1,4}/{MAXBASE:MASTER:1,4})
+CALL UI_重分隔
+;日期和所持金
+PRINTFORM  %日期_年份名称(日期_年数)%（第{日期_年数}年）%日期_月份名称(日期_月数)%{日期_天数}日[{DAY}日目](%GET_DAY()%)
+SETCOLOR 颜色_主题_星
+PRINTFORM  所持金：
+RESETCOLOR
+PRINTFORM {MONEY}元
 PRINTL
-
-PRINTL [100] - 起床
-PRINTL [101] - 能力表示
-SIF STRLENS(SAVESTR:10) > 1
-	PRINTL [102] - 查看自己取得的收藏
-PRINTL [105] - 查看从妖精女仆那取得的收藏
-PRINTL [103] - 通信販売
-PRINTL [104] - 設定
-PRINTL [200] - SAVE
-PRINTL [300] - LOAD
-PRINTL [400] - OPTION
-;PRINTL ----------------
+;体力气力
+PRINTFORM  体力 
+CALL 数据条绘制(BASE:MASTER:0,MAXBASE:MASTER:0,"░","░",颜色_暗粉红,颜色_深灰,10)
+PRINTFORM  {BASE:MASTER:0,4}/{MAXBASE:MASTER:0,4}   气力 
+CALL 数据条绘制(BASE:MASTER:1,MAXBASE:MASTER:1,"░","░",颜色_浊黄,颜色_深灰,10)
+PRINTFORM  {BASE:MASTER:1,4}/{MAXBASE:MASTER:1,4}
+PRINTL
+CALL UI_重分隔
+PRINTL
+PRINTBUTTON "[起床时间]", 1060
+PRINTFORML ：{CFLAG:MASTER:通常起床時間 / 60}时
+PRINTBUTTON "[卧室位置]", 1061
+PRINTFORM ：%GetPlaceName(CFLAG:MASTER:開始位置)%
+PRINTL
+;起床
+PRINTL
+SETCOLOR 颜色_主题_星
+PRINTFORML  [100] - 起床
+RESETCOLOR
+PRINTL
+;日常
+CALL UI_节标题("日常")
+PRINTFORMC [101] - 能力表示
+PRINTFORMC [102] - 收藏    
+PRINTFORMC [103] - 通信販売
+PRINTL
+;系统
+CALL UI_节标题("系统")
+PRINTFORMC [200] - 存档    
+PRINTFORMC [300] - 读档    
+PRINTFORMC [400] - 设置选项
+PRINTL
 ;PRINTL [500] - 扶她起来
 ;PRINTFORML [501]真实模式（\@ GETBIT(FLAG:真实模式,0) ?ON#OFF\@）
 TRYCALL 妊娠パッチDEBUG88
@@ -48,14 +66,14 @@ IF RESULT == 100
 	RETURN 1
 ELSEIF RESULT == 101
 	CALL SHOW_CHARADATA
-ELSEIF RESULT == 102 && STRLENS(SAVESTR:10) > 1
-	CALL SHOW_COLLECTION
+ELSEIF RESULT == 102
+	CALL SHOP_收藏
 ELSEIF RESULT == 103
 	CALL ITEM_BUY
-ELSEIF RESULT == 104
-	CALL SCHEDULE
-ELSEIF RESULT == 105
-	CALL 查看从妖精女仆那取得的收藏
+ELSEIF RESULT == 1060
+	CALL SHOP_起床时间设定
+ELSEIF RESULT == 1061
+	CALL SHOP_卧室设定
 ELSEIF RESULT == 200
 	SAVEGAME
 ELSEIF RESULT == 300
@@ -68,80 +86,86 @@ ELSEIF RESULT == 500
 ELSEIF RESULT == 501
 	FLAG:真实模式 = FLAG:真实模式 ? 0 # 1
 [SKIPEND]
-	;ELSEIF RESULT == 998
-	;	CALL DEBUG_MODE_2
-	;ELSEIF RESULT == 9998
-	;	CALL DEBUG_MODE
 ELSEIF RESULT == 9988
 	CALL DEBUG_Maid
 ENDIF
 
 
-@SCHEDULE
-#DIM LOOP_CHR
-
-PRINTFORML [0] - 起床時間設定　　現在の設定：{CFLAG:MASTER:通常起床時間 / 60, 3}時
-SIF FLAG:陥落人数
-	PRINTFORML [1] - 私室設定　　　　現在の設定：%GetPlaceName(CFLAG:MASTER:開始位置)%
-PRINTFORML [2] - %NTR_NAME(0)%状态设定
-PRINTFORML [3] - 孩子的呼叫
+;-------------------------------------------------------------------------------
+;收藏（合并入口）
+;-------------------------------------------------------------------------------
+@SHOP_收藏
+PRINTL [0] - 自己的收藏
+PRINTL [1] - 妖精女仆的收藏
 PRINTL [100] - 返回
 INPUT
-IF RESULT == 100
-	RETURN 0
-ELSEIF RESULT == 0
-	LOCAL = CFLAG:MASTER:通常起床時間 / 60 + 1000
-	$INPUT_LOOP
-	PRINTFORML 今天的起床时间是{LOCAL - 1000, 3}时
-	PRINTL 什么时候起床？
-	PRINTBUTTON "[－]", (LOCAL == 1000 ? 1023 # LOCAL - 1)
-	PRINTBUTTON "[＋]", (LOCAL == 1023 ? 1000 # LOCAL + 1)
-	PRINTL 
-	PRINTL [100] - 設定完了
-	INPUT
-	IF RESULT == 100
-		CFLAG:MASTER:通常起床時間 = (LOCAL - 1000) * 60
-	ELSEIF RESULT >= 0 && RESULT < 24
-		CFLAG:MASTER:通常起床時間 = RESULT * 60
+IF RESULT == 0
+	IF STRLENS(SAVESTR:10) > 1
+		CALL SHOW_COLLECTION
 	ELSE
-		SIF RESULT >= 1000 && RESULT < 1024
-			LOCAL = RESULT
-		CLEARLINE 5
-		GOTO INPUT_LOOP
+		PRINTW 没有收藏
 	ENDIF
 	RESTART
-ELSEIF RESULT == 1 && FLAG:陥落人数
-	PRINTL 可以改变睡觉的房间
-	PRINTL [0] - 自己的房间
-	FOR LOOP_CHR,1,CHARANUM
-		SIF TALENT:LOOP_CHR:恋慕
-			PRINTFORML [{LOOP_CHR,3}] - %CALLNAME:LOOP_CHR%の部屋
-	NEXT
-	$INPUT_LOOP2
-	INPUT
-
-	IF RESULT < 0 || RESULT >= CHARANUM
-		CLEARLINE 1
-		GOTO INPUT_LOOP2
-	ELSEIF RESULT == 0
-		CFLAG:MASTER:開始位置 = 15
-	ELSEIF TALENT:RESULT:恋慕
-		CFLAG:MASTER:開始位置 = CFLAG:RESULT:311
-	ELSE
-		CLEARLINE 1
-		GOTO INPUT_LOOP2
-	ENDIF
-	PRINTW 改变从第二天生效
+ELSEIF RESULT == 1
+	CALL 查看从妖精女仆那取得的收藏
 	RESTART
-ELSEIF RESULT == 2
-	CALL MAN_SET
-	RESTART
-ELSEIF RESULT == 3
-	CALL 子供訪問_設定
-	RESTART
+ELSEIF RESULT == 100
+	RETURN
 ENDIF
+RESTART
 
-RETURN 1
+;-------------------------------------------------------------------------------
+;起床时间快捷设定（从主菜单直接调用）
+;-------------------------------------------------------------------------------
+@SHOP_起床时间设定
+#DIM 当前时
+当前时 = CFLAG:MASTER:通常起床時間 / 60 + 1000
+$INPUT_LOOP
+PRINTFORML 今天的起床时间是{当前时 - 1000, 3}时
+PRINTL 什么时候起床？
+PRINTBUTTON "[－]", (当前时 == 1000 ? 1023 # 当前时 - 1)
+PRINTBUTTON "[＋]", (当前时 == 1023 ? 1000 # 当前时 + 1)
+PRINTL 
+PRINTL [100] - 設定完了
+INPUT
+IF RESULT == 100
+	CFLAG:MASTER:通常起床時間 = (当前时 - 1000) * 60
+ELSEIF RESULT >= 0 && RESULT < 24
+	CFLAG:MASTER:通常起床時間 = RESULT * 60
+ELSE
+	SIF RESULT >= 1000 && RESULT < 1024
+		当前时 = RESULT
+	CLEARLINE 5
+	GOTO INPUT_LOOP
+ENDIF
+RETURN
+
+;-------------------------------------------------------------------------------
+;卧室快捷设定（从主菜单直接调用）
+;-------------------------------------------------------------------------------
+@SHOP_卧室设定
+#DIM LOOP_CHR
+PRINTL 可以改变睡觉的房间
+PRINTL [0] - 自己的房间
+FOR LOOP_CHR,1,CHARANUM
+	SIF TALENT:LOOP_CHR:恋慕
+		PRINTFORML [{LOOP_CHR,3}] - %CALLNAME:LOOP_CHR%の部屋
+NEXT
+$INPUT_LOOP
+INPUT
+IF RESULT < 0 || RESULT >= CHARANUM
+	CLEARLINE 1
+	GOTO INPUT_LOOP
+ELSEIF RESULT == 0
+	CFLAG:MASTER:開始位置 = 15
+ELSEIF TALENT:RESULT:恋慕
+	CFLAG:MASTER:開始位置 = CFLAG:RESULT:311
+ELSE
+	CLEARLINE 1
+	GOTO INPUT_LOOP
+ENDIF
+PRINTW 改变从第二天生效
+RETURN
 
 @SET_FUTANARI_ALL
 #DIM LOOP_CHR

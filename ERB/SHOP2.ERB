@@ -1,166 +1,191 @@
-@LIFE_LIST(ARG)
-;ARG = 0 ステータス表示
-;ARG = 1 調教対象選択
-;ARG = 2 助手選択
-;ARG = 3 キャラ売却
+@SHOP_CharaList
 #DIM LOOP_CHR
 #DIM LOOP_I
 #DIM LOOP_J
 #DIM 精子量
+;默认不显示额外信息，选择后才在行末追加
 DRAWLINE
-IF !ARG
-	PRINTFORML 　[0]%NAME:MASTER%
-	DRAWLINE
-ENDIF
+LOCALS = [ 0] %NAME:MASTER%
+PRINTFORM %LOCALS%
+;名字对齐：补空格到固定宽度
+LOCAL = 14 - STRLENS(LOCALS)
+SIF LOCAL > 0
+	PRINTFORM %" "*LOCAL%
+CALL SHOP_角色行数据(0)
+PRINTL
+DRAWLINE
 FOR LOOP_CHR,1, CHARANUM
-	IF ARG == 2
-		SIF !CFLAG:LOOP_CHR:和主角已做爱
-			CONTINUE
-		IF COUNT == ASSI
-			PRINT ☆
-		ELSE
-			PRINT 　
-		ENDIF
-	ENDIF
-	IF ARG == 3
-		SIF !TALENT:LOOP_CHR:恋人
-			CONTINUE
-	ENDIF
-	PRINTFORM [{LOOP_CHR,2}]
-	PRINTFORM %CALLNAME:LOOP_CHR,16,LEFT%
+	LOCALS = [{LOOP_CHR,2}] %CALLNAME:LOOP_CHR%
+	PRINTFORM %LOCALS%
+	;名字对齐：补空格到固定宽度
+	LOCAL = 14 - STRLENS(LOCALS)
+	SIF LOCAL > 0
+		PRINTFORM %" "*LOCAL%
+	CALL SHOP_角色行数据(LOOP_CHR)
+NEXT
+PRINTL
 
-	SELECTCASE FLAG:能力表示一覧用
-			;基礎表示選択
-		CASE 2
-			PRINTFORM \@(FLAG:能力表示詳細) ? 气力#体力\@
-			LOCAL = MAX(BASE:LOOP_CHR:(FLAG:能力表示詳細), 0)
-			BAR LOCAL, MAXBASE:LOOP_CHR:(FLAG:能力表示詳細),10
-			PRINTFORM ({LOCAL,4}/{MAXBASE:LOOP_CHR:(FLAG:能力表示詳細),4})
+;-------------------------------------------------------------------------------
+;角色行数据输出：体力气力+行末追加信息
+;使用PRINTFORM输出，让EmuEra自动识别[编号]为按钮
+;-------------------------------------------------------------------------------
+@SHOP_角色行数据(角色)
+#DIM 角色
+#DIM LOOP_I
+#DIM 精子量
+#DIMS 追加文本
+;体力条
+PRINTFORM  体力 
+CALL SHOP_彩色数据条(MAX(BASE:角色:0,0), MAXBASE:角色:0, 10, 颜色_暗粉红, 颜色_深灰)
+PRINTFORM {MAX(BASE:角色:0,0),4}/{MAXBASE:角色:0,4}
+;气力条
+PRINTFORM  气力 
+CALL SHOP_彩色数据条(MAX(BASE:角色:1,0), MAXBASE:角色:1, 10, 颜色_浊黄, 颜色_深灰)
+PRINTFORM {MAX(BASE:角色:1,0),4}/{MAXBASE:角色:1,4}
 
-			SIF ARG == 0
-				TRYCALL 簡易追加情報, LOOP_CHR
-
-			;能力表示選択or性技表示選択
+;行末：始终显示“簡易追加情報”，选中额外项目时在其后面追加
+CALL 簡易追加情報(角色)
+SELECTCASE FLAG:能力显示_分组标签
+		;能力表示選択or性技表示選択
 		CASE 3, 4
-			IF FLAG:能力表示一覧用 == 4 && !(HAS_VAGINA(LOOP_CHR)) && (FLAG:能力表示詳細 == 52 || FLAG:能力表示詳細 == 54)
-				PRINTFORM %ABLNAME:(FLAG:能力表示詳細),12%:* 
+			IF FLAG:能力显示_分组标签 == 4 && !(HAS_VAGINA(角色)) && (FLAG:能力显示_具体项 == 52 || FLAG:能力显示_具体项 == 54)
+				PRINTFORM  %ABLNAME:(FLAG:能力显示_具体项),12%:*
 			ELSE
-				PRINTFORM %ABLNAME:(FLAG:能力表示詳細),12%:{ABL:LOOP_CHR:(FLAG:能力表示詳細),5,LEFT} 
+				PRINTFORM  %ABLNAME:(FLAG:能力显示_具体项),12%:{ABL:角色:(FLAG:能力显示_具体项),5,LEFT}
 			ENDIF
 			;刻印表示選択
 		CASE 5
-			PRINTFORM %GET_MARK_LEVEL_OWNERNAME(LOOP_CHR,FLAG:能力表示詳細),12%
+			PRINTFORM  %GET_MARK_LEVEL_OWNERNAME(角色,FLAG:能力显示_具体项),12%
 			;経験表示選択
 		CASE 6
-			IF (!(HAS_VAGINA(LOOP_CHR)) && FLAG:能力表示詳細 == 51) || (HAS_VAGINA(LOOP_CHR) && FLAG:能力表示詳細 == 52)
-				PRINTFORM %EXPNAME:(FLAG:能力表示詳細),16%:* 
+			IF (!(HAS_VAGINA(角色)) && FLAG:能力显示_具体项 == 51) || (HAS_VAGINA(角色) && FLAG:能力显示_具体项 == 52)
+				PRINTFORM  %EXPNAME:(FLAG:能力显示_具体项),16%:*
 			ELSE
-				PRINTFORM %EXPNAME:(FLAG:能力表示詳細),16%:{EXP:LOOP_CHR:(FLAG:能力表示詳細),5,LEFT} 
+				PRINTFORM  %EXPNAME:(FLAG:能力显示_具体项),16%:{EXP:角色:(FLAG:能力显示_具体项),5,LEFT}
 			ENDIF
 			;宝珠表示選択
 		CASE 7
-			LOCALS = {JUEL:LOOP_CHR:(FLAG:能力表示詳細)}
-			SIF JUEL:LOOP_CHR:(FLAG:能力表示詳細) > 1000000
-				LOCALS = {JUEL:LOOP_CHR:(FLAG:能力表示詳細) / 1000}k
-			SIF JUEL:LOOP_CHR:(FLAG:能力表示詳細) > 1000000000
-				LOCALS = {JUEL:LOOP_CHR:(FLAG:能力表示詳細) / 1000000}m
-			PRINTFORM %PALAMNAME:(FLAG:能力表示詳細),6%の珠:%LOCALS,7,LEFT%
+			LOCALS = {JUEL:角色:(FLAG:能力显示_具体项)}
+			SIF JUEL:角色:(FLAG:能力显示_具体项) > 1000000
+				LOCALS = {JUEL:角色:(FLAG:能力显示_具体项) / 1000}k
+			SIF JUEL:角色:(FLAG:能力显示_具体项) > 1000000000
+				LOCALS = {JUEL:角色:(FLAG:能力显示_具体项) / 1000000}m
+			PRINTFORM  %PALAMNAME:(FLAG:能力显示_具体项),6%之珠:%LOCALS,7,LEFT%
 			;その他表示選択
 		CASE 8
-			SELECTCASE FLAG:能力表示詳細
+			SELECTCASE FLAG:能力显示_具体项
 					;既成事実
 				CASE 1
 					VARSET LOCALS
-					SIF TALENT:LOOP_CHR:恋人
+					SIF TALENT:角色:恋人
 						LOCALS += "已告白　"
-					SIF CFLAG:LOOP_CHR:和主角已接吻
+					SIF CFLAG:角色:和主角已接吻
 						LOCALS += "已接吻　"
-					SIF CFLAG:LOOP_CHR:和主角已做爱
+					SIF CFLAG:角色:和主角已做爱
 						LOCALS += "有过性行为"
-					PRINTFORM %LOCALS%
+					PRINTFORM  %LOCALS%
 					;好感度
 				CASE 2
 					VARSET LOCALS
-					;恋慕/NTR状態
-					SIF TALENT:LOOP_CHR:NTR
+					SIF TALENT:角色:NTR
 						LOCALS += "NTR "
-					SIF TALENT:LOOP_CHR:恋慕
+					SIF TALENT:角色:恋慕
 						LOCALS += "恋慕 "
-					SIF TALENT:LOOP_CHR:人妻
+					SIF TALENT:角色:人妻
 						LOCALS += "人妻 "
-					PRINTFORM 好感度:{CFLAG:LOOP_CHR:(FLAG:能力表示詳細),5,LEFT}  
+					PRINTFORM  好感度:{CFLAG:角色:(FLAG:能力显示_具体项),5,LEFT}
 					IF !FLAG:真实模式
-						PRINTFORM 屈服度:{CFLAG:LOOP_CHR:屈服度,5,LEFT} %LOCALS%
-					ELSE
-
+						PRINTFORM  屈服度:{CFLAG:角色:屈服度,5,LEFT} %LOCALS%
 					ENDIF
 				CASE 3
-					PRINTFORM 缺省
+					PRINTFORM  缺省
 					;子宮内精液量
 				CASE 4
 					精子量 = 0
 					FOR LOOP_I, 0, 301
 						REPEAT 9
-							IF TA:LOOP_CHR:LOOP_I:COUNT > 0
-								精子量 += TA:LOOP_CHR:LOOP_I:COUNT
+							IF TA:角色:LOOP_I:COUNT > 0
+								精子量 += TA:角色:LOOP_I:COUNT
 							ENDIF
 						REND
 					NEXT
-					IF TALENT:LOOP_CHR:妊娠
+					IF TALENT:角色:妊娠
 						LOCALS:1 = 孕
-					ELSEIF CFLAG:LOOP_CHR:卵子生存日数 == 1
+					ELSEIF CFLAG:角色:卵子生存日数 == 1
 						LOCALS:1 = 排
-					ELSEIF TALENT:LOOP_CHR:危险日
+					ELSEIF TALENT:角色:危险日
 						LOCALS:1 = 危
 					ELSE
 						LOCALS:1 = 　
 					ENDIF
-					PRINTFORM 子宮内精液量:{精子量,5}/{CFLAG:LOOP_CHR:子宫内体积,5}
+					PRINTFORM  子宮内精液量:{精子量,5}/{CFLAG:角色:子宫内体积,5}
 					PRINTFORM  %LOCALS:1%
 					;弱味
 				CASE 10
 					VARSET LOCALS
-					SIF GETBIT(CFLAG:LOOP_CHR:(FLAG:能力表示詳細),0) 
+					SIF GETBIT(CFLAG:角色:(FLAG:能力显示_具体项),0)
 						LOCALS += "被没收了　"
-					SIF GETBIT(CFLAG:LOOP_CHR:(FLAG:能力表示詳細),1) 
+					SIF GETBIT(CFLAG:角色:(FLAG:能力显示_具体项),1)
 						LOCALS += "被看到了情事　"
-					PRINTFORM %LOCALS%
+					PRINTFORM  %LOCALS%
 			ENDSELECT
-	ENDSELECT
+ENDSELECT
 
-	IF ARG == 2
-		IF LOOP_CHR == ASSI
-			PRINT 　　　　　
-		ELSEIF ISASSI:LOOP_CHR == 1
-			PRINT [元助手] 
-		ELSE
-			PRINT [未経験] 
-		ENDIF
+;-------------------------------------------------------------------------------
+;带颜色的数据条（复制自eraTW的PRINT_COLORBAR方案）
+;逐字符SETCOLOR实现多色，不需要HTML_PRINT
+;@param 当前值 当前值
+;@param 最大值 最大值
+;@param 长度 条长度（字符数）
+;@param 前景色 前景色（0xRRGGBB）
+;@param 背景色 背景色（0xRRGGBB）
+;-------------------------------------------------------------------------------
+@SHOP_彩色数据条(当前值, 最大值, 长度, 前景色, 背景色)
+#DIM 当前值
+#DIM 最大值
+#DIM 长度
+#DIM 前景色
+#DIM 背景色
+#DIM 填充数
+#DIM 保存色
+#DIM 循环计数
+SIF 最大值 <= 0
+	最大值 = 1
+填充数 = 当前值 * 长度 / 最大值
+保存色 = GETCOLOR()
+FOR 循环计数, 1, 长度 + 1
+	IF 填充数 >= 循环计数
+		SETCOLOR 前景色
+	ELSE
+		SETCOLOR 背景色
 	ENDIF
-	PRINTL
+	PRINT ░
 NEXT
-PRINTL 
+SETCOLOR 保存色
 
-;ステータス表示
+;-------------------------------------------------------------------------------
+;能力表示主界面
+;-------------------------------------------------------------------------------
 @SHOW_CHARADATA
-CALL LIFE_LIST
-PRINTLC  [2000]基礎表示切替
-IF !FLAG:真实模式
-	PRINTLC  [3000]能力表示切替
-	PRINTLC  [4000]性技表示切替
-	PRINTLC  [5000]刻印表示切替
-	PRINTLC  [6000]経験表示切替
-	PRINTLC  [7000]宝珠表示切替
-	PRINTLC  [8000]その他表示切替
+CALL UI_重分隔
+;如果选中了显示项目，第一行标注项目名称
+IF FLAG:能力显示_分组标签 >= 2
+	SETCOLOR 颜色_主题_星
+	PRINTFORM ✦ 显示项目：%SHOP_显示项目名称()%
+	RESETCOLOR
+	PRINTL
 ENDIF
-PRINTFORML  [1000]返回
+CALL SHOP_CharaList
+CALL UI_重分隔
+PRINTFORM [102] 选择显示项目                                  [1000] 返回
+PRINTL
 
 $INPUT_LOOP
 INPUT
 IF RESULT == 1000
 	RETURN 0
-ELSEIF RESULT == 2000 || RESULT == 3000 || RESULT == 4000 || RESULT == 5000 || RESULT == 6000 || RESULT == 7000 || RESULT == 8000
-	CALL SHOW_CHARADATA2, RESULT
+ELSEIF RESULT == 102
+	CALL SHOP_显示项目选择
 	RESTART
 ELSEIF RESULT < 0 || RESULT >= CHARANUM
 	GOTO INPUT_LOOP
@@ -168,85 +193,162 @@ ENDIF
 CALL PRINT_STATE(RESULT, 0, 1)
 RESTART
 
-@SHOW_CHARADATA2, ARG
-VARSET LOCAL, 0
-LOCAL:999 = ARG/1000
-DRAWLINE
-DRAWLINE
-
-SELECTCASE LOCAL:999
-		;基礎表示選択
-	CASE 2
-		PRINTLC  [   0] 体力
-		PRINTLC  [   1] 气力
-		LOCAL:0 = 1
-		LOCAL:1 = 1
-		LOCAL:998 = 1
-		;能力表示選択(性技は別）
-	CASE 3
-		FOR LOCAL:998,0,40
-			SIF !STRLENS(ABLNAME:(LOCAL:998))
-				CONTINUE
-			PRINTFORMLC  [{LOCAL:998,4}] %ABLNAME:(LOCAL:998),12%
-			LOCAL:(LOCAL:998) = 1
-		NEXT
-		;性技表示選択
-	CASE 4
-		FOR LOCAL:998,50,60
-			SIF !STRLENS(ABLNAME:(LOCAL:998))
-				CONTINUE
-			PRINTFORMLC  [{LOCAL:998,4}] %ABLNAME:(LOCAL:998),12%
-			LOCAL:(LOCAL:998) = 1
-		NEXT
-		;刻印表示選択
+;-------------------------------------------------------------------------------
+;获取当前显示项目的名称
+;-------------------------------------------------------------------------------
+@SHOP_显示项目名称()
+#FUNCTIONS
+SELECTCASE FLAG:能力显示_分组标签
+	CASE 3, 4
+		SIF STRLENS(ABLNAME:(FLAG:能力显示_具体项))
+			RETURNF ABLNAME:(FLAG:能力显示_具体项)
 	CASE 5
-		FOR LOCAL:998,0,5
-			SIF !STRLENS(MARKNAME:(LOCAL:998))
-				CONTINUE
-			PRINTFORMLC  [{LOCAL:998,4}] %MARKNAME:(LOCAL:998),12%
-			LOCAL:(LOCAL:998) = 1
-		NEXT
-		;経験表示選択
+		SIF STRLENS(MARKNAME:(FLAG:能力显示_具体项))
+			RETURNF MARKNAME:(FLAG:能力显示_具体项)
 	CASE 6
-		FOR LOCAL:998,0,100
-			SIF !STRLENS(EXPNAME:(LOCAL:998))
-				CONTINUE
-			PRINTFORMLC  [{LOCAL:998,4}] %EXPNAME:(LOCAL:998),16%
-			LOCAL:(LOCAL:998) = 1
-		NEXT
-		;宝珠表示選択
+		SIF STRLENS(EXPNAME:(FLAG:能力显示_具体项))
+			RETURNF EXPNAME:(FLAG:能力显示_具体项)
 	CASE 7
-		FOR LOCAL:998,0,22
-			SIF !STRLENS(PALAMNAME:(LOCAL:998))
-				CONTINUE
-			PRINTFORMLC  [{LOCAL:998,4}] %PALAMNAME:(LOCAL:998),6%の珠
-			LOCAL:(LOCAL:998) = 1
-		NEXT
-		PRINTLC  [ 100] 否定の珠
-		LOCAL:100 = 1
-		LOCAL:998 = 100
-		;その他表示選択
+		IF FLAG:能力显示_具体项 == 100
+			RETURNF "否定之珠"
+		ELSEIF STRLENS(PALAMNAME:(FLAG:能力显示_具体项))
+			RETURNF PALAMNAME:(FLAG:能力显示_具体项) + "之珠"
+		ENDIF
 	CASE 8
-		PRINTLC  [   1]既成事実
-		PRINTLC  [   2]好感度
-		PRINTLC  [   3]缺省
-		PRINTLC  [   4]子宮内精液量
-		PRINTLC  [  10]弱味
-		LOCAL:1 = 1
-		LOCAL:2 = 1
-		LOCAL:3 = 1
-		LOCAL:4 = 1
-		LOCAL:10 = 1
-		LOCAL:998 = 10
+		SELECTCASE FLAG:能力显示_具体项
+			CASE 1
+				RETURNF "既成事実"
+			CASE 2
+				RETURNF "好感度"
+			CASE 3
+				RETURNF "缺省"
+			CASE 4
+				RETURNF "子宮内精液量"
+			CASE 10
+				RETURNF "弱味"
+		ENDSELECT
 ENDSELECT
-PRINTL  [1000] 返回
+RETURNF ""
+
+;-------------------------------------------------------------------------------
+;显示项目选择次级菜单
+;-------------------------------------------------------------------------------
+@SHOP_显示项目选择
+#DIM 选择项目
+#DIM LOOP_I
+
+CALL UI_重分隔
+IF !FLAG:真实模式
+	;能力
+	PRINTL
+	CALL UI_节标题("能力")
+	FOR LOOP_I,0,40
+		SIF !STRLENS(ABLNAME:LOOP_I)
+			CONTINUE
+		PRINTFORMC [{3000+LOOP_I,4}] %ABLNAME:LOOP_I,12%
+	NEXT
+	;性技
+	PRINTL
+	CALL UI_节标题("性技")
+	FOR LOOP_I,50,60
+		SIF !STRLENS(ABLNAME:LOOP_I)
+			CONTINUE
+		PRINTFORMC [{4000+LOOP_I,4}] %ABLNAME:LOOP_I,12%
+	NEXT
+	;刻印
+	PRINTL
+	CALL UI_节标题("刻印")
+	FOR LOOP_I,0,5
+		SIF !STRLENS(MARKNAME:LOOP_I)
+			CONTINUE
+		PRINTFORMC [{5000+LOOP_I,4}] %MARKNAME:LOOP_I,12%
+	NEXT
+	;経験
+	PRINTL
+	CALL UI_节标题("经验")
+	FOR LOOP_I,0,100
+		SIF !STRLENS(EXPNAME:LOOP_I)
+			CONTINUE
+		PRINTFORMC [{6000+LOOP_I,4}] %EXPNAME:LOOP_I,14%
+	NEXT
+	;宝珠
+	PRINTL
+	CALL UI_节标题("宝珠")
+	FOR LOOP_I,0,22
+		SIF !STRLENS(PALAMNAME:LOOP_I)
+			CONTINUE
+		PRINTFORMC [{7000+LOOP_I,4}] %PALAMNAME:LOOP_I,8%之珠
+	NEXT
+	PRINTFORMC [7100]     否定之珠
+	;其他
+	PRINTL
+	CALL UI_节标题("其他")
+	PRINTFORMC [8001] 既成事実
+	PRINTFORMC [8002] 好感度
+	PRINTFORMC [8004] 子宮内精液量
+	PRINTFORMC [8010] 弱味
+ENDIF
+
+PRINTL
+CALL UI_重分隔
+PRINTFORM [100] 清除显示项目                          [1000] 返回
+PRINTL
+
 $INPUT_LOOP
 INPUT
 IF RESULT == 1000
-	RETURN 0
-ELSEIF RESULT < 0 || RESULT > LOCAL:998 || LOCAL:RESULT <= 0
-	GOTO INPUT_LOOP
+	RETURN
+ELSEIF RESULT == 100
+	FLAG:能力显示_分组标签 = 0
+	FLAG:能力显示_具体项 = 0
+	RETURN
+ELSEIF RESULT >= 3000 && RESULT < 4000
+	选择项目 = RESULT - 3000
+	IF STRLENS(ABLNAME:选择项目)
+		FLAG:能力显示_分组标签 = 3
+		FLAG:能力显示_具体项 = 选择项目
+		RETURN
+	ENDIF
+ELSEIF RESULT >= 4000 && RESULT < 5000
+	选择项目 = RESULT - 4000
+	IF STRLENS(ABLNAME:选择项目)
+		FLAG:能力显示_分组标签 = 4
+		FLAG:能力显示_具体项 = 选择项目
+		RETURN
+	ENDIF
+ELSEIF RESULT >= 5000 && RESULT < 6000
+	选择项目 = RESULT - 5000
+	IF STRLENS(MARKNAME:选择项目)
+		FLAG:能力显示_分组标签 = 5
+		FLAG:能力显示_具体项 = 选择项目
+		RETURN
+	ENDIF
+ELSEIF RESULT >= 6000 && RESULT < 7000
+	选择项目 = RESULT - 6000
+	IF STRLENS(EXPNAME:选择项目)
+		FLAG:能力显示_分组标签 = 6
+		FLAG:能力显示_具体项 = 选择项目
+		RETURN
+	ENDIF
+ELSEIF RESULT >= 7000 && RESULT < 7100
+	选择项目 = RESULT - 7000
+	IF STRLENS(PALAMNAME:选择项目)
+		FLAG:能力显示_分组标签 = 7
+		FLAG:能力显示_具体项 = 选择项目
+		RETURN
+	ENDIF
+ELSEIF RESULT == 7100
+	FLAG:能力显示_分组标签 = 7
+	FLAG:能力显示_具体项 = 100
+	RETURN
+ELSEIF RESULT >= 8000
+	选择项目 = RESULT - 8000
+	SELECTCASE 选择项目
+		CASE 1,2,4,10
+			FLAG:能力显示_分组标签 = 8
+			FLAG:能力显示_具体项 = 选择项目
+			RETURN
+	ENDSELECT
 ENDIF
-FLAG:能力表示一覧用 = LOCAL:999
-FLAG:能力表示詳細 = RESULT
-
+CLEARLINE 1
+GOTO INPUT_LOOP
