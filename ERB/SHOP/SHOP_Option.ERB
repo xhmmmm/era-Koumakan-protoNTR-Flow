@@ -1,39 +1,94 @@
-;オプション設定処理
+;选项设置处理
 @OPTION
 $INPUT_LOOP
-CLEARLINE 10000
-PRINTL □选项设置----------------------------------------------------------------------------------------□
+CALL UI_重分隔
+PRINTL 设置选项
+CALL UI_轻分隔
+
+; 显示设置
+SETCOLOR 颜色_天蓝
+PRINTFORM  · 显示设置
+RESETCOLOR
 PRINTL
-PRINTL [0] - 文本设定
-PRINTL [1] - 命令过滤器
-PRINT [2] - 消耗品自动购入 
-PRINTFORML \@ FLAG:1001 ? ON # OFF \@
-PRINT [3] - 馆内清洁情报显示 
-PRINTFORML \@ FLAG:1002 ? OFF # ON \@
-PRINTFORML [10] - NTR选项
-PRINTFORML [11] - 补丁选项
-PRINTFORML [12] - 初始化角色
-PRINTFORML [13] - %NTR_NAME(0)%偏好设定
-PRINTFORML [14] - 孩子的呼叫
-;PRINTFORML [13] - 素质是否会变化（建议ON）
+PRINTFORML   [0] - 文本设定
+PRINTFORML   [1] - 命令过滤器
+PRINTFORM  [98] - 图像显示：
+CALL OPTION_显示开关(FLAG:AA表示)
 PRINTL
-PRINTFORML [15] - 穿了下装的情况下不能看到内裤是什么样的（建议ON）：\@ GETBIT(FLAG:雑多設定,1) ?ON#OFF\@
-PRINTFORML [16] - 在移动的时候会被住人拜托事情（任务）：\@ GETBIT(FLAG:雑多設定,2) ?ON#OFF\@
-PRINTFORML [17] - 不能越过衣服查看里面的污（精液）（建议ON）：\@ GETBIT(FLAG:汚れ非表示設定,0) ?ON#OFF\@
-PRINTL
-PRINTFORML [21] - 住人不再每天都换衣服：\@ GETBIT(FLAG:匂いフェチ,1) ?ON#OFF\@
-PRINTFORML [25] - 好感度上升倍率：\@ FLAG:好感度倍率 ?{FLAG:好感度倍率/10}.{FLAG:好感度倍率%10}倍#1倍\@
-PRINTFORML [26] - 屈服度上升倍率：\@ FLAG:屈服度倍率 ?{FLAG:屈服度倍率/10}.{FLAG:屈服度倍率%10}倍#1倍\@
-PRINTFORML [27] - 房间和住人的气味设定
-PRINTFORML [29] - 簡易調教模式（阻止反発刻印）：\@ GETBIT(FLAG:簡易調教模式,1) ?ON#OFF\@
-PRINTFORML [30] - 私处颜色初始化
-PRINTFORML [32] - 禁止受精：\@ GETBIT(FLAG:禁止受精,1) ?ON#OFF\@
-PRINTFORML [98] - \@ FLAG:AA表示 ? ┬ # %" "%- \@图像显示%"	" * 5%\@ FLAG:AA表示 ? 打开 # 关闭 \@
 SIF FLAG:AA表示
-	PRINTFORML [99] - └图像显示设置
+	PRINTFORML  [99] - 图像设置
+
 PRINTL
-PRINTL [100]-返回
-PRINTL □选项设置----------------------------------------------------------------------------------------□
+
+; 游戏设置
+SETCOLOR 颜色_淡绿
+PRINTFORM  · 游戏设置
+RESETCOLOR
+PRINTL
+PRINTFORM   [2] - 消耗品自动购入：
+CALL OPTION_显示开关(FLAG:1001)
+PRINTL
+PRINTFORM   [3] - 馆内清洁情报：
+CALL OPTION_显示开关(!FLAG:1002)
+PRINTL
+PRINTFORM  [15] - 穿了下装不能看内裤：
+CALL OPTION_显示开关(GETBIT(FLAG:雑多設定,1))
+PRINTL
+PRINTFORM  [16] - 移动时住人拜托：
+CALL OPTION_显示开关(GETBIT(FLAG:雑多設定,2))
+PRINTL
+PRINTFORM  [17] - 衣物遮挡污迹：
+CALL OPTION_显示开关(GETBIT(FLAG:汚れ非表示設定,0))
+PRINTL
+PRINTFORM  [21] - 住人不每天换衣：
+CALL OPTION_显示开关(GETBIT(FLAG:匂いフェチ,1))
+PRINTL
+PRINTFORM  [29] - 簡易調教模式：
+CALL OPTION_显示开关(GETBIT(FLAG:簡易調教模式,1))
+PRINTL
+PRINTFORM  [32] - 禁止受精：
+CALL OPTION_显示开关(GETBIT(FLAG:禁止受精,1))
+PRINTL
+
+PRINTL
+
+; NTR设置
+SETCOLOR 颜色_深粉
+PRINTFORM  · ＮＴＲ设置
+RESETCOLOR
+PRINTL
+PRINTFORML  [10] - NTR选项
+PRINTFORML  [13] - %NTR_NAME(0)%偏好设定
+PRINTFORM  [25] - 好感度上升倍率：
+IF FLAG:好感度倍率
+	PRINTFORM {FLAG:好感度倍率/10}.{FLAG:好感度倍率%10}倍
+ELSE
+	PRINTFORM 1倍
+ENDIF
+PRINTL
+PRINTFORM  [26] - 屈服度上升倍率：
+IF FLAG:屈服度倍率
+	PRINTFORM {FLAG:屈服度倍率/10}.{FLAG:屈服度倍率%10}倍
+ELSE
+	PRINTFORM 1倍
+ENDIF
+PRINTL
+
+PRINTL
+
+; 其他
+SETCOLOR 颜色_银
+PRINTFORM  · 其他
+RESETCOLOR
+PRINTL
+PRINTFORML  [14] - 孩子的呼叫
+PRINTFORML  [27] - 气味设定
+PRINTFORML  [30] - 私处颜色初始化
+PRINTFORML  [11] - LUNA补丁选项（即将移除）
+PRINTFORML  [12] - 初始化角色
+PRINTL
+CALL UI_重分隔
+PRINTFORML [100] - 返回
 INPUT
 IF RESULT == 0
 	CALL OPTION_TEXT_SETTING
@@ -50,10 +105,6 @@ ELSEIF RESULT == 11
 ELSEIF RESULT == 12
 	CALL CHARA_RESET
 	CALL 体詳細設定１
-[SKIPSTART]
-ELSEIF RESULT == 13
-	CALL Ability_OPTION	
-[SKIPEND]
 ELSEIF RESULT == 13
 	CALL MAN_SET
 ELSEIF RESULT == 14
@@ -88,6 +139,18 @@ ELSE
 	GOTO INPUT_LOOP
 ENDIF
 RESTART
+
+;显示开关状态（ON=淡绿，OFF=中灰）
+@OPTION_显示开关(开关值)
+#DIM 开关值
+IF 开关值
+	SETCOLOR 颜色_淡绿
+	PRINTFORM ON
+ELSE
+	SETCOLOR 颜色_中灰
+	PRINTFORM OFF
+ENDIF
+RESETCOLOR
 
 ;テキスト関連
 @OPTION_TEXT_SETTING

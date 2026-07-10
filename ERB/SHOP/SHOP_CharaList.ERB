@@ -167,7 +167,7 @@ SETCOLOR 保存色
 ;能力表示主界面
 ;-------------------------------------------------------------------------------
 @SHOP_能力表示
-CALL 主界面_重分隔
+CALL UI_重分隔
 ;如果选中了显示项目，第一行标注项目名称
 IF FLAG:能力显示_分组标签 >= 2
 	SETCOLOR 颜色_深粉
@@ -176,7 +176,7 @@ IF FLAG:能力显示_分组标签 >= 2
 	PRINTL
 ENDIF
 CALL SHOP_CharaList
-CALL 主界面_重分隔
+CALL UI_重分隔
 PRINTFORM [102] 选择显示项目 [1000] 返回
 PRINTL
 
@@ -237,7 +237,7 @@ RETURNF ""
 #DIM 选择项目
 #DIM LOOP_I
 
-CALL 主界面_重分隔
+CALL UI_重分隔
 IF !FLAG:真实模式
 	;能力
 	PRINTL
@@ -290,7 +290,7 @@ IF !FLAG:真实模式
 ENDIF
 
 PRINTL
-CALL 主界面_重分隔
+CALL UI_重分隔
 PRINTFORM [100] 清除显示项目                          [1000] 返回
 PRINTL
 

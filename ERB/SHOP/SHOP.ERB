@@ -13,7 +13,7 @@ FOR LOCAL, 1, CHARANUM
 NEXT
 ;角色購入ページフラグ
 TFLAG:100 = 0
-CALL 主界面_重分隔
+CALL UI_重分隔
 ;日期
 PRINTFORM  %日期_年份名称(日期_年数)%（第{日期_年数}年）%日期_月份名称(日期_月数)%{日期_天数}日(%GET_DAY()%)[第{DAY}天]
 PRINTL
@@ -69,7 +69,7 @@ PRINTL
 PRINTFORML   [200] - 存档
 PRINTFORML   [300] - 读档
 PRINTFORML   [400] - 设置选项
-CALL 主界面_重分隔
+CALL UI_重分隔
 TRYCALL 妊娠パッチDEBUG88
 
 @USERSHOP

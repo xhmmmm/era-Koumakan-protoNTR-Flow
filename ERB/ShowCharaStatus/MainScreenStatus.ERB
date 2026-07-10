@@ -119,10 +119,10 @@ NEXT
 ;-------------------------------------------------
 ;显示信息
 ;-------------------------------------------------
-CALL 主界面_重分隔
+CALL UI_重分隔
 ;当前时间
 CALL INFO_PrintCurrentTime(MASTER)
-CALL 主界面_重分隔
+CALL UI_重分隔
 ;当前位置和清洁度
 CALL INFO_PrintPositionLine(MASTER)
 ;当前在场角色
@@ -164,7 +164,7 @@ IF TFLAG:COMABLE管理 == 2 || TFLAG:COMABLE管理 == 3
 	CALL SHOW_EQUIP_1
 ENDIF
 ;数值输出结束，图像区域开始
-CALL 主界面_重分隔
+CALL UI_重分隔
 PRINT -- 
 PRINTBUTTON  "[人物图像]", 816
 SIF FLAG:AA表示
@@ -191,7 +191,7 @@ IF FLAG:AA表示
 ENDIF
 PRINTL
 ;分割线，图像区域完
-CALL 主界面_重分隔
+CALL UI_重分隔
 IF TFLAG:COMABLE管理 == 3 || TFLAG:COMABLE管理 == 4
 	FOR LOCAL,1,CHARANUM
 		SIF TARGET:LOCAL <= 0
