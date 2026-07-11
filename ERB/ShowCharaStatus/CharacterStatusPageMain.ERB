@@ -23,8 +23,7 @@ PRINTFORML (好感度:{CFLAG:角色:好感度})
 ;不在真实模式下
 IF !FLAG:真实模式
 	PRINTFORML 金钱:{MONEY:角色}
-	PRINTFORM %NTR_NAME(0)%からの脅迫
-	PRINTFORML (屈服度:{CFLAG:角色:屈服度})(脅迫度:{CFLAG:角色:脅迫度})
+	PRINTFORML (屈服度:{CFLAG:角色:屈服度})
 	PRINTFORML 性欲:{CFLAG:角色:性欲}
 	;@出産まで後何日
 	IF TALENT:角色:妊娠
