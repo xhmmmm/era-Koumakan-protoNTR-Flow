@@ -356,7 +356,7 @@
 #DIM CONST 移动目的_自慰自室	 = 1
 #DIM CONST 移动目的_妊娠自室	 = 2
 #DIM CONST 移动目的_去厕所		 = 3
-#DIM CONST 移动目的_从厕所返回		 = 4
+#DIM CONST 移动目的_从厕所返回	  = 4
 #DIM CONST 移动目的_NTR逃避		 = 5
 #DIM CONST 移动目的_訪問者		 = 6	; 訪問者の元への移动
 

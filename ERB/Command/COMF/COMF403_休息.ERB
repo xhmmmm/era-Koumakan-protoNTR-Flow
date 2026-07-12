@@ -2,11 +2,7 @@
 ;休息
 ;-------------------------------------------------
 @COM403
-IF REST_IsRestRoom(CFLAG:MASTER:当前位置)
-	;トイレ。10分前後。
-	CALL REST_UseRestRoom(MASTER)
-	TIME += (5 + RAND:10)
-ELSEIF TIME_PROGRESS(CFLAG:MASTER:起床時間) >= 要睡眠経過時間 && !CFLAG:MASTER:睡眠
+IF TIME_PROGRESS(CFLAG:MASTER:起床時間) >= 要睡眠経過時間 && !CFLAG:MASTER:睡眠
 	;本格的に眠るのは私室だけ
 	IF  CFLAG:MASTER:当前位置 != CFLAG:MASTER:311
 		PRINTFORMW 很想休息的%CALLNAME:MASTER%开始打瞌睡了。

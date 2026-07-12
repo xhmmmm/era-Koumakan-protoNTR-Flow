@@ -2630,22 +2630,6 @@ ELSEIF ABL:Ｖ感觉 >= 5 && ABL:Ａ感觉 >= 5
 	PRINTFORML %CALLNAME:TARGET%は、用双手的手指不停抚慰着扩展到完全的蜜穴和后庭
 ENDIF
 ;-------------------------------------------------
-;144,放尿
-;-------------------------------------------------
-@MESSAGE_COM144
-;野外PLAY中
-IF TEQUIP:野外PLAY
-	PRINTFORML %CALLNAME:TARGET%在羞耻和屈辱感中流着泪、在草丛中小便…
-	;羞耻PLAY中
-ELSEIF TEQUIP:羞耻PLAY
-	PRINTFORML %CALLNAME:TARGET%为了不让镜子中映出的自己羞耻姿势,蹲下开始小便…
-	;小柄体型
-ELSEIF TALENT:体型 < 0
-	PRINTFORML %CALLNAME:TARGET%被%CALLNAME:PLAYER%像年幼的孩子一样,被双脚抱起了开始小便…
-ELSE
-	PRINTFORML %CALLNAME:TARGET%因为羞耻感染红了脸颊、蹲在那里开始小便…
-ENDIF
-;-------------------------------------------------
 ;145,舔肛侍奉強制
 ;-------------------------------------------------
 @MESSAGE_COM145
@@ -2800,19 +2784,6 @@ SIF ABL:顺从 <= 2
 	PRINT 强迫
 PRINTFORML 服下了媚药
 PRINTFORML %CALLNAME:TARGET%气息慌乱皮肤潮红…
-;-------------------------------------------------
-;182,利尿剂,
-;-------------------------------------------------
-@MESSAGE_COM182
-PRINTFORM %CALLNAME:TARGET%に
-;調教者の技巧LV3以上
-SIF ABL:PLAYER:技巧 >= 3
-	PRINT 口嘴对嘴地
-;顺从LV2以下
-SIF ABL:顺从 <= 2
-	PRINT 强迫
-PRINTFORML 服下了利尿剂
-PRINTFORML %CALLNAME:TARGET%气息慌乱、含着泪忍受着尿意…
 ;-------------------------------------------------
 ;183,摄像机,
 ;-------------------------------------------------
@@ -3847,8 +3818,6 @@ PRINTFORML %CALLNAME:PLAYER%任由%CALLNAME:TARGET%摆布…
 #DIM LOOP_CHR
 IF IsPlaceHasBathroom(CFLAG:MASTER:当前位置)
 	PRINTFORML %CALLNAME:PLAYER%在浴场很舒适
-ELSEIF REST_IsRestroom(CFLAG:MASTER:当前位置)
-	PRINTFORML %CALLNAME:PLAYER%今天事办完了
 ELSE
 	PRINTFORML %CALLNAME:PLAYER%喘了一口气
 ENDIF

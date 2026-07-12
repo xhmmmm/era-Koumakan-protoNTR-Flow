@@ -126,8 +126,6 @@ FOR コマンド番号,0,700
 			SIF GET_TARGETNUM() > 1 && GET_TARGETWAKEUP() > 1
 				コマンド名称 = まとめて%コマンド名称%
 			PRINTFORMC %コマンド名称%[{コマンド番号,3}]
-		ELSEIF コマンド番号 == 403 && REST_IsRestRoom(CFLAG:MASTER:当前位置)
-			PRINTFORMC 用を足す[{コマンド番号,3}]
 		ELSEIF コマンド番号 == 403 && IsPlaceHasBathroom(CFLAG:MASTER:当前位置)
 			PRINTFORMC お風呂でくつろぐ[{コマンド番号,3}]
 		ELSEIF コマンド番号 == 490 && CFLAG:MASTER:当前位置 > 位置编号最大值

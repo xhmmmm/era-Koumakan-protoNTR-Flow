@@ -1,4 +1,4 @@
-﻿;显示主界面的信息栏
+;显示主界面的信息栏
 ;-------------------------------------------------------------------------------
 ;起床中の基本情報（時間、HPMP、各種パラメータなど）を表示する
 @SHOW_STATUS
@@ -85,9 +85,6 @@ FOR LOCAL,0,CHARANUM
 		CALL CLOTHES_RESET(LOCAL)
 		CALL CLOTHES_SETTING_TRAIN(LOCAL)
 		FOR LOCAL:1,10,150
-			;利尿剂は排泄するまで続く
-			SIF LOCAL:1 == 27
-				CONTINUE
 			TEQUIP:LOCAL:(LOCAL:1) = 0
 		NEXT
 		IF TFLAG:COMABLE管理 < 2
@@ -444,8 +441,6 @@ IF TEQUIP:11 || TEQUIP:13 || TEQUIP:14 || TEQUIP:15 || TEQUIP:16 || TEQUIP:17 ||
 	PRINTFORM 使用中(%NAME:TARGET%) 
 	SIF TEQUIP:26
 		PRINT [媚药効果発揮中]
-	SIF TEQUIP:27
-		PRINT [利尿剂効果発揮中]
 	SIF TEQUIP:11
 		PRINT [阴蒂夹]
 	SIF TEQUIP:12
@@ -771,7 +766,6 @@ ELSEIF DATETIME() - CFLAG:(ARG:0):起床時間 >= 睡眠可経過時間
 	SETCOLOR 颜色_状态_可睡眠
 	PRINTFORM %"[睡眠可]"%
 ENDIF
-CALL INFO_PrintRestroom(ARG:0)
 PRINTFORML 
 RESETCOLOR
 RETURN
@@ -1387,20 +1381,6 @@ SELECTCASE ARG:0
 		RETURNF TOSTR(ARG:0,"##0    ")
 ENDSELECT
 RETURNF ""
-
-;-------------------------------------------------------------------------------
-;尿意および便意を表示する表示
-;@param ARG:0 キャラクターの番号
-@INFO_PrintRestroom(ARG:0)
-SELECTCASE REST_NeedRestroom(ARG:0)
-	CASE 1
-		SETCOLOR 颜色_状态_注意
-		PRINTFORM %"[尿意]"%
-	CASE 2
-		SETCOLOR 颜色_状态_警告
-		PRINTFORM %"[尿意]"%
-ENDSELECT
-RETURN 0
 
 ;-------------------------------------------------------------------------------
 ;対象の衣服の状態を表示

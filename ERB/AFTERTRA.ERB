@@ -209,8 +209,6 @@ FOR LOOP_CHR,0,CHARANUM
 	;同行者跳过判定
 	SIF CFLAG:LOOP_CHR:同行
 		CONTINUE
-	;尿量/便量増加@お手洗い勝手に拡張パッチ
-	TRYCALL REST_PeePoo_Increase(LOOP_CHR)
 	; 紅魔館エリアの外なら移动しない（霊夢の寝床は特殊）
 	SIF CFLAG:LOOP_CHR:当前位置 >= 位置_訪問者宅 && CFLAG:LOOP_CHR:当前位置 != 位置_博麗神社 && CFLAG:LOOP_CHR:当前位置 != 位置_人間の里
 		CONTINUE
@@ -237,14 +235,6 @@ FOR LOOP_CHR,0,CHARANUM
 	WK = CFLAG:LOOP_CHR:睡眠 ? 0 # 1 + TALENT:LOOP_CHR:幼稚 - 2 * ABL:LOOP_CHR:清扫技能
 	FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MAX(FLAG:(100 + CFLAG:LOOP_CHR:当前位置) + WK * TIME_PROGRESS(TFLAG:300),0)
 	FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MIN(FLAG:(100 + CFLAG:LOOP_CHR:当前位置),2000)
-NEXT
-
-FOR LOOP_CHR,0,CHARANUM
-	;同行者跳过判定
-	SIF CFLAG:LOOP_CHR:同行
-		CONTINUE
-	;トイレを済ませれたか、漏らしたかのチェック@お手洗い勝手に拡張パッチ
-	CALL REST_MovementCheck(LOOP_CHR)
 NEXT
 
 ;相机设置パッチ対応

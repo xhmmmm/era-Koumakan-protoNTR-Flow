@@ -38,8 +38,8 @@ SIF CFLAG:睡眠
 ;浴場 ただし私室は吃饭可能
 SIF IsPlaceHasBathroom(CFLAG:MASTER:当前位置) && (CFLAG:MASTER:当前位置 != 位置_红魔馆_地下室 && CFLAG:MASTER:当前位置 != 位置_雾之湖_琪露诺的家 && CFLAG:MASTER:当前位置 != 位置_雾之湖_大妖精的家)
 	RETURN 0
-;トイレ ただし私室は吃饭可能
-SIF REST_IsRestRoom(CFLAG:MASTER:当前位置) && (CFLAG:MASTER:当前位置 != 位置_红魔馆_地下室 && CFLAG:MASTER:当前位置 != 位置_雾之湖_琪露诺的家 && CFLAG:MASTER:当前位置 != 位置_雾之湖_大妖精的家)
+;便所飯NG
+SIF (CFLAG:MASTER:当前位置 == 位置_红魔馆_一楼厕所 || CFLAG:MASTER:当前位置 == 位置_红魔馆_二楼厕所 || CFLAG:MASTER:当前位置 == 位置_红魔馆_屋外厕所)
 	RETURN 0
 ;气力0
 SIF BASE:MASTER:气力 <= 0

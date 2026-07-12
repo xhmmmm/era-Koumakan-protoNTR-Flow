@@ -20,7 +20,7 @@ SIF TFLAG:15
 @PALAM_MESSAGE_B
 ;噴射乳絶頂は、Ｂ绝顶と同時じゃないとダメ
 LOCAL =  NOWEX:Ｃ绝顶 + NOWEX:Ｖ绝顶 + NOWEX:Ａ绝顶 + (NOWEX:Ｂ绝顶 && NOWEX:喷乳)*2 + NOWEX:射精
-IF !(LOCAL + NOWEX:放尿)
+IF !LOCAL
 	IF TALENT:TARGET:恋人 && NOWEX:TARGET:绝顶演技
 		;恋慕があるならイけなくてもイったふりをしてくれる。
 		TRYCALL NTR_MESSAGE_FAKE_ORGASM,TARGET
@@ -74,35 +74,9 @@ ELSEIF LOCAL >= 3
 	PRINTL 低低地喘息着、沉浸在绝顶的余韵里…
 ENDIF
 
-;絶頂とおもらし
-IF LOCAL >= 7 && TEQUIP:利尿剂 && TALENT:漏尿癖
-	PRINTFORML %CALLNAME:TARGET%全身剧烈地痉挛、大声地娇吟着、然后从下体喷洒出了大量尿液
-	PRINTFORML 痛快的失禁让%CALLNAME:TARGET%感受到了强烈的快乐…
-ELSEIF LOCAL >= 7 && TEQUIP:利尿剂
-	PRINTFORML 身体不停地痉挛的%CALLNAME:TARGET%的下体、尿液如同洪水般从尿道口倾泻而出…
-ELSEIF LOCAL >= 7 && TALENT:漏尿癖
-	PRINTFORML 身体不停地痉挛的%CALLNAME:TARGET%、从尿道口喷射出一道水流、划着弧线洒在了地上…
-ELSEIF LOCAL >= 5 && TEQUIP:利尿剂 && TALENT:漏尿癖
-	PRINTFORML 筋疲力尽的%CALLNAME:TARGET%、尿液像洪水一样从尿道口倾泻而出…
-ELSEIF LOCAL >= 5 && TEQUIP:利尿剂
-	PRINTFORML 筋疲力尽的%CALLNAME:TARGET%、从尿道口喷射出一道水流、划着弧线洒在了地上…
-ELSEIF LOCAL >= 5 && TALENT:漏尿癖
-	PRINTFORML 筋疲力尽的%CALLNAME:TARGET%控制不住地从尿道口流出了尿液…
-ELSEIF LOCAL >= 3 && TEQUIP:利尿剂 && TALENT:漏尿癖
-	PRINTFORML 全身颤抖的%CALLNAME:TARGET%、从尿道口喷射出一道水流、划着弧线洒在了地上…
-ELSEIF LOCAL >= 3 && TEQUIP:利尿剂
-	PRINTFORML 全身颤抖的%CALLNAME:TARGET%控制不住地从尿道口流出了尿液…
-ELSEIF LOCAL >= 3 && TALENT:漏尿癖
-	PRINTFORML 全身颤抖的%CALLNAME:TARGET%、从两片阴唇间漏出了透明的尿液…
-ELSEIF LOCAL >= 1 && TEQUIP:利尿剂 && TALENT:漏尿癖
-	PRINTFORML %CALLNAME:TARGET%控制不住地从尿道口流出了尿液…
-ELSEIF LOCAL >= 1 && TEQUIP:利尿剂
-	PRINTFORML %CALLNAME:TARGET%从两片阴唇间漏出了透明的尿液…
-ENDIF
-
 ;テキストを読むためのウエイト
 ;表示があるときのみ
-SIF LOCAL + NOWEX:放尿 > 0
+SIF LOCAL > 0
 	WAIT
 
 ;-------------------------------------------

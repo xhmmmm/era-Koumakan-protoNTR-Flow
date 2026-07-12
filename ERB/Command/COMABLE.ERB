@@ -2254,27 +2254,6 @@ SIF !IsPlaceHasBed(CFLAG:PLAYER:当前位置)
 	RETURN 0
 RETURN 1
 
-@COM_ABLE144
-;放尿実行判定
-SIF !TFLAG:100
-	RETURN 0
-;一括管理
-SIF GLOBAL_COMABLE(144)
-	RETURN RESULT
-;利尿剂使用中か漏尿癖ありでないとダメ
-SIF TEQUIP:27 == 0 && TALENT:漏尿癖 == 0
-	RETURN 0
-;顺从３以上でないとダメ（お風呂場ならＯＫ）
-IF TEQUIP:31 == 0
-	SIF ABL:顺从 <= 2
-		RETURN 0
-ENDIF
-
-;下半身着衣
-SIF TEQUIP:0 > 1
-	RETURN 0
-RETURN 1
-
 @COM_ABLE145
 ;舔肛侍奉強制実行判定
 SIF !TFLAG:100
@@ -2487,24 +2466,6 @@ SIF ITEM:41 == 0 && NOITEM == 0
 	RETURN 0
 ;药毒耐性だとダメ
 SIF TALENT:药毒耐性
-	RETURN 0
-RETURN 1
-
-@COM_ABLE182
-;利尿剂実行判定
-SIF !TFLAG:100
-	RETURN 0
-;一括管理
-SIF GLOBAL_COMABLE(182)
-	RETURN RESULT
-;アイテムを持っているか、アイテムなし設定でないとダメ
-SIF ITEM:42 == 0 && NOITEM == 0
-	RETURN 0
-;药毒耐性の場合、直接注入以外ダメ
-SIF TALENT:药毒耐性
-	RETURN 0
-;新妻PLAY中はダメ
-SIF TEQUIP:33
 	RETURN 0
 RETURN 1
 

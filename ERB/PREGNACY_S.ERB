@@ -757,8 +757,6 @@ ELSE
 		LOOP_I ++
 	WEND
 ENDIF
-SIF !RAND:50
-	TALENT:子供:漏尿癖 = 1
 ;この段階で同意なしに处女を奪われている場合は人間不信に
 ;CFLAG:76が同意フラグか？ 現在どこでも設定されていないので暫定的にコメントアウトする。
 ;SIF GETBIT(TALENT:子供:性別,0) && !(TALENT:子供:处女) && CFLAG:子供:76

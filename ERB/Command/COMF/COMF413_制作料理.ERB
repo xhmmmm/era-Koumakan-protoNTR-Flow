@@ -169,8 +169,6 @@ SIF TALENT:MASTER:泌乳体质
 	PRINTL [4] - 母乳
 SIF ITEM:41 != 0
 	PRINTL [5] - 媚药
-SIF ITEM:42 != 0
-	PRINTL [6] - 利尿剂
 SIF TALENT:MASTER:调和知识
 	PRINTL [7] - 睡眠薬
 PRINTL [100] - 还是放弃好了
@@ -224,11 +222,6 @@ ELSEIF RESULT == 5 && ITEM:媚药 != 0
 	ITEM:41 -= 1
 	FLAG:料理 += 4000
 	RETURN 1
-ELSEIF RESULT == 6 && ITEM:利尿剂 != 0
-	PRINTFORML %CALLNAME:PLAYER%从怀里拿出了利尿剂，掺进了%GETDISHNAME(FLAG:料理)%里面…
-	ITEM:42 -= 1
-	FLAG:料理 += 5000
-	RETURN 1
 ELSEIF RESULT == 7 && TALENT:MASTER:调和知识
 	PRINTFORML %CALLNAME:PLAYER%从怀里拿出了安眠药，掺进了%GETDISHNAME(FLAG:料理)%里面…
 	FLAG:料理 += 6000
@@ -247,9 +240,6 @@ ENDIF
 IF FLAG:料理 > 6000
 	SIF ARG != MASTER
 		CFLAG:ARG:睡眠深度 = -1
-	;利尿剂
-ELSEIF FLAG:料理 > 5000
-	TEQUIP:ARG:利尿剂 = 1
 	;媚药
 ELSEIF FLAG:料理 > 4000
 	CFLAG:ARG:性欲 += RAND(20, 31)
@@ -273,9 +263,6 @@ ENDIF
 #DIM 好感度变化
 ;睡眠薬
 IF FLAG:料理 > 6000
-
-	;利尿剂
-ELSEIF FLAG:料理 > 5000
 
 	;媚药
 ELSEIF FLAG:料理 > 4000
