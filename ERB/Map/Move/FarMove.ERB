@@ -37,6 +37,14 @@ ENDIF
 ; 重置路线（不清除移动目的）
 CALLF RESET_ROUTE(角色, 0)
 
+; 起点=终点，无需移动
+IF 当前位置 == 最终目的地
+	IF FLAG:DEBUG模式
+		PRINTFORML [FARMOVE] %CALLNAME:角色% 已在%GetPlaceName(当前位置)%，无需移动
+	ENDIF
+	RETURNF
+ENDIF
+
 ; 直达检查
 IF CAN_MOVE(当前位置, 最终目的地)
 	移动路线:角色:0 = 最终目的地
