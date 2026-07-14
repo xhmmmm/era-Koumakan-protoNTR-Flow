@@ -227,7 +227,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・嗯・・嗯呜啊・・・色色的事・・・好・・・舒服・・」
 		PRINTFORML %CALLNAME:角色%沉醉于%NTR_NAME(0)%的阴茎所带来的初次快感之中
 		;非处女
@@ -239,7 +239,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・嗯・・嗯呜啊・・・色色的事・・・好・・・舒服・・」
 		PRINTFORML %CALLNAME:角色%沉醉于%NTR_NAME(0)%的阴茎所带来的初次快感之中
 		IF TALENT:角色:恋慕
@@ -260,7 +260,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・那个・・・不要・・・啊・・・啊啊---・！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML 在最后一刻想起了对%CALLNAME:MASTER%的思念的%CALLNAME:角色%，却被%NTR_NAME(0)%毫不留情地撕裂了她的思念。
@@ -280,7 +280,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不要ッ！只有那个，不要啊・・・啊啊啊啊啊啊～～～」
 		PRINTFORML %NTR_NAME(0)%将反抗的%CALLNAME:角色%压在身下，浮现笑容，贯穿了幼小的裂隙。
 		PRINTFORML 大腿上流淌着红色的血滴

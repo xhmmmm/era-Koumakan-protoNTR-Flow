@@ -1277,7 +1277,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「は・・はい・・やさしく・・お願いします・・っ！」
 		PRINTFORML おずおずと捧げられた%CALLNAME:角色%の处女地を、%NTR_NAME(0)%は深々と貫いた。
 		;非处女
@@ -1288,7 +1288,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「は・・はい・・やさしく・・お願いします・・っ！」
 		PRINTFORML おずおずと捧げられた%CALLNAME:角色%の处女地を、%NTR_NAME(0)%は深々と貫いた。
 		IF TALENT:角色:恋慕
@@ -1309,7 +1309,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・その・・初めては・・あああっ！」
 		IF TALENT:角色:恋慕
 			PRINTFORML 恐怖と%CALLNAME:MASTER%への想いとの間で逡巡する%CALLNAME:角色%の純潔は、%NTR_NAME(0)%によって踏みにじられた。
@@ -1328,7 +1328,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「あ・・そんな・・初めては・・%CALLNAME:MASTER%にって・・い、いやああっ！」
 			PRINTFORML %CALLNAME:MASTER%を想い弱々しく抗う%CALLNAME:角色%の純潔は、%NTR_NAME(0)%によって無残に踏みにじられた。
@@ -1348,7 +1348,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「あ・・その・・初めては・・%CALLNAME:MASTER%にって・・い、いやああっ！」
 			PRINTFORML %CALLNAME:MASTER%を想い抗う%CALLNAME:角色%の純潔は、%NTR_NAME(0)%によって無残に踏みにじられた。
@@ -1374,7 +1374,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・ん・・ああ・・貴方の・・ものに・・っ」
 		PRINTFORML 破瓜の痛みを感じながらも、%CALLNAME:角色%は%NTR_NAME(0)%にしがみつき甘い声をあげつつあった。
 		;非处女
@@ -1385,7 +1385,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・ん・・ああ・・貴方の・・ものに・・っ」
 		PRINTFORML 破瓜の痛みを感じながらも、%CALLNAME:角色%は%NTR_NAME(0)%にしがみつき甘い声をあげつつあった。
 		IF TALENT:角色:恋慕
@@ -1406,7 +1406,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・ん・・ああ・・っ」
 		IF TALENT:角色:恋慕
 			PRINTFORML %NTR_NAME(0)%の一突きごとに、苦痛交じりの快楽が%CALLNAME:角色%の%CALLNAME:MASTER%への想いを突き崩してゆく。
@@ -1425,7 +1425,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・ん・・いや・・いやあ・・ああ・・っ」
 		IF TALENT:角色:恋慕
 			PRINTFORML %NTR_NAME(0)%の一突きごとに、その苦痛と快楽が%CALLNAME:角色%の%CALLNAME:MASTER%への想いを突き崩してゆく。
@@ -1444,7 +1444,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あ・・ん・・いや・・いやあ・・ああ・・っ」
 		IF TALENT:角色:恋慕
 			PRINTFORML %NTR_NAME(0)%の一突きごとに、その苦痛と恐怖が%CALLNAME:角色%の%CALLNAME:MASTER%への想いを突き崩してゆく。
@@ -1469,7 +1469,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あっ、あっ、ああんっ・・あ、ああああーーーーーーーっ！！」
 		PRINTFORML 破瓜の苦痛に勝る快楽に喘ぎ続けていた%CALLNAME:角色%はついに絶頂に導かれた。それと同時に、%NTR_NAME(0)%は彼女の奥深くで精を解き放った。
 		PRINTFORML 熱く滾る白濁が征服者の証として处女を失ったばかりの%CALLNAME:角色%の性器にしみこんでいった。
@@ -1482,7 +1482,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あっ、あっ、ああんっ・・あ、ああああーーーーーーーっ！！」
 		PRINTFORML 破瓜の苦痛に勝る快楽に喘ぎ続けていた%CALLNAME:角色%はついに絶頂に導かれた。それと同時に、%NTR_NAME(0)%は彼女の奥深くで精を解き放った。
 		PRINTFORML 熱く滾る白濁が征服者の証として处女を失ったばかりの%CALLNAME:角色%の性器にしみこんでいった。
@@ -1505,7 +1505,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あっ、あっ、ああんっ・・あ、ああああーーーーーーーっ！！」
 		PRINTFORML 破瓜の苦痛に勝る快楽に喘ぎ続けていた%CALLNAME:角色%はついに絶頂に導かれた。それと同時に、%NTR_NAME(0)%は彼女の奥深くで精を解き放った。
 		PRINTFORML 熱く滾る白濁が征服者の証として处女を失ったばかりの%CALLNAME:角色%の性器にしみこんでいった。
@@ -1528,7 +1528,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「いやっ、いやあっ！ 中はっ・・中はあああああーーーーーーーっ！！」
 		PRINTFORML 破瓜の苦痛に勝る快楽に喘ぎ続けていた%CALLNAME:角色%であったが、%NTR_NAME(0)%は彼女の奥深くで容赦なく精を解き放った。
 		PRINTFORML 熱く滾る白濁が征服者の証として处女を失ったばかりの%CALLNAME:角色%の性器に塗りこまれていった。
@@ -1557,7 +1557,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「いやっ、いやあっ！ 中はっ・・中はあああああーーーーーーーっ！！」
 		PRINTFORML 破瓜の苦痛に喘ぎ続けていた%CALLNAME:角色%であったが、%NTR_NAME(0)%は彼女の奥深くで容赦なく精を解き放った。
 		PRINTFORML 熱く滾る白濁が征服者の証として处女を失ったばかりの%CALLNAME:角色%の性器に塗りこまれていった。

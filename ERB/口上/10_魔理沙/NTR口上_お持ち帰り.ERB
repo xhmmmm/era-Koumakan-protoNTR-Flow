@@ -407,7 +407,7 @@ IF TALENT:角色:亲爱
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「はい…私の初めてを、お捧げします…」
 		PRINTFORML %CALLNAME:角色%は自ら脚を開いて%NTR_NAME(0)%を誘い、まだ男を知らない处女地に受け入れた。
 	ELSE
@@ -421,7 +421,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%への想いも忘れ、彼以外の男人に处女を捧げてしまった。
@@ -437,7 +437,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「いいぜ…私の初めてを、あげる…あいつには…ナイショだぞ…」
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
@@ -453,7 +453,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「いったぁぁっ！？…あぁ、初めては…%CALLNAME:MASTER%にってぇ…」
 			PRINTFORML %CALLNAME:角色%は%NTR_NAME_1_2(角色)%に处女を奪われ涙を流している

@@ -187,7 +187,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「是的……把我的第一次，献给您……」
 		PRINTFORML %CALLNAME:角色%主动张开双腿诱惑%NTR_NAME(0)%，在还未知晓男人的处女之地接纳了他。
 		;非处女
@@ -198,7 +198,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 
 		PRINTFORML 「好吧……把我的第一次，给你……」
 		IF TALENT:角色:恋慕
@@ -217,7 +217,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧……把我的第一次，给你……」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%把处女献给了%ANATA_LOVER(角色)%以外的男人。
@@ -235,7 +235,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「好疼啊！！……啊，第一次……明明想给%CALLNAME:MASTER%的……」
 		ELSE
@@ -436,7 +436,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	;处女
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯……嗯嗯嗯！」
 		PRINTFORML %CALLNAME:角色%想着与其被夺走处女，不如主动将嘴唇献给%NTR_NAME(0)%的阴茎，被往嘴里灌入了精液。
 		;非处女
@@ -447,7 +447,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯……嗯嗯嗯！咳咳、咳咳」
 		PRINTFORML %CALLNAME:角色%被威胁要夺走处女，主动吸吮%NTR_NAME(0)%的阴茎，被往嘴里灌入了精液。
 	ELSE
@@ -475,7 +475,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	;处女
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「这边比较好呢・・・」
 		PRINTFORML %CALLNAME:角色%听从%NTR_NAME(0)%的命令献出肛门，接受了他的阴茎。
 		PRINTFORML %NTR_NAME(0)%坚硬的肉棒深深地挖掘着%CALLNAME:角色%的肠内，仿佛在宣示征服的证明一般释放了精液。
@@ -487,7 +487,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「用这边的话、请原谅……啊啊啊！」
 		PRINTFORML %CALLNAME:角色%想着与其被夺走处女，不如主动献出后穴，接受了%NTR_NAME(0)%的阴茎。
 		PRINTFORML %NTR_NAME(0)%坚硬的肉棒深深地挖掘着%CALLNAME:角色%的肠道，仿佛要留下征服的印记般释放了精液。

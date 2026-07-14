@@ -939,7 +939,7 @@ CALL STAIN_MOVE_BY_PENIS(部位_Ｖ, 角色, 人物_訪問者)
 IF TALENT:角色:处女
 	;处女であれば破瓜
 	;处女/再生处女フラグを保存
-	CFLAG:角色:处女喪失中 = TALENT:角色:处女
+	CFLAG:角色:处女丧失中 = TALENT:角色:处女
 	CALL LOST_VIRGIN(角色, 調教者)
 ENDIF
 IF 射精

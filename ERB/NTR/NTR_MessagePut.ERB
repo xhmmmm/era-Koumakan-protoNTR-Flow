@@ -445,7 +445,7 @@ RETURN 0
 ;開始
 @NTR_MESSAGE_K_8_0_0(ARG)
 
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORML 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%平躺之后，张开她的双腿将龟头浅浅地嵌入其中，将还不认识男人的%MSG_SLIT(ARG)%贯穿了…
 	SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度
 		PRINTFORML %CALLNAME:ARG%一边忍耐着疼痛一边紧紧地抱住了%NTR_NAME(0)%…
@@ -455,7 +455,7 @@ ELSE
 		PRINTFORM 掀开她的%SHOW_BOTTOM(ARG,2)%，
 	PRINTFORML 将阴茎贴上%MSG_SLIT(ARG)%贯穿而入…
 ENDIF
-SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORML %CALLNAME:ARG%一边忍耐着疼痛一边紧紧地抱住了%NTR_NAME(0)%…
 ;寝取り返したケース
 IF !TALENT:ARG:NTR && EXP:ARG:NTR陷落经验
@@ -505,7 +505,7 @@ RETURN 0
 @NTR_MESSAGE_KW_8_0_0(ARG)
 IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORMW %NTR_NAME(0)%のいきり勃ったモノが汚れをしらない%MSG_SLIT(ARG)%を貫いていった…。
 	ELSE
 		PRINTFORMW %NTR_NAME(0)%のいきり勃ったモノが%CALLNAME:ARG%の性器に深々と打ち込まれた。
@@ -513,7 +513,7 @@ IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORMW %NTR_NAME(0)%のいきり勃ったモノが汚れをしらない%MSG_SLIT(ARG)%を貫いていった…。
 	ELSE
 		PRINTFORML %NTR_NAME(0)%のいきり勃ったモノが%CALLNAME:ARG%の性器に深々と打ち込まれた。
@@ -521,7 +521,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORMW %NTR_NAME(0)%のいきり勃ったモノが汚れをしらない%MSG_SLIT(ARG)%を貫いていった…。
 	ELSE
 		PRINTFORML %NTR_NAME(0)%のいきり勃ったモノが%CALLNAME:ARG%の性器に深々と打ち込まれた。
@@ -530,7 +530,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 
 	PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%の目の前で仰向けに押し倒した%CALLNAME:ARG%の脚を開くと
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML いきり勃ったモノを汚れをしらない%MSG_SLIT(ARG)%にあてがい、一思いに貫いた…。
 	ELSE
 		PRINTFORML いきり勃ったモノを濡れそぼった性器に深々と打ち込んだ。
@@ -539,7 +539,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 ELSE
 
 	PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%の目の前で仰向けに組み伏せた%CALLNAME:ARG%の脚を開くと
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML いきり勃ったモノを汚れをしらない%MSG_SLIT(ARG)%にあてがい、一思いに貫いた…。
 	ELSE
 		PRINTFORML いきり勃ったモノを濡れそぼった性器に深々と打ち込んだ。
@@ -609,7 +609,7 @@ RETURN 0
 
 ;開始
 @NTR_MESSAGE_K_8_1_0(ARG)
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%四肢着地趴下、高高抬起屁股，将龟头浅浅地嵌入其中后，用肉棒贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%四肢着地趴下，
@@ -650,7 +650,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
 	PRINTFORML %CALLNAME:ARG%は四つん這いになると見せ付けるかのように自ら尻を振って%NTR_NAME(0)%を誘った。
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %CALLNAME:ARG%は%CALLNAME:MASTER%の目の前で%NTR_NAME(0)%に处女を捧げようとしていた。
 		PRINTFORMW %NTR_NAME(0)%のいきり勃ったモノが汚れをしらない%MSG_SLIT(ARG)%を貫いていった…。
 	ELSE
@@ -660,7 +660,7 @@ IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
 	PRINTFORML %CALLNAME:ARG%は四つん這いになると見せ付けるかのように自ら尻を振って%NTR_NAME(0)%を誘った。
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		IF TALENT:ARG:恋慕
 			PRINTFORML %CALLNAME:ARG%は%MSG_LOVER(ARG)%である%CALLNAME:MASTER%の目の前で%NTR_NAME(0)%に处女を捧げようとしていた。
 		ELSE
@@ -674,7 +674,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
 	PRINTFORML %CALLNAME:ARG%は四つん這いになると自ら腰をくねらせて%NTR_NAME(0)%を誘った。
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		IF TALENT:ARG:恋慕
 			PRINTFORML %CALLNAME:ARG%は%MSG_LOVER(ARG)%である%CALLNAME:MASTER%の目の前で%NTR_NAME(0)%に处女を捧げようとしていた。
 		ELSE
@@ -687,7 +687,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%の目の前で四つん這いに組み伏せた%CALLNAME:ARG%の尻を掴むと
 		PRINTFORML いきり勃ったモノを汚れをしらない%MSG_SLIT(ARG)%にあてがい、一思いに貫いた…。
 	ELSE
@@ -697,7 +697,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:MASTER%の目の前で四つん這いに組み伏せた%CALLNAME:ARG%の尻を掴むと
 		PRINTFORML いきり勃ったモノを汚れをしらない%MSG_SLIT(ARG)%にあてがい、一思いに貫いた…。
 	ELSE
@@ -712,9 +712,9 @@ RETURN 0
 @NTR_MESSAGE_KW_8_1_1(ARG)
 IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%の一突きごとに背中をのけ反らせて喘いでいる。
-		PRINTFORML その表情は%CALLNAME:ARG%は处女喪失の痛みさえ悦びと感じているかのようだ。
+		PRINTFORML その表情は%CALLNAME:ARG%は处女丧失の痛みさえ悦びと感じているかのようだ。
 		PRINTFORML %NTR_NAME(0)%は突き入れたままのものをゆっくりと動かし始めた。
 		PRINTFORMW %CALLNAME:MASTER%に見せ付けながら%CALLNAME:ARG%はその動きに合わせて艶かしく腰を動かし始めていた。
 	ELSE
@@ -725,9 +725,9 @@ IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%の一突きごとに背中をのけ反らせて喘いでいる。
-		PRINTFORML その表情は%CALLNAME:ARG%は处女喪失の痛みさえ悦びと感じているかのようだ。
+		PRINTFORML その表情は%CALLNAME:ARG%は处女丧失の痛みさえ悦びと感じているかのようだ。
 		PRINTFORML %NTR_NAME(0)%は突き入れたままのものをゆっくりと動かし始めた。
 	ELSE
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%の一突きごとに背中をのけ反らせて喘いでいる。
@@ -736,9 +736,9 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%の一突きごとに背中をのけ反らせて喘いでいる。
-		PRINTFORML その表情は%CALLNAME:ARG%は处女喪失の痛みさえ悦びと感じているかのようだ。
+		PRINTFORML その表情は%CALLNAME:ARG%は处女丧失の痛みさえ悦びと感じているかのようだ。
 		PRINTFORML %NTR_NAME(0)%は突き入れたままのものをゆっくりと動かし始めた。
 
 	ELSE
@@ -749,8 +749,8 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
-		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま处女喪失の痛みに耐えている。
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
+		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま处女丧失の痛みに耐えている。
 		PRINTFORML %NTR_NAME(0)%は更なる快楽で追い討ちをかけるかのように突き入れたままのものをゆっくりと動かし始めた。
 	ELSE
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま快楽と恥辱に耐えている。
@@ -760,8 +760,8 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
-		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま处女喪失の痛みに耐えている。
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
+		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま处女丧失の痛みに耐えている。
 		PRINTFORMW %NTR_NAME(0)%は更なる恥辱で追い討ちをかけるかのように突き入れたままのものをゆっくりと動かし始めた。
 	ELSE
 		PRINTFORML %CALLNAME:ARG%は%NTR_NAME(0)%に組み伏せられたまま快楽と恥辱に耐えている。
@@ -810,7 +810,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%CALLNAME:ARG%跨坐在%NTR_NAME(0)%的身上，慢慢地沉下腰，
 		PRINTFORMW 用还不认识男人的%MSG_SLIT(ARG)%吞下了阴茎…
 	ELSE
@@ -819,7 +819,7 @@ IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%CALLNAME:ARG%跨坐在%NTR_NAME(0)%的身上，慢慢地沉下腰，
 		PRINTFORMW 用还不认识男人的%MSG_SLIT(ARG)%吞下了阴茎…
 	ELSE
@@ -828,7 +828,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%躺下后让%CALLNAME:ARG%跨坐在自己的身上，一边抓住她的腰
 		PRINTFORMW 一边向还不认识男人的%MSG_SLIT(ARG)%插入了阴茎。
 	ELSE
@@ -838,7 +838,7 @@ ELSEIF NTR_CHK_FAVORABLY(ARG, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+	IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%躺下后让%CALLNAME:ARG%跨坐在自己的身上，一边抓住她的腰
 		PRINTFORMW 一边向还不认识男人的%MSG_SLIT(ARG)%插入了肉棒。
 	ELSE
@@ -912,7 +912,7 @@ RETURN 0
 ;開始
 @NTR_MESSAGE_K_8_3_0(ARG)
 
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，在接吻的同时一边慢慢放下，用肉棒将还不认识男人的%MSG_SLIT(ARG)%贯穿了…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，慢慢放下的同时向着
@@ -956,7 +956,7 @@ RETURN 0
 ;開始
 @NTR_MESSAGE_K_8_4_0(ARG)
 
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，用早已做好准备的肉棒缓缓贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，
@@ -1005,7 +1005,7 @@ RETURN 0
 ;開始
 @NTR_MESSAGE_K_8_5_0(ARG)
 
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的一只脚向上抬起，将龟头贴上裸露而出还不认识男人的%MSG_SLIT(ARG)%一口气贯穿了它…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的一只脚向上抬起，
@@ -1013,7 +1013,7 @@ ELSE
 		PRINTFORM 向一旁掀开%SHOW_BOTTOM(ARG,2)%，
 	PRINTFORMW 将肉棒对准贴上%MSG_SLIT(ARG)%后贯穿了它…
 ENDIF
-SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORML %CALLNAME:ARG%一边忍耐着疼痛一边紧紧地抱住了%NTR_NAME(0)%…
 
 RETURN 0
@@ -1022,7 +1022,7 @@ RETURN 0
 @NTR_MESSAGE_K_8_5_1(ARG)
 
 PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%品味着%CALLNAME:ARG%小穴内的触感，再次动起了腰…
-SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度 && TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORML %CALLNAME:ARG%一边忍耐着疼痛一边紧紧地抱住了%NTR_NAME(0)%…
 
 RETURN 0
@@ -1052,7 +1052,7 @@ RETURN 0
 ;開始
 @NTR_MESSAGE_K_8_6_0(ARG)
 
-IF TALENT:ARG:处女 || CFLAG:ARG:处女喪失中
+IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%扶着%MSG_WallOrTree_NTR()%
 	PRINTFORMW 然后向后伸出屁股，用肉棒贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE

@@ -320,7 +320,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 		PRINTFORML 小さな性器がいっぱいに拡がり、堅くそそり勃った肉柱を飲み込んでゆく。
 		PRINTFORML 「ああんっ・・お・・おお・・きいっ・・！」
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 			PRINTFORML 「あんっあっ・・はじめてっ・・なのにっ・・こんな太いの・・・入ってるぅ・・%MSG_HEART()%」
 			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に处女の肉壁をミチミチと広げられるのを感じながら悦に浸っている
 			;非处女
@@ -336,7 +336,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「あんっあっ・・はじめてっ・・なのにっ・・こんな太いの・・・入ってるぅ・・%MSG_HEART()%」
 		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に处女の肉壁をミチミチと広げられるのを感じながら悦に浸っている
 		IF TALENT:角色:恋慕
@@ -361,7 +361,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・ど、どうしても、ですか・・？ あっ、あ、ああーーーっ！！」
 		PRINTFORML %CALLNAME:角色%は逡巡していたが、%NTR_NAME(0)%は容赦なく彼女の处女を貫いた。
 		IF TALENT:角色:恋慕
@@ -388,7 +388,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「っ！ごめんなさいっ！許して、ゆるしてっ・・っ！・・・・あっ・・あっ・・・」
 		PRINTFORML %CALLNAME:角色%は必死に許しを請うたが、%NTR_NAME(0)%の阴茎が秘所を貫くと糸が切れたかのように動かなくなった。		
 		IF TALENT:角色:恋慕
@@ -494,7 +494,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 			DATAFORM 「あああっ！！ い、いきますっ、いっちゃいますぅ%MSG_HEART()%」
 		ENDDATA
 		PRINTFORML %CALLNAME:角色%は胎内に放たれた%NTR_NAME(0)%の熱を感じると、蕩けた瞳で余韻に浸った
-		IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+		IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 			PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら支配欲を満たしている
 		ELSE
 			PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら支配欲を満たしている
@@ -514,7 +514,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 	ELSE
 		PRINTFORML 僅かに残った理性や恥じらいが濁った白さにかき消されてゆく・・・
 	ENDIF
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら征服欲を満たしている
 	ELSE
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら征服欲を満たしている
@@ -533,7 +533,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 	ELSE
 		PRINTFORML 胎内を灼く欲望の熱にわずかに瞳が揺らいだが、%CALLNAME:角色%は絶望ではなく背徳感の甘さを感じていた。
 	ENDIF
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら征服欲を満たしている
 	ELSE
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら征服欲を満たしている
@@ -550,7 +550,7 @@ ELSE
 		PRINTFORML 胎内を灼く欲望の熱にわずかに瞳の色が戻りかけるも、圧し掛かる絶望に瞳を暗く堕とした。
 		PRINTFORML （・・そん・・な・・にん・・しん・・しちゃう・・）
 	ENDIF
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら征服欲を満たしている
 	ELSE
 		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら征服欲を満たしている

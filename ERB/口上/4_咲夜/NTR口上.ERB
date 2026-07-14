@@ -2761,7 +2761,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、呵呵・・因为是第一次，请温柔一点・・哦・・嗯、呜！」
 		;非处女
 	ELSE
@@ -2783,7 +2783,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、呵呵・・因为是第一次，请温柔一点・・哦・・嗯、呜！」
 		;非处女
 	ELSE
@@ -2805,7 +2805,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧・・可以哦・・因为是第一次，请温柔一点・・哦・・嗯、呜！」
 		;非处女
 	ELSE
@@ -2828,7 +2828,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	PRINTFORML 被推倒的%CALLNAME:角色%微微抵抗着。
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不、不可以再做下去了・・只有、只有这个・・不・・不要啊啊啊啊啊啊啊啊！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML 「啊啊・・不可以・・不可以・・」
@@ -2850,7 +2850,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不、不可以！！只有、只有那个不可以・・不・・要啊啊啊啊啊啊啊啊啊！！」
 		;非处女
 	ELSE
@@ -2869,7 +2869,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的阴茎贯穿了处女膜，%CALLNAME:角色%忍受着疼痛、抱住了%NTR_NAME(0)%。
 		;非处女
 	ELSE
@@ -2887,7 +2887,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的阴茎贯穿了处女膜，%CALLNAME:角色%忍受着疼痛、抱住了%NTR_NAME(0)%。
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%忘记了对%ANATA_LOVER(角色)%的爱，将处女献给了%NTR_NAME(0)%。
@@ -2914,7 +2914,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的阴茎贯穿了处女膜，%CALLNAME:角色%忍受着疼痛、依偎着%NTR_NAME(0)%。		
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%将处女献给了并非%ANATA_LOVER(角色)%的男人。
@@ -2941,7 +2941,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 尽管请求放过自己，但%NTR_NAME(0)%的阴茎无情地贯穿了%CALLNAME:角色%未被男人使用过秘穴。
 		PRINTFORML 结合处流下了曾经是少女的证明。		
 		IF TALENT:角色:恋慕
@@ -2970,7 +2970,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 尽管请求放过自己，但%NTR_NAME(0)%的阴茎无情地贯穿了%CALLNAME:角色%未被男人使用过秘穴。
 		PRINTFORML 结合处流下了曾经是少女的证明。		
 		IF TALENT:角色:恋慕
@@ -3010,7 +3010,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・嗯・・哈、哈・・%MSG_HEART()%」
 		PRINTFORML 破瓜的疼痛淡去，%CALLNAME:角色%环抱住%NTR_NAME(0)%，开始发出娇艳的声音。		
 		;非处女
@@ -3038,7 +3038,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・嗯・・哈、哈・・%MSG_HEART()%」
 		PRINTFORML 破瓜的疼痛淡去，%CALLNAME:角色%环抱住%NTR_NAME(0)%，开始发出娇艳的声音。		
 		IF TALENT:角色:恋慕
@@ -3085,7 +3085,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・嗯・・哈、哈・・♪」
 		PRINTFORML 破瓜的疼痛淡去，%CALLNAME:角色%无意识地环抱住%NTR_NAME(0)%，开始发出娇艳的声音。		
 		IF TALENT:角色:恋慕
@@ -3132,7 +3132,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・啊啊・・不用在意我・・再深一点・・」
 			DATAFORM 「可以哦・・动吧・・动得再激烈一点・・」
@@ -3170,7 +3170,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・呀・不要、救我・・・%CALLNAME:MASTER%救我・・救・・我・・啊・嗯呜」
 		IF TALENT:角色:恋慕
 			PRINTFORML 看着哭着向%ANATA_LOVER(角色)%求助的样子，%NTR_NAME(0)%浮现出卑鄙而下流的笑容，腰动得更快了。		
@@ -3202,7 +3202,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・哈・・啊、哈・啊啊啊啊啊啊啊啊！！」
 		PRINTFORML %CALLNAME:角色%依偎着%NTR_NAME(0)%，感受着流入子宫内的精液。
 		;非处女
@@ -3230,7 +3230,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・哈・・啊、哈・啊啊啊啊啊啊啊啊！%MSG_HEART()%」
 		PRINTFORML %CALLNAME:角色%依偎着%NTR_NAME(0)%，感受着流入子宫内的精液。
 	ELSE
@@ -3257,7 +3257,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・哈・・啊、哈・啊啊啊啊啊啊啊啊♪」
 		PRINTFORML %CALLNAME:角色%依偎着%NTR_NAME(0)%，感受着精液的流入。
 	ELSE
@@ -3284,7 +3284,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・哈・・啊、哈・啊啊啊啊啊啊啊啊！！」
 		PRINTFORML %CALLNAME:角色%依偎着%NTR_NAME(0)%，感受着精液的流入。
 		;非处女
@@ -3303,7 +3303,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:危险日
 			PRINTFORML 「欸？啊、呀不可以。不可以射在里面，只有今天不可以啊啊啊啊・・・啊・・啊啊啊啊啊啊啊啊啊啊啊啊！！」
 		ELSE
@@ -3331,7 +3331,7 @@ RETURN 0
 呼称 = %MSG_NTR_SEX_4()%
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・在・・里面・・一抖一抖・・的・・呢・・・%MSG_HEART()%」
 		PRINTFORML 为了从膣内脈動着的%NTR_NAME(0)%的阴茎里榨出精子，收紧了肉壁。		
 		;非处女
@@ -3364,7 +3364,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・在・・里面・・一抖一抖・・的・・呢・・・%MSG_HEART()%」
 		PRINTFORML 为了从膣内脈動着的%NTR_NAME(0)%的阴茎里榨出精子，收紧了肉壁。			
 	ELSE
@@ -3410,7 +3410,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・哈・・啊、哈・啊啊啊啊啊啊啊啊♪」
 		PRINTFORML %CALLNAME:角色%紧紧抱住%NTR_NAME(0)%，感受着精液的流入。
 	ELSE
@@ -3444,7 +3444,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「对不起、%CALLNAME:MASTER%・・・对・・不起」
 			PRINTFORML 望着因为理应献给%MSG_LOVER(角色)%的纯洁被夺走，连处女地都被精液沾污的冲击而哽咽哭泣的%CALLNAME:角色%，%NTR_NAME(0)%的征服欲得到了满足。		
@@ -3472,7 +3472,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「对不起、%CALLNAME:MASTER%・・・对・・不起」
 			PRINTFORML 望着因为理应献给%MSG_LOVER(角色)%的纯洁被夺走，连处女地都被精液沾污的冲击而哽咽哭泣的%CALLNAME:角色%，%NTR_NAME(0)%的征服欲得到了满足。		
@@ -3507,7 +3507,7 @@ RETURN 0
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	PRINTFORML %CALLNAME:角色%仰面躺着，像是要展示给%CALLNAME:MASTER%看一样，主动张开双腿，诱惑着%NTR_NAME(0)%。
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「呵呵・・要展示出来吗？可以哦，因为是第一次，请温柔一点・・哦%MSG_HEART()%・・嗯、呜！」
 		PRINTFORML %CALLNAME:角色%在%CALLNAME:MASTER%的眼前，要把处女献给%NTR_NAME(0)%。
 		PRINTFORML 展现着她的心已经是%NTR_NAME(0)%的东西这一事实。
@@ -3532,7 +3532,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 	PRINTFORML %CALLNAME:角色%仰面躺着，像是要展示给%CALLNAME:MASTER%看一样，主动张开双腿，诱惑着%NTR_NAME(0)%。
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「呵呵・・要展示出来吗？可以哦，因为是第一次，请温柔一点・・哦%MSG_HEART()%・・嗯、呜！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前，要把处女献给%NTR_NAME_1_2(角色)%。
@@ -3567,7 +3567,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	PRINTFORML %CALLNAME:角色%仰面躺着，在%CALLNAME:MASTER%的眼前，主动张开双腿，诱惑着%NTR_NAME(0)%。
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧・・可以哦・・因为是第一次，请温柔一点・・哦♪・・嗯、呜！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前，要把处女献给%NTR_NAME_1_2(角色)%。
@@ -3600,7 +3600,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 	PRINTFORML 在%CALLNAME:MASTER%的眼前被推倒的%CALLNAME:角色%微微抵抗着。
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「啊啊・・不可以・・不可以・・」
 			PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%压在身下无法逃脱。
@@ -3621,7 +3621,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊！不可以！%CALLNAME:MASTER%、救我%CALLNAME:MASTER%！！」
 		;非处女
 	ELSE
@@ -3641,7 +3641,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「痛・・啊、啊啊ーーーー！！」
 		PRINTFORML %CALLNAME:角色%在%CALLNAME:MASTER%的眼前献上了处女。
 		PRINTFORML 然后爱恋般地双手绕过%NTR_NAME(0)%的背后就，抱住了他。
@@ -3657,7 +3657,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「痛・・啊、啊啊ーーーー！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前献上了处女。
@@ -3681,7 +3681,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「痛・・啊、啊啊ーーーー！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前献上了处女。
@@ -3704,7 +3704,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「痛・・啊、啊啊ーーーー！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%在%ANATA_LOVER(角色)%的眼前被夺走了纯洁。
@@ -3732,7 +3732,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊・・%CALLNAME:MASTER%・・救我%CALLNAME:MASTER%！！」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%的纯洁在%ANATA_LOVER(角色)%的眼前无情地消散了。
@@ -3764,14 +3764,14 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・好了、动吧、没关系的・・%MSG_HEART()%」
 			DATAFORM 「可以哦・・动吧・・%MSG_HEART()%」
 			DATAFORM 「没关系哦・・就这样、抽插吧・・%MSG_HEART()%」
 		ENDDATA
 		PRINTFORML %CALLNAME:角色%爱恋般地环抱住%NTR_NAME(0)%。
-		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女喪失的疼痛而感觉到愉悦一般。
+		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女丧失的疼痛而感觉到愉悦一般。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3784,14 +3784,14 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・好了、动吧、没关系的・・%MSG_HEART()%」
 			DATAFORM 「可以哦・・动吧・・%MSG_HEART()%」
 			DATAFORM 「没关系哦・・就这样、抽插吧・・%MSG_HEART()%」
 		ENDDATA
 		PRINTFORML %CALLNAME:角色%爱恋般地环抱住%NTR_NAME(0)%。
-		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女喪失的疼痛而感觉到愉悦一般。
+		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女丧失的疼痛而感觉到愉悦一般。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3804,14 +3804,14 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・好了、动吧、没关系的・・♪」
 			DATAFORM 「可以哦・・动吧・・♪」
 			DATAFORM 「没关系哦・・就这样、抽插吧・・♪」
 		ENDDATA
 		PRINTFORML %CALLNAME:角色%爱恋般地环抱住%NTR_NAME(0)%。
-		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女喪失的疼痛而感觉到愉悦一般。
+		PRINTFORML %CALLNAME:角色%的那个表情像是因为处女丧失的疼痛而感觉到愉悦一般。
 		;非处女
 	ELSE
 		PRINTDATAL
@@ -3824,7 +3824,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTDATAL
 				DATAFORM 「・・骗人・・啊啊・・为什么・・」
@@ -3839,7 +3839,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 				DATAFORM 「可以哦・・动吧・・动得在激烈一点・・」
 				DATAFORM 「・・抽插得再用力一点也可以哦・・」
 			ENDDATA
-			PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%压在身下，忍受着处女喪失的疼痛。
+			PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%压在身下，忍受着处女丧失的疼痛。
 			PRINTFORML 她的身体开始一次次地顺应起阴茎了。
 		ENDIF
 		;非处女
@@ -3858,7 +3858,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	ENDIF
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・呀・不要啊、救我・・・救我%CALLNAME:MASTER%・・救・・我・・啊・嗯」
 		PRINTFORML 「・・为什么・・为什么・・」
 		PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%压在身下，忍受着快感与耻辱。
@@ -3890,7 +3890,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、嗯・・啊呼・・嗯嗯%MSG_HEART()%」
 			DATAFORM 「啊啊・・那、那那里哟、就那样・・%MSG_HEART()%」
@@ -3909,7 +3909,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、嗯・・啊呼・・嗯嗯%MSG_HEART()%」
 			DATAFORM 「啊啊・・那、那那里哟、就那样・・%MSG_HEART()%」
@@ -3936,7 +3936,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、嗯・・啊呼・・嗯嗯♪」
 			DATAFORM 「啊啊・・那、那那里哟、就那样・・♪」
@@ -3963,7 +3963,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、嗯・・啊呼・・嗯嗯」
 			DATAFORM 「啊啊・・那、那那里哟、就那样・・」
@@ -3997,7 +3997,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「哈・・呀・不要、救・・・救我%CALLNAME:MASTER%・・救・・我・・啊・嗯呜」
 		IF TALENT:角色:恋慕
 			PRINTFORML 看见她哭着向%ANATA_LOVER(角色)%求助的样子，%NTR_NAME(0)%浮现出卑鄙而下流的笑容，腰动得更快了。		
@@ -4027,7 +4027,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好舒服・・要去了・・要去了、啊啊啊ーーーーー%MSG_HEART()%」
 		PRINTFORML %NTR_NAME(0)%拔出阴茎的同时，精液混合着红色从%CALLNAME:角色%的阴道里漏了出来。
 		PRINTFORMW %CALLNAME:角色%像是因为将处女献给%NTR_NAME(0)%而感到满足，一边抱着他，一边和他舌吻。
@@ -4053,7 +4053,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好舒服・・要去了・・要去了、啊啊啊ーーーーー%MSG_HEART()%」
 		PRINTFORML %NTR_NAME(0)%拔出阴茎的同时，精液混合着红色从%CALLNAME:角色%的阴道里漏了出来。
 		PRINTFORMW %CALLNAME:角色%像是因为将处女献给%NTR_NAME(0)%而感到满足，一边抱着他，一边和他舌吻。
@@ -4084,7 +4084,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好舒服・・要去了・・要去了、啊啊啊ーーーーー♪」
 		PRINTFORML %NTR_NAME(0)%拔出阴茎的同时，精液混合着红色从%CALLNAME:角色%的阴道里漏了出来。
 		PRINTFORMW %CALLNAME:角色%在%MSG_LOVER(角色)%的眼前，毫不抵抗地被%NTR_NAME(0)%抱近后，开始舌吻。
@@ -4110,7 +4110,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不要・・不可以・・不可以、啊啊啊ーーーーー！」
 		PRINTFORML %NTR_NAME(0)%拔出阴茎的同时，精液混合着红色从%CALLNAME:角色%的阴道里漏了出来。
 		IF TALENT:角色:恋慕
@@ -4135,7 +4135,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不要・・不可以・・不可以、啊啊啊ーーーーー！」
 		PRINTFORML %NTR_NAME(0)%拔出阴茎的同时，精液混合着红色从%CALLNAME:角色%的阴道里漏了出来。
 		IF TALENT:角色:恋慕
@@ -4178,7 +4178,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「看不见脸的话、很可怕啊・・」
 		;非处女
 	ELSE
@@ -4191,7 +4191,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「看不见脸的话、很可怕啊・・」
 		;非处女
 	ELSE
@@ -4204,7 +4204,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「看不见脸的话、很可怕啊・・」
 		;非处女
 	ELSE
@@ -4217,7 +4217,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不、不要、明明是第一次、这样・・啊、啊啊啊啊啊啊！」
 		;非处女
 	ELSE
@@ -4230,7 +4230,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊啊啊啊啊！・・・这样・・・这样种事・・」
 		;非处女
 	ELSE
@@ -4249,7 +4249,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯・・嗯嗯！・・没有想象中的・・那么・・痛呢・・」
 		PRINTFORML %NTR_NAME(0)%抓着%CALLNAME:角色%的屁股，插入了阴茎，结合处纯洁的证明沿着阴茎滴落到地面。
 		;非处女
@@ -4274,7 +4274,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯・・嗯嗯！・・没有想象中的・・那么・・痛呢・・」
 		PRINTFORML %NTR_NAME(0)%抓着%CALLNAME:角色%的屁股，插入了阴茎，结合处纯洁的证明沿着阴茎滴落到地面。
 		IF TALENT:角色:恋慕
@@ -4308,7 +4308,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯・・嗯嗯！・・没有想象中的・・那么・・痛呢・・」
 		PRINTFORML %NTR_NAME(0)%抓着%CALLNAME:角色%的屁股，插入了阴茎，结合处纯洁的证明沿着阴茎滴落到地面。
 		IF TALENT:角色:恋慕
@@ -4342,7 +4342,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%强行将%CALLNAME:角色%推倒在地，顺从着兽欲撕裂了%CALLNAME:角色%的处女。
 		IF TALENT:角色:恋慕
 			PRINTFORML 「・・呜・・・欸・・・明明是・・・第一次・・」
@@ -4363,7 +4363,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%强行将%CALLNAME:角色%推倒在地，顺从着兽欲撕裂了%CALLNAME:角色%的处女。
 		IF TALENT:角色:恋慕
 			PRINTFORML 「・・呜・・・欸・・・第一次・・・明明要・・那个人・・」
@@ -4395,7 +4395,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊呜嗯・・・咕呀嗯・・・吓呜嗯・・」
 		PRINTFORML %CALLNAME:角色%发出像狗一样的喘息声，沉醉于%NTR_NAME(0)%的腰部活动。
 		;非处女
@@ -4419,7 +4419,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊呜嗯・・・咕呀嗯・・・吓呜嗯嗯・・」
 		PRINTFORML %CALLNAME:角色%发出像狗一样的喘息声，沉醉于%NTR_NAME(0)%的腰部活动。
 		IF TALENT:角色:恋慕
@@ -4453,7 +4453,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊呜嗯・・・咕呀嗯・・・吓呜嗯嗯・・」
 		PRINTFORML %CALLNAME:角色%发出像狗一样的喘息声，沉醉于%NTR_NAME(0)%的腰部活动。
 		IF TALENT:角色:恋慕
@@ -4487,7 +4487,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・嗯・・哈、哈・・」
 		PRINTFORML 破瓜的疼痛淡去，%CALLNAME:角色%保持着四肢着地的姿势无法抵抗的同时，开始发出娇艳的声音。		
 		IF TALENT:角色:恋慕
@@ -4512,7 +4512,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・・・呃・・・・・呃・・・呃・・・・・」
 		PRINTFORML %CALLNAME:角色%被%NTR_NAME(0)%顺从着欲望侵犯着，同时似乎低语着谁的名字。
 		IF TALENT:角色:恋慕
@@ -4545,7 +4545,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯、吓呜呜呜呜！？」
 		;非处女
 	ELSE
@@ -4558,7 +4558,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯、吓呜呜呜呜！？」
 		;非处女
 	ELSE
@@ -4571,7 +4571,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯、吓呜呜呜呜！？」
 		;非处女
 	ELSE
@@ -4584,7 +4584,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「欸！？啊、不可以、不可以！不可以啊啊啊！！」
 		;非处女
 	ELSE
@@ -4597,7 +4597,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「欸！？啊、不要、不要啊！不要啊啊啊！！」
 		;非处女
 	ELSE
@@ -4619,7 +4619,7 @@ RETURN 0
 呼称 = %MSG_NTR_SEX_4()%
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊・・是・・非常・・・感谢・・」
 		PRINTFORML %CALLNAME:角色%的子宫内流入了兽欲的结晶，她对凌辱了自己的%NTR_NAME(0)%说出来感谢的话语。
 		PRINTFORML 阴茎从阴道拔出的同时，%NTR_NAME(0)%粘稠的精液混合着红色漏了出来。
@@ -4649,7 +4649,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊・・是・・非常・・・感谢・・」
 		PRINTFORML %CALLNAME:角色%的子宫内流入了兽欲的结晶，她对凌辱了自己的%NTR_NAME(0)%说出来感谢的话语。
 		PRINTFORML 阴茎从阴道拔出的同时，%NTR_NAME(0)%粘稠的精液混合着红色漏了出来。
@@ -4685,7 +4685,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊・・是・・非常・・・感谢・・」
 		PRINTFORML %CALLNAME:角色%的子宫内流入了兽欲的结晶，她对凌辱了自己的%NTR_NAME(0)%说出来感谢的话语。
 		PRINTFORML 阴茎从阴道拔出的同时，%NTR_NAME(0)%粘稠的精液混合着红色漏了出来。
@@ -4717,7 +4717,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・啊啊・・・里面・・・骗人・・啊・・啊啊・・・」
 		PRINTFORML 絶頂的瞬间，%CALLNAME:角色%理解到%NTR_NAME(0)%的精液流入了自己的阴道内，崩倒在地。
 		IF TALENT:角色:恋慕
@@ -4749,7 +4749,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好热呜呜呜呜！？・・啊・・・里面・・・骗人・・啊・・啊啊・・・」
 		PRINTFORML %CALLNAME:角色%理解到%NTR_NAME(0)%的精液流入了自己的阴道内，崩倒在地。
 		IF TALENT:角色:恋慕
@@ -4790,7 +4790,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「明明是第一次・・・居然要自己来・・・・啊啊啊啊啊啊啊！」
 		PRINTFORML %CALLNAME:角色%将秘穴贴%NTR_NAME(0)%紧耸立的阴茎，慢慢地沉下腰献上了纯洁。
 		;非处女
@@ -4805,7 +4805,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「明明是第一次・・・居然要自己来・・・・啊啊啊啊啊啊啊！」
 		PRINTFORML %CALLNAME:角色%将秘穴贴%NTR_NAME(0)%紧耸立的阴茎，慢慢地沉下腰献上了纯洁。
 		;非处女
@@ -4820,7 +4820,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「明明是第一次・・・居然要自己来・・・・啊啊啊啊啊啊啊！」
 		PRINTFORML %CALLNAME:角色%将秘穴贴%NTR_NAME(0)%紧耸立的阴茎，慢慢地沉下腰献上了纯洁。
 		;非处女
@@ -4835,7 +4835,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「不・・不要、明明是第一次居然这样！？救我、救我%CALLNAME:MASTER%！」
 			PRINTFORML %CALLNAME:角色%叫喊着%MSG_LOVER(角色)%的名字求助，却被%NTR_NAME(0)%抓住腰，一下子拉下，撕裂了纯洁。
@@ -4856,7 +4856,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「不・・不要、明明是第一次居然这样！？救我、救我%CALLNAME:MASTER%！」
 			PRINTFORML %CALLNAME:角色%叫喊着%MSG_LOVER(角色)%的名字求助，却被%NTR_NAME(0)%抓住腰，一下子拉下，撕裂了纯洁。
@@ -4883,7 +4883,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %CALLNAME:角色%像是对于将处女献给%NTR_NAME(0)%这件事感到满足，就这么跨坐在他身上陶醉着。
 		;非处女
 	ELSE
@@ -4896,7 +4896,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %CALLNAME:角色%像是对于将处女献给%NTR_NAME(0)%这件事感到满足，就这么跨坐在他身上陶醉着。
 		IF TALENT:角色:恋慕
 			PRINTFORML 将自己的处女献给了其他人，而非作为%MSG_LOVER(角色)%的%CALLNAME:MASTER%的背徳行径，让%CALLNAME:角色%感到异常的快感。
@@ -4929,7 +4929,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %CALLNAME:角色%像是对于将处女献给%NTR_NAME(0)%这件事感到满足，就这么跨坐在他身上陶醉着。
 		IF TALENT:角色:恋慕
 			PRINTFORML 将自己的处女献给了其他人，而非作为%MSG_LOVER(角色)%的%CALLNAME:MASTER%的背徳行径，让%CALLNAME:角色%感到异常的快感。
@@ -4962,7 +4962,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・啊・・・啊・・・哈・・・啊・・」
 			DATAFORM 「・・啊啊・・咕・・・・」
@@ -4981,7 +4981,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「・・啊・・・啊・・・哈・・・啊・・」
 			DATAFORM 「・・啊啊・・咕・・・・」
@@ -5011,7 +5011,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啾・・・哈・・・啊・・嗯・・」
 		PRINTFORML %CALLNAME:角色%跨坐在%NTR_NAME(0)%身上，专心地震动着腰。
 		;非处女
@@ -5032,7 +5032,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啾・・・哈・・・啊・・嗯・・」
 		PRINTFORML %CALLNAME:角色%跨坐在%NTR_NAME(0)%身上，专心地震动着腰。
 		;非处女
@@ -5058,7 +5058,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啾・・・哈・・・啊・・嗯・・」
 		PRINTFORML %CALLNAME:角色%跨坐在%NTR_NAME(0)%身上，主动地震动着腰。
 		;非处女
@@ -5084,7 +5084,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「呃・・咕・・哈・・・啊、呀、痛、哈、咕哈」
 			DATAFORM 「不、不可以・・啊啊・・不要、动啊・・」
@@ -5119,7 +5119,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「呃・・咕・・哈・・・啊、呀、痛、哈、咕哈」
 			DATAFORM 「不、不可以・・啊啊・・不要、动啊・・」
@@ -5160,7 +5160,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯啊啊啊啊啊啊啊！・・・哈・・・哈・・嗯咕・・哈・・・」
 		;非处女
 	ELSE
@@ -5173,7 +5173,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯啊啊啊啊啊啊啊！・・・哈・・・哈・・嗯咕・・哈・・・」
 		;非处女
 	ELSE
@@ -5186,7 +5186,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「嗯啊啊啊啊啊啊啊！・・・哈・・・哈・・嗯咕・・哈・・・」
 		;非处女
 	ELSE
@@ -5199,7 +5199,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊呀、呀啊啊啊啊啊啊！・・・呜・・・呃・・・呃・・」
 		;非处女
 	ELSE
@@ -5214,7 +5214,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊呀、呀啊啊啊啊啊啊！・・・呜・・・呃・・・呃・・」
 		;非处女
 	ELSE
@@ -5239,7 +5239,7 @@ RETURN 0
 呼称 = %MSG_NTR_SEX_4()%
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%开始在她的阴道内射精的同时，%CALLNAME:角色%蜷缩起身体来，接受了精液的注入。
 		PRINTFORML %CALLNAME:角色%的子宫被%NTR_NAME(0)%的精液，混杂着破瓜之血填满了。
 		PRINTDATAL
@@ -5264,7 +5264,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%开始在她的阴道内射精的同时，%CALLNAME:角色%蜷缩起身体来，接受了精液的注入。
 		PRINTFORML %CALLNAME:角色%的子宫被%NTR_NAME(0)%的精液，混杂着破瓜之血填满了。
 		PRINTDATAL
@@ -5294,7 +5294,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%开始在她的阴道内射精的同时，%CALLNAME:角色%蜷缩起身体来，接受了精液的注入。
 		PRINTFORML %CALLNAME:角色%的子宫被%NTR_NAME(0)%的精液，混杂着破瓜之血填满了。
 		PRINTDATAL
@@ -5329,7 +5329,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的精液将子宫染成白色，并持续灼烧着，不断接受着苦痛和快感的%CALLNAME:角色%的身体失去了力气，崩倒下来。
 		IF TALENT:角色:恋慕
 			PRINTFORML 「・・・・%CALLNAME:MASTER%・・・・・%CALLNAME:MASTER%・・・・」
@@ -5359,7 +5359,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的精液将子宫染成白色，并持续灼烧着，不断接受着苦痛的%CALLNAME:角色%的身体失去了力气，崩倒下来。
 		IF TALENT:角色:恋慕
 			PRINTFORML 「・・・・%CALLNAME:MASTER%・・・・・%CALLNAME:MASTER%・・・・」
@@ -5398,7 +5398,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧・・可以哦・・我的第一次・・就给你了・・」
 		PRINTFORML %CALLNAME:角色%和%NTR_NAME(0)%抱在一起，慢慢地沉下腰，伴随着疼痛，接受了耸立的阴茎的插入。
 		;非处女
@@ -5417,7 +5417,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧・・可以哦・・我的第一次・・就给你了・・」
 		PRINTFORML %CALLNAME:角色%和%NTR_NAME(0)%抱在一起，慢慢地沉下腰，伴随着疼痛，接受了耸立的阴茎的插入。
 		;非处女
@@ -5436,7 +5436,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「好吧・・可以哦・・我的第一次・・就给你了・・」
 		PRINTFORML %CALLNAME:角色%和%NTR_NAME(0)%抱在一起，慢慢地沉下腰，伴随着疼痛，接受了耸立的阴茎的插入。
 		;非处女
@@ -5455,7 +5455,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「・・不要・・强、强行做这种事・・求你了・・」
 		PRINTFORML 想要逃离被强行强奸的恐惧，%CALLNAME:角色%接受了%NTR_NAME(0)%的要求，采取了和他抱在一起的姿势。
 		IF TALENT:角色:恋慕
@@ -5488,7 +5488,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「啊！放开我！呀、哈！？・・不、不要、不要啊啊啊！！」
 		ELSE
@@ -5522,7 +5522,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「咕呜呜・・哈啊啊啊啊・・」
 		PRINTFORML %CALLNAME:角色%为了忍住疼痛而抱住了%NTR_NAME(0)%，同时满足似地微笑着。
 		;非处女
@@ -5550,7 +5550,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「咕呜呜・・哈啊啊啊啊・・」
 		PRINTFORML %CALLNAME:角色%为了忍住疼痛而抱住了%NTR_NAME(0)%，同时满足似地微笑着。
 		IF TALENT:角色:恋慕
@@ -5590,7 +5590,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「咕呜呜・・哈啊啊啊啊・・」
 		PRINTFORML %CALLNAME:角色%为了忍住疼痛而抱住了%NTR_NAME(0)%，同时满足似地微笑着。
 		IF TALENT:角色:恋慕
@@ -5630,7 +5630,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊啊啊啊！！」
 		PRINTFORML %CALLNAME:角色%因为被%NTR_NAME(0)%撕裂纯洁的痛苦，几乎无意识地抱紧了他。
 		IF TALENT:角色:恋慕
@@ -5662,7 +5662,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「不要啊・・啊啊・・这种事・・这种事・・の・・%CALLNAME:MASTER%・・」
 			PRINTFORML %CALLNAME:角色%因为被%NTR_NAME_1_2(角色)%撕裂了纯洁，无法将之献给%MSG_LOVER(角色)%而悲伤地流着泪。
@@ -5705,7 +5705,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、哈啊啊・・哈・・嗯・・嗯啊啊」
 			DATAFORM 「嗯・・已经可以了・・没・・关系・・」
@@ -5732,7 +5732,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、哈啊啊・・哈・・嗯・・嗯啊啊」
 			DATAFORM 「嗯・・已经可以了・・没・・关系・・」
@@ -5775,7 +5775,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「啊、哈啊啊・・哈・・嗯・・嗯啊啊」
 			DATAFORM 「嗯・・已经可以了・・没・・关系・・」
@@ -5818,7 +5818,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「库、哈・・啊・・咕・・嗯・・哈・・」
 			DATAFORM 「不、不要・・痛・・啊啊・・」
@@ -5853,7 +5853,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTDATAL
 			DATAFORM 「库、哈・・啊・・咕・・嗯・・哈・・」
 			DATAFORM 「不、不要・・痛・・啊啊・・」
@@ -5894,7 +5894,7 @@ RETURN 0
 #DIM 角色
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、哈啊啊！啊啊啊啊啊啊啊啊啊！？」
 		PRINTFORML %NTR_NAME(0)%的阴茎紧贴着子宮口射精了，%CALLNAME:角色%哭泣般地发出甜美的娇喘，并抱住了%NTR_NAME(0)%。
 		;非处女
@@ -5913,7 +5913,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、哈啊啊！啊啊啊啊啊啊啊啊啊！？」
 		PRINTFORML %NTR_NAME(0)%的阴茎紧贴着子宮口射精了，%CALLNAME:角色%哭泣般地发出甜美的娇喘，并抱住了%NTR_NAME(0)%。
 		;非处女
@@ -5932,7 +5932,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、哈啊啊！啊啊啊啊啊啊啊啊啊！？」
 		PRINTFORML %NTR_NAME(0)%的阴茎紧贴着子宮口射精了，%CALLNAME:角色%哭泣般地发出甜美的娇喘，并抱住了%NTR_NAME(0)%。
 		;非处女
@@ -5951,7 +5951,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不、不可以、只有这个、只有这个放过我吧！！」
 		PRINTFORML %CALLNAME:角色%虽然勉强接受了和%NTR_NAME(0)%做爱，却拒绝了%NTR_NAME_1_2(角色)%让膣内射精。
 		PRINTFORML 但破瓜之痛而精疲力尽的身体已经无法逃跑，就这样让精液注入了子宫。
@@ -5975,7 +5975,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 	ENDIF
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「不、不要、只有这个、只有这个不要啊啊啊啊！！」
 		PRINTFORML 领悟到%NTR_NAME(0)%接近极限的%CALLNAME:角色%只想避免膣内射精，却无法抵抗男人的腕力，就这样接受了在阴道深处的射精。
 		;非处女
@@ -6003,7 +6003,7 @@ RETURN 0
 呼称 = %MSG_NTR_SEX_4()%
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 抱在一起的二人的结合处，混合着血的精液露了出来。
 		;非处女
 	ELSE
@@ -6022,7 +6022,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 抱在一起的二人的结合处，混合着血的精液露了出来。
 		;非处女
 	ELSE
@@ -6046,7 +6046,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 抱在一起的二人的结合处，混合着血的精液露了出来。
 		IF TALENT:角色:恋慕
 			PRINTFORML 对于向%NTR_NAME_1_2(角色)%献上处女这件事，%CALLNAME:角色%似乎毫不后悔。
@@ -6075,7 +6075,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML %NTR_NAME(0)%的精液将子宫染成白色，并持续灼烧着，不断接受着苦痛和快感的%CALLNAME:角色%的身体失去了力气，崩倒下来。
 		IF TALENT:角色:恋慕
 			PRINTFORML 「・・・・%CALLNAME:MASTER%・・・・・%CALLNAME:MASTER%・・・・」
@@ -6105,7 +6105,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「怎么会・・怎么会・・啊啊・・原谅我・・原谅我%CALLNAME:MASTER%・・」
 			PRINTFORML 被%NTR_NAME_1_2(角色)%夺走了处女之后，原本清白的子宫也被白濁液污染的%CALLNAME:角色%，因为没能守住贞操而后悔呜咽。

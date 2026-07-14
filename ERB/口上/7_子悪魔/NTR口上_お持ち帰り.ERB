@@ -202,7 +202,7 @@ RETURN 0
 
 IF TALENT:角色:亲爱
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「いったぁぁっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%にってぇ・・・」
 		ELSE
@@ -221,7 +221,7 @@ IF TALENT:角色:亲爱
 	ENDIF
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「はい・・私の初めてを、お捧げします・・」
 		PRINTFORML %CALLNAME:角色%は自ら脚を開いて%NTR_NAME(0)%を誘い、まだ男を知らない处女地に受け入れた。
 		;非处女
@@ -232,7 +232,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 
 		PRINTFORML 「いいわ・・私の初めてを、あげる・・」
 		IF TALENT:角色:恋慕
@@ -251,7 +251,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「いいわ・・私の初めてを、あげる・・」
 		IF TALENT:角色:恋慕
 			PRINTFORML %CALLNAME:角色%は%ANATA_LOVER(角色)%以外の男人に处女を捧げてしまった。
@@ -269,7 +269,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「いったぁぁっ！？・・あぁ、初めては・・・%CALLNAME:MASTER%にってぇ・・・」
 		ELSE
@@ -510,7 +510,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	;处女
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「んっ・・んんんっ！」
 		PRINTFORML %CALLNAME:角色%は处女を奪われるよりはと自ら%NTR_NAME(0)%の阴茎に唇を捧げ、口の中に精液を注ぎ込まれた。
 		;非处女
@@ -521,7 +521,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「んっ・・んんんっ！ けほっ、けほっ」
 		PRINTFORML %CALLNAME:角色%は处女を奪うと脅され%NTR_NAME(0)%の阴茎を自らしゃぶり、口の中に精液を注ぎ込まれた。
 	ELSE
@@ -549,7 +549,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 	;处女
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「こっちがいいのね・・・」
 		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に命じられるままアヌスを差し出し、彼の阴茎を受け入れた。
 		PRINTFORML %NTR_NAME(0)%の堅い肉棒が%CALLNAME:角色%の腸を深く深く抉り、征服の証とばかりに精液を解き放った。
@@ -561,7 +561,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「こっちで、ゆるして・・・あああっ！」
 		PRINTFORML %CALLNAME:角色%は处女を奪われるよりは、と自らアヌスを差し出し%NTR_NAME(0)%の阴茎を受け入れた。
 		PRINTFORML %NTR_NAME(0)%の堅い肉棒が%CALLNAME:角色%の腸を深く深く抉り、征服の証とばかりに精液を解き放った。

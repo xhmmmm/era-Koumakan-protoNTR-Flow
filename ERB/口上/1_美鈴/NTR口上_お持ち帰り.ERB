@@ -235,7 +235,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、在我的第一次・・我的处女・・要被肉棒・・・恩・・啊嗯嗯嗯！」
 		PRINTFORML %CALLNAME:角色%的私所里被%NTR_NAME(0)%的阴茎插进，变成了“女人”。
 		;非处女
@@ -250,7 +250,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊、在我的第一次・・我的处女・・要被肉棒・・・恩・・啊嗯嗯嗯！」
 		PRINTFORML %CALLNAME:角色%的私所里被%NTR_NAME(0)%的阴茎插进，变成了“女人”。
 		IF TALENT:角色:恋慕
@@ -275,7 +275,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊啊・・・明明是我的第一次・・・」
 		PRINTFORML %NTR_NAME(0)%把奪走%CALLNAME:角色%的处女,收录在录像里。
 		IF TALENT:角色:恋慕
@@ -300,7 +300,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「怎麼會・・明・・・明明・・・打算第一次是給最喜歡的人・・・」
 		PRINTFORML %NTR_NAME(0)%把奪走%CALLNAME:角色%的处女流淚的樣子,收录在录像里。
 		IF TALENT:角色:恋慕

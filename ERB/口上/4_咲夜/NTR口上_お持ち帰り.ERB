@@ -347,7 +347,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「是的・我的第一次，为您献上・・」
 		PRINTFORML %CALLNAME:角色%张开自己的双脚，引导着%NTR_NAME(0)%插入她还未被男人使用过的処女地。
 	ELSE
@@ -361,7 +361,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
 			PRINTFORML %CALLNAME:角色%将对%ANATA_LOVER(角色)%的爱抛到脑后，把处女献给了男人，而不是他。
@@ -377,7 +377,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「好啊・・我的第一次就给你吧・・要对那个人・・保密哟・・」
 			PRINTFORML %CALLNAME:角色%把把处女献给了男人，而不是%ANATA_LOVER(角色)%。
@@ -393,7 +393,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「好痛！？・・第一次明明・・・想要给%CALLNAME:MASTER%的・・・」
 			PRINTFORML %CALLNAME:角色%因为被%NTR_NAME_1_2(角色)%夺去了处女而哭了出来

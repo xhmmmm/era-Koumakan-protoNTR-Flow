@@ -42,8 +42,8 @@ CALL STAIN_MOVE_BY_PENIS(部位_膣内, 角色, 人物_訪問者)
 IF TALENT:角色:处女
 	SETBIT FLAG:訪問者との汚れ判定に使用,汚れB_破瓜の血
 	CALL LOST_VIRGIN(角色, 調教者)
-	;处女喪失中フラグセット
-	CFLAG:角色:处女喪失中 = 1
+	;处女丧失中フラグセット
+	CFLAG:角色:处女丧失中 = 1
 ENDIF
 CFLAG:角色:和访问者已做爱 = 1
 ;无知去除

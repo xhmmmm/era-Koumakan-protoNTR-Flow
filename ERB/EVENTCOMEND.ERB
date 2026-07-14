@@ -133,7 +133,7 @@ ENDIF
 #DIM LOOP_CHR
 #DIM LOOP_I			; TCVARリセット用, 他ループ用
 #DIMS EJ_POS		; 射精箇所
-;处女喪失(念のため、程度。実際に破った時はLOST_VIRGINを呼ぶ事)
+;处女丧失(念のため、程度。実際に破った時はLOST_VIRGINを呼ぶ事)
 FOR LOOP_CHR,0,CHARANUM
 	IF TCVAR:LOOP_CHR:破瓜
 		TALENT:LOOP_CHR:处女 = 0

@@ -275,7 +275,7 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・哈嗯・・嗯・・呜嗯・・」
 		PRINTFORML %CALLNAME:角色%浪荡得让人难以相信她是处女，已经开始自己摆动腰肢了。
 		;非处女
@@ -286,7 +286,7 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		PRINTFORML 「啊・・・哈嗯・・嗯・・呜嗯・・」
 		PRINTFORML %CALLNAME:角色%浪荡得让人难以相信她是处女，已经开始自己摆动腰肢了。
 		IF TALENT:角色:恋慕
@@ -305,7 +305,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 
 		PRINTFORML 「呵呵・・我知道了・・我的第一次・・啊啊啊啊」
 		IF TALENT:角色:恋慕
@@ -328,7 +328,7 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 
 ELSE
 
-	IF TALENT:角色:处女 || CFLAG:角色:处女喪失中
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
 		IF TALENT:角色:恋慕
 			PRINTFORML 「痛啊啊！？・・啊，第一次・・・明明该是%CALLNAME:MASTER%的・・・」
 			PRINTFORML %CALLNAME:角色%被%NTR_NAME_1_2(角色)%夺走了处女之身，流下了眼泪。
