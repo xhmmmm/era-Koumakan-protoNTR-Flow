@@ -201,7 +201,7 @@ IF RESULT
 ENDIF
 ;誰かいないかチェック
 FOR LOOP_CHR,1,CHARANUM
-	SIF !GETBIT(TALENT:LOOP_CHR:性別,0)
+	SIF !GETBIT(TALENT:LOOP_CHR:性别,0)
 		CONTINUE
 	IF CFLAG:LOOP_CHR:当前位置 == FLAG:访问者当前位置 && FLAG:访问者当前位置 != 位置_訪問者宅
 		;ストライクゾーン範囲外の時スキップ

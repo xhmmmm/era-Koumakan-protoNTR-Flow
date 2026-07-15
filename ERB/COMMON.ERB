@@ -195,7 +195,7 @@ ENDIF
 
 ;-------------------------------------------------
 ;関数名:HETEROSEX
-;ARGとARG:1の性別が同じかどうかを返すほんとはHOMOSEXだけど語感が悪いので
+;ARGとARG:1の性别が同じかどうかを返すほんとはHOMOSEXだけど語感が悪いので
 ;女性器を持つものは女、持たないものを男とする
 ;戻り値0=異性
 ;戻り値1=同性(レズ)
@@ -203,8 +203,8 @@ ENDIF
 ;-------------------------------------------------
 @HETEROSEX(ARG,ARG:1)
 #FUNCTION
-IF GETBIT(TALENT:ARG:性別,0) == GETBIT(TALENT:(ARG:1):性別,0)
-	IF GETBIT(TALENT:ARG:性別,0)
+IF GETBIT(TALENT:ARG:性别,0) == GETBIT(TALENT:(ARG:1):性别,0)
+	IF GETBIT(TALENT:ARG:性别,0)
 		RETURNF 1
 	ELSE
 		RETURNF 2
@@ -221,7 +221,7 @@ ENDIF
 ;-------------------------------------------------
 @HAS_PENIS(ARG)
 #FUNCTION
-IF TALENT:ARG:性別 & 2
+IF TALENT:ARG:性别 & 2
 	RETURNF 1
 ELSE
 	RETURNF 0
@@ -235,7 +235,7 @@ ENDIF
 ;-------------------------------------------------
 @HAS_VAGINA(ARG)
 #FUNCTION
-IF TALENT:ARG:性別 & 1
+IF TALENT:ARG:性别 & 1
 	RETURNF 1
 ELSE
 	RETURNF 0
@@ -249,7 +249,7 @@ ENDIF
 ;-------------------------------------------------
 @IS_MALE(ARG)
 #FUNCTION
-IF 2 == (TALENT:ARG:性別 & 3)
+IF 2 == (TALENT:ARG:性别 & 3)
 	RETURNF 1
 ELSE
 	RETURNF 0
@@ -263,7 +263,7 @@ ENDIF
 ;-------------------------------------------------
 @IS_FEMALE(ARG)
 #FUNCTION
-IF 1 == (TALENT:ARG:性別 & 3)
+IF 1 == (TALENT:ARG:性别 & 3)
 	RETURNF 1
 ELSE
 	RETURNF 0
@@ -277,7 +277,7 @@ ENDIF
 ;-------------------------------------------------
 @IS_FUTA(ARG)
 #FUNCTION
-IF 3 == (TALENT:ARG:性別 & 3)
+IF 3 == (TALENT:ARG:性别 & 3)
 	RETURNF 1
 ELSE
 	RETURNF 0
@@ -300,12 +300,12 @@ ENDIF
 
 ;-------------------------------------------------
 ;関数名:GET_SEXNAME
-;ARGの性別の名称を返す
+;ARGの性别の名称を返す
 ;戻り値=男or女orふたなり
 ;-------------------------------------------------
 @GET_SEXNAME(ARG)
 #FUNCTIONS
-SELECTCASE (TALENT:ARG:性別 & 3)
+SELECTCASE (TALENT:ARG:性别 & 3)
 	CASE 1
 		RETURNF "女"
 	CASE 2

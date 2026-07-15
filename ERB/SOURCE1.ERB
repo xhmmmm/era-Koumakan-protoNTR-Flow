@@ -1742,7 +1742,7 @@ IF TALENT:角色:倒错的
 	TIMES CUP:角色:耻情 , 1.20
 ENDIF
 ;男嫌い（女性のみ恋慕、亲爱で無効）
-IF TALENT:角色:性別嗜好 & 1 && !(HAS_VAGINA(PLAYER)) && (!TALENT:角色:恋慕 || PLAYER != MASTER)
+IF TALENT:角色:性别嗜好 & 1 && !(HAS_VAGINA(PLAYER)) && (!TALENT:角色:恋慕 || PLAYER != MASTER)
 	TIMES CUP:角色:恭顺 , 0.80
 	TIMES CUP:角色:欲情 , 0.80
 	TIMES CUP:角色:屈服 , 0.80
@@ -1771,7 +1771,7 @@ IF TALENT:角色:妄信
 	TIMES CUP:角色:反感 , 0.80
 ENDIF
 ;女嫌い（男性のみ恋慕、亲爱で無効）
-IF TALENT:角色:性別嗜好 & 2 && (HAS_VAGINA(PLAYER)) && (!TALENT:角色:恋慕 || PLAYER != MASTER )
+IF TALENT:角色:性别嗜好 & 2 && (HAS_VAGINA(PLAYER)) && (!TALENT:角色:恋慕 || PLAYER != MASTER )
 	TIMES CUP:角色:恭顺 , 0.80
 	TIMES CUP:角色:欲情 , 0.80
 	TIMES CUP:角色:屈服 , 0.80

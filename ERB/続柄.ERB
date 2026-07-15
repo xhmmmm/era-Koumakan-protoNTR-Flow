@@ -31,7 +31,7 @@ SIF GETBIT(LOCAL,続柄_母)
 
 ;子
 IF GETBIT(LOCAL,続柄_子)
-	LOCALS += "[" + \@ GETBIT(TALENT:相手:性別,0) ?娘#息子\@ + "]"
+	LOCALS += "[" + \@ GETBIT(TALENT:相手:性别,0) ?娘#息子\@ + "]"
 ENDIF
 
 ;2親等
@@ -72,9 +72,9 @@ IF GETBIT(LOCAL,続柄_兄姉) || GETBIT(LOCAL,続柄_弟妹)
 		LOCALS += "異母"
 	ENDIF
 	SIF GETBIT(LOCAL,続柄_兄姉)
-		LOCALS += \@ GETBIT(TALENT:相手:性別,0) ?姉#兄\@
+		LOCALS += \@ GETBIT(TALENT:相手:性别,0) ?姉#兄\@
 	SIF GETBIT(LOCAL,続柄_弟妹)
-		LOCALS += \@ GETBIT(TALENT:相手:性別,0) ?妹#弟\@
+		LOCALS += \@ GETBIT(TALENT:相手:性别,0) ?妹#弟\@
 	LOCALS += "]"
 ENDIF
 
@@ -86,7 +86,7 @@ SIF GETBIT(LOCAL,続柄_祖母)
 
 ;孫
 SIF GETBIT(LOCAL,続柄_孫)
-	LOCALS += "[" + \@ GETBIT(TALENT:相手:性別,0) ?孫娘#孫\@ + "]"
+	LOCALS += "[" + \@ GETBIT(TALENT:相手:性别,0) ?孫娘#孫\@ + "]"
 
 ;3親等
 ;曾祖父母
@@ -101,13 +101,13 @@ SIF GETBIT(LOCAL,続柄_曽孫)
 
 ;伯叔父母
 SIF GETBIT(LOCAL,続柄_伯父母)
-	LOCALS += "[伯" + \@ GETBIT(TALENT:相手:性別,0) ?母#父\@ + "]"
+	LOCALS += "[伯" + \@ GETBIT(TALENT:相手:性别,0) ?母#父\@ + "]"
 SIF GETBIT(LOCAL,続柄_叔父母)
-	LOCALS += "[叔" + \@ GETBIT(TALENT:相手:性別,0) ?母#父\@ + "]"
+	LOCALS += "[叔" + \@ GETBIT(TALENT:相手:性别,0) ?母#父\@ + "]"
 
 ;甥姪
 SIF GETBIT(LOCAL,続柄_甥姪)
-	LOCALS += "[" + \@ GETBIT(TALENT:相手:性別,0) ?姪#甥\@ + "]"
+	LOCALS += "[" + \@ GETBIT(TALENT:相手:性别,0) ?姪#甥\@ + "]"
 
 ;4親等
 ;高祖父母
@@ -124,9 +124,9 @@ SIF GETBIT(LOCAL,続柄_玄孫)
 IF GETBIT(LOCAL,続柄_従兄姉) || GETBIT(LOCAL,続柄_従弟妹)
 	LOCALS += "[従"
 	SIF GETBIT(LOCAL,続柄_従兄姉)
-		LOCALS += \@ GETBIT(TALENT:相手:性別,0) ?姉#兄\@
+		LOCALS += \@ GETBIT(TALENT:相手:性别,0) ?姉#兄\@
 	SIF GETBIT(LOCAL,続柄_従弟妹)
-		LOCALS += \@ GETBIT(TALENT:相手:性別,0) ?妹#弟\@
+		LOCALS += \@ GETBIT(TALENT:相手:性别,0) ?妹#弟\@
 	LOCALS += "]"
 ENDIF
 

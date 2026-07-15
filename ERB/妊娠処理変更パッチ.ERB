@@ -182,7 +182,7 @@ FOR 母親候補, 0, CHARANUM
 	精子流失量 = 0
 	精子过期量 = 0
 	;男(ふたなりは除く)はスキップ
-	SIF TALENT:母親候補:性別 == 2
+	SIF TALENT:母親候補:性别 == 2
 		CONTINUE
 
 	FOR 父親候補, 0, 301
@@ -231,7 +231,7 @@ NEXT
 ;対象１のチェック
 FOR 母親候補, 0, CHARANUM
 	;男(ふたなりは除く)はスキップ
-	SIF TALENT:母親候補:性別 == 2
+	SIF TALENT:母親候補:性别 == 2
 		CONTINUE
 	;排卵日のみ
 	SIF CFLAG:母親候補:卵子生存日数 != 1

@@ -42,7 +42,7 @@ IF FLAG:パッチ初期設定フラグ <= 2
 	;生理周期ランダム設定
 	FOR LOCAL, 0, CHARANUM
 		;男(ふたなり以外)はスキップ
-		SIF TALENT:LOCAL:性別 == 2
+		SIF TALENT:LOCAL:性别 == 2
 			CONTINUE
 		CFLAG:LOCAL:生理周期 = RAND:10
 	NEXT

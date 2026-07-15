@@ -27,7 +27,7 @@ RETURN 0
 ;NOは適当に設定
 NO:ARG = 0
 
-;性別(1=女性 2= 男性 3=ふたなり)
+;性别(1=女性 2= 男性 3=ふたなり)
 TALENT:ARG:2 = 1
 SIF ARG == 0
 	TALENT:ARG:2 = 2
@@ -157,14 +157,14 @@ ELSEIF LOCAL:100 == 1003
 	SIF RESULT < 0 || RESULT > 500 || TALENTNAME:RESULT == ""
 		RESTART
 	;陥落素質ほか
-	;性別
+	;性别
 	IF RESULT == 2
 		IF TALENT:ARG:RESULT == 3
 			TALENT:ARG:RESULT = 1
 		ELSE
 			TALENT:ARG:RESULT ++
 		ENDIF
-		;性別嗜好
+		;性别嗜好
 	ELSEIF RESULT == 81
 		IF TALENT:ARG:RESULT == 3
 			TALENT:ARG:RESULT = -1
@@ -176,7 +176,7 @@ ELSEIF LOCAL:100 == 1003
 		TALENT:ARG:RESULT = !TALENT:ARG:RESULT
 		;量的素質
 	ELSE
-		;性別
+		;性别
 		IF LOCAL == 2
 			IF TALENT:ARG:RESULT == 3
 				TALENT:ARG:RESULT = 1
