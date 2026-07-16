@@ -320,11 +320,7 @@ ELSEIF CFLAG:着用者:屈服度 > CFLAG:着用者:好感度 && CFLAG:着用者:
 ELSE
 	;普通の下着
 	EQUIP:着用者:下半身下着１ = 0
-	IF FLAG:Flow版本
-		EQUIP:着用者:下半身下着２ = NTR_PANTS(着用者,0)
-	ELSE
-		EQUIP:着用者:下半身下着２ = PANTS_TODAY(着用者)
-	ENDIF
+	EQUIP:着用者:下半身下着２ = NTR_PANTS(着用者,0)
 ENDIF
 RETURN 1
 

@@ -123,11 +123,6 @@ ENDSELECT
 #DIM 服種類
 #DIM 服番号
 
-IF (CFLAG:MASTER:服装_上半身上着２ == 6 && CFLAG:MASTER:服装_裙子 == 5 && CFLAG:MASTER:服装_袜子 == 5 && CFLAG:MASTER:服装_鞋子 == 2) && 服種類 == 13
-	RETURNF "巫女装束"
-ELSEIF (CFLAG:MASTER:服装_上半身上着２ == 6 && CFLAG:MASTER:服装_裙子 == 5 && CFLAG:MASTER:服装_袜子 == 5 && CFLAG:MASTER:服装_鞋子 == 2) && (服種類 == 9 || 服種類 == 4 || 服種類 == 3)
-	RETURNF ""
-ENDIF
 SELECTCASE 服種類
 		;配件
 	CASE 1
