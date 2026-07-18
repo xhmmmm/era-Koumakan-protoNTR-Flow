@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;１日の開始時の処理
 @EVENTTRAIN
 #PRI
@@ -131,12 +131,12 @@ ELSE
 ENDIF
 ;MASTER寝間着変更(ここを通る時は睡眠フラグが立っているので一度0にして着替えてからフラグを戻す)
 CFLAG:MASTER:睡眠 = 0
-CALL CLOTHES_SETTING(MASTER,1)
+CALL CLOTHES_INIT_DAY(MASTER,1)
 ;女やふたなりでない時服装によって[女装]を与える
-IF HAS_VAGINA(MASTER) == 0 && ( EQUIP:MASTER:裙子 && ( EQUIP:MASTER:上半身上着１ || EQUIP:MASTER:上半身上着２ ) || EQUIP:MASTER:连衣裙 && !EQUIP:MASTER:下半身上着１ )
+IF HAS_VAGINA(MASTER) == 0 && ( EQUIP:MASTER:裙子 && ( EQUIP:MASTER:上半身外衣_主 || EQUIP:MASTER:上半身外衣_副 ) || EQUIP:MASTER:连衣裙 && !EQUIP:MASTER:下半身外衣_主 )
 	TALENT:MASTER:女装 = 1
 	;[女装]を持っていて裙子、连衣裙、上半身上着を着ていない、または连衣裙を着ているが下半身上着を履いている(チャイナ服+ズボン)とき[女装]を消す
-ELSEIF TALENT:MASTER:女装 && ( ( !EQUIP:MASTER:裙子 || !EQUIP:MASTER:连衣裙 || !EQUIP:MASTER:上半身上着１ || !EQUIP:MASTER:上半身上着２ ) || ( EQUIP:MASTER:连衣裙 && EQUIP:MASTER:下半身上着１ ) )
+ELSEIF TALENT:MASTER:女装 && ( ( !EQUIP:MASTER:裙子 || !EQUIP:MASTER:连衣裙 || !EQUIP:MASTER:上半身外衣_主 || !EQUIP:MASTER:上半身外衣_副 ) || ( EQUIP:MASTER:连衣裙 && EQUIP:MASTER:下半身外衣_主 ) )
 	TALENT:MASTER:女装 = 0
 ENDIF
 CFLAG:MASTER:睡眠 = 1
@@ -215,8 +215,8 @@ RETURN 1
 TARGET = 0
 全员NTR = 1
 FOR LOOP_CHR,1,CHARANUM
-	;ぱんつ確認フラグをOFF
-	CFLAG:LOOP_CHR:ぱんつ確認 = 0
+	;内裤确认フラグをOFF
+	CFLAG:LOOP_CHR:内裤确认 = 0
 	SIF CFLAG:MASTER:当前位置 == CFLAG:LOOP_CHR:当前位置
 		TARGET = LOOP_CHR
 	SIF TALENT:LOOP_CHR:NTR == 0

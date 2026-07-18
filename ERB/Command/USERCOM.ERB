@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SHOW_USERCOM
@@ -54,10 +54,10 @@ FOR コマンド番号,0,700
 		ELSEIF (コマンド番号 == 98 && !IsPlaceHasBed(CFLAG:PLAYER:当前位置) && ABL:PLAYER:抖Ｍ之气 >= 2 && TALENT:PLAYER:受虐狂) || (コマンド番号 == 98 && !IsPlaceHasBed(CFLAG:PLAYER:当前位置) && ABL:抖Ｓ之气 >= 3 && TALENT:施虐狂)
 			PRINTFORMC 背面立位される[{コマンド番号,3}]
 		ELSEIF コマンド番号 == 200
-			IF EQUIP:上半身上着１
-				コマンド名称 = %CLOTHNAME(12,EQUIP:上半身上着１)%
-			ELSEIF EQUIP:上半身上着２
-				コマンド名称 = %CLOTHNAME(13,EQUIP:上半身上着２)%
+			IF EQUIP:上半身外衣_主
+				コマンド名称 = %CLOTHNAME(12,EQUIP:上半身外衣_主)%
+			ELSEIF EQUIP:上半身外衣_副
+				コマンド名称 = %CLOTHNAME(13,EQUIP:上半身外衣_副)%
 			ELSEIF EQUIP:赛车服
 				コマンド名称 = %CLOTHNAME(14,EQUIP:赛车服)%
 			ELSEIF EQUIP:连衣裙
@@ -73,10 +73,10 @@ FOR コマンド番号,0,700
 				PRINTFORMC %コマンド名称%を脱がす[{コマンド番号,3}]
 			ENDIF
 		ELSEIF コマンド番号 == 201
-			IF EQUIP:下半身上着１
-				コマンド名称 = %CLOTHNAME(7,EQUIP:下半身上着１)%
-			ELSEIF EQUIP:下半身上着２
-				コマンド名称 = %CLOTHNAME(8,EQUIP:下半身上着２)%
+			IF EQUIP:下半身外衣_主
+				コマンド名称 = %CLOTHNAME(7,EQUIP:下半身外衣_主)%
+			ELSEIF EQUIP:下半身外衣_副
+				コマンド名称 = %CLOTHNAME(8,EQUIP:下半身外衣_副)%
 			ELSEIF EQUIP:裙子
 				コマンド名称 = 裙子
 			ENDIF
@@ -86,29 +86,29 @@ FOR コマンド番号,0,700
 				PRINTFORMC %コマンド名称%を脱がす[{コマンド番号,3}]
 			ENDIF
 		ELSEIF コマンド番号 == 202
-			IF EQUIP:上半身下着１ == 2
+			IF EQUIP:上半身内衣_副 == 2
 				PRINTFORMC サラシを外す[{コマンド番号,3}]
-			ELSEIF EQUIP:上半身下着２ == 6 || EQUIP:上半身下着２ == 7
+			ELSEIF EQUIP:上半身内衣_主 == 6 || EQUIP:上半身内衣_主 == 7
 				PRINTFORMC ビキニ(上)を外す[{コマンド番号,3}]
 			ELSE
 				PRINTFORMC ブラジャーを外す[{コマンド番号,3}]
 			ENDIF
 		ELSEIF コマンド番号 == 203
-			IF EQUIP:下半身下着１
+			IF EQUIP:下半身内衣_副
 				IF GETBIT(FLAG:匂いフェチ,1) 
-					コマンド名称 = %IRUINAME_SMELL(EQUIP:下半身下着１)%%PANTSNAME(EQUIP:下半身下着１)%
+					コマンド名称 = %IRUINAME_SMELL(EQUIP:下半身内衣_副)%%PANTSNAME(EQUIP:下半身内衣_副)%
 				ELSE
-					コマンド名称 = %PANTSNAME(EQUIP:下半身下着１)%
+					コマンド名称 = %PANTSNAME(EQUIP:下半身内衣_副)%
 				ENDIF
-			ELSEIF 0 < EQUIP:下半身下着２ && EQUIP:下半身下着２ < 100
+			ELSEIF 0 < EQUIP:下半身内衣_主 && EQUIP:下半身内衣_主 < 100
 				コマンド名称 = パンティ
-			ELSEIF EQUIP:下半身下着２ == 104 || EQUIP:下半身下着２ == 105
+			ELSEIF EQUIP:下半身内衣_主 == 104 || EQUIP:下半身内衣_主 == 105
 				コマンド名称 = ビキニ(下)
 			ELSE
 				IF GETBIT(FLAG:匂いフェチ,1) 
-					コマンド名称 = %IRUINAME_SMELL(EQUIP:下半身下着２)%%PANTSNAME(EQUIP:下半身下着２)%
+					コマンド名称 = %IRUINAME_SMELL(EQUIP:下半身内衣_主)%%PANTSNAME(EQUIP:下半身内衣_主)%
 				ELSE
-					コマンド名称 = %PANTSNAME(EQUIP:下半身下着２)%
+					コマンド名称 = %PANTSNAME(EQUIP:下半身内衣_主)%
 				ENDIF
 			ENDIF
 			IF CFLAG:うふふ == 3

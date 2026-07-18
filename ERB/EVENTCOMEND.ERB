@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @EVENTCOM
@@ -177,8 +177,8 @@ SIF SELECTCOM == 414 || SELECTCOM == 415
 SELECTCASE SELECTCOM
 		;上半身脱衣
 	CASE 200
-		EQUIP:上半身上着１ = 0
-		EQUIP:上半身上着２ = 0
+		EQUIP:上半身外衣_主 = 0
+		EQUIP:上半身外衣_副 = 0
 		EQUIP:赛车服 = 0
 		EQUIP:连衣裙 = 0
 		EQUIP:着物 = 0
@@ -186,19 +186,19 @@ SELECTCASE SELECTCOM
 		CALL CLOTHES_SETTING_TRAIN(TARGET)
 		;下半身脱衣
 	CASE 201
-		EQUIP:下半身上着１ = 0
-		EQUIP:下半身上着２ = 0
+		EQUIP:下半身外衣_主 = 0
+		EQUIP:下半身外衣_副 = 0
 		EQUIP:裙子 = 0
 		CALL CLOTHES_SETTING_TRAIN(TARGET)
 		;上半身下着脱衣
 	CASE 202
-		EQUIP:上半身下着１ = 0
-		EQUIP:上半身下着２ = 0
+		EQUIP:上半身内衣_副 = 0
+		EQUIP:上半身内衣_主 = 0
 		CALL CLOTHES_SETTING_TRAIN(TARGET)
 		;下半身下着脱衣
 	CASE 203
-		EQUIP:下半身下着１ = 0
-		EQUIP:下半身下着２ = 0
+		EQUIP:下半身内衣_副 = 0
+		EQUIP:下半身内衣_主 = 0
 		CALL CLOTHES_SETTING_TRAIN(TARGET)
 ENDSELECT
 ;調教履歴を1ターン保存

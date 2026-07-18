@@ -1,4 +1,4 @@
-;------------------------------------------------- 
+﻿;------------------------------------------------- 
 ;非NTR大妖精口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -46,7 +46,7 @@ IF CFLAG:PLAYER:跳蛋A挿入 != 0
 		PRINTFORML 「あ…誰の言いつけなんですか？ でも、ちょうどいいです・・」
 	ENDIF
 	PRINTL
-ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
+ELSEIF EQUIP:PLAYER:下半身内衣_副 == 0 && EQUIP:PLAYER:下半身内衣_主 == 0
 	;あなたがノーパンの時分岐
 	PRINTFORML %CALLNAME:角色%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて喜んだ。
 	PRINTFORML 「あ…はいてないだなんて、ちょうどいいです・・」

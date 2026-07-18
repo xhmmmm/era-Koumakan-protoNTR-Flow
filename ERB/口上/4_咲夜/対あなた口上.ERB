@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR咲夜さん汎用口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -169,7 +169,7 @@ IF CFLAG:PLAYER:跳蛋A挿入 != 0
 		DATAFORM 我会让你享受被跳蛋/振动棒(或跳蛋+振动棒)玩弄的快感的(もっと跳蛋が好きになれるようにしてあげるわ)」
 	ENDDATA
 	PRINTL
-ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
+ELSEIF EQUIP:PLAYER:下半身内衣_副 == 0 && EQUIP:PLAYER:下半身内衣_主 == 0
 	;あなたがノーパンの時分岐
 	PRINTFORML %CALLNAME:角色%被%CALLNAME:PLAYER%发现下面是真空的时候微微笑了出来。
 	PRINTDATAL

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR芙兰朵露大小姐通用口上
 ;虽说是非NTR，但因为是protoNTR向的，所以也考虑了NTR相关标志的实现。
 ;个人希望能写出恋慕状态和NTR状态的反差。
@@ -169,7 +169,7 @@ IF CFLAG:PLAYER:跳蛋A挿入 != 0
 		PRINTFORML 「…是谁吩咐你的？ 不过正好，就这样继续做下去吧」
 	ENDIF
 	PRINTL
-ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
+ELSEIF EQUIP:PLAYER:下半身内衣_副 == 0 && EQUIP:PLAYER:下半身内衣_主 == 0
 	;你没穿内裤时分支
 	PRINTFORML %CALLNAME:角色%发现%CALLNAME:PLAYER%没有穿内裤，开心地笑了起来。
 	PRINTFORML 「啊～…没穿内裤呀。好色～♪」

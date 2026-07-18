@@ -1281,7 +1281,7 @@ RETURN 結果
 #FUNCTION
 #DIM 角色
 ;初期配置キャラは全員範囲内
-SIF 角色 < 開始時人数
+SIF 角色 < 开局角色数量
 	RETURNF 1
 SIF CFLAG:角色:成長度 >= FLAG:訪問者のストライクゾーン下限
 	RETURNF 1

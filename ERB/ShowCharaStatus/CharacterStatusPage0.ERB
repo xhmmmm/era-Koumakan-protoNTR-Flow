@@ -10,15 +10,15 @@
 		"帽子", 
 		"鞋子", 
 		"袜子",
-		"下半身下着１",
-		"下半身下着２", 
-		"下半身上着１", 
-		"下半身上着２",
+		"下半身内衣_副",
+		"下半身内衣_主", 
+		"下半身外衣_主", 
+		"下半身外衣_副",
 		"裙子", 
-		"上半身下着１", 
-		"上半身下着２", 
-		"上半身上着１", 
-		"上半身上着２", 
+		"上半身内衣_副", 
+		"上半身内衣_主", 
+		"上半身外衣_主", 
+		"上半身外衣_副", 
 		"赛车服", 
 		"连衣裙", 
 		"着物", 
@@ -49,7 +49,7 @@
 }
 PRINTL
 PRINTL □ 服装 □---------------------------------------------------------------------
-IF !EQUIP:ARG:衣服着用
+IF !CLOTHES_IsDressed(ARG)
 	PRINTL 　＜全裸＞
 	RETURN 0
 ENDIF
@@ -57,10 +57,10 @@ FOR LOCAL, 1, 19
 	;使用CLOTH_DISPLAY_ORDER调整显示顺序
 	;特殊处理
 	;内裤和胸罩的类型1都是一些创可贴之类的东西，只穿那种东西不能叫穿了正经的内衣，所以是类型2决定是不是真空。
-	IF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "下半身下着２"
-		IF !EQUIP:ARG:下半身下着２
+	IF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "下半身内衣_主"
+		IF !EQUIP:ARG:下半身内衣_主
 			;裤子类
-			IF EQUIP:ARG:下半身上着１ || EQUIP:ARG:下半身上着２ || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
+			IF EQUIP:ARG:下半身外衣_主 || EQUIP:ARG:下半身外衣_副 || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
 				表示内容 '= "没穿"
 				;裙装类
 			ELSEIF EQUIP:ARG:裙子 || EQUIP:ARG:连衣裙 || EQUIP:ARG:着物
@@ -72,9 +72,9 @@ FOR LOCAL, 1, 19
 		;如果不可见重置为问号
 		SIF GETBIT(FLAG:雑多設定,1)
 			表示内容 '= "？？？？？"
-	ELSEIF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "上半身下着２"
-		IF !EQUIP:ARG:上半身下着２
-			IF EQUIP:ARG:上半身上着１ || EQUIP:ARG:上半身上着２ || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
+	ELSEIF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "上半身内衣_主"
+		IF !EQUIP:ARG:上半身内衣_主
+			IF EQUIP:ARG:上半身外衣_主 || EQUIP:ARG:上半身外衣_副 || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
 				表示内容 '= "没穿"
 			ELSEIF EQUIP:ARG:连衣裙 || EQUIP:ARG:着物
 				表示内容 '= "真空"

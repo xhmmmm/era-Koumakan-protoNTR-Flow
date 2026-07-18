@@ -22,11 +22,11 @@
 
 ;PRINTFORMW {CHARANUM}
 ;子供キャラが誰もいないなら処理終了
-SIF CHARANUM <= 開始時人数
+SIF CHARANUM <= 开局角色数量
 	RETURN 0
 
 ;特殊な訪問処理
-FOR LOOP_CHR, 開始時人数, CHARANUM
+FOR LOOP_CHR, 开局角色数量, CHARANUM
 	IF CFLAG:LOOP_CHR:子供訪問フラグ >= 101
 		PRINTFORMW %CALLNAME:LOOP_CHR%を紅魔館へ呼び寄せました。
 		;正門
@@ -42,7 +42,7 @@ NEXT
 
 訪問人数 = 0
 ;確率が発生するキャラの訪問確率処理
-FOR LOOP_CHR, 開始時人数, CHARANUM
+FOR LOOP_CHR, 开局角色数量, CHARANUM
 	;3人訪問すると終了
 	SIF 訪問人数 == 3
 		RETURN 0
@@ -81,10 +81,10 @@ NEXT
 #DIM LOOP_CHR			; LOCAL
 
 ;子供キャラが誰もいないなら処理終了
-SIF CHARANUM <= 開始時人数
+SIF CHARANUM <= 开局角色数量
 	RETURN 0
 ;訪問確率発生までの残り日数減少、訪問していたら残り滞在日数減少処理
-FOR LOOP_CHR, 開始時人数, CHARANUM
+FOR LOOP_CHR, 开局角色数量, CHARANUM
 	;成人以外はスキップ
 	SIF CFLAG:LOOP_CHR:成長度 != 成長度_成人
 		CONTINUE
@@ -131,7 +131,7 @@ CALL 子供訪問_設定2, MASTER
 
 PRINTL 子供の呼び出し設定
 PRINTL
-FOR LOOP_CHR, 開始時人数 ,CHARANUM
+FOR LOOP_CHR, 开局角色数量 ,CHARANUM
 	IF 親子関係(母親番号, LOOP_CHR)
 		PRINTFORM  %CALLNAME:LOOP_CHR, 18, LEFT%　
 		IF CFLAG:LOOP_CHR:子供訪問フラグ == -999
@@ -167,14 +167,14 @@ INPUT
 SELECTCASE RESULT
 	CASE 0
 		RETURN
-	CASE -(CHARANUM-1) TO -(開始時人数)
+	CASE -(CHARANUM-1) TO -(开局角色数量)
 		子供番号 = ABS(RESULT)
 		IF 親子関係(母親番号, 子供番号)
 			CFLAG:子供番号:子供訪問フラグ = -1
 			PRINTFORMW %CALLNAME:子供番号%を次の日に館から出るようにしました
 		ENDIF
 
-	CASE 開始時人数 TO CHARANUM-1
+	CASE 开局角色数量 TO CHARANUM-1
 		子供番号 = RESULT
 		IF 親子関係(母親番号, 子供番号)
 			PRINTL 館への滞在日数の設定(1~30まで、0で設定しない、99で無期限滞在)
@@ -213,12 +213,12 @@ RESTART
 #DIM LOOP_CHR		; LOCAL
 #DIM 子供人数       ; LOCAL:1
 
-SIF CHARANUM <= 開始時人数
+SIF CHARANUM <= 开局角色数量
 	RETURNF -1
 
 子供人数 = 0
 
-FOR LOOP_CHR, 開始時人数, CHARANUM
+FOR LOOP_CHR, 开局角色数量, CHARANUM
 	SIF 成長度 > 0 && CFLAG:LOOP_CHR:成長度 != 成長度
 		CONTINUE
 	IF 親子関係(母親番号, LOOP_CHR)

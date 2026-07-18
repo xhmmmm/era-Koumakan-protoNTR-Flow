@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;窥视
 ;-------------------------------------------------
 @COM404
@@ -358,8 +358,8 @@ IF FLG_POS == 0
 	IF 被害者 != MASTER && 加害者 == MASTER
 		PRINTFORML 在%GetPlaceName(targetArea)%抬头看向了%CALLNAME:被害者%的
 		CALL LOOK_PANCHIRA_MSG1(被害者, 加害者, targetArea)
-		SIF 0 == CFLAG:被害者:ぱんつ確認 
-			CFLAG:被害者:ぱんつ確認 = 2
+		SIF 0 == CFLAG:被害者:内裤确认 
+			CFLAG:被害者:内裤确认 = 2
 		;見られた人がMASTER
 	ELSEIF 被害者 == MASTER && 加害者 != MASTER
 		PRINTFORM  恰巧%GetPlaceName(targetArea)%是会仰头的地方
@@ -392,24 +392,24 @@ RETURN 0
 #DIM targetArea	; 覗いた先の場所
 
 PRINTFORM %CALLNAME:被害者%的裙摆下，那
-IF EQUIP:被害者:下半身下着１
+IF EQUIP:被害者:下半身内衣_副
 	IF GETBIT(FLAG:匂いフェチ,1) 
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着１)%%IRUINAME_SMELL(EQUIP:被害者:下半身下着１)%%PANTSNAME(EQUIP:被害者:下半身下着１)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_副)%%IRUINAME_SMELL(EQUIP:被害者:下半身内衣_副)%%PANTSNAME(EQUIP:被害者:下半身内衣_副)%
 	ELSE
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着１)%%PANTSNAME(EQUIP:被害者:下半身下着１)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_副)%%PANTSNAME(EQUIP:被害者:下半身内衣_副)%
 	ENDIF
-ELSEIF !EQUIP:被害者:下半身下着２
+ELSEIF !EQUIP:被害者:下半身内衣_主
 	PRINTFORM 一览无余的真空
 	SOURCE:PLAYER:欲情 = 10
 ELSE
 	IF GETBIT(FLAG:匂いフェチ,1) 
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着２)%%IRUINAME_SMELL(EQUIP:被害者:下半身下着２)%%PANTSNAME(EQUIP:被害者:下半身下着２)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_主)%%IRUINAME_SMELL(EQUIP:被害者:下半身内衣_主)%%PANTSNAME(EQUIP:被害者:下半身内衣_主)%
 	ELSE
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着２)%%PANTSNAME(EQUIP:被害者:下半身下着２)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_主)%%PANTSNAME(EQUIP:被害者:下半身内衣_主)%
 	ENDIF
 ENDIF
 PRINTFORML 被%CALLNAME:MASTER%尽收眼底。
-IF !EQUIP:被害者:下半身下着２
+IF !EQUIP:被害者:下半身内衣_主
 	IF RAND(100)<30
 		PRINTL 而其中的小穴也一览无余。
 		CALL 确认小穴颜色(被害者)
@@ -421,8 +421,8 @@ IF !EQUIP:被害者:下半身下着２
 		ENDIF
 	ENDIF
 ENDIF
-SIF 0 == CFLAG:被害者:ぱんつ確認 
-	CFLAG:被害者:ぱんつ確認 = 2
+SIF 0 == CFLAG:被害者:内裤确认 
+	CFLAG:被害者:内裤确认 = 2
 RETURN
 
 ; 見られてしまった時のメッセージ
@@ -432,22 +432,22 @@ RETURN
 #DIM targetArea	; 覗いた先の場所
 
 PRINTFORM %CALLNAME:被害者%的裙摆下，那
-IF EQUIP:被害者:下半身下着１
+IF EQUIP:被害者:下半身内衣_副
 	IF GETBIT(FLAG:匂いフェチ,1) 
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着１)%%IRUINAME_SMELL(EQUIP:被害者:下半身下着１)%%PANTSNAME(EQUIP:被害者:下半身下着１)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_副)%%IRUINAME_SMELL(EQUIP:被害者:下半身内衣_副)%%PANTSNAME(EQUIP:被害者:下半身内衣_副)%
 	ELSE
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着１)%%PANTSNAME(EQUIP:被害者:下半身下着１)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_副)%%PANTSNAME(EQUIP:被害者:下半身内衣_副)%
 	ENDIF
-ELSEIF !EQUIP:被害者:下半身下着２
+ELSEIF !EQUIP:被害者:下半身内衣_主
 	PRINTFORM 一览无余的真空
 	IF 加害者 <= CHARANUM
 		SOURCE:加害者:欲情 = 10
 	ENDIF
 ELSE
 	IF GETBIT(FLAG:匂いフェチ,1) 
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着２)%%IRUINAME_SMELL(EQUIP:被害者:下半身下着２)%%PANTSNAME(EQUIP:被害者:下半身下着２)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_主)%%IRUINAME_SMELL(EQUIP:被害者:下半身内衣_主)%%PANTSNAME(EQUIP:被害者:下半身内衣_主)%
 	ELSE
-		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身下着２)%%PANTSNAME(EQUIP:被害者:下半身下着２)%
+		PRINTFORM %PANTS_DESCRIPTION(EQUIP:被害者:下半身内衣_主)%%PANTSNAME(EQUIP:被害者:下半身内衣_主)%
 	ENDIF
 ENDIF
 PRINTFORM 被

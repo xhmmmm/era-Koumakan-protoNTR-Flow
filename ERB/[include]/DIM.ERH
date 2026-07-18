@@ -56,7 +56,8 @@
 #DIM CONST 時間_1DAY		= 1440
 
 ;固定の人物コード
-#DIM CONST 開始時人数		= 14
+#DIM CONST 开局角色数量		= 14
+#DIM CONST 人物_玩家		= 0
 #DIM CONST 人物_美铃		= 1
 #DIM CONST 人物_小恶魔		= 2
 #DIM CONST 人物_帕秋莉		= 3
@@ -73,9 +74,8 @@
 #DIM CONST 人物_村人		= 997
 #DIM CONST 人物_訪問者		= 998
 #DIM CONST 人物_客			= 999
-#DIM CONST 人物_玩家		= 0
 ;CHARANUM最大数 これ以上子供が増えても強制的に里子に出す
-#DIM CONST 人物最大	        = 290
+#DIM CONST 最大角色数量	        = 290
 ;精子主コード
 ;通常人物コードと同一だが、村人、訪問者、客は異なる
 #DIM CONST 精子主_村人		= 298
@@ -83,12 +83,6 @@
 #DIM CONST 精子主_訪問者	= 300
 ;精子主のループ時にCHARANUM到達時にスキップする先
 #DIM CONST 精子主_スキップ	= 298
-
-; 特殊な衣装コード
-#DIM CONST 衣装_配件_结婚戒指		= 1
-#DIM CONST 衣装_配件_チョーカー	= 100
-#DIM CONST 衣装_配件_项圈			= 101
-#DIM CONST 衣装_下半身下着１_贞操帯		= 100
 
 ; 訪問者の气氛
 #DIM CONST NTR_MOOD_会话 = 0

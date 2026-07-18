@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR帕秋莉口上
 ;虽说是非NTR，但因为面向protoNTR，所以也要考虑NTR相关标志的实现。
 ;如果能写出恋慕状态与NTR状态之间的落差就好了——这是个人的期望。
@@ -180,7 +180,7 @@ IF CFLAG:PLAYER:跳蛋A挿入 != 0
 		DATAFORM %" 喜欢跳蛋的话也没办法。就这样给你弄吧」"%
 	ENDDATA
 	PRINTL
-ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
+ELSEIF EQUIP:PLAYER:下半身内衣_副 == 0 && EQUIP:PLAYER:下半身内衣_主 == 0
 	;你没穿内裤时的分支
 	PRINTFORML %CALLNAME:角色%注意到%CALLNAME:PLAYER%没有穿内裤，微微一笑。
 	PRINTFORML 「哎呀……没穿内裤，呵呵，正好呢」

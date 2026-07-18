@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;寝取られパッチ用魔理沙口上ファイル
 ;-------------------------------------------------
 ;基本方针としては寝取られ度が高くなると訪問者の呼び方がご主人様に変化(通常はあいつ呼ばわり)
@@ -1434,12 +1434,12 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 		DATAFORM 「い、いい…変態野朗、しっかり目に焼き付けておくんだぞ…ああ…」
 	ENDDATA
 	PRINTFORM %CALLNAME:MASTER%の目の前で、%NTR_NAME(0)%の手が
-	IF EQUIP:角色:下半身下着１
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
-	ELSEIF !EQUIP:角色:下半身下着２
+	IF EQUIP:角色:下半身内衣_副
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_副)%の下に潜り込み
+	ELSEIF !EQUIP:角色:下半身内衣_主
 		PRINTFORM %CALLNAME:角色%の剥き出しの性器に触れ
 	ELSE
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_主)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
 	PRINTFORML %CALLNAME:角色%は自ら腰をくねらせて%NTR_NAME(0)%のさらなる爱抚を求め、甘い声を上げ続けている。
@@ -1452,12 +1452,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		DATAFORM 「い、いい…変態野朗、しっかり目に焼き付けておくんだぞ…ああ…」
 	ENDDATA
 	PRINTFORML %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
-	IF EQUIP:角色:下半身下着１
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
-	ELSEIF !EQUIP:角色:下半身下着２
+	IF EQUIP:角色:下半身内衣_副
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_副)%の下に潜り込み
+	ELSEIF !EQUIP:角色:下半身内衣_主
 		PRINTFORM %CALLNAME:角色%の剥き出しの性器に触れ
 	ELSE
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_主)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
 	PRINTFORML %CALLNAME:角色%は自ら腰をくねらせて%NTR_NAME(0)%のさらなる爱抚を求め、甘い声を上げ続けている。
@@ -1470,12 +1470,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		DATAFORM 「んっ…だめ、だめ…」
 	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
-	IF EQUIP:角色:下半身下着１
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
-	ELSEIF !EQUIP:角色:下半身下着２
+	IF EQUIP:角色:下半身内衣_副
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_副)%の下に潜り込み
+	ELSEIF !EQUIP:角色:下半身内衣_主
 		PRINTFORM %CALLNAME:角色%の剥き出しの性器に触れ
 	ELSE
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_主)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
 	PRINTFORML %CALLNAME:角色%は弱々しく対抗しながらも%NTR_NAME(0)%の爱抚を受け入れ、甘い声を上げている。
@@ -1488,12 +1488,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度2)
 		DATAFORM 「や、やめろ…ん…だめ、だめだ…」
 	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
-	IF EQUIP:角色:下半身下着１
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
-	ELSEIF !EQUIP:角色:下半身下着２
+	IF EQUIP:角色:下半身内衣_副
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_副)%の下に潜り込み
+	ELSEIF !EQUIP:角色:下半身内衣_主
 		PRINTFORM %CALLNAME:角色%の剥き出しの性器に触れ
 	ELSE
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_主)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
 	PRINTFORML %CALLNAME:角色%は弱々しく身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。
@@ -1506,12 +1506,12 @@ ELSEIF NTR_CHK_FAVORABLY(角色, FAV_うふふする程度)
 		DATAFORM 「や、やめっ…んっ…だめ、だめだっ！」
 	ENDDATA
 	PRINTFORM %ANATA_LOVER(角色)%の目の前で、%NTR_NAME(0)%の手が
-	IF EQUIP:角色:下半身下着１
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着１)%の下に潜り込み
-	ELSEIF !EQUIP:角色:下半身下着２
+	IF EQUIP:角色:下半身内衣_副
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_副)%の下に潜り込み
+	ELSEIF !EQUIP:角色:下半身内衣_主
 		PRINTFORM %CALLNAME:角色%の剥き出しの性器に触れ
 	ELSE
-		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身下着２)%の下に潜り込み
+		PRINTFORM %CALLNAME:角色%の身に着けた%PANTSNAME(EQUIP:角色:下半身内衣_主)%の下に潜り込み
 	ENDIF
 	PRINTFORML いやらしく蠢きながら爱抚を続けている。
 	PRINTFORML %CALLNAME:角色%は身をよじっているが%NTR_NAME(0)%の爱抚から逃れることはできず、局部をほしいままにされ次第に感じはじめている。

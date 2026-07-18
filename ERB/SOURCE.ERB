@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SOURCE_CHECK
@@ -687,57 +687,57 @@ RETURN
 @CHK_SEMEN_STAY(角色)
 #DIM 角色
 #DIM LOOP_CHR
-#DIM ノーパン
+#DIM 是否没穿内裤
 
 IF CFLAG:角色:精液残留中 && !CFLAG:角色:睡眠
 	CFLAG:角色:精液残留中 = MAX(CFLAG:角色:精液残留中 - TIME_PROGRESS(TFLAG:300),0)
 	IF CFLAG:角色:精液残留中 == 0
 		CFLAG:角色:精液残留中 = 0
-		; "あなた"以外
+		;玩家以外的角色
 		IF 角色 > 0 && FLAG:1840 <= 500
-			ノーパン = CFLAG:角色:服装_下半身下着２ == 0
-			;ターゲットとあなたと訪問者が一緒
+			是否没穿内裤 = CFLAG:角色:服装_下半身内衣_主 == 0
+			;玩家、角色、访问者在通个位置
 			IF CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置 && CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 				CALL CHK_SEMEN_STAY_WITH_MASTER_AND_VISITOR(角色)
-				;ターゲットとあなたが一緒
+			;ターゲットとあなたが一緒
 			ELSEIF CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置
-				CALL CHK_SEMEN_STAY_WITH_MASTER(角色, ノーパン)
-				;ターゲットと訪問者が一緒、一人だけ
+				CALL CHK_SEMEN_STAY_WITH_MASTER(角色, 是否没穿内裤)
+			;ターゲットと訪問者が一緒、一人だけ
 			ELSEIF FLAG:访问者当前位置 == CFLAG:角色:当前位置 && GET_N_WITH_VISITER(角色) == 1
-				CALL CHK_SEMEN_STAY_WITH_VISITOR(角色, ノーパン)
-				;ターゲットと訪問者が一緒、同じ場所に2人以上
+				CALL CHK_SEMEN_STAY_WITH_VISITOR(角色, 是否没穿内裤)
+			;ターゲットと訪問者が一緒、同じ場所に2人以上
 			ELSEIF FLAG:访问者当前位置 == CFLAG:角色:当前位置 && GET_N_WITH_VISITER(角色) > 1
-				CALL CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, ノーパン)
-				;あなたと訪問者が居ない、他の住人が居る
+				CALL CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤)
+			;あなたと訪問者が居ない、他の住人が居る
 			ELSEIF GET_N_WITH_VISITER(角色) > 1
 				CALL CHK_SEMEN_STAY_WITH_OTHER(角色)
-				;誰も居ない
+			;誰も居ない
 			ELSE
 				CALL CHK_SEMEN_STAY_WITHOUT(角色)
 			ENDIF
-			; "あなた"
+		;玩家角色
 		ELSEIF 角色 == 0
-			ノーパン = CFLAG:角色:服装_下半身下着２ == 0
+			是否没穿内裤 = CFLAG:角色:服装_下半身内衣_主 == 0
 			;ターゲット(訪問者・あなた以外)と訪問者が一緒、同じ場所に(あなたを含み、訪問者を除いて)2人超
 			IF FLAG:访问者当前位置 == CFLAG:角色:当前位置 && GET_N_WITH_VISITER(角色) > 2
-				CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHERS(角色, ノーパン)
+				CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHERS(角色, 是否没穿内裤)
 				RETURN
 			ENDIF
 			FOR LOOP_CHR,1,CHARANUM && FLAG:1840 <= 500
 				;ターゲット(訪問者・あなた以外)とあなたと訪問者が一緒
 				IF CFLAG:角色:当前位置 == CFLAG:LOOP_CHR:当前位置 && CFLAG:角色:当前位置 == FLAG:访问者当前位置
-					CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, ノーパン, LOOP_CHR)
+					CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤, LOOP_CHR)
 					RETURN
-					;ターゲット(訪問者・あなた以外)とあなたが一緒
+				;ターゲット(訪問者・あなた以外)とあなたが一緒
 				ELSEIF CFLAG:角色:当前位置 == CFLAG:LOOP_CHR:当前位置
-					CALL CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, ノーパン, LOOP_CHR)
+					CALL CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, 是否没穿内裤, LOOP_CHR)
 					RETURN
 				ENDIF
 			NEXT
 			;あなたと訪問者が一緒
 			IF FLAG:访问者当前位置 == CFLAG:角色:当前位置
-				CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR(角色, ノーパン)
-				;誰も居ない（フェール）
+				CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR(角色, 是否没穿内裤)
+			;誰も居ない（フェール）
 			ELSE
 				PRINTFORMW %CALLNAME:角色%偷偷将因时间流逝而溢出的精液擦去了
 			ENDIF
@@ -779,11 +779,11 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック
 ;ターゲットとあなたが一緒の時の処理。
-@CHK_SEMEN_STAY_WITH_MASTER(角色, ノーパン)
+@CHK_SEMEN_STAY_WITH_MASTER(角色, 是否没穿内裤)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 
-IF ノーパン != 0
+IF 是否没穿内裤 != 0
 	PRINTFORML 某些液体滴落的声音吸引了%CALLNAME:MASTER%的注意力
 	PRINTFORMW %CALLNAME:角色%双颊通红，尽力做出些许声音、想掩盖过去。
 ELSE
@@ -806,9 +806,9 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック
 ;ターゲットと訪問者（村人、客）が一緒の時の処理。
-@CHK_SEMEN_STAY_WITH_VISITOR(角色, ノーパン)
+@CHK_SEMEN_STAY_WITH_VISITOR(角色, 是否没穿内裤)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 #DIMS 相手名称		; 零れた精液を見せ付ける等する相手
 #DIMS 相手_彼		; 相手を「彼」または「彼女」と表現する文字列
 #DIM 相手番号		; 相手名称に対応する人物番号
@@ -817,7 +817,7 @@ RETURN
 相手番号 = 人物_訪問者
 相手_彼 = "他"
 IF NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
-	IF ノーパン != 0
+	IF 是否没穿内裤 != 0
 		PRINTFORML 『笨蛋…』满溢的精液从小穴滴落下来、%相手名称%有些生气地指出了那件事
 	ELSE
 		IF CFLAG:角色:射精者V == 相手番号
@@ -865,12 +865,12 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック
 ;ターゲットと訪問者と他の住人が一緒の時の処理。
-@CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, ノーパン)
+@CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 
 IF NTR_CHK_VISIBLE(CFLAG:角色:当前位置)
-	IF ノーパン != 0
+	IF 是否没穿内裤 != 0
 		PRINTFORML %CALLNAME:角色%小穴的正下方时不时会发出轻微的“啪嗒…”的声音，%NTR_NAME(0)%知道那是溢出的精液滴落到地上
 		PRINTFORML %NTR_NAME(0)%假装毫不知情，故意一脸疑惑地向附近的其他居民询问「有没有听到某些液体落到地上的声音？」。
 		IF RAND:3 == 0
@@ -919,11 +919,11 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;ターゲット(訪問者・あなた以外)と訪問者が一緒、同じ場所に(あなたを含み、訪問者を除いて)2人超
-@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHERS(角色, ノーパン)
+@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHERS(角色, 是否没穿内裤)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 
-IF ノーパン != 0
+IF 是否没穿内裤 != 0
 	PRINTFORML %CALLNAME:角色%小穴的正下方时不时会发出轻微的“啪嗒…”的声音，%NTR_NAME(0)%知道那是溢出的精液滴落到地上
 	PRINTFORML %NTR_NAME(0)%假装毫不知情，故意一脸疑惑地向附近的其他居民询问「有没有听到某些液体落到地上的声音？」。
 	IF RAND:3 == 0
@@ -944,9 +944,9 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;ターゲット(訪問者・あなた以外)と訪問者が一緒、同じ場所に(あなたを含み、訪問者を除いて)1人
-@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, ノーパン, 住人)
+@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤, 住人)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 #DIM 住人
 
 PRINTFORML 发现%NTR_NAME(0)%要求自己收集的精液正不停溢出，%CALLNAME:角色%有些慌张地捂住了%SHOW_BOTTOM(角色,1)%的下腹部
@@ -964,12 +964,12 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;ターゲット(訪問者・あなた以外)と一緒、同じ場所に(あなたを含み、訪問者を除いて)1人
-@CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, ノーパン, 住人)
+@CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, 是否没穿内裤, 住人)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 #DIM 住人
 
-IF ノーパン != 0
+IF 是否没穿内裤 != 0
 	PRINTFORML 大概是被%NTR_NAME(0)%注入自己体内的精液滴落的声音吸引、%CALLNAME:住人%向这边看了过来
 	PRINTFORMW %CALLNAME:角色%脸颊滚烫、悄悄地移动身形挡住了地上的液体。
 ELSE
@@ -981,11 +981,11 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;訪問者と一緒
-@CHK_SEMEN_STAY_MASTER_WITH_VISITOR(角色, ノーパン)
+@CHK_SEMEN_STAY_MASTER_WITH_VISITOR(角色, 是否没穿内裤)
 #DIM 角色
-#DIM ノーパン	; 1:ノーパン 0:はいてる
+#DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
 
-IF ノーパン != 0
+IF 是否没穿内裤 != 0
 	PRINTFORML 『笨蛋…』满溢的精液从小穴滴落下来、%NTR_NAME(0)%有些生气地指出了那件事
 	IF TALENT:角色:NTR
 		IF CFLAG:角色:射精者V == 人物_訪問者

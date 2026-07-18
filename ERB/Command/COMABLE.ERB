@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;0番台,０．爱抚系コマンド
 ;-------------------------------------------------
 @COM_ABLE0
@@ -2686,7 +2686,7 @@ SIF !TFLAG:100
 SIF GLOBAL_COMABLE(200)
 	RETURN RESULT
 ;既に着ていない
-SIF !EQUIP:上半身上着１ && !EQUIP:上半身上着２ && !EQUIP:赛车服 && !EQUIP:连衣裙 && !EQUIP:着物 && !EQUIP:紧身衣
+SIF !EQUIP:上半身外衣_主 && !EQUIP:上半身外衣_副 && !EQUIP:赛车服 && !EQUIP:连衣裙 && !EQUIP:着物 && !EQUIP:紧身衣
 	RETURN 0
 SIF !EQUIP:0
 	RETURN 0
@@ -2700,7 +2700,7 @@ SIF !TFLAG:100
 SIF GLOBAL_COMABLE(201)
 	RETURN RESULT
 ;既に着ていない
-SIF !EQUIP:下半身上着１ && !EQUIP:下半身上着２ && !EQUIP:裙子
+SIF !EQUIP:下半身外衣_主 && !EQUIP:下半身外衣_副 && !EQUIP:裙子
 	RETURN 0
 ;上半身一体型
 SIF EQUIP:赛车服 || EQUIP:连衣裙 || EQUIP:着物 || EQUIP:紧身衣
@@ -2717,10 +2717,10 @@ SIF !TFLAG:100
 SIF GLOBAL_COMABLE(202)
 	RETURN RESULT
 ;既に着ていない
-SIF !EQUIP:上半身下着１ && !EQUIP:上半身下着２
+SIF !EQUIP:上半身内衣_副 && !EQUIP:上半身内衣_主
 	RETURN 0
 ;着衣
-SIF EQUIP:上半身上着１ || EQUIP:赛车服 || EQUIP:连衣裙 || EQUIP:紧身衣
+SIF EQUIP:上半身外衣_主 || EQUIP:赛车服 || EQUIP:连衣裙 || EQUIP:紧身衣
 	RETURN 0
 SIF !EQUIP:0
 	RETURN 0
@@ -2734,10 +2734,10 @@ SIF !TFLAG:100
 SIF GLOBAL_COMABLE(203)
 	RETURN RESULT
 ;既に着ていない
-SIF !EQUIP:下半身下着１ && !EQUIP:下半身下着２
+SIF !EQUIP:下半身内衣_副 && !EQUIP:下半身内衣_主
 	RETURN 0
 ;着衣
-SIF EQUIP:下半身上着１ || EQUIP:下半身上着２ || EQUIP:赛车服 || EQUIP:紧身衣
+SIF EQUIP:下半身外衣_主 || EQUIP:下半身外衣_副 || EQUIP:赛车服 || EQUIP:紧身衣
 	RETURN 0
 SIF !EQUIP:0
 	RETURN 0

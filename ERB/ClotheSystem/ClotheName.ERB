@@ -1,0 +1,840 @@
+;=================================================
+; 服装名称
+;=================================================
+
+;-------------------------------------------------
+; 统一入口：按部位+编号获取服装名称
+;-------------------------------------------------
+@服装名_取得(部位, 款式)
+#FUNCTIONS
+#DIM 部位
+#DIM 款式
+
+SELECTCASE 部位
+CASE 衣装部位_配件
+	RETURNF 服装名_配件(款式)
+CASE 衣装部位_帽子
+	RETURNF 服装名_帽子(款式)
+CASE 衣装部位_鞋
+	RETURNF 服装名_鞋(款式)
+CASE 衣装部位_袜
+	RETURNF 服装名_袜(款式)
+CASE 衣装部位_下半身内衣_副
+	RETURNF 服装名_下半身内衣_副(款式)
+CASE 衣装部位_下半身内衣_主
+	RETURNF 服装名_下半身内衣_主(款式)
+CASE 衣装部位_下半身外衣_主
+	RETURNF 服装名_下半身外衣_主(款式)
+CASE 衣装部位_下半身外衣_副
+	RETURNF 服装名_下半身外衣_副(款式)
+CASE 衣装部位_裙子
+	RETURNF 服装名_裙子(款式)
+CASE 衣装部位_上半身内衣_副
+	RETURNF 服装名_上半身内衣_副(款式)
+CASE 衣装部位_上半身内衣_主
+	RETURNF 服装名_上半身内衣_主(款式)
+CASE 衣装部位_上半身外衣_主
+	RETURNF 服装名_上半身外衣_主(款式)
+CASE 衣装部位_上半身外衣_副
+	RETURNF 服装名_上半身外衣_副(款式)
+CASE 衣装部位_赛车服
+	RETURNF 服装名_赛车服(款式)
+CASE 衣装部位_连衣裙
+	RETURNF 服装名_连衣裙(款式)
+CASE 衣装部位_着物
+	RETURNF 服装名_着物(款式)
+CASE 衣装部位_紧身衣
+	RETURNF 服装名_紧身衣(款式)
+CASE 衣装部位_手
+	RETURNF 服装名_手(款式)
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 旧接口兼容：CLOTHNAME(服種類, 服番号)
+; 服種類 = EQUIP索引，与 服装名_取得 一致
+;-------------------------------------------------
+@CLOTHNAME(服種類, 服番号)
+#FUNCTIONS
+#DIM 服種類
+#DIM 服番号
+	RETURNF 服装名_取得(服種類, 服番号)
+
+;=================================================
+; 各部位名称函数
+;=================================================
+
+@服装名_配件(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_配件_结婚戒指
+	RETURNF "结婚戒指"
+CASE 衣装_配件_项圈
+	RETURNF "项圈"
+CASE 衣装_配件_颈环
+	RETURNF "项圈"
+ENDSELECT
+RETURNF ""
+
+@服装名_帽子(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "帽子"
+CASE 2
+	RETURNF "头饰"
+CASE 3
+	RETURNF "丝带"
+CASE 4
+	RETURNF "猫耳"
+CASE 5
+	RETURNF "兔耳"
+CASE 6
+	RETURNF "犬耳"
+CASE 7
+	RETURNF "牛耳"
+CASE 8
+	RETURNF "头巾"
+CASE 9
+	RETURNF "发箍"
+ENDSELECT
+RETURNF ""
+
+@服装名_鞋(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "小圆鞋"
+CASE 2
+	RETURNF "草履"
+CASE 3
+	RETURNF "长筒靴"
+CASE 4
+	RETURNF "拖鞋"
+CASE 5
+	RETURNF "高跟鞋"
+ENDSELECT
+RETURNF ""
+
+@服装名_袜(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "短袜"
+CASE 2
+	RETURNF "高筒袜"
+CASE 3
+	RETURNF "过膝袜"
+CASE 4
+	RETURNF "白丝袜"
+CASE 5
+	RETURNF "足袋"
+CASE 6
+	RETURNF "吊带袜"
+CASE 7
+	RETURNF "长筒半透白丝袜"
+ENDSELECT
+RETURNF ""
+
+@服装名_下半身内衣_副(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_下半身内衣_副_贞操带
+	RETURNF "贞操带"
+CASE 衣装_下半身内衣_副_创口贴
+	RETURNF "创口贴"
+ENDSELECT
+RETURNF ""
+
+@服装名_下半身内衣_主(款式)
+#FUNCTIONS
+#DIM 款式
+; 男性内裤
+IF 款式 >= 衣装_下半身内衣_主_男内裤下限 && 款式 <= 衣装_下半身内衣_主_男内裤上限
+	SELECTCASE 款式
+	CASE 衣装_下半身内衣_主_短裤
+		RETURNF "短裤"
+	CASE 衣装_下半身内衣_主_三角裤
+		RETURNF "三角裤"
+	CASE 衣装_下半身内衣_主_平角裤
+		RETURNF "平角裤"
+	CASE 衣装_下半身内衣_主_比基尼
+		RETURNF "比基尼内裤"
+	CASE 衣装_下半身内衣_主_微型比基尼
+		RETURNF "微型比基尼内裤"
+	CASE 衣装_下半身内衣_主_牛比基尼
+		RETURNF "牛比基尼内裤"
+	ENDSELECT
+ENDIF
+; 女性内裤
+IF 款式 >= 衣装_下半身内衣_主_女内裤下限 && 款式 <= 衣装_下半身内衣_主_女内裤上限
+	RETURNF 内裤名称(款式)
+ENDIF
+RETURNF ""
+
+@服装名_下半身外衣_主(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "裤子"
+CASE 2
+	RETURNF "紧身裤"
+CASE 3
+	RETURNF "袴"
+ENDSELECT
+RETURNF ""
+
+@服装名_下半身外衣_副(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "半裤"
+CASE 2
+	RETURNF "灯笼裤"
+CASE 3
+	RETURNF "热裤"
+CASE 4
+	RETURNF "束缚裤"
+ENDSELECT
+RETURNF ""
+
+@服装名_裙子(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "超短裙"
+CASE 2
+	RETURNF "裙子"
+CASE 3
+	RETURNF "长裙"
+CASE 4
+	RETURNF "紧身裙"
+CASE 5
+	RETURNF "裳"
+CASE 6
+	RETURNF "女仆长裙"
+ENDSELECT
+RETURNF ""
+
+@服装名_上半身内衣_副(款式)
+#FUNCTIONS
+#DIM 款式
+; 上半身内衣_副
+SELECTCASE 款式
+CASE 2
+	RETURNF "乳贴"
+ENDSELECT
+RETURNF ""
+
+@服装名_上半身内衣_主(款式)
+#FUNCTIONS
+#DIM 款式
+; 上半身内衣_主
+SELECTCASE 款式
+CASE 衣装_上半身内衣_主_胸罩
+	RETURNF "胸罩"
+CASE 衣装_上半身内衣_主_运动胸罩
+	RETURNF "运动胸罩"
+CASE 衣装_上半身内衣_主_胸贴
+	RETURNF "胸贴"
+CASE 衣装_上半身内衣_主_露点文胸
+	RETURNF "露点文胸"
+CASE 衣装_上半身内衣_主_裹胸布
+	RETURNF "裹胸布"
+CASE 衣装_上半身内衣_主_比基尼
+	RETURNF "比基尼"
+CASE 衣装_上半身内衣_主_迷你比基尼
+	RETURNF "迷你比基尼"
+CASE 衣装_上半身内衣_主_汗衫
+	RETURNF "汗衫"
+CASE 衣装_上半身内衣_主_牛比基尼
+	RETURNF "牛比基尼"
+CASE 衣装_上半身内衣_主_蕾丝胸罩
+	RETURNF "蕾丝边胸罩"
+ENDSELECT
+RETURNF ""
+
+@服装名_上半身外衣_主(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_上半身外衣_主_外衣
+	RETURNF "外衣"
+CASE 衣装_上半身外衣_主_铠甲
+	RETURNF "铠甲"
+CASE 衣装_上半身外衣_主_军服
+	RETURNF "军服"
+CASE 衣装_上半身外衣_主_绅士服
+	RETURNF "绅士服"
+ENDSELECT
+RETURNF ""
+
+@服装名_上半身外衣_副(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_上半身外衣_副_女衬衫
+	RETURNF "女衬衫"
+CASE 衣装_上半身外衣_副_水手服
+	RETURNF "水手服"
+CASE 衣装_上半身外衣_副_西装外套
+	RETURNF "西装外套"
+CASE 衣装_上半身外衣_副_衬衫
+	RETURNF "衬衫"
+CASE 衣装_上半身外衣_副_学生服
+	RETURNF "学生服"
+CASE 衣装_上半身外衣_副_丧服
+	RETURNF "丧服"
+CASE 衣装_上半身外衣_副_睡衣
+	RETURNF "睡衣"
+CASE 衣装_上半身外衣_副_T恤
+	RETURNF "T恤"
+CASE 衣装_上半身外衣_副_吊带衫
+	RETURNF "吊带衫"
+CASE 衣装_上半身外衣_副_巫女服
+	RETURNF "巫女服"
+CASE 衣装_上半身外衣_副_纵毛衣
+	RETURNF "纵毛衣"
+CASE 衣装_上半身外衣_副_啦啦队服
+	RETURNF "啦啦队服"
+CASE 衣装_上半身外衣_副_大衣
+	RETURNF "大衣"
+CASE 衣装_上半身外衣_副_束缚装
+	RETURNF "束缚装"
+CASE 衣装_上半身外衣_副_护士服
+	RETURNF "护士服"
+CASE 衣装_上半身外衣_副_女警服
+	RETURNF "女警服"
+CASE 衣装_上半身外衣_副_魔法少女
+	RETURNF "魔法少女服"
+CASE 衣装_上半身外衣_副_博丽巫女服
+	RETURNF "博丽巫女服"
+CASE 衣装_上半身外衣_副_圣诞装
+	RETURNF "圣诞装"
+CASE 衣装_上半身外衣_副_露背毛衣
+	RETURNF "露背毛衣"
+CASE 衣装_上半身外衣_副_幼儿服
+	RETURNF "幼儿服"
+CASE 衣装_上半身外衣_副_披风
+	RETURNF "披风"
+CASE 衣装_上半身外衣_副_女仆上衣
+	RETURNF "女仆上衣"
+ENDSELECT
+RETURNF ""
+
+@服装名_赛车服(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "赛车服"
+ENDSELECT
+RETURNF ""
+
+@服装名_连衣裙(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_连衣裙_连衣裙
+	RETURNF "连衣裙"
+CASE 衣装_连衣裙_旗袍
+	RETURNF "旗袍"
+CASE 衣装_连衣裙_睡袍
+	RETURNF "睡袍"
+CASE 衣装_连衣裙_玩偶
+	RETURNF "玩偶"
+CASE 衣装_连衣裙_裸体围裙
+	RETURNF "裸体围裙"
+CASE 衣装_连衣裙_斗篷
+	RETURNF "斗篷"
+CASE 衣装_连衣裙_修道服
+	RETURNF "修道服"
+CASE 衣装_连衣裙_魔女连衣裙
+	RETURNF "魔女连衣裙"
+ENDSELECT
+RETURNF ""
+
+@服装名_着物(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_着物_和服
+	RETURNF "和服"
+CASE 衣装_着物_浴衣
+	RETURNF "浴衣"
+ENDSELECT
+RETURNF ""
+
+@服装名_紧身衣(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 衣装_紧身衣_学校泳衣
+	RETURNF "学校泳衣"
+CASE 衣装_紧身衣_紧身衣
+	RETURNF "紧身衣"
+CASE 衣装_紧身衣_忍者装束
+	RETURNF "忍者装束"
+CASE 衣装_紧身衣_Y型
+	RETURNF "Y型紧身衣"
+CASE 衣装_紧身衣_触手服
+	RETURNF "触手服"
+CASE 衣装_紧身衣_竞赛泳衣
+	RETURNF "竞赛泳衣"
+CASE 衣装_紧身衣_赛车女模
+	RETURNF "赛车女模"
+CASE 衣装_紧身衣_林科斯
+	RETURNF "林科斯"
+ENDSELECT
+RETURNF ""
+
+@服装名_手(款式)
+#FUNCTIONS
+#DIM 款式
+SELECTCASE 款式
+CASE 1
+	RETURNF "军用手套"
+CASE 2
+	RETURNF "橡胶手套"
+CASE 3
+	RETURNF "白手套"
+CASE 4
+	RETURNF "皮手套"
+CASE 5
+	RETURNF "指贯手套"
+CASE 6
+	RETURNF "歌剧手套"
+CASE 7
+	RETURNF "忍者篭手"
+CASE 8
+	RETURNF "连指手套"
+ENDSELECT
+RETURNF ""
+
+;=================================================
+; 内裤名称系统（下半身内衣_主 的女性内裤 2~50）
+;=================================================
+
+@内裤名称(内裤)
+#FUNCTIONS
+#DIM 内裤
+
+SELECTCASE 内裤
+; 创口贴
+CASE 2
+	RETURNF "创口贴"
+; 幼儿用
+CASE 3
+	RETURNF "白内裤"
+CASE 4
+	RETURNF "粉红内裤"
+CASE 5
+	RETURNF "薄紫内裤"
+; 图案
+CASE 6
+	RETURNF "小熊内裤"
+CASE 7
+	RETURNF "小猫内裤"
+; 水滴花纹
+CASE 8
+	RETURNF "青白水滴内裤"
+CASE 9
+	RETURNF "紫白水滴内裤"
+; 条纹
+CASE 10
+	RETURNF "青白条纹内裤"
+CASE 11
+	RETURNF "赤白条纹内裤"
+CASE 12
+	RETURNF "紫白条纹内裤"
+CASE 13
+	RETURNF "绿白条纹内裤"
+CASE 14
+	RETURNF "黄白条纹内裤"
+CASE 15
+	RETURNF "紫黑条纹内裤"
+; 皱边
+CASE 16
+	RETURNF "白皱边内裤"
+CASE 17
+	RETURNF "粉红皱边内裤"
+CASE 18
+	RETURNF "薄紫皱边内裤"
+; 低腰泳衣
+CASE 19
+	RETURNF "白低腰内裤"
+CASE 20
+	RETURNF "粉红低腰内裤"
+CASE 21
+	RETURNF "青低腰内裤"
+; 其他
+CASE 22
+	RETURNF "低腰内裤"
+CASE 23
+	RETURNF "高开叉内裤"
+; 蕾丝
+CASE 24
+	RETURNF "白蕾丝内裤"
+CASE 25
+	RETURNF "黑蕾丝内裤"
+CASE 26
+	RETURNF "粉红蕾丝内裤"
+; 紧身
+CASE 27
+	RETURNF "黑紧身内裤"
+CASE 28
+	RETURNF "灰紧身内裤"
+; 透视
+CASE 29
+	RETURNF "白透视内裤"
+CASE 30
+	RETURNF "粉红透视内裤"
+; T字
+CASE 31
+	RETURNF "白T字裤"
+CASE 32
+	RETURNF "青T字裤"
+CASE 33
+	RETURNF "黑T字裤"
+; 系带
+CASE 34
+	RETURNF "白系带内裤"
+CASE 35
+	RETURNF "黑系带内裤"
+CASE 36
+	RETURNF "红系带内裤"
+CASE 37
+	RETURNF "青白条纹系带内裤"
+CASE 38
+	RETURNF "赤白条纹系带内裤"
+CASE 39
+	RETURNF "紫系带内裤"
+; 皮革
+CASE 40
+	RETURNF "红皮革内裤"
+CASE 41
+	RETURNF "黑皮革内裤"
+; 开放蕾丝T字
+CASE 42
+	RETURNF "白开放蕾丝T字裤"
+CASE 43
+	RETURNF "黑开放蕾丝T字裤"
+CASE 44
+	RETURNF "红开放蕾丝T字裤"
+; 半透明
+CASE 45
+	RETURNF "白半透明内裤"
+CASE 46
+	RETURNF "黑半透明内裤"
+CASE 47
+	RETURNF "红半透明内裤"
+; 开档蕾丝
+CASE 48
+	RETURNF "白开档蕾丝内裤"
+CASE 49
+	RETURNF "黑开档蕾丝内裤"
+CASE 50
+	RETURNF "红开档蕾丝内裤"
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 旧接口兼容
+;-------------------------------------------------
+@PANTSNAME(内裤)
+#FUNCTIONS
+#DIM 内裤
+	RETURNF 内裤名称(内裤)
+
+;-------------------------------------------------
+; 内裤描述（用于消息文本）
+;-------------------------------------------------
+@内裤描述(内裤)
+#FUNCTIONS
+#DIM 内裤
+
+SELECTCASE 内裤
+CASE 2
+	RETURNF "小创口贴般的"
+CASE 3 TO 5
+	RETURNF "幼儿用的"
+CASE 6, 7
+	RETURNF "可爱的图案"
+CASE 8, 9
+	RETURNF "水滴花纹的"
+CASE 10 TO 15
+	RETURNF "条纹的"
+CASE 16 TO 18
+	RETURNF "皱边的"
+CASE 19 TO 21
+	RETURNF "低腰泳衣式的"
+CASE 22
+	RETURNF "低腰的"
+CASE 23
+	RETURNF "高开叉的"
+CASE 24 TO 26
+	RETURNF "蕾丝的"
+CASE 27, 28
+	RETURNF "紧身的"
+CASE 29, 30
+	RETURNF "隐约可见的"
+CASE 31 TO 33
+	RETURNF "细绳般的"
+CASE 34 TO 39
+	RETURNF "系带的"
+CASE 40, 41
+	RETURNF "皮革的"
+CASE 42 TO 44
+	RETURNF "开档蕾丝T字的"
+CASE 45 TO 47
+	RETURNF "半透明的"
+CASE 48 TO 50
+	RETURNF "开档蕾丝的"
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 旧接口兼容
+;-------------------------------------------------
+@PANTS_DESCRIPTION(内裤)
+#FUNCTIONS
+#DIM 内裤
+	RETURNF 内裤描述(内裤)
+
+;=================================================
+; 显示辅助函数
+;=================================================
+
+;-------------------------------------------------
+; 取得上半身最外层服装的通用名称
+;-------------------------------------------------
+@SHOW_TOP(着用者, 指定层级 = -1)
+#FUNCTIONS
+#DIM 着用者
+#DIM 指定层级
+#DIM 最外层
+
+IF 指定层级 >= 0
+	最外层 = 指定层级
+ELSE
+	; 从 TEQUIP 判断最外层
+	IF GETBIT(TEQUIP:着用者:上半身着衣状況, 着衣_上半身_主层)
+		最外层 = 2
+	ELSEIF GETBIT(TEQUIP:着用者:上半身着衣状況, 着衣_上半身_副层)
+		最外层 = 1
+	ELSE
+		RETURNF ""
+	ENDIF
+ENDIF
+
+SELECTCASE 最外层
+CASE 2
+	; 主层（不可掀开）
+	IF EQUIP:着用者:衣装部位_赛车服
+		RETURNF "服"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_连衣裙
+		SELECTCASE EQUIP:着用者:衣装部位_连衣裙
+		CASE 衣装_连衣裙_旗袍
+			RETURNF "旗袍"
+		CASE 衣装_连衣裙_裸体围裙
+			RETURNF "裸体围裙"
+		CASE 衣装_连衣裙_斗篷
+			RETURNF "斗篷"
+		CASE 衣装_连衣裙_修道服
+			RETURNF "修道服"
+		CASE 衣装_连衣裙_魔女连衣裙
+			RETURNF "魔女连衣裙"
+		ENDSELECT
+		RETURNF "服"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_紧身衣
+		SELECTCASE EQUIP:着用者:衣装部位_紧身衣
+		CASE 衣装_紧身衣_忍者装束
+			RETURNF "忍者装束"
+		CASE 衣装_紧身衣_Y型
+			RETURNF "Y型紧身衣"
+		CASE 衣装_紧身衣_触手服
+			RETURNF "触手服"
+		CASE 衣装_紧身衣_竞赛泳衣
+			RETURNF "竞赛泳衣"
+		CASE 衣装_紧身衣_赛车女模
+			RETURNF "赛车女模"
+		CASE 衣装_紧身衣_林科斯
+			RETURNF "林科斯"
+		ENDSELECT
+		RETURNF "紧身衣"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_上半身外衣_主
+		RETURNF "外衣"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_上半身内衣_副
+		RETURNF "内衣"
+	ENDIF
+CASE 1
+	; 副层（可掀开）
+	IF EQUIP:着用者:衣装部位_着物
+		RETURNF "和服"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_上半身外衣_副
+		RETURNF "女衬衫"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_上半身内衣_主
+		RETURNF "内衣"
+	ENDIF
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 取得下半身最外层服装的通用名称
+;-------------------------------------------------
+@SHOW_BOTTOM(着用者, 指定层级 = -1)
+#FUNCTIONS
+#DIM 着用者
+#DIM 指定层级
+#DIM 最外层
+
+IF 指定层级 >= 0
+	最外层 = 指定层级
+ELSE
+	; 从 TEQUIP 判断最外层
+	IF GETBIT(TEQUIP:着用者:下半身着衣状況, 着衣_下半身_主层外衣)
+		最外层 = 4
+	ELSEIF GETBIT(TEQUIP:着用者:下半身着衣状況, 着衣_下半身_主层)
+		最外层 = 3
+	ELSEIF GETBIT(TEQUIP:着用者:下半身着衣状況, 着衣_下半身_副层)
+		最外层 = 2
+	ELSEIF GETBIT(TEQUIP:着用者:下半身着衣状況, 着衣_下半身_裙子)
+		最外层 = 1
+	ELSE
+		RETURNF ""
+	ENDIF
+ENDIF
+
+SELECTCASE 最外层
+CASE 4
+	; 主层外衣
+	IF EQUIP:着用者:衣装部位_下半身外衣_主 || EQUIP:着用者:衣装部位_赛车服
+		RETURNF "衣服"
+	ENDIF
+CASE 3
+	; 主层
+	IF EQUIP:着用者:衣装部位_赛车服 || EQUIP:着用者:衣装部位_下半身外衣_主
+		RETURNF "衣服"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_下半身内衣_副
+		RETURNF "内衣"
+	ENDIF
+CASE 2
+	; 副层
+	IF EQUIP:着用者:衣装部位_紧身衣 || EQUIP:着用者:衣装部位_下半身外衣_副
+		RETURNF "衣服"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_下半身内衣_主
+		RETURNF "内衣"
+	ENDIF
+CASE 1
+	; 裙子
+	IF EQUIP:着用者:衣装部位_裙子
+		SELECTCASE EQUIP:着用者:衣装部位_裙子
+		CASE 衣装_裙子_超短裙
+			RETURNF "超短裙"
+		CASEELSE
+			RETURNF "裙子"
+		ENDSELECT
+	ENDIF
+	IF EQUIP:着用者:衣装部位_连衣裙
+		RETURNF "裙子"
+	ENDIF
+	IF EQUIP:着用者:衣装部位_着物
+		RETURNF "和服下摆"
+	ENDIF
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 睡衣名称
+;-------------------------------------------------
+@睡衣名称(款式)
+#FUNCTIONS
+#DIM 款式
+
+SELECTCASE 款式
+CASE 0
+	RETURNF "全裸"
+CASE 1
+	RETURNF "睡衣"
+CASE 2
+	RETURNF "裸体围裙"
+CASE 3
+	RETURNF "浴衣"
+CASE 4
+	RETURNF "裸睡衬衫"
+CASE 5
+	RETURNF "裸睡"
+CASE 6
+	RETURNF "紧身衣"
+CASE 7
+	RETURNF "T恤+内裤"
+CASE 8
+	RETURNF "只穿内裤"
+CASE 9
+	RETURNF "情趣内衣"
+CASE 10
+	RETURNF "情趣内衣(露点)"
+CASE 11
+	RETURNF "情趣内衣(露点、丝袜)"
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 口塞类型名称
+;-------------------------------------------------
+@口塞类型名称(类型)
+#FUNCTIONS
+#DIM 类型
+
+SELECTCASE 类型
+CASE 1
+	RETURNF "口球"
+CASE 2
+	RETURNF "环形口塞"
+CASE 3
+	RETURNF "罩型口塞"
+CASE 4
+	RETURNF "阳具口塞"
+CASE 5
+	RETURNF "深喉阳具口塞"
+ENDSELECT
+RETURNF ""
+
+;-------------------------------------------------
+; 衣物气味名称
+;-------------------------------------------------
+@IRUINAME_SMELL(穿着天数)
+#FUNCTIONS
+#DIM 穿着天数
+
+SELECTCASE 穿着天数
+CASE IS <= 1
+	RETURNF "芳香的"
+CASE IS <= 3
+	RETURNF "微微有体味的"
+CASE IS <= 5
+	RETURNF "有汗味的"
+CASE IS <= 7
+	RETURNF "有体臭的"
+CASE IS <= 9
+	RETURNF "有强烈体臭的"
+CASEELSE
+	RETURNF "体液与垢粘连的"
+ENDSELECT
+RETURNF ""

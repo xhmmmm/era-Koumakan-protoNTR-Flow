@@ -1,4 +1,4 @@
-;調教時テキスト
+﻿;調教時テキスト
 @TRAIN_MESSAGE
 RESETCOLOR
 DRAWLINE
@@ -2862,10 +2862,10 @@ ENDIF
 ;200,上半身上着脱衣
 ;-------------------------------------------------
 @MESSAGE_COM200
-IF EQUIP:上半身上着１
-	LOCALS = %CLOTHNAME(12,EQUIP:上半身上着１)%
-ELSEIF EQUIP:上半身上着２
-	LOCALS = %CLOTHNAME(13,EQUIP:上半身上着２)%
+IF EQUIP:上半身外衣_主
+	LOCALS = %CLOTHNAME(12,EQUIP:上半身外衣_主)%
+ELSEIF EQUIP:上半身外衣_副
+	LOCALS = %CLOTHNAME(13,EQUIP:上半身外衣_副)%
 ELSEIF EQUIP:赛车服
 	LOCALS = %CLOTHNAME(14,EQUIP:赛车服)%
 ELSEIF EQUIP:连衣裙
@@ -2880,7 +2880,7 @@ IF CFLAG:うふふ == 3
 ELSE
 	PRINTFORML %CALLNAME:TARGET%de%LOCALS%被脱掉了…
 	;女性かつ下着を着けていない
-	IF HAS_VAGINA(TARGET) && EQUIP:上半身下着１ == 0 && EQUIP:上半身下着２ == 0
+	IF HAS_VAGINA(TARGET) && EQUIP:上半身内衣_副 == 0 && EQUIP:上半身内衣_主 == 0
 		PRINTFORM 胸部内衣没穿、%CALLNAME:TARGET%的
 		;欲情のレベルが3以上且つＢ绝顶を迎えているまたは快Ｂのレベルが3以上で変化
 		SIF PALAM:欲情 >= PALAMLV:3 && (EX:Ｂ绝顶 || PALAM:快Ｂ >= PALAMLV:3)
@@ -2905,19 +2905,19 @@ ENDIF
 ;201,下半身上着脱衣
 ;-------------------------------------------------
 @MESSAGE_COM201
-IF EQUIP:下半身上着１
-	LOCALS = %CLOTHNAME(7,EQUIP:下半身上着１)%
-ELSEIF EQUIP:下半身上着２
-	LOCALS = %CLOTHNAME(8,EQUIP:下半身上着２)%
+IF EQUIP:下半身外衣_主
+	LOCALS = %CLOTHNAME(7,EQUIP:下半身外衣_主)%
+ELSEIF EQUIP:下半身外衣_副
+	LOCALS = %CLOTHNAME(8,EQUIP:下半身外衣_副)%
 ELSEIF EQUIP:裙子
 	LOCALS = %CLOTHNAME(9,EQUIP:裙子)%
 ENDIF
 IF CFLAG:うふふ == 3
 	PRINTFORML %LOCALS%被脱掉了…
 ELSE
-	PRINTFORML %CALLNAME:TARGET%の%LOCALS%被脱掉了\@ EQUIP:下半身下着１ == 0 && EQUIP:下半身下着２ == 0 ? #…\@
+	PRINTFORML %CALLNAME:TARGET%の%LOCALS%被脱掉了\@ EQUIP:下半身内衣_副 == 0 && EQUIP:下半身内衣_主 == 0 ? #…\@
 	;下着を着けていない
-	IF EQUIP:下半身下着１ == 0 && EQUIP:下半身下着２ == 0
+	IF EQUIP:下半身内衣_副 == 0 && EQUIP:下半身内衣_主 == 0
 		PRINTFORM 下面没有穿内衣、%CALLNAME:TARGET%の
 		;男性・ふたなり
 		IF HAS_PENIS(TARGET)
@@ -2946,9 +2946,9 @@ ENDIF
 ;-------------------------------------------------
 @MESSAGE_COM202
 IF CFLAG:うふふ == 3
-	PRINTFORM \@ EQUIP:上半身下着１ == 2 ?胸围#乳罩\@取下、
+	PRINTFORM \@ EQUIP:上半身内衣_副 == 2 ?胸围#乳罩\@取下、
 ELSE
-	PRINTFORML %CALLNAME:TARGET%的\@ EQUIP:上半身下着１ == 2 ?胸围#胸罩\@脱了下来
+	PRINTFORML %CALLNAME:TARGET%的\@ EQUIP:上半身内衣_副 == 2 ?胸围#胸罩\@脱了下来
 	PRINTFORM %CALLNAME:TARGET%的
 ENDIF
 
@@ -2985,9 +2985,9 @@ ENDIF
 
 IF CFLAG:うふふ == 3
 	IF GETBIT(FLAG:匂いフェチ,1) 
-		PRINTFORM %IRUINAME_SMELL(EQUIP:下半身下着２)%%PANTSNAME(EQUIP:下半身下着２)%脱下了
+		PRINTFORM %IRUINAME_SMELL(EQUIP:下半身内衣_主)%%PANTSNAME(EQUIP:下半身内衣_主)%脱下了
 	ELSE
-		PRINTFORM %PANTSNAME(EQUIP:下半身下着２)%脱下了
+		PRINTFORM %PANTSNAME(EQUIP:下半身内衣_主)%脱下了
 	ENDIF
 	;女性
 	IF HAS_VAGINA(TARGET)
@@ -2997,17 +2997,17 @@ IF CFLAG:うふふ == 3
 		PRINTFORML \@ BASE:勃起 >= 1000 ?耸立的#\@阴茎露了出来…
 	ENDIF
 ELSE
-	IF 0 != EQUIP:下半身下着１ && 0 ==EQUIP:下半身下着２ 
-		IF GETBIT(FLAG:匂いフェチ,1) 
-			PRINTFORM %CALLNAME:TARGET%の%IRUINAME_SMELL(EQUIP:下半身下着１)%%PANTSNAME(EQUIP:下半身下着１)%脱了下来、
+	IF 0 != EQUIP:下半身内衣_副 && 0 ==EQUIP:下半身内衣_主
+		IF GETBIT(FLAG:匂いフェチ,1)
+			PRINTFORM %CALLNAME:TARGET%の%IRUINAME_SMELL(EQUIP:下半身内衣_副)%%PANTSNAME(EQUIP:下半身内衣_副)%脱了下来、
 		ELSE
-			PRINTFORM %CALLNAME:TARGET%の%PANTSNAME(EQUIP:下半身下着１)%脱了下来、
+			PRINTFORM %CALLNAME:TARGET%の%PANTSNAME(EQUIP:下半身内衣_副)%脱了下来、
 		ENDIF
 	ELSE
-		IF GETBIT(FLAG:匂いフェチ,1) 
-			PRINTFORM %CALLNAME:TARGET%の%IRUINAME_SMELL(EQUIP:下半身下着２)%%PANTSNAME(EQUIP:下半身下着２)%脱了下来、
+		IF GETBIT(FLAG:匂いフェチ,1)
+			PRINTFORM %CALLNAME:TARGET%の%IRUINAME_SMELL(EQUIP:下半身内衣_主)%%PANTSNAME(EQUIP:下半身内衣_主)%脱了下来、
 		ELSE
-			PRINTFORM %CALLNAME:TARGET%の%PANTSNAME(EQUIP:下半身下着２)%脱了下来、
+			PRINTFORM %CALLNAME:TARGET%の%PANTSNAME(EQUIP:下半身内衣_主)%脱了下来、
 		ENDIF
 	ENDIF
 	PRINTFORM %CALLNAME:TARGET%の

@@ -1,4 +1,4 @@
-; NTR_CNT_无行为			=  0
+﻿; NTR_CNT_无行为			=  0
 ; NTR_CNT_诱惑姿势		=  1
 ; NTR_CNT_凝视			=  2
 ; NTR_CNT_贴近身体		=  3
@@ -201,30 +201,30 @@ IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
 	IF FLAG:Flow版本 && CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
 		PRINTFORML 在%CALLNAME:MASTER%走神的间隙，%CALLNAME:角色%轻轻将手放在股间，对着%NTR_NAME(0)%慢慢地掀起了自己的裙摆
 		PRINTFORM \@ TALENT:角色:羞耻心 > 0 ? 羞涩地 # 大胆地\@展示着裙下
-		IF EQUIP:角色:下半身下着１
-			PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着１)%%PANTSNAME(EQUIP:角色:下半身下着１)%
-		ELSEIF !EQUIP:角色:下半身下着２
+		IF EQUIP:角色:下半身内衣_副
+			PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_副)%%PANTSNAME(EQUIP:角色:下半身内衣_副)%
+		ELSEIF !EQUIP:角色:下半身内衣_主
 			PRINTFORM 一览无余的真空
 		ELSE
-			PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着２)%%PANTSNAME(EQUIP:角色:下半身下着２)%
+			PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_主)%%PANTSNAME(EQUIP:角色:下半身内衣_主)%
 		ENDIF
 		PRINTFORML …
 	ELSE
 		PRINTFORML %CALLNAME:角色%主动\@ TALENT:角色:羞耻心 > 0 ? 害羞地 # \@卷起自己的裙子
 		PRINTFORM 将最重要部位，展露给%NTR_NAME(0)%欣赏
-		IF EQUIP:角色:下半身下着１
+		IF EQUIP:角色:下半身内衣_副
 			IF GETBIT(FLAG:匂いフェチ,1) 
-				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着１)%%IRUINAME_SMELL(EQUIP:角色:下半身下着１)%%PANTSNAME(EQUIP:角色:下半身下着１)%
+				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_副)%%IRUINAME_SMELL(EQUIP:角色:下半身内衣_副)%%PANTSNAME(EQUIP:角色:下半身内衣_副)%
 			ELSE
-				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着１)%%PANTSNAME(EQUIP:角色:下半身下着１)%
+				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_副)%%PANTSNAME(EQUIP:角色:下半身内衣_副)%
 			ENDIF
-		ELSEIF !EQUIP:角色:下半身下着２
+		ELSEIF !EQUIP:角色:下半身内衣_主
 			PRINTFORM 裙子里什么也没穿的下半身
 		ELSE
 			IF GETBIT(FLAG:匂いフェチ,1) 
-				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着２)%%IRUINAME_SMELL(EQUIP:角色:下半身下着２)%%PANTSNAME(EQUIP:角色:下半身下着２)%
+				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_主)%%IRUINAME_SMELL(EQUIP:角色:下半身内衣_主)%%PANTSNAME(EQUIP:角色:下半身内衣_主)%
 			ELSE
-				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身下着２)%%PANTSNAME(EQUIP:角色:下半身下着２)%
+				PRINTFORM %PANTS_DESCRIPTION(EQUIP:角色:下半身内衣_主)%%PANTSNAME(EQUIP:角色:下半身内衣_主)%
 			ENDIF
 		ENDIF
 		PRINTFORML 被看到了…

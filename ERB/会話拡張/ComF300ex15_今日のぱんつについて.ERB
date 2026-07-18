@@ -1,10 +1,10 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;会话コマンド(拡張版) - 今日のぱんつについて 実行判定
 ; RETURN 0 コマンドの実行不可
 ; RETURN 1 コマンドの実行可能
 @COM300_15_ENABLE
 #DIM 角色
-#DIM 下着１ = GETNUM(EQUIP,"下半身下着１")
+#DIM 下着１ = GETNUM(EQUIP,"下半身内衣_副")
 #DIMS 下着名
 角色 = TARGET:0
 下着名 = %下着名１_２(角色)%
@@ -17,7 +17,7 @@ ELSEIF Unknown下着(角色, 下着１)
 ELSEIF SHOW_BOTTOM(角色) == ""
 	;下半身丸出しだとダメ
 	RETURN 0
-ELSEIF CFLAG:角色:ぱんつ確認 == 3
+ELSEIF CFLAG:角色:内裤确认 == 3
 	;既にぱんつについて会话してたらダメ(1であれば脱がしたこと、2であれば覗きによる確認)
 	RETURN 0
 ELSE
@@ -38,7 +38,7 @@ IF TALENT:角色:小恶魔 || TALENT:角色:淫乱
 	CALL MESSAGE_COM_300_15_02(調教者,角色)
 ELSEIF CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 999
 	CALL MESSAGE_COM_300_15_03(調教者,角色)
-ELSEIF CFLAG:角色:ぱんつ確認 == 2
+ELSEIF CFLAG:角色:内裤确认 == 2
 	CALL MESSAGE_COM_300_15_04(調教者,角色)
 ELSE
 	CALL MESSAGE_COM_300_15_05(調教者,角色)
@@ -54,7 +54,7 @@ RETURN 1
 #DIMS 下着名
 #DIM ノーパン
 
-CFLAG:角色:ぱんつ確認 = 3
+CFLAG:角色:内裤确认 = 3
 ;はいてないかチェック
 ノーパン = CHK_NO_PANTS(角色)
 IF 1 == ノーパン
@@ -81,7 +81,7 @@ RETURN 1
 #DIM ノーパン
 #DIM 積極度
 
-CFLAG:角色:ぱんつ確認 = 3
+CFLAG:角色:内裤确认 = 3
 ;はいてないかチェック
 ノーパン = CHK_NO_PANTS(角色)
 ;積極度チェック
@@ -122,7 +122,7 @@ RETURN 1
 #DIM 角色
 #DIMS 下着名
 
-CFLAG:角色:ぱんつ確認 = 3
+CFLAG:角色:内裤确认 = 3
 ;はいてないかチェック
 IF 1 == CHK_NO_PANTS(角色)
 	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"的下面是不是什么都没穿、"%
@@ -151,7 +151,7 @@ RETURN 1
 #DIM 角色
 #DIMS 下着名
 
-CFLAG:角色:ぱんつ確認 = 3
+CFLAG:角色:内裤确认 = 3
 ;はいてないかチェック
 IF 1 == CHK_NO_PANTS(角色)
 	PRINTFORML %CALLNAME:調教者+"询问"+CALLNAME:角色+"的下面是不是什么都没穿、"%

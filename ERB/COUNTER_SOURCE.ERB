@@ -1,4 +1,4 @@
-@EVENT_COUNTER_SOURCE(ARG,ARG:1)
+﻿@EVENT_COUNTER_SOURCE(ARG,ARG:1)
 SIF TCVAR:ARG:カウンター行動決定フラグ > 1
 	RETURN 0
 IF ARG:1 == 1
@@ -121,7 +121,7 @@ SELECTCASE TCVAR:ARG:カウンター行動
 	CASE CNT_裙子の中を見せる
 		SOURCE:ARG:诱惑 += 400
 		SOURCE:ARG:挑衅 += 100
-		CFLAG:ARG:ぱんつ確認 = 1
+		CFLAG:ARG:内裤确认 = 1
 		;胸もみもみ
 	CASE CNT_胸を揉む
 		SOURCE:ARG:诱惑 += 200
@@ -319,7 +319,7 @@ SELECTCASE TCVAR:ARG:カウンター行動
 		EXP:PLAYER:口淫经验 ++
 		;裙子、连衣裙のときはぱんつ暴露
 		IF (EQUIP:ARG:裙子 && EQUIP:ARG:裙子 != 5) || (EQUIP:ARG:连衣裙 == 1)
-			CFLAG:ARG:ぱんつ確認 = 1
+			CFLAG:ARG:内裤确认 = 1
 		ENDIF
 		;口交強制
 	CASE CNT_口交強制
@@ -363,7 +363,7 @@ SELECTCASE TCVAR:ARG:カウンター行動
 		SOURCE:PLAYER:液体 += 10
 		;裙子、连衣裙のときはぱんつ暴露
 		IF (EQUIP:ARG:裙子 && EQUIP:ARG:裙子 != 5) || (EQUIP:ARG:连衣裙 == 1)
-			CFLAG:ARG:ぱんつ確認 = 1
+			CFLAG:ARG:内裤确认 = 1
 		ENDIF
 		;ぱふぱふ
 	CASE CNT_ぱふぱふ
@@ -790,10 +790,10 @@ ENDSELECT
 SELECTCASE ARG:1
 	CASE 0
 		TCVAR:ARG:下半身脱衣行動 = 1
-		EQUIP:PLAYER:下半身下着１ = 0
-		EQUIP:PLAYER:下半身下着２ = 0
-		EQUIP:PLAYER:下半身上着１ = 0
-		EQUIP:PLAYER:下半身上着２ = 0
+		EQUIP:PLAYER:下半身内衣_副 = 0
+		EQUIP:PLAYER:下半身内衣_主 = 0
+		EQUIP:PLAYER:下半身外衣_主 = 0
+		EQUIP:PLAYER:下半身外衣_副 = 0
 		EQUIP:PLAYER:裙子 = 0
 		EQUIP:PLAYER:赛车服 = 0
 		EQUIP:PLAYER:连衣裙 = 0
@@ -801,16 +801,16 @@ SELECTCASE ARG:1
 		EQUIP:PLAYER:紧身衣 = 0
 	CASE 1
 		TCVAR:ARG:下半身脱衣行動 = 2
-		EQUIP:PLAYER:下半身下着１ = 0
-		EQUIP:PLAYER:下半身下着２ = 0
-		EQUIP:PLAYER:下半身上着１ = 0
-		EQUIP:PLAYER:下半身上着２ = 0
+		EQUIP:PLAYER:下半身内衣_副 = 0
+		EQUIP:PLAYER:下半身内衣_主 = 0
+		EQUIP:PLAYER:下半身外衣_主 = 0
+		EQUIP:PLAYER:下半身外衣_副 = 0
 		EQUIP:PLAYER:赛车服 = 0
 		EQUIP:PLAYER:紧身衣 = 0
 	CASE 2
 		TCVAR:ARG:下半身脱衣行動 = 3
-		EQUIP:PLAYER:下半身下着１ = 0
-		EQUIP:PLAYER:下半身上着１ = 0
+		EQUIP:PLAYER:下半身内衣_副 = 0
+		EQUIP:PLAYER:下半身外衣_主 = 0
 		EQUIP:PLAYER:赛车服 = 0
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(PLAYER)
@@ -819,10 +819,10 @@ CALL CLOTHES_SETTING_TRAIN(PLAYER)
 SELECTCASE ARG:1
 	CASE 0
 		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 1
-		EQUIP:ARG:下半身下着１ = 0
-		EQUIP:ARG:下半身下着２ = 0
-		EQUIP:ARG:下半身上着１ = 0
-		EQUIP:ARG:下半身上着２ = 0
+		EQUIP:ARG:下半身内衣_副 = 0
+		EQUIP:ARG:下半身内衣_主 = 0
+		EQUIP:ARG:下半身外衣_主 = 0
+		EQUIP:ARG:下半身外衣_副 = 0
 		EQUIP:ARG:裙子 = 0
 		EQUIP:ARG:赛车服 = 0
 		EQUIP:ARG:连衣裙 = 0
@@ -830,16 +830,16 @@ SELECTCASE ARG:1
 		EQUIP:ARG:紧身衣 = 0
 	CASE 1
 		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 2
-		EQUIP:ARG:下半身下着１ = 0
-		EQUIP:ARG:下半身下着２ = 0
-		EQUIP:ARG:下半身上着１ = 0
-		EQUIP:ARG:下半身上着２ = 0
+		EQUIP:ARG:下半身内衣_副 = 0
+		EQUIP:ARG:下半身内衣_主 = 0
+		EQUIP:ARG:下半身外衣_主 = 0
+		EQUIP:ARG:下半身外衣_副 = 0
 		EQUIP:ARG:赛车服 = 0
 		EQUIP:ARG:紧身衣 = 0
 	CASE 2
 		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 3
-		EQUIP:ARG:下半身下着１ = 0
-		EQUIP:ARG:下半身上着１ = 0
+		EQUIP:ARG:下半身内衣_副 = 0
+		EQUIP:ARG:下半身外衣_主 = 0
 		EQUIP:ARG:赛车服 = 0
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(ARG)
@@ -849,18 +849,18 @@ CALL CLOTHES_SETTING_TRAIN(ARG)
 SELECTCASE ARG:1
 	CASE 0
 		TCVAR:ARG:上半身脱衣行動 = 1
-		EQUIP:PLAYER:上半身下着１ = 0
-		EQUIP:PLAYER:上半身下着２ = 0
-		EQUIP:PLAYER:上半身上着１ = 0
-		EQUIP:PLAYER:上半身上着２ = 0
+		EQUIP:PLAYER:上半身内衣_副 = 0
+		EQUIP:PLAYER:上半身内衣_主 = 0
+		EQUIP:PLAYER:上半身外衣_主 = 0
+		EQUIP:PLAYER:上半身外衣_副 = 0
 		EQUIP:PLAYER:赛车服 = 0
 		EQUIP:PLAYER:连衣裙 = 0
 		EQUIP:PLAYER:着物 = 0
 		EQUIP:PLAYER:紧身衣 = 0
 	CASE 1
 		TCVAR:ARG:上半身脱衣行動 = 2
-		EQUIP:PLAYER:上半身下着１ = 0
-		EQUIP:PLAYER:上半身上着１ = 0
+		EQUIP:PLAYER:上半身内衣_副 = 0
+		EQUIP:PLAYER:上半身外衣_主 = 0
 		EQUIP:PLAYER:赛车服 = 0
 		EQUIP:PLAYER:连衣裙 = 0
 		EQUIP:PLAYER:紧身衣 = 0
@@ -871,18 +871,18 @@ CALL CLOTHES_SETTING_TRAIN(PLAYER)
 SELECTCASE ARG:1
 	CASE 0
 		TCVAR:ARG:TARGET自身の上半身脱衣行動 = 1
-		EQUIP:ARG:上半身下着１ = 0
-		EQUIP:ARG:上半身下着２ = 0
-		EQUIP:ARG:上半身上着１ = 0
-		EQUIP:ARG:上半身上着２ = 0
+		EQUIP:ARG:上半身内衣_副 = 0
+		EQUIP:ARG:上半身内衣_主 = 0
+		EQUIP:ARG:上半身外衣_主 = 0
+		EQUIP:ARG:上半身外衣_副 = 0
 		EQUIP:ARG:赛车服 = 0
 		EQUIP:ARG:连衣裙 = 0
 		EQUIP:ARG:着物 = 0
 		EQUIP:ARG:紧身衣 = 0
 	CASE 1
 		TCVAR:ARG:TARGET自身の上半身脱衣行動 = 2
-		EQUIP:ARG:上半身下着１ = 0
-		EQUIP:ARG:上半身上着１ = 0
+		EQUIP:ARG:上半身内衣_副 = 0
+		EQUIP:ARG:上半身外衣_主 = 0
 		EQUIP:ARG:赛车服 = 0
 		EQUIP:ARG:连衣裙 = 0
 		EQUIP:ARG:紧身衣 = 0

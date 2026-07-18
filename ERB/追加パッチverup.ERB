@@ -80,7 +80,7 @@ IF FLAG:パッチ初期設定フラグ <= 5
 	FLAG:パッチ初期設定フラグ  = 6
 ENDIF
 IF FLAG:パッチ初期設定フラグ <= 6
-	CALL 寝間着設定
+	CALL 服装_初始化_角色睡衣自定义
 	FOR LOCAL, 11, CHARANUM
 		IF NO:LOCAL == 148
 			IF CFLAG:LOCAL:成長度 >= 成長度_成長期
@@ -108,8 +108,8 @@ IF FLAG:パッチ初期設定フラグ <= 8
 	NEXT
 	CALL 体詳細設定１
 	;既に子供がいる場合の処理
-	IF CHARANUM > 開始時人数
-		FOR LOCAL, 開始時人数, CHARANUM
+	IF CHARANUM > 开局角色数量
+		FOR LOCAL, 开局角色数量, CHARANUM
 			;対象が多生児の場合、既に同じ日に生まれた兄弟の情報を取得していると多生児用の処理へ
 			IF CFLAG:LOCAL:多生児兄弟フラグ && CFLAG:LOCAL:多生児兄弟フラグ == CFLAG:(LOCAL-1):多生児兄弟フラグ
 				CALL 体設定_遺伝(LOCAL, CFLAG:LOCAL:父親, CFLAG:LOCAL:母親, 1, LOCAL-1)
@@ -125,13 +125,13 @@ IF FLAG:パッチ初期設定フラグ <= 8
 	FLAG:パッチ初期設定フラグ  = 9
 ENDIF
 IF FLAG:パッチ初期設定フラグ <= 9
-	CALL CLOTHES_EX
+	CALL 服装_初始化_角色服装自定义
 	FLAG:パッチ初期設定フラグ = 10
 ENDIF
 IF FLAG:パッチ初期設定フラグ <= 10
 	;既に子供がいる場合の処理
-	IF CHARANUM > 開始時人数
-		FOR LOCAL, 開始時人数, CHARANUM
+	IF CHARANUM > 开局角色数量
+		FOR LOCAL, 开局角色数量, CHARANUM
 			;血統を受け継ぐ
 			SIF CFLAG:LOCAL:父親 == 人物_訪問者 || TALENT:(CFLAG:LOCAL:父親):访问者的血统 || TALENT:(CFLAG:LOCAL:母親):访问者的血统
 				TALENT:LOCAL:访问者的血统 = 1
@@ -142,7 +142,7 @@ ENDIF
 
 IF FLAG:パッチ初期設定フラグ <= 13
 	;子供の強制移动
-	FOR LOCAL, 開始時人数, CHARANUM
+	FOR LOCAL, 开局角色数量, CHARANUM
 		;成人以外はスキップ
 		SIF CFLAG:LOCAL:成長度 != 成長度_成人
 			CONTINUE
@@ -153,7 +153,7 @@ IF FLAG:パッチ初期設定フラグ <= 13
 	FLAG:パッチ初期設定フラグ = 14
 ENDIF
 IF FLAG:パッチ初期設定フラグ <= 14
-	FOR LOCAL, 1, 開始時人数
+	FOR LOCAL, 1, 开局角色数量
 		; 口上パターンが 0 であればキャラ番号に設定
 		SIF CFLAG:LOCAL:297 == 0
 			CFLAG:LOCAL:297 = LOCAL
@@ -163,7 +163,7 @@ ENDIF
 IF FLAG:パッチ初期設定フラグ <= 15
 	;子供が先天的人妻だったら解除
 	;恋慕なしで人妻持ちだったら解除とします。
-	FOR LOCAL, 開始時人数, CHARANUM
+	FOR LOCAL, 开局角色数量, CHARANUM
 		IF !TALENT:LOCAL:恋慕 && TALENT:LOCAL:人妻
 			TALENT:LOCAL:人妻 = 0
 		ENDIF

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR蕾米莉亚お嬢様汎用口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -283,7 +283,7 @@ IF CFLAG:PLAYER:跳蛋A挿入 != 0
 		PRINTFORML 「…虽然不知道是谁吩咐的、 不过正好，就这样给你」
 	ENDIF
 	PRINTL
-ELSEIF EQUIP:PLAYER:下半身下着１ == 0 && EQUIP:PLAYER:下半身下着２ == 0
+ELSEIF EQUIP:PLAYER:下半身内衣_副 == 0 && EQUIP:PLAYER:下半身内衣_主 == 0
 	;あなたがノーパンの時分岐
 	PRINTFORML %CALLNAME:人物_蕾米莉亚%注意到%CALLNAME:PLAYER%没有穿内衣时，露出了诡异的笑容。
 	PRINTDATAL

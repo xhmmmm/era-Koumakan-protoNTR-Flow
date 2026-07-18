@@ -171,7 +171,7 @@ RETURN
 IF !CFLAG:住人:うふふ && CFLAG:住人:寝間着着用 && !CFLAG:住人:起床後寝間着時間 && !CFLAG:住人:起床時間外 && !CFLAG:住人:衰弱 && !CFLAG:住人:睡眠
 	;寝間着から换衣服時だけ下着を替える
 	;DEBUGPRINTFORML %CALLNAME:住人+"は寝間着から着替えます。下着を替えます。"%
-	CALL CLOTHES_SETTING(住人,1)
+	CALL CLOTHES_INIT_DAY(住人,1)
 ENDIF
 RETURN
 
@@ -214,7 +214,7 @@ IF CFLAG:住人:当前位置 != 目標地点
 	IF CFLAG:住人:寝間着着用
 		IF !CFLAG:住人:起床時間外
 			;DEBUGPRINTFORML %CALLNAME:住人+"は移动するので寝間着から着替えます。下着を替えます。"%
-			CALL CLOTHES_SETTING(住人,1)
+			CALL CLOTHES_INIT_DAY(住人,1)
 		ELSE
 			;そうでない場合は鞋子を履いて移动
 			CALL CLOTHES_Preset_NIGHTWEAR_S(住人)
@@ -301,7 +301,7 @@ CFLAG:住人:うふふ = 0
 CFLAG:住人:自慰中 = 0
 ;衰弱してなくて、着替えてなければ寝間着に换衣服
 IF !CFLAG:住人:衰弱 && !CFLAG:住人:寝間着着用
-	CALL CLOTHES_SETTING(住人,0)
+	CALL CLOTHES_INIT_DAY(住人,0)
 	CFLAG:住人:起床時間外 = 1
 ENDIF
 SIF !CFLAG:住人:睡眠深度

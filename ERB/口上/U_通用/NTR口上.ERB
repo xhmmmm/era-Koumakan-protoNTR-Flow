@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;NTR补丁用通用口上文件
 ;以咲夜小姐的口上为基础，所以根据角色不同可能会有很大的违和感
 ;
@@ -7217,12 +7217,12 @@ ENDIF
 @BOTTOM_BODY(角色)
 #FUNCTIONS
 #DIM 角色
-IF EQUIP:角色:下半身下着１
-	RETURNF "穿着"+PANTSNAME(EQUIP:角色:下半身下着１)+"的下半身"
-ELSEIF !EQUIP:角色:下半身下着２
+IF EQUIP:角色:下半身内衣_副
+	RETURNF "穿着"+PANTSNAME(EQUIP:角色:下半身内衣_副)+"的下半身"
+ELSEIF !EQUIP:角色:下半身内衣_主
 	RETURNF "什么都没穿的下半身"
 ELSE
-	RETURNF "穿着"+PANTSNAME(EQUIP:角色:下半身下着２)+"的下半身"
+	RETURNF "穿着"+PANTSNAME(EQUIP:角色:下半身内衣_主)+"的下半身"
 ENDIF
 
 
