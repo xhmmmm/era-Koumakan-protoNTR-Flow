@@ -1,532 +1,365 @@
-;=================================================
-; 服装系统核心函数
-; 提供穿/脱/保存/恢复/TEQUIP刷新/属性查询等基础操作
+﻿;=================================================
+; 服装状态管理
+; 槽位记录可同时穿戴的部件，款式目录记录覆盖和可操作性。
 ;=================================================
 
-;-------------------------------------------------
-; 穿上一件衣服
-; 处理互斥：全身型 ↔ 分体、主 ↔ 全身型
-;-------------------------------------------------
-@CLOTHES_WEAR(着用者, 部位, 款式)
-#DIM 着用者
-#DIM 部位
+@CLOTHES_EQUIP(角色, 槽位, 款式)
+#DIM 角色
+#DIM 槽位
 #DIM 款式
-
-; 全身型穿上时，清除所有分体服装
-SELECTCASE 部位
-CASE 衣装部位_赛车服, 衣装部位_连衣裙, 衣装部位_着物, 衣装部位_紧身衣
-	CALL CLOTHES_CLEAR_BODY(着用者)
-; 分体穿上时，清除全身型
-CASE 衣装部位_上半身外衣_主, 衣装部位_上半身外衣_副, 衣装部位_上半身内衣_主, 衣装部位_上半身内衣_副
-	CALL CLOTHES_CLEAR_FULLBODY(着用者)
-CASE 衣装部位_下半身外衣_主, 衣装部位_下半身外衣_副, 衣装部位_下半身内衣_主, 衣装部位_下半身内衣_副, 衣装部位_裙子
-	CALL CLOTHES_CLEAR_FULLBODY(着用者)
-ENDSELECT
-
-EQUIP:着用者:部位 = 款式
+SIF 槽位 < 衣装部位_手部配饰 || 槽位 > 衣装部位_最后槽位
+	RETURN 0
+SIF 款式 && !CLOTHES_STYLE_EXISTS(槽位, 款式)
+	RETURN 0
+IF 槽位 == 衣装部位_连体外衣 && 款式
+	EQUIP:角色:衣装部位_上半身外衣_主 = 0
+	EQUIP:角色:衣装部位_上半身外衣_副 = 0
+	EQUIP:角色:衣装部位_下半身外衣_主 = 0
+	EQUIP:角色:衣装部位_下半身外衣_副 = 0
+ELSEIF 款式 && (槽位 == 衣装部位_上半身外衣_主 || 槽位 == 衣装部位_上半身外衣_副 || 槽位 == 衣装部位_下半身外衣_主 || 槽位 == 衣装部位_下半身外衣_副)
+	EQUIP:角色:衣装部位_连体外衣 = 0
+ENDIF
+EQUIP:角色:槽位 = 款式
+CALL CLOTHES_REFRESH_TEQUIP(角色)
 RETURN 1
 
-;-------------------------------------------------
-; 脱下一件衣服
-;-------------------------------------------------
-@CLOTHES_STRIP(着用者, 部位)
-#DIM 着用者
-#DIM 部位
+@CLOTHES_UNEQUIP(角色, 槽位)
+#DIM 角色
+#DIM 槽位
+CALL CLOTHES_EQUIP(角色, 槽位, 0)
+RETURN RESULT
 
-EQUIP:着用者:部位 = 0
-RETURN 1
-
-;-------------------------------------------------
-; 清除所有分体服装（穿全身型时调用）
-;-------------------------------------------------
-@CLOTHES_CLEAR_BODY(着用者)
-#DIM 着用者
-
-EQUIP:着用者:衣装部位_上半身外衣_主 = 0
-EQUIP:着用者:衣装部位_上半身外衣_副 = 0
-EQUIP:着用者:衣装部位_上半身内衣_主 = 0
-EQUIP:着用者:衣装部位_上半身内衣_副 = 0
-EQUIP:着用者:衣装部位_下半身外衣_主 = 0
-EQUIP:着用者:衣装部位_下半身外衣_副 = 0
-EQUIP:着用者:衣装部位_下半身内衣_主 = 0
-EQUIP:着用者:衣装部位_下半身内衣_副 = 0
-EQUIP:着用者:衣装部位_裙子 = 0
-RETURN 1
-
-;-------------------------------------------------
-; 清除全身型服装（穿分体时调用）
-;-------------------------------------------------
-@CLOTHES_CLEAR_FULLBODY(着用者)
-#DIM 着用者
-
-EQUIP:着用者:衣装部位_赛车服 = 0
-EQUIP:着用者:衣装部位_连衣裙 = 0
-EQUIP:着用者:衣装部位_着物 = 0
-EQUIP:着用者:衣装部位_紧身衣 = 0
-RETURN 1
-
-;-------------------------------------------------
-; 全裸
-;-------------------------------------------------
-@CLOTHES_STRIP_ALL(着用者)
-#DIM 着用者
-
-EQUIP:着用者:衣装部位_配件 = 0
-EQUIP:着用者:衣装部位_帽子 = 0
-EQUIP:着用者:衣装部位_鞋 = 0
-EQUIP:着用者:衣装部位_袜 = 0
-EQUIP:着用者:衣装部位_下半身内衣_副 = 0
-EQUIP:着用者:衣装部位_下半身内衣_主 = 0
-EQUIP:着用者:衣装部位_下半身外衣_主 = 0
-EQUIP:着用者:衣装部位_下半身外衣_副 = 0
-EQUIP:着用者:衣装部位_裙子 = 0
-EQUIP:着用者:衣装部位_上半身内衣_副 = 0
-EQUIP:着用者:衣装部位_上半身内衣_主 = 0
-EQUIP:着用者:衣装部位_上半身外衣_主 = 0
-EQUIP:着用者:衣装部位_上半身外衣_副 = 0
-EQUIP:着用者:衣装部位_赛车服 = 0
-EQUIP:着用者:衣装部位_连衣裙 = 0
-EQUIP:着用者:衣装部位_着物 = 0
-EQUIP:着用者:衣装部位_紧身衣 = 0
-EQUIP:着用者:衣装部位_手 = 0
-RETURN 1
-
-;-------------------------------------------------
-; 判断是否穿着任何衣物
-; 返回 0=全裸, 1=穿着
-;-------------------------------------------------
-@CLOTHES_IsDressed(着用者)
+@CLOTHES_SLOT_IS_WEARABLE(槽位)
 #FUNCTION
-#DIM 着用者
+#DIM 槽位
+RETURNF 槽位 != 衣装部位_手部配饰 && 槽位 != 衣装部位_颈部环饰
 
-; 检查所有部位
-SIF EQUIP:着用者:衣装部位_配件
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_帽子
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_鞋
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_袜
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_下半身内衣_副
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_下半身内衣_主
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_下半身外衣_主
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_下半身外衣_副
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_裙子
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_上半身内衣_副
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_上半身内衣_主
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_上半身外衣_主
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_上半身外衣_副
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_赛车服
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_连衣裙
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_着物
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_紧身衣
-	RETURNF 1
-SIF EQUIP:着用者:衣装部位_手
-	RETURNF 1
+@CLOTHES_SLOT_IS_UNDERWEAR(槽位)
+#FUNCTION
+#DIM 槽位
+RETURNF 槽位 == 衣装部位_下半身内衣_副 || 槽位 == 衣装部位_下半身内衣_主 || 槽位 == 衣装部位_上半身内衣_副 || 槽位 == 衣装部位_上半身内衣_主
+@CLOTHES_SLOT_CAN_CHANGE(槽位, 允许内衣)
+#FUNCTION
+#DIM 槽位
+#DIM 允许内衣
+RETURNF CLOTHES_SLOT_IS_WEARABLE(槽位) && (允许内衣 || !CLOTHES_SLOT_IS_UNDERWEAR(槽位))
+@CLOTHES_STYLE_IS_EROTIC_UNDERWEAR(槽位, 款式)
+#FUNCTION
+#DIM 槽位
+#DIM 款式
+SELECTCASE 槽位
+CASE 衣装部位_下半身内衣_主
+    RETURNF GROUPMATCH(款式, 2, 22, 23, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50)
+CASE 衣装部位_下半身内衣_副
+    RETURNF 款式 == 衣装_下半身内衣_副_贞操带 || 款式 == 衣装_下半身内衣_副_创口贴
+CASE 衣装部位_上半身内衣_主
+    RETURNF GROUPMATCH(款式, 衣装_上半身内衣_主_胸贴, 衣装_上半身内衣_主_露点文胸, 衣装_上半身内衣_主_迷你比基尼, 衣装_上半身内衣_主_牛比基尼, 衣装_上半身内衣_主_交叉绑带文胸)
+CASE 衣装部位_上半身内衣_副
+    RETURNF 款式 == 衣装_上半身内衣_副_乳贴
+ENDSELECT
+RETURNF 0
+@CLOTHES_STYLE_CAN_CHANGE(槽位, 款式, 允许色情内衣 = 1)
+#FUNCTION
+#DIM 槽位
+#DIM 款式
+#DIM 允许色情内衣
+RETURNF CLOTHES_STYLE_EXISTS(槽位, 款式) && (允许色情内衣 || !CLOTHES_STYLE_IS_EROTIC_UNDERWEAR(槽位, 款式))
+@CLOTHES_CLEAR_OUTFIT(角色)
+#DIM 角色
+#DIM 槽位
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	SIF !CLOTHES_SLOT_IS_WEARABLE(槽位)
+		CONTINUE
+	EQUIP:角色:槽位 = 0
+NEXT
+CALL CLOTHES_REFRESH_TEQUIP(角色)
+RETURN 1
+@CLOTHES_IS_DRESSED(角色)
+#FUNCTION
+#DIM 角色
+#DIM 槽位
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	SIF EQUIP:角色:槽位
+		RETURNF 1
+NEXT
 RETURNF 0
 
-;-------------------------------------------------
-; 保存当前穿着到 CFLAG:服装_*
-;-------------------------------------------------
-@CLOTHES_Save(着用者)
-#DIM 着用者
-#DIM 部位计数
-
-; 逐部位保存（EQUIP索引 = CFLAG偏移量）
-FOR 部位计数, 1, 19
-	CFLAG:着用者:(衣装记录_服装_起始位 + 部位计数) = EQUIP:着用者:部位计数
-NEXT
-RETURN 1
-
-;-------------------------------------------------
-; 从 CFLAG:服装_* 恢复穿着
-; 更换内衣=1 时也恢复内衣，否则只恢复外衣
-;-------------------------------------------------
-@CLOTHES_Load(着用者, 更换内衣 = 1)
-#DIM 着用者
-#DIM 更换内衣
-#DIM 部位计数
-
-; 恢复外衣和配件（排除内衣部位 5,6,10,11）
-FOR 部位计数, 1, 19
-	SELECTCASE 部位计数
-	CASE 衣装部位_下半身内衣_副, 衣装部位_下半身内衣_主, 衣装部位_上半身内衣_副, 衣装部位_上半身内衣_主
-		; 内衣仅在 更换内衣 时恢复
-		SIF 更换内衣
-			EQUIP:着用者:部位计数 = CFLAG:着用者:(衣装记录_服装_起始位 + 部位计数)
-	CASEELSE
-		EQUIP:着用者:部位计数 = CFLAG:着用者:(衣装记录_服装_起始位 + 部位计数)
-	ENDSELECT
-NEXT
-
-RETURN 1
-
-;-------------------------------------------------
-; 保存当前穿着到 CFLAG:私服_*
-;-------------------------------------------------
-@CLOTHES_Save_Custom(着用者)
-#DIM 着用者
-#DIM 部位计数
-
-
-FOR 部位计数, 1, 19
-	CFLAG:着用者:(衣装记录_私服_起始位 + 部位计数) = EQUIP:着用者:部位计数
-NEXT
-RETURN 1
-
-;-------------------------------------------------
-; 从 CFLAG:私服_* 恢复穿着
-;-------------------------------------------------
-@CLOTHES_Load_Custom(着用者, 更换内衣 = 1)
-#DIM 着用者
-#DIM 更换内衣
-#DIM 部位计数
-
-FOR 部位计数, 1, 19
-	SELECTCASE 部位计数
-	CASE 衣装部位_下半身内衣_副, 衣装部位_下半身内衣_主, 衣装部位_上半身内衣_副, 衣装部位_上半身内衣_主
-		SIF 更换内衣
-			EQUIP:着用者:部位计数 = CFLAG:着用者:(衣装记录_私服_起始位 + 部位计数)
-	CASEELSE
-		EQUIP:着用者:部位计数 = CFLAG:着用者:(衣装记录_私服_起始位 + 部位计数)
-	ENDSELECT
-NEXT
-
-RETURN 1
-
-;-------------------------------------------------
-; 旧接口兼容：CLOTHES_RESET → CLOTHES_Load
-;-------------------------------------------------
-@CLOTHES_RESET(着用者, 更换内衣 = 1)
-#DIM 着用者
-#DIM 更换内衣
-
-CALL CLOTHES_Load(着用者, 更换内衣)
-RETURN RESULT
-
-;-------------------------------------------------
-; 旧接口兼容：CLOTHES_SETTING_TRAIN → CLOTHES_REFRESH_TEQUIP
-;-------------------------------------------------
-@CLOTHES_SETTING_TRAIN(着用者)
-#DIM 着用者
-
-CALL CLOTHES_REFRESH_TEQUIP(着用者)
-RETURN RESULT
-
-;-------------------------------------------------
-; EQUIP → TEQUIP 转换
-; 将穿着状态转换为位标记，供调教命令判断使用
-;-------------------------------------------------
-@CLOTHES_REFRESH_TEQUIP(着用者)
-#DIM 着用者
-
-; 不处理全裸的角色
-SIF !CLOTHES_IsDressed(着用者)
-	RETURN 0
-
-;--- 下半身着衣状况 ---
-TEQUIP:着用者:下半身着衣状況 = 0
-
-; bit0: 裙子
-IF EQUIP:着用者:衣装部位_裙子 || EQUIP:着用者:衣装部位_连衣裙 || EQUIP:着用者:衣装部位_着物
-	SETBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_裙子
-ENDIF
-
-; bit1: 副层（可偏移的内层）
-IF EQUIP:着用者:衣装部位_下半身内衣_主 || EQUIP:着用者:衣装部位_下半身外衣_副 || EQUIP:着用者:衣装部位_紧身衣
-	SETBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_副层
-ENDIF
-
-; bit2: 主层（不可偏移的主层）
-IF EQUIP:着用者:衣装部位_下半身内衣_副 || EQUIP:着用者:衣装部位_下半身外衣_主 || EQUIP:着用者:衣装部位_赛车服
-	SETBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_主层
-ENDIF
-
-; bit3: 下半身外衣_主
-IF EQUIP:着用者:衣装部位_下半身外衣_主 || EQUIP:着用者:衣装部位_赛车服
-	SETBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_主层外衣
-ENDIF
-
-; bit4: 全身型
-IF EQUIP:着用者:衣装部位_赛车服 || EQUIP:着用者:衣装部位_紧身衣
-	SETBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_全身型
-ENDIF
-
-;--- 上半身着衣状况 ---
-TEQUIP:着用者:上半身着衣状況 = 0
-
-; bit0: 副层（可掀开的副层）
-IF EQUIP:着用者:衣装部位_上半身内衣_主 || EQUIP:着用者:衣装部位_上半身外衣_副 || EQUIP:着用者:衣装部位_着物
-	SETBIT TEQUIP:着用者:上半身着衣状況, 着衣_上半身_副层
-ENDIF
-
-; bit1: 主层（不可掀开的主层）
-IF EQUIP:着用者:衣装部位_上半身内衣_副 || EQUIP:着用者:衣装部位_上半身外衣_主 || EQUIP:着用者:衣装部位_赛车服 || EQUIP:着用者:衣装部位_连衣裙 || EQUIP:着用者:衣装部位_紧身衣
-	SETBIT TEQUIP:着用者:上半身着衣状況, 着衣_上半身_主层
-ENDIF
-
-; bit2: 主层内衣
-IF EQUIP:着用者:衣装部位_上半身内衣_副 || EQUIP:着用者:衣装部位_上半身外衣_主 || EQUIP:着用者:衣装部位_赛车服 || EQUIP:着用者:衣装部位_紧身衣
-	SETBIT TEQUIP:着用者:上半身着衣状況, 着衣_上半身_主层内衣
-ENDIF
-
-; bit3: 全身型
-IF EQUIP:着用者:衣装部位_赛车服 || EQUIP:着用者:衣装部位_紧身衣
-	SETBIT TEQUIP:着用者:上半身着衣状況, 着衣_上半身_全身型
-ENDIF
-
-;--- 偏移/掀开状态处理 ---
-; 下半身偏移中：清除副层标记
-IF TEQUIP:着用者:下半身ずらし状態
-	CLEARBIT TEQUIP:着用者:下半身着衣状況, 着衣_下半身_副层
-ENDIF
-
-; 上半身掀开中：清除副层标记
-IF TEQUIP:着用者:上半身はだけ状態
-	CLEARBIT TEQUIP:着用者:上半身着衣状況, 着衣_上半身_副层
-ENDIF
-
-RETURN 1
-
-;-------------------------------------------------
-; 查询服装属性：可掀开/可偏移
-; 返回 1=可, 0=不可
-; 这是解耦后的属性查询，不再由槽位决定
-;-------------------------------------------------
-@衣装_可掀开(着用者, 部位)
+@CLOTHES_ONEPIECE_STYLE(角色)
 #FUNCTION
-#DIM 着用者
-#DIM 部位
+#DIM 角色
+RETURNF EQUIP:角色:衣装部位_连体外衣
+
+@CLOTHES_ONEPIECE_IS_DRESS(角色)
+#FUNCTION
+#DIM 角色
 #DIM 款式
+款式 = CLOTHES_ONEPIECE_STYLE(角色)
+RETURNF 款式 >= 衣装_连体外衣_连衣裙 && 款式 <= 衣装_连体外衣_魔女连衣裙
 
-款式 = EQUIP:着用者:部位
+@CLOTHES_ONEPIECE_IS_KIMONO(角色)
+#FUNCTION
+#DIM 角色
+#DIM 款式
+款式 = CLOTHES_ONEPIECE_STYLE(角色)
+RETURNF 款式 == 衣装_连体外衣_和服 || 款式 == 衣装_连体外衣_浴衣
 
-; 没穿东西当然不可掀开
+@CLOTHES_ONEPIECE_IS_TIGHT(角色)
+#FUNCTION
+#DIM 角色
+#DIM 款式
+款式 = CLOTHES_ONEPIECE_STYLE(角色)
+RETURNF 款式 >= 衣装_连体外衣_学校泳衣 && 款式 <= 衣装_连体外衣_林科斯
+
+@CLOTHES_ONEPIECE_BLOCKS_TOP_UNDERWEAR(角色)
+#FUNCTION
+#DIM 角色
+RETURNF CLOTHES_ONEPIECE_STYLE(角色) == 衣装_连体外衣_赛车服 || CLOTHES_ONEPIECE_IS_DRESS(角色) || CLOTHES_ONEPIECE_IS_TIGHT(角色)
+
+@CLOTHES_ONEPIECE_BLOCKS_BOTTOM_UNDERWEAR(角色)
+#FUNCTION
+#DIM 角色
+RETURNF CLOTHES_ONEPIECE_STYLE(角色) == 衣装_连体外衣_赛车服 || CLOTHES_ONEPIECE_IS_TIGHT(角色)
+@CLOTHES_STYLE_EXISTS(槽位, 款式)
+#FUNCTION
+#DIM 槽位
+#DIM 款式
+RETURNF CLOTHNAME(槽位, 款式) != ""
+
+@CLOTHES_FEATURE(槽位, 款式)
+#FUNCTION
+#DIM 槽位
+#DIM 款式
+#DIM 特性
 SIF 款式 == 0
 	RETURNF 0
-
-SELECTCASE 部位
-;--- 上半身 可掀开判定 ---
-CASE 衣装部位_上半身外衣_主
-	; 外层上衣默认可掀开（外套可以敞开露出内层）
-	SELECTCASE 款式
-	CASE 衣装_上半身外衣_主_铠甲
-		RETURNF 0
-	CASEELSE
-		RETURNF 1
-	ENDSELECT
-
-CASE 衣装部位_上半身外衣_副
-	; 内层上衣默认可掀开
-	SELECTCASE 款式
-	CASE 衣装_上半身外衣_副_大衣, 衣装_上半身外衣_副_巫女服, 衣装_上半身外衣_副_博丽巫女服
-		RETURNF 0
-	CASEELSE
-		RETURNF 1
-	ENDSELECT
-
-CASE 衣装部位_上半身内衣_主
-	; 胸罩默认可掀开
-	SELECTCASE 款式
-	CASE 衣装_上半身内衣_主_胸贴, 衣装_上半身内衣_主_裹胸布
-		RETURNF 0
-	CASEELSE
-		RETURNF 1
-	ENDSELECT
-
-CASE 衣装部位_上半身内衣_副
-	; 乳贴不可掀开
-	RETURNF 0
-
-;--- 下半身 可偏移判定 ---
-CASE 衣装部位_下半身外衣_主
-	; 裤子/紧身裤不可偏移
-	SELECTCASE 款式
-	CASE 衣装_下半身外衣_主_裤子, 衣装_下半身外衣_主_紧身裤
-		RETURNF 0
-	CASE 衣装_下半身外衣_主_袴
-		RETURNF 1
-	ENDSELECT
-
-CASE 衣装部位_下半身外衣_副
-	; 短裤/灯笼裤等可偏移
-	RETURNF 1
-
+特性 = 0
+SELECTCASE 槽位
 CASE 衣装部位_下半身内衣_主
-	; 内裤可偏移
-	RETURNF 1
-
+	SETBIT 特性, 衣装特性_覆盖下身
+	SETBIT 特性, 衣装特性_可偏移下身
 CASE 衣装部位_下半身内衣_副
-	; 贞操带不可偏移，创口贴可偏移
+	SIF 款式 == 衣装_下半身内衣_副_贞操带
+		SETBIT 特性, 衣装特性_覆盖下身
+	SIF 款式 == 衣装_下半身内衣_副_创口贴
+		SETBIT 特性, 衣装特性_可偏移下身
+CASE 衣装部位_上半身内衣_主
+	SETBIT 特性, 衣装特性_覆盖上身
+	SIF 款式 != 衣装_上半身内衣_主_胸贴 && 款式 != 衣装_上半身内衣_主_裹胸布
+		SETBIT 特性, 衣装特性_可掀开上身
+CASE 衣装部位_上半身内衣_副
+	SETBIT 特性, 衣装特性_覆盖上身
+CASE 衣装部位_上半身外衣_主
+	SETBIT 特性, 衣装特性_覆盖上身
+	SIF 款式 != 衣装_上半身外衣_主_铠甲
+		SETBIT 特性, 衣装特性_可掀开上身
+CASE 衣装部位_上半身外衣_副
+	SETBIT 特性, 衣装特性_覆盖上身
+	SIF 款式 != 衣装_上半身外衣_副_巫女服 && 款式 != 衣装_上半身外衣_副_大衣 && 款式 != 衣装_上半身外衣_副_博丽巫女服
+		SETBIT 特性, 衣装特性_可掀开上身
+CASE 衣装部位_下半身外衣_主
+	SETBIT 特性, 衣装特性_覆盖下身
 	SELECTCASE 款式
-	CASE 衣装_下半身内衣_副_贞操带
-		RETURNF 0
-	CASEELSE
-		RETURNF 1
+	CASE 衣装_下半身外衣_主_超短裙, 衣装_下半身外衣_主_裙子, 衣装_下半身外衣_主_长裙, 衣装_下半身外衣_主_紧身裙, 衣装_下半身外衣_主_裳, 衣装_下半身外衣_主_百褶短裙, 衣装_下半身外衣_主_鱼尾长裙, 衣装_下半身外衣_主_女仆长裙
+		SETBIT 特性, 衣装特性_裙摆
+		SETBIT 特性, 衣装特性_可偏移下身
+	CASE 衣装_下半身外衣_主_袴
+		SETBIT 特性, 衣装特性_可偏移下身
 	ENDSELECT
-
-CASE 衣装部位_裙子
-	; 裙子可掀起
-	RETURNF 1
-
-;--- 全身型 ---
-CASE 衣装部位_赛车服
-	RETURNF 0
-
-CASE 衣装部位_连衣裙
-	; 连衣裙部分款式可掀开
+CASE 衣装部位_下半身外衣_副
+	SETBIT 特性, 衣装特性_覆盖下身
+	SETBIT 特性, 衣装特性_可偏移下身
+CASE 衣装部位_连体外衣
+	SETBIT 特性, 衣装特性_覆盖上身
+	SETBIT 特性, 衣装特性_覆盖下身
 	SELECTCASE 款式
-	CASE 衣装_连衣裙_裸体围裙, 衣装_连衣裙_斗篷
-		RETURNF 1
-	CASEELSE
-		RETURNF 0
+	CASE 衣装_连体外衣_连衣裙, 衣装_连体外衣_旗袍, 衣装_连体外衣_睡袍, 衣装_连体外衣_玩偶, 衣装_连体外衣_裸体围裙, 衣装_连体外衣_斗篷, 衣装_连体外衣_修道服, 衣装_连体外衣_魔女连衣裙
+		SETBIT 特性, 衣装特性_裙摆
 	ENDSELECT
-
-CASE 衣装部位_着物
-	; 和服可掀开
-	RETURNF 1
-
-CASE 衣装部位_紧身衣
-	; 紧身衣多数不可掀开
 	SELECTCASE 款式
-	CASE 衣装_紧身衣_忍者装束
-		RETURNF 1
-	CASEELSE
-		RETURNF 0
+	CASE 衣装_连体外衣_裸体围裙, 衣装_连体外衣_斗篷, 衣装_连体外衣_和服, 衣装_连体外衣_浴衣, 衣装_连体外衣_学校泳衣, 衣装_连体外衣_紧身衣, 衣装_连体外衣_忍者装束, 衣装_连体外衣_Y型, 衣装_连体外衣_触手服, 衣装_连体外衣_竞赛泳衣, 衣装_连体外衣_赛车女模, 衣装_连体外衣_林科斯
+		SETBIT 特性, 衣装特性_可掀开上身
+		SETBIT 特性, 衣装特性_可偏移下身
 	ENDSELECT
-
 ENDSELECT
+RETURNF 特性
 
-RETURNF 0
-
-;-------------------------------------------------
-; 判断是否没穿内裤
-; 返回 1=没穿, 0=穿了
-;-------------------------------------------------
-@CHK_NO_PANTS(着用者)
+@CLOTHES_HAS_FEATURE(角色, 槽位, 特性位)
 #FUNCTION
-#DIM 着用者
+#DIM 角色
+#DIM 槽位
+#DIM 特性位
+RETURNF GETBIT(CLOTHES_FEATURE(槽位, EQUIP:角色:槽位), 特性位)
 
-SIF EQUIP:着用者:衣装部位_下半身内衣_主 == 0 && EQUIP:着用者:衣装部位_下半身内衣_副 == 0
-	RETURNF 1
-RETURNF 0
+@CLOTHES_REFRESH_TEQUIP(角色)
+#DIM 角色
+#DIM 槽位
+#DIM 特性
+#DIM 上身覆盖
+#DIM 下身覆盖
+#DIM 上身可掀开
+#DIM 下身可偏移
+#DIM 裙摆
+TEQUIP:角色:下半身着衣状況 = 0
+TEQUIP:角色:上半身着衣状況 = 0
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	特性 = CLOTHES_FEATURE(槽位, EQUIP:角色:槽位)
+	SIF GETBIT(特性, 衣装特性_覆盖上身)
+		上身覆盖 = 1
+	SIF GETBIT(特性, 衣装特性_覆盖下身)
+		下身覆盖 = 1
+	SIF GETBIT(特性, 衣装特性_可掀开上身)
+		上身可掀开 = 1
+	SIF GETBIT(特性, 衣装特性_可偏移下身)
+		下身可偏移 = 1
+	SIF GETBIT(特性, 衣装特性_裙摆)
+		裙摆 = 1
+NEXT
+SIF 裙摆
+	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_裙子
+SIF 下身可偏移 && !TEQUIP:角色:下半身ずらし状態
+	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_副层
+SIF 下身覆盖 && !(下身可偏移 && TEQUIP:角色:下半身ずらし状態)
+	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_主层
+SIF EQUIP:角色:衣装部位_下半身外衣_主 || EQUIP:角色:衣装部位_连体外衣
+	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_主层外衣
+SIF EQUIP:角色:衣装部位_连体外衣
+	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_连体外衣
+SIF 上身可掀开 && !TEQUIP:角色:上半身はだけ状態
+	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_副层
+SIF 上身覆盖 && !(上身可掀开 && TEQUIP:角色:上半身はだけ状態)
+	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_主层
+SIF EQUIP:角色:衣装部位_上半身内衣_主 || EQUIP:角色:衣装部位_上半身外衣_主 || EQUIP:角色:衣装部位_连体外衣
+	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_主层内衣
+SIF EQUIP:角色:衣装部位_连体外衣
+	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_连体外衣
+RETURN 1
 
-;-------------------------------------------------
-; 获取下半身内裤名称
-;-------------------------------------------------
-@下着名１_２(着用者)
-#FUNCTIONS
-#DIM 着用者
+@CLOTHES_SAVE(角色)
+#DIM 角色
+#DIM 槽位
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	CFLAG:角色:(衣装记录_服装_起始位 + 槽位) = EQUIP:角色:槽位
+NEXT
+RETURN 1
 
-; 优先取副层名称（贞操带等），其次取主层名称
-IF EQUIP:着用者:衣装部位_下半身内衣_副
-	RETURNF 服装名_取得(衣装部位_下半身内衣_副, EQUIP:着用者:衣装部位_下半身内衣_副)
-ELSEIF EQUIP:着用者:衣装部位_下半身内衣_主
-	RETURNF 服装名_取得(衣装部位_下半身内衣_主, EQUIP:着用者:衣装部位_下半身内衣_主)
+@CLOTHES_LOAD(角色)
+#DIM 角色
+#DIM 槽位
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	EQUIP:角色:槽位 = CFLAG:角色:(衣装记录_服装_起始位 + 槽位)
+NEXT
+CALL CLOTHES_REFRESH_TEQUIP(角色)
+RETURN 1
+
+@CLOTHES_SAVE_SNAPSHOT(角色, 快照起始位)
+#DIM 角色
+#DIM 快照起始位
+#DIM 槽位
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	IF CLOTHES_SLOT_IS_WEARABLE(槽位)
+		CFLAG:角色:(快照起始位 + 槽位) = EQUIP:角色:槽位
+	ELSE
+		CFLAG:角色:(快照起始位 + 槽位) = 0
+	ENDIF
+NEXT
+RETURN 1
+
+@CLOTHES_RESTORE_SNAPSHOT(角色, 快照起始位, 更换内衣 = 1)
+#DIM 角色
+#DIM 快照起始位
+#DIM 更换内衣
+#DIM 槽位
+CALL CLOTHES_CLEAR_OUTFIT(角色)
+FOR 槽位, 衣装部位_手部配饰, 衣装部位_最后槽位 + 1
+	SIF !CLOTHES_SLOT_IS_WEARABLE(槽位) || CLOTHES_SLOT_IS_UNDERWEAR(槽位)
+		CONTINUE
+	CALL CLOTHES_EQUIP(角色, 槽位, CFLAG:角色:(快照起始位 + 槽位))
+NEXT
+IF 更换内衣
+	IF CFLAG:角色:(快照起始位 + 衣装部位_下半身内衣_主) >= 衣装_下半身内衣_主_女内裤下限 && CFLAG:角色:(快照起始位 + 衣装部位_下半身内衣_主) <= 衣装_下半身内衣_主_女内裤上限
+		CALL CLOTHES_Change_Knickers(角色, 1)
+	ELSE
+		CALL CLOTHES_EQUIP(角色, 衣装部位_下半身内衣_主, CFLAG:角色:(快照起始位 + 衣装部位_下半身内衣_主))
+	ENDIF
+	CALL CLOTHES_EQUIP(角色, 衣装部位_下半身内衣_副, CFLAG:角色:(快照起始位 + 衣装部位_下半身内衣_副))
+	CALL CLOTHES_EQUIP(角色, 衣装部位_上半身内衣_副, CFLAG:角色:(快照起始位 + 衣装部位_上半身内衣_副))
+	CALL CLOTHES_EQUIP(角色, 衣装部位_上半身内衣_主, CFLAG:角色:(快照起始位 + 衣装部位_上半身内衣_主))
 ENDIF
+CALL CLOTHES_ACCESSORY(角色)
+RETURN 1
+@CLOTHES_INIT_DAY(角色, 更换内衣 = 1)
+#DIM 角色
+#DIM 更换内衣
+SELECTCASE CFLAG:角色:服装パターン
+CASE 衣装预设_全裸
+	CALL CLOTHES_Preset_NUDE(角色, 更换内衣)
+CASE 衣装预设_男装
+	CALL CLOTHES_Preset_MALE(角色, 更换内衣)
+CASE 衣装预设_女装
+	CALL CLOTHES_Preset_FEMALE(角色, 更换内衣)
+CASE 衣装预设_绅士
+	CALL CLOTHES_Preset_jentle(角色, 更换内衣)
+CASE 衣装预设_女仆
+	CALL CLOTHES_Preset_MAID(角色, 更换内衣)
+CASE 衣装预设_私服
+	CALL CLOTHES_Preset_CUSTOM(角色, 更换内衣)
+CASE 衣装预设_Cosplay
+	CALL CLOTHES_Preset_Cosplay(角色, 更换内衣)
+CASE 衣装预设_角色开始 TO 衣装预设_角色结束
+	TRYCALLFORM CLOTHES_Preset_{CFLAG:角色:服装パターン - 100}(角色, 更换内衣)
+CASEELSE
+	CALL CLOTHES_Preset_NUDE(角色, 更换内衣)
+ENDSELECT
+CALL CLOTHES_SAVE(角色)
+RETURN 1
+
+@CLOTHES_RESET(角色, 更换内衣 = 1)
+#DIM 角色
+#DIM 更换内衣
+CALL CLOTHES_LOAD(角色)
+SIF 更换内衣
+	CALL CLOTHES_Change_Knickers(角色, 1)
+SIF 更换内衣
+	CALL CLOTHES_Change_Bra(角色, 1)
+CALL CLOTHES_SAVE(角色)
+RETURN 1
+
+@CLOTHES_SETTING_TRAIN(角色)
+#DIM 角色
+CALL CLOTHES_REFRESH_TEQUIP(角色)
+RETURN 1
+
+@CHK_NO_PANTS(角色)
+#FUNCTION
+#DIM 角色
+RETURNF !EQUIP:角色:衣装部位_下半身内衣_主 && !EQUIP:角色:衣装部位_下半身内衣_副
+
+@下着名１_２(角色)
+#FUNCTIONS
+#DIM 角色
+SIF EQUIP:角色:衣装部位_下半身内衣_副
+	RETURNF CLOTHNAME(衣装部位_下半身内衣_副, EQUIP:角色:衣装部位_下半身内衣_副)
+SIF EQUIP:角色:衣装部位_下半身内衣_主
+	RETURNF CLOTHNAME(衣装部位_下半身内衣_主, EQUIP:角色:衣装部位_下半身内衣_主)
 RETURNF "下半身"
 
-;-------------------------------------------------
-; 内裤选择（上半身胸罩）
-;-------------------------------------------------
-@CLOTHES_Change_Bra(着用者, 更换内衣 = 1)
-#DIM 着用者
+@CLOTHES_Change_Bra(角色, 更换内衣 = 1)
+#DIM 角色
 #DIM 更换内衣
-
-SIF 更换内衣 == 0
+SIF !更换内衣 || GETBIT(CFLAG:角色:服装パターンオプション, 1) || TALENT:角色:胸部尺寸 == -2
 	RETURN 0
-
-; 无胸罩指定
-SIF GETBIT(CFLAG:着用者:服装パターンオプション, 1)
-	RETURN 0
-
-; 绝壁不需要胸罩
-SIF TALENT:着用者:胸部尺寸 == -2
-	RETURN 0
-
-; 穿上普通胸罩
-EQUIP:着用者:衣装部位_上半身内衣_副 = 0
-EQUIP:着用者:衣装部位_上半身内衣_主 = 衣装_上半身内衣_主_胸罩
+CALL CLOTHES_EQUIP(角色, 衣装部位_上半身内衣_主, 衣装_上半身内衣_主_基础文胸)
 RETURN 1
 
-;-------------------------------------------------
-; 内裤选择（下半身内裤）
-;-------------------------------------------------
-@CLOTHES_Change_Knickers(着用者, 更换内衣 = 1)
-#DIM 着用者
+@CLOTHES_Change_Knickers(角色, 更换内衣 = 1)
+#DIM 角色
 #DIM 更换内衣
-
-SIF 更换内衣 == 0
+SIF !更换内衣 || GETBIT(CFLAG:角色:服装パターンオプション, 0)
 	RETURN 0
-
-; 无内裤指定
-SIF GETBIT(CFLAG:着用者:服装パターンオプション, 0)
-	RETURN 0
-
-; 副层清零
-EQUIP:着用者:衣装部位_下半身内衣_副 = 0
-
-; 根据状态选择内裤类型
-IF TALENT:着用者:淫乱
-	CALL NTR_PANTS(着用者)
-ELSEIF CFLAG:着用者:屈服度 > CFLAG:着用者:好感度 && CFLAG:着用者:屈服度 > 999
-	CALL NTR_PANTS(着用者, 1)
+CALL CLOTHES_UNEQUIP(角色, 衣装部位_下半身内衣_副)
+IF TALENT:角色:淫乱 || (CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 999)
+	CALL NTR_PANTS, 角色, 1
 ELSE
-	CALL NTR_PANTS(着用者, 0)
+	CALL NTR_PANTS, 角色, 0
 ENDIF
-RETURN 1
-
-;-------------------------------------------------
-; 一天开始时的服装初始化
-; 根据 CFLAG:服装パターン 选择预设，然后保存并刷新TEQUIP
-;-------------------------------------------------
-@CLOTHES_INIT_DAY(着用者, 更换内衣 = 1)
-#DIM 着用者
-#DIM 更换内衣
-
-; 睡眠中统一穿睡衣
-IF CFLAG:着用者:睡眠
-	CALL CLOTHES_Preset_NIGHTWEAR(着用者)
-ELSE
-	; 根据预设编号选择服装
-	SELECTCASE CFLAG:着用者:服装パターン
-	CASE 衣装预设_全裸
-		CALL CLOTHES_Preset_NUDE(着用者)
-	CASE 衣装预设_男装
-		CALL CLOTHES_Preset_MALE(着用者)
-	CASE 衣装预设_女装
-		CALL CLOTHES_Preset_FEMALE(着用者)
-	CASE 衣装预设_绅士
-		CALL CLOTHES_Preset_jentle(着用者)
-	CASE 衣装预设_女仆
-		CALL CLOTHES_Preset_MAID(着用者)
-	CASE 衣装预设_私服
-		CALL CLOTHES_Preset_CUSTOM(着用者)
-	CASE 衣装预设_角色开始 TO 衣装预设_角色结束
-		; 角色预设：预设编号 - 100 即为角色编号
-		TRYCALLFORM CLOTHES_Preset_{CFLAG:着用者:服装パターン - 100}(着用者)
-	CASE 衣装预设_Cosplay
-		CALL CLOTHES_Preset_Cosplay(着用者)
-	CASEELSE
-		CALL CLOTHES_Preset_NUDE(着用者)
-	ENDSELECT
-ENDIF
-
-; 保存当前穿着状态
-CALL CLOTHES_Save(着用者)
-; 刷新 TEQUIP
-CALL CLOTHES_REFRESH_TEQUIP(着用者)
 RETURN 1

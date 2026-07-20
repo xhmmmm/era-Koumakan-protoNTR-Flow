@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------
+;-------------------------------------------------
 ;窥视
 ;-------------------------------------------------
 @COM404
@@ -173,13 +173,13 @@ IF IsPlaceHasBathroom(targetArea)
 ENDIF
 
 IF  1 == 見付けた人数
-	IF EQUIP:見付けたキャラ:裙子
-		IF 5 != EQUIP:見付けたキャラ:裙子
+	IF CLOTHES_HAS_FEATURE(見付けたキャラ, 衣装部位_下半身外衣_主, 衣装特性_裙摆)
+		IF 衣装_下半身外衣_主_裳 != EQUIP:見付けたキャラ:下半身外衣_主
 			;裙子着用で、それが袴でないなら、パンチラの可能性がある
 			CALL CHK_PANCHIRA(targetArea, 見付けたキャラ)
 		ENDIF
 	ENDIF
-	IF EQUIP:見付けたキャラ:连衣裙 == 1
+	IF EQUIP:見付けたキャラ:连体外衣 == 衣装_连体外衣_连衣裙
 		;连衣裙着用で、それが普通の连衣裙なら、パンチラの可能性がある
 		CALL CHK_PANCHIRA(targetArea, 見付けたキャラ)
 	ENDIF
@@ -472,13 +472,13 @@ RETURN
 #DIM RSLT_CHK
 
 ;そもそも裙子をはいてない場合見れない
-SIF !EQUIP:MASTER:裙子
+SIF !CLOTHES_HAS_FEATURE(MASTER, 衣装部位_下半身外衣_主, 衣装特性_裙摆)
 	RETURN 0
 ;ロング裙子の場合見える可能性減
-SIF EQUIP:MASTER:裙子 == 3 && RAND:2
+SIF EQUIP:MASTER:下半身外衣_主 == 衣装_下半身外衣_主_长裙 && RAND:2
 	RETURN 0
 ;裳の場合見えない
-SIF EQUIP:MASTER:裙子 == 5
+SIF EQUIP:MASTER:下半身外衣_主 == 衣装_下半身外衣_主_裳
 	RETURN 0
 ;パンチラ不可能な場所の場合処理しない（踊り場、二階廊下、庭、湖以外）
 SELECTCASE CFLAG:MASTER:当前位置

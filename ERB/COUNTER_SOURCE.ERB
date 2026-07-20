@@ -318,7 +318,7 @@ SELECTCASE TCVAR:ARG:カウンター行動
 		STAIN:PLAYER:口 |= STAIN:ARG:Ｖ
 		EXP:PLAYER:口淫经验 ++
 		;裙子、连衣裙のときはぱんつ暴露
-		IF (EQUIP:ARG:裙子 && EQUIP:ARG:裙子 != 5) || (EQUIP:ARG:连衣裙 == 1)
+		IF (CLOTHES_HAS_FEATURE(ARG, 衣装部位_下半身外衣_主, 衣装特性_裙摆) && EQUIP:ARG:下半身外衣_主 != 衣装_下半身外衣_主_裳) || (EQUIP:ARG:连体外衣 == 衣装_连体外衣_连衣裙)
 			CFLAG:ARG:内裤确认 = 1
 		ENDIF
 		;口交強制
@@ -362,7 +362,7 @@ SELECTCASE TCVAR:ARG:カウンター行動
 		EXP:PLAYER:口淫经验 ++
 		SOURCE:PLAYER:液体 += 10
 		;裙子、连衣裙のときはぱんつ暴露
-		IF (EQUIP:ARG:裙子 && EQUIP:ARG:裙子 != 5) || (EQUIP:ARG:连衣裙 == 1)
+		IF (CLOTHES_HAS_FEATURE(ARG, 衣装部位_下半身外衣_主, 衣装特性_裙摆) && EQUIP:ARG:下半身外衣_主 != 衣装_下半身外衣_主_裳) || (EQUIP:ARG:连体外衣 == 衣装_连体外衣_连衣裙)
 			CFLAG:ARG:内裤确认 = 1
 		ENDIF
 		;ぱふぱふ
@@ -788,108 +788,91 @@ ENDSELECT
 
 @DATUI_BOTTOM(ARG,ARG:1)
 SELECTCASE ARG:1
-	CASE 0
-		TCVAR:ARG:下半身脱衣行動 = 1
-		EQUIP:PLAYER:下半身内衣_副 = 0
-		EQUIP:PLAYER:下半身内衣_主 = 0
-		EQUIP:PLAYER:下半身外衣_主 = 0
-		EQUIP:PLAYER:下半身外衣_副 = 0
-		EQUIP:PLAYER:裙子 = 0
-		EQUIP:PLAYER:赛车服 = 0
-		EQUIP:PLAYER:连衣裙 = 0
-		EQUIP:PLAYER:着物 = 0
-		EQUIP:PLAYER:紧身衣 = 0
-	CASE 1
-		TCVAR:ARG:下半身脱衣行動 = 2
-		EQUIP:PLAYER:下半身内衣_副 = 0
-		EQUIP:PLAYER:下半身内衣_主 = 0
-		EQUIP:PLAYER:下半身外衣_主 = 0
-		EQUIP:PLAYER:下半身外衣_副 = 0
-		EQUIP:PLAYER:赛车服 = 0
-		EQUIP:PLAYER:紧身衣 = 0
-	CASE 2
-		TCVAR:ARG:下半身脱衣行動 = 3
-		EQUIP:PLAYER:下半身内衣_副 = 0
-		EQUIP:PLAYER:下半身外衣_主 = 0
-		EQUIP:PLAYER:赛车服 = 0
+CASE 0
+	TCVAR:ARG:下半身脱衣行動 = 1
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身内衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身外衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身外衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_连体外衣)
+CASE 1
+	TCVAR:ARG:下半身脱衣行動 = 2
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身内衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身外衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身外衣_副)
+	SIF CLOTHES_ONEPIECE_BLOCKS_BOTTOM_UNDERWEAR(PLAYER)
+		CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_连体外衣)
+CASE 2
+	TCVAR:ARG:下半身脱衣行動 = 3
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_下半身外衣_主)
+	SIF CLOTHES_ONEPIECE_STYLE(PLAYER) == 衣装_连体外衣_赛车服
+		CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_连体外衣)
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(PLAYER)
 
 @DATUI_BOTTOM_T(ARG,ARG:1)
 SELECTCASE ARG:1
-	CASE 0
-		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 1
-		EQUIP:ARG:下半身内衣_副 = 0
-		EQUIP:ARG:下半身内衣_主 = 0
-		EQUIP:ARG:下半身外衣_主 = 0
-		EQUIP:ARG:下半身外衣_副 = 0
-		EQUIP:ARG:裙子 = 0
-		EQUIP:ARG:赛车服 = 0
-		EQUIP:ARG:连衣裙 = 0
-		EQUIP:ARG:着物 = 0
-		EQUIP:ARG:紧身衣 = 0
-	CASE 1
-		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 2
-		EQUIP:ARG:下半身内衣_副 = 0
-		EQUIP:ARG:下半身内衣_主 = 0
-		EQUIP:ARG:下半身外衣_主 = 0
-		EQUIP:ARG:下半身外衣_副 = 0
-		EQUIP:ARG:赛车服 = 0
-		EQUIP:ARG:紧身衣 = 0
-	CASE 2
-		TCVAR:ARG:TARGET自身の下半身脱衣行動 = 3
-		EQUIP:ARG:下半身内衣_副 = 0
-		EQUIP:ARG:下半身外衣_主 = 0
-		EQUIP:ARG:赛车服 = 0
+CASE 0
+	TCVAR:ARG:TARGET自身の下半身脱衣行動 = 1
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身内衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身外衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身外衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_连体外衣)
+CASE 1
+	TCVAR:ARG:TARGET自身の下半身脱衣行動 = 2
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身内衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身外衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身外衣_副)
+	SIF CLOTHES_ONEPIECE_BLOCKS_BOTTOM_UNDERWEAR(ARG)
+		CALL CLOTHES_UNEQUIP(ARG, 衣装部位_连体外衣)
+CASE 2
+	TCVAR:ARG:TARGET自身の下半身脱衣行動 = 3
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身内衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_下半身外衣_主)
+	SIF CLOTHES_ONEPIECE_STYLE(ARG) == 衣装_连体外衣_赛车服
+		CALL CLOTHES_UNEQUIP(ARG, 衣装部位_连体外衣)
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(ARG)
 
-
 @DATUI_TOP(ARG,ARG:1)
 SELECTCASE ARG:1
-	CASE 0
-		TCVAR:ARG:上半身脱衣行動 = 1
-		EQUIP:PLAYER:上半身内衣_副 = 0
-		EQUIP:PLAYER:上半身内衣_主 = 0
-		EQUIP:PLAYER:上半身外衣_主 = 0
-		EQUIP:PLAYER:上半身外衣_副 = 0
-		EQUIP:PLAYER:赛车服 = 0
-		EQUIP:PLAYER:连衣裙 = 0
-		EQUIP:PLAYER:着物 = 0
-		EQUIP:PLAYER:紧身衣 = 0
-	CASE 1
-		TCVAR:ARG:上半身脱衣行動 = 2
-		EQUIP:PLAYER:上半身内衣_副 = 0
-		EQUIP:PLAYER:上半身外衣_主 = 0
-		EQUIP:PLAYER:赛车服 = 0
-		EQUIP:PLAYER:连衣裙 = 0
-		EQUIP:PLAYER:紧身衣 = 0
+CASE 0
+	TCVAR:ARG:上半身脱衣行動 = 1
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身内衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身内衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身外衣_主)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身外衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_连体外衣)
+CASE 1
+	TCVAR:ARG:上半身脱衣行動 = 2
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身内衣_副)
+	CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_上半身外衣_主)
+	SIF CLOTHES_ONEPIECE_BLOCKS_TOP_UNDERWEAR(PLAYER)
+		CALL CLOTHES_UNEQUIP(PLAYER, 衣装部位_连体外衣)
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(PLAYER)
 
 @DATUI_TOP_T(ARG,ARG:1)
 SELECTCASE ARG:1
-	CASE 0
-		TCVAR:ARG:TARGET自身の上半身脱衣行動 = 1
-		EQUIP:ARG:上半身内衣_副 = 0
-		EQUIP:ARG:上半身内衣_主 = 0
-		EQUIP:ARG:上半身外衣_主 = 0
-		EQUIP:ARG:上半身外衣_副 = 0
-		EQUIP:ARG:赛车服 = 0
-		EQUIP:ARG:连衣裙 = 0
-		EQUIP:ARG:着物 = 0
-		EQUIP:ARG:紧身衣 = 0
-	CASE 1
-		TCVAR:ARG:TARGET自身の上半身脱衣行動 = 2
-		EQUIP:ARG:上半身内衣_副 = 0
-		EQUIP:ARG:上半身外衣_主 = 0
-		EQUIP:ARG:赛车服 = 0
-		EQUIP:ARG:连衣裙 = 0
-		EQUIP:ARG:紧身衣 = 0
+CASE 0
+	TCVAR:ARG:TARGET自身の上半身脱衣行動 = 1
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身内衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身内衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身外衣_主)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身外衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_连体外衣)
+CASE 1
+	TCVAR:ARG:TARGET自身の上半身脱衣行動 = 2
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身内衣_副)
+	CALL CLOTHES_UNEQUIP(ARG, 衣装部位_上半身外衣_主)
+	SIF CLOTHES_ONEPIECE_BLOCKS_TOP_UNDERWEAR(ARG)
+		CALL CLOTHES_UNEQUIP(ARG, 衣装部位_连体外衣)
 ENDSELECT
 CALL CLOTHES_SETTING_TRAIN(ARG)
-
-;MASTERのVへの苦痛
 @PAIN_CHECK_V_MASTER(ARG)
 ;EXP:Ｖ经验をみる（处女の反感は別途処理済みなので省略）
 IF EXP:PLAYER:Ｖ经验 < EXPLV:1

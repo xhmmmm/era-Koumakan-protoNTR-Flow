@@ -1,46 +1,45 @@
-;-------------------------------------------------
-;换衣服（COM430指令入口）
-;核心逻辑在ClotheSystem/ClotheUI.ERB的@CLOTHES_CHOOSE中
+﻿;-------------------------------------------------
+; 换衣服（COM430 指令入口）
+; 恋人换装只开放外部部件、外衣和普通饰品。
 ;-------------------------------------------------
 @COM430
 #DIM 换衣对象
-LOCAL:1 = 0
-;统计同室+恋慕的角色数
-FOR 换衣对象,1,CHARANUM
-	IF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
-		LOCAL:1 ++
-	ENDIF
+#DIM 可选人数
+可选人数 = 0
+FOR 换衣对象, 1, CHARANUM
+    SIF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
+        可选人数 ++
 NEXT
-PRINTFORML %"可以换衣服了"%
-;有可选角色时显示选择
-IF LOCAL:1 >= 1
-	PRINTFORML %"要给谁换衣服？"%
-	PRINTFORML %"[0] - "+CALLNAME:(MASTER)%
-	FOR 换衣对象,1,CHARANUM
-		IF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
-			PRINTFORML %"["+TOSTR(换衣对象)+"] - "+CALLNAME:换衣对象%
-		ENDIF
-	NEXT
-	PRINTFORML %"[999] - 返回"%
-	DO
-		INPUT
-		换衣对象 = RESULT
-		SELECTCASE 换衣对象
-			CASE MASTER
-				CALL CLOTHES_CHOOSE(MASTER)
-				RETURN 1
-			CASE 0 TO (CHARANUM-1)
-				IF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
-					CALL CLOTHES_CHOOSE(换衣对象)
-					RETURN 1
-				ENDIF
-			CASE 999
-				RETURN 0
-			CASEELSE
-		ENDSELECT
-		CLEARLINE 1
-	LOOP 1
+DRAWLINE
+PRINTL □ 更衣 □---------------------------------------------------------------------
+IF 可选人数
+    PRINTL 请选择换衣对象
+    PRINTFORM [ 0] %CALLNAME:MASTER,16,LEFT%
+    FOR 换衣对象, 1, CHARANUM
+        SIF !(CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕)
+            CONTINUE
+        PRINTFORM [{换衣对象,2}] %CALLNAME:换衣对象,16,LEFT%
+    NEXT
+    PRINTL
+    PRINTL [999] 返回
+    DO
+        INPUT
+        换衣对象 = RESULT
+        SELECTCASE 换衣对象
+        CASE MASTER
+            CALL CLOTHES_CHOOSE(MASTER, 1, 1, 0)
+            RETURN 1
+        CASE 1 TO (CHARANUM - 1)
+            IF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
+                CALL CLOTHES_CHOOSE(换衣对象, 0, 1, 1)
+                RETURN 1
+            ENDIF
+        CASE 999
+            RETURN 0
+        ENDSELECT
+        CLEARLINE 1
+    LOOP 1
 ELSE
-	CALL CLOTHES_CHOOSE(MASTER)
+    CALL CLOTHES_CHOOSE(MASTER, 1, 1, 0)
 ENDIF
 RETURN 0

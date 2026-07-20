@@ -1,4 +1,4 @@
-﻿;調教時テキスト
+;調教時テキスト
 @TRAIN_MESSAGE
 RESETCOLOR
 DRAWLINE
@@ -2863,17 +2863,11 @@ ENDIF
 ;-------------------------------------------------
 @MESSAGE_COM200
 IF EQUIP:上半身外衣_主
-	LOCALS = %CLOTHNAME(12,EQUIP:上半身外衣_主)%
+	LOCALS = %CLOTHNAME(衣装部位_上半身外衣_主,EQUIP:上半身外衣_主)%
 ELSEIF EQUIP:上半身外衣_副
-	LOCALS = %CLOTHNAME(13,EQUIP:上半身外衣_副)%
-ELSEIF EQUIP:赛车服
-	LOCALS = %CLOTHNAME(14,EQUIP:赛车服)%
-ELSEIF EQUIP:连衣裙
-	LOCALS = %CLOTHNAME(15,EQUIP:连衣裙)%
-ELSEIF EQUIP:着物
-	LOCALS = %CLOTHNAME(16,EQUIP:着物)%
-ELSEIF EQUIP:紧身衣
-	LOCALS = %CLOTHNAME(17,EQUIP:紧身衣)%
+	LOCALS = %CLOTHNAME(衣装部位_上半身外衣_副,EQUIP:上半身外衣_副)%
+ELSEIF EQUIP:连体外衣
+	LOCALS = %CLOTHNAME(衣装部位_连体外衣,EQUIP:连体外衣)%
 ENDIF
 IF CFLAG:うふふ == 3
 	PRINTFORML %LOCALS%被脱掉了…
@@ -2906,11 +2900,11 @@ ENDIF
 ;-------------------------------------------------
 @MESSAGE_COM201
 IF EQUIP:下半身外衣_主
-	LOCALS = %CLOTHNAME(7,EQUIP:下半身外衣_主)%
+	LOCALS = %CLOTHNAME(衣装部位_下半身外衣_主,EQUIP:下半身外衣_主)%
 ELSEIF EQUIP:下半身外衣_副
-	LOCALS = %CLOTHNAME(8,EQUIP:下半身外衣_副)%
-ELSEIF EQUIP:裙子
-	LOCALS = %CLOTHNAME(9,EQUIP:裙子)%
+	LOCALS = %CLOTHNAME(衣装部位_下半身外衣_副,EQUIP:下半身外衣_副)%
+ELSEIF EQUIP:下半身外衣_主 && CLOTHES_HAS_FEATURE(TARGET, 衣装部位_下半身外衣_主, 衣装特性_裙摆)
+	LOCALS = %CLOTHNAME(衣装部位_下半身外衣_主,EQUIP:下半身外衣_主)%
 ENDIF
 IF CFLAG:うふふ == 3
 	PRINTFORML %LOCALS%被脱掉了…

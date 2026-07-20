@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
 ;１日の開始時の処理
 @EVENTTRAIN
 #PRI
@@ -133,10 +133,10 @@ ENDIF
 CFLAG:MASTER:睡眠 = 0
 CALL CLOTHES_INIT_DAY(MASTER,1)
 ;女やふたなりでない時服装によって[女装]を与える
-IF HAS_VAGINA(MASTER) == 0 && ( EQUIP:MASTER:裙子 && ( EQUIP:MASTER:上半身外衣_主 || EQUIP:MASTER:上半身外衣_副 ) || EQUIP:MASTER:连衣裙 && !EQUIP:MASTER:下半身外衣_主 )
+IF HAS_VAGINA(MASTER) == 0 && ( CLOTHES_HAS_FEATURE(MASTER, 衣装部位_下半身外衣_主, 衣装特性_裙摆) && ( EQUIP:MASTER:上半身外衣_主 || EQUIP:MASTER:上半身外衣_副 ) || CLOTHES_ONEPIECE_IS_DRESS(MASTER) && !EQUIP:MASTER:下半身外衣_主 )
 	TALENT:MASTER:女装 = 1
 	;[女装]を持っていて裙子、连衣裙、上半身上着を着ていない、または连衣裙を着ているが下半身上着を履いている(チャイナ服+ズボン)とき[女装]を消す
-ELSEIF TALENT:MASTER:女装 && ( ( !EQUIP:MASTER:裙子 || !EQUIP:MASTER:连衣裙 || !EQUIP:MASTER:上半身外衣_主 || !EQUIP:MASTER:上半身外衣_副 ) || ( EQUIP:MASTER:连衣裙 && EQUIP:MASTER:下半身外衣_主 ) )
+ELSEIF TALENT:MASTER:女装 && ( ( !CLOTHES_HAS_FEATURE(MASTER, 衣装部位_下半身外衣_主, 衣装特性_裙摆) || !CLOTHES_ONEPIECE_IS_DRESS(MASTER) || !EQUIP:MASTER:上半身外衣_主 || !EQUIP:MASTER:上半身外衣_副 ) || ( CLOTHES_ONEPIECE_IS_DRESS(MASTER) && EQUIP:MASTER:下半身外衣_主 ) )
 	TALENT:MASTER:女装 = 0
 ENDIF
 CFLAG:MASTER:睡眠 = 1

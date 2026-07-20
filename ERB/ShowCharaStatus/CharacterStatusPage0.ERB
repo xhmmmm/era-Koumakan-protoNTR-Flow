@@ -2,99 +2,53 @@
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @PRINT_STATE_CLOTH(ARG)
-#DIMS 表示内容
+#DIMS 显示内容
+#DIM 槽位
 {
-	#DIMS CONST 表示部位, 19 = 
-		"", 
-		"配件", 
-		"帽子", 
-		"鞋子", 
-		"袜子",
-		"下半身内衣_副",
-		"下半身内衣_主", 
-		"下半身外衣_主", 
-		"下半身外衣_副",
-		"裙子", 
-		"上半身内衣_副", 
-		"上半身内衣_主", 
-		"上半身外衣_主", 
-		"上半身外衣_副", 
-		"赛车服", 
-		"连衣裙", 
-		"着物", 
-		"紧身衣", 
-		"手"
+    #DIM CONST 显示顺序, 17 = 0, 2, 15, 16, 14, 10, 11, 8, 9, 1, 3, 6, 7, 12, 13, 4, 5
 }
 {
-	#DIMS CONST 装备前缀, 19 = 
-		"", 
-		"　装备:饰品　　", 
-		"　装备:帽子　　", 
-		"　装备:鞋子　　", 
-		"　装备:袜子　　",
-		"　装备:内衣(下)", 
-		"　装备:内衣(下)", 
-		"　装备:外衣(下)", 
-		"　装备:外衣(下)",
-		"　装备:裙子　　", 
-		"　装备:内衣(上)", 
-		"　装备:内衣(上)", 
-		"　装备:外衣(上)", 
-		"　装备:外衣(上)", 
-		"　装备:赛车服　", 
-		"　装备:连衣裙　", 
-		"　装备:和服　　", 
-		"　装备:紧身衣　", 
-		"　装备:手套　　"
+    #DIMS CONST 装备前缀, 17 =
+        "", "　装备:帽子　　", "　装备:颈部环饰", "　装备:颈部挂饰", "　装备:连体外衣", "　装备:外衣(上)", "　装备:外衣(上)", "　装备:内衣(上)", "　装备:内衣(上)", "　装备:手部配饰", "　装备:手套　　", "　装备:内衣(下)", "　装备:内衣(下)", "　装备:外衣(下)", "　装备:外衣(下)", "　装备:袜子　　", "　装备:鞋子　　"
 }
 PRINTL
 PRINTL □ 服装 □---------------------------------------------------------------------
-IF !CLOTHES_IsDressed(ARG)
-	PRINTL 　＜全裸＞
-	RETURN 0
+IF !CLOTHES_IS_DRESSED(ARG)
+    PRINTL 　＜全裸＞
+    RETURN 0
 ENDIF
-FOR LOCAL, 1, 19
-	;使用CLOTH_DISPLAY_ORDER调整显示顺序
-	;特殊处理
-	;内裤和胸罩的类型1都是一些创可贴之类的东西，只穿那种东西不能叫穿了正经的内衣，所以是类型2决定是不是真空。
-	IF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "下半身内衣_主"
-		IF !EQUIP:ARG:下半身内衣_主
-			;裤子类
-			IF EQUIP:ARG:下半身外衣_主 || EQUIP:ARG:下半身外衣_副 || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
-				表示内容 '= "没穿"
-				;裙装类
-			ELSEIF EQUIP:ARG:裙子 || EQUIP:ARG:连衣裙 || EQUIP:ARG:着物
-				表示内容 '= "真空"
-			ENDIF
-		ELSE
-			表示内容 '= CLOTHNAME(CLOTH_DISPLAY_ORDER(LOCAL),EQUIP:ARG:CLOTH_DISPLAY_ORDER(LOCAL))
-		ENDIF
-		;如果不可见重置为问号
-		SIF GETBIT(FLAG:雑多設定,1)
-			表示内容 '= "？？？？？"
-	ELSEIF 表示部位:CLOTH_DISPLAY_ORDER(LOCAL) == "上半身内衣_主"
-		IF !EQUIP:ARG:上半身内衣_主
-			IF EQUIP:ARG:上半身外衣_主 || EQUIP:ARG:上半身外衣_副 || EQUIP:ARG:赛车服 || EQUIP:ARG:紧身衣
-				表示内容 '= "没穿"
-			ELSEIF EQUIP:ARG:连衣裙 || EQUIP:ARG:着物
-				表示内容 '= "真空"
-			ENDIF
-		ELSE
-			表示内容 '= CLOTHNAME(CLOTH_DISPLAY_ORDER(LOCAL),EQUIP:ARG:CLOTH_DISPLAY_ORDER(LOCAL))
-		ENDIF
-		SIF GETBIT(FLAG:雑多設定,1)
-			表示内容 '= "？？？？？"
-		;一般情况下输出
-	ELSE
-		表示内容 '= CLOTHNAME(CLOTH_DISPLAY_ORDER(LOCAL),EQUIP:ARG:CLOTH_DISPLAY_ORDER(LOCAL))
-	ENDIF
-	SIF EQUIP:ARG:CLOTH_DISPLAY_ORDER(LOCAL)
-		PRINTFORML %装备前缀:CLOTH_DISPLAY_ORDER(LOCAL)%[%表示内容%]
+FOR LOCAL, 1, 17
+    槽位 = 显示顺序:LOCAL
+    IF 槽位 == 衣装部位_下半身内衣_主
+        IF ARG != MASTER && Unknown下着(ARG, 槽位)
+            显示内容 '= "？？？？？"
+        ELSEIF !EQUIP:ARG:槽位
+            IF (EQUIP:ARG:衣装部位_下半身外衣_主 && !CLOTHES_HAS_FEATURE(ARG, 衣装部位_下半身外衣_主, 衣装特性_裙摆)) || EQUIP:ARG:衣装部位_下半身外衣_副 || CLOTHES_ONEPIECE_BLOCKS_BOTTOM_UNDERWEAR(ARG)
+                显示内容 '= "没穿"
+            ELSEIF CLOTHES_HAS_FEATURE(ARG, 衣装部位_下半身外衣_主, 衣装特性_裙摆) || CLOTHES_ONEPIECE_IS_DRESS(ARG) || CLOTHES_ONEPIECE_IS_KIMONO(ARG)
+                显示内容 '= "真空"
+            ENDIF
+        ELSE
+            显示内容 '= CLOTHNAME(槽位, EQUIP:ARG:槽位)
+        ENDIF
+    ELSEIF 槽位 == 衣装部位_下半身内衣_副 && ARG != MASTER && Unknown下着(ARG, 槽位)
+        显示内容 '= "？内裤？"
+    ELSEIF 槽位 == 衣装部位_上半身内衣_主
+        IF !EQUIP:ARG:槽位
+            IF EQUIP:ARG:衣装部位_上半身外衣_主 || EQUIP:ARG:衣装部位_上半身外衣_副 || CLOTHES_ONEPIECE_BLOCKS_TOP_UNDERWEAR(ARG)
+                显示内容 '= "没穿"
+            ELSEIF CLOTHES_ONEPIECE_IS_KIMONO(ARG)
+                显示内容 '= "真空"
+            ENDIF
+        ELSE
+            显示内容 '= CLOTHNAME(槽位, EQUIP:ARG:槽位)
+        ENDIF
+    ELSE
+        显示内容 '= CLOTHNAME(槽位, EQUIP:ARG:槽位)
+    ENDIF
+    SIF EQUIP:ARG:槽位
+        PRINTFORML %装备前缀:LOCAL%[%显示内容%]
 NEXT
-
-;-------------------------------------------------------------------------------
-;FIXME:関数の説明を書いてください
-;@return 1:xxx,0:xxx
 @PRINT_STATE_TALENT(ARG)
 #DIM TALENT计数, 6
 #DIM TALENT编号, 6, 100

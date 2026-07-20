@@ -1,4 +1,4 @@
-﻿;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SHOW_USERCOM
@@ -55,17 +55,11 @@ FOR コマンド番号,0,700
 			PRINTFORMC 背面立位される[{コマンド番号,3}]
 		ELSEIF コマンド番号 == 200
 			IF EQUIP:上半身外衣_主
-				コマンド名称 = %CLOTHNAME(12,EQUIP:上半身外衣_主)%
+				コマンド名称 = %CLOTHNAME(衣装部位_上半身外衣_主,EQUIP:上半身外衣_主)%
 			ELSEIF EQUIP:上半身外衣_副
-				コマンド名称 = %CLOTHNAME(13,EQUIP:上半身外衣_副)%
-			ELSEIF EQUIP:赛车服
-				コマンド名称 = %CLOTHNAME(14,EQUIP:赛车服)%
-			ELSEIF EQUIP:连衣裙
-				コマンド名称 = %CLOTHNAME(15,EQUIP:连衣裙)%
-			ELSEIF EQUIP:着物
-				コマンド名称 = %CLOTHNAME(16,EQUIP:着物)%
-			ELSEIF EQUIP:紧身衣
-				コマンド名称 = %CLOTHNAME(17,EQUIP:紧身衣)%
+				コマンド名称 = %CLOTHNAME(衣装部位_上半身外衣_副,EQUIP:上半身外衣_副)%
+			ELSEIF EQUIP:连体外衣
+				コマンド名称 = %CLOTHNAME(衣装部位_连体外衣,EQUIP:连体外衣)%
 			ENDIF
 			IF CFLAG:うふふ == 3
 				PRINTFORMC %コマンド名称%を脱ぐ[{コマンド番号,3}]
@@ -74,11 +68,11 @@ FOR コマンド番号,0,700
 			ENDIF
 		ELSEIF コマンド番号 == 201
 			IF EQUIP:下半身外衣_主
-				コマンド名称 = %CLOTHNAME(7,EQUIP:下半身外衣_主)%
+				コマンド名称 = %CLOTHNAME(衣装部位_下半身外衣_主,EQUIP:下半身外衣_主)%
 			ELSEIF EQUIP:下半身外衣_副
-				コマンド名称 = %CLOTHNAME(8,EQUIP:下半身外衣_副)%
-			ELSEIF EQUIP:裙子
-				コマンド名称 = 裙子
+				コマンド名称 = %CLOTHNAME(衣装部位_下半身外衣_副,EQUIP:下半身外衣_副)%
+			ELSEIF EQUIP:下半身外衣_主 && CLOTHES_HAS_FEATURE(TARGET, 衣装部位_下半身外衣_主, 衣装特性_裙摆)
+				コマンド名称 = %CLOTHNAME(衣装部位_下半身外衣_主,EQUIP:下半身外衣_主)%
 			ENDIF
 			IF CFLAG:うふふ == 3
 				PRINTFORMC %コマンド名称%を脱ぐ[{コマンド番号,3}]

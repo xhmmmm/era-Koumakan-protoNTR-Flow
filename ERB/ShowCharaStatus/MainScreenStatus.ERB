@@ -53,7 +53,7 @@ FOR LOCAL,1,CHARANUM
 		CALL 确认肌肤颜色(LOCAL)
 		CALL INFO_确认角色状态(LOCAL)
 		;下半身下着が見える状態ならフラグ取得
-		SIF GETBIT(FLAG:雑多設定,1) && !EQUIP:LOCAL:下半身外衣_主 && !EQUIP:LOCAL:下半身外衣_副 && !EQUIP:LOCAL:裙子 && !EQUIP:LOCAL:赛车服 && !EQUIP:LOCAL:连衣裙 && !EQUIP:LOCAL:着物
+		SIF GETBIT(FLAG:雑多設定,1) && 下着可见判定(LOCAL)
 			CFLAG:LOCAL:内裤确认 = 1
 		;同室じゃなく(遭遇発生時)、睡眠状態でなければ発生
 		IF !CFLAG:LOCAL:同室 && !CFLAG:LOCAL:睡眠
@@ -1393,66 +1393,29 @@ RETURNF ""
 #DIMS 服装内容
 #DIMS 配件内容
 #DIM 行宽
+{
+    #DIM CONST 显示顺序, 16 = 2, 15, 16, 14, 10, 11, 8, 9, 1, 3, 6, 7, 12, 13, 4, 5
+}
 着衣数 = 0
 服装内容 = 服装(%CALLNAME:角色%)：
-IF !CLOTHES_IsDressed(角色)
+IF !CLOTHES_IS_DRESSED(角色)
 	服装内容 += "[全裸]"
 ELSE
-	; 显示顺序：从头到脚、从外到内，除了内裤改为上下半身的分界
-	; 配件→帽子→全身型→上半身外衣→上半身内衣→手→下半身内衣→下半身外衣→袜→鞋
-	FOR LOCAL,0,18
-		SELECTCASE LOCAL
-			CASE 0; 配件
-				服番号 = 衣装部位_配件
-			CASE 1; 帽子
-				服番号 = 衣装部位_帽子
-			CASE 2; 赛车服
-				服番号 = 衣装部位_赛车服
-			CASE 3; 连衣裙
-				服番号 = 衣装部位_连衣裙
-			CASE 4; 和服
-				服番号 = 衣装部位_着物
-			CASE 5; 紧身衣
-				服番号 = 衣装部位_紧身衣
-			CASE 6; 上半身外衣_主
-				服番号 = 衣装部位_上半身外衣_主
-			CASE 7; 上半身外衣_副
-				服番号 = 衣装部位_上半身外衣_副
-			CASE 8; 上半身内衣_主
-				服番号 = 衣装部位_上半身内衣_主
-			CASE 9; 上半身内衣_副
-				服番号 = 衣装部位_上半身内衣_副
-			CASE 10; 手
-				服番号 = 衣装部位_手
-			CASE 11; 下半身内衣_主
-				服番号 = 衣装部位_下半身内衣_主
-			CASE 11; 下半身内衣_副
-				服番号 = 衣装部位_下半身内衣_副
-			CASE 13; 下半身外衣_主
-				服番号 = 衣装部位_下半身外衣_主
-			CASE 14; 下半身外衣_副
-				服番号 = 衣装部位_下半身外衣_副
-			CASE 15; 裙子
-				服番号 = 衣装部位_裙子
-			CASE 16; 袜
-				服番号 = 衣装部位_袜
-			CASE 17; 鞋
-				服番号 = 衣装部位_鞋
-		ENDSELECT
+	FOR LOCAL, 0, 16
+		服番号 = 显示顺序:LOCAL
 		SELECTCASE 服番号
-			CASE GETNUM(EQUIP,"下半身内衣_副")
-				IF (角色 != MASTER) && Unknown下着(角色, 服番号)
-					服装内容 += "[？内裤？]"
-					着衣数++
-					CONTINUE
-				ENDIF
-			CASE GETNUM(EQUIP,"下半身内衣_主")
-				IF (角色 != MASTER) && Unknown下着(角色, 服番号)
-					服装内容 += ""
-					着衣数++
-					CONTINUE
-				ENDIF
-			CASEELSE
+		CASE 衣装部位_下半身内衣_副
+			IF (角色 != MASTER) && Unknown下着(角色, 服番号)
+				服装内容 += "[？内裤？]"
+				着衣数 ++
+				CONTINUE
+			ENDIF
+		CASE 衣装部位_下半身内衣_主
+			IF (角色 != MASTER) && Unknown下着(角色, 服番号)
+				服装内容 += ""
+				着衣数 ++
+				CONTINUE
+			ENDIF
 		ENDSELECT
 		IF EQUIP:角色:服番号
 			IF GETBIT(FLAG:匂いフェチ,1)
@@ -1460,7 +1423,7 @@ ELSE
 			ELSE
 				服装内容 += @"["+CLOTHNAME(服番号,EQUIP:角色:服番号)+"]"
 			ENDIF
-			着衣数++
+			着衣数 ++
 		ENDIF
 	NEXT
 	IF 着衣数 == 0
@@ -1470,15 +1433,14 @@ ENDIF
 行宽 = STRLENS(服装内容)
 CALL 主界面_竖边框
 PRINTFORM %服装内容%
-;配件显示（肛塞/膣塞/口塞/眼罩），接在服装后面同一行
 下着不可见 = GETBIT(FLAG:雑多設定,1)
 配件内容 =
 IF 下着不可见
 	IF 下着可见判定(角色)
-		IF !EQUIP:角色:下半身内衣_主 && CFLAG:角色:肛塞
+		IF !EQUIP:角色:衣装部位_下半身内衣_主 && CFLAG:角色:肛塞
 			配件内容 += @"[{CFLAG:角色:肛塞}cm肛塞]装备！  "
 		ENDIF
-		IF !EQUIP:角色:下半身内衣_主 && CFLAG:角色:膣塞
+		IF !EQUIP:角色:衣装部位_下半身内衣_主 && CFLAG:角色:膣塞
 			配件内容 += @"[{CFLAG:角色:膣塞}cm膣塞]装备！  "
 		ENDIF
 	ENDIF
@@ -1505,9 +1467,6 @@ ENDIF
 CALL 主界面_装饰右边框(UI_行半角宽度辅助 - 行宽)
 PRINTL
 RETURN 0
-
-;-------------------------------------------------------------------------------
-;対象の描写を表示
 @INFO_PrintPortrayal(角色)
 #DIM 角色
 #DIMS 描写文章
@@ -1534,15 +1493,11 @@ RETURN 0
 
 @下着可见判定(ARG)
 #FUNCTION
-RETURNF !EQUIP:ARG:下半身外衣_主 && !EQUIP:ARG:下半身外衣_副 && !EQUIP:ARG:裙子 && !EQUIP:ARG:赛车服 && (!EQUIP:ARG:连衣裙||EQUIP:ARG:连衣裙 == 4 ) && !EQUIP:ARG:着物
+RETURNF !EQUIP:ARG:衣装部位_下半身外衣_主 && !EQUIP:ARG:衣装部位_下半身外衣_副 && (!CLOTHES_ONEPIECE_STYLE(ARG) || CLOTHES_ONEPIECE_STYLE(ARG) == 衣装_连体外衣_玩偶 || CLOTHES_ONEPIECE_IS_TIGHT(ARG))
 
 @乳头可见判定(ARG)
 #FUNCTION
-RETURNF (!EQUIP:ARG:上半身外衣_副||EQUIP:ARG:上半身外衣_副 == 14||EQUIP:ARG:上半身外衣_副==22 ) && !EQUIP:ARG:上半身外衣_主 && !EQUIP:ARG:上半身内衣_副 && (!EQUIP:ARG:上半身内衣_主||!EQUIP:ARG:上半身内衣_主 == 4 ) && (!EQUIP:ARG:连衣裙||EQUIP:ARG:连衣裙 == 4 )
-
-
-
-
+RETURNF (!EQUIP:ARG:衣装部位_上半身外衣_副 || EQUIP:ARG:衣装部位_上半身外衣_副 == 衣装_上半身外衣_副_束缚装 || EQUIP:ARG:衣装部位_上半身外衣_副 == 衣装_上半身外衣_副_披风) && !EQUIP:ARG:衣装部位_上半身外衣_主 && !EQUIP:ARG:衣装部位_上半身内衣_副 && (!EQUIP:ARG:衣装部位_上半身内衣_主 || EQUIP:ARG:衣装部位_上半身内衣_主 == 衣装_上半身内衣_主_露点文胸) && (!CLOTHES_ONEPIECE_STYLE(ARG) || CLOTHES_ONEPIECE_STYLE(ARG) == 衣装_连体外衣_玩偶 || CLOTHES_ONEPIECE_IS_KIMONO(ARG) || CLOTHES_ONEPIECE_IS_TIGHT(ARG))
 @INFO_确认角色状态(ARG)
 IF 下着可见判定(ARG)
 	IF !EQUIP:ARG:下半身内衣_主

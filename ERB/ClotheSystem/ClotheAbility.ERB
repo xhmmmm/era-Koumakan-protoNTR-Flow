@@ -11,7 +11,7 @@
 ;啦啦队效果　加油加油
 ;素质附加：鼓舞
 ;回复效果：侍奉快乐经验
-IF EQUIP:ARG:上半身外衣_副 == 12
+IF EQUIP:ARG:上半身外衣_副 == 衣装_上半身外衣_副_啦啦队服
 	;如果不在H场景中则不发动效果
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1  && TALENT:ARG:鼓舞 == 1
@@ -31,9 +31,9 @@ IF EQUIP:ARG:上半身外衣_副 == 12
 	ENDIF
 	RETURN 1
 
-;裸体围裙效果　旧「新妻玩法」
+;裸体围裙效果
 ;回复效果：爱情经验
-ELSEIF EQUIP:ARG:连衣裙 == 5
+ELSEIF EQUIP:ARG:连体外衣 == 衣装_连体外衣_裸体围裙
 	;如果不在H场景中则不发动效果
 	SIF CFLAG:ARG:うふふ == 0
 		RETURN 0
@@ -43,7 +43,7 @@ ELSEIF EQUIP:ARG:连衣裙 == 5
 ;女骑士效果　强气的女人嘛…
 ;素质附加：A敏感、淫肛、药毒耐性
 ;敏感度增加:Ａ
-ELSEIF EQUIP:ARG:上半身外衣_主 == 2
+ELSEIF EQUIP:ARG:上半身外衣_主 == 衣装_上半身外衣_主_铠甲
 	;退出H场景后恢复原有能力
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1  && TALENT:ARG:淫乳 == 1
@@ -85,7 +85,7 @@ ELSEIF EQUIP:ARG:上半身外衣_主 == 2
 	RETURN 1
 
 ;忍者效果：哎！？对魔忍！？
-ELSEIF EQUIP:ARG:紧身衣 == 3
+ELSEIF EQUIP:ARG:连体外衣 == 衣装_连体外衣_忍者装束
 	;非H场景时恢复
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1 && TALENT:ARG:容易中毒 == 1
@@ -147,7 +147,7 @@ ELSEIF EQUIP:ARG:紧身衣 == 3
 ;绑缚效果　SM风格
 ;素质效果：倒错的
 ;回复效果：紧缚体验
-ELSEIF EQUIP:ARG:下半身内衣_主 == 4 || EQUIP:ARG:上半身外衣_副 == 14
+ELSEIF EQUIP:ARG:下半身内衣_主 == 衣装_下半身内衣_主_粉红内裤 || EQUIP:ARG:上半身外衣_副 == 衣装_上半身外衣_副_束缚装
 	;非H场景时恢复
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1 && TALENT:ARG:倒错的 == 1
@@ -170,7 +170,7 @@ ELSEIF EQUIP:ARG:下半身内衣_主 == 4 || EQUIP:ARG:上半身外衣_副 == 14
 
 ;护士效果　毕竟是护士嘛
 ;素质效果：治愈
-ELSEIF EQUIP:ARG:上半身外衣_副 == 15
+ELSEIF EQUIP:ARG:上半身外衣_副 == 衣装_上半身外衣_副_护士服
 	;非H场景时恢复
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1 && TALENT:ARG:治疗 == 1
@@ -191,21 +191,21 @@ ELSEIF EQUIP:ARG:上半身外衣_副 == 15
 
 ;魔法少女效果　充满谜之魔力的服装
 ;常驻效果：男变女
-ELSEIF EQUIP:ARG:上半身外衣_副 == 17
+ELSEIF EQUIP:ARG:上半身外衣_副 == 衣装_上半身外衣_副_魔法少女
 	IF TALENT:ARG:性别 == 2
 		CFLAG:ARG:コスプレ着用 = 1
 		TALENT:ARG:性别 = 1
 	ENDIF
 	RETURN 1
 ;魔法少女效果消除
-ELSEIF CFLAG:ARG:コスプレ着用 == 1 && EQUIP:ARG:上半身外衣_副 != 17
+ELSEIF CFLAG:ARG:コスプレ着用 == 1 && EQUIP:ARG:上半身外衣_副 != 衣装_上半身外衣_副_魔法少女
 	TALENT:ARG:性别 = 2
 	CFLAG:ARG:コスプレ着用 = 0
 	RETURN 0
 
 ;触手服效果　大概是从触手宫带来的吧
 ;常驻回复：异常经验＋各种增加。某种快感会积累
-ELSEIF EQUIP:ARG:紧身衣 == 5
+ELSEIF EQUIP:ARG:连体外衣 == 衣装_连体外衣_触手服
 	CFLAG:ARG:コスプレ着用 = 2
 	EXP:ARG:异常经验 ++
 	SOURCE:ARG:快Ｃ += TIME_PROGRESS(TFLAG:300) * 5
@@ -218,7 +218,7 @@ ELSEIF EQUIP:ARG:紧身衣 == 5
 
 ;牛娘　不过稍微榨乳一下的话倒想看看
 ;素质效果：母乳
-ELSEIF EQUIP:ARG:上半身内衣_主 == 9
+ELSEIF EQUIP:ARG:上半身内衣_主 == 衣装_上半身内衣_主_牛比基尼
 	;非H场景时恢复
 	IF CFLAG:ARG:うふふ == 0
 		SIF CFLAG:ARG:能力保存１ == 1 && TALENT:ARG:泌乳体质 == 1
@@ -237,7 +237,7 @@ ELSEIF EQUIP:ARG:上半身内衣_主 == 9
 	ENDIF
 	RETURN 1
 ;圣诞：礼物…？
-ELSEIF EQUIP:ARG:上半身外衣_副 == 19 && 日期_月数 == 5 && 日期_天数 == 24
+ELSEIF EQUIP:ARG:上半身外衣_副 == 衣装_上半身外衣_副_圣诞装 && 日期_月数 == 5 && 日期_天数 == 24
 	IF ARG != 0
 		CFLAG:ARG:サンタ = 1
 	ELSE

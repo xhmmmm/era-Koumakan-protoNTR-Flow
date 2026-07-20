@@ -51,9 +51,10 @@ RETURN 0
 ;パンツを脱がせる
 @NTR_PUNISHMENT_0(角色)
 #DIM 角色
-SIF !CFLAG:角色:服装_下半身内衣_主
+SIF !EQUIP:角色:衣装部位_下半身内衣_主
 	RETURN 1
-CFLAG:角色:服装_下半身内衣_主 = 0
+CALL CLOTHES_UNEQUIP(角色, 衣装部位_下半身内衣_主)
+CALL CLOTHES_SAVE(角色)
 IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
 	PRINTFORML %NTR_NAME(0)%把%CALLNAME:角色%的内裤夺走了
 	PRINTFORML 下达了今天一天不准穿内裤的命令，然后整理了弄乱的衣服…

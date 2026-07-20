@@ -1,30 +1,19 @@
-;=================================================
-; Cosplay 服装预设
+﻿;=================================================
+; 角色扮演预设
+; 内置造型用于即时换装；保存的角色扮演套装使用独立快照。
 ;=================================================
 
-;-------------------------------------------------
-; Cosplay 预设：委托给 CLOTHES_Preset_CUSTOM
-; 与 CLOTHES_Preset_CUSTOM 实现完全相同
-; CLOTHES_Preset_Cosplay_Save 保存后从此读取
-;-------------------------------------------------
-@CLOTHES_Preset_Cosplay(着用者,更换内衣=1)
+@CLOTHES_Preset_Cosplay(着用者, 更换内衣=1)
 #DIM 着用者
 #DIM 更换内衣
-CALL CLOTHES_Preset_CUSTOM(着用者,更换内衣)
-RETURN RESULT
-
-;-------------------------------------------------
-; 保存当前服装到私服集
-;-------------------------------------------------
-@CLOTHES_Preset_Cosplay_Save(着用者)
-#DIM 着用者
-#DIM 部位计数
-
-FOR 部位计数, 1, 19
-	CFLAG:着用者:(衣装记录_私服_起始位 + 部位计数) = EQUIP:着用者:部位计数
-NEXT
+CALL CLOTHES_RESTORE_SNAPSHOT(着用者, 衣装记录_Cosplay_起始位, 更换内衣)
+CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
+@CLOTHES_Preset_Cosplay_Save(着用者)
+#DIM 着用者
+CALL CLOTHES_SAVE_SNAPSHOT(着用者, 衣装记录_Cosplay_起始位)
+RETURN 1
 ;-------------------------------------------------
 ; 比基尼
 ;-------------------------------------------------
@@ -32,8 +21,8 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_下半身内衣_主 = 衣装_下半身内衣_主_比基尼
-EQUIP:着用者:衣装部位_上半身内衣_主 = 衣装_上半身内衣_主_比基尼
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身内衣_主, 衣装_下半身内衣_主_比基尼)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身内衣_主, 衣装_上半身内衣_主_比基尼)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -44,8 +33,8 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_下半身内衣_主 = 衣装_下半身内衣_主_微型比基尼
-EQUIP:着用者:衣装部位_上半身内衣_主 = 衣装_上半身内衣_主_迷你比基尼
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身内衣_主, 衣装_下半身内衣_主_微型比基尼)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身内衣_主, 衣装_上半身内衣_主_迷你比基尼)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -56,10 +45,10 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_足袋
-EQUIP:着用者:衣装部位_紧身衣 = 衣装_紧身衣_忍者装束
-EQUIP:着用者:衣装部位_手 = 衣装_手_忍者篭手
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_足袋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_忍者装束)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_忍者篭手)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -70,10 +59,10 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_兔耳
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_白丝袜
-EQUIP:着用者:衣装部位_紧身衣 = 衣装_紧身衣_紧身衣
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_兔耳)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_白丝袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_紧身衣)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -86,10 +75,10 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_过膝袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_超短裙
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_啦啦队服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_过膝袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_超短裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_啦啦队服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -102,13 +91,13 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_下半身外衣_主 = 衣装_下半身外衣_主_裤子
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_长裙
-EQUIP:着用者:衣装部位_上半身外衣_主 = 衣装_上半身外衣_主_铠甲
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_女衬衫
-EQUIP:着用者:衣装部位_手 = 衣装_手_皮手套
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_直筒长裤)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_长裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_主, 衣装_上半身外衣_主_铠甲)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_女衬衫)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_皮手套)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -121,11 +110,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_丝带
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_裙子
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_巫女服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_丝带)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_裙子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_巫女服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -138,14 +127,14 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_高筒袜
-EQUIP:着用者:衣装部位_下半身外衣_主 = 衣装_下半身外衣_主_裤子
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_长裙
-EQUIP:着用者:衣装部位_上半身外衣_主 = 衣装_上半身外衣_主_军服
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_衬衫
-EQUIP:着用者:衣装部位_手 = 衣装_手_白手套
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_高筒袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_直筒长裤)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_长裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_主, 衣装_上半身外衣_主_军服)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_衬衫)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_白手套)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -156,11 +145,11 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_吊带袜
-EQUIP:着用者:衣装部位_下半身外衣_副 = 衣装_下半身外衣_副_束缚裤
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_束缚装
-EQUIP:着用者:衣装部位_手 = 衣装_手_歌剧手套
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_吊带袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_副, 衣装_下半身外衣_副_束缚裤)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_束缚装)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_歌剧手套)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -171,7 +160,7 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_连衣裙 = 衣装_连衣裙_裸体围裙
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_裸体围裙)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -184,11 +173,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_拖鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_超短裙
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_护士服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_拖鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_超短裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_护士服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -201,11 +190,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_拖鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_超短裙
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_女警服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_拖鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_超短裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_女警服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -218,11 +207,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_高筒袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_裙子
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_魔法少女
-EQUIP:着用者:衣装部位_手 = 衣装_手_歌剧手套
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_高筒袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_裙子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_魔法少女)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_歌剧手套)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -233,9 +222,9 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_牛耳
-EQUIP:着用者:衣装部位_下半身内衣_主 = 衣装_下半身内衣_主_牛比基尼
-EQUIP:着用者:衣装部位_上半身内衣_主 = 衣装_上半身内衣_主_牛比基尼
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_牛耳)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身内衣_主, 衣装_下半身内衣_主_牛比基尼)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身内衣_主, 衣装_上半身内衣_主_牛比基尼)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -248,11 +237,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_过膝袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_超短裙
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_圣诞装
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_过膝袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_超短裙)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_圣诞装)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -263,8 +252,8 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_紧身衣 = 衣装_紧身衣_林科斯
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_林科斯)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -277,10 +266,10 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_头巾
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_连衣裙 = 衣装_连衣裙_修道服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_头巾)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_修道服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -293,12 +282,12 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_下半身外衣_副 = 衣装_下半身外衣_副_灯笼裤
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_裙子
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_幼儿服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_副, 衣装_下半身外衣_副_灯笼裤)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_裙子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_幼儿服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -309,10 +298,10 @@ RETURN 1
 #DIM 着用者
 #DIM 更换内衣
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_过膝袜
-EQUIP:着用者:衣装部位_紧身衣 = 衣装_紧身衣_赛车女模
-EQUIP:着用者:衣装部位_手 = 衣装_手_歌剧手套
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_过膝袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_赛车女模)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_手部, 衣装_手部_歌剧手套)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -325,10 +314,10 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_高筒袜
-EQUIP:着用者:衣装部位_裙子 = 衣装_裙子_裙子
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_水手服
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_高筒袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_裙子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_水手服)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -341,11 +330,11 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_小圆鞋
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_短袜
-EQUIP:着用者:衣装部位_下半身外衣_主 = 衣装_下半身外衣_主_裤子
-EQUIP:着用者:衣装部位_上半身外衣_副 = 衣装_上半身外衣_副_纵毛衣
-EQUIP:着用者:衣装部位_连衣裙 = 衣装_连衣裙_裸体围裙
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_小圆鞋)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_短袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_下半身外衣_主, 衣装_下半身外衣_主_直筒长裤)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_上半身外衣_副, 衣装_上半身外衣_副_纵毛衣)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_裸体围裙)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
 
@@ -358,9 +347,9 @@ RETURN 1
 CALL CLOTHES_Preset_NUDE(着用者,更换内衣)
 CALL CLOTHES_Change_Knickers(着用者,更换内衣)
 CALL CLOTHES_Change_Bra(着用者,更换内衣)
-EQUIP:着用者:衣装部位_帽子 = 衣装_帽子_帽子
-EQUIP:着用者:衣装部位_鞋 = 衣装_鞋_长筒靴
-EQUIP:着用者:衣装部位_袜 = 衣装_袜_高筒袜
-EQUIP:着用者:衣装部位_连衣裙 = 衣装_连衣裙_魔女连衣裙
+CALL CLOTHES_EQUIP(着用者, 衣装部位_头部, 衣装_头部_帽子)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_鞋, 衣装_鞋_长筒靴)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_腿部, 衣装_腿部_高筒袜)
+CALL CLOTHES_EQUIP(着用者, 衣装部位_连体外衣, 衣装_连体外衣_魔女连衣裙)
 CFLAG:着用者:寝間着着用 = 0
 RETURN 1
