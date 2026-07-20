@@ -27,11 +27,11 @@ IF 可选人数
         换衣对象 = RESULT
         SELECTCASE 换衣对象
         CASE MASTER
-            CALL CLOTHES_CHOOSE(MASTER, 1, 1, 0)
+            CALL CLOTHES_CHOOSE(MASTER, 衣装换装_内衣可换, 衣装换装_色情内衣不可换, 衣装换装_下装内衣显示)
             RETURN 1
         CASE 1 TO (CHARANUM - 1)
             IF CFLAG:换衣对象:同室 && TALENT:换衣对象:恋慕
-                CALL CLOTHES_CHOOSE(换衣对象, 0, 1, 1)
+                CALL CLOTHES_CHOOSE(换衣对象, 衣装换装_内衣不可换, 衣装换装_色情内衣不可换, 衣装换装_下装内衣遮蔽)
                 RETURN 1
             ENDIF
         CASE 999
@@ -40,6 +40,6 @@ IF 可选人数
         CLEARLINE 1
     LOOP 1
 ELSE
-    CALL CLOTHES_CHOOSE(MASTER, 1, 1, 0)
+    CALL CLOTHES_CHOOSE(MASTER, 衣装换装_内衣可换, 衣装换装_色情内衣可换, 衣装换装_下装内衣显示)
 ENDIF
 RETURN 0

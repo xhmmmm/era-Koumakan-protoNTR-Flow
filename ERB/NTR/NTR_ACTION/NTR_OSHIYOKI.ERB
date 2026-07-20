@@ -53,7 +53,7 @@ RETURN 0
 #DIM 角色
 SIF !EQUIP:角色:衣装部位_下半身内衣_主
 	RETURN 1
-CALL CLOTHES_UNEQUIP(角色, 衣装部位_下半身内衣_主)
+CALL CLOTHES_EQUIP(角色, 衣装部位_下半身内衣_主, 0)
 CALL CLOTHES_SAVE(角色)
 IF NTR_CHK_VISIBLE(FLAG:访问者当前位置)
 	PRINTFORML %NTR_NAME(0)%把%CALLNAME:角色%的内裤夺走了

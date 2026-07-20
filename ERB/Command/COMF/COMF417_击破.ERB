@@ -449,7 +449,7 @@ ELSE	;ぱんつはかせたくない
 		PRINTFORM 下着
 	ENDIF
 	PRINTFORML を脱ぐと、%NTR_NAME(0)%に手渡した……
-	CALL CLOTHES_UNEQUIP(住人, 衣装部位_下半身内衣_主)
+	CALL CLOTHES_EQUIP(住人, 衣装部位_下半身内衣_主, 0)
 	CALL CLOTHES_SAVE(住人)
 	SOURCE:住人:露出 += 200
 	SOURCE:住人:欲情 += 100 + 200 * ABL:住人:欲望

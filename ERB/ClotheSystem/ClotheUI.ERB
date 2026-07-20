@@ -42,16 +42,20 @@ CASE 衣装部位_颈部挂饰
 ENDSELECT
 RETURNF ""
 
-@CLOTHES_PRINT_SLOT(角色, 槽位, 可更换, 隐藏内衣 = 0)
+@CLOTHES_PRINT_SLOT(角色, 槽位, 允许更换内衣, 遮蔽下装内衣 = 0)
 #DIM 角色
 #DIM 槽位
-#DIM 可更换
-#DIM 隐藏内衣
+#DIM 允许更换内衣
+#DIM 遮蔽下装内衣
+#DIM 是否可更换
 #DIMS 标签
 #DIMS 名称
+
 标签 '= CLOTHES_SLOT_NAME(槽位)
-IF 隐藏内衣 && 角色 != MASTER && Unknown下着(角色, 槽位)
-    IF 槽位 == 衣装部位_下半身内衣_副
+是否可更换 = CLOTHES_SLOT_CAN_CHANGE(槽位, 允许更换内衣)
+
+IF 遮蔽下装内衣 && 角色 != MASTER && Unknown下着(角色, 槽位)
+    IF 槽位 == 衣装部位_下半身内衣_主
         名称 '= "？内裤？"
     ELSE
         名称 '= "未确认"
@@ -61,119 +65,139 @@ ELSE
     SIF 名称 == ""
         名称 '= "未穿"
 ENDIF
-IF 可更换
+
+IF 是否可更换
     PRINTFORM [{槽位,2}]
 ELSE
     PRINTFORM [--]
 ENDIF
+
 PRINTFORM %标签,12,LEFT%：%名称,16,LEFT%
-RETURN 1
+RETURN 0
 
-@CLOTHES_PRINT_SLOT_PAIR(角色, 槽位1, 槽位2, 允许内衣, 隐藏内衣 = 0)
+@CLOTHES_CHOOSE(角色, 允许更换内衣, 允许色情内衣, 遮蔽下装内衣)
 #DIM 角色
-#DIM 槽位1
-#DIM 槽位2
-#DIM 允许内衣
-#DIM 隐藏内衣
-CALL CLOTHES_PRINT_SLOT(角色, 槽位1, CLOTHES_SLOT_CAN_CHANGE(槽位1, 允许内衣), 隐藏内衣)
-PRINTFORM 　　
-CALL CLOTHES_PRINT_SLOT(角色, 槽位2, CLOTHES_SLOT_CAN_CHANGE(槽位2, 允许内衣), 隐藏内衣)
-PRINTL
-RETURN 1
-
-@CLOTHES_PRINT_SPECIAL(角色, 槽位)
-#DIM 角色
-#DIM 槽位
-CALL CLOTHES_PRINT_SLOT(角色, 槽位, 0)
-RETURN 1
-@CLOTHES_CHOOSE(角色, 允许内衣 = 1, 允许色情内衣 = 1, 隐藏内衣 = 0)
-#DIM 角色
-#DIM 允许内衣
+#DIM 允许更换内衣
 #DIM 允许色情内衣
-#DIM 隐藏内衣
+#DIM 遮蔽下装内衣
 #DIM 结束
+
 DO
     DRAWLINE
     PRINTL □ 更衣 □---------------------------------------------------------------------
     PRINTFORML %CALLNAME:角色% 的穿着
     PRINTL
+
     PRINTL □ 特殊饰品 □-----------------------------------------------------------------
-    CALL CLOTHES_PRINT_SPECIAL(角色, 衣装部位_手部配饰)
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_手部配饰, 0, 遮蔽下装内衣)
     PRINTFORM 　　
-    CALL CLOTHES_PRINT_SPECIAL(角色, 衣装部位_颈部环饰)
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_颈部环饰, 0, 遮蔽下装内衣)
     PRINTL
+
     PRINTL □ 外部部件 □-----------------------------------------------------------------
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_头部, 衣装部位_手部, 允许内衣, 隐藏内衣)
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_腿部, 衣装部位_鞋, 允许内衣, 隐藏内衣)
-    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_颈部挂饰, CLOTHES_SLOT_CAN_CHANGE(衣装部位_颈部挂饰, 允许内衣), 隐藏内衣)
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_头部, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_手部, 允许更换内衣, 遮蔽下装内衣)
     PRINTL
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_腿部, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_鞋, 允许更换内衣, 遮蔽下装内衣)
+    PRINTL
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_颈部挂饰, 允许更换内衣, 遮蔽下装内衣)
+    PRINTL
+
     PRINTL □ 外衣 □---------------------------------------------------------------------
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_上半身外衣_主, 衣装部位_上半身外衣_副, 允许内衣, 隐藏内衣)
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_下半身外衣_主, 衣装部位_下半身外衣_副, 允许内衣, 隐藏内衣)
-    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_连体外衣, CLOTHES_SLOT_CAN_CHANGE(衣装部位_连体外衣, 允许内衣), 隐藏内衣)
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_上半身外衣_主, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_上半身外衣_副, 允许更换内衣, 遮蔽下装内衣)
     PRINTL
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_下半身外衣_主, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_下半身外衣_副, 允许更换内衣, 遮蔽下装内衣)
+    PRINTL
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_连体外衣, 允许更换内衣, 遮蔽下装内衣)
+    PRINTL
+
     PRINTL □ 贴身衣物 □-----------------------------------------------------------------
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_上半身内衣_主, 衣装部位_上半身内衣_副, 允许内衣, 隐藏内衣)
-    CALL CLOTHES_PRINT_SLOT_PAIR(角色, 衣装部位_下半身内衣_主, 衣装部位_下半身内衣_副, 允许内衣, 隐藏内衣)
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_上半身内衣_主, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_上半身内衣_副, 允许更换内衣, 遮蔽下装内衣)
     PRINTL
-    IF 允许内衣
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_下半身内衣_主, 允许更换内衣, 遮蔽下装内衣)
+    PRINTFORM 　　
+    CALL CLOTHES_PRINT_SLOT(角色, 衣装部位_下半身内衣_副, 允许更换内衣, 遮蔽下装内衣)
+    PRINTL
+
+    IF 允许更换内衣
         PRINTL [30] 常用预设　　[31] 全部脱下　　[32] 角色扮演预设
     ENDIF
     PRINTL [100] 完成
+
     INPUT
-    IF RESULT >= 衣装部位_手部配饰 && RESULT <= 衣装部位_最后槽位 && CLOTHES_SLOT_CAN_CHANGE(RESULT, 允许内衣)
-        CALL CLOTHES_CHOOSE_SLOT(角色, RESULT, 允许内衣, 允许色情内衣)
-    ELSEIF 允许内衣 && RESULT == 30
+
+    IF RESULT >= 衣装部位_手部配饰 && RESULT <= 衣装部位_最后槽位 && CLOTHES_SLOT_CAN_CHANGE(RESULT, 允许更换内衣)
+        CALL CLOTHES_CHOOSE_SLOT(角色, RESULT, 允许色情内衣)
+    ELSEIF 允许更换内衣 && RESULT == 30
         CALL CLOTHES_CHOOSE_PRESET(角色)
-    ELSEIF 允许内衣 && RESULT == 31
+    ELSEIF 允许更换内衣 && RESULT == 31
         CALL CLOTHES_CLEAR_OUTFIT(角色)
-    ELSEIF 允许内衣 && RESULT == 32
+    ELSEIF 允许更换内衣 && RESULT == 32
         CALL CLOTHES_CHOOSE_COSPLAY(角色)
     ELSEIF RESULT == 100
         结束 = 1
     ENDIF
 LOOP !结束
-CALL CLOTHES_SAVE(角色)
-RETURN 1
 
-@CLOTHES_CHOOSE_SLOT(角色, 槽位, 允许内衣 = 1, 允许色情内衣 = 1)
+CALL CLOTHES_SAVE(角色)
+RETURN 0
+
+@CLOTHES_CHOOSE_SLOT(角色, 槽位, 允许色情内衣)
 #DIM 角色
 #DIM 槽位
-#DIM 允许内衣
 #DIM 允许色情内衣
 #DIM 目录序号
 #DIM 款式
 #DIM 款式数量
 #DIM 已显示
-SIF !CLOTHES_SLOT_CAN_CHANGE(槽位, 允许内衣)
+
+SIF !CLOTHES_SLOT_IS_WEARABLE(槽位)
     RETURN 0
+
 DRAWLINE
 PRINTFORML □ %CLOTHES_SLOT_NAME(槽位)% □----------------------------------------------------------------
 PRINTFORML 当前：%CLOTHNAME(槽位, EQUIP:角色:槽位)%
 PRINTL
+
 PRINTFORM [  0] %"脱下",18,LEFT%
 已显示 = 1
 款式数量 = CLOTHES_STYLE_COUNT(槽位)
+
 FOR 目录序号, 1, 款式数量 + 1
     款式 = CLOTHES_STYLE_ID(槽位, 目录序号)
     SIF !CLOTHES_STYLE_CAN_CHANGE(槽位, 款式, 允许色情内衣)
         CONTINUE
+
     PRINTFORM [{款式,3}] %CLOTHNAME(槽位, 款式),18,LEFT%
     已显示 ++
+
     SIF 已显示 % 3 == 0
         PRINTL
 NEXT
+
 SIF 已显示 % 3 != 0
     PRINTL
 PRINTL
 PRINTL [999] 返回
+
 INPUT
+
 IF RESULT == 0
-    CALL CLOTHES_UNEQUIP(角色, 槽位)
+    CALL CLOTHES_EQUIP(角色, 槽位, 0)
 ELSEIF RESULT > 0 && CLOTHES_STYLE_CAN_CHANGE(槽位, RESULT, 允许色情内衣)
     CALL CLOTHES_EQUIP(角色, 槽位, RESULT)
 ENDIF
-RETURN 1
+
+RETURN 0
 
 @CLOTHES_CHOOSE_PRESET(角色)
 #DIM 角色
@@ -203,7 +227,7 @@ CASE 6
 CASE 7
     CFLAG:角色:服装パターン = 衣装预设_私服
 ENDSELECT
-RETURN 1
+RETURN 0
 
 @CLOTHES_CHOOSE_COSPLAY(角色)
 #DIM 角色
@@ -275,7 +299,7 @@ CASE 31
 CASE 32
     CFLAG:角色:服装パターン = 衣装预设_Cosplay
 ENDSELECT
-RETURN 1
+RETURN 0
 
 @服装_初始化_角色服装自定义
 #DIM 角色
@@ -296,9 +320,9 @@ DO
     PRINTL [999] 设置完成
     INPUT
     SIF RESULT >= 0 && RESULT < CHARANUM
-        CALL CLOTHES_CHOOSE(RESULT, 1, 0, 0)
+        CALL CLOTHES_CHOOSE(RESULT, 衣装换装_内衣可换, 衣装换装_色情内衣不可换, 衣装换装_下装内衣显示)
 LOOP RESULT != 999
-RETURN 1
+RETURN 0
 
 @服装_初始化_角色睡衣自定义
 #DIM 睡衣最大编号 = 11
@@ -342,7 +366,7 @@ ELSEIF RESULT == 999
     PRINTL [0] 确定　　[1] 返回继续设定
     ONEINPUT
     SIF RESULT == 0
-        RETURN
+        RETURN 0
 ENDIF
 RESTART
-RETURN 0
+    RETURN 0

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;0番台,０．爱抚系コマンド
 ;-------------------------------------------------
 @COM_ABLE0
@@ -2686,7 +2686,7 @@ SIF !TFLAG:100
 SIF GLOBAL_COMABLE(200)
 	RETURN RESULT
 ;既に着ていない
-SIF !EQUIP:上半身外衣_主 && !EQUIP:上半身外衣_副 && !CLOTHES_ONEPIECE_STYLE(TARGET)
+SIF !EQUIP:上半身外衣_主 && !EQUIP:上半身外衣_副 && !EQUIP:TARGET:衣装部位_连体外衣
 	RETURN 0
 SIF !EQUIP:0
 	RETURN 0
@@ -2703,7 +2703,7 @@ SIF GLOBAL_COMABLE(201)
 SIF !EQUIP:下半身外衣_主 && !EQUIP:下半身外衣_副
 	RETURN 0
 ;上半身一体型
-SIF CLOTHES_ONEPIECE_STYLE(TARGET)
+SIF EQUIP:TARGET:衣装部位_连体外衣
 	RETURN 0
 SIF !EQUIP:0
 	RETURN 0

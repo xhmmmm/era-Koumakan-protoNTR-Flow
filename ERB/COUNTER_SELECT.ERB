@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @POSITION_OCCUPATION(ARG)
@@ -72,7 +72,7 @@ ELSEIF CFLAG:加害者:うふふ == 2
 		FOR LOOP_CHR,0,CHARANUM
 			CFLAG:LOOP_CHR:うふふ = 0
 			CALL CLOTHES_RESET(LOOP_CHR)
-			CALL CLOTHES_SETTING_TRAIN(LOOP_CHR)
+			CALL CLOTHES_REFRESH_TEQUIP(LOOP_CHR)
 		NEXT
 		RETURN 0
 	ENDIF

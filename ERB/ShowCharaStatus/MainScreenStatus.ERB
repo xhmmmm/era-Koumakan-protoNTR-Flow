@@ -1,4 +1,4 @@
-;显示主界面的信息栏
+﻿;显示主界面的信息栏
 ;-------------------------------------------------------------------------------
 ;起床中の基本情報（時間、HPMP、各種パラメータなど）を表示する
 @SHOW_STATUS
@@ -83,7 +83,7 @@ CALL INFO_SetTarget
 FOR LOCAL,0,CHARANUM
 	IF !CFLAG:LOCAL:うふふ || CFLAG:LOCAL:当前位置 != CFLAG:LOCAL:前ターン位置
 		CALL CLOTHES_RESET(LOCAL)
-		CALL CLOTHES_SETTING_TRAIN(LOCAL)
+		CALL CLOTHES_REFRESH_TEQUIP(LOCAL)
 		FOR LOCAL:1,10,150
 			TEQUIP:LOCAL:(LOCAL:1) = 0
 		NEXT
@@ -99,7 +99,7 @@ FOR LOCAL,0,CHARANUM
 		ELSE
 			TEQUIP:(LOCAL):浴场PLAY = 0
 		ENDIF
-		CALL CLOTHES_SETTING_TRAIN(LOCAL)
+		CALL CLOTHES_REFRESH_TEQUIP(LOCAL)
 	ELSE
 		TEQUIP:(LOCAL):浴场PLAY = 0
 	ENDIF
@@ -1493,11 +1493,58 @@ RETURN 0
 
 @下着可见判定(ARG)
 #FUNCTION
-RETURNF !EQUIP:ARG:衣装部位_下半身外衣_主 && !EQUIP:ARG:衣装部位_下半身外衣_副 && (!CLOTHES_ONEPIECE_STYLE(ARG) || CLOTHES_ONEPIECE_STYLE(ARG) == 衣装_连体外衣_玩偶 || CLOTHES_ONEPIECE_IS_TIGHT(ARG))
+
+SIF EQUIP:ARG:衣装部位_下半身外衣_主
+    RETURNF 0
+
+SIF EQUIP:ARG:衣装部位_下半身外衣_副
+    RETURNF 0
+
+SIF !EQUIP:ARG:衣装部位_连体外衣
+    RETURNF 1
+
+SIF EQUIP:ARG:衣装部位_连体外衣 == 衣装_连体外衣_玩偶
+    RETURNF 1
+
+SIF CLOTHES_ONEPIECE_IS_TIGHT(ARG)
+    RETURNF 1
+
+RETURNF 0
 
 @乳头可见判定(ARG)
 #FUNCTION
-RETURNF (!EQUIP:ARG:衣装部位_上半身外衣_副 || EQUIP:ARG:衣装部位_上半身外衣_副 == 衣装_上半身外衣_副_束缚装 || EQUIP:ARG:衣装部位_上半身外衣_副 == 衣装_上半身外衣_副_披风) && !EQUIP:ARG:衣装部位_上半身外衣_主 && !EQUIP:ARG:衣装部位_上半身内衣_副 && (!EQUIP:ARG:衣装部位_上半身内衣_主 || EQUIP:ARG:衣装部位_上半身内衣_主 == 衣装_上半身内衣_主_露点文胸) && (!CLOTHES_ONEPIECE_STYLE(ARG) || CLOTHES_ONEPIECE_STYLE(ARG) == 衣装_连体外衣_玩偶 || CLOTHES_ONEPIECE_IS_KIMONO(ARG) || CLOTHES_ONEPIECE_IS_TIGHT(ARG))
+
+IF EQUIP:ARG:衣装部位_上半身外衣_副
+    IF EQUIP:ARG:衣装部位_上半身外衣_副 != 衣装_上半身外衣_副_束缚装 && EQUIP:ARG:衣装部位_上半身外衣_副 != 衣装_上半身外衣_副_披风
+        RETURNF 0
+    ENDIF
+ENDIF
+
+SIF EQUIP:ARG:衣装部位_上半身外衣_主
+    RETURNF 0
+
+SIF EQUIP:ARG:衣装部位_上半身内衣_副
+    RETURNF 0
+
+IF EQUIP:ARG:衣装部位_上半身内衣_主
+    SIF EQUIP:ARG:衣装部位_上半身内衣_主 != 衣装_上半身内衣_主_露点文胸
+        RETURNF 0
+ENDIF
+
+SIF !EQUIP:ARG:衣装部位_连体外衣
+    RETURNF 1
+
+SIF EQUIP:ARG:衣装部位_连体外衣 == 衣装_连体外衣_玩偶
+    RETURNF 1
+
+SIF CLOTHES_ONEPIECE_IS_KIMONO(ARG)
+    RETURNF 1
+
+SIF CLOTHES_ONEPIECE_IS_TIGHT(ARG)
+    RETURNF 1
+
+RETURNF 0
+
 @INFO_确认角色状态(ARG)
 IF 下着可见判定(ARG)
 	IF !EQUIP:ARG:下半身内衣_主

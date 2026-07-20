@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SHOW_USERCOM
@@ -227,7 +227,7 @@ ELSEIF RESULT == 819
 		FLAG:图像_动画 = 0
 ELSEIF RESULT == 820 && CFLAG:うふふ && EQUIP:PLAYER:0
 	EQUIP:PLAYER:0 = 0
-	CALL CLOTHES_SETTING_TRAIN(PLAYER)
+	CALL CLOTHES_REFRESH_TEQUIP(PLAYER)
 	RETURN 1
 ELSEIF RESULT == 888
 	TFLAG:3 = 888

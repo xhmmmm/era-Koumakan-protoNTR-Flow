@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;訪問者移动
 ;引数…无
 ;戻り値…0:移动しない
@@ -46,7 +46,7 @@ IF 目的地
 					CFLAG:LOOP_CHR:うふふ = 0
 				ENDIF
 				CALL CLOTHES_RESET(LOOP_CHR)
-				CALL CLOTHES_SETTING_TRAIN(LOOP_CHR)
+				CALL CLOTHES_REFRESH_TEQUIP(LOOP_CHR)
 			ENDIF
 		NEXT
 	ELSE
