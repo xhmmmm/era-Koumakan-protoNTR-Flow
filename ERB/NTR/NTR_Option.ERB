@@ -25,7 +25,6 @@ ENDIF
 PRINTFORML [05] - 角色会怀上%NTR_NAME(0)%的孩子%"	" * 5%\@ GETBIT(FLAG:ＮＴＲパッチ設定,5) ? [是] # [否] \@
 PRINTFORML [06] - %NTR_NAME(0)%会把角色带回家（建议关闭）%"	" * (3 + (RESULT/2 == 2))%\@ GETBIT(FLAG:ＮＴＲパッチ設定,6) ? [是] # [否] \@
 PRINTFORML [07] - %NTR_NAME(0)%是否出现（建议打开）%"	" * (4 + (RESULT/2 == 2))%\@ GETBIT(FLAG:ＮＴＲパッチ設定,7) ? [是] # [否] \@
-;PRINTFORML [10] - 角色与%NTR_NAME(0)%相爱%"	" * 6%\@ FLAG:Flow版本 ? [是] # [否] \@
 PRINTFORML [24] - %NTR_NAME(0)%仅调教[恋慕]角色（建议打开）%"	" * 3%\@ GETBIT(FLAG:ＮＴＲパッチ設定,24) ? [是] # [否] \@
 PRINTFORML [25] - 处女肛门調教（建议关闭）%"	" * 5%\@ GETBIT(FLAG:ＮＴＲパッチ設定,25) ? [是] # [否] \@
 IF !FLAG:真实模式
@@ -206,31 +205,6 @@ ELSEIF RESULT == 7
 	ELSE
 		GOTO INPUT_LOOP_NTR_OPTION_7
 	ENDIF
-ELSEIF RESULT == 10
-	PRINTFORML 此开关使得居民在NTR后依然与主人公保持「恋人」关系
-	PRINTFORML 并且尽可能地隐藏与%NTR_NAME(0)%关系，即使已经不再爱%CALLNAME:MASTER%。
-	PRINTFORML 这个开关也让一些已经移除的内容不再出现，为了不出BUG，建议不要关闭。
-	PRINTFORML [0] 打开
-	PRINTFORML [1] 关闭
-	$INPUT_LOOP_NTR_OPTION_10
-	INPUT
-	IF RESULT == 0
-		FLAG:Flow版本 = 1
-		;清除不兼容的设置
-		CLEARBIT FLAG:ＮＴＲパッチ設定,8
-		CLEARBIT FLAG:ＮＴＲパッチ設定,9
-		CLEARBIT FLAG:ＮＴＲパッチ設定,25
-		CLEARBIT FLAG:ＮＴＲパッチ設定,26
-		CLEARBIT FLAG:ＮＴＲパッチ設定,30
-		PRINTFORMW 已经打开
-		GOTO INPUT_LOOP_NTR_OPTION_TOP
-	ELSEIF RESULT == 1
-		FLAG:Flow版本 = 0
-		PRINTFORMW 已经关闭
-		GOTO INPUT_LOOP_NTR_OPTION_TOP
-	ELSE
-		GOTO INPUT_LOOP_NTR_OPTION_10
-	ENDIF
 ELSEIF RESULT == 24
 	CLEARLINE 10000
 	PRINTFORML ♡NTR恋慕限定设定-------------------------------------------------------------------------------❤♪~
@@ -298,25 +272,26 @@ ELSEIF RESULT == 27
 	ELSE
 		GOTO INPUT_LOOP_NTR_OPTION_27
 	ENDIF
-	;浮気発覚回避逃避
-ELSEIF RESULT == 30 && !FLAG:Flow版本
-	CLEARLINE 10000
-	PRINTFORML 住人会因为害怕发现外遇而逃跑吗？
-	PRINTFORML [0] 打开
-	PRINTFORML [1] 关闭
-	$INPUT_LOOP_NTR_OPTION_30
-	INPUT
-	IF RESULT == 0
-		SETBIT FLAG:ＮＴＲパッチ設定,30
-		PRINTFORMW 会逃
-		GOTO INPUT_LOOP_NTR_OPTION_TOP
-	ELSEIF RESULT == 1
-		CLEARBIT FLAG:ＮＴＲパッチ設定,30
-		PRINTFORMW 不会逃
-		GOTO INPUT_LOOP_NTR_OPTION_TOP
-	ELSE
-		GOTO INPUT_LOOP_NTR_OPTION_30
-	ENDIF
+;浮気発覚回避逃避
+;保留是为了理解“ＮＴＲパッチ設定”是干什么的，防止以后全部忘了
+; ELSEIF RESULT == 30
+; 	CLEARLINE 10000
+; 	PRINTFORML 住人会因为害怕发现外遇而逃跑吗？
+; 	PRINTFORML [0] 打开
+; 	PRINTFORML [1] 关闭
+; 	$INPUT_LOOP_NTR_OPTION_30
+; 	INPUT
+; 	IF RESULT == 0
+; 		SETBIT FLAG:ＮＴＲパッチ設定,30
+; 		PRINTFORMW 会逃
+; 		GOTO INPUT_LOOP_NTR_OPTION_TOP
+; 	ELSEIF RESULT == 1
+; 		CLEARBIT FLAG:ＮＴＲパッチ設定,30
+; 		PRINTFORMW 不会逃
+; 		GOTO INPUT_LOOP_NTR_OPTION_TOP
+; 	ELSE
+; 		GOTO INPUT_LOOP_NTR_OPTION_30
+; 	ENDIF
 	;訪問者居場所筒抜け
 ELSEIF RESULT == 31
 	CLEARLINE 10000

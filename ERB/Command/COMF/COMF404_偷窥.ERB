@@ -3,12 +3,8 @@
 ;-------------------------------------------------
 @COM404
 TFLAG:現在覗いている場所 = 0
-IF FLAG:Flow版本
-	;todo 偷窥入口
-	CALL COM404_01_TargetSelect()
-ELSE
-	CALL COM404_01_TargetSelect()
-ENDIF
+;todo 偷窥入口，应该制作Flow版本的
+CALL COM404_01_TargetSelect()
 IF 0 == RESULT
 	; やっぱやめた
 	RETURN 0

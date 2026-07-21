@@ -477,8 +477,8 @@ SIF CFLAG:MASTER:当前位置 != CFLAG:角色:当前位置
 #DIM 同席人数
 #DIM 气氛上限値
 气氛上限値 = 0
-;訪問者と住民が二人きりまたは主人空気化（屈服度高いとき？）
-IF 同席人数 == 1 || (!FLAG:Flow版本 && (同席人数 == 2 && CFLAG:MASTER:当前位置 == FLAG:访问者当前位置 && IS_AIR_MASTER(角色)))
+;访问者和角色两人独处的时候
+IF 同席人数 == 1
 	SIF NTR_CHK_FAVORABLY(角色, FAV_接吻程度)
 		气氛上限値 += 1
 	;光明正大地していない場所
@@ -612,42 +612,27 @@ FOR LOOP_CHR,1,CHARANUM
 	;訪問者の影響
 	IF CFLAG:LOOP_CHR:当前位置 == FLAG:访问者当前位置
 		IF CFLAG:LOOP_CHR:同行 
-			;NTRなら即座に同行解除
-			IF !FLAG:Flow版本 && TALENT:LOOP_CHR:NTR
-				CFLAG:LOOP_CHR:同行 = 0
+			IF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_主人より高い)
+				CFLAG:LOOP_CHR:同行 = MAX(CFLAG:LOOP_CHR:同行 - 経過時間 * 2, 0)
+			ELSE
+				CFLAG:LOOP_CHR:同行 = MAX(CFLAG:LOOP_CHR:同行 - 経過時間, 0)
+			ENDIF
+			IF CFLAG:LOOP_CHR:同行 == 0
 				SIF FLAG:口上颜色
 					CALL KOJO_COLOR(LOOP_CHR)
+				;別れる前に一声
 				TRYCALLLIST
 					FUNC NTR_KOJO_K{LOOP_CHR}_21(LOOP_CHR)
 					FUNC NTR_KOJO_K_21(LOOP_CHR)
 				ENDFUNC
 				RESETCOLOR
-				PRINTFORMW %CALLNAME:LOOP_CHR%离开了%CALLNAME:MASTER%朝着%NTR_NAME(0)%的方向走去了。
-			ELSE
-				;ただいるだけで影響あり
-				;寝取られそうだと影響大
 				IF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_主人より高い)
-					CFLAG:LOOP_CHR:同行 = MAX(CFLAG:LOOP_CHR:同行 - 経過時間 * 2, 0)
+					PRINTFORMW %CALLNAME:LOOP_CHR%离开了%CALLNAME:MASTER%朝着%NTR_NAME(0)%的方向走去了。
 				ELSE
-					CFLAG:LOOP_CHR:同行 = MAX(CFLAG:LOOP_CHR:同行 - 経過時間, 0)
+					PRINTFORMW %CALLNAME:LOOP_CHR%开来了%CALLNAME:MASTER%。
 				ENDIF
-				IF CFLAG:LOOP_CHR:同行 == 0
-					SIF FLAG:口上颜色
-						CALL KOJO_COLOR(LOOP_CHR)
-					;別れる前に一声
-					TRYCALLLIST
-						FUNC NTR_KOJO_K{LOOP_CHR}_21(LOOP_CHR)
-						FUNC NTR_KOJO_K_21(LOOP_CHR)
-					ENDFUNC
-					RESETCOLOR
-					IF NTR_CHK_FAVORABLY(LOOP_CHR, FAV_主人より高い)
-						PRINTFORMW %CALLNAME:LOOP_CHR%离开了%CALLNAME:MASTER%朝着%NTR_NAME(0)%的方向走去了。
-					ELSE
-						PRINTFORMW %CALLNAME:LOOP_CHR%开来了%CALLNAME:MASTER%。
-					ENDIF
-				ELSE
-					PRINTFORMW %CALLNAME:LOOP_CHR%好像很在意%NTR_NAME(0)%。
-				ENDIF
+			ELSE
+				PRINTFORMW %CALLNAME:LOOP_CHR%好像很在意%NTR_NAME(0)%。
 			ENDIF
 		ENDIF
 	ENDIF
@@ -1009,45 +994,6 @@ ELSE
 	ENDSELECT
 ENDIF
 RETURN 1
-
-;-------------------------------------------------------------------------------
-;主人空気化判定
-;戻り値…0=空気じゃない 1=キス許容 2=おさわり許容 3=侍奉許容 4=セックス許容
-@IS_AIR_MASTER(角色)
-#FUNCTION
-#DIM 角色
-#DIM 結果
-SIF FLAG:Flow版本
-	RETURNF 0
-結果 = 0
-;キス許容
-SIF CFLAG:MASTER:屈服度 > 200
-	結果 = 1
-;おさわり許容
-SIF CFLAG:MASTER:屈服度 > 400
-	結果 = 2
-;侍奉許容
-SIF CFLAG:MASTER:屈服度 > 600
-	結果 = 3
-;セックス許容
-SIF CFLAG:MASTER:屈服度 > 1000
-	結果 = 4
-;住人による補正
-IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
-	結果 += 2
-	;寝とられ寸前
-ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
-	結果 += 2
-	;寝とられそう
-ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
-	結果 += 1
-	;恋慕で主人への好意度高い
-ELSEIF CFLAG:角色:屈服度 < CFLAG:角色:好感度 && TALENT:角色:恋慕
-	結果 -= 1
-ENDIF
-;デバッグ用
-;結果 = 4
-RETURNF 結果
 
 ;-------------------------------------------------------------------------------
 ;NTR性交時体位名取得

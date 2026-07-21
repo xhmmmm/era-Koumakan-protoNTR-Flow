@@ -79,10 +79,7 @@ ENDIF
 ;経験:侍奉快乐经验が30以上
 ;能力:顺从が3以上
 IF CFLAG:角色:好感度 > 閾値 && EXP:角色:侍奉快乐经验 >= 30 && ABL:角色:顺从 >= 3 && !TALENT:角色:恋慕
-	SIF FLAG:Flow版本 && TALENT:角色:NTR && TALENT:角色:恋人
-		RETURN 0
-	;两人都被NTR则无法取得恋慕
-	SIF TALENT:角色:NTR && TALENT:MASTER:NTR
+	SIF TALENT:角色:NTR && TALENT:角色:恋人
 		RETURN 0
 	PRINTFORML %CALLNAME:角色%似乎对与%CALLNAME:MASTER%一起度过的这段时光感到很高兴
 	PRINTFORML %CALLNAME:角色%对%CALLNAME:MASTER%的[恋慕]获得了
@@ -160,27 +157,13 @@ RETURN 0
 #DIM GET_NTR	; 寝取られフラグ
 
 GET_NTR = 0
-IF !FLAG:Flow版本
-	;浮気癖があると寝取られやすくなる
-	;浮気を公認している場合は寝取られにくくなる
-	IF TALENT:角色:亲爱
-		;亲爱があれば寝取られない
-		GET_NTR = 0
-	ELSEIF TALENT:角色:NTR
-		;寝取られている場合はそれ以上寝取られない（今のところは）
-		GET_NTR = 0
-	ELSE
-		;通常は、好感度が1000未満で屈服度が2000以上、さらに屈服度が好感度より高くなければダメ
-		GET_NTR = CFLAG:角色:好感度 < 500 && CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 5000
-	ENDIF
-ELSE
-	GET_NTR = CFLAG:角色:好感度 < 500 && CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 12000
-	SIF !TALENT:角色:恋慕 || (TALENT:角色:NTR && TALENT:角色:恋人)
-		GET_NTR = 0
-ENDIF
+
+GET_NTR = CFLAG:角色:好感度 < 500 && CFLAG:角色:屈服度 > CFLAG:角色:好感度 && CFLAG:角色:屈服度 > 12000
+SIF !TALENT:角色:恋慕 || (TALENT:角色:NTR && TALENT:角色:恋人)
+	GET_NTR = 0
 
 IF GET_NTR
-	IF FLAG:Flow版本
+	IF GET_NTR
 		;todo 加口上
 		PRINTFORML 在%NTR_NAME(0)%的调教下，%CALLNAME:角色%体会到了身为雌性真正的快乐
 		PRINTFORMW %CALLNAME:角色%彻底失去了对%CALLNAME:MASTER%的[恋慕]
@@ -192,6 +175,7 @@ IF GET_NTR
 		TALENT:角色:恋慕 = 0
 		TALENT:角色:NTR = 1
 		EXP:角色:NTR陷落经验 ++
+	;下面是原版的，先留着
 	ELSE
 		SIF CFLAG:角色:NTR陥落イベントフラグ == 1 && TALENT:角色:恋人
 			TRYCALL NTR陥落イベント, 角色

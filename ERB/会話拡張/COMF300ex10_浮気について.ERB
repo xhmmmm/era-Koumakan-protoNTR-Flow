@@ -7,24 +7,7 @@
 
 角色 = TARGET:0
 RESULTS:0 = %"[10]-关于"+CALLNAME:角色+"出轨的事"%
-IF FLAG:Flow版本
-	;todo
-	RETURN 0
-ELSEIF TCVAR:角色:会话不能
-	RETURN 0
-ELSE
-	IF CFLAG:角色:浮気证据有效 > 0
-		;ELSEIF STRCOUNT(SAVESTR:10,@"%CALLNAME:角色+"15PH/"%") + STRCOUNT(SAVESTR:10,@"%CALLNAME:角色+"16PH/"%")
-		;浮気の証拠がある
-		RETURN 1
-	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_主人より高い) == 0 && NTR_CHK_FAVORABLY(角色, FAV_寝取られそう) == 0 && NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) == 0
-		RETURN 0
-	ELSEIF TALENT:角色:恋慕 == 0
-		RETURN 0
-	ELSE
-		RETURN 1
-	ENDIF
-ENDIF
+;先删除，不准执行
 RETURN 0
 
 ;-------------------------------------------------------------------------------
@@ -58,12 +41,10 @@ ENDIF
 ;-----------------------------------------------------------------------------
 EXP:MASTER:会话经验 ++
 TFLAG:コマンド成功度 = 0
-IF FLAG:Flow版本
-	;todo
-	PRINTFORML 这个内容已经删了
-	; どちらの場合もここでフラグを消す。
-	CFLAG:角色:NTR处女丧失 = 0
-ENDIF
+;todo
+PRINTFORML 这个内容已经删了
+; どちらの場合もここでフラグを消す。
+CFLAG:角色:NTR处女丧失 = 0
 RETURN RESULT:0
 RETURN 0
 

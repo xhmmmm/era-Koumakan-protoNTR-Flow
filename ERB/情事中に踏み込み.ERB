@@ -12,7 +12,7 @@ CFLAG:角色:同席目撃時行為 = MAX(CFLAG:角色:同席目撃時行為, FLA
 IF CFLAG:角色:覗き発覚回数 > 0 && CFLAG:角色:覗き発覚時行為 >= NTR_行为_Ｖ正常位
 	PRINTFORML 【%GetPlaceName(FLAG:21)%】に入ると先程見ていた通り%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
 	;継続
-	;IF RAND:3 == 0 || IS_AIR_MASTER(角色) >= 4
+	;IF RAND:3 == 0 || （删除了一个函数，作用是判断角色能不能当苦主不存在直接和访问者啪啪啪）
 	;NTR or 寝取られ寸前 or 寝取られそう
 	;TRYCALLLIST
 	;	FUNC NTR_KOJO_K{角色}_20_1(角色)
@@ -34,7 +34,7 @@ IF CFLAG:角色:覗き発覚回数 > 0 && CFLAG:角色:覗き発覚時行為 >= 
 ELSE
 	PRINTFORML なんと、%CALLNAME:MASTER%が【%GetPlaceName(FLAG:21)%】に入ると%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
 	;継続
-	IF RAND:3 == 0 || IS_AIR_MASTER(角色) >= 4
+	IF RAND:3 == 0
 		;NTR or 寝取られ寸前 or 寝取られそう
 		TRYCALLLIST
 			FUNC NTR_KOJO_K{角色}_20_2(角色)

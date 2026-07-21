@@ -45,9 +45,6 @@ IF CFLAG:加害者:当前位置 == FLAG:访问者当前位置
 	;NTRだとカウンター抑制
 	SIF TALENT:加害者:NTR
 		RETURN 0
-	;主人が空気だと抑制
-	SIF IS_AIR_MASTER(加害者)
-		RETURN 0
 	;訪問者の方が影響が大きいとある程度抑制
 	SIF CFLAG:加害者:屈服度 > CFLAG:加害者:好感度 && RAND:2
 		RETURN 0

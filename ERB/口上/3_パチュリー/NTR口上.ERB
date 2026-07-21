@@ -1161,10 +1161,8 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
 	PRINTFORML 「嗯呼...又大又迷人...啾...」
 	PRINTFORML %CALLNAME:角色%妖娆地舔了舔嘴唇，爱怜地将嘴唇凑近了%NTR_NAME(0)%的东西。
-	IF FLAG:Flow版本
-		PRINTFORML （和主人一比，%CALLNAME:MASTER%的简直不值一提呢...啊...好棒...）
-		PRINTFORML （就是这个...把我给...%UNICODE(0x2665)%）
-	ENDIF
+	PRINTFORML （和主人一比，%CALLNAME:MASTER%的简直不值一提呢...啊...好棒...）
+	PRINTFORML （就是这个...把我给...%UNICODE(0x2665)%）
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
@@ -2640,24 +2638,16 @@ IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 		PRINTFORML 从用如野兽一般的姿态献出处女的%CALLNAME:角色%的秘处零星飘落着%NTR_NAME(0)%的精液。
 		;非处女
 	ELSE
-		IF FLAG:Flow版本
-			PRINTDATA
-				DATAFORM 「啊哈啊嗯...在...里面...充满了...呼呼...
-				DATAFORM 「啊啊嗯嗯...里面...好热...呜呼呼...
-				DATAFORM 「啊啊嗯，里面...好满...呼呼...
-			ENDDATA
-			PRINTDATAL
-				DATAFORM 怀上了的话，可要负起责任哦...？」
-				DATAFORM 有那么想让我怀孕吗？真是的...想要的话无论多少都会为你生的哦%UNICODE(0x2665)%」
-				DATAFORM 真是的，要是怀上了的话，要怎么糊弄过去啊...？」
-			ENDDATA
-		ELSE
-			PRINTDATAL
-				DATAFORM 「啊哈啊嗯...在...里面...充满了...呼呼...」
-				DATAFORM 「啊啊嗯嗯...里面...好热...呜呼呼...」
-				DATAFORM 「啊啊嗯，里面...好满...呼呼...」
-			ENDDATA
-		ENDIF
+		PRINTDATA
+			DATAFORM 「啊哈啊嗯...在...里面...充满了...呼呼...
+			DATAFORM 「啊啊嗯嗯...里面...好热...呜呼呼...
+			DATAFORM 「啊啊嗯，里面...好满...呼呼...
+		ENDDATA
+		PRINTDATAL
+			DATAFORM 怀上了的话，可要负起责任哦...？」
+			DATAFORM 有那么想让我怀孕吗？真是的...想要的话无论多少都会为你生的哦%UNICODE(0x2665)%」
+			DATAFORM 真是的，要是怀上了的话，要怎么糊弄过去啊...？」
+		ENDDATA
 		PRINTFORML 感受到兽欲的结晶涌入胎内，%CALLNAME:角色%感受着那份灼热露出了出神的微笑。
 		PRINTFORML 少女皙白的屁股上，留下了被不断侵犯时抓握而成的手印，与股间滴落的点点精液一同成为了凌辱的烙印。
 	ENDIF
