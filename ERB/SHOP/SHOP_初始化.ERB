@@ -1,6 +1,6 @@
-
-@追加パッチVerUP
-IF FLAG:パッチ初期設定フラグ == 0
+;在第一次进入SHOP的时候进行初始化
+@SHOP_初始化
+IF FLAG:初始化标志 == 0
 	;子供の親をチェック
 	FOR LOCAL, 0, CHARANUM
 		IF NO:LOCAL == 148 || NO:LOCAL == 149
@@ -24,10 +24,10 @@ IF FLAG:パッチ初期設定フラグ == 0
 			;このパッチをつけるまでに里子に出した子は含まれない
 		ENDIF
 	NEXT
-	FLAG:パッチ初期設定フラグ = 1
+	FLAG:初始化标志 = 1
 ENDIF
 
-IF FLAG:パッチ初期設定フラグ <= 1
+IF FLAG:初始化标志 <= 1
 
 	FOR LOCAL, 0, CHARANUM
 		;妊娠してない且つ診療所にいるなら開始位置に戻す
@@ -35,10 +35,10 @@ IF FLAG:パッチ初期設定フラグ <= 1
 			CFLAG:LOCAL:当前位置 = CFLAG:LOCAL:311
 		ENDIF
 	NEXT
-	FLAG:パッチ初期設定フラグ = 2
+	FLAG:初始化标志 = 2
 ENDIF
 
-IF FLAG:パッチ初期設定フラグ <= 2
+IF FLAG:初始化标志 <= 2
 	;生理周期ランダム設定
 	FOR LOCAL, 0, CHARANUM
 		;男(ふたなり以外)はスキップ
@@ -46,18 +46,18 @@ IF FLAG:パッチ初期設定フラグ <= 2
 			CONTINUE
 		CFLAG:LOCAL:生理周期 = RAND:10
 	NEXT
-	FLAG:パッチ初期設定フラグ = 3
+	FLAG:初始化标志 = 3
 ENDIF
 
-IF FLAG:パッチ初期設定フラグ <= 3
+IF FLAG:初始化标志 <= 3
 	;子宫内体积設定(男も一応含む)
 	FOR LOCAL, 0, CHARANUM
 		CALL 子宫内体积設定(LOCAL)
 	NEXT
-	FLAG:パッチ初期設定フラグ  = 4
+	FLAG:初始化标志  = 4
 ENDIF
 
-IF FLAG:パッチ初期設定フラグ <= 4
+IF FLAG:初始化标志 <= 4
 	;相性０を１００にする
 	FOR LOCAL, 0, CHARANUM
 		FOR LOCAL:1, 0, CHARANUM
@@ -73,13 +73,13 @@ IF FLAG:パッチ初期設定フラグ <= 4
 	SETCOLOR 200, 200, 0
 	PRINTL -生理～出産まわりパッチ初期処理完了-
 	RESETCOLOR
-	FLAG:パッチ初期設定フラグ  = 5
+	FLAG:初始化标志  = 5
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 5
+IF FLAG:初始化标志 <= 5
 	CALL 日期_日期初始化
-	FLAG:パッチ初期設定フラグ  = 6
+	FLAG:初始化标志  = 6
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 6
+IF FLAG:初始化标志 <= 6
 	CALL 服装_初始化_角色睡衣自定义
 	FOR LOCAL, 11, CHARANUM
 		IF NO:LOCAL == 148
@@ -96,13 +96,13 @@ IF FLAG:パッチ初期設定フラグ <= 6
 			ENDIF
 		ENDIF
 	NEXT
-	FLAG:パッチ初期設定フラグ  = 7
+	FLAG:初始化标志  = 7
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 7
+IF FLAG:初始化标志 <= 7
 	CALL 気温耐性取得
-	FLAG:パッチ初期設定フラグ  = 8
+	FLAG:初始化标志  = 8
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 8
+IF FLAG:初始化标志 <= 8
 	FOR LOCAL,0,CHARANUM
 		CALL 体詳細初期設定(LOCAL)
 	NEXT
@@ -122,13 +122,13 @@ IF FLAG:パッチ初期設定フラグ <= 8
 			ENDIF
 		NEXT
 	ENDIF
-	FLAG:パッチ初期設定フラグ  = 9
+	FLAG:初始化标志  = 9
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 9
+IF FLAG:初始化标志 <= 9
 	CALL 服装_初始化_角色服装自定义
-	FLAG:パッチ初期設定フラグ = 10
+	FLAG:初始化标志 = 10
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 10
+IF FLAG:初始化标志 <= 10
 	;既に子供がいる場合の処理
 	IF CHARANUM > 开局角色数量
 		FOR LOCAL, 开局角色数量, CHARANUM
@@ -137,10 +137,10 @@ IF FLAG:パッチ初期設定フラグ <= 10
 				TALENT:LOCAL:访问者的血统 = 1
 		NEXT
 	ENDIF
-	FLAG:パッチ初期設定フラグ = 11
+	FLAG:初始化标志 = 11
 ENDIF
 
-IF FLAG:パッチ初期設定フラグ <= 13
+IF FLAG:初始化标志 <= 13
 	;子供の強制移动
 	FOR LOCAL, 开局角色数量, CHARANUM
 		;成人以外はスキップ
@@ -150,17 +150,17 @@ IF FLAG:パッチ初期設定フラグ <= 13
 		SIF CFLAG:LOCAL:子供訪問フラグ >= 0
 			CFLAG:LOCAL:当前位置 = 位置_里の住処
 	NEXT
-	FLAG:パッチ初期設定フラグ = 14
+	FLAG:初始化标志 = 14
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 14
+IF FLAG:初始化标志 <= 14
 	FOR LOCAL, 1, 开局角色数量
 		; 口上パターンが 0 であればキャラ番号に設定
 		SIF CFLAG:LOCAL:297 == 0
 			CFLAG:LOCAL:297 = LOCAL
 	NEXT
-	FLAG:パッチ初期設定フラグ = 15
+	FLAG:初始化标志 = 15
 ENDIF
-IF FLAG:パッチ初期設定フラグ <= 15
+IF FLAG:初始化标志 <= 15
 	;子供が先天的人妻だったら解除
 	;恋慕なしで人妻持ちだったら解除とします。
 	FOR LOCAL, 开局角色数量, CHARANUM
@@ -168,6 +168,6 @@ IF FLAG:パッチ初期設定フラグ <= 15
 			TALENT:LOCAL:人妻 = 0
 		ENDIF
 	NEXT
-	FLAG:パッチ初期設定フラグ = 16
+	FLAG:初始化标志 = 16
 ENDIF
 
