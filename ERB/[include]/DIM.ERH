@@ -145,8 +145,8 @@
 #DIM CONST 写真_NTR_Ｖ性爱     = 15
 #DIM CONST 写真_NTR_Ａ性爱     = 16
 #DIM CONST 写真_自慰               = 17
-#DIM CONST 写真_NTR_接触           = 18		; 住人からの身体摺り寄せ等の亲密な接触
-#DIM CONST 写真_NTR_抱擁           = 19		; 住人からの対面抱擁、背面抱擁
+#DIM CONST 写真_NTR_接触           = 18		; 角色からの身体摺り寄せ等の亲密な接触
+#DIM CONST 写真_NTR_抱擁           = 19		; 角色からの対面抱擁、背面抱擁
 
 #DIM CONST 写真詳細_なし           = 0
 #DIM CONST 写真詳細_おねだり       = 1
@@ -202,7 +202,7 @@
 #DIM CONST 部位_膣内 = 6
 #DIM CONST 部位_腸内 = 7
 
-;住人→あなたのカウンターセクハラ
+;角色→あなたのカウンターセクハラ
 #DIM CONST CNT_色っぽい仕草				= 10
 #DIM CONST CNT_見つめる					= 11
 #DIM CONST CNT_体を摺り寄せる			= 12

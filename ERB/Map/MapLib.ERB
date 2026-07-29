@@ -149,7 +149,7 @@ ENDIF
 #DIM 場所			; 場所コード
 #DIMS 対象変数		; 対象となる変数の名前
 #DIM 変数番号		; 変数の番号
-#DIM 睡眠SKIP		; 0:全員が対象　1:睡眠中の住人は対象外
+#DIM 睡眠SKIP		; 0:全員が対象　1:睡眠中の角色は対象外
 #DIM LOOP_CHR		; ループ変数
 #DIM RET_VAL		; 戻り値
 #DIM V_CMP			; 比較する値
@@ -271,7 +271,7 @@ RETURNF LOCAL:1
 @GET_N_IN_ROOM(ARG, ARG:1, ARG:2, ARG:3)
 #FUNCTION
 LOCAL:1 = 0
-;住人
+;角色
 FOR LOCAL, 0, CHARANUM
 	IF LOCAL != MASTER
 		SIF CFLAG:LOCAL:当前位置 == ARG

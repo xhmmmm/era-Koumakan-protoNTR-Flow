@@ -153,7 +153,7 @@ FOR LOOP_CHARA, 0, CHARANUM
 	IF (TCVAR:LOOP_CHARA >= CNT_キス && TCVAR:LOOP_CHARA <= CNT_対面抱擁) || TCVAR:LOOP_CHARA == CNT_胸を揉む || (TCVAR:LOOP_CHARA >= CNT_胸爱抚 && TCVAR:LOOP_CHARA <= CNT_ディープキス) || (TCVAR:LOOP_CHARA >= CNT_ぱふぱふ && TCVAR:LOOP_CHARA <= CNT_乳合わせ)
 		CALL ROOM_SMELL_CHARA_SUB(人物_玩家, LOOP_CHARA, ROOM_SMELL_VALUE(CFLAG:LOOP_CHARA:角色的气味_自己的气味), ROOM_SMELL_BIT(CFLAG:LOOP_CHARA:角色的气味_自己的气味))
 		CALL ROOM_SMELL_CHARA_SUB(LOOP_CHARA, 人物_玩家, ROOM_SMELL_VALUE(CFLAG:人物_玩家:角色的气味_自己的气味), ROOM_SMELL_BIT(CFLAG:人物_玩家:角色的气味_自己的气味))
-		;股間に触れたりするものもにおいをつける(においの移り先があなた→住人)
+		;股間に触れたりするものもにおいをつける(においの移り先があなた→角色)
 	ELSEIF TCVAR:LOOP_CHARA == CNT_股間をまさぐる || (TCVAR:LOOP_CHARA >= CNT_手淫 && TCVAR:LOOP_CHARA <= CNT_指挿入)
 		LOCAL:11 = 0
 		LOCAL:12 = 0
@@ -173,7 +173,7 @@ FOR LOOP_CHARA, 0, CHARANUM
 			ENDIF
 		ENDIF
 		CALL ROOM_SMELL_CHARA_SUB(LOOP_CHARA, 人物_玩家, LOCAL:11, LOCAL:12)
-		;股間に触れたりするものもにおいをつける(においの移り先が住人→あなた)
+		;股間に触れたりするものもにおいをつける(においの移り先が角色→あなた)
 	ELSEIF (TCVAR:LOOP_CHARA >= CNT_强制舔阴 && TCVAR:LOOP_CHARA <= CNT_舔肛侍奉) || TCVAR:LOOP_CHARA == CNT_タワシ洗い
 		LOCAL:11 = 0
 		LOCAL:12 = 0
@@ -284,8 +284,8 @@ FOR LOOP_CHARA, 0, CHARANUM
 	ENDIF
 
 	;訪問者関連の処理
-	;訪問者に住人のにおいがついている場合は1/3の強さになって伝染
-	;住人のにおいがついていない場合は訪問者のにおいを住人に植え付ける
+	;訪問者に角色のにおいがついている場合は1/3の強さになって伝染
+	;角色のにおいがついていない場合は訪問者のにおいを角色に植え付ける
 	IF CFLAG:LOOP_CHARA:333 >= NTR_行为_接吻 && CFLAG:LOOP_CHARA:333 <= NTR_行为_胸爱抚
 		CALL ROOM_SMELL_NTR_PET(LOOP_CHARA)
 	ELSEIF CFLAG:LOOP_CHARA:333 == NTR_行为_口交
@@ -296,7 +296,7 @@ FOR LOOP_CHARA, 0, CHARANUM
 NEXT
 
 ;コマンド実行系処理
-;爱抚系(においは住人→あなた)
+;爱抚系(においは角色→あなた)
 IF SELECTCOM <= 10 || SELECTCOM == 123 || (SELECTCOM >= 141 && SELECTCOM <= 144) || SELECTCOM == 503 || SELECTCOM == 514
 	LOCAL:11 = 0
 	LOCAL:12 = 0
@@ -316,7 +316,7 @@ IF SELECTCOM <= 10 || SELECTCOM == 123 || (SELECTCOM >= 141 && SELECTCOM <= 144)
 		ENDIF
 	ENDIF
 	CALL ROOM_SMELL_CHARA_SUB(人物_玩家, TARGET, LOCAL:11, LOCAL:12)
-	;侍奉系(においはあなた→住人)
+	;侍奉系(においはあなた→角色)
 ELSEIF (SELECTCOM >= 80 && SELECTCOM <= 91) || (SELECTCOM >= 95 && SELECTCOM <= 96) || SELECTCOM == 120 || SELECTCOM == 140 || SELECTCOM == 145 || SELECTCOM == 505 || SELECTCOM == 512 || SELECTCOM == 515 || SELECTCOM == 516 || (SELECTCOM >= 314 && SELECTCOM <= 316)
 	LOCAL:11 = 0
 	LOCAL:12 = 0
@@ -987,7 +987,7 @@ ELSE
 	CALL ROOM_SMELL_VISITER_SUB(ROOM_SMELL_WHOSE(ROOM_SMELL_CHARA_MOST(ARG)), ROOM_SMELL_VALUE(ROOM_SMELL_CHARA_MOST(ARG)), ROOM_SMELL_BIT(ROOM_SMELL_CHARA_MOST(ARG)))
 ENDIF
 
-;オーラルとは言ってもにおいが訪問者→住人の処理という事
+;オーラルとは言ってもにおいが訪問者→角色の処理という事
 @ROOM_SMELL_NTR_ORAL(ARG)
 IF ROOM_SMELL_WHOSE(FLAG:訪問者の他人のにおい) != 人物_訪問者
 	IF ROOM_SMELL_VALUE(FLAG:訪問者の他人のにおい) > においの強さ_訪問者の体臭 * 3 / 2

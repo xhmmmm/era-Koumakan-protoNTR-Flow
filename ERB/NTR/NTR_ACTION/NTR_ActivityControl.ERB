@@ -46,10 +46,10 @@ SELECTCASE 访问者行为
 		CFLAG:角色:NTR_CNT行为 = NTR_CNT_无行为
 	CASE NTR_MOOD_爱抚
 			; 行動選択→爱抚
-			;前回住人がNTRカウンターで胸を揉ませていた場合胸爱抚
+			;前回角色がNTRカウンターで胸を揉ませていた場合胸爱抚
 		IF CFLAG:角色:NTR_CNT行为 == NTR_CNT_揉胸
 			CALL NTR_BUST_PET(角色)
-				;前回住人がNTRカウンターで裙子の中身を見せていた場合爱抚
+				;前回角色がNTRカウンターで裙子の中身を見せていた場合爱抚
 		ELSEIF CFLAG:角色:NTR_CNT行为 == NTR_CNT_掀裙子看内裤
 			CALL NTR_PET(角色)
 				;その他
@@ -68,10 +68,10 @@ SELECTCASE 访问者行为
 		IF 密室度 != 3  && CFLAG:角色:当前位置 != 位置_红魔馆_仓库
 			CALL VISITOR_GOWITH_ROOM(角色)
 		ENDIF
-			;前回住人がNTRカウンターで股間をまさぐっていた場合口交
+			;前回角色がNTRカウンターで股間をまさぐっていた場合口交
 		IF CFLAG:角色:NTR_CNT行为 == NTR_CNT_揉搓股间
 			CALL NTR_FELLATIO(角色)
-				;前回住人がNTRカウンターでディープキスした場合口交か69
+				;前回角色がNTRカウンターでディープキスした場合口交か69
 		ELSEIF CFLAG:角色:NTR_CNT行为 == NTR_CNT_深吻
 			IF RAND:2
 				CALL NTR_FELLATIO(角色)

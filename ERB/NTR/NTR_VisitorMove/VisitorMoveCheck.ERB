@@ -4,7 +4,7 @@
 @CHK_VISITOR_MOVE
 #DIM RET_MOVE
 #DIM LOOP_CHR
-#DIM 睡眠同室	; 睡眠中の住人と同室 0:睡眠中の住人と同室ではない
+#DIM 睡眠同室	; 睡眠中の角色と同室 0:睡眠中の角色と同室ではない
 #DIM 滞在フラグ	; 1:滞在 他:移动
 #DIM 同室人数 ; 是否和角色独处
 #DIM 同室清醒非NTR人数
@@ -116,7 +116,7 @@ ELSEIF RAND:MOVE_PROB_DENO > TIME_PROGRESS(TFLAG:300)
 	RET_MOVE = 0
 ENDIF
 
-;睡眠中の住人と同室であれば睡姦する可能性
+;睡眠中の角色と同室であれば睡姦する可能性
 SIF 睡眠同室 && 同室清醒非NTR人数 == 0
 	RET_MOVE = 0
 RETURN RET_MOVE

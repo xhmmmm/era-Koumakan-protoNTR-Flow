@@ -708,7 +708,7 @@ IF CFLAG:角色:精液残留中 && !CFLAG:角色:睡眠
 			;ターゲットと訪問者が一緒、同じ場所に2人以上
 			ELSEIF FLAG:访问者当前位置 == CFLAG:角色:当前位置 && GET_N_WITH_VISITER(角色) > 1
 				CALL CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤)
-			;あなたと訪問者が居ない、他の住人が居る
+			;あなたと訪問者が居ない、他の角色が居る
 			ELSEIF GET_N_WITH_VISITER(角色) > 1
 				CALL CHK_SEMEN_STAY_WITH_OTHER(角色)
 			;誰も居ない
@@ -864,7 +864,7 @@ RETURN
 
 ;------------------------------------------------------------
 ;精液残留中チェック
-;ターゲットと訪問者と他の住人が一緒の時の処理。
+;ターゲットと訪問者と他の角色が一緒の時の処理。
 @CHK_SEMEN_STAY_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤)
 #DIM 角色
 #DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
@@ -891,7 +891,7 @@ RETURN
 
 ;------------------------------------------------------------
 ;精液残留中チェック
-;ターゲットと他の住人が一緒の時の処理。
+;ターゲットと他の角色が一緒の時の処理。
 @CHK_SEMEN_STAY_WITH_OTHER(角色)
 #DIM 角色
 
@@ -944,14 +944,14 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;ターゲット(訪問者・あなた以外)と訪問者が一緒、同じ場所に(あなたを含み、訪問者を除いて)1人
-@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤, 住人)
+@CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤, 角色)
 #DIM 角色
 #DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
-#DIM 住人
+#DIM 角色
 
 PRINTFORML 发现%NTR_NAME(0)%要求自己收集的精液正不停溢出，%CALLNAME:角色%有些慌张地捂住了%SHOW_BOTTOM(角色,1)%的下腹部
-PRINTFORML 满脸通红明显动摇的样子让%CALLNAME:住人%看见了。
-PRINTFORML %CALLNAME:住人%有些担心地询问、%CALLNAME:角色%红着耳朵低头一言不发。
+PRINTFORML 满脸通红明显动摇的样子让%CALLNAME:角色%看见了。
+PRINTFORML %CALLNAME:角色%有些担心地询问、%CALLNAME:角色%红着耳朵低头一言不发。
 IF CFLAG:角色:射精者V == 人物_訪問者
 	IF RAND:2 == 0
 		PRINTFORMW 已经离开的%NTR_NAME(0)%远远看到那个状况，露出了暧昧的笑容。
@@ -964,17 +964,17 @@ RETURN
 ;------------------------------------------------------------
 ;精液残留中チェック（角色==あなた)
 ;ターゲット(訪問者・あなた以外)と一緒、同じ場所に(あなたを含み、訪問者を除いて)1人
-@CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, 是否没穿内裤, 住人)
+@CHK_SEMEN_STAY_MASTER_WITH_OTHER(角色, 是否没穿内裤, 角色)
 #DIM 角色
 #DIM 是否没穿内裤	; 1:是否没穿内裤 0:はいてる
-#DIM 住人
+#DIM 角色
 
 IF 是否没穿内裤 != 0
-	PRINTFORML 大概是被%NTR_NAME(0)%注入自己体内的精液滴落的声音吸引、%CALLNAME:住人%向这边看了过来
+	PRINTFORML 大概是被%NTR_NAME(0)%注入自己体内的精液滴落的声音吸引、%CALLNAME:角色%向这边看了过来
 	PRINTFORMW %CALLNAME:角色%脸颊滚烫、悄悄地移动身形挡住了地上的液体。
 ELSE
 	PRINTFORML 发现%NTR_NAME(0)%要求自己收集的精液正不停溢出，%CALLNAME:角色%有些慌张地捂住了%SHOW_BOTTOM(角色,1)%的下腹部
-	PRINTFORMW 满脸通红明显动摇的样子让%CALLNAME:住人%看见了。
+	PRINTFORMW 满脸通红明显动摇的样子让%CALLNAME:角色%看见了。
 ENDIF
 RETURN
 

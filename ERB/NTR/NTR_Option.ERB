@@ -168,7 +168,7 @@ ELSEIF RESULT == 5
 	ENDIF
 ELSEIF RESULT == 6
 	CLEARLINE 10000
-	PRINTFORML 允许%NTR_NAME(0)%把住人带回家吗？
+	PRINTFORML 允许%NTR_NAME(0)%把角色带回家吗？
 	PRINTFORML [0] 打开
 	PRINTFORML [1] 关闭
 	$INPUT_LOOP_NTR_OPTION_6
@@ -276,7 +276,7 @@ ELSEIF RESULT == 27
 ;保留是为了理解“ＮＴＲパッチ設定”是干什么的，防止以后全部忘了
 ; ELSEIF RESULT == 30
 ; 	CLEARLINE 10000
-; 	PRINTFORML 住人会因为害怕发现外遇而逃跑吗？
+; 	PRINTFORML 角色会因为害怕发现外遇而逃跑吗？
 ; 	PRINTFORML [0] 打开
 ; 	PRINTFORML [1] 关闭
 ; 	$INPUT_LOOP_NTR_OPTION_30
@@ -451,7 +451,7 @@ ELSE
 ENDIF
 
 ;-------------------------------------------------------------------------------
-;恋慕つき住人のみ口説くオプション設定状態
+;恋慕つき角色のみ口説くオプション設定状態
 ;　戻り値:0:关闭 1:打开
 @IS_NTR_ATTACK_LOVER_ONLY
 #FUNCTION

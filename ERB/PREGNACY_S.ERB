@@ -55,11 +55,11 @@ IF 父親 != MASTER
 			他の男 = %"他の男"%
 	ENDSELECT
 ENDIF
-;恋慕住人、父親がMASTER
+;恋慕角色、父親がMASTER
 IF TALENT:角色:恋慕 && 父親 == MASTER
 	PRINTFORML %CALLNAME:角色%は頬を染め%CALLNAME:MASTER%の子を宿したことを伝えてきた。
 ENDIF
-;恋慕住人、父親が訪問者、誰か
+;恋慕角色、父親が訪問者、誰か
 IF TALENT:角色:恋慕 && 父親 > 900 && 父親 <= 1000
 	IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		PRINTFORML %CALLNAME:角色%は頬を染め%他の男%の子を宿したことを伝えてきた。
@@ -72,7 +72,7 @@ IF TALENT:角色:恋慕 && 父親 > 900 && 父親 <= 1000
 		PRINTFORML 泣き崩れる%CALLNAME:角色%を支えながら、%CALLNAME:MASTER%は子供に罪はないと諭すことしかできなかった。
 	ENDIF
 ENDIF
-;恋慕住人、父親が不明　
+;恋慕角色、父親が不明　
 IF TALENT:角色:恋慕 && 父親 > 1000
 	; MASTERが阴茎持ちでないまたは童贞（要は父親ではない）
 	IF !HAS_PENIS(MASTER) || IS_DOUTEI(MASTER)
@@ -186,7 +186,7 @@ TRYCALL 生まれる人数, 角色
 
 IF (最大角色数量 > (CHARANUM+CFLAG:角色:出産数))
 	;上限を超えていなければ入力
-	;子供を住人として追加するか里子に出すかチェック
+	;子供を角色として追加するか里子に出すかチェック
 	里子CHK = -1
 	PRINTFORML %CALLNAME:角色%の子供が産まれそうです。
 	PRINTFORML %CALLNAME:角色%の子供を里子に出しますか？

@@ -203,7 +203,7 @@ SELECTCASE 自慰中に求めた名前
 ENDSELECT
 RETURN 1
 
-;覗いた先に訪問者と住人がいた場合の処理
+;覗いた先に訪問者と角色がいた場合の処理
 ;現状は１対１でないと詳細はわからないものとする。
 ;ハーレム状態でも覗けるべきか。
 ;@RETURN 0:表示なし　1:表示あり
@@ -222,7 +222,7 @@ IF FLAG:访问者当前位置 != targetArea
 	RETURN 0
 ENDIF
 
-; 訪問者と同じ場所にいる住人の人数を数える
+; 訪問者と同じ場所にいる角色の人数を数える
 CNT_CHR = 0
 FOR LOOP_CHR, 1, CHARANUM
 	IF CFLAG:LOOP_CHR:当前位置 == targetArea
@@ -231,12 +231,12 @@ FOR LOOP_CHR, 1, CHARANUM
 NEXT
 
 IF CNT_CHR == 0
-	;同じ場所にいる住人が０人の場合何もなし
+	;同じ場所にいる角色が０人の場合何もなし
 	RETURN 0
 ENDIF
 
 IF CNT_CHR == 1
-	;同じ場所にいる住人が１人の場合詳細を覗ける
+	;同じ場所にいる角色が１人の場合詳細を覗ける
 	FOR LOOP_CHR, 1, CHARANUM
 		IF CFLAG:LOOP_CHR:当前位置 == targetArea
 			訪問者との描写 += "【" + GetPlaceName(targetArea) + "】"
@@ -252,7 +252,7 @@ IF CNT_CHR == 1
 		ENDIF
 	NEXT
 ELSE
-	;同じ場所にいる住人が２人以上の場合概略を覗ける。覗きバレ見せつけなし
+	;同じ場所にいる角色が２人以上の場合概略を覗ける。覗きバレ見せつけなし
 	FOR LOOP_CHR,1,CHARANUM
 		IF CFLAG:LOOP_CHR:当前位置 == targetArea && !CFLAG:LOOP_CHR:睡眠
 			CALL COM404_VisitorDetail(LOOP_CHR, 訪問者との描写, 訪問者との音声)
@@ -492,7 +492,7 @@ SIF 当前位置存在人数(CFLAG:MASTER:当前位置, 0, 1)
 	RETURN 0
 
 FLG_LOOKED = 0 ; 0:パンチラを見られていない 1:パンチラを見られた
-;全住人についてチェック
+;全角色についてチェック
 ;誰か一人に見られたら処理終了
 FOR LOOP_CHR,1,CHARANUM
 	;睡眠中は見れない
@@ -555,8 +555,8 @@ SELECTCASE targetArea
 ENDSELECT
 RETURNF -1
 
-;湖で住人と訪問者が二人きりで会话している様を覗き見たとき、デートしているように見える件
-;ARG…訪問者と一緒にいる住人
+;湖で角色と訪問者が二人きりで会话している様を覗き見たとき、デートしているように見える件
+;ARG…訪問者と一緒にいる角色
 ;戻り値…常に0
 @NTR_LAKE_TALK(ARG)
 IF NTR_CHK_FAVORABLY(ARG, FAV_寝取られ)
