@@ -2688,8 +2688,6 @@ SIF GLOBAL_COMABLE(200)
 ;既に着ていない
 SIF !EQUIP:上半身外衣_主 && !EQUIP:上半身外衣_副 && !EQUIP:TARGET:衣装部位_连体外衣
 	RETURN 0
-SIF !EQUIP:0
-	RETURN 0
 RETURN 1
 
 @COM_ABLE201
@@ -2704,8 +2702,6 @@ SIF !EQUIP:下半身外衣_主 && !EQUIP:下半身外衣_副
 	RETURN 0
 ;上半身一体型
 SIF EQUIP:TARGET:衣装部位_连体外衣
-	RETURN 0
-SIF !EQUIP:0
 	RETURN 0
 RETURN 1
 
@@ -2722,8 +2718,6 @@ SIF !EQUIP:上半身内衣_副 && !EQUIP:上半身内衣_主
 ;着衣
 SIF EQUIP:上半身外衣_主 || CLOTHES_ONEPIECE_BLOCKS_TOP_UNDERWEAR(TARGET)
 	RETURN 0
-SIF !EQUIP:0
-	RETURN 0
 RETURN 1
 
 @COM_ABLE203
@@ -2738,8 +2732,6 @@ SIF !EQUIP:下半身内衣_副 && !EQUIP:下半身内衣_主
 	RETURN 0
 ;着衣
 SIF EQUIP:下半身外衣_主 || EQUIP:下半身外衣_副 || CLOTHES_ONEPIECE_BLOCKS_BOTTOM_UNDERWEAR(TARGET)
-	RETURN 0
-SIF !EQUIP:0
 	RETURN 0
 RETURN 1
 ;-------------------------------------------------
