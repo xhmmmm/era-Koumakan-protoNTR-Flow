@@ -694,7 +694,7 @@ IF CFLAG:角色:精液残留中 && !CFLAG:角色:睡眠
 	IF CFLAG:角色:精液残留中 == 0
 		CFLAG:角色:精液残留中 = 0
 		;玩家以外的角色
-		IF 角色 > 0 && FLAG:1840 <= 500
+		IF 角色 > 0
 			是否没穿内裤 = EQUIP:角色:衣装部位_下半身内衣_主 == 0
 			;玩家、角色、访问者在通个位置
 			IF CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置 && CFLAG:MASTER:当前位置 == FLAG:访问者当前位置
@@ -723,7 +723,7 @@ IF CFLAG:角色:精液残留中 && !CFLAG:角色:睡眠
 				CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHERS(角色, 是否没穿内裤)
 				RETURN
 			ENDIF
-			FOR LOOP_CHR,1,CHARANUM && FLAG:1840 <= 500
+			FOR LOOP_CHR,1,CHARANUM
 				;ターゲット(訪問者・あなた以外)とあなたと訪問者が一緒
 				IF CFLAG:角色:当前位置 == CFLAG:LOOP_CHR:当前位置 && CFLAG:角色:当前位置 == FLAG:访问者当前位置
 					CALL CHK_SEMEN_STAY_MASTER_WITH_VISITOR_AND_OTHER(角色, 是否没穿内裤, LOOP_CHR)

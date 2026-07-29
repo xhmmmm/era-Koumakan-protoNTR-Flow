@@ -259,13 +259,6 @@
 #DIM CONST MCC_阴蒂爱抚不可			= 5
 #DIM CONST MCC_指挿入れ不可			= 6
 
-;訪問者宅監禁状況フラグ(ビット演算)
-#DIM CONST 訪問者宅_牢屋解錠済 = 1p1
-#DIM CONST 訪問者宅_通路解錠済 = 1p2
-#DIM CONST 訪問者宅_床扉解錠済 = 1p3
-#DIM CONST 訪問者宅_玄関解錠済 = 1p4
-#DIM CONST 訪問者宅_便所使用済 = 1p5
-
 ;TFLAG:1で使用する射精箇所ビット番号
 #DIM CONST 射精箇所_避孕套		= 0
 #DIM CONST 射精箇所_膣内			= 1

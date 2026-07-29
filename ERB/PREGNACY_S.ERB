@@ -20,24 +20,11 @@ FOR LOOP_CHR,0,CHARANUM
 		PRINTFORMW %CALLNAME:LOOP_CHR%は%N_T_R(父親, 1)%の子供を身篭った様だ
 		PRINTFORMW %CALLNAME:LOOP_CHR%は[妊娠]した
 		;父親によって固有のメッセージ表示
-		IF CFLAG:MASTER:当前位置 == 位置_訪問者宅 || CFLAG:MASTER:当前位置 == 位置_売春宿
+		IF CFLAG:MASTER:当前位置 == 位置_訪問者宅
 			;MASTERが拉致されている時は知らされない
 		ELSE
 			CALL PREGNACY_S_ANNOUNCEMENT_MSG(LOOP_CHR)
 		ENDIF
-		TALENT:LOOP_CHR:妊娠 = 1
-		CALL CHANGE_N_STATUS(LOOP_CHR)
-	ELSEIF TALENT:LOOP_CHR:妊娠 == 0 && CFLAG:LOOP_CHR:にんっしんっ > 0 && LOOP_CHR == MASTER && (CFLAG:MASTER:当前位置 == 位置_訪問者宅 || CFLAG:MASTER:当前位置 == 位置_売春宿) && CFLAG:MASTER:屈服度 < 1000
-		PRINTFORML 体の調子がおかしい…
-		PRINTFORMW しかしここでは検査する事もできない…
-		;		TALENT:LOOP_CHR:妊娠 = 1
-		;		CALL CHANGE_N_STATUS(LOOP_CHR)
-	ELSEIF TALENT:LOOP_CHR:妊娠 == 0 && CFLAG:LOOP_CHR:にんっしんっ > 0 && LOOP_CHR == MASTER
-		父親 = CFLAG:LOOP_CHR:にんっしんっ -1
-		PRINTFORML 体の調子がおかしい…
-		PRINTFORM 永遠亭で検査してもらったところ、
-		PRINTFORMW %N_T_R(父親, 1)%の子供を身篭った様だ
-		PRINTFORMW %CALLNAME:LOOP_CHR%は[妊娠]した
 		TALENT:LOOP_CHR:妊娠 = 1
 		CALL CHANGE_N_STATUS(LOOP_CHR)
 	ENDIF
@@ -408,7 +395,7 @@ SIF CFLAG:角色:出産数 >= 2
 ;一人目のときだけ口上表示
 IF 反復番号 == 0
 	IF CFLAG:子供:父親 == MASTER
-		IF CFLAG:MASTER:当前位置 == 位置_訪問者宅 || CFLAG:MASTER:当前位置 == 位置_売春宿
+		IF CFLAG:MASTER:当前位置 == 位置_訪問者宅
 			;MASTERが拉致されている時は口上非表示
 		ELSE
 			PRINTFORMW 鈴仙が突然%CALLNAME:MASTER%の元へと駆け込んできた
@@ -481,10 +468,8 @@ ENDIF
 ;命名権は母親と一人目の子の父親
 IF CFLAG:子供:父親 == MASTER
 	LOCAL = 角色
-ELSEIF CFLAG:子供:母親 == MASTER
-	LOCAL = 一人目の父親
 ENDIF
-IF 一人目の父親 == MASTER || CFLAG:子供:母親 == MASTER
+IF 一人目の父親 == MASTER
 	;双子以上の場合の分岐
 	IF CFLAG:角色:出産数 > 1
 		PRINTFORML {反復番号+1}人目の子供(\@ GETBIT(TALENT:子供:性别,0) ?♀#♂\@)の名前を%N_T_R(LOCAL)%に付けてもらいますか？

@@ -145,9 +145,9 @@ IF 内容 == ""
 				内容 = %"夺走了"%
 			ENDIF
 		CASE IS == 人物_訪問者
-			IF TALENT:キャラ番号:NTR || (キャラ番号 == 人物_玩家 && (FLAG:1840 >= 11 && FLAG:1840 <= 15))
+			IF TALENT:キャラ番号:NTR
 				内容 = %"满怀爱意地献给了"%
-			ELSEIF NTR_CHK_FAVORABLY(キャラ番号, FAV_寝取られ寸前) || (キャラ番号 == 人物_玩家 && FLAG:1840 == 10)
+			ELSEIF NTR_CHK_FAVORABLY(キャラ番号, FAV_寝取られ寸前)
 				内容 = %"满怀爱意地悄悄献给了"%
 			ELSEIF NTR_CHK_FAVORABLY(キャラ番号, FAV_寝取られそう)
 				内容 = %"献给了"%

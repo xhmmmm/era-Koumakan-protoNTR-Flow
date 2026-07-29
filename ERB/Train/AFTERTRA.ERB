@@ -20,7 +20,7 @@ WHILE (TIME_PROGRESS(CFLAG:MASTER:起床時間) < 要睡眠経過時間)
 	TIME += 30
 WEND
 SELECTCASE 位置编号记录
-	CASE 位置_訪問者宅,位置_売春宿
+	CASE 位置_訪問者宅
 		CFLAG:MASTER:当前位置 = 位置编号记录
 	CASEELSE
 		;初期位置をリセット
@@ -68,7 +68,6 @@ TRYCALL 妊娠処理変更パッチ
 SIF !FLAG:禁止受精
 	TRYCALL PREGNACY_S_ANNOUNCEMENT
 TRYCALL 子供訪問_2
-FLAG:1840 = 0
 
 FOR LOOP_CHR, 0, CHARANUM
 	TRYCALL 生理周期, LOOP_CHR

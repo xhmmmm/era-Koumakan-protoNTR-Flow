@@ -11,9 +11,9 @@
 ;4=献给他 5=悄悄献给他（NTR） 6=满怀爱意、爱到无以复加、不在意旁人目光也要献给他（访问者专属）
 ;-1=不愿意但是无法拒绝（NTR）
 IF 对方 == 人物_訪問者
-	IF TALENT:角色:NTR || (角色 == 人物_玩家 && (FLAG:1840 >= 11 && FLAG:1840 <= 15))
+	IF TALENT:角色:NTR
 		态度 = 6
-	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前) || (角色 == 人物_玩家 && FLAG:1840 == 10)
+	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 		态度 = 5
 	ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られそう)
 		态度 = 4

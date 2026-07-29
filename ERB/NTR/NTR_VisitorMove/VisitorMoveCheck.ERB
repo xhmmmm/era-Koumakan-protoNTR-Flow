@@ -14,11 +14,8 @@
 #DIM MOVE_PROB_DENO
 
 #DIM MAX_STAY_TIME
-;訪問者宅などの場合移动しない
-SIF FLAG:访问者当前位置 == 0 || FLAG:访问者当前位置 == 位置_訪問者宅 || FLAG:访问者当前位置 == 901
-	RETURN 0
-;包含访问者、主角、住人3P中
-SIF FLAG:1840 > 0 && FLAG:1840 < 9
+;访问者不在场或位于访问者宅时不移动
+SIF FLAG:访问者当前位置 == 0 || FLAG:访问者当前位置 == 位置_訪問者宅
 	RETURN 0
 ;訪問者行動中であれば移动しない
 SIF FLAG:访问者当前行为中止时刻 != 0

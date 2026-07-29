@@ -93,10 +93,6 @@ ELSEIF !INRANGE(TargetRoom, 0, 位置编号最大值)
 	GOTO INPUT_LOOP
 ;移动先が隣の場所
 ELSEIF CAN_MOVE(CFLAG:MASTER:当前位置, TargetRoom)
-	IF FLAG:1840 < 2
-		FLAG:1840 = 0
-	ENDIF
-
 	;地下室
 	IF TargetRoom == 位置_红魔馆_地下室 && ABL:MASTER:战斗技能 <= 0
 		PRINTW 从门里感到不祥之意……
@@ -122,9 +118,6 @@ ELSEIF CAN_MOVE(CFLAG:MASTER:当前位置, TargetRoom)
 	NEXT
 	CALL NTR_CHK_GOWITH(10)
 ELSE
-	IF FLAG:1840 < 2
-		FLAG:1840 = 0
-	ENDIF
 	;目的地が離れているので、最終目的地として設定
 	TFLAG:遠距離移动 = TargetRoom
 	CALLF FARMOVE(MASTER, CFLAG:MASTER:当前位置, TargetRoom)

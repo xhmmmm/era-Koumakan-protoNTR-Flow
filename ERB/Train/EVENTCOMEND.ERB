@@ -83,7 +83,6 @@ IF TFLAG:COMABLE管理 < 2
 ENDIF
 IF BASE:MASTER:体力 <= 500
 	PRINTW （体力が限界に来ています　一日を終了します）
-	FLAG:1840 = 0
 	CFLAG:MASTER:睡眠 = 1
 	CFLAG:MASTER:睡觉時間 = DATETIME()
 	IF TARGET > 0 && TALENT:恋慕 && CFLAG:当前位置 != 位置_訪問者宅 && BASE:体力 >= 500 && !CFLAG:睡眠

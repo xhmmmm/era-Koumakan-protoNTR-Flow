@@ -44,24 +44,8 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影開始判定
-	IF CFLAG:角色:屈服度 > 4000
-		CFLAG:角色:持帰分岐 = 100
-	ELSE
-		CFLAG:角色:持帰分岐 = 0
-	ENDIF
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		PRINTFORML 「アダルトビデオ・・ですか・・？」
-		PRINTFORML %NTR_NAME(0)%邸を訪れた%CALLNAME:角色%は、思わぬ話をもちかけられた。
-		PRINTFORML %NTR_NAME(0)%は将来的に%CALLNAME:角色%に売春をさせるために事前のプロモーションとして彼女が主演のAVを販売しようと企んでいた。
-		PRINTFORML 「・・はい・・お受けします・・あ、あの・・その、綺麗に・・撮ってください・・」
-		PRINTFORML %CALLNAME:角色%は頬を真っ赤に染めながらもAV摄影の件を了承した。
-		;通常
-	ELSE
-		PRINTFORML 「は、はい・・・私はご主人様の角色です・・・」
-		PRINTFORML %NTR_NAME(0)%の手で项圈をかけられた%CALLNAME:角色%は、これから与えられる悦楽を思って身震いした。
-	ENDIF
+	PRINTFORML 「は、はい・・・私はご主人様の角色です・・・」
+	PRINTFORML %NTR_NAME(0)%の手で项圈をかけられた%CALLNAME:角色%は、これから与えられる悦楽を思って身震いした。
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
@@ -104,25 +88,12 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男をみつけ、彼を起こそうとしている。
-		PRINTFORML 「・・あの・・起きてください・・」
-		IF RAND:2 == 0
-			PRINTFORML 「・・こんな所で寝ていると、怖い花の妖怪さんに怒られますよ・・？」
-		ELSE
-			PRINTFORML 「・・こんな所で寝ていると、冬の妖怪さんに凍死させられますよ・・？」
-		ENDIF
-		;通常
+	IF RAND:2 == 0
+		PRINTFORML 「あっ、あのっ・・やさしく・・おねがい・・します・・・」
+		PRINTFORML %CALLNAME:角色%は頬を染め上目遣いで%NTR_NAME(0)%を見つめている。
 	ELSE
-		IF RAND:2 == 0
-			PRINTFORML 「あっ、あのっ・・やさしく・・おねがい・・します・・・」
-			PRINTFORML %CALLNAME:角色%は頬を染め上目遣いで%NTR_NAME(0)%を見つめている。
-		ELSE
-			PRINTFORML 「あっ、はい・・やさしく・・おねがい・・します・・・」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抱き寄せられて頬を染めている。
-		ENDIF
+		PRINTFORML 「あっ、はい・・やさしく・・おねがい・・します・・・」
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%に抱き寄せられて頬を染めている。
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
@@ -168,17 +139,8 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男と唇を重ね、彼を起こそうとしている。
-		PRINTFORML 「んっ・・ちゅ・・くちゅっ・・んんっ・・」
-		PRINTFORML 可憐な容姿に似合わない大胆なディープキスを続けているが、男は起きようとしない。
-		;通常
-	ELSE
-		PRINTFORML 「んっ・・ふわっ・・ふむぅ・・」
-		PRINTFORML %NTR_NAME(0)%の舌が口内に侵入すると、%CALLNAME:角色%は目を潤ませながら身を任せた
-	ENDIF
+	PRINTFORML 「んっ・・ふわっ・・ふむぅ・・」
+	PRINTFORML %NTR_NAME(0)%の舌が口内に侵入すると、%CALLNAME:角色%は目を潤ませながら身を任せた
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
@@ -224,23 +186,12 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男の阴茎をしゃぶり、彼を起こそうとしている。
-		PRINTFORML 「んっ・・ちゅっ・・・ぺろっ・・ぢゅっ・・んんっ」
-		PRINTFORML 小さな口いっぱいに阴茎をほお張り、時には尿道をこじ開けるように舌で刺激しているがそれでも男は起きようとしない。
-		PRINTFORML 「こんなに・・おおきくなってる・・のに・・」
-		PRINTFORML 夢中になって阴茎をしゃぶる%CALLNAME:角色%は、無意識に股間を男の顔にこすりつけている。
-		;通常
-	ELSE
-		PRINTDATAL
-			DATAFORM 「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・%MSG_HEART()%」
-			DATAFORM 「ちゅっ・・むっ・・うン・・おっきぃ・・%MSG_HEART()%」
-			DATAFORM 「あん・・きもち・・いいっ・・んっ・・%MSG_HEART()%」
-		ENDDATA
-		PRINTFORML %NTR_NAME(0)%の指が秘所に侵入すると、%CALLNAME:角色%は阴茎を握ったまま喘ぎ声を上げた
-	ENDIF
+	PRINTDATAL
+		DATAFORM 「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・%MSG_HEART()%」
+		DATAFORM 「ちゅっ・・むっ・・うン・・おっきぃ・・%MSG_HEART()%」
+		DATAFORM 「あん・・きもち・・いいっ・・んっ・・%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %NTR_NAME(0)%の指が秘所に侵入すると、%CALLNAME:角色%は阴茎を握ったまま喘ぎ声を上げた
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
@@ -310,28 +261,17 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		;さすがに处女分岐は不要と思われ
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男の上に跨って彼の勃起した阴茎を濡れそぼった性器に当てた。
-		PRINTFORML 「・・はぁ・・起きてくれないと・・犯しちゃいます・・よ・・」
-		PRINTFORML %CALLNAME:角色%はゆっくりと腰を下ろしてゆく。
-		PRINTFORML 小さな性器がいっぱいに拡がり、堅くそそり勃った肉柱を飲み込んでゆく。
-		PRINTFORML 「ああんっ・・お・・おお・・きいっ・・！」
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
+		PRINTFORML 「あんっあっ・・はじめてっ・・なのにっ・・こんな太いの・・・入ってるぅ・・%MSG_HEART()%」
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に处女の肉壁をミチミチと広げられるのを感じながら悦に浸っている
+		;非处女
 	ELSE
-		IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
-			PRINTFORML 「あんっあっ・・はじめてっ・・なのにっ・・こんな太いの・・・入ってるぅ・・%MSG_HEART()%」
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に处女の肉壁をミチミチと広げられるのを感じながら悦に浸っている
-			;非处女
-		ELSE
-			PRINTDATAL
-				DATAFORM 「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・%MSG_HEART()%」
-				DATAFORM 「あっ、ああんっ、おっきくて、すごいですぅ%MSG_HEART()%」
-				DATAFORM 「ああんっ、も、もっと、もっと、してくださいっ%MSG_HEART()%」
-			ENDDATA
-			PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に突かれながら、淫らな言葉を発している
-		ENDIF	
+		PRINTDATAL
+			DATAFORM 「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・%MSG_HEART()%」
+			DATAFORM 「あっ、ああんっ、おっきくて、すごいですぅ%MSG_HEART()%」
+			DATAFORM 「ああんっ、も、もっと、もっと、してくださいっ%MSG_HEART()%」
+		ENDDATA
+		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎に突かれながら、淫らな言葉を発している
 	ENDIF	
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
@@ -417,19 +357,8 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		;さすがに处女分岐は不要と思われ
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男の上に跨って彼の勃起した阴茎をセピア色のすぼまりに当てた。
-		PRINTFORML 「・・はぁ・・起きてくれないと・・犯しちゃいます・・よ・・」
-		PRINTFORML %CALLNAME:角色%はゆっくりと腰を下ろしてゆく。
-		PRINTFORML 小菊がいっぱいに拡がり、堅くそそり勃った肉柱を飲み込んでゆく。
-		PRINTFORML 「ああんっ・・お・・おお・・きいっ・・！」
-	ELSE
-		PRINTFORML 「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・」
-		PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎でアヌスを突かれながら、淫らな言葉を発している
-	ENDIF	
+	PRINTFORML 「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・」
+	PRINTFORML %CALLNAME:角色%は%NTR_NAME(0)%の阴茎でアヌスを突かれながら、淫らな言葉を発している
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
@@ -478,27 +407,16 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		;さすがに处女分岐は不要と思われ
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男に馬乗りになって彼と交わり、激しく腰を上下させながら彼を起こそうとしている。
-		PRINTFORML 「あっ、あっ、ああっ！・・いく、いくうううっ！！」
-		PRINTFORML 男の上に跨ったまま大きくのけ反りながら%CALLNAME:角色%は絶頂した。
-		PRINTFORML そのまま力なく男の身体に倒れこんだ彼女の小さな性器からは、男が放った白い液体がとろとろと溢れ出ていた。
-		;通常
+	PRINTDATAL
+		DATAFORM 「んはぁぁあああっ！・・はぁ・・あついの・・いっぱい・・・%MSG_HEART()%」
+		DATAFORM 「ああああんっ！ いっぱい、いっぱいくるぅぅっ%MSG_HEART()%」
+		DATAFORM 「あああっ！！ い、いきますっ、いっちゃいますぅ%MSG_HEART()%」
+	ENDDATA
+	PRINTFORML %CALLNAME:角色%は胎内に放たれた%NTR_NAME(0)%の熱を感じると、蕩けた瞳で余韻に浸った
+	IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら支配欲を満たしている
 	ELSE
-		PRINTDATAL
-			DATAFORM 「んはぁぁあああっ！・・はぁ・・あついの・・いっぱい・・・%MSG_HEART()%」
-			DATAFORM 「ああああんっ！ いっぱい、いっぱいくるぅぅっ%MSG_HEART()%」
-			DATAFORM 「あああっ！！ い、いきますっ、いっちゃいますぅ%MSG_HEART()%」
-		ENDDATA
-		PRINTFORML %CALLNAME:角色%は胎内に放たれた%NTR_NAME(0)%の熱を感じると、蕩けた瞳で余韻に浸った
-		IF TALENT:角色:处女 || CFLAG:角色:处女丧失中
-			PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から赤いものが混じった白濁が流れおちるのを眺めながら支配欲を満たしている
-		ELSE
-			PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら支配欲を満たしている
-		ENDIF
+		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の膣から白濁が流れおちるのを眺めながら支配欲を満たしている
 	ENDIF
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
@@ -566,20 +484,9 @@ RETURN 0
 
 IF NTR_CHK_FAVORABLY(角色, FAV_寝取られ)
 
-	;AV摄影？
-	IF CFLAG:角色:持帰分岐 == 100
-		;さすがに处女分岐は不要と思われ
-		PRINTFORML 『悪戯な妖精』摄影中。
-		PRINTFORML %CALLNAME:角色%は花畑の中で寝ている男に馬乗りになって彼と交わり、激しく腰を上下させながら彼を起こそうとしている。
-		PRINTFORML 「あっ、あっ、ああっ！・・いく、いくうううっ！！」
-		PRINTFORML 男の上に跨ったまま大きくのけ反りながら%CALLNAME:角色%は絶頂した。
-		PRINTFORML そのまま力なく男の身体に倒れこんだ彼女の小さなすぼまりからは、男が放った白い液体がとろとろと溢れ出ていた。
-		;通常
-	ELSE
-		PRINTFORML 「んはぁぁあああっ！・・はぁ・・あついの・・いっぱい・・・」
-		PRINTFORML %CALLNAME:角色%は腸内に放たれた%NTR_NAME(0)%の熱を感じると、蕩けた瞳で余韻に浸った
-		PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の小菊から白濁が流れおちるのを眺めながら支配欲を満たしている
-	ENDIF
+	PRINTFORML 「んはぁぁあああっ！・・はぁ・・あついの・・いっぱい・・・」
+	PRINTFORML %CALLNAME:角色%は腸内に放たれた%NTR_NAME(0)%の熱を感じると、蕩けた瞳で余韻に浸った
+	PRINTFORML %NTR_NAME(0)%は%CALLNAME:角色%の小菊から白濁が流れおちるのを眺めながら支配欲を満たしている
 
 ELSEIF NTR_CHK_FAVORABLY(角色, FAV_寝取られ寸前)
 
