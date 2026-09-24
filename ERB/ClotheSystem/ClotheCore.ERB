@@ -301,17 +301,17 @@ NEXT
 
 SIF 裙摆
 	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_裙子
-SIF 下身可偏移 && !TEQUIP:角色:下半身ずらし状態
+SIF 下身可偏移 && !TEQUIP:角色:下半身露出状态
 	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_副层
-SIF 下身覆盖 && !(下身可偏移 && TEQUIP:角色:下半身ずらし状態)
+SIF 下身覆盖 && !(下身可偏移 && TEQUIP:角色:下半身露出状态)
 	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_主层
 SIF EQUIP:角色:衣装部位_下半身外衣_主 || EQUIP:角色:衣装部位_连体外衣
 	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_主层外衣
 SIF EQUIP:角色:衣装部位_连体外衣
 	SETBIT TEQUIP:角色:下半身着衣状況, 着衣_下半身_连体外衣
-SIF 上身可掀开 && !TEQUIP:角色:上半身はだけ状態
+SIF 上身可掀开 && !TEQUIP:角色:上半身露出状态
 	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_副层
-SIF 上身覆盖 && !(上身可掀开 && TEQUIP:角色:上半身はだけ状態)
+SIF 上身覆盖 && !(上身可掀开 && TEQUIP:角色:上半身露出状态)
 	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_主层
 SIF EQUIP:角色:衣装部位_上半身内衣_主 || EQUIP:角色:衣装部位_上半身外衣_主 || EQUIP:角色:衣装部位_连体外衣
 	SETBIT TEQUIP:角色:上半身着衣状況, 着衣_上半身_主层内衣

@@ -1,4 +1,4 @@
-﻿;显示主界面的信息栏
+;显示主界面的信息栏
 ;-------------------------------------------------------------------------------
 ;起床中の基本情報（時間、HPMP、各種パラメータなど）を表示する
 @SHOW_STATUS
@@ -284,13 +284,13 @@ IF TARGET > 0
 			CONTINUE
 		SIF COUNT == 6 && !(HAS_VAGINA(TARGET))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:TARGET:上半身着衣状況 == 0 || TEQUIP:TARGET:上半身はだけ状態 == 1))
+		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:TARGET:上半身着衣状況 == 0 || TEQUIP:TARGET:上半身露出状态 == 1))
 			CONTINUE
 		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:TARGET:Ｖ性爱 == MASTER && CFLAG:TARGET:うふふ == 1)))
 			CONTINUE
@@ -350,13 +350,13 @@ IF ASSI > 0
 			CONTINUE
 		SIF COUNT == 6 && !(HAS_VAGINA(ASSI))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
+		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身露出状态 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:ASSI:上半身着衣状況 == 0 || TEQUIP:ASSI:上半身はだけ状態 == 1))
+		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:ASSI:上半身着衣状況 == 0 || TEQUIP:ASSI:上半身露出状态 == 1))
 			CONTINUE
 		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:ASSI:Ｖ性爱 == MASTER && CFLAG:ASSI:うふふ == 1)))
 			CONTINUE
