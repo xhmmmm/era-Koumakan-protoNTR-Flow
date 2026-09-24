@@ -1,4 +1,4 @@
-@COM310
+﻿@COM310
 ;抚摸臀部
 
 LOCAL = RAND:110
@@ -7,27 +7,27 @@ SIF LOCAL:1 > 109
 	LOCAL:1 = 109
 IF LOCAL <= 9
 	;大成功
-	TFLAG:193 = 1
+	TFLAG:コマンド成功度 = 1
 ELSEIF LOCAL >= LOCAL:1
 	;失敗
-	TFLAG:193 = -1
+	TFLAG:コマンド成功度 = -1
 ELSE
 	;残りは成功
-	TFLAG:193 = 0
+	TFLAG:コマンド成功度 = 0
 ENDIF
 
 ;-------------------------------------------------
 ;COM別FLAGの設定
 ;-------------------------------------------------
 ;行為者
-TCVAR:116 = PLAYER
-TCVAR:TARGET:116 = PLAYER
+TCVAR:行為者 = PLAYER
+TCVAR:TARGET:行為者 = PLAYER
 ;-------------------------------------------------
 ;ソース追加処理
 ;-------------------------------------------------
 ;先制発生時は失敗しない
 SIF TFLAG:COMABLE管理 == 3
-	TFLAG:193 = MAX(TFLAG:193,0)
+	TFLAG:コマンド成功度 = MAX(TFLAG:コマンド成功度,0)
 DOWNBASE:气力 += 50
 DOWNBASE:MASTER:气力 += 50
 
@@ -57,7 +57,7 @@ ENDIF
 
 ;好感度をみる
 IF CFLAG:好感度 <= 500
-	SOURCE:欢乐 += CFLAG:2
+	SOURCE:欢乐 += CFLAG:好感度
 ELSEIF CFLAG:好感度 <= 5000
 	SOURCE:欢乐 += 500 + (CFLAG:好感度 - 500) / 3
 ELSE
@@ -90,13 +90,13 @@ SOURCE:被动 = 100 + 200 * ABL:顺从
 ;好感度変化
 TFLAG:97 += LOCAL
 
-IF TFLAG:193 == -1
+IF TFLAG:コマンド成功度 == -1
 	TIMES SOURCE:欢乐 , 0.10
 	TIMES SOURCE:情爱 , 0.50
 	TIMES SOURCE:被动 , 0.50
 	TIMES SOURCE:欲情 , 0.50
 	TIMES SOURCE:反感 , 1.50
-ELSEIF TFLAG:193 == 0
+ELSEIF TFLAG:コマンド成功度 == 0
 	TIMES SOURCE:欢乐 , 1.00
 	TIMES SOURCE:情爱 , 1.00
 	TIMES SOURCE:被动 , 1.00

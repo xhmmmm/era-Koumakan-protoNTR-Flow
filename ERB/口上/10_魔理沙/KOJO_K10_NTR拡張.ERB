@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;魔理沙口上NTR対応ラッパ口上
 ;
 ;オリジナル→寝の人様 咲夜口上NTR対応ラッパ口上
@@ -118,7 +118,7 @@ RETURN RET_VAL
 ;312,接吻
 ;==================================================
 @NTR_KOJO_MESSAGE_COM_K10_312
-IF TFLAG:193 == 0
+IF TFLAG:コマンド成功度 == 0
 	CALL TRAIN_MESSAGE
 ENDIF
 CALL NTR_KOJO_MESSAGE_COM_K10_312_1
@@ -136,7 +136,7 @@ RETURN RESULT
 RET_VAL = 0
 
 ;唇の汚れで拒否された時
-IF TFLAG:193 == -2
+IF TFLAG:コマンド成功度 == -2
 	PRINTFORML “不，不行啊”
 	;TranslatedMark 「だ、だめだっ」
 	PRINTFORML 在嘴唇碰触之前原因不明的被拒绝了。
@@ -146,7 +146,7 @@ IF TFLAG:193 == -2
 	PRINTFORML %CALLNAME:角色%似乎想要喝茶。
 	;TranslatedMark %CALLNAME:角色%はお茶を欲しがっているようだ。
 	;失敗時
-ELSEIF TFLAG:193 == -1
+ELSEIF TFLAG:コマンド成功度 == -1
 	PRINTFORML “喂，你在干什么？”
 	;TranslatedMark 「な、何するんだっ」
 	PRINTFORML 被拒绝并被推开了。
@@ -328,7 +328,7 @@ RETURN RESULT
 角色 = 人物_魔理沙
 RET_VAL = 0
 ;告白成功
-IF TFLAG:193
+IF TFLAG:コマンド成功度
 	RET_VAL = 1
 	;告白失敗
 ELSE

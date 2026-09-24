@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;キャラクターの移动
 @CHARA_MOVEMENT
 #DIM LOOP_CHR
@@ -6,7 +6,7 @@
 ;訪問者の移动処理
 CALL VISITER_MOVEMENT
 ;同行者への影響チェック
-CALL NTR_CHK_GOWITH(TIME_PROGRESS(TFLAG:300))
+CALL NTR_CHK_GOWITH(TIME_PROGRESS(TFLAG:時間経過))
 FOR LOOP_CHR,0,CHARANUM
 	; 紅魔館エリアの外なら移动しない（霊夢の寝床は特殊）
 	SIF CFLAG:LOOP_CHR:当前位置 >= 位置_訪問者宅 && CFLAG:LOOP_CHR:当前位置 != 位置_博麗神社 && CFLAG:LOOP_CHR:当前位置 != 位置_人間の里
@@ -35,15 +35,15 @@ FOR LOOP_CHR,0,CHARANUM
 	;每分钟+5垃圾，扫除系清醒时不产生垃圾，反而可以清扫一人份的垃圾，每2级的清扫技能使扫除系可以多清理一人份的垃圾
 	IF TALENT:扫除系
 		IF !CFLAG:LOOP_CHR:睡眠
-			FLAG:(100 + CFLAG:LOOP_CHR:当前位置) -= (MAX(ABL:LOOP_CHR:清扫技能/2,1) - TALENT:LOOP_CHR:幼稚) * TIME_PROGRESS(TFLAG:300) * 5
+			FLAG:(100 + CFLAG:LOOP_CHR:当前位置) -= (MAX(ABL:LOOP_CHR:清扫技能/2,1) - TALENT:LOOP_CHR:幼稚) * TIME_PROGRESS(TFLAG:時間経過) * 5
 		ELSE
-			FLAG:(100 + CFLAG:LOOP_CHR:当前位置) += TIME_PROGRESS(TFLAG:300) * (5 + TALENT:LOOP_CHR:幼稚 * 5)
+			FLAG:(100 + CFLAG:LOOP_CHR:当前位置) += TIME_PROGRESS(TFLAG:時間経過) * (5 + TALENT:LOOP_CHR:幼稚 * 5)
 		ENDIF
 	ELSE
-		FLAG:(100 + CFLAG:LOOP_CHR:当前位置) += TIME_PROGRESS(TFLAG:300) * (5 + TALENT:LOOP_CHR:幼稚 * 5)
+		FLAG:(100 + CFLAG:LOOP_CHR:当前位置) += TIME_PROGRESS(TFLAG:時間経過) * (5 + TALENT:LOOP_CHR:幼稚 * 5)
 [SKIPSTART]
 		WK = CFLAG:LOOP_CHR:睡眠 ? 0 # 1 + TALENT:LOOP_CHR:幼稚 - 2 * ABL:LOOP_CHR:清扫技能
-		FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MAX(FLAG:(100 + CFLAG:LOOP_CHR:当前位置) + WK * TIME_PROGRESS(TFLAG:300),0)
+		FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MAX(FLAG:(100 + CFLAG:LOOP_CHR:当前位置) + WK * TIME_PROGRESS(TFLAG:時間経過),0)
 		FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MIN(FLAG:(100 + CFLAG:LOOP_CHR:当前位置),6000)
 [SKIPEND]
 	ENDIF
@@ -91,13 +91,13 @@ RETURN
 #DIM 角色
 ;MASTERと同じ場所にいないとき
 IF CFLAG:角色:当前位置 != CFLAG:MASTER:当前位置
-	BASE:角色:气氛 = BASE:角色:气氛 - TIME_PROGRESS(TFLAG:300) * 2 * (BASE:角色:气氛 + 1000) / 1000
+	BASE:角色:气氛 = BASE:角色:气氛 - TIME_PROGRESS(TFLAG:時間経過) * 2 * (BASE:角色:气氛 + 1000) / 1000
 	BASE:角色:气氛 = MAX(0,BASE:角色:气氛)
-	BASE:角色:理性 = BASE:角色:理性 + TIME_PROGRESS(TFLAG:300) * (MAXBASE:角色:理性 + 1000) / ((BASE:角色:理性 + 1000) * 2)
+	BASE:角色:理性 = BASE:角色:理性 + TIME_PROGRESS(TFLAG:時間経過) * (MAXBASE:角色:理性 + 1000) / ((BASE:角色:理性 + 1000) * 2)
 	BASE:角色:理性 = MIN(MAXBASE:角色:理性,BASE:角色:理性)
 ENDIF
 ;怒意は常に減少する
-BASE:角色:怒意 = BASE:角色:怒意 - TIME_PROGRESS(TFLAG:300) * 5 / (CFLAG:角色:怒意 + 1)
+BASE:角色:怒意 = BASE:角色:怒意 - TIME_PROGRESS(TFLAG:時間経過) * 5 / (CFLAG:角色:怒意 + 1)
 SIF BASE:角色:怒意 <= 0
 	CFLAG:角色:怒意 = 0
 BASE:角色:怒意 = MAX(0,BASE:角色:怒意)
@@ -106,12 +106,12 @@ SIF CFLAG:角色:不機嫌
 	BASE:角色:怒意 = MAXBASE:角色:怒意
 ;勃起度の自然減少
 SIF CFLAG:角色:勃起度２ <= CFLAG:角色:勃起度 && !TCVAR:角色:イきそう
-	BASE:角色:勃起 = MAX(0,BASE:角色:勃起 - TIME_PROGRESS(TFLAG:300) * 20)
+	BASE:角色:勃起 = MAX(0,BASE:角色:勃起 - TIME_PROGRESS(TFLAG:時間経過) * 20)
 ;衰弱の処理
 IF CFLAG:角色:衰弱
-	BASE:角色:体力 = MIN(BASE:角色:体力 + 2 * TIME_PROGRESS(TFLAG:300),MAXBASE:角色:体力)
-	BASE:角色:气力 = MIN(BASE:角色:气力 + 2 * TIME_PROGRESS(TFLAG:300),MAXBASE:角色:气力)
-	CFLAG:角色:衰弱 = MAX(CFLAG:角色:衰弱 - TIME_PROGRESS(TFLAG:300),0)
+	BASE:角色:体力 = MIN(BASE:角色:体力 + 2 * TIME_PROGRESS(TFLAG:時間経過),MAXBASE:角色:体力)
+	BASE:角色:气力 = MIN(BASE:角色:气力 + 2 * TIME_PROGRESS(TFLAG:時間経過),MAXBASE:角色:气力)
+	CFLAG:角色:衰弱 = MAX(CFLAG:角色:衰弱 - TIME_PROGRESS(TFLAG:時間経過),0)
 ENDIF
 RETURN
 
@@ -121,7 +121,7 @@ RETURN
 #DIM 角色
 SIF TCVAR:角色:会话累積値 > 200
 	TCVAR:角色:会话不能 = 1
-TCVAR:角色:会话累積値 = MAX(TCVAR:角色:会话累積値 - TIME_PROGRESS(TFLAG:300) , 0)
+TCVAR:角色:会话累積値 = MAX(TCVAR:角色:会话累積値 - TIME_PROGRESS(TFLAG:時間経過) , 0)
 SIF TCVAR:角色:会话累積値 == 0
 	TCVAR:角色:会话不能 = 0
 RETURN
@@ -133,7 +133,7 @@ RETURN
 #DIM 入浴フラグ
 
 入浴フラグ = CFLAG:角色:風呂
-CFLAG:角色:風呂 += TIME_PROGRESS(TFLAG:300)
+CFLAG:角色:風呂 += TIME_PROGRESS(TFLAG:時間経過)
 IF IsPlaceHasBathroom(CFLAG:角色:当前位置)
 	SIF 角色 == 0 && 入浴フラグ
 		PRINTFORMW %CALLNAME:MASTER%は風呂に浸かった
@@ -155,12 +155,12 @@ RETURN
 ;同行フラグの変動
 @CHANGE_GOWITH(角色)
 #DIM 角色
-CFLAG:角色:同行 = MAX(CFLAG:角色:同行 - TIME_PROGRESS(TFLAG:300),0)
+CFLAG:角色:同行 = MAX(CFLAG:角色:同行 - TIME_PROGRESS(TFLAG:時間経過),0)
 SIF CFLAG:角色:同行
 	CFLAG:角色:当前位置 = CFLAG:MASTER:当前位置
 
 SIF CFLAG:角色:起床後寝間着時間
-	CFLAG:角色:起床後寝間着時間 = MAX(CFLAG:角色:起床後寝間着時間 - TIME_PROGRESS(TFLAG:300),0)
+	CFLAG:角色:起床後寝間着時間 = MAX(CFLAG:角色:起床後寝間着時間 - TIME_PROGRESS(TFLAG:時間経過),0)
 RETURN
 
 ;-------------------------------------------------------------------------------
@@ -275,10 +275,10 @@ IF (CAN_MOVE(CFLAG:MASTER:当前位置, CFLAG:角色:当前位置) == 2 || CFLAG
 		ENDIF
 	ELSE
 		IF CFLAG:角色:衰弱 && TALENT:角色:恋慕 && CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置
-			PRINTFORMW 将%CALLNAME:角色%从%GetPlaceName(CFLAG:角色:当前位置)%搬回了%GetPlaceName(CFLAG:角色:311)%
+			PRINTFORMW 将%CALLNAME:角色%从%GetPlaceName(CFLAG:角色:当前位置)%搬回了%GetPlaceName(CFLAG:角色:開始位置)%
 			LOCAL = 3
 		ELSE
-			PRINTFORMW %CALLNAME:角色%从%GetPlaceName(CFLAG:角色:当前位置)%回到了%GetPlaceName(CFLAG:角色:311)%
+			PRINTFORMW %CALLNAME:角色%从%GetPlaceName(CFLAG:角色:当前位置)%回到了%GetPlaceName(CFLAG:角色:開始位置)%
 			LOCAL = 0
 		ENDIF
 	ENDIF
@@ -490,7 +490,7 @@ CATCH
 		RESULT = 90
 	ENDIF
 ENDCATCH
-IF RAND:(TIME_PROGRESS(TFLAG:300) + 1) <= RAND:RESULT
+IF RAND:(TIME_PROGRESS(TFLAG:時間経過) + 1) <= RAND:RESULT
 	RETURN 0
 ENDIF
 IF FLAG:访问者当前位置 == CFLAG:角色:当前位置 && FLAG:访问者当前行为中止时刻 != 0

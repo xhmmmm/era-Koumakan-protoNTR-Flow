@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;移动
 ;-------------------------------------------------
 @COM400
@@ -230,7 +230,7 @@ RETURN 0
 IF CFLAG:角色:当前位置 == FLAG:访问者当前位置 && FLAG:訪問者の气氛 != 0 && CFLAG:MASTER:当前位置 == CFLAG:角色:当前位置
 	;性交以外
 	IF 1 <= FLAG:访问者当前行为 && FLAG:访问者当前行为 <= 6
-		PRINTFORML 【%GetPlaceName(FLAG:21)%】%CALLNAME:角色%和%NTR_NAME(0)%好像在做什么、但因为%CALLNAME:MASTER%来了停了下来
+		PRINTFORML 【%GetPlaceName(FLAG:访问者当前位置)%】%CALLNAME:角色%和%NTR_NAME(0)%好像在做什么、但因为%CALLNAME:MASTER%来了停了下来
 		PRINTFORML 感觉%CALLNAME:角色%的脸有些红
 		PRINTFORMW 
 		CALL NTR_RESET_VISITOR_ACTION(角色)
@@ -239,7 +239,7 @@ IF CFLAG:角色:当前位置 == FLAG:访问者当前位置 && FLAG:訪問者の�
 		TRYCALLFORM NTR_INFIDELITY(角色)
 		;性交時
 	ELSEIF 7 <= FLAG:访问者当前行为 && FLAG:访问者当前行为 <= 13
-		PRINTFORML 【%GetPlaceName(FLAG:21)%】%CALLNAME:角色%和%NTR_NAME(0)%好像在做些什么、但是注意到接近的%CALLNAME:MASTER%、慌忙中断了行动
+		PRINTFORML 【%GetPlaceName(FLAG:访问者当前位置)%】%CALLNAME:角色%和%NTR_NAME(0)%好像在做些什么、但是注意到接近的%CALLNAME:MASTER%、慌忙中断了行动
 		PRINTFORML %CALLNAME:角色%的脸有些红，衣服凌乱
 		PRINTFORMW 
 		CALL NTR_RESET_VISITOR_ACTION(角色)

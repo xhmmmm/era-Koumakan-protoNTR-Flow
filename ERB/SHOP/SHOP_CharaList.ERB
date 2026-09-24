@@ -1,4 +1,4 @@
-@SHOP_CharaList
+﻿@SHOP_CharaList
 #DIM LOOP_CHR
 #DIM LOOP_I
 #DIM LOOP_J
@@ -36,12 +36,12 @@ PRINTL
 #DIMS 追加文本
 ;体力条
 PRINTFORM  体力
-CALL SHOP_彩色数据条(MAX(BASE:角色:0,0), MAXBASE:角色:0, 10, 颜色_暗粉红, 颜色_深灰)
-PRINTFORM {MAX(BASE:角色:0,0),4}/{MAXBASE:角色:0,4}
+CALL SHOP_彩色数据条(MAX(BASE:角色:体力,0), MAXBASE:角色:体力, 10, 颜色_暗粉红, 颜色_深灰)
+PRINTFORM {MAX(BASE:角色:体力,0),4}/{MAXBASE:角色:体力,4}
 ;气力条
 PRINTFORM  气力
-CALL SHOP_彩色数据条(MAX(BASE:角色:1,0), MAXBASE:角色:1, 10, 颜色_浊黄, 颜色_深灰)
-PRINTFORM {MAX(BASE:角色:1,0),4}/{MAXBASE:角色:1,4}
+CALL SHOP_彩色数据条(MAX(BASE:角色:气力,0), MAXBASE:角色:气力, 10, 颜色_浊黄, 颜色_深灰)
+PRINTFORM {MAX(BASE:角色:气力,0),4}/{MAXBASE:角色:气力,4}
 
 ;行末：始终显示"SHOP_角色行_简易角色状态表"，选中额外项目时在其后面追加
 CALL SHOP_角色行_简易角色状态表(角色)

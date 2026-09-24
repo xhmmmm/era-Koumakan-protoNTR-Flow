@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR小恶魔口上
 ;虽说是非NTR，但因为是面向protoNTR的，所以实现时也要考虑到NTR相关的标志。
 ;个人希望能写出恋慕状态和NTR状态之间的反差感。
@@ -168,20 +168,20 @@ RETURN 0
 ;312,接吻
 ;==================================================
 @KOJO_MESSAGE_COM_K2_312
-IF TFLAG:193 == 0
+IF TFLAG:コマンド成功度 == 0
 	CALL TRAIN_MESSAGE
 ENDIF
 CALL KOJO_MESSAGE_COM_K2_312_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_K2_312_1
 ;因嘴唇污渍被拒绝时
-IF TFLAG:193 == -2
+IF TFLAG:コマンド成功度 == -2
 	PRINTFORML 「不、不行！」
 	PRINTFORML 虽然不知道理由，但在嘴唇碰到之前就被拒绝了。
 	PRINTFORML 「那、那个，能给我一杯茶吗？」
 	PRINTFORML %CALLNAME:TARGET%似乎想要喝茶。
 	;失败时
-ELSEIF TFLAG:193 == -1
+ELSEIF TFLAG:コマンド成功度 == -1
 	PRINTDATAL
 		DATAFORM 「你、你要干什么！？」
 		DATAFORM 「突然做什么啊！？」

@@ -1,4 +1,4 @@
-;这都是什么玩意——来自一年后自己的一头雾水
+﻿;这都是什么玩意——来自一年后自己的一头雾水
 ; ;NekoAdd
 ; @日期_月数_雅称(ARG)
 ; #FUNCTIONS
@@ -576,7 +576,7 @@ FLAG:現在気温 = LOCAL
 
 ;嵐発生
 IF FLAG:異常気象発生ディレイ < 0
-	IF (FLAG:異常気象発生ディレイ + TIME_PROGRESS(TFLAG:300)) >= 0
+	IF (FLAG:異常気象発生ディレイ + TIME_PROGRESS(TFLAG:時間経過)) >= 0
 		;温度によって変化
 		IF FLAG:現在気温 <= 3
 			天候値 = 9
@@ -587,17 +587,17 @@ IF FLAG:異常気象発生ディレイ < 0
 		FLAG:異常気象発生ディレイ = RAND(240, 720)
 		;PRINTFORML 嵐発生
 	ELSE
-		FLAG:異常気象発生ディレイ += TIME_PROGRESS(TFLAG:300)
+		FLAG:異常気象発生ディレイ += TIME_PROGRESS(TFLAG:時間経過)
 		;PRINTFORML 嵐まであと{FLAG:異常気象発生ディレイ}
 	ENDIF
 	;嵐終了
 ELSEIF FLAG:異常気象発生ディレイ > 0
-	IF (FLAG:異常気象発生ディレイ - TIME_PROGRESS(TFLAG:300)) <= 0
+	IF (FLAG:異常気象発生ディレイ - TIME_PROGRESS(TFLAG:時間経過)) <= 0
 		天候値 = 3
 		FLAG:異常気象発生ディレイ = 0
 		;PRINTFORML 嵐終了
 	ELSE
-		FLAG:異常気象発生ディレイ -= TIME_PROGRESS(TFLAG:300)
+		FLAG:異常気象発生ディレイ -= TIME_PROGRESS(TFLAG:時間経過)
 		;PRINTFORML 嵐やむまで{FLAG:異常気象発生ディレイ}
 	ENDIF
 ENDIF
@@ -692,7 +692,7 @@ ENDIF
 ;LOCAL:3 地の文変化
 
 ;かける値 = (経過時間 - (経過時間%5)) / 5
-LOCAL:1 = ((TIME_PROGRESS(TFLAG:300) - (TIME_PROGRESS(TFLAG:300)%5)) / 5)
+LOCAL:1 = ((TIME_PROGRESS(TFLAG:時間経過) - (TIME_PROGRESS(TFLAG:時間経過)%5)) / 5)
 ;PRINTFORML 経過時間{TIME_PROGRESS(TFLAG:300)} 気温{FLAG:現在気温} かけ値{LOCAL:1}
 SIF LOCAL:1 <= 0
 	RETURN

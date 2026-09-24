@@ -1,4 +1,4 @@
-;----------------------------------
+﻿;----------------------------------
 ;服装效果
 ;---------------------------------
 
@@ -209,11 +209,11 @@ ELSEIF CFLAG:ARG:コスプレ着用 == 1 && EQUIP:ARG:上半身外衣_副 != 衣
 ELSEIF EQUIP:ARG:连体外衣 == 衣装_连体外衣_触手服
 	CFLAG:ARG:コスプレ着用 = 2
 	EXP:ARG:异常经验 ++
-	SOURCE:ARG:快Ｃ += TIME_PROGRESS(TFLAG:300) * 5
-	SOURCE:ARG:快Ａ += TIME_PROGRESS(TFLAG:300) * 5
-	SOURCE:ARG:快Ｂ += TIME_PROGRESS(TFLAG:300) * 5
+	SOURCE:ARG:快Ｃ += TIME_PROGRESS(TFLAG:時間経過) * 5
+	SOURCE:ARG:快Ａ += TIME_PROGRESS(TFLAG:時間経過) * 5
+	SOURCE:ARG:快Ｂ += TIME_PROGRESS(TFLAG:時間経過) * 5
 	IF TALENT:ARG:性别 != 2 && TALENT:ARG:处女 == 0
-		SOURCE:ARG:快Ｖ += TIME_PROGRESS(TFLAG:300) * 5
+		SOURCE:ARG:快Ｖ += TIME_PROGRESS(TFLAG:時間経過) * 5
 	ENDIF
 	RETURN 1
 

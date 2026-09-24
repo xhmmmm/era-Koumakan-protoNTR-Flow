@@ -1,4 +1,4 @@
-;────────────────────────────────────
+﻿;────────────────────────────────────
 ;調教終了の処理
 ;────────────────────────────────────
 @EVENTEND
@@ -16,7 +16,7 @@ WHILE (TIME_PROGRESS(CFLAG:MASTER:起床時間) < 要睡眠経過時間)
 	CALL CHARA_MOVEMENT_AFTERTRA(位置编号记录) ; キャラの移动
 	CALL VISITER_DO     ; 訪問者のアクション
 	CALL EVENTCOMEND2   ; コマンド終了後
-	TFLAG:300 = DATETIME()
+	TFLAG:時間経過 = DATETIME()
 	TIME += 30
 WEND
 SELECTCASE 位置编号记录
@@ -39,7 +39,7 @@ SIF FLAG:真实模式
 
 PRINTL 一天结束了
 FLAG:訪問者同行フラグ = 0
-SIF STRLENS(TSTR:1)
+SIF STRLENS(TSTR:视频摄影记录)
 	CALL SELL_VIDEO
 ;访问者给角色避孕
 FOR LOOP_CHR, 0, CHARANUM
@@ -135,10 +135,10 @@ FOR LOOP_I,0,100
 		GOTJUEL:角色:LOOP_I = 珠獲得
 		;否定の珠
 	ELSEIF LOOP_I == 30 || LOOP_I == 31 || LOOP_I == 32
-		GOTJUEL:角色:100 += 珠獲得
+		GOTJUEL:角色:否定 += 珠獲得
 	ENDIF
 NEXT
-JUEL:角色:100 += GOTJUEL:角色:100
+JUEL:角色:否定 += GOTJUEL:角色:否定
 FOR LOOP_I,0,100
 	SIF !STRLENS(PALAMNAME:LOOP_I)
 		CONTINUE
@@ -150,7 +150,7 @@ NEXT
 #DIM 角色
 #DIM 増減値
 #DIM 珠種別
-SIF JUEL:角色:100 == 0
+SIF JUEL:角色:否定 == 0
 	RETURN 0
 WHILE 1
 	SIF !JUEL:角色:否定 || (!JUEL:角色:恭顺 && !JUEL:角色:欲情 && !JUEL:角色:屈服)
@@ -203,7 +203,7 @@ NEXT
 ;訪問者の移动処理
 CALL VISITER_MOVEMENT
 ;同行者への影響チェック
-CALL NTR_CHK_GOWITH(TIME_PROGRESS(TFLAG:300))
+CALL NTR_CHK_GOWITH(TIME_PROGRESS(TFLAG:時間経過))
 FOR LOOP_CHR,0,CHARANUM
 	;同行者跳过判定
 	SIF CFLAG:LOOP_CHR:同行
@@ -232,7 +232,7 @@ FOR LOOP_CHR,0,CHARANUM
 	CALL PREGNACY_S_Milking(LOOP_CHR)
 	;汚れを付ける
 	WK = CFLAG:LOOP_CHR:睡眠 ? 0 # 1 + TALENT:LOOP_CHR:幼稚 - 2 * ABL:LOOP_CHR:清扫技能
-	FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MAX(FLAG:(100 + CFLAG:LOOP_CHR:当前位置) + WK * TIME_PROGRESS(TFLAG:300),0)
+	FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MAX(FLAG:(100 + CFLAG:LOOP_CHR:当前位置) + WK * TIME_PROGRESS(TFLAG:時間経過),0)
 	FLAG:(100 + CFLAG:LOOP_CHR:当前位置) = MIN(FLAG:(100 + CFLAG:LOOP_CHR:当前位置),2000)
 NEXT
 

@@ -1,4 +1,4 @@
-;--------------------------------------------------
+﻿;--------------------------------------------------
 ;@KOJO_MESSAGE_COM関係
 ;コマンド実行時に出力されます
 ;--------------------------------------------------
@@ -22,17 +22,17 @@ ENDIF
 IF CFLAG:対象:睡眠
 	CALL TRAIN_MESSAGE
 	;口球
-ELSEIF TEQUIP:20 && SELECTCOM != 107 && FLAG:情景テキスト設定 > 0
+ELSEIF TEQUIP:口球 && SELECTCOM != 107 && FLAG:情景テキスト設定 > 0
 	CALL TRAIN_MESSAGE
 ELSE
 	RESULT = 0
 	RESULTS =
 	SIF FLAG:口上颜色
 		CALL KOJO_COLOR(対象)
-	IF TFLAG:50
+	IF TFLAG:特殊COM
 		TRYCALLLIST
-			FUNC KOJO%RESULTS%_MESSAGE_SCOM_K{対象}_{TFLAG:50}
-			FUNC KOJO%RESULTS%_MESSAGE_SCOM_KU_{TFLAG:50}
+			FUNC KOJO%RESULTS%_MESSAGE_SCOM_K{対象}_{TFLAG:特殊COM}
+			FUNC KOJO%RESULTS%_MESSAGE_SCOM_KU_{TFLAG:特殊COM}
 			FUNC TRAIN_MESSAGE
 		ENDFUNC
 	ELSE
@@ -89,9 +89,9 @@ ELSE
 	SIF FLAG:口上颜色
 		CALL KOJO_COLOR(対象)
 	TRYCALLLIST
-		FUNC NTR_KOJO%RESULTS%_MESSAGE_COUNTER_K{対象}_{TCVAR:20}
-		FUNC KOJO%RESULTS%_MESSAGE_COUNTER_K{対象}_{TCVAR:20}
-		FUNC KOJO%RESULTS%_MESSAGE_COUNTER_KU_{TCVAR:20}
+		FUNC NTR_KOJO%RESULTS%_MESSAGE_COUNTER_K{対象}_{TCVAR:カウンター行動}
+		FUNC KOJO%RESULTS%_MESSAGE_COUNTER_K{対象}_{TCVAR:カウンター行動}
+		FUNC KOJO%RESULTS%_MESSAGE_COUNTER_KU_{TCVAR:カウンター行動}
 		FUNC EVENT_COUNTER_MESSAGE
 	ENDFUNC
 	RESETCOLOR
@@ -117,7 +117,7 @@ FOR LOCAL,0,CHARANUM
 	SIF LOCAL > 0 && TARGET:LOCAL == TARGET
 		CONTINUE
 	;口上出力用のフラグがないと飛ばす
-	SIF !TCVAR:(TARGET:LOCAL):50
+	SIF !TCVAR:(TARGET:LOCAL):口上出力用射精箇所
 		CONTINUE
 	LOCAL:1 = TARGET
 	TARGET = TARGET:LOCAL
@@ -135,7 +135,7 @@ FOR LOCAL,0,CHARANUM
 		LOCAL:2 ++
 	TARGET = LOCAL:1
 	;避孕套口上は対象一人のみ
-	SIF GETBIT(TFLAG:1,0)
+	SIF GETBIT(TFLAG:射精箇所,0)
 		BREAK
 NEXT
 ;-------------------------------------------------
@@ -268,7 +268,7 @@ TARGET = LOCAL
 SIF FLAG:口上颜色
 	CALL KOJO_COLOR(ARG)
 ;避孕套
-IF GETBIT(TCVAR:50,0)
+IF GETBIT(TCVAR:口上出力用射精箇所,0)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_0(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -276,7 +276,7 @@ ENDIF
 ;-------------------------------------------------
 ;强迫口交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,23)
+IF GETBIT(TCVAR:口上出力用射精箇所,23)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_23(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -284,7 +284,7 @@ ENDIF
 ;-------------------------------------------------
 ;六九式
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,22)
+IF GETBIT(TCVAR:口上出力用射精箇所,22)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_22(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -292,7 +292,7 @@ ENDIF
 ;-------------------------------------------------
 ;乳夹口交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,21)
+IF GETBIT(TCVAR:口上出力用射精箇所,21)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_21(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -300,7 +300,7 @@ ENDIF
 ;-------------------------------------------------
 ;手淫口交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,20)
+IF GETBIT(TCVAR:口上出力用射精箇所,20)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_20(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -308,7 +308,7 @@ ENDIF
 ;-------------------------------------------------
 ;舔肛侍奉
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,9)
+IF GETBIT(TCVAR:口上出力用射精箇所,9)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_9(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -316,7 +316,7 @@ ENDIF
 ;-------------------------------------------------
 ;泡澡
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,8)
+IF GETBIT(TCVAR:口上出力用射精箇所,8)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_8(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -324,7 +324,7 @@ ENDIF
 ;-------------------------------------------------
 ;足交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,7)
+IF GETBIT(TCVAR:口上出力用射精箇所,7)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_7(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -332,7 +332,7 @@ ENDIF
 ;-------------------------------------------------
 ;素股
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,6)
+IF GETBIT(TCVAR:口上出力用射精箇所,6)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_6(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -340,7 +340,7 @@ ENDIF
 ;-------------------------------------------------
 ;乳交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,5)
+IF GETBIT(TCVAR:口上出力用射精箇所,5)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_5(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -348,7 +348,7 @@ ENDIF
 ;-------------------------------------------------
 ;口交
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,4)
+IF GETBIT(TCVAR:口上出力用射精箇所,4)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_4(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -356,7 +356,7 @@ ENDIF
 ;-------------------------------------------------
 ;手淫
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,3)
+IF GETBIT(TCVAR:口上出力用射精箇所,3)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_3(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -364,7 +364,7 @@ ENDIF
 ;-------------------------------------------------
 ;菊花
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,2)
+IF GETBIT(TCVAR:口上出力用射精箇所,2)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_2(ARG)
 	SIF RESULT
 		RETURN RESULT
@@ -372,7 +372,7 @@ ENDIF
 ;-------------------------------------------------
 ;膣内
 ;-------------------------------------------------
-IF GETBIT(TCVAR:50,1)
+IF GETBIT(TCVAR:口上出力用射精箇所,1)
 	TRYCALLFORM KOJO_MESSAGE_PALAMCNG_A_K{NO:TARGET}_1(ARG)
 	SIF RESULT
 		RETURN RESULT

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;六九式
 ;爱抚・侍奉系派生コマンド
 ;-------------------------------------------------
@@ -13,17 +13,17 @@ TCVAR:TARGET:行為者 = PLAYER
 
 LOCALS = {TARGET}/
 CSTR:PLAYER:射精判定用 += LOCALS
-TCVAR:PLAYER:2 = 4
+TCVAR:PLAYER:射精箇所フラグ = 4
 ;強度
-TCVAR:PLAYER:4 = 1500
+TCVAR:PLAYER:射精快感強度 = 1500
 
 LOCALS = {PLAYER}/
 CSTR:TARGET:射精判定用 += LOCALS
-TCVAR:TARGET:2 = 4
+TCVAR:TARGET:射精箇所フラグ = 4
 ;強度
-TCVAR:TARGET:4 = 1500
+TCVAR:TARGET:射精快感強度 = 1500
 ;侍奉快楽
-TFLAG:30 = 1
+TFLAG:侍奉快楽フラグ = 1
 
 ;-------------------------------------------------
 ;ソース追加処理
@@ -50,7 +50,7 @@ ENDIF
 SOURCE:肮脏 = LOCAL * 80 + 50
 IF SELECTCOM == 3
 	;破瓜抑制
-	TFLAG:2 = 1
+	TFLAG:破瓜抑制フラグ = 1
 	IF !TALENT:处女
 		SOURCE:快Ｖ += 120
 		SOURCE:苦痛 += 15
@@ -188,7 +188,7 @@ ENDIF
 IF MARK:快乐刻印
 	SIF TFLAG:実行値表示用フラグ
 		PRINT  + 
-	TFLAG:実行値 += MARK:1 * 2
+	TFLAG:実行値 += MARK:快乐刻印 * 2
 	PRINT 快乐刻印
 	PRINTV 'LV,MARK:快乐刻印,'(,MARK:快乐刻印 * 2,')
 	TFLAG:実行値表示用フラグ = 1

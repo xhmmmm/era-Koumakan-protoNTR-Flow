@@ -1,4 +1,4 @@
-@EVENT_COUNTER_REACTION(ARG,ARG:1)
+﻿@EVENT_COUNTER_REACTION(ARG,ARG:1)
 
 ;膣挿入
 IF MASTER_POSE(6,1) == ARG
@@ -7,22 +7,22 @@ IF MASTER_POSE(6,1) == ARG
 		CASE 1
 			SIF ABL:ARG:膣 < 2
 				RETURN 0
-			TCVAR:ARG:21 = 1
+			TCVAR:ARG:カウンター行動の派生 = 1
 			;だいしゅきホールド
 		CASE 2
 			SIF !TALENT:ARG:恋慕
 				RETURN 0
 			SIF TEQUIP:ARG:体位 == 1 || TEQUIP:ARG:体位 == 4
-				TCVAR:ARG:21 = 2
+				TCVAR:ARG:カウンター行動の派生 = 2
 			;性交見せつけ
 		CASE 3
 			SIF ABL:ARG:露出癖 < 2
 				RETURN 0
 			SIF TEQUIP:ARG:体位 == 3
-				TCVAR:ARG:21 = 3
+				TCVAR:ARG:カウンター行動の派生 = 3
 	ENDSELECT
-	SIF TCVAR:ARG:21
-		TCVAR:ARG:20 = 500
+	SIF TCVAR:ARG:カウンター行動の派生
+		TCVAR:ARG:カウンター行動 = 500
 ENDIF
 
 ;手淫
@@ -32,21 +32,21 @@ IF MASTER_POSE(3,1) == ARG
 		CASE 1
 			SIF ABL:ARG:指 < 2
 				RETURN 0
-			TCVAR:ARG:20 = 502
+			TCVAR:ARG:カウンター行動 = 502
 			;玉揉み
 		CASE 2
 			SIF ABL:ARG:指 < 2
 				RETURN 0
 			IF ARG == TARGET && SELECTCOM == 80
-				TCVAR:ARG:21 = 1
-				TCVAR:ARG:20 = 600
+				TCVAR:ARG:カウンター行動の派生 = 1
+				TCVAR:ARG:カウンター行動 = 600
 			ENDIF
 			;肛门爱抚
 		CASE 3
 			SIF BASE:PLAYER:勃起 < 1000
 				RETURN 0
 			SIF ARG == TARGET && SELECTCOM == 80
-				TCVAR:ARG:20 = 601
+				TCVAR:ARG:カウンター行動 = 601
 	ENDSELECT
 ENDIF
 ;口交
@@ -56,16 +56,16 @@ IF MASTER_POSE(4,1) == ARG
 		CASE 1
 			SIF ABL:ARG:舌 < 2
 				RETURN 0
-			TCVAR:ARG:20 = 503
-			TCVAR:ARG:21 = 1
+			TCVAR:ARG:カウンター行動 = 503
+			TCVAR:ARG:カウンター行動の派生 = 1
 			;玉舐め
 		CASE 2
 			SIF ABL:ARG:舌 < 2
 				RETURN 0
 			SIF ARG == TARGET
 				RETURN 0
-			TCVAR:ARG:21 = 2
-			TCVAR:ARG:20 = 600
+			TCVAR:ARG:カウンター行動の派生 = 2
+			TCVAR:ARG:カウンター行動 = 600
 			;ディープスロート
 		CASE 3
 			SIF ABL:ARG:舌 < 4
@@ -73,8 +73,8 @@ IF MASTER_POSE(4,1) == ARG
 			SIF BASE:PLAYER:勃起 < 1000
 				RETURN 0
 			IF ARG == TARGET && SELECTCOM == 81
-				TCVAR:ARG:20 = 503
-				TCVAR:ARG:21 = 3
+				TCVAR:ARG:カウンター行動 = 503
+				TCVAR:ARG:カウンター行動の派生 = 3
 			ENDIF
 	ENDSELECT
 ENDIF
@@ -87,7 +87,7 @@ IF MASTER_POSE(5,1) == ARG
 				RETURN 0
 			SIF ABL:ARG:胸 < 2
 				RETURN 0
-			TCVAR:ARG:21 = 1
+			TCVAR:ARG:カウンター行動の派生 = 1
 			;縦乳交
 		CASE 2
 			SIF ABL:ARG:胸 < 3
@@ -95,7 +95,7 @@ IF MASTER_POSE(5,1) == ARG
 			SIF TALENT:ARG:胸部尺寸 < 1
 				RETURN 0
 			SIF ARG == TARGET && SELECTCOM == 82
-				TCVAR:ARG:21 = 2
+				TCVAR:ARG:カウンター行動の派生 = 2
 			;頑張って谷間をつくる
 		CASE 3
 			SIF ABL:ARG:胸 < 3
@@ -103,10 +103,10 @@ IF MASTER_POSE(5,1) == ARG
 			SIF TALENT:ARG:胸部尺寸 != -1
 				RETURN 0
 			SIF ARG == TARGET && SELECTCOM == 82
-				TCVAR:ARG:21 = 3
+				TCVAR:ARG:カウンター行動の派生 = 3
 	ENDSELECT
-	SIF TCVAR:ARG:21
-		TCVAR:ARG:20 = 504
+	SIF TCVAR:ARG:カウンター行動の派生
+		TCVAR:ARG:カウンター行動 = 504
 ENDIF
 ;素股
 IF MASTER_POSE(2,1) == ARG
@@ -115,7 +115,7 @@ IF MASTER_POSE(2,1) == ARG
 		CASE 1
 			SIF ABL:ARG:腰 < 2
 				RETURN 0
-			TCVAR:ARG:21 = 1
+			TCVAR:ARG:カウンター行動の派生 = 1
 			;手淫追加
 		CASE 2
 			SIF ABL:ARG:腰 < 2
@@ -123,8 +123,8 @@ IF MASTER_POSE(2,1) == ARG
 			SIF ABL:ARG:指 < 2
 				RETURN 0
 			SIF ARG == TARGET && SELECTCOM == 83
-				TCVAR:ARG:21 = 2
+				TCVAR:ARG:カウンター行動の派生 = 2
 	ENDSELECT
-	SIF TCVAR:ARG:21
-		TCVAR:ARG:20 = 505
+	SIF TCVAR:ARG:カウンター行動の派生
+		TCVAR:ARG:カウンター行動 = 505
 ENDIF

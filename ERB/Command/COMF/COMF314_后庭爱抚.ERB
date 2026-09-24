@@ -1,10 +1,10 @@
-;肛门爱抚
+﻿;肛门爱抚
 @COM314
 ;-------------------------------------------------
 ;COM別FLAGの設定
 ;-------------------------------------------------
 ;行為者
-TCVAR:116 = PLAYER
+TCVAR:行為者 = PLAYER
 
 ;-------------------------------------------------
 ;ソース追加処理
@@ -24,7 +24,7 @@ SOURCE:反感 = 60
 SOURCE:被动 = 150 + 300 * ABL:顺从
 
 ;手を突っ込めない衣装
-IF TEQUIP:0 & 16
+IF TEQUIP:下半身着衣状況 & 16
 	TIMES SOURCE:快Ａ , 0.60
 	TIMES SOURCE:欲情 , 0.60
 	TIMES SOURCE:露出 , 0.60
@@ -43,13 +43,13 @@ SIF TALENT:自己爱 < 0 || TALENT:抵抗
 	SOURCE:抑郁 += 100
 
 ;Aへの苦痛は先に処理しておく
-SIF TCVAR:20 == 72 && !TEQUIP:六九式
+SIF TCVAR:カウンター行動 == 72 && !TEQUIP:六九式
 	CALL PAIN_CHECK_A(TARGET)
 
 ;-------------------------------------------------
 ;汚れの処理
 ;-------------------------------------------------
-IF TCVAR:20 == 72 && !TEQUIP:六九式
+IF TCVAR:カウンター行動 == 72 && !TEQUIP:六九式
 	;角色のＡ⇔調教者の指の汚れが移动
 	STAIN:PLAYER:口 |= STAIN:Ａ
 	STAIN:Ａ |= STAIN:PLAYER:口
@@ -67,9 +67,9 @@ IF HETEROSEX(TARGET,PLAYER)
 	EXP:(50 + HETEROSEX(TARGET,PLAYER)) += 4
 	EXP:PLAYER:(50 + HETEROSEX(TARGET,PLAYER)) += 4
 ENDIF
-SIF TFLAG:60 < 2
+SIF TFLAG:MASTERの口使用中 < 2
 	EXP:PLAYER:手淫经验 ++
-SIF TEQUIP:六九式 || TCVAR:20 == 72
+SIF TEQUIP:六九式 || TCVAR:カウンター行動 == 72
 	EXP:PLAYER:口淫经验 ++
 TIME += 10
 CALL 改变肛门色素(TARGET,1)

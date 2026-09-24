@@ -1,4 +1,4 @@
-;--------------------------------------------------
+﻿;--------------------------------------------------
 ;寝取られパッチ汎用メッセージ
 ;NTR.ERBから地の文の部分を関数化したもの
 ;キャラ固有のメッセージと置換しやすくするため
@@ -435,7 +435,7 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 		PRINTFORML %CALLNAME:ARG%一边忍耐着疼痛一边紧紧地抱住了%NTR_NAME(0)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%平躺之后，
-	SIF TEQUIP:ARG:0 & 2
+	SIF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORM 掀开她的%SHOW_BOTTOM(ARG,2)%，
 	PRINTFORML 将阴茎贴上%MSG_SLIT(ARG)%贯穿而入…
 ENDIF
@@ -597,9 +597,9 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%四肢着地趴下、高高抬起屁股，将龟头浅浅地嵌入其中后，用肉棒贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%四肢着地趴下，
-	IF TEQUIP:ARG:0 & 2
+	IF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORM 将%SHOW_BOTTOM(ARG,2)%向一边掀开
-	ELSEIF TEQUIP:ARG:0 & 1
+	ELSEIF TEQUIP:ARG:下半身着衣状況 & 1
 		PRINTFORM 将%SHOW_BOTTOM(ARG,1)%向上卷起
 	ENDIF
 	PRINTFORMW 从后面插入了%MSG_SLIT(ARG)%的最深处…
@@ -900,7 +900,7 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，在接吻的同时一边慢慢放下，用肉棒将还不认识男人的%MSG_SLIT(ARG)%贯穿了…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，慢慢放下的同时向着
-	SIF TEQUIP:ARG:0 & 2
+	SIF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORM 已经掀开一角的%SHOW_BOTTOM(ARG,2)%间隙中的
 	PRINTFORMW %MSG_SLIT(ARG)%插入，一边接吻一边摇动着腰…
 ENDIF
@@ -944,7 +944,7 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，用早已做好准备的肉棒缓缓贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的身体轻轻抱起，
-	IF TEQUIP:ARG:0 & 2
+	IF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORMW 从%SHOW_BOTTOM(ARG,2)%的缝隙间缓缓插入了%MSG_SLIT(ARG)%…
 	ELSE
 		PRINTFORMW 用早已做好准备的肉棒缓缓贯穿了%MSG_SLIT(ARG)%…
@@ -993,7 +993,7 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的一只脚向上抬起，将龟头贴上裸露而出还不认识男人的%MSG_SLIT(ARG)%一口气贯穿了它…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%将%CALLNAME:ARG%的一只脚向上抬起，
-	SIF TEQUIP:ARG:0 & 2
+	SIF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORM 向一旁掀开%SHOW_BOTTOM(ARG,2)%，
 	PRINTFORMW 将肉棒对准贴上%MSG_SLIT(ARG)%后贯穿了它…
 ENDIF
@@ -1041,9 +1041,9 @@ IF TALENT:ARG:处女 || CFLAG:ARG:处女丧失中
 	PRINTFORMW 然后向后伸出屁股，用肉棒贯穿了还不认识男人的%MSG_SLIT(ARG)%…
 ELSE
 	PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%扶着%MSG_WallOrTree_NTR()%然后
-	IF TEQUIP:ARG:0 & 2
+	IF TEQUIP:ARG:下半身着衣状況 & 2
 		PRINTFORM 向一旁掀开%SHOW_BOTTOM(ARG,2)%，
-	ELSEIF TEQUIP:ARG:0 & 1
+	ELSEIF TEQUIP:ARG:下半身着衣状況 & 1
 		PRINTFORM 向上卷起%SHOW_BOTTOM(ARG,1)%，
 	ENDIF
 	PRINTFORMW 从后面插入了%MSG_SLIT(ARG)%的最深处…
@@ -1085,7 +1085,7 @@ RETURN 0
 @NTR_MESSAGE_K_9_0_0(ARG)
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%让%CALLNAME:ARG%平躺之后
-IF TEQUIP:ARG:0 & 2
+IF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM 将%SHOW_BOTTOM(ARG,2)%间隙中的
 ELSE
 	PRINT 将
@@ -1130,9 +1130,9 @@ RETURN 0
 @NTR_MESSAGE_K_9_1_0(ARG)
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%は四つん這いにさせた%CALLNAME:ARG%の
-IF TEQUIP:ARG:0 & 2
+IF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM %SHOW_BOTTOM(ARG,2)%をずらし、
-ELSEIF TEQUIP:0 & 1
+ELSEIF TEQUIP:下半身着衣状況 & 1
 	PRINTFORM %SHOW_BOTTOM(ARG,1)%を捲り上げ、
 ENDIF
 PRINTFORMW 後ろからアヌスの最奥まで突き入れた…
@@ -1211,7 +1211,7 @@ RETURN 0
 @NTR_MESSAGE_K_9_3_0(ARG)
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%は%CALLNAME:ARG%の身体を抱き上げ
-SIF TEQUIP:ARG:0 & 2
+SIF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM %SHOW_BOTTOM(ARG,2)%を強引にずらし
 PRINTFORMW ゆっくりと降ろしながらアヌスへと挿入すると、口付けをしつつ腰を揺り動かしていた…
 SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度
@@ -1248,7 +1248,7 @@ RETURN 0
 @NTR_MESSAGE_K_9_4_0(ARG)
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%は%CALLNAME:ARG%の身体を抱き上げ、
-SIF TEQUIP:ARG:0 & 2
+SIF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM ずらした%SHOW_BOTTOM(ARG,2)%の隙間から
 PRINTFORMW アヌスを待ち構えていたモノでゆっくり貫いた…
 SIF CFLAG:ARG:屈服度 > CFLAG:ARG:好感度
@@ -1285,7 +1285,7 @@ RETURN 0
 @NTR_MESSAGE_K_9_5_0(ARG)
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%
-IF TEQUIP:ARG:0 & 2
+IF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM 将%CALLNAME:ARG%%SHOW_BOTTOM(ARG,2)%间隙中的
 ELSE
 	PUTFORM 将%CALLNAME:ARG%的
@@ -1331,9 +1331,9 @@ RETURN 0
 
 PRINTFORM 【%NTR_GetPlaceName(FLAG:访问者当前位置)%】%NTR_NAME(0)%は%MSG_WallOrTree_NTR()%
 PRINTFORM に手を付かせた%CALLNAME:ARG%の
-IF TEQUIP:ARG:0 & 2
+IF TEQUIP:ARG:下半身着衣状況 & 2
 	PRINTFORM %SHOW_BOTTOM(ARG,2)%をずらし、
-ELSEIF TEQUIP:ARG:0 & 1
+ELSEIF TEQUIP:ARG:下半身着衣状況 & 1
 	PRINTFORM %SHOW_BOTTOM(ARG,1)%を捲り上げ、
 ENDIF
 PRINTFORMW 後ろからアヌスの最奥まで突き入れた…

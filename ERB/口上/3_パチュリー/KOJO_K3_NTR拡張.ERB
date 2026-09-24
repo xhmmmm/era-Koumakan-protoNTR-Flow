@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;帕秋莉口上NTR对应包装口上
 ;
 ;为未对应NTR的帕秋莉口上添加NTR独有分支的包装口上。
@@ -70,7 +70,7 @@ RETURN RET_VAL
 ;312,接吻
 ;==================================================
 @NTR_KOJO_MESSAGE_COM_K3_312
-IF TFLAG:193 == 0
+IF TFLAG:コマンド成功度 == 0
 	CALL TRAIN_MESSAGE
 ENDIF
 CALL NTR_KOJO_MESSAGE_COM_K3_312_1
@@ -88,7 +88,7 @@ RETURN RESULT
 RET_VAL = 0
 
 ;因嘴唇污渍被拒绝时
-IF TFLAG:193 == -2
+IF TFLAG:コマンド成功度 == -2
 	PRINTDATAL
 		DATAFORM 「不、不行！」
 		DATAFORM 「不、不可以！」
@@ -102,7 +102,7 @@ IF TFLAG:193 == -2
 	ENDDATA
 	PRINTFORML %CALLNAME:角色%似乎想要喝茶。
 	;失败时
-ELSEIF TFLAG:193 == -1
+ELSEIF TFLAG:コマンド成功度 == -1
 	PRINTDATAL
 		DATAFORM 「住、住手！」
 		DATAFORM 「突然做什么！？」
@@ -185,7 +185,7 @@ RETURN RESULT
 角色 = 人物_帕秋莉
 RET_VAL = 0
 ;告白成功
-IF TFLAG:193
+IF TFLAG:コマンド成功度
 	RET_VAL = 1
 	;告白失败
 ELSE

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;非NTR蕾米莉亚お嬢様汎用口上
 ;非NTRといってもprotoNTR向けなので、NTR関連のフラグも意識して実装。
 ;恋慕状態とNTR状態のギャップを書けたらいいなというのが個人的な希望。
@@ -187,7 +187,7 @@ RETURN 0
 ;312,接吻
 ;==================================================
 @KOJO_MESSAGE_COM_K5_312
-IF TFLAG:193 == 0
+IF TFLAG:コマンド成功度 == 0
 	CALL TRAIN_MESSAGE
 ENDIF
 CALL KOJO_MESSAGE_COM_K5_312_1
@@ -195,7 +195,7 @@ RETURN RESULT
 
 @KOJO_MESSAGE_COM_K5_312_1
 ;失敗時
-IF TFLAG:193 == -1
+IF TFLAG:コマンド成功度 == -1
 	PRINTDATAL
 		DATAFORM 「・・无礼之人」
 		DATAFORM 「・・太慢了」

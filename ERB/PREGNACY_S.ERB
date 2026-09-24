@@ -1,4 +1,4 @@
-;=============================================================================
+﻿;=============================================================================
 ;妊娠関連のイベント
 ;
 ;妊娠処理変更パッチにより、本モジュールの機能のいくつかは無効となった。
@@ -254,7 +254,7 @@ ELSE
 	IF !CFLAG:角色:泌乳体质獲得
 		PRINTFORML 子供を育てる必要がないため、%CALLNAME:角色%は薬を飲んで母乳を止めました。
 		TALENT:角色:泌乳体质 = 0
-		MAXBASE:角色:3 = 0
+		MAXBASE:角色:母乳 = 0
 		IF TALENT:角色:胸部尺寸 != CFLAG:角色:胸部尺寸保存
 			PRINTFORMW 母乳を止めたことで%CALLNAME:角色%の胸が小さくなりました
 			;妊娠時に大きくなった胸のサイズを一段小さくする
@@ -559,7 +559,7 @@ ENDIF
 #DIM 成長フラグ
 
 成長フラグ = 0
-IF DAY > CFLAG:子供:80 + 20 && CFLAG:子供:成長度 == 成長度_乳児
+IF DAY > CFLAG:子供:誕生日 + 20 && CFLAG:子供:成長度 == 成長度_乳児
 	TALENT:子供:幼稚 = 0
 	IF CFLAG:子供:父親 < 900
 		SIF TALENT:(CFLAG:子供:父親):幼稚 && TALENT:(CFLAG:子供:母親):幼稚
@@ -597,7 +597,7 @@ IF DAY > CFLAG:子供:80 + 20 && CFLAG:子供:成長度 == 成長度_乳児
 		;妊娠時に発生した泌乳体质を消失させる
 		IF !CFLAG:(CFLAG:子供:母親):泌乳体质獲得
 			TALENT:(CFLAG:子供:母親):泌乳体质 = 0
-			MAXBASE:(CFLAG:子供:母親):3 = 0
+			MAXBASE:(CFLAG:子供:母親):母乳 = 0
 		ENDIF
 		CFLAG:(CFLAG:子供:母親):泌乳体质獲得 -= 1
 	ENDIF
@@ -608,7 +608,7 @@ IF DAY > CFLAG:子供:80 + 20 && CFLAG:子供:成長度 == 成長度_乳児
 		CFLAG:子供:服装パターン = 1
 	ENDIF
 	CFLAG:子供:寝間着 = 5
-ELSEIF DAY > CFLAG:子供:80 + 40 && CFLAG:子供:成長度 == 成長度_幼児
+ELSEIF DAY > CFLAG:子供:誕生日 + 40 && CFLAG:子供:成長度 == 成長度_幼児
 	TALENT:子供:幼儿／幼儿退行 = 0
 	IF CFLAG:子供:父親 < 900
 		SIF TALENT:(CFLAG:子供:父親):幼儿／幼儿退行 || TALENT:(CFLAG:子供:母親):幼儿／幼儿退行
@@ -628,13 +628,13 @@ ELSEIF DAY > CFLAG:子供:80 + 40 && CFLAG:子供:成長度 == 成長度_幼児
 	PRINTFORMW %CALLNAME:子供%は成長し、少し難しい年頃になってきた
 	;男の子は父親の部屋で寝るように
 	SIF GETBIT(TALENT:子供:性别,1) && CFLAG:子供:父親 < 900
-		CFLAG:子供:311 = CFLAG:(CFLAG:子供:父親):311
+		CFLAG:子供:開始位置 = CFLAG:(CFLAG:子供:父親):開始位置
 	IF GETBIT(TALENT:子供:性别,0)
 		CFLAG:子供:寝間着 = RAND:11
 	ELSE
 		CFLAG:子供:寝間着 = RAND:8
 	ENDIF
-ELSEIF DAY > CFLAG:子供:80 + 60 && CFLAG:子供:成長度 == 成長度_成長期
+ELSEIF DAY > CFLAG:子供:誕生日 + 60 && CFLAG:子供:成長度 == 成長度_成長期
 	CFLAG:子供:成長度 = 成長度_成人
 	成長フラグ = 1
 	IF CFLAG:子供:父親 < 900
@@ -1006,7 +1006,7 @@ SIF !(RAND:5)
 	LOCAL = 1
 SIF ARG:2 == 2
 	ARG:2 = RAND:2
-IF GETBIT(TALENT:(ARG:1):2,0)
+IF GETBIT(TALENT:(ARG:1):性别,0)
 	IF ARG:2 == 0
 		CALL RANDOM_N_GIRL(ARG,ARG:1,LOCAL)
 	ELSEIF ARG:2 == 1
@@ -2310,7 +2310,7 @@ CALLNAME:(ARG:1) = %RESULTS%
 SIF !TALENT:(角色):泌乳体质
 	RETURN 0
 ;母乳増加
-BASE:(角色):母乳 += TIME_PROGRESS(TFLAG:300)*5
+BASE:(角色):母乳 += TIME_PROGRESS(TFLAG:時間経過)*5
 ;母乳が８割ぐらい溜まってて 自室で 一人だったら搾る
 IF BASE:(角色):母乳*10 > MAXBASE:(角色):母乳*8
 	IF GET_PRIVATE_ROOM(角色,0) == CFLAG:(角色):当前位置

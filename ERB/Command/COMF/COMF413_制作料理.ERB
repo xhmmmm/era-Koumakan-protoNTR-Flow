@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;料理を作る
 ;-------------------------------------------------
 @COM413
@@ -8,11 +8,11 @@ SIF !RESULT
 
 IF TARGET > 0 && !CFLAG:睡眠
 	IF TARGET && ABL:亲密 * 500 + ABL:顺从 * 500 + ABL:料理技能 * 1000 > CFLAG:館内地位 - CFLAG:MASTER:館内地位
-		TFLAG:193 = 1
+		TFLAG:コマンド成功度 = 1
 		EXP:料理经验 ++
 		EXP:侍奉快乐经验 ++
 	ELSE
-		TFLAG:193 = 0
+		TFLAG:コマンド成功度 = 0
 	ENDIF
 	;固定で獲得するソース
 	SOURCE:欢乐 = 200
@@ -34,7 +34,7 @@ IF TARGET > 0 && !CFLAG:睡眠
 
 	;好感度をみる
 	IF CFLAG:好感度 <= 500
-		SOURCE:欢乐 += CFLAG:2
+		SOURCE:欢乐 += CFLAG:好感度
 	ELSEIF CFLAG:好感度 <= 5000
 		SOURCE:欢乐 += 500 + (CFLAG:好感度 - 500) / 3
 	ELSE
@@ -44,7 +44,7 @@ IF TARGET > 0 && !CFLAG:睡眠
 		SOURCE:欢乐 = 0
 ENDIF
 
-TCVAR:PLAYER:305 = DATETIME()
+TCVAR:PLAYER:調理日時 = DATETIME()
 RETURN 1
 
 @COOKING_MENU
@@ -114,18 +114,18 @@ SELECTCASE RESULT
 
 			PRINTFORMW 制作了%GETDISHNAME(RESULT)%
 			FLAG:料理 = RESULT
-			TFLAG:194 = PAGE + 1
-			IF TFLAG:194 == 1
+			TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = PAGE + 1
+			IF TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 == 1
 				DOWNBASE:MASTER:体力 = 25
 				DOWNBASE:MASTER:气力 = 100
 				EXP:MASTER:料理经验 += 2
 				TIME += 30
-			ELSEIF TFLAG:194 == 2
+			ELSEIF TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 == 2
 				DOWNBASE:MASTER:体力 = 50
 				DOWNBASE:MASTER:气力 = 200
 				EXP:MASTER:料理经验 += 4
 				TIME += 60
-			ELSEIF TFLAG:194 == 3
+			ELSEIF TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 == 3
 				DOWNBASE:MASTER:体力 = 100
 				DOWNBASE:MASTER:气力 = 100
 				EXP:MASTER:料理经验 += 6
@@ -167,7 +167,7 @@ SIF HAS_VAGINA(MASTER)
 	PRINTL [3] - 愛液
 SIF TALENT:MASTER:泌乳体质
 	PRINTL [4] - 母乳
-SIF ITEM:41 != 0
+SIF ITEM:媚药 != 0
 	PRINTL [5] - 媚药
 SIF TALENT:MASTER:调和知识
 	PRINTL [7] - 睡眠薬
@@ -219,7 +219,7 @@ ELSEIF RESULT == 4 && TALENT:MASTER:泌乳体质
 	RETURN 1
 ELSEIF RESULT == 5 && ITEM:媚药 != 0
 	PRINTFORML %CALLNAME:PLAYER%从怀里拿出了媚药，掺进了%GETDISHNAME(FLAG:料理)%里面…
-	ITEM:41 -= 1
+	ITEM:媚药 -= 1
 	FLAG:料理 += 4000
 	RETURN 1
 ELSEIF RESULT == 7 && TALENT:MASTER:调和知识
@@ -444,9 +444,9 @@ ELSEIF GETDISHMENU(FLAG:料理 % 1000) == "甜点"
 	LOCAL = 25 + (ABL:MASTER:料理技能 * 15)
 ENDIF
 ;保存状態による成功値減少
-IF TCVAR:MASTER:306 == 2
+IF TCVAR:MASTER:料理鮮度 == 2
 	TIMES LOCAL, 0.35
-ELSEIF TCVAR:MASTER:306 == 1
+ELSEIF TCVAR:MASTER:料理鮮度 == 1
 	TIMES LOCAL, 0.75
 ENDIF
 

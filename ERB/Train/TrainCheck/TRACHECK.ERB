@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;時間経過
 ;-------------------------------------------------
 @TRACHECK_TIME
@@ -97,7 +97,7 @@ IF TALENT:角色:处女 == 1
 		ELSE
 			TRYCALL memorial_v_append(角色,对方,"用振动棒夺走了")
 		ENDIF
-	ELSEIF TFLAG:50 == 3
+	ELSEIF TFLAG:特殊COM == 3
 		; G点刺激の場合の例外処理
 		TRYCALL memorial_v_append(角色,PLAYER,"用手指夺走了")
 	ELSE
@@ -125,7 +125,7 @@ IF TALENT:角色:处女 == 1
 		ELSE
 			LOCALS = LV4/
 		ENDIF
-		TSTR:1 += LOCALS
+		TSTR:视频摄影记录 += LOCALS
 	ENDIF
 	;贞操観念
 	IF TALENT:角色:贞操 > 0
@@ -179,7 +179,7 @@ IF TALENT:角色:处女 == 2 && (EXP_UP(20,角色)||EXP_UP(33,角色)||EXP_UP(93
 		ELSE
 			LOCALS = LV4/
 		ENDIF
-		TSTR:1 += LOCALS
+		TSTR:视频摄影记录 += LOCALS
 	ENDIF
 	TALENT:角色:处女 = 0
 ENDIF
@@ -724,7 +724,7 @@ IF 今回屈服刻印
 		;缺乏感情の場合は屈服刻印による顺从アップはなし
 	ELSEIF ABL:角色:顺从 < 今回屈服刻印
 		ABL:角色:顺从 = MAX(今回屈服刻印-1,0)
-		TFLAG:25 = MAX(今回屈服刻印-1,0)
+		TFLAG:刻印取得時の顺从の変化 = MAX(今回屈服刻印-1,0)
 	ENDIF
 	;屈服刻印の上昇
 	MARK:角色:屈服刻印 = 今回屈服刻印
@@ -850,7 +850,7 @@ IF 今回快乐刻印 == 3
 	IF !ABL:角色:顺从 && !TALENT:角色:自制心 && !TALENT:角色:缺乏感情
 		;自制心・缺乏感情の場合は快乐刻印による顺从アップはなし
 		ABL:角色:顺从 = 1
-		TFLAG:25 = 1
+		TFLAG:刻印取得時の顺从の変化 = 1
 	ENDIF
 ENDIF
 
@@ -903,10 +903,10 @@ IF 今回反発刻印
 			;缺乏感情の場合は反発刻印による顺从ダウンはなし
 		ELSEIF ABL:角色:顺从 < 今回反発刻印
 			ABL:角色:顺从 = 0
-			TFLAG:25 = 1
+			TFLAG:刻印取得時の顺从の変化 = 1
 		ELSEIF ABL:角色:顺从 == 今回反発刻印
 			ABL:角色:顺从 = MAX(0,ABL:角色:顺从-1)
-			TFLAG:25 = 2
+			TFLAG:刻印取得時の顺从の変化 = 2
 		ENDIF
 	ENDIF
 
@@ -951,7 +951,7 @@ IF 今回苦痛刻印
 	IF TALENT:角色:胆量 > 0 && !TALENT:角色:缺乏感情 && !ABL:角色:顺从
 		;缺乏感情でも気丈でもなく、顺从を持っていない場合は顺从を得る
 		ABL:角色:顺从 = 1
-		TFLAG:25 = 1
+		TFLAG:刻印取得時の顺从の変化 = 1
 	ENDIF
 ENDIF
 
@@ -984,7 +984,7 @@ IF ABL:顺从 >= 3 && TALENT:抵抗
 	PRINTFORM %NAME:TARGET%は[抵抗]を失った
 	TALENT:抵抗 = 0
 	PRINTL 否定の珠が半分になった
-	JUEL:100 /= 2
+	JUEL:否定 /= 2
 ENDIF
 
 ;-------------------------------------------------
@@ -995,7 +995,7 @@ IF ABL:欲望 >= 3 && TALENT:自己爱 < 0
 	PRINTFORM %NAME:TARGET%[抑圧]を失った
 	TALENT:自己爱 = 0
 	PRINTL 否定の珠が半分になった
-	JUEL:100 /= 2
+	JUEL:否定 /= 2
 ENDIF
 
 ;-------------------------------------------------
@@ -1016,7 +1016,7 @@ ELSEIF CUP:ARG:欲情 < 1500
 ELSE
 	LOCAL *= 5
 ENDIF
-IF TFLAG:30
+IF TFLAG:侍奉快楽フラグ
 	IF LOCAL >= 12000
 		LOCAL:1 = 16
 		TIMES CUP:ARG:恐怖 , 0.65

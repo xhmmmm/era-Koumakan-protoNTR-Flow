@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SAMEN_DIRECTION(ARG,ARG:1)
@@ -33,7 +33,7 @@ FOR LOCAL,0,CHARANUM
 		CONTINUE
 	;避孕套
 	IF TEQUIP:LOCAL:避孕套
-		TCVAR:LOCAL:3 = 1
+		TCVAR:LOCAL:避孕套 = 1
 	ENDIF
 	SIF LOCAL > 0
 		CALL TARGET_EJAC_CHECK(LOCAL)
@@ -62,7 +62,7 @@ FOR LOCAL,0,CHARANUM
 		LOCAL:1 = TARGET:LOCAL
 	ENDIF
 	;射精処理
-	SIF TCVAR:(LOCAL:1):4
+	SIF TCVAR:(LOCAL:1):射精快感強度
 		CALL EJAC_CHECK_AFTER(LOCAL:1)
 	;部位別処理
 	SIF NOWEX:(LOCAL:1):射精
@@ -72,54 +72,54 @@ NEXT
 ;PLAYERからTARGETへの膣内～舔肛侍奉射精まではTCVAR:12(=1～9)に準拠
 IF SAMEN_DIRECTION2(PLAYER,TARGET)
 	SIF TCVAR:PLAYER:12 != 0
-		SETBIT TFLAG:1,TCVAR:PLAYER:12
+		SETBIT TFLAG:射精箇所,TCVAR:PLAYER:12
 ENDIF
 FOR LOCAL,1,CHARANUM
 	;避孕套
-	SIF TCVAR:PLAYER:13
-		SETBIT TCVAR:LOCAL:50,射精箇所_避孕套
+	SIF TCVAR:PLAYER:避孕套
+		SETBIT TCVAR:LOCAL:口上出力用射精箇所,射精箇所_避孕套
 	SIF SAMEN_DIRECTION2(PLAYER,LOCAL)
-		SETBIT TCVAR:LOCAL:50,TCVAR:PLAYER:12
+		SETBIT TCVAR:LOCAL:口上出力用射精箇所,TCVAR:PLAYER:12
 NEXT
 ;手淫口交
-IF TFLAG:50 == 5 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_手淫口交
-	SETBIT TCVAR:50,射精箇所_手淫口交
+IF TFLAG:特殊COM == 5 && NOWEX:PLAYER:射精
+	SETBIT TFLAG:射精箇所,射精箇所_手淫口交
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_手淫口交
 ENDIF
 ;乳夹口交
-IF TFLAG:50 == 12 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_乳夹口交
-	SETBIT TCVAR:50,射精箇所_乳夹口交
+IF TFLAG:特殊COM == 12 && NOWEX:PLAYER:射精
+	SETBIT TFLAG:射精箇所,射精箇所_乳夹口交
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_乳夹口交
 ENDIF
 ;授乳手コキ
-IF TFLAG:50 == 16 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_授乳手コキ
-	SETBIT TCVAR:50,射精箇所_授乳手コキ
+IF TFLAG:特殊COM == 16 && NOWEX:PLAYER:射精
+	SETBIT TFLAG:射精箇所,射精箇所_授乳手コキ
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_授乳手コキ
 ENDIF
 ;爱抚されてふたなり射精
 IF SELECTCOM == 95 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_爱抚
-	SETBIT TCVAR:50,射精箇所_爱抚
+	SETBIT TFLAG:射精箇所,射精箇所_爱抚
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_爱抚
 ENDIF
 ;泡澡でTARGET射精
 IF TCVAR:PLAYER:12 == 8
-	SETBIT TFLAG:1,射精箇所_体表
-	SETBIT TCVAR:50,射精箇所_体表
+	SETBIT TFLAG:射精箇所,射精箇所_体表
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_体表
 ENDIF
 ;六九式
-IF TFLAG:50 == 1 && (NOWEX:PLAYER:射精 || NOWEX:射精)
-	SETBIT TFLAG:1,射精箇所_六九式
-	SETBIT TCVAR:50,射精箇所_六九式
+IF TFLAG:特殊COM == 1 && (NOWEX:PLAYER:射精 || NOWEX:射精)
+	SETBIT TFLAG:射精箇所,射精箇所_六九式
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_六九式
 ENDIF
 ;强迫口交
 IF SELECTCOM == 140 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_强迫口交
-	SETBIT TCVAR:50,射精箇所_强迫口交
+	SETBIT TFLAG:射精箇所,射精箇所_强迫口交
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_强迫口交
 ENDIF
 ;子宮口責め
-IF TFLAG:50 == 7 && NOWEX:PLAYER:射精
-	SETBIT TFLAG:1,射精箇所_子宮口責め
-	SETBIT TCVAR:50,射精箇所_子宮口責め
+IF TFLAG:特殊COM == 7 && NOWEX:PLAYER:射精
+	SETBIT TFLAG:射精箇所,射精箇所_子宮口責め
+	SETBIT TCVAR:口上出力用射精箇所,射精箇所_子宮口責め
 ENDIF
 
 ;-------------------------------------------------------------------------------
@@ -147,7 +147,7 @@ ENDIF
 LOCAL:2 = 10 + GET_REVISION(LOCAL, 3 , 5)
 ;侍奉精神(侍奉系)
 LOCAL = 0
-IF TFLAG:30 && ARG == PLAYER
+IF TFLAG:侍奉快楽フラグ && ARG == PLAYER
 	IF ARG:1 == MASTER
 		LOCAL= 3
 	ELSE
@@ -159,7 +159,7 @@ ELSE
 ENDIF
 ;欲望(性交系)
 LOCAL:4 = 10
-IF TCVAR:ARG:2 <= 2
+IF TCVAR:ARG:射精箇所フラグ <= 2
 	LOCAL = 0
 	IF ARG:1 == MASTER
 		LOCAL = 3
@@ -170,7 +170,7 @@ IF TCVAR:ARG:2 <= 2
 ENDIF
 ;润滑
 LOCAL:5 = 10
-IF TCVAR:ARG:2 <= 2 || TCVAR:ARG:2 == 6
+IF TCVAR:ARG:射精箇所フラグ <= 2 || TCVAR:ARG:射精箇所フラグ == 6
 	IF PALAM:润滑 < PALAMLV:1
 		LOCAL:5 = 6
 	ELSEIF PALAM:润滑 < PALAMLV:2
@@ -184,13 +184,13 @@ IF TCVAR:ARG:2 <= 2 || TCVAR:ARG:2 == 6
 	ENDIF
 ENDIF
 ;プレイヤーのＣ感觉をみる
-LOCAL:6 = 10 + GET_REVISION(ABL:ARG:3, 50 , 5)
+LOCAL:6 = 10 + GET_REVISION(ABL:ARG:Ｂ感觉, 50 , 5)
 ;部位別処理
 LOCAL:7 = 10
 ;恋慕
 SIF TALENT:(ARG:1):恋慕
 	LOCAL:7 += 2
-SELECTCASE TCVAR:ARG:2
+SELECTCASE TCVAR:ARG:射精箇所フラグ
 		;膣
 	CASE 1
 		;处女
@@ -238,22 +238,22 @@ SELECTCASE TCVAR:ARG:2
 		SIF TALENT:(ARG:1):猫舌
 			LOCAL:7 -= 2
 		;乳夹口交
-		SIF TFLAG:50 == 12
+		SIF TFLAG:特殊COM == 12
 			LOCAL:7 += TALENT:(ARG:1):胸部尺寸
 		;ついでにお扫除フラグ
 		IF ABL:(ARG:1):侍奉精神 >= 2 && ABL:(ARG:1):技巧 >= 2 && TEQUIP:(ARG:1):口球 == 0 && EXP:(ARG:1):精饮经验 > 20
 			STAIN:ARG:Ｐ = 汚れ_阴茎
-			IF TFLAG:50 == 9 && ARG:1 == MASTER_POSE(4,1,1)
-				TFLAG:8 |= 2
+			IF TFLAG:特殊COM == 9 && ARG:1 == MASTER_POSE(4,1,1)
+				TFLAG:お扫除フラグ |= 2
 			ELSEIF ARG:1 == TARGET
-				TFLAG:8 |= 1
+				TFLAG:お扫除フラグ |= 1
 			ENDIF
 		ENDIF
 		;乳交
 	CASE 5
 		LOCAL:7 += TALENT:(ARG:1):胸部尺寸
 		;乳夹口交
-		IF TFLAG:50 == 12
+		IF TFLAG:特殊COM == 12
 			SIF TALENT:(ARG:1):舌头灵巧
 				LOCAL:7 += 2
 			SIF TALENT:(ARG:1):猫舌
@@ -263,9 +263,9 @@ SELECTCASE TCVAR:ARG:2
 		IF ABL:(ARG:1):侍奉精神 >= 2 && ABL:(ARG:1):技巧 >= 2 && TEQUIP:(ARG:1):口球 == 0 && EXP:(ARG:1):精饮经验 > 20
 			STAIN:ARG:Ｐ = 汚れ_阴茎
 			IF ARG:1 == ASSI
-				TFLAG:8 |= 2
+				TFLAG:お扫除フラグ |= 2
 			ELSEIF ARG:1 == TARGET
-				TFLAG:8 |= 1
+				TFLAG:お扫除フラグ |= 1
 			ENDIF
 		ENDIF
 		;素股
@@ -287,7 +287,7 @@ SELECTCASE TCVAR:ARG:2
 		;触手
 	CASE 11
 ENDSELECT
-LOCAL:10 = TCVAR:ARG:4 * LOCAL:1 * LOCAL:2 * LOCAL:3 * LOCAL:4 * LOCAL:5 * LOCAL:6 * LOCAL:7 / 10000000 * (ARG:2 + 1)
+LOCAL:10 = TCVAR:ARG:射精快感強度 * LOCAL:1 * LOCAL:2 * LOCAL:3 * LOCAL:4 * LOCAL:5 * LOCAL:6 * LOCAL:7 / 10000000 * (ARG:2 + 1)
 LOCAL:10 = LOCAL:10 * (BASE:ARG:精力 + 200) / (MAXBASE:ARG:精力 + 200)
 LOCAL:11 = LOCAL:10
 SELECTCASE BASE:ARG:勃起
@@ -328,7 +328,7 @@ ENDIF
 ;精力が減少する前の値で取得
 TRYCALL 精力取得, ARG
 LOCAL = MIN(BASE:ARG:射精 / MAXBASE:ARG:射精, (100 + BASE:ARG:精力) / 100)
-IF TALENT:ARG:157 == 1
+IF TALENT:ARG:精力无穷 == 1
 	BASE:ARG:精力 = 1000
 ELSE
 	BASE:ARG:精力 = MAX(0,BASE:ARG:精力 - BASE:ARG:射精 * (BASE:ARG:精力 + 500 ) / ((MAXBASE:ARG:精力 + 500 ) * 100))
@@ -336,10 +336,10 @@ ENDIF
 TCVAR:ARG:イきそう = 0
 STAIN:ARG:Ｐ |= 汚れ_精液
 ;BASEの処理
-BASE:ARG:2 = 0
+BASE:ARG:射精 = 0
 CSTR:ARG:射精後処理用 = %CSTR:ARG:射精判定用%
-TCVAR:ARG:12 = TCVAR:ARG:2
-TCVAR:ARG:13 = TCVAR:ARG:3
+TCVAR:ARG:12 = TCVAR:ARG:射精箇所フラグ
+TCVAR:ARG:避孕套 = TCVAR:ARG:避孕套
 ;异常经验、射精经验、精液经验
 SIF !EXP:ARG:射精经验 && HAS_VAGINA(ARG)
 	EXP:ARG:异常经验 += 1
@@ -356,24 +356,24 @@ IF TEQUIP:录像摄影
 		ELSE
 			LOCALS = SM/
 		ENDIF
-		TSTR:1 += LOCALS
+		TSTR:视频摄影记录 += LOCALS
 	ELSEIF ARG == TARGET
 		IF LOCAL == 2
 			LOCALS = ST/ST/
 		ELSE
 			LOCALS = ST/
 		ENDIF
-		TSTR:1 += LOCALS
+		TSTR:视频摄影记录 += LOCALS
 	ELSEIF ARG == ASSI
 		IF LOCAL == 2
 			LOCALS = SA/SA/
 		ELSE
 			LOCALS = SA/
 		ENDIF
-		TSTR:1 += LOCALS
+		TSTR:视频摄影记录 += LOCALS
 	ENDIF
 ENDIF
-IF TALENT:ARG:157 == 1
+IF TALENT:ARG:精力无穷 == 1
 	;
 ELSE
 	DOWNBASE:ARG:体力 += 20 * LOCAL - 1
@@ -426,9 +426,9 @@ SIF TALENT:ARG:快感应答 < 0 && !TALENT:ARG:淫乱
 ;媚药
 SIF TEQUIP:ARG:媚药
 	LOCAL *= 2
-BASE:ARG:2 += LOCAL
-SIF BASE:ARG:2 > MAXBASE:ARG:2
-	BASE:ARG:2 = MAXBASE:ARG:2 - 1
+BASE:ARG:射精 += LOCAL
+SIF BASE:ARG:射精 > MAXBASE:ARG:射精
+	BASE:ARG:射精 = MAXBASE:ARG:射精 - 1
 
 ;-------------------------------------------------------------------------------
 ;射精処理のキャラ別ターミナル
@@ -445,16 +445,16 @@ NEXT
 ;ARG 射精したキャラ番号
 ;ARG:1 射精されたキャラ番号
 ;TCVAR:12 射精箇所フラグ（1=膣内 2=菊花 3=手淫 4=口淫 5=乳交 6=素股 7=足交 8=体表 9=舔肛侍奉 10=道具 11=触手）
-SIF TCVAR:ARG:13
+SIF TCVAR:ARG:避孕套
 	RETURN 0
 SELECTCASE TCVAR:ARG:12
 		;膣内
 	CASE 1
 		CALL EJACULATION_V((ARG:1), ARG)
 		;ビデオ
-		IF TEQUIP:28
+		IF TEQUIP:录像摄影
 			LOCALS = SV/
-			TSTR:1 += LOCALS
+			TSTR:视频摄影记录 += LOCALS
 		ENDIF
 		;菊花
 	CASE 2
@@ -463,7 +463,7 @@ SELECTCASE TCVAR:ARG:12
 	CASE 3
 		EXP:(ARG:1):精液经验 += 1 + NOWEX:ARG:射精
 		CALL STAIN_ADD_SEMEN_HAND((ARG:1), ARG)
-		IF TFLAG:50 != 16
+		IF TFLAG:特殊COM != 16
 			SIF ABL:(ARG:1):精液中毒 > 2 && ABL:(ARG:1):技巧 > 2
 				EXP:(ARG:1):精饮经验 ++
 		ENDIF
@@ -486,7 +486,7 @@ SELECTCASE TCVAR:ARG:12
 	CASE 5
 		EXP:(ARG:1):精液经验 += NOWEX:ARG:射精 * 3
 		CALL STAIN_ADD_SEMEN_B((ARG:1), ARG)
-		SIF TFLAG:50 == 12
+		SIF TFLAG:特殊COM == 12
 			STAIN:(ARG:1):口 |= 汚れ_精液
 		;接触のリセット
 		TEQUIP:ARG:胸 = 0

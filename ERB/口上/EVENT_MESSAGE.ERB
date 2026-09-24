@@ -1,4 +1,4 @@
-;-------------------------------------------
+﻿;-------------------------------------------
 ;調教後のテキスト
 ;-------------------------------------------
 @PALAM_MESSAGE_C
@@ -8,7 +8,7 @@ FOR LOCAL,0,CHARANUM
 		PRINTFORML 从%CALLNAME:LOCAL%的小穴中，滑落了丝丝曾经身为处女的证明……
 NEXT
 IF SELECTCOM == 352
-	IF  TFLAG:193 > 0
+	IF  TFLAG:コマンド成功度 > 0
 		PRINTFORML %CALLNAME:TARGET%红着脸，接受了%CALLNAME:MASTER%的告白……
 	ELSE
 	ENDIF
@@ -27,24 +27,24 @@ IF SELECTCOM == 21
 		PRINTL 
 ENDIF
 ;フェラで射精後
-IF TFLAG:8 && NOWEX:PLAYER:射精
+IF TFLAG:お扫除フラグ && NOWEX:PLAYER:射精
 	LOCAL = MASTER_POSE(4,1,1)
 	PRINT 然后，
 	IF SELECTCOM == 511
 		PRINTFORML %CALLNAME:TARGET%交替地舔舐了%CALLNAME:MASTER%和%CALLNAME:ASSI%两人坚挺的肉棒，品尝美味般吃下了上面残留的精液……
 	ELSE
-		IF TFLAG:8 == 3
+		IF TFLAG:お扫除フラグ == 3
 			PRINTFORM %CALLNAME:LOCAL%和%CALLNAME:TARGET%一起
-		ELSEIF TFLAG:8 == 2
+		ELSEIF TFLAG:お扫除フラグ == 2
 			PRINTFORM %CALLNAME:LOCAL%
-		ELSEIF TFLAG:8 == 1
+		ELSEIF TFLAG:お扫除フラグ == 1
 			PRINTFORM %CALLNAME:TARGET%
 		ENDIF
 		SIF NOWEX:PLAYER:射精
 			PRINT 要榨干般吮吸着射出来的肉棒、
 		PRINTL 将肉棒上面残留的精液舔舐干净……
 	ENDIF
-	SIF TFLAG:8 == 3 && NOWEX:MASTER:射精
+	SIF TFLAG:お扫除フラグ == 3 && NOWEX:MASTER:射精
 		PRINTL 两人互相这么热情地将对方的肉棒舔舐干净后，觉得还不够，嘴唇重合在一起，索取着对方嘴里的精液……
 ENDIF
 
@@ -92,13 +92,13 @@ IF TCVAR:角色:苦痛刻印取得 == 1
 	PRINTFORML %CALLNAME:角色%获得了苦痛刻印LV1
 ELSEIF TCVAR:角色:苦痛刻印取得 == 2
 	PRINTFORML %CALLNAME:角色%获得了苦痛刻印LV2
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级提升到Lv1
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
 ELSEIF TCVAR:角色:苦痛刻印取得 == 3
 	PRINTFORML %CALLNAME:角色%获得了苦痛刻印LV3
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级提升到Lv1
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
@@ -135,7 +135,7 @@ ENDIF
 PRINTFORML %"被"+GET_DESCRIPTIVE_NAME(CFLAG:角色:快乐刻印主人)+"充分疼爱后，"+CALLNAME:角色+"获得了快乐刻印LV"+TOSTR(MARK:角色:快乐刻印)+"！"%
 RESETCOLOR
 IF TCVAR:角色:快乐刻印取得 == 3
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级提升到Lv1
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
@@ -175,12 +175,12 @@ ENDIF
 PRINTFORML %"在"+GET_DESCRIPTIVE_NAME(CFLAG:角色:屈服刻印主人)+"的调教下，"+CALLNAME:角色+"获得了屈服刻印LV"+TOSTR(MARK:角色:屈服刻印)+"！"%
 RESETCOLOR
 IF TCVAR:角色:屈服刻印取得 == 2
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级提升到Lv1
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
 ELSEIF TCVAR:角色:屈服刻印取得 == 3
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级提升到Lv2
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
@@ -208,18 +208,18 @@ ENDIF
 PRINTFORML %"在"+GET_DESCRIPTIVE_NAME(CFLAG:角色:反発刻印主人)+"的冒犯下，"+CALLNAME:角色+"获得了反発刻印LV"+TOSTR(MARK:角色:反発刻印)+"！"%
 RESETCOLOR
 IF TCVAR:角色:反発刻印取得 == 3
-	IF TFLAG:25 == 1
+	IF TFLAG:刻印取得時の顺从の変化 == 1
 		PRINTL 并且、顺从等级下降到Lv0
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
-	ELSEIF TFLAG:25 == 2 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	ELSEIF TFLAG:刻印取得時の顺从の変化 == 2 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级下降到Lv1
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF
 ELSEIF TCVAR:角色:反発刻印取得 == 3
-	IF TFLAG:25 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	IF TFLAG:刻印取得時の顺从の変化 == 1 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级下降到Lv0
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
-	ELSEIF TFLAG:25 == 2 && TFLAG:刻印取得時顺从変化済みフラグ == 0
+	ELSEIF TFLAG:刻印取得時の顺从の変化 == 2 && TFLAG:刻印取得時顺从変化済みフラグ == 0
 		PRINTL 并且、顺从等级下降到Lv2
 		TFLAG:刻印取得時顺从変化済みフラグ = 1
 	ENDIF

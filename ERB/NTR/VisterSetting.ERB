@@ -1,4 +1,4 @@
-;原名：MANSETTTING.ERB
+﻿;原名：MANSETTTING.ERB
 ;-------------------------------------------------------------------------------
 ;進入者ステータス設定
 @MAN_SET
@@ -134,7 +134,7 @@ IF RESULT == 1
 		PRINTFORM [{LOCAL, 3}]%CALLNAME:LOCAL, 16, LEFT%
 		SETCOLOR 颜色_文本_无效
 		SIF !FLAG:真实模式
-			PRINTFORM (屈服度:{CFLAG:LOCAL:21, 5})
+			PRINTFORM (屈服度:{CFLAG:LOCAL:屈服度, 5})
 		RESETCOLOR
 		PRINTL
 	NEXT
@@ -176,7 +176,7 @@ ELSEIF RESULT == 2
 		PRINTFORM [{LOCAL, 3}]%CALLNAME:LOCAL, 16, LEFT%
 		SETCOLOR 颜色_文本_无效
 		SIF !FLAG:真实模式
-			PRINTFORM (屈服度:{CFLAG:LOCAL:21, 5})
+			PRINTFORM (屈服度:{CFLAG:LOCAL:屈服度, 5})
 		RESETCOLOR
 		PRINTL
 	NEXT

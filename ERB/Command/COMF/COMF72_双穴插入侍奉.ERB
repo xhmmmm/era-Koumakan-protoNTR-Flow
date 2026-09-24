@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;二穴插入侍奉
 ;セックス系派生コマンド
 ;-------------------------------------------------
@@ -18,8 +18,8 @@ ENDIF
 ;COM別FLAGの設定
 ;-------------------------------------------------
 ;行為者
-TCVAR:116 = LOCAL
-TCVAR:LOCAL:116 = LOCAL
+TCVAR:行為者 = LOCAL
+TCVAR:LOCAL:行為者 = LOCAL
 ;-------------------------------------------------
 ;挿入部位管理
 ;-------------------------------------------------
@@ -29,28 +29,28 @@ TCVAR:LOCAL:116 = LOCAL
 IF LOCAL == LOCAL:2
 	LOCALS = {LOCAL}/
 	CSTR:射精判定用 += LOCALS
-	TCVAR:2 = 1
+	TCVAR:射精箇所フラグ = 1
 	;強度
-	TCVAR:4 = 1500
+	TCVAR:射精快感強度 = 1500
 
 	LOCALS = {LOCAL}/
 	CSTR:LOCAL:射精判定用 += LOCALS
-	TCVAR:LOCAL:2 = 2
+	TCVAR:LOCAL:射精箇所フラグ = 2
 	;強度
-	TCVAR:LOCAL:4 = 1500
+	TCVAR:LOCAL:射精快感強度 = 1500
 	;LOCALがV,TARGETがA挿入
 ELSE
 	LOCALS = {LOCAL}/
 	CSTR:LOCAL:射精判定用 += LOCALS
-	TCVAR:LOCAL:2 = 1
+	TCVAR:LOCAL:射精箇所フラグ = 1
 	;強度
-	TCVAR:LOCAL:4 = 1500
+	TCVAR:LOCAL:射精快感強度 = 1500
 
 	LOCALS = {LOCAL}/
 	CSTR:射精判定用 += LOCALS
-	TCVAR:2 = 2
+	TCVAR:射精箇所フラグ = 2
 	;強度
-	TCVAR:4 = 1500
+	TCVAR:射精快感強度 = 1500
 ENDIF
 ;-------------------------------------------------
 ;ソース追加処理
@@ -172,7 +172,7 @@ EXP:MASTER:Ｖ性交经验 ++
 EXP:MASTER:Ａ性交经验 ++
 
 ;异常经验
-IF TALENT:MASTER:处女 && !GETBIT(CFLAG:3,9)
+IF TALENT:MASTER:处女 && !GETBIT(CFLAG:异常经验,9)
 	EXP:MASTER:异常经验 += 2
 	SETBIT CFLAG:MASTER:异常经验,9
 ENDIF

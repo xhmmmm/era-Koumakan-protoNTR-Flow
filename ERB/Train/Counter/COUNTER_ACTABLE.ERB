@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;実行可否判定を行う
 @ACTABLE(加害者,カウンター行為)
 #FUNCTION
@@ -9,8 +9,8 @@ VARSET LOCAL
 FOR LOCAL,1,CHARANUM
 	SIF TARGET:LOCAL <= 0
 		CONTINUE
-	SIF TCVAR:(TARGET:LOCAL):20
-		LOCAL:(100 + TCVAR:(TARGET:LOCAL):20) ++
+	SIF TCVAR:(TARGET:LOCAL):カウンター行動
+		LOCAL:(100 + TCVAR:(TARGET:LOCAL):カウンター行動) ++
 NEXT
 ;実行可否判定本体
 SELECTCASE カウンター行為
@@ -22,9 +22,9 @@ SELECTCASE カウンター行為
 		RETURNF 1
 	CASE CNT_裙子を捲る
 		;裙子着用
-		SIF !EQUIP:MASTER:9
+		SIF !EQUIP:MASTER:上半身内衣_副
 			RETURNF 0
-		SIF TEQUIP:MASTER:0 > 3
+		SIF TEQUIP:MASTER:下半身着衣状況 > 3
 			RETURNF 0
 		;全裸
 		SIF !EQUIP:MASTER:0
@@ -51,7 +51,7 @@ SELECTCASE カウンター行為
 	CASE CNT_キス
 		SIF CHK_COM312_STAIN(加害者, MASTER)
 			RETURNF 0
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_背面抱擁
@@ -66,20 +66,20 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_胸を揉ませる
-		SIF TFLAG:61
+		SIF TFLAG:MASTERの手使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_股間をまさぐる
-		SIF TEQUIP:MASTER:0 <= 3
+		SIF TEQUIP:MASTER:下半身着衣状況 <= 3
 			RETURNF 0
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_裙子の中を見せる
 		;裙子着用
-		SIF !EQUIP:加害者:9
+		SIF !EQUIP:加害者:上半身内衣_副
 			RETURNF 0
-		SIF TEQUIP:加害者:0 > 3
+		SIF TEQUIP:加害者:下半身着衣状況 > 3
 			RETURNF 0
 		;全裸
 		SIF !EQUIP:MASTER:0
@@ -88,13 +88,13 @@ SELECTCASE カウンター行為
 	CASE CNT_胸を揉む
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
-		SIF TEQUIP:MASTER:1 < 1
+		SIF TEQUIP:MASTER:上半身着衣状況 < 1
 			RETURNF 0
-		SIF TFLAG:65
+		SIF TFLAG:MASTERのＢ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_手淫
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		SIF ABL:加害者:指 < 1
 			RETURNF 0
@@ -102,7 +102,7 @@ SELECTCASE カウンター行為
 	CASE CNT_口交
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		SIF !(HAS_PENIS(MASTER))
 			RETURNF 0
@@ -110,7 +110,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_素股
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		SIF ABL:加害者:腰 < 1
 			RETURNF 0
@@ -123,7 +123,7 @@ SELECTCASE カウンター行為
 	CASE CNT_乳交
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		SIF ABL:加害者:胸 < 1
 			RETURNF 0
@@ -137,9 +137,9 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_足交
-		SIF TCVAR:MASTER:120 != 1
+		SIF TCVAR:MASTER:体勢 != 1
 			RETURNF 0
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		SIF !(HAS_PENIS(MASTER))
 			RETURNF 0
@@ -147,7 +147,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_肛门爱抚
-		SIF TFLAG:64
+		SIF TFLAG:MASTERのＡ使用中
 			RETURNF 0
 		SIF ABL:加害者:指 < 1
 			RETURNF 0
@@ -155,7 +155,7 @@ SELECTCASE カウンター行為
 	CASE CNT_舔舐肛门
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF TFLAG:64
+		SIF TFLAG:MASTERのＡ使用中
 			RETURNF 0
 		SIF STAIN:MASTER:Ａ & 汚れ_菊花 && TALENT:加害者:污臭耐性 < 1
 			RETURNF 0
@@ -163,7 +163,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_指挿入
-		SIF TFLAG:63
+		SIF TFLAG:MASTERのＶ使用中
 			RETURNF 0
 		SIF TALENT:MASTER:处女
 			RETURNF 0
@@ -171,7 +171,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_胸爱抚
-		SIF TFLAG:65
+		SIF TFLAG:MASTERのＢ使用中
 			RETURNF 0
 		SIF ABL:加害者:指 < 1
 			RETURNF 0
@@ -179,7 +179,7 @@ SELECTCASE カウンター行為
 	CASE CNT_吮吸乳首
 		SIF is_virgin_m(加害者)
 			RETURNF 0
-		SIF TFLAG:65
+		SIF TFLAG:MASTERのＢ使用中
 			RETURNF 0
 		SIF ABL:加害者:舌 < 1
 			RETURNF 0
@@ -190,35 +190,35 @@ SELECTCASE カウンター行為
 		;	RETURNF 0
 		SIF CHK_COM312_STAIN(加害者, MASTER)
 			RETURNF 0
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_强制舔阴
 		SIF !(HAS_VAGINA(加害者))
 			RETURNF 0
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_口交強制
 		SIF !(HAS_PENIS(加害者))
 			RETURNF 0
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_舔肛侍奉
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_ぱふぱふ
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
-		SIF TFLAG:60
+		SIF TFLAG:MASTERの口使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_乳合わせ
 		SIF !(HAS_VAGINA(MASTER))
 			RETURNF 0
-		SIF TFLAG:65
+		SIF TFLAG:MASTERのＢ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_タワシ洗い
@@ -228,9 +228,9 @@ SELECTCASE カウンター行為
 		SIF PALAM:加害者:润滑 < 500
 			RETURNF 0
 		;口が空いてれば舔阴させる
-		SIF !TFLAG:60
+		SIF !TFLAG:MASTERの口使用中
 			RETURNF 0
-		SIF TFLAG:61 > 1
+		SIF TFLAG:MASTERの手使用中 > 1
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_正常位挿入される
@@ -240,7 +240,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		SIF BASE:加害者:勃起 < 1000
 			RETURNF 0
-		SIF TFLAG:63
+		SIF TFLAG:MASTERのＶ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_骑乘位A挿入される
@@ -250,7 +250,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		SIF PALAM:MASTER:润滑 < PALAMLV:2 && !TALENT:加害者:施虐狂 && ABL:加害者:抖Ｓ之气 < 1
 			RETURNF 0
-		SIF TFLAG:64
+		SIF TFLAG:MASTERのＡ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_后背位A挿入される
@@ -260,7 +260,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		SIF PALAM:MASTER:润滑 < PALAMLV:2 && !TALENT:加害者:施虐狂 && ABL:加害者:抖Ｓ之气 < 1
 			RETURNF 0
-		SIF TFLAG:64
+		SIF TFLAG:MASTERのＡ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_背面座位A挿入される
@@ -270,7 +270,7 @@ SELECTCASE カウンター行為
 			RETURNF 0
 		SIF PALAM:MASTER:润滑 < PALAMLV:2 && !TALENT:加害者:施虐狂 && ABL:加害者:抖Ｓ之气 < 1
 			RETURNF 0
-		SIF TFLAG:64
+		SIF TFLAG:MASTERのＡ使用中
 			RETURNF 0
 		RETURNF 1
 	CASE CNT_骑乘位逆强奸
@@ -283,7 +283,7 @@ SELECTCASE カウンター行為
 		;润滑
 		SIF PALAM:加害者:润滑 <= 3000
 			RETURNF 0
-		SIF TFLAG:62
+		SIF TFLAG:MASTERのＣ使用中
 			RETURNF 0
 		RETURNF 1
 ENDSELECT

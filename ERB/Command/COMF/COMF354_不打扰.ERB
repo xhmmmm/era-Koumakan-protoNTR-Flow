@@ -1,15 +1,15 @@
-@COM354
+﻿@COM354
 ;不打扰
 ;%NTR_NAME(0)%と角色１人同席、かつ主人が空気の時の時間進行用コマンド
 ;会话
-IF FLAG:25 == 0
+IF FLAG:访问者当前行为 == 0
 	IF TALENT:NTR
 		PRINTFORML %CALLNAME:TARGET%完全无视了%CALLNAME:MASTER%，与%NTR_NAME(0)%很开心地在交谈。
 	ELSE
 		PRINTFORML %CALLNAME:TARGET%想要来搭话，但是被%NTR_NAME(0)%困扰着，没办法好好说话。
 	ENDIF
 	;キス
-ELSEIF FLAG:25 == 1
+ELSEIF FLAG:访问者当前行为 == 1
 	IF TALENT:NTR
 		PRINTFORML %CALLNAME:TARGET%正期待着%CALLNAME:MASTER%惊讶的反应
 		PRINTFORML %CALLNAME:MASTER%也的确看着跟%NTR_NAME(0)%接吻的%CALLNAME:TARGET%惊讶地发愣。
@@ -18,7 +18,7 @@ ELSEIF FLAG:25 == 1
 	ENDIF
 	SOURCE:MASTER:欲情 += 20 + 20 * ABL:MASTER:欲望
 	;爱抚 or 胸爱抚
-ELSEIF FLAG:25 == 2 || FLAG:25 == 3
+ELSEIF FLAG:访问者当前行为 == 2 || FLAG:访问者当前行为 == 3
 	IF TALENT:NTR
 		PRINTFORML %CALLNAME:MASTER%惊讶地望着完全无视自己，正在接受%NTR_NAME(0)%爱抚的%CALLNAME:TARGET%。
 	ELSE
@@ -26,7 +26,7 @@ ELSEIF FLAG:25 == 2 || FLAG:25 == 3
 	ENDIF
 	SOURCE:MASTER:欲情 += 30 + 30 * ABL:MASTER:欲望
 	;フェラ or 69
-ELSEIF FLAG:25 == 4 || FLAG:25 == 5 || FLAG:25 == 6
+ELSEIF FLAG:访问者当前行为 == 4 || FLAG:访问者当前行为 == 5 || FLAG:访问者当前行为 == 6
 	IF TALENT:NTR
 		PRINTFORML %CALLNAME:TARGET%完全无视了目瞪口呆的%CALLNAME:MASTER%，正在认真地为%NTR_NAME(0)%口交侍奉。
 	ELSE

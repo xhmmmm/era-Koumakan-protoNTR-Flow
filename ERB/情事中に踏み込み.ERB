@@ -1,4 +1,4 @@
-;==================================================
+﻿;==================================================
 ;性交中の部屋(場所)に踏み込んだ場合の口上
 ;COMF400にて使用
 ;TRYCALLFORM NTR_INFIDELITY(角色)
@@ -10,7 +10,7 @@ CFLAG:角色:同席目撃時行為 = MAX(CFLAG:角色:同席目撃時行為, FLA
 ;覗きバレしてる
 ;PRINTFORML 回数:{CFLAG:角色:覗き発覚回数}  行為:{CFLAG:角色:覗き発覚時行為}
 IF CFLAG:角色:覗き発覚回数 > 0 && CFLAG:角色:覗き発覚時行為 >= NTR_行为_Ｖ正常位
-	PRINTFORML 【%GetPlaceName(FLAG:21)%】に入ると先程見ていた通り%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
+	PRINTFORML 【%GetPlaceName(FLAG:访问者当前位置)%】に入ると先程見ていた通り%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
 	;継続
 	;IF RAND:3 == 0 || （删除了一个函数，作用是判断角色能不能当苦主不存在直接和访问者啪啪啪）
 	;NTR or 寝取られ寸前 or 寝取られそう
@@ -32,7 +32,7 @@ IF CFLAG:角色:覗き発覚回数 > 0 && CFLAG:角色:覗き発覚時行為 >= 
 	CALL NTR_RESET_VISITOR_ACTION(角色)
 	;覗きバレしてない
 ELSE
-	PRINTFORML なんと、%CALLNAME:MASTER%が【%GetPlaceName(FLAG:21)%】に入ると%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
+	PRINTFORML なんと、%CALLNAME:MASTER%が【%GetPlaceName(FLAG:访问者当前位置)%】に入ると%CALLNAME:角色%が%NTR_NAME(0)%と%NTR_GET_SEX_LAGE()%でまぐわっていた
 	;継続
 	IF RAND:3 == 0
 		;NTR or 寝取られ寸前 or 寝取られそう

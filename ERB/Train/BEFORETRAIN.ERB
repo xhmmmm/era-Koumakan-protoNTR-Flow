@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;１日の開始時の処理
 @EVENTTRAIN
 #PRI
@@ -43,7 +43,7 @@ CALL 天候状態
 LOOP_FLG = 1
 WHILE LOOP_FLG
 	IF TIME + 30 < CFLAG:MASTER:通常起床時間
-		TFLAG:300 = DATETIME()
+		TFLAG:時間経過 = DATETIME()
 		TIME += 30
 		CALL CHARA_MOVEMENT
 	ELSE
@@ -52,7 +52,7 @@ WHILE LOOP_FLG
 			CFLAG:キャラ番号:前ターン位置 = CFLAG:キャラ番号:当前位置
 		NEXT
 		TIME =  CFLAG:MASTER:通常起床時間
-		TFLAG:300 = DATETIME()
+		TFLAG:時間経過 = DATETIME()
 		CALL CHARA_MOVEMENT
 		BREAK
 	ENDIF
@@ -141,8 +141,8 @@ ELSEIF TALENT:MASTER:女装 && ( ( !CLOTHES_HAS_FEATURE(MASTER, 衣装部位_下
 ENDIF
 CFLAG:MASTER:睡眠 = 1
 ;気になる場所到達判定のクリア
-IF FLAG:1832 >= 0
-	FLAG:1832 = 0
+IF FLAG:作者未命名1832 >= 0
+	FLAG:作者未命名1832 = 0
 ENDIF
 
 
@@ -198,11 +198,11 @@ RETURN 1
 FOR LOOP_I,0,100
 	TCVAR:キャラ番号:(400 + LOOP_I) = EXP:キャラ番号:(LOOP_I)
 NEXT
-TCVAR:キャラ番号:100 = -1
-TCVAR:キャラ番号:101 = -1
+TCVAR:キャラ番号:V挿入管理フラグ = -1
+TCVAR:キャラ番号:A挿入管理フラグ = -1
 ;中出し表示用フラグ
-TCVAR:キャラ番号:103 = -1
-TCVAR:キャラ番号:105 = -1
+TCVAR:キャラ番号:Vに中出ししたキャラの番号 = -1
+TCVAR:キャラ番号:Aに中出ししたキャラの番号 = -1
 RETURN 1
 
 ;-------------------------------------------------------------------------------

@@ -1,11 +1,11 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;400番台,移动、仕事
 ; コマンドの実行判定をまとめた部分。各コマンドファイルに振り分けてもいい気はする。
 ;-------------------------------------------------
 ;移动
 @COM_ABLE400
 ;移动执行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(400)
@@ -20,7 +20,7 @@ RETURN 1
 ;收藏
 @COM_ABLE401
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(401)
@@ -38,7 +38,7 @@ RETURN 1
 ;睡觉
 @COM_ABLE402
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(402)
@@ -57,7 +57,7 @@ RETURN 1
 ;休息
 @COM_ABLE403
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(403)
@@ -80,7 +80,7 @@ RETURN 1
 ;窥视
 @COM_ABLE404
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 SIF CFLAG:MASTER:当前位置 > 位置编号最大值
 	RETURN 0
@@ -95,7 +95,7 @@ RETURN 1
 ;闻气味
 @COM_ABLE405
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 SIF CFLAG:MASTER:当前位置 > 位置编号最大值
 	RETURN 0
@@ -110,7 +110,7 @@ RETURN 1
 ;扫除
 @COM_ABLE410
 ;扫除実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(410)
@@ -131,7 +131,7 @@ RETURN 1
 ;战斗训练
 @COM_ABLE411
 ;扫除実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(411)
@@ -150,7 +150,7 @@ RETURN 1
 ;学习
 @COM_ABLE412
 ;扫除実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(412)
@@ -169,7 +169,7 @@ RETURN 1
 ;料理を作る
 @COM_ABLE413
 ;扫除実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(413)
@@ -194,7 +194,7 @@ RETURN 1
 ;吃饭
 @COM_ABLE414
 ;吃饭実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(414)
@@ -203,7 +203,7 @@ SIF GLOBAL_COMABLE(414)
 SIF !FLAG:料理
 	RETURN 0
 ;既に何か食べた
-SIF TCVAR:PLAYER:304
+SIF TCVAR:PLAYER:吃饭内容
 	RETURN 0
 ;うふふ中以外
 SIF CFLAG:うふふ == 2
@@ -220,7 +220,7 @@ RETURN 1
 ;招待食物
 @COM_ABLE415
 ;吃饭実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(415)
@@ -238,9 +238,9 @@ SIF CFLAG:TARGET:睡眠
 SIF CFLAG:うふふ == 2
 	RETURN 0
 ;主食、デザートは対象一人につき1日一回づつ
-SIF (TCVAR:304 & 2) && (GETDISHMENU(FLAG:料理 % 1000) == "主食")
+SIF (TCVAR:吃饭内容 & 2) && (GETDISHMENU(FLAG:料理 % 1000) == "主食")
 	RETURN 0
-SIF (TCVAR:304 & 4) && (GETDISHMENU(FLAG:料理 % 1000) == "甜点")
+SIF (TCVAR:吃饭内容 & 4) && (GETDISHMENU(FLAG:料理 % 1000) == "甜点")
 	RETURN 0
 ;便所飯NG
 SIF (CFLAG:MASTER:当前位置 == 位置_红魔馆_一楼厕所 || CFLAG:MASTER:当前位置 == 位置_红魔馆_二楼厕所 || CFLAG:MASTER:当前位置 == 位置_红魔馆_屋外厕所)
@@ -257,7 +257,7 @@ RETURN 1
 ;自慰
 @COM_ABLE416
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(416)
@@ -284,7 +284,7 @@ RETURN 1
 ;@return 1:xxx,0:xxx
 @COM_ABLE417
 ;撃破実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(417)
@@ -302,7 +302,7 @@ RETURN 1
 ;换衣服
 @COM_ABLE430
 ;移动実行判定
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(430)
@@ -318,7 +318,7 @@ RETURN 1
 ;摄影
 @COM_ABLE446
 #DIM LOOP_CHR
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	RETURN 0
 ;一括管理
 SIF GLOBAL_COMABLE(446)
@@ -327,9 +327,9 @@ SIF CFLAG:MASTER:当前位置 > 位置编号最大值
 	RETURN 0
 SIF CFLAG:うふふ == 2
 	RETURN 0
-SIF ITEM:19 == 0 && NOITEM == 0
+SIF ITEM:相机 == 0 && NOITEM == 0
 	RETURN 0
-SIF NOITEM == 0 && ITEM:44 < 1
+SIF NOITEM == 0 && ITEM:胶卷 < 1
 	RETURN 0
 FOR LOOP_CHR , 1, CHARANUM
 	IF CFLAG:MASTER:当前位置 == CFLAG:LOOP_CHR:当前位置

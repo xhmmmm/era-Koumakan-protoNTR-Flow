@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @PRINT_STATE_EXP(ARG)
@@ -72,16 +72,16 @@ FOR LOCAL,0,22
 		PRINTL 
 NEXT
 ;否定の珠
-LOCALS = {JUEL:ARG:100}
-SIF JUEL:ARG:100 > 1000000
-	LOCALS = {JUEL:ARG:100 / 1000}k
+LOCALS = {JUEL:ARG:否定}
+SIF JUEL:ARG:否定 > 1000000
+	LOCALS = {JUEL:ARG:否定 / 1000}k
 PRINTFORM %PALAMNAME:100,6%の珠:%LOCALS,7,LEFT%
 
 ;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @PRINT_STATE_EX(ARG)
-SIF EX:ARG:0 + EX:ARG:1 + EX:ARG:2 + EX:ARG:3 + EX:ARG:10 + EX:ARG:11 == 0
+SIF EX:ARG:Ｃ绝顶 + EX:ARG:Ｖ绝顶 + EX:ARG:Ａ绝顶 + EX:ARG:Ｂ绝顶 + EX:ARG:喷乳 + EX:ARG:射精 == 0
 	RETURN 0
 LOCAL:1 = 0
 PRINTL

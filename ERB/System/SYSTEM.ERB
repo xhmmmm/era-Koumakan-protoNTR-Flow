@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;ニューゲーム
 ;-------------------------------------------------
 @EVENTFIRST
@@ -179,7 +179,7 @@ IF RESULT == 0
 ;去除扮演模式
 CALL CUSTOM_CHARAMAKE(MASTER)
 SIF HAS_PENIS(MASTER)
-	MAXBASE:MASTER:5 = 1500
+	MAXBASE:MASTER:勃起 = 1500
 ADDCHARA 1
 ADDCHARA 2
 ADDCHARA 3
@@ -290,7 +290,7 @@ SAVESTR:10 = /
 ;キャラカスタム選択
 CALL CHARA_CUSTUM
 SIF HAS_PENIS(MASTER)
-	MAXBASE:MASTER:5 = 1500
+	MAXBASE:MASTER:勃起 = 1500
 
 ;全員处女モード選択
 CALL VIRGIN_CUSTOM
@@ -302,7 +302,7 @@ CALL SHORT_CUT_MODE
 
 FOR LOCAL,0,CHARANUM
 	;開始位置
-	CFLAG:LOCAL:当前位置 = CFLAG:LOCAL:311
+	CFLAG:LOCAL:当前位置 = CFLAG:LOCAL:開始位置
 	;服装
 	CALL CLOTHES_INIT_DAY(LOCAL,1)
 NEXT
@@ -310,7 +310,7 @@ NEXT
 PRINTW 虽然我觉得这没什么意义，而且大概没人在意，但姑且还是先说一下，这个游戏21天1个月、6个月1年，感兴趣也可以根据幻想乡的纪年法看看这个游戏设定的时间线是现实中的哪一年。（为什么要加这一句呢？开场剧情没做好导致的）
 
 ;起床時間
-CFLAG:MASTER:312 = 420
+CFLAG:MASTER:通常起床時間 = 420
 CFLAG:MASTER:睡眠 = 1
 DAY = 1
 MONEY = 1000

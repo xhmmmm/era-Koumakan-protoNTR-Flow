@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;NTRメイン処理
 ;　訪問者による角色NTR関係の主要な処理
 ;
@@ -155,7 +155,7 @@ FOR LOOP_CHR,1,CHARANUM
 				CALL KOJO_COLOR(LOOP_CHR)
 			;滞在継続時口上
 			TRYCALLLIST
-				FUNC NTR_KOJO_K{CFLAG:LOOP_CHR:297}_10_7(LOOP_CHR)
+				FUNC NTR_KOJO_K{CFLAG:LOOP_CHR:口上パターン}_10_7(LOOP_CHR)
 				FUNC NTR_KOJO_K_10_7(LOOP_CHR)
 			ENDFUNC
 			RESETCOLOR
@@ -215,12 +215,12 @@ FOR LOOP_CHR,1,CHARANUM
 		ENDIF
 		;不在睡眠中
 		IF !CFLAG:LOOP_CHR:睡眠
-			CALL NTR_ADD_SURRENDER(LOOP_CHR, TIME_PROGRESS(TFLAG:300))
+			CALL NTR_ADD_SURRENDER(LOOP_CHR, TIME_PROGRESS(TFLAG:時間経過))
 			;好感度吸収あり
 			IF TALENT:LOOP_CHR:亲爱 && CFLAG:LOOP_CHR:屈服度 > 500
 				CALL NTR_DRAIN_LOVE(LOOP_CHR, 100)
 			ENDIF
-			CALL NTR_DRAIN_LOVE(LOOP_CHR, TIME_PROGRESS(TFLAG:300))
+			CALL NTR_DRAIN_LOVE(LOOP_CHR, TIME_PROGRESS(TFLAG:時間経過))
 			CALL VISITER_FRIENDSHIP(LOOP_CHR)
 		ENDIF
 	ELSEIF CFLAG:LOOP_CHR:当前位置 == 位置_訪問者宅; && FLAG:访问者当前位置 == 位置_訪問者宅
@@ -477,7 +477,7 @@ CFLAG:角色:同行 = 0
 #DIM 角色
 #DIM 判定値
 判定値 = CFLAG:角色:睡眠 ? 0 # 1 + TALENT:角色:幼稚
-FLAG:(100 + CFLAG:角色:当前位置) = MAX(FLAG:(100 + CFLAG:角色:当前位置) + 判定値 * TIME_PROGRESS(TFLAG:300),0)
+FLAG:(100 + CFLAG:角色:当前位置) = MAX(FLAG:(100 + CFLAG:角色:当前位置) + 判定値 * TIME_PROGRESS(TFLAG:時間経過),0)
 FLAG:(100 + CFLAG:角色:当前位置) = MIN(FLAG:(100 + CFLAG:角色:当前位置),6000)
 
 ;-------------------------------------------------------------------------------

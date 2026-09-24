@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;６９乳交
 ;侍奉系派生コマンド
 ;-------------------------------------------------
@@ -14,17 +14,17 @@ TCVAR:TARGET:行為者 = PLAYER
 
 LOCALS = {TARGET}/
 CSTR:PLAYER:射精判定用 += LOCALS
-TCVAR:PLAYER:2 = 5
+TCVAR:PLAYER:射精箇所フラグ = 5
 ;強度
-TCVAR:PLAYER:4 = 2500
+TCVAR:PLAYER:射精快感強度 = 2500
 
 LOCALS = {PLAYER}/
 CSTR:TARGET:射精判定用 += LOCALS
-TCVAR:TARGET:2 = 4
+TCVAR:TARGET:射精箇所フラグ = 4
 ;強度
-TCVAR:TARGET:4 = 1500
+TCVAR:TARGET:射精快感強度 = 1500
 ;侍奉快楽
-TFLAG:30 = 1
+TFLAG:侍奉快楽フラグ = 1
 
 ;-------------------------------------------------
 ;ソース追加処理

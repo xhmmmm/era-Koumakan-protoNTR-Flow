@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;汎用口上(KUのUはユニバーサルということでひとつ）
 ;半分くらい実験をかねて、非NTR汎用口上を記述。
 ;咲夜さん、小恶魔あたりをイメージしているのでチルノとかでは違和感バリバリかと。
@@ -495,13 +495,13 @@ CALL KOJO_MESSAGE_COM_KU_312_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_KU_312_1
 ;唇の汚れで拒否された時
-IF TFLAG:193 == -2
+IF TFLAG:コマンド成功度 == -2
 	PRINTFORML 「不、不行」
 	PRINTFORML 在嘴唇接触之前、因为不明的原因而被拒绝了。
 	PRINTFORML 「嗯、能先给我一杯茶吗？」
 	PRINTFORML %CALLNAME:TARGET%想要喝茶的样子。
 	;失敗時
-ELSEIF TFLAG:193 == -1
+ELSEIF TFLAG:コマンド成功度 == -1
 	PRINTFORML 「等、干什么！」
 	PRINTFORML 被拒绝、然后被用力推开了。
 	;成功時
@@ -607,7 +607,7 @@ CALL KOJO_MESSAGE_COM_KU_352_1
 RETURN RESULT
 @KOJO_MESSAGE_COM_KU_352_1
 ;告白成功
-IF TFLAG:193
+IF TFLAG:コマンド成功度
 	PRINTFORML 「・・好高兴・・真的好高兴・・」
 
 	;告白失敗
@@ -708,7 +708,7 @@ IF LOCAL
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	;V挿入
-	IF LOCAL:1 && TEQUIP:50 == PLAYER
+	IF LOCAL:1 && TEQUIP:Ｖ性爱 == PLAYER
 		;射精した
 		IF NOWEX:PLAYER:射精
 			PRINTFORMW 
@@ -718,7 +718,7 @@ IF LOCAL
 			RETURN 0
 		ENDIF
 		;A挿入
-	ELSEIF LOCAL:1 && TEQUIP:51 == PLAYER
+	ELSEIF LOCAL:1 && TEQUIP:Ａ性爱 == PLAYER
 		;射精した
 		IF NOWEX:PLAYER:射精
 			PRINTFORMW 
@@ -733,7 +733,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && (TALENT:2 & 3) == 3
+	IF LOCAL:1 && (TALENT:性别 & 3) == 3
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -783,8 +783,8 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
-		IF TCVAR:102
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ENDIF
@@ -1681,7 +1681,7 @@ RETURN RESULT
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
-IF LOCAL && TFLAG:193
+IF LOCAL && TFLAG:コマンド成功度
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
@@ -1704,9 +1704,9 @@ IF LOCAL && TFLAG:193
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -1757,9 +1757,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -1798,7 +1798,7 @@ RETURN RESULT
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
-IF LOCAL && TFLAG:193
+IF LOCAL && TFLAG:コマンド成功度
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
@@ -1821,9 +1821,9 @@ IF LOCAL && TFLAG:193
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -1874,9 +1874,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -1915,7 +1915,7 @@ RETURN RESULT
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
-IF LOCAL && TFLAG:193
+IF LOCAL && TFLAG:コマンド成功度
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
@@ -1938,9 +1938,9 @@ IF LOCAL && TFLAG:193
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -1991,9 +1991,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2032,7 +2032,7 @@ RETURN RESULT
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
-IF LOCAL && TFLAG:193
+IF LOCAL && TFLAG:コマンド成功度
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
@@ -2055,9 +2055,9 @@ IF LOCAL && TFLAG:193
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2108,9 +2108,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2171,9 +2171,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:PLAYER:100 == TARGET
+	IF LOCAL:1 && TCVAR:PLAYER:V挿入管理フラグ == TARGET
 		;前回射精した
-		IF TCVAR:PLAYER:102
+		IF TCVAR:PLAYER:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2234,9 +2234,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2297,9 +2297,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2360,9 +2360,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2423,9 +2423,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:100 == PLAYER
+	IF LOCAL:1 && TCVAR:V挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:102
+		IF TCVAR:Vに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2486,9 +2486,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2549,9 +2549,9 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:A挿入管理フラグ == PLAYER
 		;前回射精した
-		IF TCVAR:104
+		IF TCVAR:Aに中出しされたフラグ
 			PRINTFORMW 
 			RETURN 0
 		ELSE
@@ -2596,19 +2596,19 @@ IF LOCAL
 		PRINTFORMW 
 		RETURN 0
 		;主人V挿入→助手A挿入
-	ELSEIF TCVAR:100 == MASTER
+	ELSEIF TCVAR:V挿入管理フラグ == MASTER
 		PRINTFORMW 
 		RETURN 0
 		;主人A挿入→助手V挿入
-	ELSEIF TCVAR:101 == MASTER
+	ELSEIF TCVAR:A挿入管理フラグ == MASTER
 		PRINTFORMW 
 		RETURN 0
 		;助手V挿入→主人A挿入
-	ELSEIF TCVAR:100 == ASSI
+	ELSEIF TCVAR:V挿入管理フラグ == ASSI
 		PRINTFORMW 
 		RETURN 0
 		;助手A挿入→主人V挿入
-	ELSEIF TCVAR:101 == ASSI
+	ELSEIF TCVAR:A挿入管理フラグ == ASSI
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -3593,7 +3593,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;146,灌肠器+肛塞
+;146,灌肠器加肛塞套组
 ;==================================================
 @KOJO_MESSAGE_COM_KU_146
 CALL TRAIN_MESSAGE
@@ -4213,7 +4213,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4256,7 +4256,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4299,7 +4299,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4342,7 +4342,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4385,7 +4385,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4428,7 +4428,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4471,7 +4471,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4514,7 +4514,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4568,7 +4568,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4608,7 +4608,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4658,7 +4658,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4694,7 +4694,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4744,7 +4744,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4780,7 +4780,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4870,7 +4870,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -4906,7 +4906,7 @@ IF LOCAL
 	;記入チェック
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:50 + 500))
+	IF LOCAL:1 && FIRSTTIME(TOSTR(TFLAG:特殊COM + 500))
 		PRINTFORMW 
 		RETURN 0
 	ENDIF
@@ -5631,7 +5631,7 @@ IF LOCAL
 		;PLAYERだけ射精
 	ELSE
 		;TARGETについてる
-		IF TALENT:2 & 2
+		IF TALENT:性别 & 2
 			PRINTFORMW
 			RETURN 1
 			;付いてない
@@ -5708,7 +5708,7 @@ IF LOCAL
 		;PLAYERだけ射精
 	ELSE
 		;TARGETについてる
-		IF TALENT:2 & 2
+		IF TALENT:性别 & 2
 			PRINTFORMW
 			RETURN 1
 			;付いてない
@@ -5818,12 +5818,12 @@ RETURN 0
 @KOJO_MESSAGE_PALAMCNG_C_KU
 CALL PALAM_MESSAGE_C
 ;处女丧失
-IF TFLAG:4
+IF TFLAG:破瓜フラグ
 	PRINTFORMW 
 ENDIF
 
 ;フェラで射精後のお扫除
-IF (TFLAG:8 & 1) && NOWEX:PLAYER:射精
+IF (TFLAG:お扫除フラグ & 1) && NOWEX:PLAYER:射精
 	PRINTFORMW 
 ENDIF
 

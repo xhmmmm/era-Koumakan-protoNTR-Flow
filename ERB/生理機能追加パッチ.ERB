@@ -1,4 +1,4 @@
-
+﻿
 
 ;妊娠系新規作成======================================
 ;使用フラグ
@@ -27,7 +27,7 @@ SIF TALENT:ARG:性别 == 2 || TALENT:ARG:妖精 == 1
 	RETURN 0
 
 ;娘が成長期未満で生理処理が機能していたらここでリセット
-IF NO:ARG == 149 && CFLAG:ARG:75 < 3 && (TALENT:ARG:危险日 || CFLAG:ARG:生理周期 || CFLAG:ARG:卵子生存日数)
+IF NO:ARG == 149 && CFLAG:ARG:成長度 < 3 && (TALENT:ARG:危险日 || CFLAG:ARG:生理周期 || CFLAG:ARG:卵子生存日数)
 	TALENT:ARG:危险日 = 0
 	CFLAG:ARG:生理周期 = 0
 	CFLAG:ARG:卵子生存日数 = 0
@@ -38,7 +38,7 @@ CFLAG:ARG:避孕药使用 = 0
 
 
 ;娘の場合成長期から生理開始
-SIF NO:ARG == 149 && CFLAG:ARG:75 < 3
+SIF NO:ARG == 149 && CFLAG:ARG:成長度 < 3
 	RETURN 0
 
 ;妊娠しているならスキップ

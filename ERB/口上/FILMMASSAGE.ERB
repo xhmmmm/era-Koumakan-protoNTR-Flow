@@ -1,4 +1,4 @@
-;-----------------------------------------------------------
+﻿;-----------------------------------------------------------
 ;	相机设置共通口上ファイル
 ;		影像确认をした際に表示される口上(描画)
 ;		ここから各口上ごとに実装された口上に飛ぶ
@@ -28,19 +28,19 @@ FOR LOCAL, 1, CHARANUM
 				CASE 位置_红魔馆_大厅, 位置_红魔馆_二楼楼梯间, 位置_红魔馆_二楼走廊
 					PRINTFORML %LOCALS%经过了%LOCALS:1%……
 					;BIT(0=裙子, 3=ズボン)
-					IF GETBIT(TEQUIP:(LOCAL:1):0, 0) && !GETBIT(TEQUIP:(LOCAL:1):0, 3)
+					IF GETBIT(TEQUIP:(LOCAL:1):下半身着衣状況, 0) && !GETBIT(TEQUIP:(LOCAL:1):下半身着衣状況, 3)
 						LOCAL:10 = RAND:100
 						IF LOCAL:10 < 10
 							PRINTFORML 设置在地板上的摄像机、顺利的将路过的%LOCALS%的裙下风光记录了下来
 							;1=ノーパン裙子
-							IF TEQUIP:(LOCAL:1):0 == 1
+							IF TEQUIP:(LOCAL:1):下半身着衣状況 == 1
 								PRINTFORML %LOCALS%底下竟是全裸的……
 								PRINTFORML 收纳着%LOCALS%下半身美妙风光的照片被保存了起来……
 							ELSE
 								PRINTFORML 能够看清%LOCALS%穿着的%PANTS_DESCRIPTION(EQUIP:(LOCAL:1):下半身内衣_主)%%PANTSNAME(EQUIP:(LOCAL:1):下半身内衣_主)%……
 							ENDIF
 						ELSEIF LOCAL:10 < 30
-							SIF TEQUIP:(LOCAL:1):0 == 1
+							SIF TEQUIP:(LOCAL:1):下半身着衣状況 == 1
 								PRINTFORMW 虽然只有一瞬间，但好像能看到%LOCALS%底下什么都没穿……
 						ENDIF
 					ELSE

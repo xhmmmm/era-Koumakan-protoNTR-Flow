@@ -7,14 +7,14 @@
 ;COM別FLAGの設定
 ;-------------------------------------------------
 ;行為者
-TCVAR:116 = TARGET
+TCVAR:行為者 = TARGET
 ;TCVAR:2 射精箇所フラグ（-1=避孕套 1=膣内 2=菊花 3=手淫 4=口淫 5=乳交 6=素股 7=足交 8=体表 9=舔肛侍奉 10=道具 11=触手）
 IF HAS_PENIS(TARGET)
 	LOCALS = {TARGET}/
 	CSTR:TARGET:射精判定用 += LOCALS
-	TCVAR:TARGET:2 = 3
+	TCVAR:TARGET:射精箇所フラグ = 3
 	;強度
-	TCVAR:TARGET:4 = 500
+	TCVAR:TARGET:射精快感強度 = 500
 ENDIF
 
 ;-------------------------------------------------
@@ -48,14 +48,14 @@ IF TEQUIP:肛门振动棒
 	TIMES SOURCE:快Ｂ , 0.70
 ENDIF
 ;淋浴
-IF TEQUIP:32
+IF TEQUIP:淋浴
 	SOURCE:快Ｃ += 50
 	SOURCE:露出 += 100
 	SOURCE:屈从 += 50
 	SOURCE:反感 += 80
 ENDIF
 ;ビデオ
-IF TEQUIP:28
+IF TEQUIP:录像摄影
 	SOURCE:液体 += 50
 	SOURCE:欲情 += 100
 	SOURCE:反感 += 200
@@ -78,13 +78,13 @@ STAIN:手 |= STAIN:Ｖ
 STAIN:Ｖ |= STAIN:手
 
 ;淋浴オナニーの場合汚れをリセット、润滑更に半分。
-IF TEQUIP:32 == 1
+IF TEQUIP:淋浴 == 1
 	STAIN:手 = 汚れ_なし
 	STAIN:Ｐ = 汚れ_阴茎
 	STAIN:Ｖ = 汚れ_愛液
 	STAIN:Ａ = 汚れ_菊花
 	STAIN:膣内 = 汚れ_なし
-	PALAM:4 /= 2
+	PALAM:润滑 /= 2
 ENDIF
 
 ;-------------------------------------------------
@@ -99,7 +99,7 @@ ELSE
 	EXP:调教自慰经验 += 1
 ENDIF
 ;公開オナニー時は异常经验付加
-IF TEQUIP:录像摄影 && !GETBIT(CFLAG:3,0)
+IF TEQUIP:录像摄影 && !GETBIT(CFLAG:异常经验,0)
 	EXP:异常经验 ++
 	SETBIT CFLAG:异常经验,0
 ENDIF

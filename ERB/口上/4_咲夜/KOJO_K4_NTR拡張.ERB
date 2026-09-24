@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;翻译全为脑补+机翻,欢迎提供意见修改,括号内为原句
 ;-------------------------------------------------
 ;-------------------------------------------------
@@ -116,7 +116,7 @@ RETURN RET_VAL
 ;312,接吻
 ;==================================================
 @NTR_KOJO_MESSAGE_COM_K4_312
-IF TFLAG:193 == 0
+IF TFLAG:コマンド成功度 == 0
 	CALL TRAIN_MESSAGE
 ENDIF
 CALL NTR_KOJO_MESSAGE_COM_K4_312_1
@@ -134,13 +134,13 @@ RETURN RESULT
 RET_VAL = 0
 
 ;唇の汚れで拒否された時
-IF TFLAG:193 == -2
+IF TFLAG:コマンド成功度 == -2
 	PRINTFORML 「不、不行哦」
 	PRINTFORML 以嘴唇有污物为由拒绝了接吻。
 	PRINTFORML 「呐、能不能给我倒杯茶呢？」
 	PRINTFORML %CALLNAME:角色%把茶喝了下去。
 	;失敗時
-ELSEIF TFLAG:193 == -1
+ELSEIF TFLAG:コマンド成功度 == -1
 	PRINTFORML 「你、你在干什么」
 	PRINTFORML 拒绝之后、被用力地推开了。
 	;成功時
@@ -283,7 +283,7 @@ RETURN RESULT
 角色 = 人物_咲夜
 RET_VAL = 0
 ;告白成功
-IF TFLAG:193
+IF TFLAG:コマンド成功度
 	RET_VAL = 1
 	;告白失敗
 ELSE

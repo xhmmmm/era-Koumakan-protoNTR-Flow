@@ -1,16 +1,16 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;扫除
 ;-------------------------------------------------
 @COM410
 SELECTCASE FLAG:(100 + CFLAG:MASTER:当前位置)
 	CASE IS < 500
-		TFLAG:194 = 0
+		TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = 0
 	CASE IS < 2000
-		TFLAG:194 = 1
+		TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = 1
 	CASE IS < 5000
-		TFLAG:194 = 2
+		TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = 2
 	CASEELSE
-		TFLAG:194 = 3
+		TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = 3
 ENDSELECT
 IF TARGET <= 0
 	;扫除した場所が誰かの私室の場合その人物のぱんつをゲット（子悪魔どうしよう…）
@@ -51,12 +51,12 @@ IF TARGET <= 0
 	LOCAL:1 = RESULT
 	IF FLAG:(100 + CFLAG:MASTER:当前位置) > RAND:5000 && LOCAL && LOCAL:1
 		;获得内裤
-		TSTR:3 = %CALLNAME:LOCAL%{LOCAL:1}/
+		TSTR:写真摄影记录 = %CALLNAME:LOCAL%{LOCAL:1}/
 		;		CSTR:MASTER:収集品 += TSTR:2
 		IF GETBIT(FLAG:匂いフェチ,1) 
-			TSTR:2 = %IRUINAME_SMELL(LOCAL:1)%%PANTSNAME(LOCAL:1)%
+			TSTR:胖次入手 = %IRUINAME_SMELL(LOCAL:1)%%PANTSNAME(LOCAL:1)%
 		ELSE
-			TSTR:2 = %PANTSNAME(LOCAL:1)%
+			TSTR:胖次入手 = %PANTSNAME(LOCAL:1)%
 		ENDIF
 	ENDIF
 ENDIF
@@ -95,7 +95,7 @@ IF TARGET > 0 && !CFLAG:睡眠
 
 	;好感度をみる
 	IF CFLAG:好感度 <= 500
-		SOURCE:欢乐 += CFLAG:2
+		SOURCE:欢乐 += CFLAG:好感度
 	ELSEIF CFLAG:好感度 <= 5000
 		SOURCE:欢乐 += 500 + (CFLAG:好感度 - 500) / 3
 	ELSE

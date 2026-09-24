@@ -1,4 +1,4 @@
-@COM311
+﻿@COM311
 ;抱住
 
 LOCAL = RAND:110
@@ -7,17 +7,17 @@ SIF LOCAL:1 > 109
 	LOCAL:1 = 109
 IF LOCAL <= 9
 	;10％で大成功
-	TFLAG:193 = 1
+	TFLAG:コマンド成功度 = 1
 ELSEIF LOCAL >= LOCAL:1
 	;10～1％で失敗
-	TFLAG:193 = -1
+	TFLAG:コマンド成功度 = -1
 ELSE
 	;残りは成功
-	TFLAG:193 = 0
+	TFLAG:コマンド成功度 = 0
 ENDIF
 ;先制発生時は失敗しない
 SIF TFLAG:COMABLE管理 == 3
-	TFLAG:193 = MAX(TFLAG:193,0)
+	TFLAG:コマンド成功度 = MAX(TFLAG:コマンド成功度,0)
 
 DOWNBASE:气力 += 100
 DOWNBASE:MASTER:气力 += 50
@@ -74,13 +74,13 @@ SOURCE:征服 = 120 + 240 * ABL:抖Ｓ之气
 ;好感度変化
 TFLAG:97 += LOCAL
 
-IF TFLAG:193 == -1
+IF TFLAG:コマンド成功度 == -1
 	TIMES SOURCE:欢乐 , 0.10
 	TIMES SOURCE:情爱 , 0.50
 	TIMES SOURCE:征服 , 0.50
 	TIMES SOURCE:被动 , 0.50
 	TIMES SOURCE:露出 , 0.40
-ELSEIF TFLAG:193 == 0
+ELSEIF TFLAG:コマンド成功度 == 0
 	TIMES SOURCE:欢乐 , 1.00
 	TIMES SOURCE:情爱 , 1.00
 	TIMES SOURCE:征服 , 1.00

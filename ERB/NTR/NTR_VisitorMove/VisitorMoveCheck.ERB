@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;訪問者移动可否判定
 ;戻り値…1:移动する 0:移动しない
 @CHK_VISITOR_MOVE
@@ -104,7 +104,7 @@ ELSE
 ENDIF
 
 ;Move Prob：This_Cmd_Time/(Max_Stay_Time-Before_This_Cmd_Stay_Time+10)
-MOVE_PROB_DENO = MAX_STAY_TIME - FLAG:訪問者滞在時間カウンタ + TIME_PROGRESS(TFLAG:300) + 10 + 1
+MOVE_PROB_DENO = MAX_STAY_TIME - FLAG:訪問者滞在時間カウンタ + TIME_PROGRESS(TFLAG:時間経過) + 10 + 1
 ;存在喜欢的对象时更容易呆满时间
 SIF 存在喜欢的对象
 	MOVE_PROB_DENO += 45
@@ -112,7 +112,7 @@ SIF 存在喜欢的对象
 ;最大滞在時間とのチェック。30分以上経過で移动
 IF FLAG:訪問者滞在時間カウンタ >= MAX_STAY_TIME
 	RET_MOVE = 1
-ELSEIF RAND:MOVE_PROB_DENO > TIME_PROGRESS(TFLAG:300)
+ELSEIF RAND:MOVE_PROB_DENO > TIME_PROGRESS(TFLAG:時間経過)
 	RET_MOVE = 0
 ENDIF
 

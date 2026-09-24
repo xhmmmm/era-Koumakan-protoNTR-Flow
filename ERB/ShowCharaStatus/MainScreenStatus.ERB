@@ -1,13 +1,13 @@
-;显示主界面的信息栏
+﻿;显示主界面的信息栏
 ;-------------------------------------------------------------------------------
 ;起床中の基本情報（時間、HPMP、各種パラメータなど）を表示する
 @SHOW_STATUS
 VARSET LOCAL
-TFLAG:100 = TFLAG:101
-SIF TFLAG:101 == 1
-	TFLAG:100 = 0
-SIF TFLAG:101
-	TFLAG:101 --
+TFLAG:調教中COMABLE管理 = TFLAG:調教自動実行管理
+SIF TFLAG:調教自動実行管理 == 1
+	TFLAG:調教中COMABLE管理 = 0
+SIF TFLAG:調教自動実行管理
+	TFLAG:調教自動実行管理 --
 SIF TFLAG:COMABLE管理 == 2
 	CALL SHOW_TOUCH
 SIF GETBIT(FLAG:雑多設定,2)
@@ -24,14 +24,14 @@ CALL CHARA_ATTITUDE
 ;-------------------------------------------------
 ;時間経過、キャラの移动
 ;-------------------------------------------------
-IF TFLAG:195
+IF TFLAG:遠距離移动
 	;TFLAGを戻す
-	TFLAG:195 = 0
+	TFLAG:遠距離移动 = 0
 ELSE
 	CALL CHARA_MOVEMENT
-	IF TCVAR:MASTER:130 >= 1
+	IF TCVAR:MASTER:亲密程度 >= 1
 		LOCAL:1 = IN_ROOM("MIN", CFLAG:MASTER:当前位置, "CFLAG", GETNUM(CFLAG, "亲密程度"), 1)
-		LOCAL:2 = CFLAG:(LOCAL:1):6
+		LOCAL:2 = CFLAG:(LOCAL:1):亲密程度
 		IF LOCAL:2 <= 0 && LOCAL:1 > 0 && CFLAG:(LOCAL:1):当前位置 != CFLAG:(LOCAL:1):前ターン位置 && !CFLAG:(LOCAL:1):睡眠
 			PRINTFORMW %CALLNAME:(LOCAL:1)%が入ってきたことにより空気が変わってしまった…
 			FOR LOCAL, 0, CHARANUM
@@ -43,7 +43,7 @@ ELSE
 	VARSET LOCAL
 	CALL VISITER_DO			; 訪問者のアクション
 ENDIF
-TFLAG:300 = DATETIME()
+TFLAG:時間経過 = DATETIME()
 CFLAG:MASTER:睡眠 = 0
 ;調教ターゲット＆亲密程度設定
 ;CALL INFO_SetTarget
@@ -94,7 +94,7 @@ FOR LOCAL,0,CHARANUM
 	ENDIF
 	IF IsPlaceHasBathroom(CFLAG:LOCAL:当前位置)
 		EQUIP:LOCAL:0 = 0
-		IF CFLAG:LOCAL:うふふ || TCVAR:LOCAL:130 > 2
+		IF CFLAG:LOCAL:うふふ || TCVAR:LOCAL:亲密程度 > 2
 			TEQUIP:(LOCAL):浴场PLAY = 1
 		ELSE
 			TEQUIP:(LOCAL):浴场PLAY = 0
@@ -205,7 +205,7 @@ IF TFLAG:COMABLE管理 == 3 || TFLAG:COMABLE管理 == 4
 	FOR LOCAL,1,CHARANUM
 		SIF TARGET:LOCAL <= 0
 			CONTINUE
-		IF TCVAR:(TARGET:LOCAL):20
+		IF TCVAR:(TARGET:LOCAL):カウンター行動
 			CALL KOJO_MESSAGE_COUNTER(TARGET:LOCAL)
 			DRAWLINE
 		ENDIF
@@ -284,17 +284,17 @@ IF TARGET > 0
 			CONTINUE
 		SIF COUNT == 6 && !(HAS_VAGINA(TARGET))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:TARGET:0 == 0 || TEQUIP:TARGET:2 == 1))
+		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:TARGET:0 == 0 || TEQUIP:TARGET:2 == 1))
+		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:TARGET:0 == 0 || TEQUIP:TARGET:2 == 1))
+		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:TARGET:下半身着衣状況 == 0 || TEQUIP:TARGET:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:TARGET:1 == 0 || TEQUIP:TARGET:3 == 1))
+		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:TARGET:上半身着衣状況 == 0 || TEQUIP:TARGET:上半身はだけ状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:TARGET:50 == MASTER && CFLAG:TARGET:うふふ == 1)))
+		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:TARGET:Ｖ性爱 == MASTER && CFLAG:TARGET:うふふ == 1)))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 7 && !(筒抜け || (TEQUIP:TARGET:51 == MASTER && CFLAG:TARGET:うふふ == 1)))
+		SIF (汚れ非表示 && COUNT == 7 && !(筒抜け || (TEQUIP:TARGET:Ａ性爱 == MASTER && CFLAG:TARGET:うふふ == 1)))
 			CONTINUE
 		IF COUNT == 0
 			PRINT 　口：
@@ -350,17 +350,17 @@ IF ASSI > 0
 			CONTINUE
 		SIF COUNT == 6 && !(HAS_VAGINA(ASSI))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:ASSI:0 == 0 || TEQUIP:ASSI:2 == 1))
+		SIF (汚れ非表示 && COUNT == 2 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:ASSI:0 == 0 || TEQUIP:ASSI:2 == 1))
+		SIF (汚れ非表示 && COUNT == 3 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:ASSI:0 == 0 || TEQUIP:ASSI:2 == 1))
+		SIF (汚れ非表示 && COUNT == 4 && !(筒抜け || TEQUIP:ASSI:下半身着衣状況 == 0 || TEQUIP:ASSI:下半身ずらし状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:ASSI:1 == 0 || TEQUIP:ASSI:3 == 1))
+		SIF (汚れ非表示 && COUNT == 5 && !(筒抜け || TEQUIP:ASSI:上半身着衣状況 == 0 || TEQUIP:ASSI:上半身はだけ状態 == 1))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:ASSI:50 == MASTER && CFLAG:ASSI:うふふ == 1)))
+		SIF (汚れ非表示 && COUNT == 6 && !(筒抜け || (TEQUIP:ASSI:Ｖ性爱 == MASTER && CFLAG:ASSI:うふふ == 1)))
 			CONTINUE
-		SIF (汚れ非表示 && COUNT == 7 && !(筒抜け || (TEQUIP:ASSI:51 == MASTER && CFLAG:ASSI:うふふ == 1)))
+		SIF (汚れ非表示 && COUNT == 7 && !(筒抜け || (TEQUIP:ASSI:Ａ性爱 == MASTER && CFLAG:ASSI:うふふ == 1)))
 			CONTINUE
 		IF COUNT == 0
 			PRINT 　口：
@@ -414,18 +414,18 @@ PUTFORM {DAY}日目
 #DIM 行宽 = 0
 CALL 主界面_竖边框
 状态内容 = 
-SIF TEQUIP:28
-	状态内容 += @"[录像摄影中(テープ残量{TEQUIP:28}]"
+SIF TEQUIP:录像摄影
+	状态内容 += @"[录像摄影中(テープ残量{TEQUIP:录像摄影}]"
 IF TEQUIP:野外PLAY == 2
 	状态内容 += @"[野外PLAY中]"
 ELSEIF TEQUIP:野外PLAY == 1
 	状态内容 += @"[館内露出プレイ中]"
 ENDIF
-SIF TEQUIP:30 == 1
+SIF TEQUIP:羞耻PLAY == 1
 	状态内容 += @"[羞耻PLAY中]"
 SIF TEQUIP:浴场PLAY
 	状态内容 += @"[浴场PLAY中]"
-SIF TEQUIP:33
+SIF TEQUIP:新妻PLAY
 	状态内容 += @"[新妻PLAY中]"
 行宽 = STRLENS(状态内容)
 CALL 主界面_装饰右边框(UI_行半角宽度辅助 - 行宽)
@@ -437,39 +437,39 @@ PRINTL
 ;追加した場合はここに追加をしてください
 ;@return 1:xxx,0:xxx
 @SHOW_EQUIP_1
-IF TEQUIP:11 || TEQUIP:13 || TEQUIP:14 || TEQUIP:15 || TEQUIP:16 || TEQUIP:17 || TEQUIP:18 || TEQUIP:19 || TEQUIP:20 || TEQUIP:21 || TEQUIP:22 || TEQUIP:23 || TEQUIP:24 || TEQUIP:26 || TEQUIP:27 || TEQUIP:32 || TEQUIP:34 || TEQUIP:36 || TEQUIP:膣镜
+IF TEQUIP:阴蒂夹 || TEQUIP:振动棒 || TEQUIP:肛门振动棒 || TEQUIP:肛珠 || TEQUIP:乳头夹 || TEQUIP:搾乳机 || TEQUIP:眼罩 || TEQUIP:绳 || TEQUIP:口球 || TEQUIP:灌肠 || TEQUIP:扩张气球 || TEQUIP:肛门电极 || TEQUIP:24 || TEQUIP:媚药 || TEQUIP:27 || TEQUIP:淋浴 || TEQUIP:34 || TEQUIP:36 || TEQUIP:膣镜
 	PRINTFORM 使用中(%NAME:TARGET%) 
-	SIF TEQUIP:26
+	SIF TEQUIP:媚药
 		PRINT [媚药効果発揮中]
-	SIF TEQUIP:11
+	SIF TEQUIP:阴蒂夹
 		PRINT [阴蒂夹]
-	SIF TEQUIP:12
+	SIF TEQUIP:飞机杯
 		PRINT [飞机杯]
-	SIF TEQUIP:13
+	SIF TEQUIP:振动棒
 		PRINT [振动棒]
-	SIF TEQUIP:14
+	SIF TEQUIP:肛门振动棒
 		PRINT [肛门振动棒]
-	SIF TEQUIP:15
+	SIF TEQUIP:肛珠
 		PRINT [肛珠]
-	SIF TEQUIP:16
+	SIF TEQUIP:乳头夹
 		PRINT [乳头夹]
-	SIF TEQUIP:17
+	SIF TEQUIP:搾乳机
 		PRINT [搾乳机]
-	SIF TEQUIP:18
+	SIF TEQUIP:眼罩
 		PRINT [眼罩]
-	SIF TEQUIP:19
+	SIF TEQUIP:绳
 		PRINT [绳で緊縛]
-	SIF TEQUIP:20
+	SIF TEQUIP:口球
 		PRINT [口球]
-	SIF TEQUIP:21
+	SIF TEQUIP:灌肠
 		PRINT [灌肠＋菊花プラグ]
-	SIF TEQUIP:22
+	SIF TEQUIP:扩张气球
 		PRINT [扩张气球]
-	SIF TEQUIP:23
+	SIF TEQUIP:肛门电极
 		PRINT [肛门电极]
 	SIF TEQUIP:24
 		PRINT [乳房電極装着中]
-	SIF TEQUIP:32
+	SIF TEQUIP:淋浴
 		PRINT [淋浴]
 	SIF TEQUIP:膣镜
 		PRINT [膣镜]
@@ -675,20 +675,20 @@ IF !CFLAG:ARG:睡眠 && (!ARG:1 || CAN_MOVE(CFLAG:MASTER:当前位置, CFLAG:ARG
 		CALL 自慰中断, ARG
 		IF CAN_MOVE(CFLAG:MASTER:前ターン位置, CFLAG:ARG:当前位置) == 2
 			PRINTFORML %CALLNAME:ARG+"が"+GetPlaceName(CFLAG:ARG:当前位置)+"に居る"%
-			SIF !TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+			SIF !TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は半裸の上半身を晒け出している…"%
-			SIF TEQUIP:ARG:0 == 0 && !TEQUIP:ARG:1 == 0
+			SIF TEQUIP:ARG:下半身着衣状況 == 0 && !TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は半裸の下半身を晒け出している…"%
-			SIF TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+			SIF TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は服を着ていない…"%
 			CALL INFO_PrintPortrayal(ARG)
 		ELSE
 			PRINTFORML %CALLNAME:ARG+"が"+GetPlaceName(CFLAG:ARG:当前位置)+"に居た"%
-			SIF !TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+			SIF !TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は半裸の上半身を晒け出している…"%
-			SIF TEQUIP:ARG:0 == 0 && !TEQUIP:ARG:1 == 0
+			SIF TEQUIP:ARG:下半身着衣状況 == 0 && !TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は半裸の下半身を晒け出している…"%
-			SIF TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+			SIF TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 				PRINTFORML %CALLNAME:ARG+"は服を着ていない…"%
 			CALL INFO_PrintPortrayal(ARG)
 		ENDIF
@@ -697,11 +697,11 @@ IF !CFLAG:ARG:睡眠 && (!ARG:1 || CAN_MOVE(CFLAG:MASTER:当前位置, CFLAG:ARG
 		;さっきから居るのは分かってて相手が移动した場合は別の場所で表示が出る
 	ELSEIF CAN_MOVE(CFLAG:MASTER:前ターン位置, CFLAG:ARG:前ターン位置) < 2 && CFLAG:ARG:前ターン位置 != CFLAG:MASTER:前ターン位置
 		PRINTFORMW %CALLNAME:ARG%が%GetPlaceName(CFLAG:ARG:当前位置)%に来た
-		SIF !TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+		SIF !TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 			PRINTFORML %CALLNAME:ARG+"は半裸の上半身を晒け出している…"%
-		SIF TEQUIP:ARG:0 == 0 && !TEQUIP:ARG:1 == 0
+		SIF TEQUIP:ARG:下半身着衣状況 == 0 && !TEQUIP:ARG:上半身着衣状況 == 0
 			PRINTFORML %CALLNAME:ARG+"は半裸の下半身を晒け出している…"%
-		SIF TEQUIP:ARG:0 == 0 && TEQUIP:ARG:1 == 0
+		SIF TEQUIP:ARG:下半身着衣状況 == 0 && TEQUIP:ARG:上半身着衣状況 == 0
 			PRINTFORML %CALLNAME:ARG+"は服を着ていない…"%
 		LOCAL:3 = 2
 	ENDIF
@@ -719,19 +719,19 @@ ENDIF
 ;-------------------------------------------------------------------------------
 ;料理鮮度チェック
 @CEACK_COOKING
-IF TIME_PROGRESS(TCVAR:PLAYER:305) > 720
+IF TIME_PROGRESS(TCVAR:PLAYER:調理日時) > 720
 	PRINTFORMW %GETDISHNAME(FLAG:料理)%はとてもじゃないが食べられない！
 	PRINTL
 	PRINTFORMW %CALLNAME:PLAYER%は%GETDISHNAME(FLAG:料理)%を廃棄した
 	FLAG:料理 = 0
-	TCVAR:PLAYER:305 = 0
-	TCVAR:PLAYER:306 = 0
-ELSEIF TIME_PROGRESS(TCVAR:PLAYER:305) > 360 && TCVAR:PLAYER:306 < 2
+	TCVAR:PLAYER:調理日時 = 0
+	TCVAR:PLAYER:料理鮮度 = 0
+ELSEIF TIME_PROGRESS(TCVAR:PLAYER:調理日時) > 360 && TCVAR:PLAYER:料理鮮度 < 2
 	PRINTFORMW %GETDISHNAME(FLAG:料理)%から嫌な臭いがしてきた…
-	TCVAR:PLAYER:306 = 2
-ELSEIF TIME_PROGRESS(TCVAR:PLAYER:305) > 60 && TCVAR:PLAYER:306 < 1 && GETDISHMENU(FLAG:料理 % 1000) != "甜点"
+	TCVAR:PLAYER:料理鮮度 = 2
+ELSEIF TIME_PROGRESS(TCVAR:PLAYER:調理日時) > 60 && TCVAR:PLAYER:料理鮮度 < 1 && GETDISHMENU(FLAG:料理 % 1000) != "甜点"
 	PRINTFORMW %GETDISHNAME(FLAG:料理)%は冷えてしまった…
-	TCVAR:PLAYER:306 = 1
+	TCVAR:PLAYER:料理鮮度 = 1
 ENDIF
 
 ;-------------------------------------------------------------------------------
@@ -756,7 +756,7 @@ ELSE
 	PRINTFORM %UNICODE(0x262A)%
 ENDIF
 RESETCOLOR
-PRINTFORM （%天候(天候値)%）{FLAG:60}℃
+PRINTFORM （%天候(天候値)%）{FLAG:現在気温}℃
 IF DATETIME() - CFLAG:(ARG:0):起床時間 >= 要睡眠経過時間
 	;起床から16時間経過していれば[要睡眠]
 	SETCOLOR 颜色_状态_要睡眠
@@ -966,14 +966,14 @@ IF HAS_PENIS(ARG:0)
 	PRINTL
 ENDIF
 ;精力
-IF HAS_PENIS(ARG:0) && TALENT:(ARG:0):157 == 0
+IF HAS_PENIS(ARG:0) && TALENT:(ARG:0):精力无穷 == 0
 	CALL 主界面_竖边框
 	PRINTFORM %"精力",6,LEFT%
 	CALL 数据条绘制(BASE:(ARG:0):精力,MAXBASE:(ARG:0):精力,"░","░",颜色_灰青,颜色_深灰,10)
 	PRINTFORM  {BASE:(ARG:0):精力,4}/{MAXBASE:(ARG:0):精力,4}
 	CALL 主界面_装饰右边框(118)
 	PRINTL
-ELSEIF HAS_PENIS(ARG:0) && TALENT:(ARG:0):157 == 1
+ELSEIF HAS_PENIS(ARG:0) && TALENT:(ARG:0):精力无穷 == 1
 	CALL 主界面_竖边框
 	PRINTFORM %"精力",6,LEFT%
 	CALL 数据条绘制(BASE:(ARG:0):精力,MAXBASE:(ARG:0):精力,"░","░",颜色_灰青,颜色_深灰,10)
@@ -1102,7 +1102,7 @@ IF 角色 && !CFLAG:角色:睡眠
 		CFLAG:MASTER:うふふ = 2
 		TFLAG:COMABLE管理 = 3
 		;ELSEIF GET_TARGETNUM() < 2 && TCVAR:MASTER:130 && !GETBIT(CFLAG:既成事実 , 0) && !CFLAG:睡眠 && BASE:MASTER:气力 > 0
-	ELSEIF GET_TARGETNUM() < 2 && TCVAR:MASTER:130 && !TALENT:恋人 && !CFLAG:睡眠 && BASE:MASTER:气力 > 0
+	ELSEIF GET_TARGETNUM() < 2 && TCVAR:MASTER:亲密程度 && !TALENT:恋人 && !CFLAG:睡眠 && BASE:MASTER:气力 > 0
 		TFLAG:COMABLE管理 = 1
 		告白判定値 = 0
 		告白判定値 += GET_MARK_LEVEL(角色,刻印番号_屈服刻印,MASTER) * 3 ;あなたが付けた屈服刻印のLV×3

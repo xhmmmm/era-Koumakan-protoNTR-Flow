@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @PRINT_STATE_CLOTH(ARG)
@@ -114,7 +114,7 @@ FOR LOCAL:2, 0, 6
 		;性特征组第一个输出NTR
 		IF LOCAL:2 == 1 && LOCAL:1 == 0 && TALENT:ARG:NTR
 			SETCOLOR 颜色_状态_ＮＴＲ
-			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:3)%]
+			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:NTR)%]
 			RESETCOLOR
 			FONTREGULAR
 		ENDIF
@@ -122,7 +122,7 @@ FOR LOCAL:2, 0, 6
 			CONTINUE
 		;身体组第一个输出性别
 		IF LOCAL:2 == 2 && LOCAL:1 == 0
-			PRINTFORM [%GET_TALENTNAME(2,TALENT:ARG:2)%]
+			PRINTFORM [%GET_TALENTNAME(2,TALENT:ARG:性别)%]
 		ENDIF
 		SIF LOCAL:2 == 2 && LOCAL == 2
 			CONTINUE
@@ -130,7 +130,7 @@ FOR LOCAL:2, 0, 6
 		IF LOCAL:2 == 3 && LOCAL:1 == 0 && TALENT:ARG:NTR == 2
 			SETCOLOR 颜色_状态_ＮＴＲ
 			FONTBOLD
-			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:3)%]
+			PRINTFORM [%GET_TALENTNAME(3,TALENT:ARG:NTR)%]
 			RESETCOLOR
 			FONTREGULAR
 		ENDIF
@@ -146,9 +146,9 @@ FOR LOCAL:2, 0, 6
 			CONTINUE
 		;男絶壁
 		IF LOCAL == 105 && TALENT:ARG:性别 == 2
-			SIF TALENT:ARG:105 == -2
+			SIF TALENT:ARG:Ｍ感度 == -2
 				CONTINUE
-			SIF TALENT:ARG:105 == 0
+			SIF TALENT:ARG:Ｍ感度 == 0
 				PRINTFORM [普乳]
 		ENDIF
 		;特殊处理结束-----------------------------------

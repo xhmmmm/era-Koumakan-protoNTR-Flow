@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @EVENTCOM
@@ -44,7 +44,7 @@ FOR 角色, 0, CHARANUM
 	ENDIF
 	;伤心時の屈服度増加
 	IF TALENT:角色:伤心 && FLAG:访问者当前位置 == CFLAG:角色:当前位置
-		屈服度上昇値 = TIME_PROGRESS(TFLAG:300)
+		屈服度上昇値 = TIME_PROGRESS(TFLAG:時間経過)
 		IF TALENT:角色:伤心 >= 1000
 			TIMES 屈服度上昇値, 1.30
 		ELSEIF TALENT:角色:伤心 >= 600
@@ -72,9 +72,9 @@ IF TFLAG:COMABLE管理 < 2
 				PRINTFORMW 
 				PRINTFORMW 
 				PRINTFORMW 収集品を没収された
-				SIF !GETBIT (CFLAG:10 ,0)
+				SIF !GETBIT (CFLAG:MASTERの弱味 ,0)
 					PRINTFORMW %CALLNAME:TARGET%に弱みを握られた
-				SETBIT CFLAG:10 ,0
+				SETBIT CFLAG:MASTERの弱味 ,0
 				CALL KOJO_EVENT(11, TARGET, 0)
 				CSTR:MASTER:収集品 =
 			ENDIF
@@ -164,7 +164,7 @@ FOR LOOP_CHR,1,CHARANUM
 		CFLAG:LOOP_CHR:和主角已做爱 = 1
 NEXT
 ;告白成功
-IF SELECTCOM == 352 && TFLAG:193 > 0
+IF SELECTCOM == 352 && TFLAG:コマンド成功度 > 0
 	; SETBIT CFLAG:既成事実 , 0
 	TALENT:恋人 = 1
 	PRINTFORML 和%CALLNAME:TARGET%成为了[恋人]
@@ -190,16 +190,16 @@ CASE 203
 ENDSELECT
 ;調教履歴を1ターン保存
 FOR LOOP_CHR,0,CHARANUM
-	TCVAR:LOOP_CHR:110 = TCVAR:LOOP_CHR:10
+	TCVAR:LOOP_CHR:直前のターンの射精したフラグ = TCVAR:LOOP_CHR:射精したフラグ
 	TCVAR:LOOP_CHR:112 = TCVAR:LOOP_CHR:12
-	SIF TCVAR:LOOP_CHR:102
-		TCVAR:LOOP_CHR:102 --
-	SIF !TCVAR:LOOP_CHR:102
-		TCVAR:LOOP_CHR:103 = -1
-	SIF TCVAR:LOOP_CHR:104
-		TCVAR:LOOP_CHR:104 --
-	SIF !TCVAR:LOOP_CHR:104
-		TCVAR:LOOP_CHR:105 = -1
+	SIF TCVAR:LOOP_CHR:Vに中出しされたフラグ
+		TCVAR:LOOP_CHR:Vに中出しされたフラグ --
+	SIF !TCVAR:LOOP_CHR:Vに中出しされたフラグ
+		TCVAR:LOOP_CHR:Vに中出ししたキャラの番号 = -1
+	SIF TCVAR:LOOP_CHR:Aに中出しされたフラグ
+		TCVAR:LOOP_CHR:Aに中出しされたフラグ --
+	SIF !TCVAR:LOOP_CHR:Aに中出しされたフラグ
+		TCVAR:LOOP_CHR:Aに中出ししたキャラの番号 = -1
 	;体位の保存
 	FOR LOOP_I,1,11
 		TEQUIP:LOOP_CHR:(110 + LOOP_I) = TEQUIP:LOOP_CHR:(100 + LOOP_I)
@@ -244,9 +244,9 @@ FOR LOOP_CHR,0,CHARANUM
 	ENDIF
 NEXT
 ;フラグのリセット
-TFLAG:193 = 0
-TFLAG:194 = 0
-TSTR:2 = 
+TFLAG:コマンド成功度 = 0
+TFLAG:SOURCEなどに影響しないSELECTCOMの分岐 = 0
+TSTR:胖次入手 = 
 ;TCVARのリセット
 FOR LOOP_I,0,100
 	FOR LOOP_CHR,0,CHARANUM
@@ -255,10 +255,10 @@ FOR LOOP_I,0,100
 NEXT
 ;挿入履歴
 FOR LOOP_CHR,0,CHARANUM
-	TCVAR:LOOP_CHR:100 = TEQUIP:LOOP_CHR:Ｖ性爱
-	TCVAR:LOOP_CHR:101 = TEQUIP:LOOP_CHR:Ａ性爱
+	TCVAR:LOOP_CHR:V挿入管理フラグ = TEQUIP:LOOP_CHR:Ｖ性爱
+	TCVAR:LOOP_CHR:A挿入管理フラグ = TEQUIP:LOOP_CHR:Ａ性爱
 NEXT
-TFLAG:110 = TCVAR:MASTER:130
+TFLAG:110 = TCVAR:MASTER:亲密程度
 ;录像带の残量
 SIF TEQUIP:录像摄影
 	TEQUIP:录像摄影 --
@@ -270,17 +270,17 @@ FOR LOOP_CHR,1,CHARANUM
 NEXT
 ;射精箇所
 FOR LOOP_I,0,60
-	IF GETBIT(TFLAG:1,LOOP_I)
+	IF GETBIT(TFLAG:射精箇所,LOOP_I)
 		EJ_POS = "射精"{LOOP_I}
 		CALLF FIRSTTIME(EJ_POS,0,TARGET)
 	ENDIF
 NEXT
 PREVCOM = SELECTCOM
 ;派生コマンドの履歴
-TFLAG:151 = TFLAG:50
+TFLAG:前回の特殊COM = TFLAG:特殊COM
 ;前回のTARGET
-TFLAG:103 = TARGET
-TFLAG:150 = ASSIPLAY
+TFLAG:前ターンのTARGET交代 = TARGET
+TFLAG:前回のASSIPLAYの履歴 = ASSIPLAY
 ;経験値取表示用
 FOR LOOP_CHR,0,CHARANUM
 	;当前位置の保存
@@ -295,8 +295,8 @@ REPEAT 100
 REND
 ;眠いと气力が減少していく
 IF TIME_PROGRESS(CFLAG:MASTER:起床時間) >= 1260 && !CFLAG:MASTER:睡眠
-	BASE:MASTER:体力 = MAX(BASE:MASTER:体力 - 3 * TIME_PROGRESS(TFLAG:300) , 0)
-	BASE:MASTER:气力 = MAX(BASE:MASTER:气力 - 5 * TIME_PROGRESS(TFLAG:300) , 0)
+	BASE:MASTER:体力 = MAX(BASE:MASTER:体力 - 3 * TIME_PROGRESS(TFLAG:時間経過) , 0)
+	BASE:MASTER:气力 = MAX(BASE:MASTER:气力 - 5 * TIME_PROGRESS(TFLAG:時間経過) , 0)
 ENDIF
 ;行為者をリセット
 FOR LOOP_CHR,0,CHARANUM
@@ -310,7 +310,7 @@ NEXT
 #DIM 角色
 #DIM 性欲上昇値
 IF 天候(天候値) == "桃雾"
-	CFLAG:角色:桃霧性欲フラグ += TIME_PROGRESS(TFLAG:300)
+	CFLAG:角色:桃霧性欲フラグ += TIME_PROGRESS(TFLAG:時間経過)
 	IF OPENPLACE(CFLAG:角色:当前位置) == 2
 		;野外
 		IF CFLAG:角色:桃霧性欲フラグ >= 5
@@ -423,7 +423,7 @@ WHILE (最大感覚>-1)
 	最大感覚 -= 1
 WEND
 
-自慰回数 = MAX(TIME_PROGRESS(TFLAG:300) / 5, 1)
+自慰回数 = MAX(TIME_PROGRESS(TFLAG:時間経過) / 5, 1)
 
 IF Ｃ自慰
 	PALAM:角色:快Ｃ += 自慰中変動値_快(角色, ABL:角色:Ｃ感觉, ABL:角色:指, ABL:角色:技巧, 自慰回数)

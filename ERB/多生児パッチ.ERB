@@ -1,4 +1,4 @@
-;多生児出産(ryパッチ======================================
+﻿;多生児出産(ryパッチ======================================
 ;新規追加フラグ
 ;FLAG:53 多生児出産と(ryパッチVerUP用フラグ
 ;FLAG:54 訪問者の子供の数
@@ -75,24 +75,24 @@ TRYCALL 生まれる人数DEBUG, ARG
 IF ARG:1 >= CHARANUM
 	FLAG:訪問者の子供の数 ++
 ELSE
-	CFLAG:(ARG:1):85 ++
+	CFLAG:(ARG:1):子供の人数 ++
 ENDIF
-CFLAG:(ARG:2):85 ++
+CFLAG:(ARG:2):子供の人数 ++
 
 ;子供が父母の何人目の子供かを設定
 IF ARG:1 >= CHARANUM
 	CFLAG:ARG:父親の子番号 = FLAG:訪問者の子供の数
 ELSE
-	CFLAG:ARG:父親の子番号 = CFLAG:(ARG:1):85
+	CFLAG:ARG:父親の子番号 = CFLAG:(ARG:1):子供の人数
 ENDIF
-CFLAG:ARG:母親の子番号 = CFLAG:(ARG:2):85
+CFLAG:ARG:母親の子番号 = CFLAG:(ARG:2):子供の人数
 
 ;母親及び父親がMASTERではない時の出産口上---------------------
 @両親がMASTER以外の出産口上, ARG, ARG:1
 ;ARG   母親の番号
 ;ARG:1 子供の番号
 
-PRINTFORMW %CALLNAME:ARG%が%N_T_R(CFLAG:(ARG:1):73, 1)%の子を\@ CFLAG:ARG:出産数 != 1 ?{CFLAG:ARG:出産数}人#\@産みました。
+PRINTFORMW %CALLNAME:ARG%が%N_T_R(CFLAG:(ARG:1):父親, 1)%の子を\@ CFLAG:ARG:出産数 != 1 ?{CFLAG:ARG:出産数}人#\@産みました。
 
 
 
@@ -146,11 +146,11 @@ ENDIF
 @里子, ARG
 ;生まれる子供の数だけ追加
 SIF (CFLAG:ARG:にんっしんっ - 1) < CHARANUM
-	CFLAG:(CFLAG:ARG:にんっしんっ - 1):88 += CFLAG:ARG:出産数
+	CFLAG:(CFLAG:ARG:にんっしんっ - 1):里子人数 += CFLAG:ARG:出産数
 CFLAG:ARG:里子人数 += CFLAG:ARG:出産数
 
 SIF (CFLAG:ARG:にんっしんっ - 1) < CHARANUM
-	CFLAG:(CFLAG:ARG:にんっしんっ - 1):85 += CFLAG:ARG:出産数
+	CFLAG:(CFLAG:ARG:にんっしんっ - 1):子供の人数 += CFLAG:ARG:出産数
 CFLAG:ARG:子供の人数 += CFLAG:ARG:出産数
 
 

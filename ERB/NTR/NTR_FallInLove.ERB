@@ -1,4 +1,4 @@
-; TODO 等写完至少一个角色的NTR剧情之后，再来这里写陷落事件。
+﻿; TODO 等写完至少一个角色的NTR剧情之后，再来这里写陷落事件。
 @NTR陥落イベント(角色)
 #DIM 角色
 
@@ -62,12 +62,12 @@ INPUT
 IF RESULT == 0
 
 ELSEIF RESULT == 1
-	TSTR:3 = %CALLNAME:角色%{写真番号0}PH/
-	SAVESTR:11 += TSTR:3
-	TSTR:3 = %CALLNAME:角色%{写真番号1}PH/
-	SAVESTR:11 += TSTR:3
-	TSTR:3 = %CALLNAME:角色%{写真番号2}PH/
-	SAVESTR:11 += TSTR:3
+	TSTR:写真摄影记录 = %CALLNAME:角色%{写真番号0}PH/
+	SAVESTR:11 += TSTR:写真摄影记录
+	TSTR:写真摄影记录 = %CALLNAME:角色%{写真番号1}PH/
+	SAVESTR:11 += TSTR:写真摄影记录
+	TSTR:写真摄影记录 = %CALLNAME:角色%{写真番号2}PH/
+	SAVESTR:11 += TSTR:写真摄影记录
 ELSE
 	GOTO INPUT_LOOP_1
 ENDIF

@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SHOW_USERCOM
@@ -7,7 +7,7 @@
 #DIMS コマンド名称
 コマンド番号 = 0
 コマンド名称 = 
-TFLAG:100 = !TFLAG:101
+TFLAG:調教中COMABLE管理 = !TFLAG:調教自動実行管理
 IF TCVAR:MASTER:112 == 1
 	姿勢フラグ = MASTER_POSE(6,1,1)
 ELSEIF TCVAR:MASTER:112 == 2
@@ -25,7 +25,7 @@ FOR コマンド番号,0,700
 		PRINTL
 	TRYCALLFORM COM_ABLE{コマンド番号}
 	IF RESULT
-		IF (コマンド番号 == 42 && TEQUIP:11) || (コマンド番号 == 43 && TEQUIP:12) || (コマンド番号 == 44 && TEQUIP:13) || (コマンド番号 == 45 && TEQUIP:14) || (コマンド番号 == 46 && TEQUIP:15) || (コマンド番号 == 47 && TEQUIP:16) || (コマンド番号 == 48 && TEQUIP:17)
+		IF (コマンド番号 == 42 && TEQUIP:阴蒂夹) || (コマンド番号 == 43 && TEQUIP:飞机杯) || (コマンド番号 == 44 && TEQUIP:振动棒) || (コマンド番号 == 45 && TEQUIP:肛门振动棒) || (コマンド番号 == 46 && TEQUIP:肛珠) || (コマンド番号 == 47 && TEQUIP:乳头夹) || (コマンド番号 == 48 && TEQUIP:搾乳机)
 			PRINTFORMC %TRAINNAME:コマンド番号%解除[{コマンド番号,3}]
 		ELSEIF コマンド番号 == 81 && 姿勢フラグ
 			PRINTFORMC お扫除フェラ[{コマンド番号,3}]
@@ -129,7 +129,7 @@ FOR コマンド番号,0,700
 		ENDIF
 	ENDIF
 NEXT
-SIF !TFLAG:100
+SIF !TFLAG:調教中COMABLE管理
 	GOTO SKIP
 PRINTL
 PRINTC 履歴表示[800]
@@ -158,7 +158,7 @@ IF PREVCOM >= 0
 	PRINTL 
 	PRINT ＜前回調教コマンド:
 	PRINTS STR:0
-	SIF TFLAG:150
+	SIF TFLAG:前回のASSIPLAYの履歴
 		PRINT (助手)
 	PRINTL ＞
 ENDIF
@@ -180,7 +180,7 @@ IF RESULT >= 0 && RESULT <= 700
 	SIF TRAINNAME:RESULT == ""
 		RETURN 0
 	SELECTCOM = RESULT
-	TFLAG:3 = SELECTCOM
+	TFLAG:SELECTCOM保存 = SELECTCOM
 	TRYCALLFORM COM_ABLE{SELECTCOM}
 	SIF RESULT == 0
 		RETURN 0
@@ -192,7 +192,7 @@ IF RESULT >= 0 && RESULT <= 700
 	ENDIF
 	DOTRAIN 999
 ELSEIF RESULT >= 701 && RESULT <= 799 && CHARANUM > RESULT - 700 && CFLAG:(RESULT - 700):同室
-	TFLAG:104 = RESULT - 700
+	TFLAG:現在のTARGET = RESULT - 700
 	RETURN 1
 ELSEIF RESULT == 800
 	CALL SHOW_EQUIP
@@ -230,7 +230,7 @@ ELSEIF RESULT == 820 && CFLAG:うふふ && EQUIP:PLAYER:0
 	CALL CLOTHES_REFRESH_TEQUIP(PLAYER)
 	RETURN 1
 ELSEIF RESULT == 888
-	TFLAG:3 = 888
+	TFLAG:SELECTCOM保存 = 888
 	DOTRAIN 999
 ELSEIF RESULT == 999 && CFLAG:うふふ
 	;なんらかの不具合でTARGET:1があなたになった場合の救済措置として条件を追加
@@ -286,7 +286,7 @@ INPUT
 IF RESULT <= 0 || RESULT >= CHARANUM
 	RETURN 0
 ELSEIF CFLAG:RESULT:同室
-	TFLAG:104 = RESULT
+	TFLAG:現在のTARGET = RESULT
 ENDIF
 
 ;-------------------------------------------------------------------------------

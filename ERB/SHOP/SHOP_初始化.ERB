@@ -6,20 +6,20 @@ IF FLAG:初始化标志 == 0
 		IF NO:LOCAL == 148 || NO:LOCAL == 149
 			;親の子供の数を加算
 			;父親が訪問者なら訪問者用の人数フラグ処理
-			IF (CFLAG:LOCAL:73) >= CHARANUM
+			IF (CFLAG:LOCAL:父親) >= CHARANUM
 				FLAG:訪問者の子供の数 ++
 			ELSE
-				CFLAG:(CFLAG:LOCAL:73):85 ++
+				CFLAG:(CFLAG:LOCAL:父親):子供の人数 ++
 			ENDIF
-			CFLAG:(CFLAG:LOCAL:74):85 ++
+			CFLAG:(CFLAG:LOCAL:母親):子供の人数 ++
 
 			;子供が両親にとっての何人目の子供かを設定
-			IF (CFLAG:LOCAL:73) >= CHARANUM
+			IF (CFLAG:LOCAL:父親) >= CHARANUM
 				CFLAG:LOCAL:父親の子番号 = FLAG:訪問者の子供の数
 			ELSE
-				CFLAG:LOCAL:父親の子番号 = CFLAG:(CFLAG:LOCAL:73):85
+				CFLAG:LOCAL:父親の子番号 = CFLAG:(CFLAG:LOCAL:父親):子供の人数
 			ENDIF
-			CFLAG:LOCAL:母親の子番号 = CFLAG:(CFLAG:LOCAL:74):85
+			CFLAG:LOCAL:母親の子番号 = CFLAG:(CFLAG:LOCAL:母親):子供の人数
 
 			;このパッチをつけるまでに里子に出した子は含まれない
 		ENDIF
@@ -32,7 +32,7 @@ IF FLAG:初始化标志 <= 1
 	FOR LOCAL, 0, CHARANUM
 		;妊娠してない且つ診療所にいるなら開始位置に戻す
 		IF LOCAL != MASTER && !TALENT:LOCAL:妊娠 && CFLAG:LOCAL:当前位置 == 950
-			CFLAG:LOCAL:当前位置 = CFLAG:LOCAL:311
+			CFLAG:LOCAL:当前位置 = CFLAG:LOCAL:開始位置
 		ENDIF
 	NEXT
 	FLAG:初始化标志 = 2
@@ -155,8 +155,8 @@ ENDIF
 IF FLAG:初始化标志 <= 14
 	FOR LOCAL, 1, 开局角色数量
 		; 口上パターンが 0 であればキャラ番号に設定
-		SIF CFLAG:LOCAL:297 == 0
-			CFLAG:LOCAL:297 = LOCAL
+		SIF CFLAG:LOCAL:口上パターン == 0
+			CFLAG:LOCAL:口上パターン = LOCAL
 	NEXT
 	FLAG:初始化标志 = 15
 ENDIF

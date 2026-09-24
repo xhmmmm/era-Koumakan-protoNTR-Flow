@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;ハーレムイベント関連
 ;同一箇所に屈服度>好意度な角色だけがいる時のnPイベント
 ;-------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ FOR LOOP_CHR,1,CHARANUM
 		IF TALENT:LOOP_CHR:亲爱 && CFLAG:LOOP_CHR:屈服度 > 500
 			CFLAG:LOOP_CHR:屈服度 -= 100
 		ENDIF
-		CALL NTR_ADD_SURRENDER(LOOP_CHR, (MIN(TIME_PROGRESS(TFLAG:300), 0) + RAND:2 + 1) )
+		CALL NTR_ADD_SURRENDER(LOOP_CHR, (MIN(TIME_PROGRESS(TFLAG:時間経過), 0) + RAND:2 + 1) )
 		;好感度吸収あり
 		CALL NTR_DRAIN_LOVE(LOOP_CHR, RAND:5)
 		;その他の状態で行動中か行動が未決定(終了時間が0なら未決定とする)

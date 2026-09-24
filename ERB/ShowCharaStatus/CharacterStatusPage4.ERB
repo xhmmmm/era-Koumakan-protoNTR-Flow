@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;親の名前表示
 ;-------------------------------------------------
 ;親の名前をステータスに表示します
@@ -21,7 +21,7 @@ ELSEIF CFLAG:ARG:父親 == 人物_訪問者
 	PRINTFORM 父：%NTR_NAME(0)% 
 	PRINTFORM (第{CFLAG:ARG:父親の子番号}子) 
 ELSE
-	PRINTFORM 父：%CALLNAME:(CFLAG:ARG:73)%
+	PRINTFORM 父：%CALLNAME:(CFLAG:ARG:父親)%
 	PRINTFORM (第{CFLAG:ARG:父親の子番号}子) 
 ENDIF
 ;前二つはいらないけど一応つけておく
@@ -33,7 +33,7 @@ ELSEIF CFLAG:ARG:母親 == 人物_訪問者
 	PRINTFORM 母：%NTR_NAME(0)% 
 	PRINTFORM (第{CFLAG:ARG:母親の子番号}子)
 ELSE
-	PRINTFORM 母：%CALLNAME:(CFLAG:ARG:74)%
+	PRINTFORM 母：%CALLNAME:(CFLAG:ARG:母親)%
 	PRINTFORM (第{CFLAG:ARG:母親の子番号}子)
 ENDIF
 
@@ -54,8 +54,8 @@ VARSET LOCAL
 IF CFLAG:ARG:子供の人数
 	PRINTL 父親としての子供（()内は母親の名前）
 	FOR LOCAL:1, 0, CHARANUM
-		IF (NO:(LOCAL:1) == 148 || NO:(LOCAL:1) == 149) && CFLAG:(LOCAL:1):73 == ARG
-			PRINTFORM  %N_T_R(LOCAL:1)%(%N_T_R(CFLAG:(LOCAL:1):74)%)
+		IF (NO:(LOCAL:1) == 148 || NO:(LOCAL:1) == 149) && CFLAG:(LOCAL:1):父親 == ARG
+			PRINTFORM  %N_T_R(LOCAL:1)%(%N_T_R(CFLAG:(LOCAL:1):母親)%)
 			LOCAL += 1
 			IF (LOCAL%3) == 0
 				PRINTL 
@@ -69,8 +69,8 @@ IF CFLAG:ARG:子供の人数
 	PRINTL 
 	PRINTL 母親としての子供（()内は父親の名前）
 	FOR LOCAL:1, 0, CHARANUM
-		IF (NO:(LOCAL:1) == 148 || NO:(LOCAL:1) == 149) && CFLAG:(LOCAL:1):74 == ARG
-			PRINTFORM  %N_T_R(LOCAL:1)%(%N_T_R(CFLAG:(LOCAL:1):73)%)
+		IF (NO:(LOCAL:1) == 148 || NO:(LOCAL:1) == 149) && CFLAG:(LOCAL:1):母親 == ARG
+			PRINTFORM  %N_T_R(LOCAL:1)%(%N_T_R(CFLAG:(LOCAL:1):父親)%)
 			LOCAL += 1
 			IF (LOCAL%3) == 0
 				PRINTL 

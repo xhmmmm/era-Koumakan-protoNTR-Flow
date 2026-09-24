@@ -96,7 +96,7 @@ RETURN 1
 ;-------------------------------------------------
 ;行為者
 ;-------------------------------------------------
-TCVAR:ARG:116 = TEQUIP:ARG:Ｖ性爱
+TCVAR:ARG:行為者 = TEQUIP:ARG:Ｖ性爱
 ;TCVAR:2 射精箇所フラグ（-1=避孕套 1=膣内 2=菊花 3=手淫 4=口淫 5=乳交 6=素股 7=足交 8=体表 ）
 ;TCVAR:4 射精快感強度
 
@@ -106,7 +106,7 @@ TCVAR:(TEQUIP:ARG:Ｖ性爱):射精箇所フラグ = 1
 ;強度
 TCVAR:(TEQUIP:ARG:Ｖ性爱):射精快感強度 = 700
 
-PRINTFORML ＜%CALLNAME:(TEQUIP:9)%Ｖ插入中＞
+PRINTFORML ＜%CALLNAME:(TEQUIP:ARG:Ｖ性爱)%Ｖ插入中＞
 DOWNBASE:ARG:体力 += 20
 DOWNBASE:ARG:气力 += 50
 
@@ -158,19 +158,19 @@ RETURN 1
 ;-------------------------------------------------
 ;行為者
 ;-------------------------------------------------
-TCVAR:ARG:116 = TEQUIP:ARG:Ａ性爱
+TCVAR:ARG:行為者 = TEQUIP:ARG:Ａ性爱
 ;TCVAR:0 射精対象フラグ（ビット0=TARGET 1=PLAYER 2=MASTER 3=ASSI 4=触手 5=その他）
 ;TCVAR:1 予備射精対象フラグ（ビットを使いたくない人用、CFLAG:100に翻訳されます）
 ;	（1=TARGET 2=PLAYER 3=MASTER 4=ASSI 5=TARGET+ASSI 6=MASTER+ASSI -1=触手 -2=その他）
 ;TCVAR:2 射精箇所フラグ（-1=避孕套 1=膣内 2=菊花 3=手淫 4=口淫 5=乳交 6=素股 7=足交 8=体表 ）
 ;TCVAR:4 射精快感強度
 LOCALS = {ARG}/
-CSTR:(TEQUIP:ARG:Ａ性爱):10 += LOCALS
-SETBIT TCVAR:(TEQUIP:ARG:Ａ性爱):0, 0
-TCVAR:(TEQUIP:ARG:Ａ性爱):2 = 2
+CSTR:(TEQUIP:ARG:Ａ性爱):射精判定用 += LOCALS
+SETBIT TCVAR:(TEQUIP:ARG:Ａ性爱):射精対象フラグ, 0
+TCVAR:(TEQUIP:ARG:Ａ性爱):射精箇所フラグ = 2
 ;強度
-TCVAR:(TEQUIP:ARG:Ａ性爱):4 = 900
-PRINTFORML ＜%CALLNAME:(TEQUIP:9)%Ａ插入中＞
+TCVAR:(TEQUIP:ARG:Ａ性爱):射精快感強度 = 900
+PRINTFORML ＜%CALLNAME:(TEQUIP:ARG:Ａ性爱)%Ａ插入中＞
 DOWNBASE:ARG:体力 += 30
 DOWNBASE:ARG:气力 += 60
 

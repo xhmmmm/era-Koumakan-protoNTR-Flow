@@ -1,4 +1,4 @@
-;==============================================================================================
+﻿;==============================================================================================
 ;文件名：	SYSTEM_DEBUG_Maid.ERB
 ;版本：		Ver.1.52_23/02/05
 ;原作者：	Tsubasa
@@ -401,7 +401,7 @@ DRAWLINE
 PRINTFORMC 　「%NAME:cTARGET% / %CALLNAME:cTARGET%」
 PRINTBUTTON @"  [改名]",99
 PRINTL
-PRINTFORMC %" " * 2% 体力 : ({BASE:cTARGET:0} / {MAXBASE:cTARGET:0})%" " * 2% 氣力 : ({BASE:cTARGET:1} / {MAXBASE:cTARGET:1})
+PRINTFORMC %" " * 2% 体力 : ({BASE:cTARGET:体力} / {MAXBASE:cTARGET:体力})%" " * 2% 氣力 : ({BASE:cTARGET:气力} / {MAXBASE:cTARGET:气力})
 PRINTBUTTON @"  [回復]",90
 PRINTL
 PRINTBUTTON @"□ 能力 □",91
@@ -514,8 +514,8 @@ SELECTCASE RESULT
             cTARGET = 0
         GOTO PRINT_LIST
     CASE 90
-        BASE:cTARGET:0 = MAXBASE:cTARGET:0
-        BASE:cTARGET:1 = MAXBASE:cTARGET:1
+        BASE:cTARGET:体力 = MAXBASE:cTARGET:体力
+        BASE:cTARGET:气力 = MAXBASE:cTARGET:气力
         RESTART
     CASE 91
         CALL EDIT_ABL("ABL",0,0)

@@ -1,4 +1,4 @@
-;-------------------------------------------------
+﻿;-------------------------------------------------
 ;摄影
 ;-------------------------------------------------
 @COM446
@@ -80,8 +80,8 @@ FOR キャラ番号,1,CHARANUM
 		写真詳細 = CHOOSE_PHOTO_DETAIL(キャラ番号,部屋番号)
 		PRINTFORML %CALLNAME:キャラ番号%の%PHOTO_NAME(写真内容, 写真詳細)%を摄影した
 		CFLAG:MASTER:収集品死守戦フラグ ++
-		TSTR:3 = %CALLNAME:キャラ番号 + TOSTR(写真内容) + "PH" + TOSTR(写真詳細, "#")  + "/"%
-		CSTR:MASTER:収集品 += TSTR:3
+		TSTR:写真摄影记录 = %CALLNAME:キャラ番号 + TOSTR(写真内容) + "PH" + TOSTR(写真詳細, "#")  + "/"%
+		CSTR:MASTER:収集品 += TSTR:写真摄影记录
 		ITEM:胶卷--
 	ENDIF
 NEXT

@@ -1,4 +1,4 @@
-;	GIFT.ERB
+﻿;	GIFT.ERB
 ;		Version 0.03-0.5
 ;		そもそもproto版のバリアントに更にproto版のパッチを作るとか何考えてんだてめぇ、な代物
 ;		変数A, Bを書き換える上にCFLAG:990を勝手に使用しているため、本体のバージョンアップに
@@ -32,7 +32,7 @@ LOCAL = RAND:(CHARANUM-1) + 1
 SIF CFLAG:LOCAL:幽閉
 	RETURN 0
 ;好感度1000以上、トランクス以外の下着を履いている
-SIF CFLAG:LOCAL:好感度 < 1000 || EQUIP:LOCAL:6 < 2
+SIF CFLAG:LOCAL:好感度 < 1000 || EQUIP:LOCAL:下半身内衣_主 < 2
 	RETURN 0
 SIF RAND:10 > 0
 	RETURN 0
@@ -48,16 +48,16 @@ ELSE
 	PRINTFORM 適当に
 ENDIF
 PRINTFORM 折りたたまれたそれを広げてみると、それはどうやら%CALLNAME:LOCAL%の所有する
-PRINTFORMW %PANTSNAME(EQUIP:LOCAL:6)%のようだ
+PRINTFORMW %PANTSNAME(EQUIP:LOCAL:下半身内衣_主)%のようだ
 PRINTFORMW 微妙に皺が残ったそれは、どうやら%CALLNAME:LOCAL%が一日履いたあとのものであることが覗える
 PRINTFORMW %CALLNAME:MASTER%はそれを机の引き出しにしまうと、何事も無かったかのように身支度を開始した
 
 PRINTFORML
-PRINTFORMW %CALLNAME:LOCAL%の%PANTSNAME(EQUIP:LOCAL:6)%を入手しました
+PRINTFORMW %CALLNAME:LOCAL%の%PANTSNAME(EQUIP:LOCAL:下半身内衣_主)%を入手しました
 PRINTFORML
 
 
-LOCALS = %CALLNAME:LOCAL%{EQUIP:LOCAL:6}/
+LOCALS = %CALLNAME:LOCAL%{EQUIP:LOCAL:下半身内衣_主}/
 SIF SAVESTR:10 == ""
 	SAVESTR:10 = /
 SAVESTR:10 += LOCALS

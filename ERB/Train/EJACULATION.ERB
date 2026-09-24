@@ -1,4 +1,4 @@
-; EJACULATION.ERB
+﻿; EJACULATION.ERB
 ;	射精関係の関数
 ;
 
@@ -80,8 +80,8 @@ ELSEIF 射精者 == MASTER
 	CFLAG:角色:V累积内射 += TFLAG:精子量
 ENDIF
 ;中出しフラグ
-TCVAR:角色:102 = 2
-TCVAR:角色:103 = 射精者
+TCVAR:角色:Vに中出しされたフラグ = 2
+TCVAR:角色:Vに中出ししたキャラの番号 = 射精者
 ;相手により分岐のある処理
 SELECTCASE 射精者
 	CASE 人物_訪問者
@@ -126,8 +126,8 @@ TRYCALL 精力取得, 射精者
 SIF MASTER == 射精者
 	EXP:角色:精液经验 += 精液经验増量
 ;中出しフラグ
-TCVAR:角色:104 = 2
-TCVAR:角色:105 = 射精者
+TCVAR:角色:Aに中出しされたフラグ = 2
+TCVAR:角色:Aに中出ししたキャラの番号 = 射精者
 ;NekoAdd
 IF 射精者 == 人物_訪問者
 	CFLAG:角色:A累积内射 += TFLAG:精子量

@@ -1,4 +1,4 @@
-;-------------------------------------------------------------------------------
+﻿;-------------------------------------------------------------------------------
 ;FIXME:関数の説明を書いてください
 ;@return 1:xxx,0:xxx
 @SOURCE_CHECK
@@ -8,7 +8,7 @@
 #DIM 浮気快楽強度
 #DIM LOOP_CHR
 
-SELECTCOM = TFLAG:3
+SELECTCOM = TFLAG:SELECTCOM保存
 ;調教SELECTCOMの時間経過
 CALL TRACHECK_TIME
 ;-------------------------------------------------
@@ -151,14 +151,14 @@ FOR LOCAL,0,CHARANUM
 	CALL SOURCE_与快Ｂ(LOCAL)
 NEXT
 ;童贞喪失
-IF !TALENT:PLAYER:1
+IF !TALENT:PLAYER:童贞
 	SELECTCASE SELECTCOM
 		CASE 60,61,62,63,65,66,67,68,69,70
 			SIF (HAS_PENIS(PLAYER))
 				PRINTW 童贞喪失
 	ENDSELECT
 ENDIF
-IF !TALENT:TARGET:1
+IF !TALENT:TARGET:童贞
 	SELECTCASE SELECTCOM
 		CASE 64,92,93,94,71,72,97,98,99
 			SIF (HAS_PENIS(TARGET))
@@ -168,7 +168,7 @@ ENDIF
 ;-------------------------------------------------
 ;同じコマンドの連続実行による上下の処理（快楽系）
 ;-------------------------------------------------
-IF SELECTCOM == PREVCOM && TFLAG:50 == TFLAG:151 && (SELECTCOM < 350 || SELECTCOM >= 500)
+IF SELECTCOM == PREVCOM && TFLAG:特殊COM == TFLAG:前回の特殊COM && (SELECTCOM < 350 || SELECTCOM >= 500)
 	;UP:0,1,2,3は絶頂に絡むので先に処理してある
 	CUP:TARGET:快Ｃ /= 2
 	CUP:TARGET:快Ｖ /= 2
@@ -318,7 +318,7 @@ NEXT
 ;-------------------------------------------------
 ;同じコマンドの連続実行による上下の処理
 ;-------------------------------------------------
-IF SELECTCOM == PREVCOM && TFLAG:50 == TFLAG:151 && (SELECTCOM < 350 || SELECTCOM >= 500)
+IF SELECTCOM == PREVCOM && TFLAG:特殊COM == TFLAG:前回の特殊COM && (SELECTCOM < 350 || SELECTCOM >= 500)
 	;UP:0,1,2は絶頂に絡むので先に処理してある
 	UP:欲情 /= 2
 	UP:恭顺 /= 2
@@ -357,9 +357,9 @@ CALL KOJO_MESSAGE_COM
 IF TARGET
 	DRAWLINE
 	FOR LOCAL,1,CHARANUM
-		SIF TCVAR:(TARGET:LOCAL):30 > 1
+		SIF TCVAR:(TARGET:LOCAL):カウンター行動決定フラグ > 1
 			CONTINUE
-		SIF TCVAR:(TARGET:LOCAL):20
+		SIF TCVAR:(TARGET:LOCAL):カウンター行動
 			CALL KOJO_MESSAGE_COUNTER(TARGET:LOCAL)
 	NEXT
 ENDIF
@@ -453,7 +453,7 @@ IF NOWEX:TARGET:射精
 	PRINTFORML 射精(%CALLNAME:TARGET%)
 ENDIF
 ;插入图像：挿絵　挿入射精　正常位系列
-IF GETBIT(TCVAR:50,1) && TEQUIP:Ｖ性爱 != -1 && !TCVAR:PLAYER:避孕套 && GROUPMATCH(体位记录,1,2,3,4,5)
+IF GETBIT(TCVAR:口上出力用射精箇所,1) && TEQUIP:Ｖ性爱 != -1 && !TCVAR:PLAYER:避孕套 && GROUPMATCH(体位记录,1,2,3,4,5)
 	SIF FLAG:画像表示 && FLAG:图像_插图显示
 		PRINTL
 	SELECTCASE 体位记录
@@ -465,7 +465,7 @@ IF GETBIT(TCVAR:50,1) && TEQUIP:Ｖ性爱 != -1 && !TCVAR:PLAYER:避孕套 && GR
 ENDIF
 CALL KOJO_MESSAGE_PALAMCNG_A
 ;插入图像
-IF GETBIT(TCVAR:50,1) && TEQUIP:Ｖ性爱 != -1 && !TCVAR:PLAYER:避孕套 && GROUPMATCH(体位记录,1,2,3,4,5)
+IF GETBIT(TCVAR:口上出力用射精箇所,1) && TEQUIP:Ｖ性爱 != -1 && !TCVAR:PLAYER:避孕套 && GROUPMATCH(体位记录,1,2,3,4,5)
 	SELECTCASE 体位记录
 		CASE 1,3,4
 			CALL PRINT_IMAGE_ANIMATION_射精後("正常位_中出し")
@@ -519,10 +519,10 @@ IF (TCVAR:行為者 < CHARANUM)
 	LOCAL:0 = RELATION:TARGET:(NO:PLAYER)
 	SIF LOCAL:0 != 0
 		PRINTFORML ＜相性{LOCAL / 100}.{LOCAL % 100}倍＞
-	SIF SELECTCOM == PREVCOM && TFLAG:50 == TFLAG:151 && (SELECTCOM < 350 || SELECTCOM >= 500)
+	SIF SELECTCOM == PREVCOM && TFLAG:特殊COM == TFLAG:前回の特殊COM && (SELECTCOM < 350 || SELECTCOM >= 500)
 		PRINTL ＜同一コマンド連続実行＞
 	;气力０
-	SIF BASE:1 <= 0
+	SIF BASE:气力 <= 0
 		PRINTL ★气力０★
 	LOCAL:1 = 0
 	FOR LOCAL,0,CHARANUM
@@ -613,8 +613,8 @@ IF CFLAG:角色:跳蛋挿入
 		ENDIF
 	ENDIF
 
-	SOURCE:角色:快Ｖ += TIME_PROGRESS(TFLAG:300) * 10
-	CFLAG:角色:跳蛋挿入 = MAX(CFLAG:角色:跳蛋挿入 - TIME_PROGRESS(TFLAG:300),0)
+	SOURCE:角色:快Ｖ += TIME_PROGRESS(TFLAG:時間経過) * 10
+	CFLAG:角色:跳蛋挿入 = MAX(CFLAG:角色:跳蛋挿入 - TIME_PROGRESS(TFLAG:時間経過),0)
 	;訪問者の跳蛋であれば屈服度加算
 	IF CFLAG:角色:跳蛋挿入者 == 人物_訪問者
 		CALL NTR_ADD_SURRENDER(角色, 1)
@@ -625,7 +625,7 @@ IF CFLAG:角色:跳蛋挿入
 		IF TALENT:角色:处女 == 0
 			EXP:角色:Ｖ经验 += 9
 		ELSE
-			TFLAG:2 = 1
+			TFLAG:破瓜抑制フラグ = 1
 		ENDIF
 	ENDIF
 ENDIF
@@ -667,8 +667,8 @@ IF CFLAG:角色:跳蛋A挿入
 			NEXT
 		ENDIF
 	ENDIF
-	SOURCE:角色:快Ａ += TIME_PROGRESS(TFLAG:300) * 10
-	CFLAG:角色:跳蛋A挿入 = MAX(CFLAG:角色:跳蛋A挿入 - TIME_PROGRESS(TFLAG:300),0)
+	SOURCE:角色:快Ａ += TIME_PROGRESS(TFLAG:時間経過) * 10
+	CFLAG:角色:跳蛋A挿入 = MAX(CFLAG:角色:跳蛋A挿入 - TIME_PROGRESS(TFLAG:時間経過),0)
 	;訪問者の跳蛋であれば屈服度加算
 	IF CFLAG:角色:跳蛋挿入者 == 人物_訪問者
 		CALL NTR_ADD_SURRENDER(角色, 1)
@@ -690,7 +690,7 @@ RETURN
 #DIM 是否没穿内裤
 
 IF CFLAG:角色:精液残留中 && !CFLAG:角色:睡眠
-	CFLAG:角色:精液残留中 = MAX(CFLAG:角色:精液残留中 - TIME_PROGRESS(TFLAG:300),0)
+	CFLAG:角色:精液残留中 = MAX(CFLAG:角色:精液残留中 - TIME_PROGRESS(TFLAG:時間経過),0)
 	IF CFLAG:角色:精液残留中 == 0
 		CFLAG:角色:精液残留中 = 0
 		;玩家以外的角色
@@ -1013,7 +1013,7 @@ RETURN
 @CHK_SEMEN_BATH(角色)
 #DIM 角色
 IF CFLAG:角色:汚れ継続時間
-	CFLAG:角色:汚れ継続時間 = MAX(CFLAG:角色:汚れ継続時間 - TIME_PROGRESS(TFLAG:300),0)
+	CFLAG:角色:汚れ継続時間 = MAX(CFLAG:角色:汚れ継続時間 - TIME_PROGRESS(TFLAG:時間経過),0)
 	IF CFLAG:角色:汚れ継続時間 == 0
 		CFLAG:角色:汚れ発覚 = 汚れ発覚_逃走
 	ENDIF

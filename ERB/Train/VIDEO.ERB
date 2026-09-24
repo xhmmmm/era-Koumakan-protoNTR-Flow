@@ -1,4 +1,4 @@
-@SELL_VIDEO
+﻿@SELL_VIDEO
 VARSET LOCALS
 VARSET LOCAL
 
@@ -207,7 +207,7 @@ FOR LOCAL,0,1000
 	;COM:舔肛侍奉強制を見る
 	ELSEIF LOCAL == 145
 		LOCAL:2 = 250
-	;COM:灌肠器+肛塞を見る
+	;COM:灌肠器加肛塞套组を見る
 	ELSEIF LOCAL == 146
 		LOCAL:2 = 350
 	;COM:扩张气球を見る
@@ -279,7 +279,7 @@ FOR LOCAL,0,1000
 		LOCAL:2 = 500
 	ENDIF
 	LOCALS = /{LOCAL}/
-	SELECTCASE STRCOUNT(TSTR:1,LOCALS)
+	SELECTCASE STRCOUNT(TSTR:视频摄影记录,LOCALS)
 		;テープに写っていない
 		CASE 0
 			LOCAL:1 = LOCAL:1
@@ -287,54 +287,54 @@ FOR LOCAL,0,1000
 		CASE 1
 			LOCAL:1 += LOCAL:2
 		CASEELSE
-			LOCAL:1 += LOCAL:2 * (2 + STRCOUNT(TSTR:1,LOCALS)) / 3
+			LOCAL:1 += LOCAL:2 * (2 + STRCOUNT(TSTR:视频摄影记录,LOCALS)) / 3
 	ENDSELECT
 NEXT
 ;处女丧失
-SIF STRCOUNT(TSTR:1,"/LV1/")
+SIF STRCOUNT(TSTR:视频摄影记录,"/LV1/")
 	LOCAL:1 += 5000
-SIF STRCOUNT(TSTR:1,"/LV2/")
+SIF STRCOUNT(TSTR:视频摄影记录,"/LV2/")
 	LOCAL:1 += 4000
-SIF STRCOUNT(TSTR:1,"/LV3/")
+SIF STRCOUNT(TSTR:视频摄影记录,"/LV3/")
 	LOCAL:1 += 3000
-SIF STRCOUNT(TSTR:1,"/LV4/")
+SIF STRCOUNT(TSTR:视频摄影记录,"/LV4/")
 	LOCAL:1 += 2000
 
 ;多重絶頂
-SIF STRCOUNT(TSTR:1,"/O4/")
-	LOCAL:1 += 1000 * (4 + STRCOUNT(TSTR:1,"/O4/")) / 5
-SIF STRCOUNT(TSTR:1,"/O3/")
-	LOCAL:1 += 500 * (3 + STRCOUNT(TSTR:1,"/O3/")) / 4
-SIF STRCOUNT(TSTR:1,"/O2/")
-	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:1,"/O2/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/O4/")
+	LOCAL:1 += 1000 * (4 + STRCOUNT(TSTR:视频摄影记录,"/O4/")) / 5
+SIF STRCOUNT(TSTR:视频摄影记录,"/O3/")
+	LOCAL:1 += 500 * (3 + STRCOUNT(TSTR:视频摄影记录,"/O3/")) / 4
+SIF STRCOUNT(TSTR:视频摄影记录,"/O2/")
+	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:视频摄影记录,"/O2/")) / 3
 
 ;絶頂
-SIF STRCOUNT(TSTR:1,"/C/")
-	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:1,"/C/")) / 3
-SIF STRCOUNT(TSTR:1,"/V/")
-	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:1,"/V/")) / 3
-SIF STRCOUNT(TSTR:1,"/A/")
-	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:1,"/A/")) / 3
-SIF STRCOUNT(TSTR:1,"/B/")
-	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:1,"/B/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/C/")
+	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:视频摄影记录,"/C/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/V/")
+	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:视频摄影记录,"/V/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/A/")
+	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:视频摄影记录,"/A/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/B/")
+	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:视频摄影记录,"/B/")) / 3
 
 ;射精
-SIF STRCOUNT(TSTR:1,"/SM/")
-	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:1,"/SM/")) / 3
-SIF STRCOUNT(TSTR:1,"/ST/")
-	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:1,"/ST/")) / 3
-SIF STRCOUNT(TSTR:1,"/SA/")
-	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:1,"/SA/")) / 3
-SIF STRCOUNT(TSTR:1,"/SV/")
-	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:1,"/SV/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/SM/")
+	LOCAL:1 += 200 * (2 + STRCOUNT(TSTR:视频摄影记录,"/SM/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/ST/")
+	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:视频摄影记录,"/ST/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/SA/")
+	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:视频摄影记录,"/SA/")) / 3
+SIF STRCOUNT(TSTR:视频摄影记录,"/SV/")
+	LOCAL:1 += 300 * (2 + STRCOUNT(TSTR:视频摄影记录,"/SV/")) / 3
 
 ;喷乳
-SIF STRCOUNT(TSTR:1,"/MILK/")
-	LOCAL:1 += 500 * (3 + STRCOUNT(TSTR:1,"/MILK/")) / 4
+SIF STRCOUNT(TSTR:视频摄影记录,"/MILK/")
+	LOCAL:1 += 500 * (3 + STRCOUNT(TSTR:视频摄影记录,"/MILK/")) / 4
 
 
 
-SPLIT TSTR:1,"/",LOCALS
+SPLIT TSTR:视频摄影记录,"/",LOCALS
 FOR LOCAL,0,RESULT
 	IF LOCALS:LOCAL == "0" || TOINT(LOCALS:LOCAL)
 		PRINTL
@@ -421,7 +421,7 @@ SIF TALENT:魅力
 ;-----------------------------------------------------------
 
 ;角色の照相经验を見る
-SIF EXP:TARGET:53 >= EXPLV:3
+SIF EXP:TARGET:异常经验 >= EXPLV:3
 	LOCAL:2 += 10
 
 ;倍率処理

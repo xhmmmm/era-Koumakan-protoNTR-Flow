@@ -1,4 +1,4 @@
-;----------------------------------------------------------------------------------------
+﻿;----------------------------------------------------------------------------------------
 ;
 ;部屋のにおいパッチ
 ;
@@ -17,7 +17,7 @@ SIF !FLAG:(部屋のにおい_初期FLAG)
 	RETURN 0
 
 ;起床時間と現在時刻が一致する場合, 朝の処理
-IF CFLAG:MASTER:312 == TIME
+IF CFLAG:MASTER:通常起床時間 == TIME
 	CALL ROOM_SMELL_MORNING(部屋のにおい_初期FLAG,部屋のにおい_初期FLAG_2,角色的气味_初期CFLAG,LOCAL:3)
 	;一定時間ごとににおいが換気されていく処理
 ELSEIF TIME - FLAG:(LOCAL:1) > LOCAL:4
@@ -286,11 +286,11 @@ FOR LOOP_CHARA, 0, CHARANUM
 	;訪問者関連の処理
 	;訪問者に角色のにおいがついている場合は1/3の強さになって伝染
 	;角色のにおいがついていない場合は訪問者のにおいを角色に植え付ける
-	IF CFLAG:LOOP_CHARA:333 >= NTR_行为_接吻 && CFLAG:LOOP_CHARA:333 <= NTR_行为_胸爱抚
+	IF CFLAG:LOOP_CHARA:NTR访问者当前行为 >= NTR_行为_接吻 && CFLAG:LOOP_CHARA:NTR访问者当前行为 <= NTR_行为_胸爱抚
 		CALL ROOM_SMELL_NTR_PET(LOOP_CHARA)
-	ELSEIF CFLAG:LOOP_CHARA:333 == NTR_行为_口交
+	ELSEIF CFLAG:LOOP_CHARA:NTR访问者当前行为 == NTR_行为_口交
 		CALL ROOM_SMELL_NTR_ORAL(LOOP_CHARA)
-	ELSEIF CFLAG:LOOP_CHARA:333 >= NTR_行为_六九 && CFLAG:LOOP_CHARA:333 <= NTR_行为_Ａ背面立位
+	ELSEIF CFLAG:LOOP_CHARA:NTR访问者当前行为 >= NTR_行为_六九 && CFLAG:LOOP_CHARA:NTR访问者当前行为 <= NTR_行为_Ａ背面立位
 		CALL ROOM_SMELL_NTR_SEX(LOOP_CHARA)
 	ENDIF
 NEXT
@@ -895,7 +895,7 @@ ELSE
 			NEXT
 			SIF ROOM_SMELL_VALUE(CFLAG:ARG:(角色的气味_别人的气味_1 + LOOP_1)) > LOCAL:11
 				LOCAL:11 = ROOM_SMELL_VALUE(CFLAG:ARG:(角色的气味_别人的气味_1 + LOOP_1))
-			SIF GETBIT(ROOM_SMELL_BIT(CFLAG:ARG:(角色的气味_别人的气味_1 + LOOP_1)), 气味类型B_精液) && GETBIT(LOCAL:12, 气味类型B_精液) && (TCVAR:ARG:102 || TCVAR:ARG:104) && (TCVAR:ARG:103 == LOCAL:10 || TCVAR:ARG:105 == LOCAL:10)
+			SIF GETBIT(ROOM_SMELL_BIT(CFLAG:ARG:(角色的气味_别人的气味_1 + LOOP_1)), 气味类型B_精液) && GETBIT(LOCAL:12, 气味类型B_精液) && (TCVAR:ARG:Vに中出しされたフラグ || TCVAR:ARG:Aに中出しされたフラグ) && (TCVAR:ARG:Vに中出ししたキャラの番号 == LOCAL:10 || TCVAR:ARG:Aに中出ししたキャラの番号 == LOCAL:10)
 				LOCAL:11 += 5
 			SIF LOCAL:11 > 99
 				LOCAL:11 = 99

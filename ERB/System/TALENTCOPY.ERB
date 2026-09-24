@@ -1,4 +1,4 @@
-;------------------------------------------------
+﻿;------------------------------------------------
 ;キャラコピー諸々
 ;------------------------------------------------
 @CHARACROSS(ARG)
@@ -21,12 +21,12 @@ FOR LOCAL,0,94
 	EXP:ARG:LOCAL = EXP:(ARG+1):LOCAL
 NEXT
 
-CFLAG:ARG:7 = CFLAG:(ARG+1):7
+CFLAG:ARG:服装パターン = CFLAG:(ARG+1):服装パターン
 
-CFLAG:ARG:298 = CFLAG:(ARG+1):298
-CFLAG:ARG:310 = CFLAG:(ARG+1):310
-CFLAG:ARG:311 = CFLAG:(ARG+1):311
-CFLAG:ARG:312 = CFLAG:(ARG+1):312
+CFLAG:ARG:行動パターン = CFLAG:(ARG+1):行動パターン
+CFLAG:ARG:館内地位 = CFLAG:(ARG+1):館内地位
+CFLAG:ARG:開始位置 = CFLAG:(ARG+1):開始位置
+CFLAG:ARG:通常起床時間 = CFLAG:(ARG+1):通常起床時間
 
 NAME:ARG = %NAME:(ARG+1)%
 CALLNAME:ARG = %CALLNAME:(ARG+1)%
@@ -71,13 +71,13 @@ IF 0 < RESULT && RESULT < 开局角色数量
 		MASTER = 0
 		TARGET = MASTER
 		PLAYER = MASTER
-		WK_ARG = CFLAG:MASTER:311
-		CFLAG:MASTER:311 = 15
+		WK_ARG = CFLAG:MASTER:開始位置
+		CFLAG:MASTER:開始位置 = 15
 
 		FOR LOCAL,1,开局角色数量
 			IF LOCAL == NO:MASTER
 				ADDCHARA 0
-				CFLAG:LOCAL:311 = WK_ARG
+				CFLAG:LOCAL:開始位置 = WK_ARG
 			ELSE
 				ADDCHARA LOCAL
 			ENDIF

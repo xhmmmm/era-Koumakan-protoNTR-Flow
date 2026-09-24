@@ -1,4 +1,4 @@
-;泡一杯茶
+﻿;泡一杯茶
 @COM301
 LOCAL = RAND:100
 LOCAL:1 = 90 + GET_SUCCESS_RATE() / 5
@@ -7,17 +7,17 @@ SIF LOCAL:1 > 99
 IF LOCAL <= 9
 	;10％で大成功
 	EXP:MASTER:会话经验 ++
-	TFLAG:193 = 1
+	TFLAG:コマンド成功度 = 1
 ELSEIF LOCAL >= LOCAL:1
 	;10～1％で失敗
-	TFLAG:193 = -1
+	TFLAG:コマンド成功度 = -1
 ELSE
 	;残りは成功
-	TFLAG:193 = 0
+	TFLAG:コマンド成功度 = 0
 ENDIF
 ;先制発生時は失敗しない
-SIF TCVAR:20
-	TFLAG:193 = MAX(TFLAG:193,0)
+SIF TCVAR:カウンター行動
+	TFLAG:コマンド成功度 = MAX(TFLAG:コマンド成功度,0)
 DOWNBASE:MASTER:气力 += 100
 DOWNBASE:MASTER:体力 += 50
 
@@ -60,7 +60,7 @@ ENDIF
 
 ;好感度をみる
 IF CFLAG:好感度 <= 500
-	SOURCE:欢乐 += CFLAG:2
+	SOURCE:欢乐 += CFLAG:好感度
 ELSEIF CFLAG:好感度 <= 5000
 	SOURCE:欢乐 += 500 + (CFLAG:好感度 - 500) / 3
 ELSE
@@ -73,11 +73,11 @@ SIF SOURCE:欢乐 < 0
 SOURCE:被动 = 200 + 100 * ABL:顺从
 SOURCE:征服 = 200 + 100 * ABL:抖Ｓ之气
 
-IF TFLAG:193 == -1
+IF TFLAG:コマンド成功度 == -1
 	TIMES SOURCE:欢乐 , 0.10
 	TIMES SOURCE:征服 , 0.50
 	TIMES SOURCE:被动 , 0.50
-ELSEIF TFLAG:193 == 0
+ELSEIF TFLAG:コマンド成功度 == 0
 	TIMES SOURCE:欢乐 , 1.00
 	TIMES SOURCE:征服 , 1.00
 	TIMES SOURCE:被动 , 1.00
